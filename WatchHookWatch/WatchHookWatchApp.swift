@@ -14,6 +14,7 @@ struct WatchHookWatchApp: App {
         }
         .onChange(of: scenePhase) { _, phase in
             if phase == .active {
+                ConfigStore.shared.reloadIfNeeded()
                 WatchSync.shared.requestConfig()
                 Task { await MessageDispatcher.shared.flush() }
             }

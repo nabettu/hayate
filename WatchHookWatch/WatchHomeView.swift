@@ -72,7 +72,7 @@ struct WatchHomeView: View {
 
     /// iPhone から届いた設定を時計に保存できなかったとき。
     @ViewBuilder private var saveErrorView: some View {
-        if let error = store.saveError {
+        if let error = store.saveError ?? store.syncError {
             VStack(spacing: 4) {
                 Label(error, systemImage: "exclamationmark.triangle.fill")
                     .font(.caption2).foregroundStyle(.red)

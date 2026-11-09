@@ -32,8 +32,8 @@ echo "== Core の単体テスト"
 
 echo "== project.yml とプロジェクトの一致"
 xcodegen generate --quiet
-if ! git diff --quiet -- WatchHook.xcodeproj; then
-  echo "WatchHook.xcodeproj が project.yml と一致しません。xcodegen generate の結果をコミットしてください" >&2
+if ! git diff --quiet -- WatchHook.xcodeproj WatchHook/Info.plist WatchHookWatch/Info.plist; then
+  echo "WatchHook.xcodeproj / Info.plist が project.yml と一致しません。xcodegen generate の結果をコミットしてください" >&2
   exit 1
 fi
 

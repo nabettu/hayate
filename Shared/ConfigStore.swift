@@ -14,7 +14,7 @@ final class ConfigStore {
     private(set) var config: DestinationConfig
     /// 直近の保存に失敗したときの理由。画面に出す。
     private(set) var saveError: String?
-    /// 時計への同期に失敗したときの理由 (iPhone のみ)。
+    /// 時計との同期に失敗したときの理由。
     private(set) var syncError: String?
     /// 保存したあとに呼ばれる。iPhone ではここで時計へ送り、失敗したら理由を返す。
     @ObservationIgnored var onChange: ((DestinationConfig) -> String?)?
@@ -26,11 +26,11 @@ final class ConfigStore {
             config = try Self.loadFromKeychain()
         } catch is DecodingError {
             // 保存されている設定の形式が読めない (壊れた・古い形式)。待っても直らないので空から始め、上書きを許す
-            config = DestinationConfig()
+            config = .unsaved
             saveError = "保存されていた設定を読めなかったため、空の状態から始めます"
         } catch {
             // Keychain が一時的に読めない (ロック中など)。このまま保存すると本物の設定を空で上書きしてしまうので、保存を止めて知らせる
-            config = DestinationConfig()
+            config = .unsaved
             loadFailed = true
             saveError = "設定を読み込めませんでした。アプリを開き直してください"
         }
@@ -41,7 +41,7 @@ final class ConfigStore {
     /// App Intent など、MainActor の外から最新の設定を読むとき。まだ何も無ければ空の設定。
     /// Keychain が読めなければ `KeychainStore.ReadError`、中身が読めなければ `DecodingError` を投げる。
     nonisolated static func loadFromKeychain() throws -> DestinationConfig {
-        guard let data = try keychain.load() else { return DestinationConfig() }
+        guard let data = try keychain.load() else { return .unsaved }
         do {
             return try DestinationConfig.decode(data)
         } catch {
@@ -57,6 +57,12 @@ final class ConfigStore {
         c.epoch = config.epoch
         c.revision = config.revision
         c = c.nextRevision()
+        do {
+            try c.validateSize()
+        } catch {
+            saveError = error.localizedDescription
+            return false
+        }
         guard save(c) else { return false }
         resync()
         return true
@@ -67,6 +73,19 @@ final class ConfigStore {
         syncError = onChange?(config)
     }
 
+    /// 起動時に Keychain が読めなかった (ロック中など) とき、前面に来たタイミングで読み直す。
+    func reloadIfNeeded() {
+        guard loadFailed, let loaded = try? Self.loadFromKeychain() else { return }
+        config = loaded
+        loadFailed = false
+        saveError = nil
+    }
+
+    /// 時計で、iPhone から設定を受け取れなかったとき。
+    func setSyncError(_ message: String?) {
+        syncError = message
+    }
+
     /// 時計で、iPhone から届いた設定を受け取る。今持っているものより古ければ捨てる。
     func receive(_ incoming: DestinationConfig) {
         guard incoming.isNewer(than: config) else { return }
@@ -75,6 +94,7 @@ final class ConfigStore {
 
     @discardableResult
     private func save(_ c: DestinationConfig) -> Bool {
+        reloadIfNeeded()
         guard !loadFailed else { return false }
         guard let data = try? c.encoded(), Self.keychain.save(data) else {
             saveError = "設定を端末に保存できませんでした"

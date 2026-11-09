@@ -17,15 +17,45 @@ actor MessageDispatcher {
     private var inFlight: Set<UUID> = []
     private var isFlushing = false
     private var flushRequested = false
+    /// 履歴ファイルが読めなかった (I/O エラー・ロック中など)。読めるまで上書きしない (未送信を消さないため)。
+    private var readFailed = false
 
     init(sender: WebhookSender = WebhookSender(), fileURL: URL = MessageDispatcher.defaultFileURL) {
         self.sender = sender
         self.fileURL = fileURL
-        if let data = try? Data(contentsOf: fileURL), let saved = try? JSONDecoder().decode(MessageLog.self, from: data) {
+        switch Self.readLog(at: fileURL) {
+        case .loaded(let saved):
             log = saved
-        } else {
+        case .missing:
             log = MessageLog()
+        case .unreadable:
+            log = MessageLog()
+            readFailed = true
         }
+    }
+
+    private enum ReadResult {
+        case loaded(MessageLog)
+        case missing
+        case unreadable
+    }
+
+    private static func readLog(at url: URL) -> ReadResult {
+        let data: Data
+        do {
+            data = try Data(contentsOf: url)
+        } catch let error as CocoaError where error.code == .fileReadNoSuchFile {
+            return .missing
+        } catch {
+            return .unreadable
+        }
+        guard let saved = try? JSONDecoder().decode(MessageLog.self, from: data) else {
+            // 形式が読めない (壊れた) ファイルは待っても直らない。消さずに脇へ退けて、空から始める
+            let aside = url.deletingPathExtension().appendingPathExtension("corrupt-\(Int(Date().timeIntervalSince1970)).json")
+            try? FileManager.default.moveItem(at: url, to: aside)
+            return .missing
+        }
+        return .loaded(saved)
     }
 
     static var defaultFileURL: URL {
@@ -97,14 +127,33 @@ actor MessageDispatcher {
         await flush()
     }
 
-    func remove(_ id: UUID) {
+    /// 消せなかった (保存に失敗した) ら元に戻して false。戻さないと、ディスクに残った再送待ちが次の起動で送られる。
+    @discardableResult
+    func remove(_ id: UUID) -> Bool {
+        let before = log
         log.remove(id)
-        persist()
+        if persist() { return true }
+        log = before
+        NotificationCenter.default.post(name: Self.didChange, object: nil)
+        return false
     }
 
     @discardableResult
     private func persist() -> Bool {
         defer { NotificationCenter.default.post(name: Self.didChange, object: nil) }
+        if readFailed {
+            // 読めなかった履歴を読み直し、手元で増えた分を足してから書く。まだ読めなければ書かない
+            switch Self.readLog(at: fileURL) {
+            case .loaded(var saved):
+                saved.merge(log)
+                log = saved
+                readFailed = false
+            case .missing:
+                readFailed = false
+            case .unreadable:
+                return false
+            }
+        }
         guard let data = try? JSONEncoder().encode(log) else { return false }
         do {
             // 本文は他人に見せたくない内容のこともあるので、起動後の初回ロック解除までは読めないようにする

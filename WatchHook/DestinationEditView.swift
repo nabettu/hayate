@@ -124,7 +124,7 @@ struct DestinationEditView: View {
             if onSave(destination) {
                 dismiss()
             } else {
-                self.error = "端末に保存できませんでした"
+                self.error = ConfigStore.shared.saveError ?? "端末に保存できませんでした"
             }
         } catch {
             self.error = error.localizedDescription

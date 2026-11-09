@@ -24,7 +24,10 @@ struct WatchHookApp: App {
             }
         }
         .onChange(of: scenePhase) { _, phase in
-            if phase == .active { Task { await MessageDispatcher.shared.flush() } }
+            if phase == .active {
+                ConfigStore.shared.reloadIfNeeded()
+                Task { await MessageDispatcher.shared.flush() }
+            }
         }
     }
 }

@@ -68,6 +68,19 @@ public struct MessageLog: Codable, Hashable, Sendable {
         entries[i].status = .pending(attempts: 0, lastError: nil)
     }
 
+    /// 別に持っていた履歴 (読み込みに失敗していた間に手元で増えた分) を足す。同じ ID は `other` を優先する。
+    public mutating func merge(_ other: MessageLog) {
+        for entry in other.entries {
+            if let i = entries.firstIndex(where: { $0.id == entry.id }) {
+                entries[i] = entry
+            } else {
+                entries.append(entry)
+            }
+        }
+        entries.sort { $0.message.createdAt > $1.message.createdAt }
+        trim()
+    }
+
     public mutating func remove(_ id: UUID) {
         entries.removeAll { $0.id == id }
     }

@@ -128,10 +128,28 @@ public struct DestinationConfig: Codable, Hashable, Sendable {
         epoch != other.epoch || revision > other.revision
     }
 
+    /// 一度も保存していない設定の epoch。毎回同じ値にして、空の設定どうしを「新しい」と取り違えない。
+    public static let unsavedEpoch = UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
+    /// まだ何も保存していないときの設定。
+    public static var unsaved: DestinationConfig { DestinationConfig(epoch: unsavedEpoch) }
+
+    /// 版を 1 つ進める。初めての保存なら epoch を新しく作る (入れ直した iPhone の設定を時計が受け入れられるように)。
     public func nextRevision() -> DestinationConfig {
         var c = self
         c.revision += 1
+        if c.epoch == Self.unsavedEpoch { c.epoch = UUID() }
         return c
+    }
+
+    /// WatchConnectivity のメッセージに収まる大きさ (上限は公開されていないので余裕を持たせる)。
+    public static let maxEncodedBytes = 48_000
+
+    public struct TooLarge: Error, LocalizedError {
+        public var errorDescription: String? { "設定が大きすぎて Apple Watch へ送れません。本文テンプレートやヘッダを減らしてください" }
+    }
+
+    public func validateSize() throws {
+        guard try encoded().count <= Self.maxEncodedBytes else { throw TooLarge() }
     }
 
     /// 既定に選んだ送り先。消されていたら先頭を返す。

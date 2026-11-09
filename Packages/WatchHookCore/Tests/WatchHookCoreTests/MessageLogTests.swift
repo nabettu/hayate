@@ -84,6 +84,21 @@ struct MessageLogTests {
         #expect(log.entries[0].status == .sent(statusCode: 200))
     }
 
+    @Test func 読み直した履歴に手元の新しい項目を足せる_同じIDは手元を優先() {
+        var disk = MessageLog()
+        let old = msg("old", at: 0)
+        disk.enqueue(old, destinationName: "A")
+        var memory = MessageLog()
+        let new = msg("new", at: 1)
+        memory.enqueue(new, destinationName: "A")
+        memory.enqueue(old, destinationName: "A")
+        memory.apply(.sent(statusCode: 200), to: old.id)
+
+        disk.merge(memory)
+        #expect(disk.entries.map(\.message.text) == ["new", "old"])
+        #expect(disk.status(of: old.id) == .sent(statusCode: 200))
+    }
+
     @Test func JSONで保存して戻せる() throws {
         var log = MessageLog()
         log.enqueue(msg(), destinationName: "A")
@@ -128,6 +143,32 @@ struct DestinationConfigTests {
         let next = c.nextRevision()
         #expect(next.revision == 6)
         #expect(next.epoch == c.epoch)
+    }
+
+    @Test func 一度も保存していない設定は最初の保存で新しいepochを持つ() {
+        let unsaved = DestinationConfig.unsaved
+        #expect(DestinationConfig.unsaved == unsaved) // 何度読んでも同じ (返信の前後で巻き戻らない)
+        let first = unsaved.nextRevision()
+        #expect(first.epoch != DestinationConfig.unsavedEpoch)
+        #expect(first.revision == 1)
+        #expect(first.isNewer(than: unsaved))
+        #expect(!unsaved.isNewer(than: unsaved))
+    }
+
+    @Test func 大きすぎる設定は保存前に弾く() {
+        var d = Destination.preset(.custom)
+        d.bodyTemplate = String(repeating: "a", count: DestinationConfig.maxEncodedBytes)
+        let c = DestinationConfig(destinations: [d])
+        #expect(throws: DestinationConfig.TooLarge.self) { try c.validateSize() }
+        #expect(throws: Never.self) { try DestinationConfig(destinations: [.preset(.slack)]).validateSize() }
+    }
+
+    @Test func 古い要求への返信は捨てる() {
+        var gate = LatestRequestGate()
+        let first = gate.begin()
+        let second = gate.begin()
+        #expect(!gate.isLatest(first))
+        #expect(gate.isLatest(second))
     }
 
     @Test func 空なら既定も無い() {
