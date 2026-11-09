@@ -13,12 +13,37 @@ final class WatchHistoryStore {
     private(set) var updatedAt: Date?
     private let fileURL: URL
 
+    /// 保存した写しを読めなかった (再起動後の初回ロック解除前など)。読めるまで `reloadIfNeeded` で読み直す。
+    private var loadFailed = false
+
     init(fileURL: URL = WatchHistoryStore.defaultFileURL) {
         self.fileURL = fileURL
-        if let data = try? Data(contentsOf: fileURL), let saved = try? HistorySnapshot.decode(data) {
-            entries = saved.entries
-            updatedAt = saved.updatedAt
+        load()
+    }
+
+    private func load() {
+        let data: Data
+        do {
+            data = try Data(contentsOf: fileURL)
+        } catch let error as CocoaError where error.code == .fileReadNoSuchFile {
+            loadFailed = false
+            return
+        } catch {
+            loadFailed = true
+            return
         }
+        loadFailed = false
+        // 壊れた写しは読み直しても直らない。次に時計から届いたもので置き換わる
+        guard let saved = try? HistorySnapshot.decode(data) else { return }
+        entries = saved.entries
+        updatedAt = saved.updatedAt
+    }
+
+    /// 前面に来たとき・履歴画面を開いたとき。前に読めなかったときだけ読み直す。
+    /// その間に時計から届いた写しがあれば、そちらが新しいので読み直さない。
+    func reloadIfNeeded() {
+        guard loadFailed, updatedAt == nil else { return }
+        load()
     }
 
     static var defaultFileURL: URL {
@@ -32,6 +57,7 @@ final class WatchHistoryStore {
     func receive(_ snapshot: HistorySnapshot) {
         entries = snapshot.entries
         updatedAt = snapshot.updatedAt
+        loadFailed = false
         if let data = try? snapshot.encoded() {
             // 本文は他人に見せたくない内容のこともあるので、起動後の初回ロック解除までは読めないようにする (時計側の履歴と同じ)
             try? data.write(to: fileURL, options: [.atomic, .completeFileProtectionUntilFirstUserAuthentication])

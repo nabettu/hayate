@@ -63,7 +63,10 @@ struct HistoryView: View {
                 await MessageDispatcher.shared.flush()
                 await reload()
             }
-            .task { await reload() }
+            .task {
+                watchHistory.reloadIfNeeded()
+                await reload()
+            }
             .onReceive(NotificationCenter.default.publisher(for: MessageDispatcher.didChange)) { _ in
                 Task { await reload() }
             }

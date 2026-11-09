@@ -1,4 +1,5 @@
 import Foundation
+import Synchronization
 import WatchConnectivity
 import WatchHookCore
 
@@ -40,10 +41,19 @@ final class PhoneSync: NSObject, WCSessionDelegate, @unchecked Sendable {
         receiveHistory(from: applicationContext)
     }
 
+    /// 最後に受け取った時計の履歴の写し。デリゲートは 1 本のキューから順に呼ばれるので、ここには常に最新が入る。
+    /// MainActor への受け渡しは Task ごとに順番が入れ替わりうるので、受け取った値ではなく、反映する時点の最新をここから読む
+    /// (古い写しで上書きして、送信済みが未送信に戻ったり、消したものが戻ったりしないように)。
+    private let latestHistory = Mutex<HistorySnapshot?>(nil)
+
     private func receiveHistory(from context: [String: Any]) {
         guard let data = context[SyncKeys.history] as? Data,
               let snapshot = try? HistorySnapshot.decode(data) else { return }
-        Task { @MainActor in WatchHistoryStore.shared.receive(snapshot) }
+        latestHistory.withLock { $0 = snapshot }
+        Task { @MainActor in
+            guard let latest = self.latestHistory.withLock({ $0 }) else { return }
+            WatchHistoryStore.shared.receive(latest)
+        }
     }
 
     /// 時計が「設定をください」と言ってきたとき (初回インストール直後など)。
