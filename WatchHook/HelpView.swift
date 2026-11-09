@@ -64,7 +64,7 @@ private struct WatchUsagePage: View {
         HelpPage(title: "Apple Watch から送る") {
             Section("Siri で送る (手を使わない)") {
                 Para("「Hey Siri、WatchHook で送って」と話しかけ、「何を送りますか？」と聞かれたら送りたい内容を話します。")
-                Para("「WatchHook で送る」「WatchHook に送って」でも動きます。送り先は iPhone で「既定」にしたものです。")
+                Para("「WatchHook で送る」「WatchHook に送って」でも動きます。送り先は iPhone で「既定」にしたものです (ショートカット App で送り先を指定した場合はそちら)。")
                 Para("iPhone の Siri でも同じように送れます。")
             }
             Section("アプリから送る") {
@@ -101,7 +101,7 @@ private struct ChooseDestinationPage: View {
         HelpPage(title: "送り先を切り替える") {
             Section("既定の送り先") {
                 Para("「送り先」タブで送り先を右へスワイプし、「既定にする」を押します。★ が付いたものが既定です。")
-                Para("Siri で送るときは、いつも既定の送り先へ送ります。")
+                Para("Siri で送るときは、送り先を指定していなければ既定の送り先へ送ります。ショートカット App で送り先を指定したものは、既定を変えてもその送り先のままです。")
             }
             Section("時計で選ぶ") {
                 Para("送り先が 2 つ以上あると、時計の「話す」の下に送り先の選択が出ます。ここで選んだものは時計のアプリから送るときだけ使います (iPhone の既定は変わりません)。")
@@ -172,7 +172,7 @@ private struct TroublePage: View {
     var body: some View {
         HelpPage(title: "送れなかったとき") {
             Section("自動で送り直すもの") {
-                Para("通信できない・時間切れ・受け取る側の混雑 (HTTP 408 / 429 / 5xx) のときは、時計や iPhone に溜めておき、次にアプリを開いたときに送り直します (最大 5 回)。")
+                Para("通信できない・時間切れ・受け取る側の混雑 (HTTP 408 / 429 / 5xx) のときは、時計や iPhone に溜めておき、次にアプリを開いたときに送り直します (最初の 1 回を含めて最大 5 回)。")
                 Para("「履歴」で状態を見られます。左へスワイプすると「再送」できます。")
             }
             Section("送り直しても届かないもの") {
