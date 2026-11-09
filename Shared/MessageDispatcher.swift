@@ -19,6 +19,10 @@ actor MessageDispatcher {
     private var flushRequested = false
     /// 履歴ファイルが読めなかった (I/O エラー・ロック中など)。読めるまで上書きしない (未送信を消さないため)。
     private var readFailed = false
+    /// 直近の保存に失敗した (手元の状態がディスクに書けていない)。次の機会に書き直す。
+    private var dirty = false
+    /// 一度でもディスクに書けた項目の ID。並行した別の送信の保存で書かれた分も含む。
+    private var persistedIDs: Set<UUID> = []
 
     init(sender: WebhookSender = WebhookSender(), fileURL: URL = MessageDispatcher.defaultFileURL) {
         self.sender = sender
@@ -26,6 +30,7 @@ actor MessageDispatcher {
         switch Self.readLog(at: fileURL) {
         case .loaded(let saved):
             log = saved
+            persistedIDs = Set(saved.entries.map(\.id))
         case .missing:
             log = MessageLog()
         case .unreadable:
@@ -51,9 +56,14 @@ actor MessageDispatcher {
         }
         guard let saved = try? JSONDecoder().decode(MessageLog.self, from: data) else {
             // 形式が読めない (壊れた) ファイルは待っても直らない。消さずに脇へ退けて、空から始める
-            let aside = url.deletingPathExtension().appendingPathExtension("corrupt-\(Int(Date().timeIntervalSince1970)).json")
-            try? FileManager.default.moveItem(at: url, to: aside)
-            return .missing
+            let aside = url.deletingLastPathComponent().appending(path: "message-log.corrupt-\(UUID().uuidString).json")
+            do {
+                try FileManager.default.moveItem(at: url, to: aside)
+                return .missing
+            } catch {
+                // 退けられなければ上書きしない (手で戻せる元データを残す)
+                return .unreadable
+            }
         }
         return .loaded(saved)
     }
@@ -72,19 +82,19 @@ actor MessageDispatcher {
         let message = OutgoingMessage(text: text, destinationID: destination.id, source: source)
         log.enqueue(message, destinationName: destination.name)
         inFlight.insert(message.id)
-        let queued = persist()
+        persist()
 
         let result = await sender.send(message, to: destination)
         let status = log.apply(result, to: message.id) ?? Self.status(for: result)
         inFlight.remove(message.id)
-        let saved = persist()
+        persist()
 
         if case .sent = result {
             Task { await self.flush() }
         }
         // 再送待ちを一度も端末に保存できていなければ、アプリが終われば消える。再送するとは言わない
-        // (どちらか一方でも保存できていれば、次の flush で送り直される)
-        if case .pending = status, !queued, !saved {
+        // (この呼び出しか、並行した別の送信の保存で一度でも書けていれば、次の flush で送り直される)
+        if case .pending = status, !persistedIDs.contains(message.id) {
             // 表示と実際をそろえる: 再送待ちのまま残すと、あとで自動で送られて「送り直せません」と食い違う
             let reason = "端末に保存できなかったため、送り直せません"
             log.apply(.permanentFailure(reason: reason), to: message.id)
@@ -103,6 +113,8 @@ actor MessageDispatcher {
         defer { isFlushing = false }
         // 起動時に読めなかった履歴の再送待ちも拾えるよう、列挙の前に読み直す
         recoverIfNeeded()
+        // 前回書けなかった結果 (送信済みなど) を書き直す。書かないと次の起動で送り直してしまう
+        if dirty { persist() }
         repeat {
             flushRequested = false
             var tried: Set<UUID> = []
@@ -118,6 +130,8 @@ actor MessageDispatcher {
                 inFlight.insert(entry.id)
                 let result = await sender.send(entry.message, to: destination)
                 inFlight.remove(entry.id)
+                // 待つのをやめられたら、状態を変えずに再送をやめる (残りの再送回数を減らさない)
+                if case .cancelled = result { return }
                 // 送っている間に履歴から消された / 手動で状態が変わったものは上書きしない
                 guard case .pending = log.status(of: entry.id) else { continue }
                 log.apply(result, to: entry.id)
@@ -152,6 +166,7 @@ actor MessageDispatcher {
         guard readFailed else { return true }
         switch Self.readLog(at: fileURL) {
         case .loaded(var saved):
+            persistedIDs.formUnion(saved.entries.map(\.id))
             saved.merge(log)
             log = saved
             readFailed = false
@@ -168,13 +183,19 @@ actor MessageDispatcher {
     private func persist() -> Bool {
         defer { NotificationCenter.default.post(name: Self.didChange, object: nil) }
         // 読めていない履歴で上書きすると未送信を消すので、読めるまで書かない
-        guard recoverIfNeeded() else { return false }
+        guard recoverIfNeeded() else {
+            dirty = true
+            return false
+        }
         guard let data = try? JSONEncoder().encode(log) else { return false }
         do {
             // 本文は他人に見せたくない内容のこともあるので、起動後の初回ロック解除までは読めないようにする
             try data.write(to: fileURL, options: [.atomic, .completeFileProtectionUntilFirstUserAuthentication])
+            dirty = false
+            persistedIDs.formUnion(log.entries.map(\.id))
             return true
         } catch {
+            dirty = true
             return false
         }
     }
@@ -184,6 +205,7 @@ actor MessageDispatcher {
         case .sent(let code): .sent(statusCode: code)
         case .retryableFailure(let r): .pending(attempts: 1, lastError: r)
         case .permanentFailure(let r): .failed(reason: r)
+        case .cancelled: .pending(attempts: 0, lastError: nil)
         }
     }
 }

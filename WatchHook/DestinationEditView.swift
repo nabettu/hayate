@@ -144,6 +144,7 @@ struct DestinationEditView: View {
         switch result {
         case .sent(let code): testResult = "届きました (HTTP \(code))"
         case .retryableFailure(let r), .permanentFailure(let r): testResult = "送れませんでした: \(r)"
+        case .cancelled: testResult = nil
         }
     }
 }

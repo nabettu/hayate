@@ -44,6 +44,15 @@ struct MessageLogTests {
         #expect(!log.entries.contains { $0.id == m.id })
     }
 
+    @Test func キャンセルでは状態も再送回数も変えない() {
+        var log = MessageLog()
+        let m = msg()
+        log.enqueue(m, destinationName: "A")
+        log.apply(.retryableFailure(reason: "e"), to: m.id)
+        log.apply(.cancelled, to: m.id)
+        #expect(log.entries[0].status == .pending(attempts: 1, lastError: "e"))
+    }
+
     @Test func 恒久的な失敗はすぐ失敗にする() {
         var log = MessageLog()
         let m = msg()

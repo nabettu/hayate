@@ -39,6 +39,8 @@ public enum SendResult: Equatable, Sendable {
     case retryableFailure(reason: String)
     /// 設定の誤り・その他の 4xx。送り直しても直らない。
     case permanentFailure(reason: String)
+    /// 呼び出し側が待つのをやめた。失敗ではないので状態も再送回数も変えない。
+    case cancelled
 }
 
 public struct WebhookSender: Sendable {
@@ -58,6 +60,10 @@ public struct WebhookSender: Sendable {
         do {
             let (_, response) = try await transport.send(request)
             return Self.classify(statusCode: response.statusCode)
+        } catch let error as URLError where error.code == .cancelled {
+            return .cancelled
+        } catch is CancellationError {
+            return .cancelled
         } catch let error as URLError {
             return .retryableFailure(reason: "通信エラー (\(error.code.rawValue))")
         } catch {

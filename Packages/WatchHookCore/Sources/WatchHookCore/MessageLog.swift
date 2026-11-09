@@ -40,6 +40,8 @@ public struct MessageLog: Codable, Hashable, Sendable {
     public mutating func apply(_ result: SendResult, to id: UUID) -> MessageStatus? {
         guard let i = entries.firstIndex(where: { $0.id == id }) else { return nil }
         switch result {
+        case .cancelled:
+            break
         case .sent(let code):
             entries[i].status = .sent(statusCode: code)
         case .permanentFailure(let reason):

@@ -51,6 +51,12 @@ struct WebhookSenderTests {
         if case .retryableFailure = r {} else { Issue.record("got \(r)") }
     }
 
+    @Test func キャンセルは失敗として扱わない() async {
+        let r = await WebhookSender(transport: StubTransport(result: .failure(URLError(.cancelled))))
+            .send(message, to: destination)
+        #expect(r == .cancelled)
+    }
+
     @Test func 設定の誤りは再送しない() async {
         var d = destination
         d.url = "http://insecure.example"
