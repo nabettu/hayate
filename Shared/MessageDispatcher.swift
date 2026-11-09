@@ -130,6 +130,7 @@ actor MessageDispatcher {
                     continue
                 }
                 inFlight.insert(entry.id)
+                NotificationCenter.default.post(name: Self.didChange, object: nil)  // 「送信中」の表示を出す
                 let result = await sender.send(entry.message, to: destination)
                 inFlight.remove(entry.id)
                 // 待つのをやめられたら、状態を変えずに再送をやめる (残りの再送回数を減らさない)。
@@ -203,8 +204,8 @@ actor MessageDispatcher {
             persistedIDs = Set(log.entries.map(\.id))
             return true
         } catch {
+            // 失敗したときは削らない: 削除の取り消しなどで履歴に戻る項目の「書けた」記録を失わないため
             dirty = true
-            persistedIDs.formIntersection(log.entries.map(\.id))
             return false
         }
     }
