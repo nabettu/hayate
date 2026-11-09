@@ -18,8 +18,8 @@ struct WatchHookApp: App {
                 Tab("履歴", systemImage: "clock") {
                     HistoryView()
                 }
-                Tab("使い方", systemImage: "applewatch") {
-                    HowToView()
+                Tab("使い方", systemImage: "book") {
+                    HelpView()
                 }
             }
         }

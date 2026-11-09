@@ -68,24 +68,3 @@ struct HistoryView: View {
         }
     }
 }
-
-struct HowToView: View {
-    var body: some View {
-        NavigationStack {
-            List {
-                Section("Apple Watch から送る") {
-                    Label("「Hey Siri、WatchHook で送って」と話しかけ、続けて送りたい内容を話す", systemImage: "mic")
-                    Label("または WatchHook を開き、親指と人差し指をダブルタップ (Series 9 / Ultra 2 以降) して話す", systemImage: "hand.tap")
-                    Label("時計から直接送り先へ送ります。iPhone のアプリが閉じていても届きます", systemImage: "paperplane")
-                }
-                Section("送れなかったとき") {
-                    Label("通信できないときは時計 / iPhone に溜めておき、次に開いたときに送り直します", systemImage: "arrow.clockwise")
-                }
-                Section("受け取る側") {
-                    Label("ヘッダ X-WatchHook-Message-Id は再送しても同じ値です。重複の除去に使えます", systemImage: "number")
-                }
-            }
-            .navigationTitle("使い方")
-        }
-    }
-}
