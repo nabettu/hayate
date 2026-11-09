@@ -1,0 +1,50 @@
+{
+  "identifier" : "5C0E7B1A",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "0",
+      "familyShareable" : false,
+      "internalID" : "6755000001",
+      "localizations" : [
+        {
+          "description" : "7 日間、すべての機能を無料で使えます。自動で課金されません。",
+          "displayName" : "7 日間の無料お試し",
+          "locale" : "ja"
+        }
+      ],
+      "productID" : "com.nabettu.watchhook.trial7d",
+      "referenceName" : "7-day Trial",
+      "type" : "NonConsumable"
+    },
+    {
+      "displayPrice" : "1500",
+      "familyShareable" : false,
+      "internalID" : "6755000002",
+      "localizations" : [
+        {
+          "description" : "Apple Watch と Siri からの送信をずっと使えます。1 回だけの支払いです。",
+          "displayName" : "WatchHook (買い切り)",
+          "locale" : "ja"
+        }
+      ],
+      "productID" : "com.nabettu.watchhook.unlock",
+      "referenceName" : "Full Unlock",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_developerTeamID" : "2KDR72P2RA",
+    "_locale" : "ja",
+    "_storefront" : "JPN"
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}

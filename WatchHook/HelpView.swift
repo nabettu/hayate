@@ -11,7 +11,8 @@ struct HelpView: View {
                         Text("はじめに").font(.headline).padding(.top, 4)
                         Step(number: 1, text: "「送り先」タブの + から送り先を登録する")
                         Step(number: 2, text: "編集画面の「テスト送信」で届くか確かめる")
-                        Step(number: 3, text: "Apple Watch で「Hey Siri、WatchHook で送って」と話しかける")
+                        Step(number: 3, text: "「送り先」タブの上から 7 日間の無料お試しを始める (または購入する)")
+                        Step(number: 4, text: "Apple Watch で「Hey Siri、WatchHook で送って」と話しかける")
                     }
                     .padding(.vertical, 4)
                 }
@@ -37,6 +38,12 @@ struct HelpView: View {
                     }
                     NavigationLink { CustomWebhookPage() } label: {
                         Label("Webhook (自由に設定)", systemImage: "curlybraces")
+                    }
+                }
+
+                Section("料金") {
+                    NavigationLink { PurchaseView() } label: {
+                        Label("無料お試し・購入・購入の復元", systemImage: "cart")
                     }
                 }
 

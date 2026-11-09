@@ -47,11 +47,19 @@ final class WatchSync: NSObject, WCSessionDelegate, @unchecked Sendable {
 
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         guard activationState == .activated else { return }
+        // 前回の起動から後に届いていた購入の状態を拾う
+        if let entitlement = (session.receivedApplicationContext[SyncKeys.entitlement] as? Data).flatMap({ try? EntitlementSnapshot.decode($0) }) {
+            Task { @MainActor in EntitlementStore.shared.receiveHint(entitlement) }
+        }
         requestConfig()
     }
 
     /// iPhone で設定が変わった知らせ (版だけ)。手元より新しければ本体を取りに行く。
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String: Any]) {
+        // 購入の状態 (iPhone の StoreKit で読んだもの)。時計の StoreKit に届くまでの間も使えるように合わせて使う
+        if let entitlement = (applicationContext[SyncKeys.entitlement] as? Data).flatMap({ try? EntitlementSnapshot.decode($0) }) {
+            Task { @MainActor in EntitlementStore.shared.receiveHint(entitlement) }
+        }
         guard let revision = applicationContext[SyncKeys.revision] as? Int,
               let epoch = (applicationContext[SyncKeys.epoch] as? String).flatMap(UUID.init(uuidString:)) else { return }
         Task { @MainActor in

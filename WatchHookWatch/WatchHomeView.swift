@@ -4,6 +4,7 @@ import WatchHookCore
 
 struct WatchHomeView: View {
     @State private var store = ConfigStore.shared
+    @State private var entitlements = EntitlementStore.shared
     /// 時計の中だけで選ぶ送り先 (iPhone の「既定」とは別に持つ)。
     @AppStorage("selectedDestinationID") private var selectedID: String = ""
     @State private var lastStatus: MessageStatus?
@@ -19,6 +20,7 @@ struct WatchHomeView: View {
                 ScrollView {
                     VStack(spacing: 10) {
                         saveErrorView
+                        accessView
                         // 標準の入力画面 (音声入力・スクリブル) を開く。ダブルタップでも押せる
                         TextFieldLink(prompt: Text("話してください")) {
                             Label("話す", systemImage: "mic.fill")
@@ -30,7 +32,7 @@ struct WatchHomeView: View {
                         .buttonStyle(.borderedProminent)
                         .tint(.orange)
                         .handGestureShortcut(.primaryAction)
-                        .disabled(isSending)
+                        .disabled(isSending || !entitlements.access().canSend)
 
                         statusView
 
@@ -67,6 +69,15 @@ struct WatchHomeView: View {
                 }
                 .navigationTitle("WatchHook")
             }
+        }
+    }
+
+    /// お試し前・お試しが終わったとき。購入は iPhone で行う。
+    @ViewBuilder private var accessView: some View {
+        if let message = entitlements.access().blockedMessage {
+            Label(message, systemImage: "lock.fill")
+                .font(.caption2)
+                .foregroundStyle(.orange)
         }
     }
 
@@ -108,6 +119,12 @@ struct WatchHomeView: View {
     private func send(_ text: String, to destination: Destination) async {
         let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else { return }
+        // 画面を開いたままお試しの期限を過ぎることがあるので、送る直前にも確かめる
+        await entitlements.refresh()
+        guard entitlements.access().canSend else {
+            WKHaptic.play(.failure)
+            return
+        }
         isSending = true
         let status = await MessageDispatcher.shared.send(text: trimmed, destination: destination, source: "watch")
         isSending = false

@@ -85,3 +85,6 @@ schemes:
       targets:
         WatchHook: all
         WatchHookWatch: all
+    run:
+      # Xcode から実行したとき、App Store Connect の商品の代わりに使う (docs/BILLING.md)
+      storeKitConfiguration: StoreKit/WatchHook.storekit

@@ -1,6 +1,6 @@
 # WatchHook
 
-Apple Watch の音声入力を webhook へ送るアプリ。全体像は [README.md](README.md)、設計判断は [docs/DESIGN.md](docs/DESIGN.md)、予定は [ROADMAP.md](ROADMAP.md)。
+Apple Watch の音声入力を webhook へ送るアプリ。全体像は [README.md](README.md)、設計判断は [docs/DESIGN.md](docs/DESIGN.md)、課金 (お試し + 買い切り) は [docs/BILLING.md](docs/BILLING.md)、予定は [ROADMAP.md](ROADMAP.md)。
 
 ## ルール
 

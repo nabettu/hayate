@@ -16,6 +16,7 @@ Apple Watch で話した内容を、登録した webhook (自社の受け口・S
 | `WatchHook/` | iPhone アプリ (送り先の編集・テスト送信・履歴・時計への同期・使い方のマニュアル `HelpView.swift`) |
 | `WatchHookWatch/` | watchOS アプリ (話すボタン・送り先の選択・履歴・iPhone からの設定の受け取り) |
 | `WatchHookWidget/` | watchOS のウィジェット (文字盤のコンプリケーション・スマートスタック)。タップで WatchHook を開くだけの固定表示 |
+| `StoreKit/WatchHook.storekit` | Xcode から実行したときの課金商品 (7 日間お試し・買い切り)。`docs/BILLING.md` |
 | `project.yml` | XcodeGen の定義。`WatchHook.xcodeproj` はここから作る (コミットしてある) |
 
 ## 開発

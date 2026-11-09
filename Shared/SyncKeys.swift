@@ -5,4 +5,6 @@ enum SyncKeys {
     static let request = "request"
     static let revision = "revision"
     static let epoch = "epoch"
+    /// 購入の状態 (`EntitlementSnapshot` の JSON)。秘密ではないので applicationContext に置く
+    static let entitlement = "entitlement"
 }
