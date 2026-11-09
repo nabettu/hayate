@@ -44,3 +44,23 @@
 
 ChatGPT / Claude / Gemini のアプリの会話に外から書き込む公開の口は無いので、アプリ連携はしない。代わりの候補 (ROADMAP):
 各社 API に直接送る (ユーザーの API キー)、Shortcuts の「ChatGPT に尋ねる」等にテキストを渡す、n8n / Zapier / Dify の webhook 経由。
+
+### 「時計から各社 AI アプリのチャットを始める」の調査 (2026-11-10)
+
+結論: **時計の上だけでは無理。iPhone 側でアプリを開かせる 1 手 (通知のタップ等) が要る**。API に送った会話は各社アプリの履歴に出ない (API と消費者向けアプリは別)。
+
+- watchOS のアプリから他社アプリ・任意の URL は開けない (`openURL` / 旧 `openSystemURL` は `tel:` `sms:` 等のシステムのものだけ)。各社とも公式の watchOS アプリは無い
+- 時計のショートカットからも、iPhone アプリだけが持つ App Intent (「ChatGPT に尋ねる」等) は動かない
+- iPhone のアプリも裏からは他のアプリを開けない (`UIApplication.open` は前面のときだけ)。WatchConnectivity で iPhone に渡しても、前面に出す手段が無い
+- プロンプト付きで新しいチャットを開くリンク (iPhone で開く前提。✅ は公式の記載あり、他は agy の検索結果のみで**実機未検証**):
+
+| アプリ | リンク | 備考 |
+|---|---|---|
+| Claude | ✅ `claude://new?q=` / `https://claude.ai/new?q=` | 入力欄に入るだけ (送信はしない) |
+| Perplexity | `perplexity-app://search?q=` / `https://www.perplexity.ai/search?q=` | すぐ検索が始まるとの情報 |
+| ChatGPT | `https://chatgpt.com/?q=` | Safari では効くが、アプリで開くと `q` が捨てられるとの情報。ショートカットの「ChatGPT に尋ねる」なら履歴に残るとの情報 |
+| Grok / Copilot | `https://grok.com/?q=` / `https://copilot.microsoft.com/?q=` | アプリで効くかは未確認 |
+| Gemini | なし (`googlegemini://` で開くだけ) | プロンプトを渡す口が無い |
+
+- 実現するなら: 時計 → (WatchHook の webhook で ntfy / Pushcut 等、または自前の APNs) → iPhone に通知 → タップで上のリンクを開く。
+  本文テンプレートに **URL 用のエスケープ** (今は `.form` の本文全体にしか効かない) が要る。**2026-11-10 にいったん見送り** (ユーザー判断)。やるなら実機でリンクの効き方を確かめてから
