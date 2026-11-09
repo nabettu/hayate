@@ -183,6 +183,7 @@ actor MessageDispatcher {
         case .unreadable:
             return false
         }
+        publishHistory()
         NotificationCenter.default.post(name: Self.didChange, object: nil)
         return true
     }
@@ -214,6 +215,8 @@ actor MessageDispatcher {
     /// 時計の履歴の写しを iPhone に送る (iPhone の履歴画面で見せるため)。iPhone では何もしない。
     func publishHistory() {
         #if os(watchOS)
+        // 履歴を読めていないときに送ると、空の履歴で iPhone の写しを消してしまう。読めたとき (recoverIfNeeded) に送る
+        guard !readFailed else { return }
         WatchSync.shared.pushHistory(HistorySnapshot(log: log, updatedAt: Date()))
         #endif
     }

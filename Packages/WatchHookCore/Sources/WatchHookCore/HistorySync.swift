@@ -26,18 +26,30 @@ public struct HistorySnapshot: Codable, Hashable, Sendable {
         try JSONEncoder().encode(self)
     }
 
-    /// `maxBytes` に収まるまで古いもの (末尾) から落として符号化する。
+    /// `maxBytes` に収まるよう、新しいものから残せるだけ残して符号化する。
+    /// 項目ごとの大きさは偏りうる (古い 1 件だけが大きいなど) ので、件数の割合ではなく実際の大きさで二分探索する。
     public func encoded(maxBytes: Int) throws -> Data {
+        let full = try encoded()
+        if full.count <= maxBytes { return full }
         var copy = self
-        var data = try copy.encoded()
-        while data.count > maxBytes, !copy.entries.isEmpty {
-            // 1 件ずつ落とすと 50 件で 50 回符号化するので、超えた割合に応じてまとめて落とす (最低 1 件)
-            let ratio = Double(maxBytes) / Double(data.count)
-            let keep = min(copy.entries.count - 1, Int(Double(copy.entries.count) * ratio))
-            copy.entries = Array(copy.entries.prefix(max(0, keep)))
-            data = try copy.encoded()
+        func encode(keeping n: Int) throws -> Data {
+            copy.entries = Array(entries.prefix(n))
+            return try copy.encoded()
         }
-        return data
+        // 0 件なら必ず収まる前提。収まる最大の件数を探す
+        var lo = 0, hi = entries.count - 1
+        var best = try encode(keeping: 0)
+        while lo < hi {
+            let mid = (lo + hi + 1) / 2
+            let data = try encode(keeping: mid)
+            if data.count <= maxBytes {
+                lo = mid
+                best = data
+            } else {
+                hi = mid - 1
+            }
+        }
+        return best
     }
 
     public static func decode(_ data: Data) throws -> HistorySnapshot {

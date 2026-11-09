@@ -27,9 +27,9 @@ final class WatchHistoryStore {
         return dir.appending(path: "watch-history.json")
     }
 
-    /// 手元より古い写し (届く順が前後したもの) は捨てる。
+    /// 届いた写しで丸ごと置き換える。applicationContext は最新の 1 件だけが届くので、新旧は比べない
+    /// (時計の時刻で比べると、時刻が過去に直されたときに以後の写しを全部捨ててしまう)。`updatedAt` は表示にだけ使う。
     func receive(_ snapshot: HistorySnapshot) {
-        if let updatedAt, snapshot.updatedAt < updatedAt { return }
         entries = snapshot.entries
         updatedAt = snapshot.updatedAt
         if let data = try? snapshot.encoded() {

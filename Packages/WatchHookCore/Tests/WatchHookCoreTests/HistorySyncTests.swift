@@ -41,6 +41,17 @@ struct HistorySnapshotTests {
     }
 }
 
+extension HistorySnapshotTests {
+    @Test func 古い項目だけが大きいときも新しい項目は残す() throws {
+        // 1 文字に結合文字を大量に付けると、文字数の上限を通っても符号化後は大きくなる
+        let huge = "e" + String(repeating: "\u{0301}", count: 20_000)
+        let l = log([(huge, 1), ("new", 2)])
+        let data = try HistorySnapshot(log: l, updatedAt: .now).encoded(maxBytes: 4_000)
+        let back = try HistorySnapshot.decode(data)
+        #expect(back.entries.map(\.message.text) == ["new"])
+    }
+}
+
 @Suite("CombinedHistory")
 struct CombinedHistoryTests {
     func entry(_ text: String, at t: TimeInterval, id: UUID = UUID()) -> MessageLogEntry {
