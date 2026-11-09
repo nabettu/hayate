@@ -33,3 +33,6 @@ Apple Watch の音声入力を webhook へ送るアプリ。全体像は [README
 ## ハマりどころ
 
 - **WatchConnectivity などの完了ハンドラを `Task { @MainActor in ... }` の中で作らない**。MainActor 所属とみなされ、OS のキューから呼ばれた瞬間に Swift 6 の実行時チェックで落ちる (`dispatch_assert_queue`)。nonisolated の関数でクロージャを作り、中で `Task { @MainActor in }` に移る
+- **実機の時計に Watch アプリが入らないときは、署名のプロファイルに時計が入っているかを見る** (2026-11-10)。母艦の Xcode には Apple ID のログインが無く、`-allowProvisioningUpdates` だけだと手元の古い汎用プロファイル (`iOS Team Provisioning Profile: *`) を使い回す。時計 (Apple Watch S10、2026-09-19 登録) を登録する前に作られたものだと、時計にだけ入らない。
+  実機ビルドは ASC の API キーを付けて Xcode にプロファイルを取り直させる: `-allowProvisioningUpdates -authenticationKeyPath ~/.appstoreconnect/private_keys/AuthKey_A2M34D6GQG.p8 -authenticationKeyID A2M34D6GQG -authenticationKeyIssuerID <TypeAI/scripts/.env の ISSUER_ID>`。
+  確かめ方: `security cms -D -i <.app>/embedded.mobileprovision | grep 00008310-0008A21821D2601E`
