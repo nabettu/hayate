@@ -31,6 +31,19 @@ final class PhoneSync: NSObject, WCSessionDelegate, @unchecked Sendable {
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         guard activationState == .activated else { return }
         Task { @MainActor in ConfigStore.shared.resync() }
+        // アプリが閉じている間に届いていた時計の履歴
+        receiveHistory(from: session.receivedApplicationContext)
+    }
+
+    /// 時計から履歴の写しが届いたとき。
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String: Any]) {
+        receiveHistory(from: applicationContext)
+    }
+
+    private func receiveHistory(from context: [String: Any]) {
+        guard let data = context[SyncKeys.history] as? Data,
+              let snapshot = try? HistorySnapshot.decode(data) else { return }
+        Task { @MainActor in WatchHistoryStore.shared.receive(snapshot) }
     }
 
     /// 時計が「設定をください」と言ってきたとき (初回インストール直後など)。

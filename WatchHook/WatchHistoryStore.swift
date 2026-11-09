@@ -1,0 +1,40 @@
+import Foundation
+import Observation
+import WatchHookCore
+
+/// 時計から届いた履歴の写し (iPhone の履歴画面で見せるだけ。再送・削除は時計で行う)。
+/// 時計の最新の状態だけを持てばよいので、届くたびに丸ごと置き換える。
+@MainActor
+@Observable
+final class WatchHistoryStore {
+    static let shared = WatchHistoryStore()
+
+    private(set) var entries: [MessageLogEntry] = []
+    private(set) var updatedAt: Date?
+    private let fileURL: URL
+
+    init(fileURL: URL = WatchHistoryStore.defaultFileURL) {
+        self.fileURL = fileURL
+        if let data = try? Data(contentsOf: fileURL), let saved = try? HistorySnapshot.decode(data) {
+            entries = saved.entries
+            updatedAt = saved.updatedAt
+        }
+    }
+
+    static var defaultFileURL: URL {
+        let dir = URL.applicationSupportDirectory
+        try? FileManager.default.createDirectory(at: dir, withIntermediateDirectories: true)
+        return dir.appending(path: "watch-history.json")
+    }
+
+    /// 手元より古い写し (届く順が前後したもの) は捨てる。
+    func receive(_ snapshot: HistorySnapshot) {
+        if let updatedAt, snapshot.updatedAt < updatedAt { return }
+        entries = snapshot.entries
+        updatedAt = snapshot.updatedAt
+        if let data = try? snapshot.encoded() {
+            // 本文は他人に見せたくない内容のこともあるので、起動後の初回ロック解除までは読めないようにする (時計側の履歴と同じ)
+            try? data.write(to: fileURL, options: [.atomic, .completeFileProtectionUntilFirstUserAuthentication])
+        }
+    }
+}
