@@ -1,4 +1,5 @@
 import SwiftUI
+import WatchHookCore
 
 /// アプリアイコン (星空を飛ぶ紙飛行機) に合わせた色と部品。iPhone と Apple Watch で共有する。
 enum Cosmos {
@@ -166,57 +167,138 @@ struct PaperPlane: View {
 
 // MARK: - 送信の演出
 
-/// 送信中・送れた・送れなかったで、紙飛行機の飛び方を変える。
+/// 送信の演出の段階。
+/// 1. 送り始め (`sending`): 画面の紙飛行機 (iPhone は見出しの絵、時計は話すボタン) から飛び立ち、右へ飛び去る
+/// 2. 送れた (`sent`): 別の紙飛行機が画面の右下から左上へ横切る
+///    送れなかった (`failed`): 右上から戻ってきて、くるくる落ちる
+///    再送待ちは 2 の演出をしない (見出しの紙飛行機が戻るだけ)
 enum FlightPhase: Equatable {
     case idle
-    /// 左下から飛んできて、まん中でふわふわ待つ。
     case sending(since: Date)
-    /// 右上へ飛び去る。
     case sent(at: Date)
-    /// 落ちていく。
     case failed(at: Date)
-    /// 再送待ち: ゆっくり右下へ旋回して消える。
-    case queued(at: Date)
 
-    /// 飛んでくる動きが終わるまでの秒数。送信がこれより早く終わっても、飛んできてから飛び去らせる。
-    static let arrival: TimeInterval = 0.75
+    /// 飛び立って画面の外へ出るまで。送信がこれより早く終わっても、飛び去ってから結果を出す。
+    static let launch: TimeInterval = 0.7
+    /// 右下から左上へ横切る長さ。
+    static let cross: TimeInterval = 1.25
+    /// 落ちていく長さ。
+    static let fall: TimeInterval = 1.5
+
+    /// 結果の演出。再送待ちは演出なし (nil)。
+    static func result(for status: MessageStatus, at date: Date = .now) -> FlightPhase? {
+        switch status {
+        case .sent: .sent(at: date)
+        case .failed: .failed(at: date)
+        case .pending: nil
+        }
+    }
+
     /// 結果の演出の長さ。
-    static let exit: TimeInterval = 1.1
+    var duration: TimeInterval {
+        switch self {
+        case .idle, .sending: 0
+        case .sent: Self.cross
+        case .failed: Self.fall
+        }
+    }
 }
 
-/// 紙飛行機を飛ばす舞台。上に重ねて使う (タップは下へ通す)。
+/// 送信と演出の順番をそろえる。iPhone・時計・デバッグの「演出だけ見る」で共有する。
+/// `onResult` は結果が出た時点 (横切る演出の始まり) で呼ぶ。
+@MainActor
+func playFlight(
+    set: (FlightPhase) -> Void,
+    current: () -> FlightPhase,
+    onResult: (MessageStatus) -> Void,
+    work: () async -> MessageStatus
+) async {
+    let start = Date.now
+    set(.sending(since: start))
+    let status = await work()
+    // 飛び立った紙飛行機が画面から出てから結果を出す
+    let remaining = FlightPhase.launch - Date.now.timeIntervalSince(start)
+    if remaining > 0 { try? await Task.sleep(for: .seconds(remaining)) }
+    onResult(status)
+    guard let phase = FlightPhase.result(for: status) else {
+        set(.idle)
+        return
+    }
+    set(phase)
+    try? await Task.sleep(for: .seconds(phase.duration))
+    // その間に次の送信が始まっていたら触らない
+    if current() == phase { set(.idle) }
+}
+
+#if DEBUG
+/// デバッグ用: 送らずに演出だけ見るときの結果。
+enum FlightDemo: String, CaseIterable, Identifiable {
+    case sent = "送れた"
+    case failed = "失敗"
+    case pending = "再送待ち"
+
+    var id: String { rawValue }
+
+    var status: MessageStatus {
+        switch self {
+        case .sent: .sent(statusCode: 200)
+        case .failed: .failed(reason: "演出の確認 (送っていません)")
+        case .pending: .pending(attempts: 1, lastError: "演出の確認 (送っていません)")
+        }
+    }
+
+    /// 通信の待ちに見立てる時間。
+    func work() async -> MessageStatus {
+        try? await Task.sleep(for: .seconds(0.5))
+        return status
+    }
+}
+#endif
+
+/// 紙飛行機を飛ばす舞台。画面全体に重ねて使う (タップは下へ通す)。
 struct FlightStage: View {
     var phase: FlightPhase
+    /// 横切る / 落ちる紙飛行機の幅。
     var planeSize: CGFloat
+    /// 飛び立つ紙飛行機がいる場所 (global 座標)。iPhone は見出しの紙飛行機、時計は話すボタン。
+    var launchFrame: CGRect
+    /// 飛び立つ紙飛行機の幅。
+    var launchWidth: CGFloat
+    /// 時計: 話すボタンの中から現れる (はじめは見えない)。iPhone: 見出しの絵と入れ替わる (はじめから見える)。
+    var launchFadesIn = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
+    /// 位置は画面のポイント。`point` は機体の中心線の中点、`angle` は中心線の向き。
     private struct Pose {
-        var point: CGPoint  // 0...1 の相対座標
-        var angle: Double  // 進む向き (ラジアン)
+        var point: CGPoint
+        var angle: Double
         var opacity: Double
-        var scale: Double
+        var width: Double
+        /// 左向きに飛ぶときは絵を左右反転する (回しすぎて裏返ったように見えないように)。
+        var mirrored = false
     }
 
     var body: some View {
         if phase == .idle {
             Color.clear.allowsHitTesting(false)
         } else {
-            TimelineView(.animation) { timeline in
-                let now = timeline.date
-                GeometryReader { geo in
-                    let size = geo.size
+            GeometryReader { geo in
+                let stage = geo.frame(in: .global)
+                let launch = launchFrame.offsetBy(dx: -stage.minX, dy: -stage.minY)
+                TimelineView(.animation) { timeline in
+                    let now = timeline.date
                     ZStack {
                         if !reduceMotion {
-                            trail(now: now, size: size)
-                            burst(now: now, size: size)
+                            trail(now: now, size: geo.size, launch: launch)
                         }
-                        if let pose = pose(at: now, size: size) {
+                        if let pose = pose(at: now, size: geo.size, launch: launch) {
                             PaperPlane()
-                                .frame(width: planeSize * pose.scale)
-                                .rotationEffect(.radians(pose.angle - PaperPlane.heading))
-                                .shadow(color: Cosmos.violet.opacity(0.8), radius: planeSize * 0.15)
+                                .frame(width: pose.width)
+                                .scaleEffect(x: pose.mirrored ? -1 : 1, y: 1)
+                                .rotationEffect(.radians(pose.angle - Self.heading(mirrored: pose.mirrored)))
+                                .shadow(color: Cosmos.violet.opacity(0.8), radius: pose.width * 0.15)
                                 .opacity(pose.opacity)
-                                .position(frameCenter(of: pose, size: size))
+                                .position(frameCenter(of: pose))
                         }
                     }
                 }
@@ -226,16 +308,20 @@ struct FlightStage: View {
         }
     }
 
-    /// 通ってきた位置に、消えていく光の粒を置く。
-    private func trail(now: Date, size: CGSize) -> some View {
+    /// 絵のままの中心線の向き。反転すると左右が入れ替わる。
+    private static func heading(mirrored: Bool) -> Double {
+        mirrored ? atan2(sin(PaperPlane.heading), -cos(PaperPlane.heading)) : PaperPlane.heading
+    }
+
+    /// 通ってきた位置に、消えていく光の粒を置く。粒は機体の中心線の後端から出す。
+    private func trail(now: Date, size: CGSize, launch: CGRect) -> some View {
         Canvas { ctx, _ in
-            for k in 1...14 {
-                let past = now.addingTimeInterval(-Double(k) * 0.035)
-                guard let pose = pose(at: past, size: size), pose.opacity > 0.05 else { continue }
-                let fade = (1 - Double(k) / 15) * pose.opacity
-                let r = planeSize * 0.07 * (1 - Double(k) / 18)
-                // 粒はそのときの機体の中心線の後端から出す (機体の向きと軌跡をそろえる)
-                let c = tailPoint(of: pose, size: size)
+            for k in 1...16 {
+                let past = now.addingTimeInterval(-Double(k) * 0.03)
+                guard let pose = pose(at: past, size: size, launch: launch), pose.opacity > 0.05 else { continue }
+                let fade = (1 - Double(k) / 17) * pose.opacity
+                let r = pose.width * 0.06 * (1 - Double(k) / 20)
+                let c = tailPoint(of: pose)
                 let color = k % 3 == 0 ? Cosmos.star : Cosmos.lavender
                 ctx.fill(Path(ellipseIn: CGRect(x: c.x - r, y: c.y - r, width: r * 2, height: r * 2)),
                          with: .color(color.opacity(fade)))
@@ -243,113 +329,86 @@ struct FlightStage: View {
         }
     }
 
-    /// 送れたとき、飛び立った場所に星がはじける。
-    @ViewBuilder private func burst(now: Date, size: CGSize) -> some View {
-        if case .sent(let at) = phase {
-            let p = min(max(now.timeIntervalSince(at) / 0.7, 0), 1)
-            Canvas { ctx, _ in
-                guard p < 1 else { return }
-                let center = CGPoint(x: 0.5 * size.width, y: 0.5 * size.height)
-                for i in 0..<8 {
-                    let a = Double(i) / 8 * .pi * 2 + 0.3
-                    let d = planeSize * (0.3 + 0.9 * easeOut(p))
-                    let r = planeSize * 0.09 * (1 - p)
-                    let pt = CGPoint(x: center.x + cos(a) * d, y: center.y + sin(a) * d)
-                    ctx.fill(SparkleShape().path(in: CGRect(x: pt.x - r, y: pt.y - r, width: r * 2, height: r * 2)),
-                             with: .color(Cosmos.star.opacity(1 - p)))
-                }
-            }
-        }
-    }
-
-    /// 機体の中心線の中点を `pose.point` に置いたときの、機体の絵 (箱) の中心。
-    private func frameCenter(of pose: Pose, size: CGSize) -> CGPoint {
-        let k = planeSize * pose.scale / 700
-        let rot = pose.angle - PaperPlane.heading
-        let m = PaperPlane.keelMidFromCenter
+    /// 機体の中心線の中点を `pose.point` に置いたときの、絵 (箱) の中心。
+    private func frameCenter(of pose: Pose) -> CGPoint {
+        let k = pose.width / 700
+        let rot = pose.angle - Self.heading(mirrored: pose.mirrored)
+        var m = PaperPlane.keelMidFromCenter
+        if pose.mirrored { m.x = -m.x }
         let mx = (m.x * cos(rot) - m.y * sin(rot)) * k, my = (m.x * sin(rot) + m.y * cos(rot)) * k
-        return CGPoint(x: pose.point.x * size.width - mx, y: pose.point.y * size.height - my)
+        return CGPoint(x: pose.point.x - mx, y: pose.point.y - my)
     }
 
     /// 機体の中心線の後端 (軌跡の出どころ)。
-    private func tailPoint(of pose: Pose, size: CGSize) -> CGPoint {
-        let half = PaperPlane.keelLength / 2 * planeSize * pose.scale / 700
-        return CGPoint(x: pose.point.x * size.width - cos(pose.angle) * half,
-                       y: pose.point.y * size.height - sin(pose.angle) * half)
+    private func tailPoint(of pose: Pose) -> CGPoint {
+        let half = PaperPlane.keelLength / 2 * pose.width / 700
+        return CGPoint(x: pose.point.x - cos(pose.angle) * half, y: pose.point.y - sin(pose.angle) * half)
     }
 
-    /// `point` は 0...1 の相対座標、`angle` は画面 (ポイント) での進む向き。
-    /// 相対座標の向きをそのまま使うと、縦長の画面で機体と進む向きがずれるので、画面の縦横比を掛けてから角度にする。
-    private func pose(at date: Date, size: CGSize) -> Pose? {
-        func screenAngle(_ d: CGPoint) -> Double { atan2(d.y * size.height, d.x * size.width) }
-        let center = CGPoint(x: 0.5, y: 0.5)
-        // 「視差効果を減らす」では動かさない: まん中に置いて、結果が出たら消えていくだけにする
-        if reduceMotion { return stillPose(at: date, center: center) }
+    /// 飛び立つ紙飛行機の、はじめの中心線の中点 (置かれている絵とぴったり重ねる)。
+    private func launchStart(_ launch: CGRect) -> CGPoint {
+        let k = launchWidth / 700
+        let m = PaperPlane.keelMidFromCenter
+        return CGPoint(x: launch.midX + m.x * k, y: launch.midY + m.y * k)
+    }
+
+    private func pose(at date: Date, size: CGSize, launch: CGRect) -> Pose? {
+        let w = size.width, h = size.height
         switch phase {
         case .idle:
             return nil
+
         case .sending(let since):
             let t = date.timeIntervalSince(since)
-            if t < 0 { return nil }
-            if t < FlightPhase.arrival {
-                // 左下の外から、少し弧を描いてまん中へ
-                let p = easeOut(t / FlightPhase.arrival)
-                let from = CGPoint(x: -0.25, y: 1.15), control = CGPoint(x: 0.1, y: 0.45)
-                let pt = bezier(from, control, center, p)
-                let d = bezierTangent(from, control, center, max(p, 0.02))
-                return Pose(point: pt, angle: screenAngle(d), opacity: min(1, t / 0.15), scale: 0.7 + 0.3 * p)
+            guard t >= 0 else { return nil }
+            let from = launchStart(launch)
+            if reduceMotion {
+                // 動かさず、その場で消えるだけ
+                guard t < 0.4 else { return nil }
+                return Pose(point: from, angle: PaperPlane.heading, opacity: 1 - t / 0.4, width: launchWidth)
             }
-            return hover(at: t - FlightPhase.arrival)
+            guard t < FlightPhase.launch else { return nil }
+            let p = easeIn(t / FlightPhase.launch)
+            // はじめは絵のままの向き (右上) に出て、右へ抜ける
+            let to = CGPoint(x: w + launchWidth * 1.5, y: from.y - h * 0.06)
+            let reach = (to.x - from.x) * 0.4
+            let control = CGPoint(x: from.x + cos(PaperPlane.heading) * reach, y: from.y + sin(PaperPlane.heading) * reach)
+            let d = bezierTangent(from, control, to, max(p, 0.001))
+            let opacity = launchFadesIn ? min(1, t / 0.15) : 1
+            return Pose(point: bezier(from, control, to, p), angle: atan2(d.y, d.x), opacity: opacity,
+                        width: launchWidth * (1 + 0.2 * p))
+
         case .sent(let at):
-            let t = max(0, date.timeIntervalSince(at))
-            guard t < FlightPhase.exit else { return nil }
-            let p = easeIn(t / FlightPhase.exit)
-            let to = CGPoint(x: 1.35, y: -0.35)
-            let pt = CGPoint(x: center.x + (to.x - center.x) * p, y: center.y + (to.y - center.y) * p)
-            return Pose(point: pt, angle: screenAngle(CGPoint(x: to.x - center.x, y: to.y - center.y)),
-                        opacity: 1 - max(0, p - 0.7) / 0.3, scale: 1 - 0.4 * p)
-        case .queued(let at):
-            let t = max(0, date.timeIntervalSince(at))
-            guard t < FlightPhase.exit * 1.4 else { return nil }
-            let p = easeInOut(t / (FlightPhase.exit * 1.4))
-            let from = center, control = CGPoint(x: 0.95, y: 0.35), to = CGPoint(x: 1.3, y: 1.0)
-            let d = bezierTangent(from, control, to, max(p, 0.02))
-            return Pose(point: bezier(from, control, to, p), angle: screenAngle(d), opacity: 1 - p * 0.6, scale: 1 - 0.3 * p)
+            let t = date.timeIntervalSince(at)
+            guard t >= 0, t < FlightPhase.cross, !reduceMotion else { return nil }
+            let p = easeInOut(t / FlightPhase.cross) * 0.6 + (t / FlightPhase.cross) * 0.4
+            // 右下の外から、ゆるく弧を描いて左上の外へ
+            let from = CGPoint(x: w + planeSize, y: h * 0.9)
+            let control = CGPoint(x: w * 0.42, y: h * 0.66)
+            let to = CGPoint(x: -planeSize, y: h * 0.1)
+            let d = bezierTangent(from, control, to, p)
+            return Pose(point: bezier(from, control, to, p), angle: atan2(d.y, d.x), opacity: 1,
+                        width: planeSize, mirrored: true)
+
         case .failed(let at):
-            let t = max(0, date.timeIntervalSince(at))
-            guard t < FlightPhase.exit * 1.3 else { return nil }
-            let p = t / (FlightPhase.exit * 1.3)
-            // ゆらゆらしながら下へ落ちる
-            let x = 0.5 + 0.08 * sin(p * .pi * 3)
-            let y = 0.5 + 0.75 * easeIn(p)
-            return Pose(point: CGPoint(x: x, y: y), angle: .pi / 2 + 0.6 * sin(p * .pi * 3),
-                        opacity: 1 - p, scale: 1 - 0.2 * p)
+            let t = date.timeIntervalSince(at)
+            guard t >= 0, t < FlightPhase.fall, !reduceMotion else { return nil }
+            let p = t / FlightPhase.fall
+            // 右上 (飛び去った方) から戻ってきて、ゆらゆら落ちる
+            let from = CGPoint(x: w + planeSize * 0.6, y: h * 0.16)
+            let control = CGPoint(x: w * 0.6, y: h * 0.14)
+            let to = CGPoint(x: w * 0.5, y: h + planeSize)
+            let q = easeIn(p)
+            let d = bezierTangent(from, control, to, max(q, 0.001))
+            let wobble = sin(p * .pi * 4) * 0.5 * p
+            return Pose(point: bezier(from, control, to, q), angle: atan2(d.y, d.x) + wobble,
+                        opacity: p < 0.6 ? 1 : 1 - (p - 0.6) / 0.4, width: planeSize * 0.8, mirrored: true)
         }
-    }
-
-    private func stillPose(at date: Date, center: CGPoint) -> Pose? {
-        let ended: Date
-        switch phase {
-        case .idle: return nil
-        case .sending: return Pose(point: center, angle: PaperPlane.heading, opacity: 1, scale: 1)
-        case .sent(let at), .queued(let at), .failed(let at): ended = at
-        }
-        let t = max(0, date.timeIntervalSince(ended))
-        guard t < FlightPhase.exit else { return nil }
-        return Pose(point: center, angle: PaperPlane.heading, opacity: 1 - t / FlightPhase.exit, scale: 1)
-    }
-
-    /// まん中でふわふわ漂う。
-    private func hover(at t: TimeInterval) -> Pose {
-        let bob = reduceMotion ? 0 : sin(t * 3.2) * 0.025
-        return Pose(point: CGPoint(x: 0.5, y: 0.5 + bob), angle: PaperPlane.heading + sin(t * 3.2 + 1) * 0.08,
-                    opacity: 1, scale: 1)
     }
 }
 
 // MARK: - 補間
 
-private func easeOut(_ x: Double) -> Double { 1 - pow(1 - min(max(x, 0), 1), 3) }
 private func easeIn(_ x: Double) -> Double { pow(min(max(x, 0), 1), 2.2) }
 private func easeInOut(_ x: Double) -> Double {
     let x = min(max(x, 0), 1)
@@ -401,11 +460,4 @@ struct GlowButtonStyle: ButtonStyle {
             .opacity(isEnabled ? 1 : 0.45)
             .animation(.spring(duration: 0.25), value: configuration.isPressed)
     }
-}
-
-/// 送信の演出の時間を合わせる。飛んでくる動きを見せきってから結果を出す。
-@MainActor
-func waitForArrival(since start: Date) async {
-    let remaining = FlightPhase.arrival - Date.now.timeIntervalSince(start)
-    if remaining > 0 { try? await Task.sleep(for: .seconds(remaining)) }
 }

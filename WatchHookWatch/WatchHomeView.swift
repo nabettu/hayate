@@ -9,6 +9,8 @@ struct WatchHomeView: View {
     @State private var lastStatus: MessageStatus?
     @State private var isSending = false
     @State private var flight: FlightPhase = .idle
+    /// 話すボタンの位置 (送るときにここから紙飛行機が飛び立つ)。
+    @State private var orbFrame: CGRect = .zero
 
     private var destination: Destination? { store.config.resolve(selectedID: selectedID) }
 
@@ -23,6 +25,7 @@ struct WatchHomeView: View {
                                 // 標準の入力画面 (音声入力・スクリブル) を開く。ダブルタップでも押せる
                                 TextFieldLink(prompt: Text("話してください")) {
                                     MicOrb(isBusy: isSending)
+                                        .onGeometryChange(for: CGRect.self) { $0.frame(in: .global) } action: { orbFrame = $0 }
                                 } onSubmit: { text in
                                     Task { await send(text, to: destination) }
                                 }
@@ -37,7 +40,9 @@ struct WatchHomeView: View {
                                 if store.config.destinations.count > 1 {
                                     Picker(selection: $selectedID) {
                                         ForEach(store.config.destinations) { d in
-                                            Text(d.name).tag(d.id.uuidString)
+                                            // iPhone で既定にした送り先が、時計で何も選んでいないときの送り先
+                                            Text(d.id == store.config.defaultDestination?.id ? "\(d.name) (既定)" : d.name)
+                                                .tag(d.id.uuidString)
                                         }
                                     } label: {
                                         Label("送り先", systemImage: "paperplane")
@@ -54,9 +59,22 @@ struct WatchHomeView: View {
                                     Label("履歴", systemImage: "clock")
                                 }
                                 .font(.footnote)
+
+                                #if DEBUG
+                                VStack(spacing: 4) {
+                                    Text("演出だけ見る (デバッグ)").font(.caption2).foregroundStyle(.secondary)
+                                    ForEach(FlightDemo.allCases) { demo in
+                                        Button(demo.rawValue) { Task { await playDemo(demo) } }
+                                            .font(.caption2)
+                                            .disabled(isSending)
+                                    }
+                                }
+                                .padding(.top, 8)
+                                #endif
                             }
                         }
-                        FlightStage(phase: flight, planeSize: 56)
+                        FlightStage(phase: flight, planeSize: 56, launchFrame: orbFrame, launchWidth: 34,
+                                    launchFadesIn: true)
                             .ignoresSafeArea()
                     }
                     .onAppear(perform: fixSelection)
@@ -129,31 +147,31 @@ struct WatchHomeView: View {
 
     private func send(_ text: String, to destination: Destination) async {
         guard let text = MessageText.normalized(text) else { return }
-        let start = Date.now
+        await run {
+            await MessageDispatcher.shared.send(text: text, destination: destination, source: "watch")
+        }
+    }
+
+    private func run(_ work: () async -> MessageStatus) async {
         isSending = true
         lastStatus = nil
-        flight = .sending(since: start)
-        let status = await MessageDispatcher.shared.send(text: text, destination: destination, source: "watch")
-        // 紙飛行機が飛んできてから結果を出す
-        await waitForArrival(since: start)
-        isSending = false
-        withAnimation(.spring(duration: 0.4)) { lastStatus = status }
-        let phase: FlightPhase
-        switch status {
-        case .sent:
-            phase = .sent(at: .now)
-            WKHaptic.play(.success)
-        case .pending:
-            phase = .queued(at: .now)
-            WKHaptic.play(.retry)
-        case .failed:
-            phase = .failed(at: .now)
-            WKHaptic.play(.failure)
-        }
-        flight = phase
-        try? await Task.sleep(for: .seconds(FlightPhase.exit * 1.5))
-        if flight == phase { flight = .idle }
+        await playFlight(set: { flight = $0 }, current: { flight }, onResult: { status in
+            isSending = false
+            withAnimation(.spring(duration: 0.4)) { lastStatus = status }
+            switch status {
+            case .sent: WKHaptic.play(.success)
+            case .pending: WKHaptic.play(.retry)
+            case .failed: WKHaptic.play(.failure)
+            }
+        }, work: work)
     }
+
+    #if DEBUG
+    /// 送らずに演出だけ流す (履歴にも残らない)。
+    private func playDemo(_ demo: FlightDemo) async {
+        await run(demo.work)
+    }
+    #endif
 }
 
 /// 話すボタン。紫に光る丸と、ゆっくり広がる輪。

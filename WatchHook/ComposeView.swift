@@ -10,6 +10,8 @@ struct ComposeView: View {
     @State private var isSending = false
     @State private var flight: FlightPhase = .idle
     @State private var lastStatus: MessageStatus?
+    /// 見出しの紙飛行機の位置 (送るときにここから飛び立つ)。
+    @State private var headerPlaneFrame: CGRect = .zero
     @FocusState private var focused: Bool
     /// 送り先が無いときに「送り先」タブへ移る。
     var openDestinations: () -> Void = {}
@@ -52,11 +54,24 @@ struct ComposeView: View {
                     .padding(.bottom, 24)
                 }
                 .scrollDismissesKeyboard(.interactively)
-                FlightStage(phase: flight, planeSize: 120)
+                FlightStage(phase: flight, planeSize: 120, launchFrame: headerPlaneFrame,
+                            launchWidth: Self.headerPlaneWidth)
                     .ignoresSafeArea()
             }
             .background { CosmicBackground() }
             .toolbar {
+                #if DEBUG
+                ToolbarItem(placement: .topBarTrailing) {
+                    Menu {
+                        ForEach(FlightDemo.allCases) { demo in
+                            Button(demo.rawValue) { Task { await playDemo(demo) } }
+                        }
+                    } label: {
+                        Label("演出だけ見る", systemImage: "sparkles")
+                    }
+                    .disabled(isSending)
+                }
+                #endif
                 ToolbarItemGroup(placement: .keyboard) {
                     Spacer()
                     Button("完了") { focused = false }
@@ -70,10 +85,12 @@ struct ComposeView: View {
     private var header: some View {
         VStack(spacing: 6) {
             PaperPlane()
-                .frame(width: 72)
+                .frame(width: Self.headerPlaneWidth)
+                .onGeometryChange(for: CGRect.self) { $0.frame(in: .global) } action: { headerPlaneFrame = $0 }
                 .shadow(color: Cosmos.violet.opacity(0.9), radius: 16)
-                .opacity(flight == .idle ? 1 : 0.25)
-                .animation(.easeInOut(duration: 0.3), value: flight == .idle)
+                // 飛び立つときは演出の紙飛行機と入れ替える (すぐ消す)。戻るときだけふわっと出す
+                .opacity(flight == .idle ? 1 : 0)
+                .animation(flight == .idle ? .easeIn(duration: 0.5) : nil, value: flight == .idle)
             Text("WatchHook")
                 .font(.system(.title, design: .rounded, weight: .bold))
                 .foregroundStyle(.white)
@@ -181,35 +198,44 @@ struct ComposeView: View {
         if resolved != selectedID { selectedID = resolved }
     }
 
+    private static let headerPlaneWidth: CGFloat = 72
+
     private func send() async {
         guard let destination, let body = MessageText.normalized(text) else { return }
         focused = false
-        let start = Date.now
+        await run {
+            await MessageDispatcher.shared.send(text: body, destination: destination, source: "phone")
+        } onResult: { status in
+            switch status {
+            case .sent:
+                text = ""
+                UINotificationFeedbackGenerator().notificationOccurred(.success)
+            case .pending:
+                // 履歴に残って自動で送り直すので、入力欄は空にする (同じ内容を二重に送らないように)
+                text = ""
+                UINotificationFeedbackGenerator().notificationOccurred(.warning)
+            case .failed:
+                // 直して送り直せるよう、入力は残す
+                UINotificationFeedbackGenerator().notificationOccurred(.error)
+            }
+        }
+    }
+
+    private func run(_ work: () async -> MessageStatus, onResult: (MessageStatus) -> Void) async {
         isSending = true
         lastStatus = nil
-        flight = .sending(since: start)
-        let status = await MessageDispatcher.shared.send(text: body, destination: destination, source: "phone")
-        await waitForArrival(since: start)
-        isSending = false
-        withAnimation(.spring(duration: 0.4)) { lastStatus = status }
-        let phase: FlightPhase
-        switch status {
-        case .sent:
-            phase = .sent(at: .now)
-            text = ""
-            UINotificationFeedbackGenerator().notificationOccurred(.success)
-        case .pending:
-            // 履歴に残って自動で送り直すので、入力欄は空にする (同じ内容を二重に送らないように)
-            phase = .queued(at: .now)
-            text = ""
-            UINotificationFeedbackGenerator().notificationOccurred(.warning)
-        case .failed:
-            // 直して送り直せるよう、入力は残す
-            phase = .failed(at: .now)
-            UINotificationFeedbackGenerator().notificationOccurred(.error)
-        }
-        flight = phase
-        try? await Task.sleep(for: .seconds(FlightPhase.exit * 1.5))
-        if flight == phase { flight = .idle }
+        await playFlight(set: { flight = $0 }, current: { flight }, onResult: { status in
+            isSending = false
+            withAnimation(.spring(duration: 0.4)) { lastStatus = status }
+            onResult(status)
+        }, work: work)
     }
+
+    #if DEBUG
+    /// 送らずに演出だけ流す (履歴にも残らない)。
+    private func playDemo(_ demo: FlightDemo) async {
+        focused = false
+        await run(demo.work) { _ in }
+    }
+    #endif
 }
