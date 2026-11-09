@@ -44,6 +44,9 @@ struct HistoryView: View {
                 await reload()
             }
             .task { await reload() }
+            .onReceive(NotificationCenter.default.publisher(for: MessageDispatcher.didChange)) { _ in
+                Task { await reload() }
+            }
         }
     }
 

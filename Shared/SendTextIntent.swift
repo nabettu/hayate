@@ -44,9 +44,18 @@ struct SendTextIntent: AppIntent {
 
     func perform() async throws -> some IntentResult & ProvidesDialog {
         let config = ConfigStore.loadFromKeychain()
-        let target = destination.flatMap { config.destination(id: $0.id) } ?? config.defaultDestination
-        guard let target else {
-            return .result(dialog: "送り先がありません。iPhone の WatchHook で登録してください。")
+        // 送り先を指定されたのに見つからないときは、既定の送り先へ回さない (意図しない相手に送らない)
+        let target: Destination
+        if let destination {
+            guard let found = config.destination(id: destination.id) else {
+                return .result(dialog: "送り先「\(destination.name)」が見つかりません。送っていません。")
+            }
+            target = found
+        } else {
+            guard let found = config.defaultDestination else {
+                return .result(dialog: "送り先がありません。iPhone の WatchHook で登録してください。")
+            }
+            target = found
         }
         let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
         guard !trimmed.isEmpty else {

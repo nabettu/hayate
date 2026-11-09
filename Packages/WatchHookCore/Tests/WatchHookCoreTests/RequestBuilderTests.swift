@@ -96,4 +96,12 @@ struct RequestBuilderTests {
         let body = try JSONSerialization.jsonObject(with: req.httpBody ?? Data()) as? [String: Any]
         #expect(body?["content"] as? String == "テスト")
     }
+
+    @Test func メッセージIDヘッダは上書きできない() {
+        var d = customDestination()
+        d.headers = [HeaderField(name: "x-watchhook-message-id", value: "fixed")]
+        #expect(throws: DestinationValidationError.forbiddenHeader("x-watchhook-message-id")) {
+            try RequestBuilder.build(destination: d, message: message)
+        }
+    }
 }

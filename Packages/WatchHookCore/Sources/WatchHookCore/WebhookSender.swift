@@ -4,11 +4,22 @@ public protocol HTTPTransport: Sendable {
     func send(_ request: URLRequest) async throws -> (Data, HTTPURLResponse)
 }
 
+/// リダイレクトに従わない。従うと POST が GET に変わり、ログイン画面などの 200 を「届いた」と誤認するため。
+/// 3xx はそのまま返し、送信失敗 (設定の誤り) として扱う。
+final class RejectRedirects: NSObject, URLSessionTaskDelegate, Sendable {
+    func urlSession(_ session: URLSession, task: URLSessionTask, willPerformHTTPRedirection response: HTTPURLResponse,
+                    newRequest request: URLRequest) async -> URLRequest? {
+        nil
+    }
+}
+
 public struct URLSessionTransport: HTTPTransport {
     let session: URLSession
 
-    public init(session: URLSession = .shared) {
-        self.session = session
+    static let noRedirectSession = URLSession(configuration: .ephemeral, delegate: RejectRedirects(), delegateQueue: nil)
+
+    public init(session: URLSession? = nil) {
+        self.session = session ?? Self.noRedirectSession
     }
 
     public func send(_ request: URLRequest) async throws -> (Data, HTTPURLResponse) {

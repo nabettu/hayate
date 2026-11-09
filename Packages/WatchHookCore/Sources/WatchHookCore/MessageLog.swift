@@ -35,8 +35,10 @@ public struct MessageLog: Codable, Hashable, Sendable {
         trim()
     }
 
-    public mutating func apply(_ result: SendResult, to id: UUID) {
-        guard let i = entries.firstIndex(where: { $0.id == id }) else { return }
+    /// 送信結果を反映し、反映後の状態を返す (件数の上限で履歴から消えても、呼び出し元は結果を知れる)。
+    @discardableResult
+    public mutating func apply(_ result: SendResult, to id: UUID) -> MessageStatus? {
+        guard let i = entries.firstIndex(where: { $0.id == id }) else { return nil }
         switch result {
         case .sent(let code):
             entries[i].status = .sent(statusCode: code)
@@ -49,7 +51,13 @@ public struct MessageLog: Codable, Hashable, Sendable {
                 ? .failed(reason: reason)
                 : .pending(attempts: attempts, lastError: reason)
         }
+        let status = entries[i].status
         trim()
+        return status
+    }
+
+    public func status(of id: UUID) -> MessageStatus? {
+        entries.first { $0.id == id }?.status
     }
 
     /// 失敗したものを手動で送り直すとき。

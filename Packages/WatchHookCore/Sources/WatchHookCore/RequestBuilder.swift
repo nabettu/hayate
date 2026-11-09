@@ -22,7 +22,9 @@ public enum DestinationValidationError: Error, Equatable, Sendable, LocalizedErr
 
 public enum RequestBuilder {
     public static let timeout: TimeInterval = 20
-    static let forbiddenHeaders: Set<String> = ["host", "content-length", "connection", "transfer-encoding"]
+    static let messageIDHeader = "X-WatchHook-Message-Id"
+    /// 受け手が重複除去に使う ID を利用者の設定で固定値にされないよう、予約名にする
+    static let forbiddenHeaders: Set<String> = ["host", "content-length", "connection", "transfer-encoding", "x-watchhook-message-id"]
     static let tokenCharacters = CharacterSet(charactersIn: "!#$%&'*+-.^_`|~0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
     /// 設定の誤りだけを確かめる (編集画面の保存時に使う)。
@@ -43,7 +45,7 @@ public enum RequestBuilder {
         request.httpMethod = destination.method.rawValue
         request.setValue(destination.bodyEncoding.contentType, forHTTPHeaderField: "Content-Type")
         request.setValue("WatchHook/1", forHTTPHeaderField: "User-Agent")
-        request.setValue(message.id.uuidString, forHTTPHeaderField: "X-WatchHook-Message-Id")
+        request.setValue(message.id.uuidString, forHTTPHeaderField: messageIDHeader)
 
         for header in destination.headers {
             let name = header.name.trimmingCharacters(in: .whitespaces)

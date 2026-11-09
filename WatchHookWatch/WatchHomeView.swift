@@ -48,7 +48,8 @@ struct WatchHomeView: View {
                     }
                 }
                 .navigationTitle("WatchHook")
-                .onAppear { if selectedID.isEmpty { selectedID = destination.id.uuidString } }
+                .onAppear(perform: fixSelection)
+                .onChange(of: store.config) { fixSelection() }
             } else {
                 VStack(spacing: 8) {
                     Image(systemName: "iphone").font(.title2)
@@ -78,6 +79,12 @@ struct WatchHomeView: View {
                 }
             }
         }
+    }
+
+    /// 選んでいた送り先が iPhone で消されたら、既定の送り先に合わせる (表示と実際の送り先をずらさない)。
+    private func fixSelection() {
+        let exists = UUID(uuidString: selectedID).flatMap { store.config.destination(id: $0) } != nil
+        if !exists { selectedID = store.config.defaultDestination?.id.uuidString ?? "" }
     }
 
     private func send(_ text: String, to destination: Destination) async {
@@ -129,5 +136,8 @@ struct WatchHistoryView: View {
         }
         .navigationTitle("履歴")
         .task { entries = await MessageDispatcher.shared.entries }
+        .onReceive(NotificationCenter.default.publisher(for: MessageDispatcher.didChange)) { _ in
+            Task { entries = await MessageDispatcher.shared.entries }
+        }
     }
 }

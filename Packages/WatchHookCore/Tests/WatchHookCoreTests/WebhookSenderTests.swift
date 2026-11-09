@@ -38,7 +38,7 @@ struct WebhookSenderTests {
         #expect(r == .retryableFailure(reason: "HTTP \(code)"))
     }
 
-    @Test(arguments: [400, 401, 403, 404])
+    @Test(arguments: [301, 302, 307, 400, 401, 403, 404])
     func 再送しても直らない失敗(code: Int) async {
         let r = await WebhookSender(transport: StubTransport(result: .success(code)))
             .send(message, to: destination)

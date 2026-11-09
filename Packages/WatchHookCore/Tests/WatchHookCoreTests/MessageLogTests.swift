@@ -33,6 +33,17 @@ struct MessageLogTests {
         #expect(log.pending.isEmpty)
     }
 
+    @Test func 適用した結果の状態を返す_履歴から消えても返る() {
+        var log = MessageLog(capacity: 1)
+        let old = msg("old", at: 0)
+        log.enqueue(old, destinationName: "A") // pending のまま残る
+        let m = msg("new", at: 1)
+        log.enqueue(m, destinationName: "A")
+        let status = log.apply(.sent(statusCode: 201), to: m.id)
+        #expect(status == .sent(statusCode: 201))
+        #expect(!log.entries.contains { $0.id == m.id })
+    }
+
     @Test func 恒久的な失敗はすぐ失敗にする() {
         var log = MessageLog()
         let m = msg()
@@ -82,6 +93,14 @@ struct DestinationConfigTests {
         #expect(c.defaultDestination?.id == b.id)
         c.destinations.removeAll { $0.id == b.id }
         #expect(c.defaultDestination?.id == a.id)
+    }
+
+    @Test func 更新日時が新しい設定だけを新しいとみなす() {
+        let older = DestinationConfig(updatedAt: Date(timeIntervalSince1970: 100))
+        let newer = DestinationConfig(updatedAt: Date(timeIntervalSince1970: 200))
+        #expect(newer.isNewer(than: older))
+        #expect(!older.isNewer(than: newer))
+        #expect(!older.isNewer(than: older))
     }
 
     @Test func 空なら既定も無い() {

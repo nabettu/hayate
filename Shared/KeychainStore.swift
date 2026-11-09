@@ -1,5 +1,8 @@
 import Foundation
+import OSLog
 import Security
+
+private let logger = Logger(subsystem: "com.nabettu.watchhook", category: "keychain")
 
 /// 送り先の設定 (Authorization などの秘密を含む) を丸ごと Keychain に置く。
 /// Siri から裏で呼ばれても読めるように AfterFirstUnlock にする。端末の外 (iCloud キーチェーン) へは出さない。
@@ -12,7 +15,11 @@ struct KeychainStore: Sendable {
         query[kSecReturnData as String] = true
         query[kSecMatchLimit as String] = kSecMatchLimitOne
         var item: CFTypeRef?
-        guard SecItemCopyMatching(query as CFDictionary, &item) == errSecSuccess else { return nil }
+        let status = SecItemCopyMatching(query as CFDictionary, &item)
+        guard status == errSecSuccess else {
+            if status != errSecItemNotFound { logger.error("load failed: \(status)") }
+            return nil
+        }
         return item as? Data
     }
 
@@ -26,8 +33,11 @@ struct KeychainStore: Sendable {
         if status == errSecItemNotFound {
             var add = baseQuery
             add.merge(attrs) { $1 }
-            return SecItemAdd(add as CFDictionary, nil) == errSecSuccess
+            let added = SecItemAdd(add as CFDictionary, nil)
+            if added != errSecSuccess { logger.error("add failed: \(added)") }
+            return added == errSecSuccess
         }
+        if status != errSecSuccess { logger.error("update failed: \(status)") }
         return status == errSecSuccess
     }
 

@@ -8,6 +8,9 @@ struct DestinationListView: View {
     var body: some View {
         NavigationStack {
             List {
+                ForEach([store.saveError, store.syncError].compactMap { $0 }, id: \.self) { message in
+                    Label(message, systemImage: "exclamationmark.triangle.fill").foregroundStyle(.red)
+                }
                 if store.config.destinations.isEmpty {
                     ContentUnavailableView(
                         "送り先がありません",

@@ -4,7 +4,8 @@ import WatchHookCore
 struct DestinationEditView: View {
     @Environment(\.dismiss) private var dismiss
     @State var destination: Destination
-    let onSave: (Destination) -> Void
+    /// 保存できたら true
+    let onSave: (Destination) -> Bool
 
     @State private var error: String?
     @State private var testResult: String?
@@ -81,6 +82,7 @@ struct DestinationEditView: View {
                     Section { Text(error).foregroundStyle(.red) }
                 }
             }
+            .scrollDismissesKeyboard(.interactively)
             .navigationTitle(destination.name.isEmpty ? "送り先" : destination.name)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -89,6 +91,12 @@ struct DestinationEditView: View {
                 }
                 ToolbarItem(placement: .confirmationAction) {
                     Button("保存") { save() }
+                }
+                ToolbarItemGroup(placement: .keyboard) {
+                    Spacer()
+                    Button("完了") {
+                        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                    }
                 }
             }
         }
@@ -113,8 +121,11 @@ struct DestinationEditView: View {
     private func save() {
         do {
             try RequestBuilder.validate(destination)
-            onSave(destination)
-            dismiss()
+            if onSave(destination) {
+                dismiss()
+            } else {
+                self.error = "端末に保存できませんでした"
+            }
         } catch {
             self.error = error.localizedDescription
         }

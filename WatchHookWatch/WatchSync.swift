@@ -36,6 +36,6 @@ final class WatchSync: NSObject, WCSessionDelegate, @unchecked Sendable {
 
     private func apply(_ payload: [String: Any]) {
         guard let data = payload[SyncKeys.config] as? Data, let config = try? DestinationConfig.decode(data) else { return }
-        Task { @MainActor in ConfigStore.shared.update(config, notify: false) }
+        Task { @MainActor in ConfigStore.shared.receive(config) }
     }
 }

@@ -6,7 +6,7 @@ struct WatchHookApp: App {
 
     init() {
         PhoneSync.shared.activate()
-        ConfigStore.shared.onChange = { PhoneSync.shared.push($0) }
+        ConfigStore.shared.onChange = { PhoneSync.shared.push($0) }  // 失敗の理由は ConfigStore.syncError に入る
     }
 
     var body: some Scene {

@@ -12,11 +12,19 @@ final class PhoneSync: NSObject, WCSessionDelegate, @unchecked Sendable {
         WCSession.default.activate()
     }
 
-    func push(_ config: DestinationConfig) {
+    /// 時計へ送る。送れなかったら理由を返す (時計が無い・アプリ未インストールは失敗にしない)。
+    @discardableResult
+    func push(_ config: DestinationConfig) -> String? {
         let session = WCSession.default
-        guard WCSession.isSupported(), session.activationState == .activated, session.isPaired, session.isWatchAppInstalled,
-              let data = try? config.encoded() else { return }
-        try? session.updateApplicationContext([SyncKeys.config: data])
+        guard WCSession.isSupported(), session.activationState == .activated, session.isPaired, session.isWatchAppInstalled else {
+            return nil
+        }
+        do {
+            try session.updateApplicationContext([SyncKeys.config: try config.encoded()])
+            return nil
+        } catch {
+            return "Apple Watch へ設定を送れませんでした: \(error.localizedDescription)"
+        }
     }
 
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
