@@ -24,8 +24,12 @@ final class ConfigStore {
     init() {
         do {
             config = try Self.loadFromKeychain()
+        } catch is DecodingError {
+            // 保存されている設定の形式が読めない (壊れた・古い形式)。待っても直らないので空から始め、上書きを許す
+            config = DestinationConfig()
+            saveError = "保存されていた設定を読めなかったため、空の状態から始めます"
         } catch {
-            // 読めないまま保存すると、本当の設定を空で上書きしてしまう。保存を止めて知らせる
+            // Keychain が一時的に読めない (ロック中など)。このまま保存すると本物の設定を空で上書きしてしまうので、保存を止めて知らせる
             config = DestinationConfig()
             loadFailed = true
             saveError = "設定を読み込めませんでした。アプリを開き直してください"
@@ -34,7 +38,8 @@ final class ConfigStore {
 
     @ObservationIgnored private var loadFailed = false
 
-    /// App Intent など、MainActor の外から最新の設定を読むとき。まだ何も無ければ空の設定、読めなければ投げる。
+    /// App Intent など、MainActor の外から最新の設定を読むとき。まだ何も無ければ空の設定。
+    /// Keychain が読めなければ `KeychainStore.ReadError`、中身が読めなければ `DecodingError` を投げる。
     nonisolated static func loadFromKeychain() throws -> DestinationConfig {
         guard let data = try keychain.load() else { return DestinationConfig() }
         do {
