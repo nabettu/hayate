@@ -170,28 +170,20 @@ struct PaperPlane: View {
 /// 送信の演出の段階。
 /// 1. 送り始め (`sending`): 画面の紙飛行機 (iPhone は見出しの絵、時計は話すボタン) から飛び立ち、右へ飛び去る
 /// 2. 送れた (`sent`): 別の紙飛行機が画面の右下から左上へ横切る
-///    送れなかった (`failed`): 右上から戻ってきて、くるくる落ちる
-///    再送待ちは 2 の演出をしない (見出しの紙飛行機が戻るだけ)
+///    送れなかった・再送待ちは 2 の演出をしない (見出しの紙飛行機が戻るだけ)
 enum FlightPhase: Equatable {
     case idle
     case sending(since: Date)
     case sent(at: Date)
-    case failed(at: Date)
 
     /// 飛び立って画面の外へ出るまで。送信がこれより早く終わっても、飛び去ってから結果を出す。
     static let launch: TimeInterval = 0.7
     /// 右下から左上へ横切る長さ。
     static let cross: TimeInterval = 1.25
-    /// 落ちていく長さ。
-    static let fall: TimeInterval = 1.5
 
-    /// 結果の演出。再送待ちは演出なし (nil)。
+    /// 結果の演出。送れなかった・再送待ちは演出なし (nil)。
     static func result(for status: MessageStatus, at date: Date = .now) -> FlightPhase? {
-        switch status {
-        case .sent: .sent(at: date)
-        case .failed: .failed(at: date)
-        case .pending: nil
-        }
+        if case .sent = status { .sent(at: date) } else { nil }
     }
 
     /// 結果の演出の長さ。
@@ -199,7 +191,6 @@ enum FlightPhase: Equatable {
         switch self {
         case .idle, .sending: 0
         case .sent: Self.cross
-        case .failed: Self.fall
         }
     }
 }
@@ -389,20 +380,6 @@ struct FlightStage: View {
             let d = bezierTangent(from, control, to, p)
             return Pose(point: bezier(from, control, to, p), angle: atan2(d.y, d.x), opacity: 1,
                         width: planeSize, mirrored: true)
-
-        case .failed(let at):
-            let t = date.timeIntervalSince(at)
-            guard t >= 0, t < FlightPhase.fall, !reduceMotion else { return nil }
-            let p = t / FlightPhase.fall
-            // 右上 (飛び去った方) から戻ってきて、ゆらゆら落ちる
-            let from = CGPoint(x: w + planeSize * 0.6, y: h * 0.16)
-            let control = CGPoint(x: w * 0.6, y: h * 0.14)
-            let to = CGPoint(x: w * 0.5, y: h + planeSize)
-            let q = easeIn(p)
-            let d = bezierTangent(from, control, to, max(q, 0.001))
-            let wobble = sin(p * .pi * 4) * 0.5 * p
-            return Pose(point: bezier(from, control, to, q), angle: atan2(d.y, d.x) + wobble,
-                        opacity: p < 0.6 ? 1 : 1 - (p - 0.6) / 0.4, width: planeSize * 0.8, mirrored: true)
         }
     }
 }
