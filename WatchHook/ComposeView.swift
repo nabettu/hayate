@@ -103,6 +103,8 @@ struct ComposeView: View {
         ZStack(alignment: .topLeading) {
             TextEditor(text: $text)
                 .focused($focused)
+                // 送信中に書き足した分を、送り終えたときの入力欄のクリアで消さないよう、送り終えるまで触らせない
+                .disabled(isSending)
                 .scrollContentBackground(.hidden)
                 .foregroundStyle(.white)
                 .frame(minHeight: 160)

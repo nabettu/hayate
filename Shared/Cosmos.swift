@@ -256,6 +256,8 @@ struct FlightStage: View {
 
     private func pose(at date: Date) -> Pose? {
         let center = CGPoint(x: 0.5, y: 0.5)
+        // 「視差効果を減らす」では動かさない: まん中に置いて、結果が出たら消えていくだけにする
+        if reduceMotion { return stillPose(at: date, center: center) }
         switch phase {
         case .idle:
             return nil
@@ -295,6 +297,18 @@ struct FlightStage: View {
             return Pose(point: CGPoint(x: x, y: y), angle: .pi / 2 + 0.6 * sin(p * .pi * 3),
                         opacity: 1 - p, scale: 1 - 0.2 * p)
         }
+    }
+
+    private func stillPose(at date: Date, center: CGPoint) -> Pose? {
+        let ended: Date
+        switch phase {
+        case .idle: return nil
+        case .sending: return Pose(point: center, angle: PaperPlane.heading, opacity: 1, scale: 1)
+        case .sent(let at), .queued(let at), .failed(let at): ended = at
+        }
+        let t = max(0, date.timeIntervalSince(ended))
+        guard t < FlightPhase.exit else { return nil }
+        return Pose(point: center, angle: PaperPlane.heading, opacity: 1 - t / FlightPhase.exit, scale: 1)
     }
 
     /// まん中でふわふわ漂う。
