@@ -23,6 +23,14 @@ struct ComposeView: View {
                 ScrollView {
                     VStack(spacing: 20) {
                         header
+                        ForEach([store.saveError, store.syncError].compactMap { $0 }, id: \.self) { message in
+                            Label(message, systemImage: "exclamationmark.triangle.fill")
+                                .font(.subheadline)
+                                .foregroundStyle(.red)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(14)
+                                .cosmicCard(cornerRadius: 16)
+                        }
                         if let destination {
                             destinationPicker(current: destination)
                             editor
@@ -35,7 +43,8 @@ struct ComposeView: View {
                             .disabled(!canSend)
                             statusView
                                 .frame(minHeight: 44)
-                        } else {
+                        } else if store.saveError == nil {
+                            // 設定を読めなかったとき (上にエラーを出す) は「未登録」と案内しない
                             emptyState
                         }
                     }
@@ -96,7 +105,8 @@ struct ComposeView: View {
             .padding(.vertical, 12)
             .cosmicCard(cornerRadius: 16)
         }
-        .disabled(store.config.destinations.count < 2)
+        // 送信中に変えると、結果の表示が実際に送った先とずれるので変えさせない
+        .disabled(store.config.destinations.count < 2 || isSending)
     }
 
     private var editor: some View {
