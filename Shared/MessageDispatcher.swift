@@ -74,7 +74,9 @@ actor MessageDispatcher {
         return dir.appending(path: "message-log.json")
     }
 
+    /// 履歴。`isSending` は今まさに通信している項目 (再送待ちと見分けて表示する)。
     var entries: [MessageLogEntry] { log.entries }
+    var sendingIDs: Set<UUID> { inFlight }
 
     /// 1 件送って、その結果を返す。溜まっている未送信の再送は待たない (裏で始める)。
     @discardableResult
@@ -130,8 +132,13 @@ actor MessageDispatcher {
                 inFlight.insert(entry.id)
                 let result = await sender.send(entry.message, to: destination)
                 inFlight.remove(entry.id)
-                // 待つのをやめられたら、状態を変えずに再送をやめる (残りの再送回数を減らさない)
-                if case .cancelled = result { return }
+                // 待つのをやめられたら、状態を変えずに再送をやめる (残りの再送回数を減らさない)。
+                // ただ、その間に頼まれた別の再送 (手動の再送など) は取りこぼさないよう、キャンセルされていない別のタスクで続ける
+                if case .cancelled = result {
+                    NotificationCenter.default.post(name: Self.didChange, object: nil)
+                    if flushRequested { Task { await self.flush() } }
+                    return
+                }
                 // 送っている間に履歴から消された / 手動で状態が変わったものは上書きしない
                 guard case .pending = log.status(of: entry.id) else { continue }
                 log.apply(result, to: entry.id)
@@ -192,10 +199,12 @@ actor MessageDispatcher {
             // 本文は他人に見せたくない内容のこともあるので、起動後の初回ロック解除までは読めないようにする
             try data.write(to: fileURL, options: [.atomic, .completeFileProtectionUntilFirstUserAuthentication])
             dirty = false
-            persistedIDs.formUnion(log.entries.map(\.id))
+            // 判定に使うのは履歴に残っている項目だけなので、それ以外は持たない (送るたびに増え続けないように)
+            persistedIDs = Set(log.entries.map(\.id))
             return true
         } catch {
             dirty = true
+            persistedIDs.formIntersection(log.entries.map(\.id))
             return false
         }
     }
@@ -210,11 +219,18 @@ actor MessageDispatcher {
     }
 }
 
+extension MessageLogEntry {
+    /// 通信中かどうかは状態ではなく `MessageDispatcher.sendingIDs` で見る (キャンセル後に「送信中」のまま残さない)。
+    func label(sending: Set<UUID>) -> String {
+        sending.contains(id) ? "送信中" : status.label
+    }
+}
+
 extension MessageStatus {
     var label: String {
         switch self {
         case .sent: "送信済み"
-        case .pending(let attempts, _): attempts == 0 ? "送信中" : "再送待ち"
+        case .pending: "未送信"
         case .failed: "失敗"
         }
     }

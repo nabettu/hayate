@@ -128,6 +128,7 @@ private enum WKHaptic {
 
 struct WatchHistoryView: View {
     @State private var entries: [MessageLogEntry] = []
+    @State private var sending: Set<UUID> = []
 
     var body: some View {
         List {
@@ -137,7 +138,7 @@ struct WatchHistoryView: View {
             ForEach(entries) { e in
                 VStack(alignment: .leading) {
                     Text(e.message.text).lineLimit(2)
-                    Text("\(e.destinationName) · \(e.status.label)")
+                    Text("\(e.destinationName) · \(e.label(sending: sending))")
                         .font(.caption2).foregroundStyle(.secondary)
                 }
                 .swipeActions {
@@ -145,7 +146,7 @@ struct WatchHistoryView: View {
                         Button("再送") {
                             Task {
                                 await MessageDispatcher.shared.retry(e.id)
-                                entries = await MessageDispatcher.shared.entries
+                                await reload()
                             }
                         }
                     }
@@ -153,9 +154,14 @@ struct WatchHistoryView: View {
             }
         }
         .navigationTitle("履歴")
-        .task { entries = await MessageDispatcher.shared.entries }
+        .task { await reload() }
         .onReceive(NotificationCenter.default.publisher(for: MessageDispatcher.didChange)) { _ in
-            Task { entries = await MessageDispatcher.shared.entries }
+            Task { await reload() }
         }
+    }
+
+    private func reload() async {
+        entries = await MessageDispatcher.shared.entries
+        sending = await MessageDispatcher.shared.sendingIDs
     }
 }

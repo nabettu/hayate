@@ -53,6 +53,15 @@ struct MessageLogTests {
         #expect(log.entries[0].status == .pending(attempts: 1, lastError: "e"))
     }
 
+    @Test func 初回送信のキャンセルでも再送待ちのまま() {
+        var log = MessageLog()
+        let m = msg()
+        log.enqueue(m, destinationName: "A")
+        log.apply(.cancelled, to: m.id)
+        #expect(log.entries[0].status == .pending(attempts: 0, lastError: nil))
+        #expect(log.pending.count == 1)
+    }
+
     @Test func 恒久的な失敗はすぐ失敗にする() {
         var log = MessageLog()
         let m = msg()
