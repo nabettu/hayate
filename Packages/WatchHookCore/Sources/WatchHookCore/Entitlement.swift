@@ -29,25 +29,44 @@ public struct PurchaseRecord: Sendable, Equatable {
 public struct EntitlementSnapshot: Codable, Sendable, Equatable {
     public var unlocked: Bool
     public var trialStartedAt: Date?
+    /// 買い切りが返金・取り消しされていて、買い直していない (この端末の StoreKit で確かめたもの)。
+    public var unlockRevoked: Bool
 
-    public init(unlocked: Bool, trialStartedAt: Date?) {
+    public init(unlocked: Bool, trialStartedAt: Date?, unlockRevoked: Bool = false) {
         self.unlocked = unlocked
         self.trialStartedAt = trialStartedAt
+        self.unlockRevoked = unlockRevoked
     }
 
     public init(records: [PurchaseRecord]) {
         let valid = records.filter { !$0.isRevoked }
         unlocked = valid.contains { $0.productID == StoreProducts.unlockID }
         trialStartedAt = valid.filter { $0.productID == StoreProducts.trialID }.map(\.originalPurchaseDate).min()
+        unlockRevoked = !unlocked && records.contains { $0.productID == StoreProducts.unlockID && $0.isRevoked }
     }
 
-    /// 時計の StoreKit と iPhone から届いた状態を合わせる。どちらかで買っていれば購入済み、お試しは早く始めた方。
+    private enum CodingKeys: String, CodingKey { case unlocked, trialStartedAt, unlockRevoked }
+
+    public init(from decoder: any Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        unlocked = try c.decode(Bool.self, forKey: .unlocked)
+        trialStartedAt = try c.decodeIfPresent(Date.self, forKey: .trialStartedAt)
+        unlockRevoked = try c.decodeIfPresent(Bool.self, forKey: .unlockRevoked) ?? false
+    }
+
+    /// この端末 (時計) の StoreKit の状態に、iPhone から届いた状態を合わせる。どちらかで買っていれば購入済み、お試しは早く始めた方。
     /// (時計の StoreKit に iPhone での購入が届くまでの間も使えるようにするため。合わせる相手は「iPhone の最新の状態」だけで、
     /// 過去に届いたものを積み上げないので、iPhone で返金されれば次の知らせで戻る)
+    /// ただし、この端末で返金を確かめていれば、iPhone から届いた古い「購入済み」は使わない (self を優先する。向きのある合わせ方)。
     public func merging(_ other: EntitlementSnapshot?) -> EntitlementSnapshot {
         guard let other else { return self }
         let starts = [trialStartedAt, other.trialStartedAt].compactMap { $0 }
-        return EntitlementSnapshot(unlocked: unlocked || other.unlocked, trialStartedAt: starts.min())
+        let unlockedNow = unlocked || (other.unlocked && !unlockRevoked)
+        return EntitlementSnapshot(
+            unlocked: unlockedNow,
+            trialStartedAt: starts.min(),
+            unlockRevoked: !unlockedNow && (unlockRevoked || other.unlockRevoked)
+        )
     }
 
     public func encoded() throws -> Data {

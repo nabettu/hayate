@@ -26,7 +26,9 @@ struct PurchaseView: View {
 
             Section {
                 if store.access() == .trialNotStarted {
-                    buyButton(StoreProducts.trialID, title: "\(StoreProducts.trialDays) 日間無料で試す", subtitle: "¥0・自動で課金されません")
+                    // 3.1.1: お試しの前に、続けて使うのに要る支払い (買い切りの価格) を見せる。価格を読めるまで始めさせない
+                    buyButton(StoreProducts.trialID, title: "\(StoreProducts.trialDays) 日間無料で試す", subtitle: "¥0・自動で課金されません",
+                              requires: [StoreProducts.unlockID])
                 }
                 if store.access() != .unlocked {
                     buyButton(StoreProducts.unlockID, title: "買い切りで購入する", subtitle: "\(unlockPrice)・1 回だけの支払い")
@@ -66,7 +68,7 @@ struct PurchaseView: View {
         }
     }
 
-    private func buyButton(_ id: String, title: String, subtitle: String) -> some View {
+    private func buyButton(_ id: String, title: String, subtitle: String, requires: [String] = []) -> some View {
         Button {
             guard let product = store.products[id] else { return }
             Task {
@@ -84,7 +86,7 @@ struct PurchaseView: View {
                 Text(subtitle).font(.caption).foregroundStyle(.secondary)
             }
         }
-        .disabled(busy || store.products[id] == nil)
+        .disabled(busy || ([id] + requires).contains { store.products[$0] == nil })
     }
 }
 

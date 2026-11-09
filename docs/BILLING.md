@@ -47,7 +47,7 @@ ID と日数の正は `Packages/WatchHookCore/Sources/WatchHookCore/Entitlement.
 
 - 期間: 7 日間。自動で課金されない
 - 終わると使えなくなるもの: Apple Watch と Siri からの送信 (送り先の登録・テスト送信・履歴は残る)
-- 続けて使うのに要る支払い: 買い切り 1 回 (StoreKit の `displayPrice` を出す。固定の文字列にしない)
+- 続けて使うのに要る支払い: 買い切り 1 回 (StoreKit の `displayPrice` を出す。固定の文字列にしない)。**買い切りの価格を読めるまでお試しのボタンは押せない**
 
 ほか: 「購入を復元」を購入画面に置く (3.1.1「restore mechanism」)。購入画面には送り先の一覧の上の帯と「使い方」タブの「料金」から入れる。
 お試しのボタンは、まだお試しを始めていない人にだけ出す。
@@ -71,6 +71,9 @@ ID と日数の正は `Packages/WatchHookCore/Sources/WatchHookCore/Entitlement.
 - それに加えて、iPhone が読んだ状態を applicationContext (`SyncKeys.entitlement`) で送り、時計は `merging` で合わせる。iPhone で買った直後、時計の StoreKit に届くまでの間も使えるようにするため。
   秘密ではないので applicationContext と時計の UserDefaults に置いてよい (送り先の設定とは扱いが違う)
 - iPhone から届いたものは「最新の 1 件」で置き換え、積み上げない。iPhone で返金されれば次の知らせで戻る
+- 時計の StoreKit で買い切りの返金を確かめたら (`Transaction.latest(for:)` の `revocationDate`。`currentEntitlements` には返金済みが出てこない)、
+  iPhone から届いた古い「購入済み」より優先する (`unlockRevoked`。`merging` は時計側を優先する向きのある合わせ方)
+- 状態の読み直し (`refresh`) は起動・前面化・購入・`Transaction.updates` で重なる。最後に始めた読み取りの結果だけを使う (`LatestRequestGate`)
 - applicationContext は丸ごと置き換わるので、`PhoneSync.push` は設定の版と購入の状態を毎回両方載せる
 
 ## 意図した制限 (不具合ではない)

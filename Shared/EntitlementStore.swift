@@ -26,6 +26,9 @@ final class EntitlementStore {
     /// iPhone で、手元の状態が変わったとき (時計へ送る)。
     @ObservationIgnored var onChange: (() -> Void)?
     @ObservationIgnored private var updatesTask: Task<Void, Never>?
+    /// refresh が重なったとき (起動・前面化・購入・Transaction.updates)、最後に始めたものの結果だけを使う。
+    /// await の間に割り込まれ、先に始めた古い読み取りが後から終わって最新の状態を上書きしないように
+    @ObservationIgnored private var refreshGate = LatestRequestGate()
 
     var snapshot: EntitlementSnapshot { local.merging(hint) }
 
@@ -46,8 +49,9 @@ final class EntitlementStore {
     }
 
     func refresh() async {
+        let token = refreshGate.begin()
         let latest = await Self.loadLocal()
-        guard latest != local else { return }
+        guard refreshGate.isLatest(token), latest != local else { return }
         local = latest
         onChange?()
     }
@@ -55,9 +59,10 @@ final class EntitlementStore {
     // MARK: - App Intent など MainActor の外から
 
     /// Siri から送るときの判定。画面を開かずに呼ばれるので、毎回 StoreKit から読み直す。
-    nonisolated static func currentAccess(now: Date = .now) async -> AccessState {
+    /// 時刻は読み終えてから取る (読んでいる間に期限を過ぎたら送らない)。
+    nonisolated static func currentAccess() async -> AccessState {
         let s = await loadLocal().merging(storedHint())
-        return EntitlementPolicy().state(for: s, now: now)
+        return EntitlementPolicy().state(for: s, now: .now)
     }
 
     nonisolated static func loadLocal() async -> EntitlementSnapshot {
@@ -73,6 +78,11 @@ final class EntitlementStore {
                 originalPurchaseDate: t.originalPurchaseDate,
                 isRevoked: t.revocationDate != nil
             ))
+        }
+        // currentEntitlements には返金済みが出てこない。時計で返金を確かめたら iPhone からの古い「購入済み」より優先するため、
+        // 買い切りの最新の取引が取り消されているかも見る
+        if case .verified(let t)? = await Transaction.latest(for: StoreProducts.unlockID), t.revocationDate != nil {
+            records.append(PurchaseRecord(productID: t.productID, originalPurchaseDate: t.originalPurchaseDate, isRevoked: true))
         }
         return EntitlementSnapshot(records: records)
     }

@@ -9,6 +9,8 @@ struct WatchHomeView: View {
     @AppStorage("selectedDestinationID") private var selectedID: String = ""
     @State private var lastStatus: MessageStatus?
     @State private var isSending = false
+    /// お試しの期限を画面を開いたまま過ぎても表示を変えるため、1 分ごとに進める。
+    @State private var now = Date.now
 
     private var destination: Destination? {
         UUID(uuidString: selectedID).flatMap { store.config.destination(id: $0) } ?? store.config.defaultDestination
@@ -32,7 +34,7 @@ struct WatchHomeView: View {
                         .buttonStyle(.borderedProminent)
                         .tint(.orange)
                         .handGestureShortcut(.primaryAction)
-                        .disabled(isSending || !entitlements.access().canSend)
+                        .disabled(isSending || !entitlements.access(now: now).canSend)
 
                         statusView
 
@@ -51,6 +53,7 @@ struct WatchHomeView: View {
                     }
                 }
                 .navigationTitle("WatchHook")
+                .onReceive(Timer.publish(every: 60, on: .main, in: .common).autoconnect()) { now = $0 }
                 .onAppear(perform: fixSelection)
                 .onChange(of: store.config) { fixSelection() }
             } else {
@@ -74,7 +77,7 @@ struct WatchHomeView: View {
 
     /// お試し前・お試しが終わったとき。購入は iPhone で行う。
     @ViewBuilder private var accessView: some View {
-        if let message = entitlements.access().blockedMessage {
+        if let message = entitlements.access(now: now).blockedMessage {
             Label(message, systemImage: "lock.fill")
                 .font(.caption2)
                 .foregroundStyle(.orange)
@@ -118,16 +121,19 @@ struct WatchHomeView: View {
 
     private func send(_ text: String, to destination: Destination) async {
         let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmed.isEmpty else { return }
+        // 最初の await より前に立てる (StoreKit を読んでいる間にもう一度送れないように)
+        guard !trimmed.isEmpty, !isSending else { return }
+        isSending = true
+        defer { isSending = false }
         // 画面を開いたままお試しの期限を過ぎることがあるので、送る直前にも確かめる
         await entitlements.refresh()
-        guard entitlements.access().canSend else {
+        now = .now
+        if let blocked = entitlements.access(now: now).blockedMessage {
+            lastStatus = .failed(reason: "送っていません。\(blocked)")
             WKHaptic.play(.failure)
             return
         }
-        isSending = true
         let status = await MessageDispatcher.shared.send(text: trimmed, destination: destination, source: "watch")
-        isSending = false
         lastStatus = status
         switch status {
         case .sent: WKHaptic.play(.success)

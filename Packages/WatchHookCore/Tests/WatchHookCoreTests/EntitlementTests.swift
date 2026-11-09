@@ -45,7 +45,7 @@ struct EntitlementTests {
             record(StoreProducts.unlockID, at: t0, revoked: true),
             record(StoreProducts.trialID, at: t0, revoked: true),
         ])
-        #expect(s == EntitlementSnapshot(unlocked: false, trialStartedAt: nil))
+        #expect(s == EntitlementSnapshot(unlocked: false, trialStartedAt: nil, unlockRevoked: true))
     }
 
     @Test func 知らない商品は無視する() {
@@ -87,6 +87,27 @@ struct EntitlementTests {
         #expect(watch.merging(nil) == watch)
         let none = EntitlementSnapshot(unlocked: false, trialStartedAt: nil)
         #expect(none.merging(watch) == watch)
+    }
+
+    @Test func 時計で返金を確かめたらiPhoneから届いた古い購入済みより優先する() {
+        let watch = EntitlementSnapshot(records: [record(StoreProducts.unlockID, at: t0, revoked: true)])
+        #expect(watch.unlockRevoked)
+        let staleHint = EntitlementSnapshot(unlocked: true, trialStartedAt: nil)
+        #expect(watch.merging(staleHint).unlocked == false)
+    }
+
+    @Test func 返金のあと買い直していれば購入済み() {
+        let s = EntitlementSnapshot(records: [
+            record(StoreProducts.unlockID, at: t0, revoked: true),
+            record(StoreProducts.unlockID, at: t0.addingTimeInterval(day)),
+        ])
+        #expect(s.unlocked)
+        #expect(s.unlockRevoked == false)
+    }
+
+    @Test func 返金の項目が無い古い形も読める() throws {
+        let old = Data(#"{"unlocked":true,"trialStartedAt":1800000000}"#.utf8)
+        #expect(try EntitlementSnapshot.decode(old) == EntitlementSnapshot(unlocked: true, trialStartedAt: t0))
     }
 
     @Test func 送るときの形とのやり取りで値が変わらない() throws {
