@@ -6,9 +6,6 @@ import WatchHookCore
 final class WatchSync: NSObject, WCSessionDelegate, @unchecked Sendable {
     static let shared = WatchSync()
 
-    private let lock = NSLock()
-    private var gate = LatestRequestGate()
-
     func activate() {
         guard WCSession.isSupported() else { return }
         WCSession.default.delegate = self
@@ -19,23 +16,28 @@ final class WatchSync: NSObject, WCSessionDelegate, @unchecked Sendable {
     func requestConfig() {
         let session = WCSession.default
         guard session.activationState == .activated, session.isReachable else { return }
-        let token = lock.withLock { gate.begin() }
-        session.sendMessage([SyncKeys.request: SyncKeys.config], replyHandler: { [weak self] reply in
-            // 何度か取りに行ったとき、最後の要求への返信だけを使う (遅れて届いた古い返信で巻き戻さない)
-            guard let self, self.lock.withLock({ self.gate.isLatest(token) }) else { return }
-            guard let data = reply[SyncKeys.config] as? Data, let config = try? DestinationConfig.decode(data) else {
-                Task { @MainActor in ConfigStore.shared.setSyncError("iPhone から設定を受け取れませんでした") }
-                return
-            }
-            Task { @MainActor in
-                ConfigStore.shared.setSyncError(nil)
-                ConfigStore.shared.receive(config)
-            }
-        }, errorHandler: { error in
-            Task { @MainActor in
-                ConfigStore.shared.setSyncError("iPhone から設定を受け取れませんでした: \(error.localizedDescription)")
-            }
-        })
+        Task { @MainActor in
+            let token = RequestGate.gate.begin()
+            session.sendMessage([SyncKeys.request: SyncKeys.config], replyHandler: { reply in
+                let config = (reply[SyncKeys.config] as? Data).flatMap { try? DestinationConfig.decode($0) }
+                Task { @MainActor in
+                    // 何度か取りに行ったとき、最後の要求への結果だけを使う。反映する直前 (MainActor の上) で確かめる
+                    guard RequestGate.gate.isLatest(token) else { return }
+                    guard let config else {
+                        ConfigStore.shared.setSyncError("iPhone から設定を受け取れませんでした")
+                        return
+                    }
+                    ConfigStore.shared.setSyncError(nil)
+                    ConfigStore.shared.receive(config)
+                }
+            }, errorHandler: { error in
+                let message = "iPhone から設定を受け取れませんでした: \(error.localizedDescription)"
+                Task { @MainActor in
+                    guard RequestGate.gate.isLatest(token) else { return }
+                    ConfigStore.shared.setSyncError(message)
+                }
+            })
+        }
     }
 
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
@@ -57,4 +59,10 @@ final class WatchSync: NSObject, WCSessionDelegate, @unchecked Sendable {
     func sessionReachabilityDidChange(_ session: WCSession) {
         if session.isReachable { requestConfig() }
     }
+}
+
+/// 設定の取り寄せの世代。MainActor だけで触る。
+@MainActor
+private enum RequestGate {
+    static var gate = LatestRequestGate()
 }

@@ -22,11 +22,20 @@ final class ConfigStore {
     private nonisolated static let keychain = KeychainStore(service: "com.nabettu.watchhook", account: "destination-config")
 
     init() {
+        config = .unsaved
+        load()
+    }
+
+    /// Keychain から読む。起動時と、読めなかったあとの読み直しで同じ分け方をする。
+    private func load() {
         do {
             config = try Self.loadFromKeychain()
+            loadFailed = false
+            saveError = nil
         } catch is DecodingError {
             // 保存されている設定の形式が読めない (壊れた・古い形式)。待っても直らないので空から始め、上書きを許す
             config = .unsaved
+            loadFailed = false
             saveError = "保存されていた設定を読めなかったため、空の状態から始めます"
         } catch {
             // Keychain が一時的に読めない (ロック中など)。このまま保存すると本物の設定を空で上書きしてしまうので、保存を止めて知らせる
@@ -74,11 +83,11 @@ final class ConfigStore {
     }
 
     /// 起動時に Keychain が読めなかった (ロック中など) とき、前面に来たタイミングで読み直す。
-    func reloadIfNeeded() {
-        guard loadFailed, let loaded = try? Self.loadFromKeychain() else { return }
-        config = loaded
-        loadFailed = false
-        saveError = nil
+    /// 読めていれば true。変更を作る前に呼ぶ (読めていない空の設定から変更を作って上書きしないため)。
+    @discardableResult
+    func reloadIfNeeded() -> Bool {
+        if loadFailed { load() }
+        return !loadFailed
     }
 
     /// 時計で、iPhone から設定を受け取れなかったとき。
@@ -88,13 +97,13 @@ final class ConfigStore {
 
     /// 時計で、iPhone から届いた設定を受け取る。今持っているものより古ければ捨てる。
     func receive(_ incoming: DestinationConfig) {
-        guard incoming.isNewer(than: config) else { return }
+        guard reloadIfNeeded(), incoming.isNewer(than: config) else { return }
         save(incoming)
     }
 
     @discardableResult
     private func save(_ c: DestinationConfig) -> Bool {
-        reloadIfNeeded()
+        // ここで読み直さない: 変更案は読み直す前の設定から作られているので、読めたとしても上書きしてはいけない
         guard !loadFailed else { return false }
         guard let data = try? c.encoded(), Self.keychain.save(data) else {
             saveError = "設定を端末に保存できませんでした"
@@ -107,6 +116,7 @@ final class ConfigStore {
 
     @discardableResult
     func upsert(_ destination: Destination) -> Bool {
+        guard reloadIfNeeded() else { return false }
         var c = config
         if let i = c.destinations.firstIndex(where: { $0.id == destination.id }) {
             c.destinations[i] = destination
@@ -118,6 +128,7 @@ final class ConfigStore {
     }
 
     func delete(_ id: UUID) {
+        guard reloadIfNeeded() else { return }
         var c = config
         c.destinations.removeAll { $0.id == id }
         if c.defaultDestinationID == id { c.defaultDestinationID = c.destinations.first?.id }
@@ -125,6 +136,7 @@ final class ConfigStore {
     }
 
     func setDefault(_ id: UUID) {
+        guard reloadIfNeeded() else { return }
         var c = config
         c.defaultDestinationID = id
         update(c)

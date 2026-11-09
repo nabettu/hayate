@@ -85,7 +85,10 @@ actor MessageDispatcher {
         // 再送待ちを一度も端末に保存できていなければ、アプリが終われば消える。再送するとは言わない
         // (どちらか一方でも保存できていれば、次の flush で送り直される)
         if case .pending = status, !queued, !saved {
-            return .failed(reason: "端末に保存できなかったため、送り直せません")
+            // 表示と実際をそろえる: 再送待ちのまま残すと、あとで自動で送られて「送り直せません」と食い違う
+            let reason = "端末に保存できなかったため、送り直せません"
+            log.apply(.permanentFailure(reason: reason), to: message.id)
+            return .failed(reason: reason)
         }
         return status
     }
@@ -98,6 +101,8 @@ actor MessageDispatcher {
         }
         isFlushing = true
         defer { isFlushing = false }
+        // 起動時に読めなかった履歴の再送待ちも拾えるよう、列挙の前に読み直す
+        recoverIfNeeded()
         repeat {
             flushRequested = false
             var tried: Set<UUID> = []
@@ -128,8 +133,11 @@ actor MessageDispatcher {
     }
 
     /// 消せなかった (保存に失敗した) ら元に戻して false。戻さないと、ディスクに残った再送待ちが次の起動で送られる。
+    /// 消せなかった (保存に失敗した) ら元に戻して false。戻さないと、ディスクに残った再送待ちが次の起動で送られる。
     @discardableResult
     func remove(_ id: UUID) -> Bool {
+        // 読めていない履歴の上で消すと、復旧したときの状態とずれる。先に復旧させ、だめなら消さない
+        guard recoverIfNeeded() else { return false }
         let before = log
         log.remove(id)
         if persist() { return true }
@@ -138,22 +146,29 @@ actor MessageDispatcher {
         return false
     }
 
+    /// 起動時に履歴を読めなかったなら読み直し、手元で増えた分を足す。読めていれば true。
+    @discardableResult
+    private func recoverIfNeeded() -> Bool {
+        guard readFailed else { return true }
+        switch Self.readLog(at: fileURL) {
+        case .loaded(var saved):
+            saved.merge(log)
+            log = saved
+            readFailed = false
+        case .missing:
+            readFailed = false
+        case .unreadable:
+            return false
+        }
+        NotificationCenter.default.post(name: Self.didChange, object: nil)
+        return true
+    }
+
     @discardableResult
     private func persist() -> Bool {
         defer { NotificationCenter.default.post(name: Self.didChange, object: nil) }
-        if readFailed {
-            // 読めなかった履歴を読み直し、手元で増えた分を足してから書く。まだ読めなければ書かない
-            switch Self.readLog(at: fileURL) {
-            case .loaded(var saved):
-                saved.merge(log)
-                log = saved
-                readFailed = false
-            case .missing:
-                readFailed = false
-            case .unreadable:
-                return false
-            }
-        }
+        // 読めていない履歴で上書きすると未送信を消すので、読めるまで書かない
+        guard recoverIfNeeded() else { return false }
         guard let data = try? JSONEncoder().encode(log) else { return false }
         do {
             // 本文は他人に見せたくない内容のこともあるので、起動後の初回ロック解除までは読めないようにする
