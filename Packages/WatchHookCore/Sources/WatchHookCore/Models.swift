@@ -111,17 +111,27 @@ public struct OutgoingMessage: Codable, Hashable, Identifiable, Sendable {
 public struct DestinationConfig: Codable, Hashable, Sendable {
     public var destinations: [Destination]
     public var defaultDestinationID: UUID?
-    /// iPhone で保存した日時。時計は自分の持つものより新しい設定だけを受け入れる (遅れて届いた古い同期で巻き戻さない)。
-    public var updatedAt: Date
+    /// 保存のたびに 1 増える版。時計は自分の持つものより新しい設定だけを受け入れる (遅れて届いた古い同期で巻き戻さない)。
+    /// 端末の時刻は戻ることがあるので日時では比べない。
+    public var revision: Int
+    /// iPhone で設定を作り直した (アプリを入れ直した) ときに変わる ID。版が 0 からやり直しになっても受け入れるため。
+    public var epoch: UUID
 
-    public init(destinations: [Destination] = [], defaultDestinationID: UUID? = nil, updatedAt: Date = .distantPast) {
+    public init(destinations: [Destination] = [], defaultDestinationID: UUID? = nil, revision: Int = 0, epoch: UUID = UUID()) {
         self.destinations = destinations
         self.defaultDestinationID = defaultDestinationID
-        self.updatedAt = updatedAt
+        self.revision = revision
+        self.epoch = epoch
     }
 
     public func isNewer(than other: DestinationConfig) -> Bool {
-        updatedAt > other.updatedAt
+        epoch != other.epoch || revision > other.revision
+    }
+
+    public func nextRevision() -> DestinationConfig {
+        var c = self
+        c.revision += 1
+        return c
     }
 
     /// 既定に選んだ送り先。消されていたら先頭を返す。

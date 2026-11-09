@@ -61,8 +61,10 @@ public struct MessageLog: Codable, Hashable, Sendable {
     }
 
     /// 失敗したものを手動で送り直すとき。
+    /// 送信済みのものは戻さない (画面が古いまま押されても二重に送らない)。
     public mutating func retry(_ id: UUID) {
         guard let i = entries.firstIndex(where: { $0.id == id }) else { return }
+        if case .sent = entries[i].status { return }
         entries[i].status = .pending(attempts: 0, lastError: nil)
     }
 

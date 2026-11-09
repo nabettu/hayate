@@ -75,6 +75,15 @@ struct MessageLogTests {
         #expect(log.entries[0].status == .pending(attempts: 0, lastError: nil))
     }
 
+    @Test func 送信済みのものは再送待ちに戻さない() {
+        var log = MessageLog()
+        let m = msg()
+        log.enqueue(m, destinationName: "A")
+        log.apply(.sent(statusCode: 200), to: m.id)
+        log.retry(m.id)
+        #expect(log.entries[0].status == .sent(statusCode: 200))
+    }
+
     @Test func JSONで保存して戻せる() throws {
         var log = MessageLog()
         log.enqueue(msg(), destinationName: "A")
@@ -95,12 +104,30 @@ struct DestinationConfigTests {
         #expect(c.defaultDestination?.id == a.id)
     }
 
-    @Test func 更新日時が新しい設定だけを新しいとみなす() {
-        let older = DestinationConfig(updatedAt: Date(timeIntervalSince1970: 100))
-        let newer = DestinationConfig(updatedAt: Date(timeIntervalSince1970: 200))
+    @Test func 版が大きい設定だけを新しいとみなす() {
+        var older = DestinationConfig()
+        older.revision = 3
+        var newer = older
+        newer.revision = 4
         #expect(newer.isNewer(than: older))
         #expect(!older.isNewer(than: newer))
         #expect(!older.isNewer(than: older))
+    }
+
+    @Test func iPhoneで作り直した設定は版が小さくても新しいとみなす() {
+        var current = DestinationConfig()
+        current.revision = 10
+        var reinstalled = DestinationConfig()
+        reinstalled.revision = 1
+        #expect(reinstalled.isNewer(than: current))
+    }
+
+    @Test func 次の版は必ず増える() {
+        var c = DestinationConfig()
+        c.revision = 5
+        let next = c.nextRevision()
+        #expect(next.revision == 6)
+        #expect(next.epoch == c.epoch)
     }
 
     @Test func 空なら既定も無い() {

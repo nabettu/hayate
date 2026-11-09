@@ -27,9 +27,18 @@
 
 ## 設定の同期と秘密
 
-- iPhone で編集 → Keychain (`AfterFirstUnlockThisDeviceOnly`。Siri から裏で読めるように) → `WCSession.updateApplicationContext` で時計へ → 時計の Keychain
-- 時計に設定が無いとき (初回) は `sendMessage` で iPhone に取りに行く
+- iPhone で編集 → Keychain (`AfterFirstUnlockThisDeviceOnly`。Siri から裏で読めるように) に保存できたときだけ反映
+- **`applicationContext` には版 (`revision` + `epoch`) だけを置く**。applicationContext は端末に保存され続けるので、認証ヘッダを含む本体を入れると「秘密は Keychain だけ」が崩れる (2026-11-09 ai-review の指摘)
+- 時計は版が手元より新しければ `sendMessage` で本体を取りに行き、返信で受け取って時計の Keychain に保存する。iPhone に届かないときは、前面に来たとき・つながったときに取り直す
+- 版は保存のたびに 1 増える整数。**日時で比べない** (端末の時刻が戻ると以後の更新を全部古いと判定して同期が止まる)。iPhone でアプリを入れ直すと版が 0 からになるので、`epoch` (設定を作り直したときに変わる UUID) が違えば受け入れる
+- Keychain が読めない (ロック中など) ときと「設定が無い」ときを区別する。読めないまま保存すると本物の設定を空で上書きするので、保存を止めて画面に出す。再送も「送り先が消えた」と決めつけず次の機会に回す
 - 履歴 (本文を含む) はアプリのファイルに `completeUntilFirstUserAuthentication` で保存。サーバーには何も送らない (自前のサーバーは無い)
+
+## 再送
+
+- 送信中の ID を持って二重送信を防ぐ (actor でも await の間は割り込まれる)。再送は 1 件ずつ、送る直前の履歴と設定を読み直す。結果は 1 件ごとに保存する
+- リダイレクトには従わない。従うと POST が GET に変わり、ログイン画面などの 200 を「届いた」と誤認する
+- 受け手の重複除去用に `X-WatchHook-Message-Id` は予約ヘッダ (利用者の設定で上書きできない)
 
 ## 他社の AI アプリへの連携
 

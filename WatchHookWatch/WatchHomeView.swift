@@ -18,6 +18,7 @@ struct WatchHomeView: View {
             if let destination {
                 ScrollView {
                     VStack(spacing: 10) {
+                        saveErrorView
                         // 標準の入力画面 (音声入力・スクリブル) を開く。ダブルタップでも押せる
                         TextFieldLink(prompt: Text("話してください")) {
                             Label("話す", systemImage: "mic.fill")
@@ -51,14 +52,31 @@ struct WatchHomeView: View {
                 .onAppear(perform: fixSelection)
                 .onChange(of: store.config) { fixSelection() }
             } else {
-                VStack(spacing: 8) {
-                    Image(systemName: "iphone").font(.title2)
-                    Text("iPhone の WatchHook で送り先を登録してください")
-                        .multilineTextAlignment(.center)
-                        .font(.footnote)
-                    Button("再読み込み") { WatchSync.shared.requestConfig() }
+                ScrollView {
+                    VStack(spacing: 8) {
+                        saveErrorView
+                        Image(systemName: "iphone").font(.title2)
+                        Text("iPhone の WatchHook で送り先を登録してください")
+                            .multilineTextAlignment(.center)
+                            .font(.footnote)
+                        Button("再読み込み") { WatchSync.shared.requestConfig() }
+                        // 送り先が無くても、これまでの履歴は見られるようにする
+                        NavigationLink("履歴") { WatchHistoryView() }
+                            .font(.footnote)
+                    }
                 }
                 .navigationTitle("WatchHook")
+            }
+        }
+    }
+
+    /// iPhone から届いた設定を時計に保存できなかったとき。
+    @ViewBuilder private var saveErrorView: some View {
+        if let error = store.saveError {
+            VStack(spacing: 4) {
+                Label(error, systemImage: "exclamationmark.triangle.fill")
+                    .font(.caption2).foregroundStyle(.red)
+                Button("もう一度受け取る") { WatchSync.shared.requestConfig() }.font(.caption2)
             }
         }
     }

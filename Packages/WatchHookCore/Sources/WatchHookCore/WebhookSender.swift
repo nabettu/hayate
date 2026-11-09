@@ -16,7 +16,11 @@ final class RejectRedirects: NSObject, URLSessionTaskDelegate, Sendable {
 public struct URLSessionTransport: HTTPTransport {
     let session: URLSession
 
-    static let noRedirectSession = URLSession(configuration: .ephemeral, delegate: RejectRedirects(), delegateQueue: nil)
+    static let noRedirectSession = makeNoRedirectSession(configuration: .ephemeral)
+
+    static func makeNoRedirectSession(configuration: URLSessionConfiguration) -> URLSession {
+        URLSession(configuration: configuration, delegate: RejectRedirects(), delegateQueue: nil)
+    }
 
     public init(session: URLSession? = nil) {
         self.session = session ?? Self.noRedirectSession

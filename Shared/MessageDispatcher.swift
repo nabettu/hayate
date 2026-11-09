@@ -52,8 +52,9 @@ actor MessageDispatcher {
         if case .sent = result {
             Task { await self.flush() }
         }
-        // 再送待ちにしたのに端末に保存できていなければ、アプリが終われば消える。再送するとは言わない
-        if case .pending = status, !(queued && saved) {
+        // 再送待ちを一度も端末に保存できていなければ、アプリが終われば消える。再送するとは言わない
+        // (どちらか一方でも保存できていれば、次の flush で送り直される)
+        if case .pending = status, !queued, !saved {
             return .failed(reason: "端末に保存できなかったため、送り直せません")
         }
         return status
@@ -72,7 +73,9 @@ actor MessageDispatcher {
             var tried: Set<UUID> = []
             while let entry = log.pending.first(where: { !tried.contains($0.id) && !inFlight.contains($0.id) }) {
                 tried.insert(entry.id)
-                guard let destination = ConfigStore.loadFromKeychain().destination(id: entry.message.destinationID) else {
+                // 設定を読めないとき (ロック中など) は「送り先が消えた」と決めつけず、再送待ちのまま次の機会に回す
+                guard let config = try? ConfigStore.loadFromKeychain() else { return }
+                guard let destination = config.destination(id: entry.message.destinationID) else {
                     log.apply(.permanentFailure(reason: "送り先が削除されています"), to: entry.id)
                     persist()
                     continue

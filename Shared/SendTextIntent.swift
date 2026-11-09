@@ -15,13 +15,13 @@ struct DestinationEntity: AppEntity {
 
 struct DestinationQuery: EntityQuery {
     func entities(for identifiers: [UUID]) async throws -> [DestinationEntity] {
-        ConfigStore.loadFromKeychain().destinations
+        try ConfigStore.loadFromKeychain().destinations
             .filter { identifiers.contains($0.id) }
             .map { DestinationEntity(id: $0.id, name: $0.name) }
     }
 
     func suggestedEntities() async throws -> [DestinationEntity] {
-        ConfigStore.loadFromKeychain().destinations.map { DestinationEntity(id: $0.id, name: $0.name) }
+        try ConfigStore.loadFromKeychain().destinations.map { DestinationEntity(id: $0.id, name: $0.name) }
     }
 }
 
@@ -43,7 +43,9 @@ struct SendTextIntent: AppIntent {
     }
 
     func perform() async throws -> some IntentResult & ProvidesDialog {
-        let config = ConfigStore.loadFromKeychain()
+        guard let config = try? ConfigStore.loadFromKeychain() else {
+            return .result(dialog: "設定を読み込めませんでした。iPhone / Apple Watch のロックを解除してからもう一度試してください。")
+        }
         // 送り先を指定されたのに見つからないときは、既定の送り先へ回さない (意図しない相手に送らない)
         let target: Destination
         if let destination {

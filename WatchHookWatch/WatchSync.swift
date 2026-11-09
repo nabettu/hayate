@@ -12,30 +12,33 @@ final class WatchSync: NSObject, WCSessionDelegate, @unchecked Sendable {
         WCSession.default.activate()
     }
 
-    /// 設定がまだ無いとき、iPhone に取りに行く。
+    /// iPhone に設定の本体を取りに行く。届かなければ、次に前面に来たとき / つながったときにやり直す。
     func requestConfig() {
         let session = WCSession.default
         guard session.activationState == .activated, session.isReachable else { return }
-        session.sendMessage([SyncKeys.request: SyncKeys.config], replyHandler: { [weak self] reply in
-            self?.apply(reply)
+        session.sendMessage([SyncKeys.request: SyncKeys.config], replyHandler: { reply in
+            guard let data = reply[SyncKeys.config] as? Data, let config = try? DestinationConfig.decode(data) else { return }
+            Task { @MainActor in ConfigStore.shared.receive(config) }
         }, errorHandler: nil)
     }
 
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         guard activationState == .activated else { return }
-        if !session.receivedApplicationContext.isEmpty {
-            apply(session.receivedApplicationContext)
-        } else {
-            requestConfig()
+        requestConfig()
+    }
+
+    /// iPhone で設定が変わった知らせ (版だけ)。手元より新しければ本体を取りに行く。
+    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String: Any]) {
+        guard let revision = applicationContext[SyncKeys.revision] as? Int,
+              let epoch = (applicationContext[SyncKeys.epoch] as? String).flatMap(UUID.init(uuidString:)) else { return }
+        Task { @MainActor in
+            if DestinationConfig(revision: revision, epoch: epoch).isNewer(than: ConfigStore.shared.config) {
+                self.requestConfig()
+            }
         }
     }
 
-    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String: Any]) {
-        apply(applicationContext)
-    }
-
-    private func apply(_ payload: [String: Any]) {
-        guard let data = payload[SyncKeys.config] as? Data, let config = try? DestinationConfig.decode(data) else { return }
-        Task { @MainActor in ConfigStore.shared.receive(config) }
+    func sessionReachabilityDidChange(_ session: WCSession) {
+        if session.isReachable { requestConfig() }
     }
 }

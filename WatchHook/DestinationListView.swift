@@ -38,7 +38,9 @@ struct DestinationListView: View {
                     }
                 }
                 .onDelete { offsets in
-                    for i in offsets { store.delete(store.config.destinations[i].id) }
+                    // 消すたびに配列が縮むので、先に ID を確定させる
+                    let ids = offsets.map { store.config.destinations[$0].id }
+                    for id in ids { store.delete(id) }
                 }
             }
             .navigationTitle("送り先")

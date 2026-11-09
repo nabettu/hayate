@@ -22,28 +22,44 @@ final class ConfigStore {
     private nonisolated static let keychain = KeychainStore(service: "com.nabettu.watchhook", account: "destination-config")
 
     init() {
-        config = Self.loadFromKeychain()
+        do {
+            config = try Self.loadFromKeychain()
+        } catch {
+            // 読めないまま保存すると、本当の設定を空で上書きしてしまう。保存を止めて知らせる
+            config = DestinationConfig()
+            loadFailed = true
+            saveError = "設定を読み込めませんでした。アプリを開き直してください"
+        }
     }
 
-    /// App Intent など、MainActor の外から最新の設定を読むとき。
-    nonisolated static func loadFromKeychain() -> DestinationConfig {
-        guard let data = keychain.load() else { return DestinationConfig() }
+    @ObservationIgnored private var loadFailed = false
+
+    /// App Intent など、MainActor の外から最新の設定を読むとき。まだ何も無ければ空の設定、読めなければ投げる。
+    nonisolated static func loadFromKeychain() throws -> DestinationConfig {
+        guard let data = try keychain.load() else { return DestinationConfig() }
         do {
             return try DestinationConfig.decode(data)
         } catch {
             configLogger.error("decode failed: \(String(describing: error), privacy: .public)")
-            return DestinationConfig()
+            throw error
         }
     }
 
-    /// iPhone での編集。保存日時を付けて Keychain に保存できたときだけ画面と時計に反映する。
+    /// iPhone での編集。版を 1 つ進め、Keychain に保存できたときだけ画面と時計に反映する。
     @discardableResult
     func update(_ newValue: DestinationConfig) -> Bool {
         var c = newValue
-        c.updatedAt = Date()
+        c.epoch = config.epoch
+        c.revision = config.revision
+        c = c.nextRevision()
         guard save(c) else { return false }
-        syncError = onChange?(c)
+        resync()
         return true
+    }
+
+    /// 時計へ送り直す (iPhone のみ。時計とのつながりが変わったときにも呼ぶ)。
+    func resync() {
+        syncError = onChange?(config)
     }
 
     /// 時計で、iPhone から届いた設定を受け取る。今持っているものより古ければ捨てる。
@@ -54,6 +70,7 @@ final class ConfigStore {
 
     @discardableResult
     private func save(_ c: DestinationConfig) -> Bool {
+        guard !loadFailed else { return false }
         guard let data = try? c.encoded(), Self.keychain.save(data) else {
             saveError = "設定を端末に保存できませんでした"
             return false

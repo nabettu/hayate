@@ -13,7 +13,10 @@ struct WatchHookWatchApp: App {
             WatchHomeView()
         }
         .onChange(of: scenePhase) { _, phase in
-            if phase == .active { Task { await MessageDispatcher.shared.flush() } }
+            if phase == .active {
+                WatchSync.shared.requestConfig()
+                Task { await MessageDispatcher.shared.flush() }
+            }
         }
     }
 }

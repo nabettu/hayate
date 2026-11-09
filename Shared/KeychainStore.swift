@@ -10,15 +10,19 @@ struct KeychainStore: Sendable {
     let service: String
     let account: String
 
-    func load() -> Data? {
+    struct ReadError: Error { let status: OSStatus }
+
+    /// 項目が無ければ nil。読めなかった (ロック中など) ときは投げる。「無い」と「読めない」を区別するため。
+    func load() throws -> Data? {
         var query = baseQuery
         query[kSecReturnData as String] = true
         query[kSecMatchLimit as String] = kSecMatchLimitOne
         var item: CFTypeRef?
         let status = SecItemCopyMatching(query as CFDictionary, &item)
+        if status == errSecItemNotFound { return nil }
         guard status == errSecSuccess else {
-            if status != errSecItemNotFound { logger.error("load failed: \(status)") }
-            return nil
+            logger.error("load failed: \(status)")
+            throw ReadError(status: status)
         }
         return item as? Data
     }

@@ -20,7 +20,8 @@ final class PhoneSync: NSObject, WCSessionDelegate, @unchecked Sendable {
             return nil
         }
         do {
-            try session.updateApplicationContext([SyncKeys.config: try config.encoded()])
+            // 認証ヘッダを含む本体は applicationContext に置かない (端末に保存され続けるため)。版だけ知らせ、時計が取りに来る
+            try session.updateApplicationContext([SyncKeys.revision: config.revision, SyncKeys.epoch: config.epoch.uuidString])
             return nil
         } catch {
             return "Apple Watch へ設定を送れませんでした: \(error.localizedDescription)"
@@ -29,7 +30,7 @@ final class PhoneSync: NSObject, WCSessionDelegate, @unchecked Sendable {
 
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         guard activationState == .activated else { return }
-        Task { @MainActor in self.push(ConfigStore.shared.config) }
+        Task { @MainActor in ConfigStore.shared.resync() }
     }
 
     /// 時計が「設定をください」と言ってきたとき (初回インストール直後など)。
@@ -38,7 +39,7 @@ final class PhoneSync: NSObject, WCSessionDelegate, @unchecked Sendable {
             replyHandler([:])
             return
         }
-        let data = try? ConfigStore.loadFromKeychain().encoded()
+        let data = try? (try ConfigStore.loadFromKeychain()).encoded()
         replyHandler(data.map { [SyncKeys.config: $0] } ?? [:])
     }
 
@@ -50,6 +51,6 @@ final class PhoneSync: NSObject, WCSessionDelegate, @unchecked Sendable {
     }
 
     func sessionWatchStateDidChange(_ session: WCSession) {
-        Task { @MainActor in self.push(ConfigStore.shared.config) }
+        Task { @MainActor in ConfigStore.shared.resync() }
     }
 }
