@@ -5,54 +5,58 @@ struct HelpView: View {
     var body: some View {
         NavigationStack {
             List {
-                Section {
-                    VStack(alignment: .leading, spacing: 8) {
-                        Text("Apple Watch で話した内容を、登録した送り先 (Slack・Discord・自分の webhook) へそのまま送るアプリです。")
-                        Text("はじめに").font(.headline).padding(.top, 4)
-                        Step(number: 1, text: "「送り先」タブの + から送り先を登録する")
-                        Step(number: 2, text: "編集画面の「テスト送信」で届くか確かめる")
-                        Step(number: 3, text: "Apple Watch で「Hey Siri、WatchHook で送って」と話しかける")
+                Group {
+                    Section {
+                        VStack(alignment: .leading, spacing: 8) {
+                            Text("Apple Watch で話した内容を、登録した送り先 (Slack・Discord・自分の webhook) へそのまま送るアプリです。")
+                            Text("はじめに").font(.headline).padding(.top, 4)
+                            Step(number: 1, text: "「送り先」タブの + から送り先を登録する")
+                            Step(number: 2, text: "編集画面の「テスト送信」で届くか確かめる")
+                            Step(number: 3, text: "Apple Watch で「Hey Siri、WatchHook で送って」と話しかける")
+                        }
+                        .padding(.vertical, 4)
                     }
-                    .padding(.vertical, 4)
-                }
 
-                Section("使い方") {
-                    NavigationLink { WatchUsagePage() } label: {
-                        Label("Apple Watch から送る", systemImage: "applewatch")
+                    Section("使い方") {
+                        NavigationLink { WatchUsagePage() } label: {
+                            Label("Apple Watch から送る", systemImage: "applewatch")
+                        }
+                        NavigationLink { WidgetPage() } label: {
+                            Label("文字盤・スマートスタックに置く", systemImage: "square.stack")
+                        }
+                        NavigationLink { ChooseDestinationPage() } label: {
+                            Label("送り先を切り替える", systemImage: "star")
+                        }
                     }
-                    NavigationLink { WidgetPage() } label: {
-                        Label("文字盤・スマートスタックに置く", systemImage: "square.stack")
-                    }
-                    NavigationLink { ChooseDestinationPage() } label: {
-                        Label("送り先を切り替える", systemImage: "star")
-                    }
-                }
 
-                Section("送り先の登録") {
-                    NavigationLink { SlackPage() } label: {
-                        Label("Slack", systemImage: "number")
+                    Section("送り先の登録") {
+                        NavigationLink { SlackPage() } label: {
+                            Label("Slack", systemImage: "number")
+                        }
+                        NavigationLink { DiscordPage() } label: {
+                            Label("Discord", systemImage: "bubble.left.and.bubble.right")
+                        }
+                        NavigationLink { CustomWebhookPage() } label: {
+                            Label("Webhook (自由に設定)", systemImage: "curlybraces")
+                        }
                     }
-                    NavigationLink { DiscordPage() } label: {
-                        Label("Discord", systemImage: "bubble.left.and.bubble.right")
-                    }
-                    NavigationLink { CustomWebhookPage() } label: {
-                        Label("Webhook (自由に設定)", systemImage: "curlybraces")
-                    }
-                }
 
-                Section("困ったとき") {
-                    NavigationLink { TroublePage() } label: {
-                        Label("送れなかったとき", systemImage: "exclamationmark.triangle")
-                    }
-                    NavigationLink { ReceiverSpecPage() } label: {
-                        Label("受け取る側の仕様", systemImage: "server.rack")
-                    }
-                    NavigationLink { PrivacyPage() } label: {
-                        Label("データの扱い", systemImage: "lock")
+                    Section("困ったとき") {
+                        NavigationLink { TroublePage() } label: {
+                            Label("送れなかったとき", systemImage: "exclamationmark.triangle")
+                        }
+                        NavigationLink { ReceiverSpecPage() } label: {
+                            Label("受け取る側の仕様", systemImage: "server.rack")
+                        }
+                        NavigationLink { PrivacyPage() } label: {
+                            Label("データの扱い", systemImage: "lock")
+                        }
                     }
                 }
+                .listRowBackground(Cosmos.card)
             }
             .navigationTitle("使い方")
+            .cosmicListBackground()
         }
     }
 }
@@ -156,7 +160,7 @@ private struct CustomWebhookPage: View {
                 Code("{{text}}", "話した内容")
                 Code("{{id}}", "メッセージごとの ID。送り直しても同じ")
                 Code("{{sentAt}}", "送った日時 (UTC、ISO 8601)")
-                Code("{{source}}", "送り元: watch / siri-watch / siri-phone / test")
+                Code("{{source}}", "送り元: watch / phone / siri-watch / siri-phone / test")
                 Para("JSON では値を \"\" で囲みます。例: {\"text\":\"{{text}}\"}。話した内容に \" や改行があっても、JSON が壊れないように自動で直します。")
             }
             Section("認証ヘッダ") {
@@ -226,8 +230,9 @@ private struct HelpPage<Content: View>: View {
     @ViewBuilder let content: Content
 
     var body: some View {
-        List { content }
+        List { content.listRowBackground(Cosmos.card) }
             .navigationTitle(title)
+            .cosmicListBackground()
             .navigationBarTitleDisplayMode(.inline)
     }
 }

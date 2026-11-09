@@ -12,6 +12,7 @@ struct HistoryView: View {
                 if entries.isEmpty {
                     ContentUnavailableView("履歴はまだありません", systemImage: "clock",
                                            description: Text("この iPhone から送った内容が表示されます。Apple Watch から送った分は時計の履歴を見てください。"))
+                        .listRowBackground(Color.clear)
                 }
                 ForEach(entries) { e in
                     VStack(alignment: .leading, spacing: 4) {
@@ -27,6 +28,7 @@ struct HistoryView: View {
                             Text(detail).font(.caption2).foregroundStyle(.secondary)
                         }
                     }
+                    .listRowBackground(Cosmos.card)
                     .swipeActions {
                         Button("削除", role: .destructive) {
                             Task { await MessageDispatcher.shared.remove(e.id); await reload() }
@@ -40,6 +42,7 @@ struct HistoryView: View {
                 }
             }
             .navigationTitle("履歴")
+            .cosmicListBackground()
             .refreshable {
                 await MessageDispatcher.shared.flush()
                 await reload()
