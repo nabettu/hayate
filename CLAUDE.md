@@ -24,4 +24,12 @@ Apple Watch の音声入力を webhook へ送るアプリ。全体像は [README
 
 ## シミュレータ
 
-台帳は `~/work/docs/ios-simulator-registry.md`。`WatchHook-Dev` (iPhone) と `WatchHook-Watch-Dev` (Apple Watch) をペアで使う。
+台帳は `~/work/docs/ios-simulator-registry.md`。**mini** の `WatchHook-Dev` (iPhone) と `WatchHook-Watch-Dev` (Apple Watch) をペアで使う。
+
+- `heavy xcodebuild` は母艦で走ることがある (mini の `build/` は古いまま)。母艦の `build/Build/Products/Debug-*simulator/*.app` を rsync で mini に送って `simctl install` する
+- iPhone は T3 の `device_open` (hostId `mac-mini`) で操作する。**Watch は Device パネルに出ない**ので、ssh 越しに `simctl launch` / `simctl io screenshot`
+- Keychain は署名なし (`CODE_SIGNING_ALLOWED=NO`) のビルドだと書けない。動作確認は既定の署名でビルドしたものを入れる
+
+## ハマりどころ
+
+- **WatchConnectivity などの完了ハンドラを `Task { @MainActor in ... }` の中で作らない**。MainActor 所属とみなされ、OS のキューから呼ばれた瞬間に Swift 6 の実行時チェックで落ちる (`dispatch_assert_queue`)。nonisolated の関数でクロージャを作り、中で `Task { @MainActor in }` に移る
