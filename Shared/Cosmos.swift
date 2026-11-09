@@ -13,7 +13,8 @@ enum Cosmos {
     /// 左上の 4 つ角の星。
     static let star = Color(red: 0xFD / 255, green: 0xE6 / 255, blue: 0x8A / 255)
     /// 星空の上に置くカードの地。
-    static let card = Color.white.opacity(0.07)
+    /// 星が文字に重ならないよう、ほぼ不透明にする (夜空より少し明るい紫)。
+    static let card = Color(red: 0x22 / 255, green: 0x1B / 255, blue: 0x48 / 255).opacity(0.96)
     static let cardStroke = Color.white.opacity(0.12)
 
     static var background: LinearGradient { LinearGradient(colors: [night, deep, nebula], startPoint: .topLeading, endPoint: .bottomTrailing) }
@@ -125,10 +126,16 @@ struct SparkleShape: Shape {
 
 // MARK: - 紙飛行機
 
-/// アイコンと同じ形の紙飛行機。機首は右上 (約 -47°) を向く。
+/// アイコンと同じ形の紙飛行機。機首は右上 (約 -49°) を向く。
 struct PaperPlane: View {
-    /// 機首の向き (画面座標での角度、ラジアン)。回転させるときはこれとの差を回す。
-    static let heading = atan2(-407.0, 380.0)
+    /// 機体の中心線 (竜骨: 機首 → 紫の折り目の後端) の端。座標は下の 700×620 の箱。
+    static let nose = CGPoint(x: 690, y: 8)
+    static let tail = CGPoint(x: 236, y: 532)
+    /// 中心線の向き (画面座標での角度、ラジアン)。回転させるときはこれとの差を回す。
+    static let heading = atan2(nose.y - tail.y, nose.x - tail.x)
+    static let keelLength = hypot(nose.x - tail.x, nose.y - tail.y)
+    /// 箱の中心から見た、中心線の中点の位置。
+    static let keelMidFromCenter = CGPoint(x: (nose.x + tail.x) / 2 - 350, y: (nose.y + tail.y) / 2 - 310)
 
     var body: some View {
         ZStack {
@@ -203,13 +210,13 @@ struct FlightStage: View {
                             trail(now: now, size: size)
                             burst(now: now, size: size)
                         }
-                        if let pose = pose(at: now) {
+                        if let pose = pose(at: now, size: size) {
                             PaperPlane()
                                 .frame(width: planeSize * pose.scale)
                                 .rotationEffect(.radians(pose.angle - PaperPlane.heading))
                                 .shadow(color: Cosmos.violet.opacity(0.8), radius: planeSize * 0.15)
                                 .opacity(pose.opacity)
-                                .position(x: pose.point.x * size.width, y: pose.point.y * size.height)
+                                .position(frameCenter(of: pose, size: size))
                         }
                     }
                 }
@@ -224,10 +231,11 @@ struct FlightStage: View {
         Canvas { ctx, _ in
             for k in 1...14 {
                 let past = now.addingTimeInterval(-Double(k) * 0.035)
-                guard let pose = pose(at: past), pose.opacity > 0.05 else { continue }
+                guard let pose = pose(at: past, size: size), pose.opacity > 0.05 else { continue }
                 let fade = (1 - Double(k) / 15) * pose.opacity
                 let r = planeSize * 0.07 * (1 - Double(k) / 18)
-                let c = CGPoint(x: pose.point.x * size.width, y: pose.point.y * size.height)
+                // 粒はそのときの機体の中心線の後端から出す (機体の向きと軌跡をそろえる)
+                let c = tailPoint(of: pose, size: size)
                 let color = k % 3 == 0 ? Cosmos.star : Cosmos.lavender
                 ctx.fill(Path(ellipseIn: CGRect(x: c.x - r, y: c.y - r, width: r * 2, height: r * 2)),
                          with: .color(color.opacity(fade)))
@@ -254,7 +262,26 @@ struct FlightStage: View {
         }
     }
 
-    private func pose(at date: Date) -> Pose? {
+    /// 機体の中心線の中点を `pose.point` に置いたときの、機体の絵 (箱) の中心。
+    private func frameCenter(of pose: Pose, size: CGSize) -> CGPoint {
+        let k = planeSize * pose.scale / 700
+        let rot = pose.angle - PaperPlane.heading
+        let m = PaperPlane.keelMidFromCenter
+        let mx = (m.x * cos(rot) - m.y * sin(rot)) * k, my = (m.x * sin(rot) + m.y * cos(rot)) * k
+        return CGPoint(x: pose.point.x * size.width - mx, y: pose.point.y * size.height - my)
+    }
+
+    /// 機体の中心線の後端 (軌跡の出どころ)。
+    private func tailPoint(of pose: Pose, size: CGSize) -> CGPoint {
+        let half = PaperPlane.keelLength / 2 * planeSize * pose.scale / 700
+        return CGPoint(x: pose.point.x * size.width - cos(pose.angle) * half,
+                       y: pose.point.y * size.height - sin(pose.angle) * half)
+    }
+
+    /// `point` は 0...1 の相対座標、`angle` は画面 (ポイント) での進む向き。
+    /// 相対座標の向きをそのまま使うと、縦長の画面で機体と進む向きがずれるので、画面の縦横比を掛けてから角度にする。
+    private func pose(at date: Date, size: CGSize) -> Pose? {
+        func screenAngle(_ d: CGPoint) -> Double { atan2(d.y * size.height, d.x * size.width) }
         let center = CGPoint(x: 0.5, y: 0.5)
         // 「視差効果を減らす」では動かさない: まん中に置いて、結果が出たら消えていくだけにする
         if reduceMotion { return stillPose(at: date, center: center) }
@@ -270,7 +297,7 @@ struct FlightStage: View {
                 let from = CGPoint(x: -0.25, y: 1.15), control = CGPoint(x: 0.1, y: 0.45)
                 let pt = bezier(from, control, center, p)
                 let d = bezierTangent(from, control, center, max(p, 0.02))
-                return Pose(point: pt, angle: atan2(d.y, d.x), opacity: min(1, t / 0.15), scale: 0.7 + 0.3 * p)
+                return Pose(point: pt, angle: screenAngle(d), opacity: min(1, t / 0.15), scale: 0.7 + 0.3 * p)
             }
             return hover(at: t - FlightPhase.arrival)
         case .sent(let at):
@@ -279,14 +306,15 @@ struct FlightStage: View {
             let p = easeIn(t / FlightPhase.exit)
             let to = CGPoint(x: 1.35, y: -0.35)
             let pt = CGPoint(x: center.x + (to.x - center.x) * p, y: center.y + (to.y - center.y) * p)
-            return Pose(point: pt, angle: PaperPlane.heading, opacity: 1 - max(0, p - 0.7) / 0.3, scale: 1 - 0.4 * p)
+            return Pose(point: pt, angle: screenAngle(CGPoint(x: to.x - center.x, y: to.y - center.y)),
+                        opacity: 1 - max(0, p - 0.7) / 0.3, scale: 1 - 0.4 * p)
         case .queued(let at):
             let t = max(0, date.timeIntervalSince(at))
             guard t < FlightPhase.exit * 1.4 else { return nil }
             let p = easeInOut(t / (FlightPhase.exit * 1.4))
             let from = center, control = CGPoint(x: 0.95, y: 0.35), to = CGPoint(x: 1.3, y: 1.0)
             let d = bezierTangent(from, control, to, max(p, 0.02))
-            return Pose(point: bezier(from, control, to, p), angle: atan2(d.y, d.x), opacity: 1 - p * 0.6, scale: 1 - 0.3 * p)
+            return Pose(point: bezier(from, control, to, p), angle: screenAngle(d), opacity: 1 - p * 0.6, scale: 1 - 0.3 * p)
         case .failed(let at):
             let t = max(0, date.timeIntervalSince(at))
             guard t < FlightPhase.exit * 1.3 else { return nil }

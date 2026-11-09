@@ -83,7 +83,6 @@ struct WatchHomeView: View {
                     }
                 }
             }
-            .navigationTitle("WatchHook")
             .containerBackground(for: .navigation) { CosmicBackground(starCount: 26) }
         }
         .tint(Cosmos.lavender)

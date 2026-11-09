@@ -247,7 +247,7 @@ private struct Step: View {
                 .font(.caption.bold())
                 .foregroundStyle(.white)
                 .frame(width: 20, height: 20)
-                .background(Circle().fill(.orange))
+                .background(Circle().fill(Cosmos.glow))
             Text(text)
         }
     }
