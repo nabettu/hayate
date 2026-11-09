@@ -17,27 +17,32 @@ final class WatchSync: NSObject, WCSessionDelegate, @unchecked Sendable {
         let session = WCSession.default
         guard session.activationState == .activated, session.isReachable else { return }
         Task { @MainActor in
-            let token = RequestGate.gate.begin()
-            session.sendMessage([SyncKeys.request: SyncKeys.config], replyHandler: { reply in
-                let config = (reply[SyncKeys.config] as? Data).flatMap { try? DestinationConfig.decode($0) }
-                Task { @MainActor in
-                    // 何度か取りに行ったとき、最後の要求への結果だけを使う。反映する直前 (MainActor の上) で確かめる
-                    guard RequestGate.gate.isLatest(token) else { return }
-                    guard let config else {
-                        ConfigStore.shared.setSyncError("iPhone から設定を受け取れませんでした")
-                        return
-                    }
-                    ConfigStore.shared.setSyncError(nil)
-                    ConfigStore.shared.receive(config)
-                }
-            }, errorHandler: { error in
-                let message = "iPhone から設定を受け取れませんでした: \(error.localizedDescription)"
-                Task { @MainActor in
-                    guard RequestGate.gate.isLatest(token) else { return }
-                    ConfigStore.shared.setSyncError(message)
-                }
-            })
+            Self.send(session: session, token: RequestGate.gate.begin())
         }
+    }
+
+    /// 返信のクロージャは WatchConnectivity のキューから呼ばれる。MainActor の中で作ると MainActor 所属とみなされ、
+    /// 実行時の隔離チェックで落ちる (2026-11-09 にシミュレータで発生) ので、nonisolated の関数で作る。
+    private nonisolated static func send(session: WCSession, token: Int) {
+        session.sendMessage([SyncKeys.request: SyncKeys.config], replyHandler: { @Sendable reply in
+            let config = (reply[SyncKeys.config] as? Data).flatMap { try? DestinationConfig.decode($0) }
+            Task { @MainActor in
+                // 何度か取りに行ったとき、最後の要求への結果だけを使う。反映する直前 (MainActor の上) で確かめる
+                guard RequestGate.gate.isLatest(token) else { return }
+                guard let config else {
+                    ConfigStore.shared.setSyncError("iPhone から設定を受け取れませんでした")
+                    return
+                }
+                ConfigStore.shared.setSyncError(nil)
+                ConfigStore.shared.receive(config)
+            }
+        }, errorHandler: { @Sendable error in
+            let message = "iPhone から設定を受け取れませんでした: \(error.localizedDescription)"
+            Task { @MainActor in
+                guard RequestGate.gate.isLatest(token) else { return }
+                ConfigStore.shared.setSyncError(message)
+            }
+        })
     }
 
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
