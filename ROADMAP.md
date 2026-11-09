@@ -1,0 +1,25 @@
+# ROADMAP
+
+## 現状 (2026-11-09)
+
+MVP の土台を作った (未リリース・シミュレータでのみ確認)。
+- 送り先: 任意の webhook (メソッド・ヘッダ・本文テンプレート)、Slack / Discord の定型
+- Siri (時計 / iPhone) から送る App Intent、時計のアプリ (話すボタン + ダブルタップ)
+- 送信失敗の再送待ち・履歴、iPhone → 時計の設定同期
+
+## 次にやること
+
+- [ ] 実機 (Apple Watch) で Siri のフレーズ・ダブルタップ・時計単体 (iPhone から離れた状態) の送信を確かめる
+- [ ] アプリアイコン (今は空)
+- [ ] 英語のローカライズ (Siri のフレーズは `AppShortcuts.xcstrings` で言語ごとに要る)
+- [ ] コンプリケーション / Smart Stack のウィジェット (タップ 1 回で入力画面へ)
+- [ ] バックグラウンドでの自動再送
+- [ ] AI の API へ直接送る送り先 (OpenAI / Anthropic / Gemini。ユーザーの API キー。返答を時計に表示)。**入力を第三者 AI へ送るので、送る前の同意が要る (App Review 5.1.2(i))**
+- [ ] 受け口のサンプル (Cloudflare Workers 等) と、署名ヘッダ (HMAC) の任意対応
+
+## 公開前に要るもの (`~/work/docs/global-rules/new-app-project.md`)
+
+- [ ] プライバシーポリシー (アプリ専用)・サポート URL
+- [ ] プライバシーラベル: 自前で集めるものは無い (送信先はユーザーが登録したもの)。SDK を入れたら `docs/privacy-labels.md` を作る
+- [ ] 強制アップデートと GA4 の計測 (`~/work/docs/global-rules/app-analytics.md`) を v1 に入れるか決める (Firebase を入れるかどうか)
+- [ ] 課金するか決める

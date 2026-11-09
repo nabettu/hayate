@@ -1,0 +1,69 @@
+name: WatchHook
+options:
+  bundleIdPrefix: com.nabettu
+  developmentLanguage: ja
+  deploymentTarget:
+    iOS: "18.0"
+    watchOS: "11.0"
+settings:
+  base:
+    DEVELOPMENT_TEAM: 2KDR72P2RA
+    SWIFT_VERSION: "6.0"
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    CODE_SIGN_STYLE: Automatic
+    ENABLE_USER_SCRIPT_SANDBOXING: YES
+packages:
+  WatchHookCore:
+    path: Packages/WatchHookCore
+targets:
+  WatchHook:
+    type: application
+    platform: iOS
+    sources:
+      - WatchHook
+      - Shared
+    dependencies:
+      - package: WatchHookCore
+      - target: WatchHookWatch
+    info:
+      path: WatchHook/Info.plist
+      properties:
+        CFBundleDisplayName: WatchHook
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        UILaunchScreen: {}
+        ITSAppUsesNonExemptEncryption: false
+        UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.nabettu.watchhook
+        TARGETED_DEVICE_FAMILY: "1"
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+  WatchHookWatch:
+    type: application
+    platform: watchOS
+    sources:
+      - WatchHookWatch
+      - path: Shared
+    dependencies:
+      - package: WatchHookCore
+    info:
+      path: WatchHookWatch/Info.plist
+      properties:
+        CFBundleDisplayName: WatchHook
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        WKApplication: true
+        WKCompanionAppBundleIdentifier: com.nabettu.watchhook
+        ITSAppUsesNonExemptEncryption: false
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.nabettu.watchhook.watchkitapp
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+schemes:
+  WatchHook:
+    build:
+      targets:
+        WatchHook: all
+        WatchHookWatch: all

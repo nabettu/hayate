@@ -1,0 +1,171 @@
+import Foundation
+
+/// 送り先に付ける HTTP ヘッダ 1 行。`isSecret` は画面で値を伏せるためのもので、保存先は他と同じ Keychain。
+public struct HeaderField: Codable, Hashable, Identifiable, Sendable {
+    public var id: UUID
+    public var name: String
+    public var value: String
+    public var isSecret: Bool
+
+    public init(id: UUID = UUID(), name: String, value: String, isSecret: Bool = false) {
+        self.id = id
+        self.name = name
+        self.value = value
+        self.isSecret = isSecret
+    }
+}
+
+public enum DestinationKind: String, Codable, CaseIterable, Sendable {
+    case custom
+    case slack
+    case discord
+}
+
+public enum HTTPMethod: String, Codable, CaseIterable, Sendable {
+    case post = "POST"
+    case put = "PUT"
+}
+
+/// 本文の形式。テンプレートの差し込み時のエスケープ方法と Content-Type を決める。
+public enum BodyEncoding: String, Codable, CaseIterable, Sendable {
+    case json
+    case form
+    case plain
+
+    public var contentType: String {
+        switch self {
+        case .json: "application/json"
+        case .form: "application/x-www-form-urlencoded"
+        case .plain: "text/plain; charset=utf-8"
+        }
+    }
+}
+
+/// 音声入力したテキストの送り先 (webhook)。
+public struct Destination: Codable, Hashable, Identifiable, Sendable {
+    public var id: UUID
+    public var name: String
+    public var kind: DestinationKind
+    public var url: String
+    public var method: HTTPMethod
+    public var headers: [HeaderField]
+    public var bodyEncoding: BodyEncoding
+    /// `{{text}}` `{{id}}` `{{sentAt}}` `{{source}}` を差し込める。
+    public var bodyTemplate: String
+
+    public init(
+        id: UUID = UUID(),
+        name: String,
+        kind: DestinationKind,
+        url: String = "",
+        method: HTTPMethod = .post,
+        headers: [HeaderField] = [],
+        bodyEncoding: BodyEncoding = .json,
+        bodyTemplate: String
+    ) {
+        self.id = id
+        self.name = name
+        self.kind = kind
+        self.url = url
+        self.method = method
+        self.headers = headers
+        self.bodyEncoding = bodyEncoding
+        self.bodyTemplate = bodyTemplate
+    }
+
+    public static func preset(_ kind: DestinationKind) -> Destination {
+        switch kind {
+        case .custom:
+            Destination(
+                name: "Webhook",
+                kind: .custom,
+                bodyTemplate: #"{"text":"{{text}}","id":"{{id}}","sentAt":"{{sentAt}}","source":"{{source}}"}"#
+            )
+        case .slack:
+            Destination(name: "Slack", kind: .slack, bodyTemplate: #"{"text":"{{text}}"}"#)
+        case .discord:
+            Destination(name: "Discord", kind: .discord, bodyTemplate: #"{"content":"{{text}}"}"#)
+        }
+    }
+}
+
+/// 時計 / iPhone で入力された 1 件のテキスト。`id` は送り先での重複排除用に `X-WatchHook-Message-Id` で送る。
+public struct OutgoingMessage: Codable, Hashable, Identifiable, Sendable {
+    public var id: UUID
+    public var text: String
+    public var createdAt: Date
+    public var destinationID: UUID
+    /// どこから送ったか (`watch` / `phone` / `siri` など)。
+    public var source: String
+
+    public init(id: UUID = UUID(), text: String, createdAt: Date = Date(), destinationID: UUID, source: String) {
+        self.id = id
+        self.text = text
+        self.createdAt = createdAt
+        self.destinationID = destinationID
+        self.source = source
+    }
+}
+
+/// iPhone で編集し、時計へ同期する設定一式。
+public struct DestinationConfig: Codable, Hashable, Sendable {
+    public var destinations: [Destination]
+    public var defaultDestinationID: UUID?
+    /// 保存のたびに 1 増える版。時計は自分の持つものより新しい設定だけを受け入れる (遅れて届いた古い同期で巻き戻さない)。
+    /// 端末の時刻は戻ることがあるので日時では比べない。
+    public var revision: Int
+    /// iPhone で設定を作り直した (アプリを入れ直した) ときに変わる ID。版が 0 からやり直しになっても受け入れるため。
+    public var epoch: UUID
+
+    public init(destinations: [Destination] = [], defaultDestinationID: UUID? = nil, revision: Int = 0, epoch: UUID = UUID()) {
+        self.destinations = destinations
+        self.defaultDestinationID = defaultDestinationID
+        self.revision = revision
+        self.epoch = epoch
+    }
+
+    public func isNewer(than other: DestinationConfig) -> Bool {
+        epoch != other.epoch || revision > other.revision
+    }
+
+    /// 一度も保存していない設定の epoch。毎回同じ値にして、空の設定どうしを「新しい」と取り違えない。
+    public static let unsavedEpoch = UUID(uuidString: "00000000-0000-0000-0000-000000000000")!
+    /// まだ何も保存していないときの設定。
+    public static var unsaved: DestinationConfig { DestinationConfig(epoch: unsavedEpoch) }
+
+    /// 版を 1 つ進める。初めての保存なら epoch を新しく作る (入れ直した iPhone の設定を時計が受け入れられるように)。
+    public func nextRevision() -> DestinationConfig {
+        var c = self
+        c.revision += 1
+        if c.epoch == Self.unsavedEpoch { c.epoch = UUID() }
+        return c
+    }
+
+    /// WatchConnectivity のメッセージに収まる大きさ (上限は公開されていないので余裕を持たせる)。
+    public static let maxEncodedBytes = 48_000
+
+    public struct TooLarge: Error, LocalizedError {
+        public var errorDescription: String? { "設定が大きすぎて Apple Watch へ送れません。本文テンプレートやヘッダを減らしてください" }
+    }
+
+    public func validateSize() throws {
+        guard try encoded().count <= Self.maxEncodedBytes else { throw TooLarge() }
+    }
+
+    /// 既定に選んだ送り先。消されていたら先頭を返す。
+    public var defaultDestination: Destination? {
+        destinations.first { $0.id == defaultDestinationID } ?? destinations.first
+    }
+
+    public func destination(id: UUID) -> Destination? {
+        destinations.first { $0.id == id }
+    }
+
+    public func encoded() throws -> Data {
+        try JSONEncoder().encode(self)
+    }
+
+    public static func decode(_ data: Data) throws -> DestinationConfig {
+        try JSONDecoder().decode(DestinationConfig.self, from: data)
+    }
+}
