@@ -52,6 +52,14 @@ final class WatchHistoryStore {
         return dir.appending(path: "watch-history.json")
     }
 
+    /// 時計が替わったとき・今の時計からまだ届いていないとき。前の時計の写しを画面とファイルから消す。
+    func clear() {
+        entries = []
+        updatedAt = nil
+        loadFailed = false
+        try? FileManager.default.removeItem(at: fileURL)
+    }
+
     /// 届いた写しで丸ごと置き換える。applicationContext は最新の 1 件だけが届くので、新旧は比べない
     /// (時計の時刻で比べると、時刻が過去に直されたときに以後の写しを全部捨ててしまう)。`updatedAt` は表示にだけ使う。
     func receive(_ snapshot: HistorySnapshot) {
