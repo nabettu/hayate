@@ -306,7 +306,7 @@ const SLIDE_CSS = `
   ${PHONE_CSS}
   ${DEVICE_CSS}
   /* 右から左の言語: 縮小して入れる画面の置き場は左から右のまま (右寄せになると端末からはみ出す)。画面の中身だけ右から左にする。コードのカードは左から右 */
-  .iphone .screen, .watch .glass, .watch .glass div, .card, .ps .mono { direction: ltr; }
+  .iphone .screen, .watch .glass, .watch .glass > div, .watch .glass > div > div, .card, .ps .mono { direction: ltr; }
   [dir=rtl] .ps, [dir=rtl] .ws { direction: rtl; }
 `;
 

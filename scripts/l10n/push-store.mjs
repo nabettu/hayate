@@ -48,9 +48,17 @@ function upsert(kind, existing, locale, attrs, create, patchType) {
   if (!changed.length) return;
   console.log(`  ${cur ? "更新" : "作成"} ${kind} ${locale}: ${changed.join(", ")}`);
   if (dryRun) return;
-  if (cur) api("PATCH", `/v1/${patchType}/${cur.id}`, { data: { type: patchType, id: cur.id, attributes: attrs } });
-  else create();
+  try {
+    if (cur) api("PATCH", `/v1/${patchType}/${cur.id}`, { data: { type: patchType, id: cur.id, attributes: attrs } });
+    else create();
+  } catch (e) {
+    // 1 つ失敗しても残りは送る (例: その言語ではアプリ名が他社に使われている)。最後にまとめて出す
+    const msg = String(e.stderr || e.message).trim().split("\n")[0];
+    failures.push(`${kind} ${locale}: ${msg}`);
+    console.log(`    ✗ ${msg}`);
+  }
 }
+const failures = [];
 
 const appInfoLocs = byLocale(api("GET", `/v1/appInfos/${APP_INFO_ID}/appInfoLocalizations?limit=200`));
 const versionLocs = byLocale(api("GET", `/v1/appStoreVersions/${VERSION_ID}/appStoreVersionLocalizations?limit=200`));
@@ -68,6 +76,8 @@ for (const [lang, locales] of Object.entries(LOCALES)) {
       data: { type: "appInfoLocalizations", attributes: { locale, name: m.name, subtitle: m.subtitle }, relationships: { appInfo: { data: { type: "appInfos", id: APP_INFO_ID } } } },
     }), "appInfoLocalizations");
     const v = { description: m.description, keywords: m.keywords, promotionalText: m.promotionalText };
+    // サポート URL は審査提出に要る。決まったら store/metadata/<lang>.json に supportUrl を書く (2026-11-10 時点では未定)
+    if (m.supportUrl) v.supportUrl = m.supportUrl;
     upsert("バージョン", versionLocs, locale, v, () => api("POST", "/v1/appStoreVersionLocalizations", {
       data: { type: "appStoreVersionLocalizations", attributes: { locale, ...v }, relationships: { appStoreVersion: { data: { type: "appStoreVersions", id: VERSION_ID } } } },
     }), "appStoreVersionLocalizations");
@@ -78,5 +88,9 @@ for (const [lang, locales] of Object.entries(LOCALES)) {
       }), "inAppPurchaseLocalizations");
     }
   }
+}
+if (failures.length) {
+  console.error(`\n失敗 ${failures.length} 件:\n${failures.map((f) => `  ${f}`).join("\n")}`);
+  process.exit(1);
 }
 console.log(dryRun ? "\n(dry-run: 送っていない)" : "\n送った");
