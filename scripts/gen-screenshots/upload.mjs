@@ -34,7 +34,18 @@ process.on("exit", () => fs.rmSync(tmp, { recursive: true, force: true }));
 // 6 本にしたら API の回数制限 (429、「34 分待て」) に当たり 100 セット中 99 が落ちた (2026-11-10)。
 // 同じ API キーをほかのアプリの作業でも使うので 2 本にし、制限に当たったら asc 自身に待たせる (ASC_MAX_DELAY)
 const CONCURRENCY = Number(process.env.UPLOAD_CONCURRENCY ?? 2);
-const ASC_ENV = { ...process.env, ASC_MAX_DELAY: process.env.ASC_MAX_DELAY ?? "40m", ASC_TIMEOUT: process.env.ASC_TIMEOUT ?? "90m" };
+if (!Number.isInteger(CONCURRENCY) || CONCURRENCY < 1) {
+  console.error(`UPLOAD_CONCURRENCY は 1 以上の整数にする (今: ${JSON.stringify(process.env.UPLOAD_CONCURRENCY)})`);
+  process.exit(2);
+}
+// 待つ長さ (ASC_MAX_DELAY) より、ふつうの要求とアップロードの期限 (ASC_TIMEOUT・ASC_UPLOAD_TIMEOUT) を長くする。
+// --replace で消してから上げるので、途中で切れるとそのロケールのセットが欠ける
+const ASC_ENV = {
+  ...process.env,
+  ASC_MAX_DELAY: process.env.ASC_MAX_DELAY ?? "40m",
+  ASC_TIMEOUT: process.env.ASC_TIMEOUT ?? "90m",
+  ASC_UPLOAD_TIMEOUT: process.env.ASC_UPLOAD_TIMEOUT ?? "90m",
+};
 const jobs = [];
 for (const [lang, locales] of Object.entries(ASC_LOCALES)) {
   if (only.length && !only.includes(lang)) continue;
