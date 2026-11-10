@@ -60,6 +60,8 @@ final class EntitlementStore {
         guard first || latest != local else { return }
         local = latest
         onChange?()
+        // 買ったあと・お試しを始めたあとは、止めていた再送待ちをすぐ送る (お試し前・終了後は `flush` が送らずに残している)
+        if access().canSend { Task { await MessageDispatcher.shared.flush() } }
     }
 
     // MARK: - App Intent など MainActor の外から

@@ -246,6 +246,8 @@ private enum WKHaptic {
 struct WatchHistoryView: View {
     @State private var entries: [MessageLogEntry] = []
     @State private var sending: Set<UUID> = []
+    /// お試しの期限を画面を開いたまま過ぎても、再送ボタンを消すため 1 分ごとに進める。
+    @State private var now = Date.now
 
     var body: some View {
         List {
@@ -260,7 +262,7 @@ struct WatchHistoryView: View {
                 }
                 .listRowBackground(RoundedRectangle(cornerRadius: 14, style: .continuous).fill(Cosmos.card))
                 .swipeActions {
-                    if case .sent = e.status {} else if EntitlementStore.shared.access().canSend {
+                    if case .sent = e.status {} else if EntitlementStore.shared.access(now: now).canSend {
                         Button("再送") {
                             Task {
                                 await MessageDispatcher.shared.retry(e.id)
@@ -272,6 +274,7 @@ struct WatchHistoryView: View {
             }
         }
         .navigationTitle("履歴")
+        .onReceive(Timer.publish(every: 60, on: .main, in: .common).autoconnect()) { now = $0 }
         .containerBackground(for: .navigation) { CosmicBackground(starCount: 26) }
         .task { await reload() }
         .onReceive(NotificationCenter.default.publisher(for: MessageDispatcher.didChange)) { _ in

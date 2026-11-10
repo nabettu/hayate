@@ -117,6 +117,9 @@ actor MessageDispatcher {
         recoverIfNeeded()
         // 前回書けなかった結果 (送信済みなど) を書き直す。書かないと次の起動で送り直してしまう
         if dirty { persist() }
+        // お試し前・終了後は再送もしない (再送待ちは消さずに残し、購入したら送る)。
+        // 再送は送る直前の送り先の設定で組み立て直すので、期限後に本文テンプレートを書き換えれば好きな内容を送れてしまうため
+        guard await EntitlementStore.currentAccess().canSend else { return }
         repeat {
             flushRequested = false
             var tried: Set<UUID> = []
@@ -148,9 +151,7 @@ actor MessageDispatcher {
         } while flushRequested
     }
 
-    /// 手動の再送。送れない状態 (お試し前・終了後) では何もしない:
-    /// 再送は送る直前の送り先の設定で組み立て直すので、本文テンプレートを書き換えて「再送」すれば好きな内容を送れてしまうため。
-    /// (送れる間に受け付けた分の自動の再送 `flush` は、回数の上限まで続ける)
+    /// 手動の再送。送れない状態 (お試し前・終了後) では何もしない (`flush` と同じ理由)。
     func retry(_ id: UUID) async {
         guard await EntitlementStore.currentAccess().canSend else { return }
         log.retry(id)

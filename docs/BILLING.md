@@ -77,7 +77,7 @@ ID と日数の正は `Packages/WatchHookCore/Sources/WatchHookCore/Entitlement.
 
 ## 何ができなくなるか
 
-| 状態 (`AccessState`) | Apple Watch / Siri / iPhone の「送る」タブからの新しい送信 | 送り先のテスト送信 | 送り先の登録・履歴・溜まった分の再送 |
+| 状態 (`AccessState`) | Apple Watch / Siri / iPhone の「送る」タブからの新しい送信・溜まった分の再送 | 送り先のテスト送信 | 送り先の登録・履歴 |
 |---|---|---|---|
 | お試し前 (`trialNotStarted`) | × | 5 回まで | ○ |
 | お試し中 (`trial`) | ○ | ○ | ○ |
@@ -87,9 +87,9 @@ ID と日数の正は `Packages/WatchHookCore/Sources/WatchHookCore/Entitlement.
 - お試し前でも送り先の登録とテスト送信はできる。7 日間を設定の試行錯誤で使い切らないため。
   ただしテスト送信は、本文が固定の文でも**送り先の本文テンプレートを書き換えれば好きな内容を送れる** (2026-11-10 ai-review の指摘) ので、
   お試し前は 5 回まで (`TestSendPolicy`、回数は UserDefaults。入れ直すと戻るのは受け入れる)、お試しが終わったあとはテスト送信も止める
-- 再送待ちは、送れる間に受け付けたものなので、期限が過ぎても自動では送り直す (回数の上限まで)。
-  ただし**手動の「再送」は送れる状態のときだけ** (`MessageDispatcher.retry`)。再送は送る直前の送り先の設定で組み立て直すので、
-  本文テンプレートを書き換えて押せば好きな内容を送れてしまうため (2026-11-10 ai-review の指摘)
+- **お試し前・終了後は、再送待ちも送らない** (自動の再送 `MessageDispatcher.flush` も手動の「再送」も)。再送待ちは消さずに残し、購入したら送る。
+  再送は送る直前の送り先の設定で組み立て直すので、期限後に本文テンプレートを書き換えれば好きな内容を送れてしまうため (2026-11-10 ai-review の指摘。
+  最初は「送れる間に受け付けたものは送り直す」にしていた)
 - 止めるのは `SendTextIntent.perform` (Siri)・`WatchHomeView.send` (時計のボタン)・`ComposeView.send` (iPhone の「送る」タブ) の 3 か所。どれも送る直前に StoreKit を読み直す。**送る入口を足したら、ここにも足す**
 
 ## 時計での判定
