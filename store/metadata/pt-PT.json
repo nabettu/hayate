@@ -1,0 +1,17 @@
+{
+  "name": "Hayate",
+  "subtitle": "Voz do Apple Watch ao webhook",
+  "promotionalText": "Basta falar no Apple Watch para enviar para o Slack, o Discord ou o seu próprio webhook. Envie o que pensou diretamente do pulso, na hora.",
+  "keywords": "webhook,Slack,Discord,Siri,voz,ditado,notas,relógio,API,automação,atalhos,enviar,lembrete",
+  "description": "O Hayate envia o que diz no Apple Watch, tal como foi dito, para o destino (webhook) que registou.\n\n■ O que ele faz\n・Toque em “Falar” no Apple Watch e fale para enviar (no Series 9 / Ultra 2 ou posterior, também com o Toque duplo)\n・Diga “Hey Siri, enviar com o Hayate” para enviar sem usar as mãos (também pela Siri do iPhone)\n・Destinos livres: URL, método, cabeçalhos (como Authorization) e modelo do corpo\n・No Slack e no Discord, basta colar a URL\n・O envio sai direto do relógio ao destino, sem passar pelo iPhone\n・O que não foi enviado fica guardado e é reenviado na próxima vez que abrir a app\n・Histórico do que foi enviado, envio de teste e complicação no mostrador\n\n■ Ideias de uso\n・Mandar uma nota que surgiu para um canal do Slack\n・Levar lista de compras e tarefas para o seu próprio serviço\n・Receber no n8n, no Zapier ou no seu servidor e automatizar\n\n■ Especificações do recetor\n・No corpo, é possível usar {{text}} (o que foi dito), {{id}}, {{sentAt}} e {{source}}\n・O cabeçalho X-WatchHook-Message-Id tem o mesmo valor nos reenvios, por isso serve para remover duplicados\n\n■ Tratamento de dados\n・A definição do destino (incluindo cabeçalhos de autenticação) é guardada apenas no Keychain do iPhone e do Apple Watch\n・O que diz vai somente para o destino que registou, sem passar por servidores do programador\n\n■ Preço\nTeste gratuito por 7 dias. Depois, continue a usar com uma compra única dentro da app. Não há subscrição.",
+  "iap": {
+    "trial": {
+      "name": "Teste gratuito de 7 dias",
+      "description": "Todas as funções por 7 dias. Sem cobrança automática."
+    },
+    "unlock": {
+      "name": "Hayate (compra única)",
+      "description": "Envie pelo Apple Watch, Siri e iPhone. Pagamento único."
+    }
+  }
+}

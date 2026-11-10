@@ -108,7 +108,7 @@ const WATCH_CSS = `
   .ws .bar { position: absolute; left: 26px; right: 30px; top: 22px; height: 56px; display: flex; align-items: center; justify-content: space-between; z-index: 2; }
   .ws .title { font-family: "SF Compact Display", var(--cjk); font-size: 34px; font-weight: 600; display: flex; align-items: center; gap: 12px; }
   .ws .back { width: 56px; height: 56px; border-radius: 50%; background: rgba(255,255,255,.16); display: flex; align-items: center; justify-content: center; }
-  .ws .time { font-family: "SF Compact Display", var(--cjk); font-size: 34px; font-weight: 600; margin-left: auto; }
+  .ws .time { font-family: "SF Compact Display", var(--cjk); font-size: 34px; font-weight: 600; margin-inline-start: auto; }
   .ws .orbwrap { position: absolute; left: 50%; top: 88px; width: 168px; height: 168px; margin-left: -84px; }
   .ws .ring { position: absolute; inset: 0; border-radius: 50%; border: 3px solid rgba(196,181,253,.5); }
   .ws .orb { position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(45deg,#8B5CF6,#C4B5FD); box-shadow: 0 0 22px rgba(139,92,246,.9), inset 0 0 0 2px rgba(255,255,255,.35);
@@ -305,6 +305,9 @@ const SLIDE_CSS = `
   ${WATCH_CSS}
   ${PHONE_CSS}
   ${DEVICE_CSS}
+  /* 右から左の言語: 縮小して入れる画面の置き場は左から右のまま (右寄せになると端末からはみ出す)。画面の中身だけ右から左にする。コードのカードは左から右 */
+  .iphone .screen, .watch .glass, .watch .glass div, .card, .ps .mono { direction: ltr; }
+  [dir=rtl] .ps, [dir=rtl] .ws { direction: rtl; }
 `;
 
 // 見出しが横に収まらないときは字を小さくする (行ごとではなく要素全体で揃える)。縮めすぎた言語は index.mjs が止める

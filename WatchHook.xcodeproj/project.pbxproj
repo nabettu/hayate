@@ -12,6 +12,7 @@
 		0FDD2A741915690780325F44 /* WatchHookWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88CFAE83A276AA4829E55FF /* WatchHookWatchApp.swift */; };
 		14A9B4F21AE313CA65B8A30E /* WatchHookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 2EB3EAEFBB5A10779796632F /* WatchHookCore */; };
 		18095E707A9F5F93705E107F /* WatchHookWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B06AEF5A7AB19CF04D3878AB /* WatchHookWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		18C89763DE2D1B1870F3903A /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = F0C245FF358195CB189A013D /* InfoPlist.xcstrings */; };
 		1EE30BD73A67B1FB39732D9F /* PhoneSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BF1CC8B6D5E673BAD8AD945 /* PhoneSync.swift */; };
 		1EE6CA9D3DCEBB8B46B374A0 /* SendTextIntent.swift in Sources */ = {isa = PBXBuildFile; fileRef = E95B75A74B1D2FEECD6F845C /* SendTextIntent.swift */; };
 		331A989E28F9468F88708030 /* WatchHookWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2CCA20969E23F8A1AAFA096 /* WatchHookWidget.swift */; };
@@ -22,6 +23,7 @@
 		52ADC18493249E965488EA75 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E6BED828B4ACCECAEBB203D2 /* Localizable.xcstrings */; };
 		54CBC6D9F198A10ABE81D9C6 /* MessageDispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1ECBC5794158FF21843F0E65 /* MessageDispatcher.swift */; };
 		5658AA0ABD7E57DA15F301AB /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6D2C5D54DC13FB85BB400C /* KeychainStore.swift */; };
+		5FF82324BCFD834C950C1E2C /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 74D52C74BA8ACE895BE52108 /* InfoPlist.xcstrings */; };
 		612F30B19A66C60638B566EF /* EntitlementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2593FEE89812D39FCE4A3172 /* EntitlementStore.swift */; };
 		64E8B656DF51490748112B20 /* AppShortcuts.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CC4749F3AF054424EB80B265 /* AppShortcuts.xcstrings */; };
 		6B0CE23EC153A6D4B9E55481 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E6BED828B4ACCECAEBB203D2 /* Localizable.xcstrings */; };
@@ -40,6 +42,7 @@
 		9E8D1ABBEFBAE95AE7379B3A /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 7775E6E238C56DD18D8D9AAC /* Localizable.xcstrings */; };
 		9F432E8CF4CA184C3452C3D1 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 92463EAA580E1CDDB1766B7B /* PrivacyInfo.xcprivacy */; };
 		A5CA575A5D745AECADECAB23 /* SyncKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E374D443A268B6368C1CDA7 /* SyncKeys.swift */; };
+		AFEB6426BFA38D7DB6786236 /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E43BD67E98CD21DA1FE1B93A /* InfoPlist.xcstrings */; };
 		B1B6CC9F367541989F5BA4CE /* EntitlementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2593FEE89812D39FCE4A3172 /* EntitlementStore.swift */; };
 		BD7F119627227781642FB59D /* WatchHookApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8056E1E30D0990C0F64077FA /* WatchHookApp.swift */; };
 		BDEAEFDB877EBFE1AD94EA0A /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 29B66472458B5FEE5ABC9B7F /* PrivacyInfo.xcprivacy */; };
@@ -112,6 +115,7 @@
 		5BF1CC8B6D5E673BAD8AD945 /* PhoneSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneSync.swift; sourceTree = "<group>"; };
 		5EC7AF84AD4094A726CA5E03 /* WidgetGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetGalleryView.swift; sourceTree = "<group>"; };
 		73029AB5597C3C45F3677649 /* WatchHistoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchHistoryStore.swift; sourceTree = "<group>"; };
+		74D52C74BA8ACE895BE52108 /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		7775E6E238C56DD18D8D9AAC /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		77AEABFA41FA83B8FF7F024E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		78DDF2C51BEA036FF47A2E63 /* PurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseView.swift; sourceTree = "<group>"; };
@@ -132,9 +136,11 @@
 		CC4749F3AF054424EB80B265 /* AppShortcuts.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = AppShortcuts.xcstrings; sourceTree = "<group>"; };
 		E20CB300C3E11A746221BF49 /* ConfigStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigStore.swift; sourceTree = "<group>"; };
 		E2CCA20969E23F8A1AAFA096 /* WatchHookWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchHookWidget.swift; sourceTree = "<group>"; };
+		E43BD67E98CD21DA1FE1B93A /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 		E6BED828B4ACCECAEBB203D2 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		E95B75A74B1D2FEECD6F845C /* SendTextIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTextIntent.swift; sourceTree = "<group>"; };
 		EC0EDB8A852D326E98478D87 /* DestinationListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationListView.swift; sourceTree = "<group>"; };
+		F0C245FF358195CB189A013D /* InfoPlist.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = InfoPlist.xcstrings; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,6 +168,7 @@
 			children = (
 				AFF7E167C34F929DA1DB1963 /* Assets.xcassets */,
 				3DCF1DB948677787B73F4FAC /* Info.plist */,
+				E43BD67E98CD21DA1FE1B93A /* InfoPlist.xcstrings */,
 				92463EAA580E1CDDB1766B7B /* PrivacyInfo.xcprivacy */,
 				51280A3A45390E87A0EB8F6B /* WatchHomeView.swift */,
 				C88CFAE83A276AA4829E55FF /* WatchHookWatchApp.swift */,
@@ -191,6 +198,7 @@
 				04F931B1FC29F18452326948 /* HelpView.swift */,
 				8E94573EC0027AA49F1E8072 /* HistoryView.swift */,
 				55041C1BEB6DE1D841E1598E /* Info.plist */,
+				74D52C74BA8ACE895BE52108 /* InfoPlist.xcstrings */,
 				5BF1CC8B6D5E673BAD8AD945 /* PhoneSync.swift */,
 				29B66472458B5FEE5ABC9B7F /* PrivacyInfo.xcprivacy */,
 				78DDF2C51BEA036FF47A2E63 /* PurchaseView.swift */,
@@ -224,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				77AEABFA41FA83B8FF7F024E /* Info.plist */,
+				F0C245FF358195CB189A013D /* InfoPlist.xcstrings */,
 				57DCA4DD3AD4AF613D33C8BE /* LauncherViews.swift */,
 				7775E6E238C56DD18D8D9AAC /* Localizable.xcstrings */,
 				E2CCA20969E23F8A1AAFA096 /* WatchHookWidget.swift */,
@@ -341,7 +350,51 @@
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				Base,
+				ar,
+				bn,
+				ca,
+				cs,
+				da,
+				de,
+				el,
+				en,
+				es,
+				fi,
+				fr,
+				gu,
+				he,
+				hi,
+				hr,
+				hu,
+				id,
+				it,
 				ja,
+				kn,
+				ko,
+				ml,
+				mr,
+				ms,
+				nb,
+				nl,
+				or,
+				pa,
+				pl,
+				"pt-BR",
+				"pt-PT",
+				ro,
+				ru,
+				sk,
+				sl,
+				sv,
+				ta,
+				te,
+				th,
+				tr,
+				uk,
+				ur,
+				vi,
+				"zh-Hans",
+				"zh-Hant",
 			);
 			mainGroup = 2FBE9445B29388B773C69EC0;
 			minimizedProjectReferenceProxies = 1;
@@ -367,6 +420,7 @@
 			files = (
 				64E8B656DF51490748112B20 /* AppShortcuts.xcstrings in Resources */,
 				E36E521D8A9E1AB0A2E62610 /* Assets.xcassets in Resources */,
+				AFEB6426BFA38D7DB6786236 /* InfoPlist.xcstrings in Resources */,
 				52ADC18493249E965488EA75 /* Localizable.xcstrings in Resources */,
 				9F432E8CF4CA184C3452C3D1 /* PrivacyInfo.xcprivacy in Resources */,
 			);
@@ -378,6 +432,7 @@
 			files = (
 				9C4E6EC77B30E8C1ADF9D69C /* AppShortcuts.xcstrings in Resources */,
 				6B76E0B66E85F4CB6F19999A /* Assets.xcassets in Resources */,
+				5FF82324BCFD834C950C1E2C /* InfoPlist.xcstrings in Resources */,
 				6B0CE23EC153A6D4B9E55481 /* Localizable.xcstrings in Resources */,
 				BDEAEFDB877EBFE1AD94EA0A /* PrivacyInfo.xcprivacy in Resources */,
 			);
@@ -387,6 +442,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18C89763DE2D1B1870F3903A /* InfoPlist.xcstrings in Resources */,
 				9E8D1ABBEFBAE95AE7379B3A /* Localizable.xcstrings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

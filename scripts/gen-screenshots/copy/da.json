@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "Tal, og send\ntil *webhook*",
+      "chips": [
+        "Slack",
+        "Discord",
+        "Eget API"
+      ],
+      "closing": "Send direkte\n*fra håndleddet*"
+    },
+    "siri": {
+      "h1": "*Hey Siri*,\nuden hænder",
+      "chips": [
+        "Siri",
+        "Dobbelttryk",
+        "Urskive"
+      ],
+      "closing": "Hænderne optaget?\n*Brug stemmen*"
+    },
+    "destination": {
+      "h1": "Vælg *selv*\nhvor det går hen",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "Godkendelse i Keychain",
+        "{{text}} = det, du sagde"
+      ],
+      "closing": "Også til din\n*egen server*"
+    },
+    "direct": {
+      "h1": "Direkte fra\n*uret*",
+      "chips": [
+        "Wi-Fi",
+        "Mobildata"
+      ],
+      "floats": [
+        "Usendt gemmes",
+        "Sendes igen ved åbning"
+      ],
+      "closing": "Dårlig dækning?\n*Intet går tabt*"
+    },
+    "more": {
+      "h1": "Og *meget*\nmere.",
+      "cells": [
+        "Godkendelse\ngemmes i Keychain",
+        "Slack og Discord:\nindsæt blot URL",
+        "Start hurtigt\nfra urskiven",
+        "Historik over\nsendt",
+        "Test, at det\nnår frem",
+        "Samme besked-ID\nved gensendelse"
+      ],
+      "closing": "Dine ord til\n*dit eget system*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "Tal",
+    "sent": "Sendt til »Slack #memo«",
+    "history": "Historik",
+    "destinationsTitle": "Mål",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "Budget-API"
+    ],
+    "spoken": [
+      "Køb mælk og æg",
+      "Tandlæge i morgen kl. 10",
+      "Parkering på B2, plads 14"
+    ],
+    "statusSent": "Sendt",
+    "statusPending": "Ikke sendt",
+    "siriDialog": "Sendt til Slack #memo.",
+    "defaultMark": "(Standard)",
+    "siriAsk": "Send med Hayate",
+    "siriQuestion": "Hvad vil du sende?",
+    "quote": [
+      "»",
+      "«"
+    ],
+    "edit": {
+      "cancel": "Annuller",
+      "save": "Gem",
+      "nameLabel": "Navn",
+      "name": "Budget-API",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "Kun https-URL'er virker.",
+      "request": "Anmodning",
+      "method": "Metode",
+      "bodyFormat": "Indholdsformat",
+      "bodyFormatValue": "JSON",
+      "headers": "Headere",
+      "addHeader": "Tilføj header",
+      "hideSecret": "Skjul som hemmelig værdi",
+      "headersFooter": "Du kan registrere godkendelsesheadere som Authorization. Værdierne gemmes kun i Keychain på iPhone og Apple Watch.",
+      "body": "Indhold",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "Send test"
+    }
+  }
+}

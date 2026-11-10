@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "Nói là gửi\ntới *webhook*",
+      "chips": [
+        "Slack",
+        "Discord",
+        "API riêng"
+      ],
+      "closing": "Nghĩ ra là gửi\nngay từ *cổ tay*"
+    },
+    "siri": {
+      "h1": "*Hey Siri*,\nrảnh tay",
+      "chips": [
+        "Siri",
+        "Chạm đúp",
+        "Mặt đồng hồ"
+      ],
+      "closing": "Bận cả hai tay?\nCứ *nói* là gửi"
+    },
+    "destination": {
+      "h1": "Nơi nhận\n*tùy bạn chọn*",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "Header xác thực trong Keychain",
+        "{{text}} là lời bạn nói"
+      ],
+      "closing": "Tới cả máy chủ\n*của riêng bạn*"
+    },
+    "direct": {
+      "h1": "Gửi thẳng\ntừ *đồng hồ*",
+      "chips": [
+        "Wi-Fi",
+        "Di động"
+      ],
+      "floats": [
+        "Tin chưa gửi được sẽ giữ lại",
+        "Mở lại là gửi lại"
+      ],
+      "closing": "Sóng yếu cũng\n*không sót tin*"
+    },
+    "more": {
+      "h1": "Và còn\n*nhiều hơn nữa.*",
+      "cells": [
+        "Header xác thực\nlưu trong Keychain",
+        "Slack, Discord:\nchỉ cần dán URL",
+        "Mở nhanh\ntừ mặt đồng hồ",
+        "Lịch sử\nnội dung đã gửi",
+        "Gửi thử để\nkiểm tra tin tới",
+        "ID tin nhắn giữ\nnguyên khi gửi lại"
+      ],
+      "closing": "Lời bạn nói\ntới *hệ thống của bạn*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "Nói",
+    "sent": "Đã gửi tới “Slack #memo”",
+    "history": "Lịch sử",
+    "destinationsTitle": "Nơi nhận",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "API chi tiêu"
+    ],
+    "spoken": [
+      "Mua sữa và trứng",
+      "10 giờ mai khám răng",
+      "Đỗ xe ở B2 ô số 14"
+    ],
+    "statusSent": "Đã gửi",
+    "statusPending": "Chưa gửi",
+    "siriDialog": "Đã gửi tới Slack #memo.",
+    "defaultMark": "(Mặc định)",
+    "siriAsk": "Gửi bằng Hayate",
+    "siriQuestion": "Bạn muốn gửi gì?",
+    "quote": [
+      "“",
+      "”"
+    ],
+    "edit": {
+      "cancel": "Hủy",
+      "save": "Lưu",
+      "nameLabel": "Tên",
+      "name": "API chi tiêu",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "Chỉ dùng được URL https.",
+      "request": "Yêu cầu",
+      "method": "Phương thức",
+      "bodyFormat": "Định dạng nội dung",
+      "bodyFormatValue": "JSON",
+      "headers": "Header",
+      "addHeader": "Thêm header",
+      "hideSecret": "Ẩn như giá trị bí mật",
+      "headersFooter": "Bạn có thể đăng ký header xác thực như Authorization. Giá trị chỉ được lưu trong Keychain của iPhone và Apple Watch.",
+      "body": "Nội dung",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "Gửi thử"
+    }
+  }
+}

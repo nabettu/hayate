@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "بولیں، اور بات\n*webhook* تک",
+      "chips": [
+        "Slack",
+        "Discord",
+        "اپنا API"
+      ],
+      "closing": "خیال آتے ہی\n*کلائی سے* بھیجیں"
+    },
+    "siri": {
+      "h1": "*Hey Siri* سے\nہاتھ لگائے بغیر",
+      "chips": [
+        "Siri",
+        "ڈبل ٹیپ",
+        "واچ فیس"
+      ],
+      "closing": "ہاتھ مصروف ہوں؟\n*آواز سے* بھیجیں"
+    },
+    "destination": {
+      "h1": "منزل\n*اپنی مرضی* کی",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "تصدیقی ہیڈر Keychain میں",
+        "{{text}} میں بولی ہوئی بات"
+      ],
+      "closing": "اپنے سرور پر\n*جوں کا توں*"
+    },
+    "direct": {
+      "h1": "گھڑی سے\n*براہِ راست*",
+      "chips": [
+        "Wi-Fi",
+        "موبائل ڈیٹا"
+      ],
+      "floats": [
+        "نہ جانے والا محفوظ رہتا ہے",
+        "اگلی بار کھولنے پر دوبارہ"
+      ],
+      "closing": "سگنل کمزور ہو\n*کچھ ضائع نہیں*"
+    },
+    "more": {
+      "h1": "اور\n*بہت کچھ۔*",
+      "cells": [
+        "تصدیقی ہیڈر\nKeychain میں",
+        "Slack، Discord\nبس URL پیسٹ",
+        "واچ فیس سے\nفوری شروعات",
+        "بھیجے ہوئے کی\nہسٹری",
+        "ٹیسٹ ارسال سے\nپہنچنا جانچیں",
+        "دوبارہ بھیجنے پر\nوہی پیغام ID"
+      ],
+      "closing": "بولی ہوئی بات\n*آپ کے نظام* میں"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "بولیں",
+    "sent": "“Slack #memo” پر بھیج دیا گیا",
+    "history": "ہسٹری",
+    "destinationsTitle": "منزلیں",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "اخراجات API"
+    ],
+    "spoken": [
+      "دودھ اور انڈے خریدنے ہیں",
+      "کل 10 بجے ڈینٹسٹ",
+      "پارکنگ B2 میں 14 نمبر"
+    ],
+    "statusSent": "بھیج دیا گیا",
+    "statusPending": "نہیں بھیجا گیا",
+    "siriDialog": "Slack #memo پر بھیج دیا گیا۔",
+    "defaultMark": "(ڈیفالٹ)",
+    "siriAsk": "Hayate سے بھیجیں",
+    "siriQuestion": "آپ کیا بھیجنا چاہتے ہیں؟",
+    "quote": [
+      "“",
+      "”"
+    ],
+    "edit": {
+      "cancel": "منسوخ کریں",
+      "save": "محفوظ کریں",
+      "nameLabel": "نام",
+      "name": "اخراجات API",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "صرف https والے URL استعمال ہو سکتے ہیں۔",
+      "request": "درخواست",
+      "method": "میتھڈ",
+      "bodyFormat": "باڈی کا فارمیٹ",
+      "bodyFormatValue": "JSON",
+      "headers": "ہیڈر",
+      "addHeader": "ہیڈر شامل کریں",
+      "hideSecret": "خفیہ ویلیو کے طور پر چھپائیں",
+      "headersFooter": "Authorization جیسے تصدیقی ہیڈر درج کیے جا سکتے ہیں۔ ویلیو صرف iPhone اور Apple Watch کے Keychain میں محفوظ ہوتی ہے۔",
+      "body": "باڈی",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "ٹیسٹ ارسال"
+    }
+  }
+}

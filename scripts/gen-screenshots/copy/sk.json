@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "Povedzte to —\n*webhook* prijme",
+      "chips": [
+        "Slack",
+        "Discord",
+        "Vlastné API"
+      ],
+      "closing": "Napadlo vás niečo?\nPošlite *zo zápästia*"
+    },
+    "siri": {
+      "h1": "*Hey Siri*\nbez rúk",
+      "chips": [
+        "Siri",
+        "Ťuknúť 2×",
+        "Z ciferníka"
+      ],
+      "closing": "Plné ruky práce?\nStačí *hlas*"
+    },
+    "destination": {
+      "h1": "Príjemcu\n*vyberiete vy*",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "Overenie v Keychain",
+        "{{text}} je vaša reč"
+      ],
+      "closing": "Dorazí aj na\n*váš* server"
+    },
+    "direct": {
+      "h1": "Rovno\n*z hodiniek*",
+      "chips": [
+        "Wi-Fi",
+        "Mobilná sieť"
+      ],
+      "floats": [
+        "Neodoslané počká",
+        "Znova po otvorení"
+      ],
+      "closing": "Slabý signál?\n*Nič sa nestratí*"
+    },
+    "more": {
+      "h1": "A tiež\n*ďalšie.*",
+      "cells": [
+        "Overenie\nv Keychain",
+        "Slack a Discord:\nvložte URL",
+        "Rýchle spustenie\nz ciferníka",
+        "História\nodoslaného",
+        "Test: overte,\nže dorazilo",
+        "Rovnaké ID\npri opakovaní"
+      ],
+      "closing": "Vaše slová rovno\n*do vášho systému*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "Hovoriť",
+    "sent": "Odoslané príjemcovi „Slack #memo“",
+    "history": "História",
+    "destinationsTitle": "Príjemcovia",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "API výdavkov"
+    ],
+    "spoken": [
+      "Kúpiť mlieko a vajcia",
+      "Zajtra o 10 zubár",
+      "Parkovanie B2, miesto 14"
+    ],
+    "statusSent": "Odoslané",
+    "statusPending": "Neodoslané",
+    "siriDialog": "Odoslané do Slack #memo.",
+    "defaultMark": "(predvolený)",
+    "siriAsk": "Odošli cez Hayate",
+    "siriQuestion": "Čo chcete odoslať?",
+    "quote": [
+      "„",
+      "“"
+    ],
+    "edit": {
+      "cancel": "Zrušiť",
+      "save": "Uložiť",
+      "nameLabel": "Názov",
+      "name": "API výdavkov",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "Povolené sú iba adresy URL s https.",
+      "request": "Požiadavka",
+      "method": "Metóda",
+      "bodyFormat": "Formát tela",
+      "bodyFormatValue": "JSON",
+      "headers": "Hlavičky",
+      "addHeader": "Pridať hlavičku",
+      "hideSecret": "Skryť ako tajné",
+      "headersFooter": "Môžete pridať overovacie hlavičky, napríklad Authorization. Hodnoty sa ukladajú iba do Keychain v iPhone a Apple Watch.",
+      "body": "Telo",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "Skúšobné odoslanie"
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "Sprechen,\nan *Webhook* senden",
+      "chips": [
+        "Slack",
+        "Discord",
+        "Eigene API"
+      ],
+      "closing": "Eine Idee?\n*Vom Handgelenk* los"
+    },
+    "siri": {
+      "h1": "*Hey Siri*,\nohne Hände",
+      "chips": [
+        "Siri",
+        "Doppeltippen",
+        "Zifferblatt"
+      ],
+      "closing": "Hände voll?\nSprich *einfach*"
+    },
+    "destination": {
+      "h1": "Das Ziel\nwählst *du*",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "Auth-Header im Schlüsselbund",
+        "{{text}} = Gesprochenes"
+      ],
+      "closing": "Direkt an deinen\n*eigenen Server*"
+    },
+    "direct": {
+      "h1": "*Direkt* von\nder Watch",
+      "chips": [
+        "Wi-Fi",
+        "Mobilfunk"
+      ],
+      "floats": [
+        "Ungesendetes bleibt erhalten",
+        "Beim Öffnen erneut senden"
+      ],
+      "closing": "Schwaches Netz?\n*Nichts geht verloren*"
+    },
+    "more": {
+      "h1": "Und\n*noch mehr.*",
+      "cells": [
+        "Auth-Header im\nSchlüsselbund",
+        "Slack & Discord:\nnur URL einfügen",
+        "Direkt vom\nZifferblatt starten",
+        "Verlauf der\ngesendeten Texte",
+        "Testnachricht prüft\ndie Zustellung",
+        "Gleiche ID auch\nbeim erneuten Senden"
+      ],
+      "closing": "Deine Worte\nin *deinen Ablauf*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "Sprechen",
+    "sent": "An „Slack #memo“ gesendet",
+    "history": "Verlauf",
+    "destinationsTitle": "Ziele",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "Haushalts-API"
+    ],
+    "spoken": [
+      "Milch und Eier kaufen",
+      "Morgen um 10 Zahnarzt",
+      "Parkplatz B2, Nummer 14"
+    ],
+    "statusSent": "Gesendet",
+    "statusPending": "Nicht gesendet",
+    "siriDialog": "An Slack #memo gesendet.",
+    "defaultMark": "(Standard)",
+    "siriAsk": "Mit Hayate senden",
+    "siriQuestion": "Was möchtest du senden?",
+    "quote": [
+      "„",
+      "“"
+    ],
+    "edit": {
+      "cancel": "Abbrechen",
+      "save": "Sichern",
+      "nameLabel": "Name",
+      "name": "Haushalts-API",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "Nur https-URLs werden unterstützt.",
+      "request": "Anfrage",
+      "method": "Methode",
+      "bodyFormat": "Inhaltsformat",
+      "bodyFormatValue": "JSON",
+      "headers": "Header",
+      "addHeader": "Header hinzufügen",
+      "hideSecret": "Als geheimen Wert ausblenden",
+      "headersFooter": "Du kannst Authentifizierungs-Header wie Authorization hinzufügen. Die Werte werden nur im Schlüsselbund (Keychain) von iPhone und Apple Watch gespeichert.",
+      "body": "Inhalt",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "Testnachricht senden"
+    }
+  }
+}

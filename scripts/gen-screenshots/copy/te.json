@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "మాట్లాడితే చాలు\n*webhook* కు చేరుతుంది",
+      "chips": [
+        "Slack",
+        "Discord",
+        "సొంత API"
+      ],
+      "closing": "తట్టగానే\n*మణికట్టు* నుండే పంపు"
+    },
+    "siri": {
+      "h1": "*Hey Siri* అంటే\nచేతులతో పనిలేదు",
+      "chips": [
+        "Siri",
+        "డబుల్ ట్యాప్",
+        "వాచ్ ఫేస్"
+      ],
+      "closing": "చేతులు ఖాళీ లేకపోయినా\n*గొంతుతో* పంపు"
+    },
+    "destination": {
+      "h1": "గమ్యం\n*మీ ఇష్టం*",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "Authorization Keychain లో",
+        "{{text}} లో మాట్లాడినది"
+      ],
+      "closing": "సొంత సర్వర్‌కు కూడా\n*నేరుగా* చేరుతుంది"
+    },
+    "direct": {
+      "h1": "వాచ్ నుండి\n*నేరుగా*",
+      "chips": [
+        "Wi-Fi",
+        "మొబైల్ డేటా"
+      ],
+      "floats": [
+        "వెళ్లనివి దాచుకుంటుంది",
+        "తర్వాత తెరిస్తే మళ్లీ పంపుతుంది"
+      ],
+      "closing": "సిగ్నల్ తక్కువైనా\n*ఏదీ మిస్ కాదు*"
+    },
+    "more": {
+      "h1": "ఇంకా\n*ఎన్నో.*",
+      "cells": [
+        "Authorization\nKeychain లో నిల్వ",
+        "Slack, Discord కు\nURL అతికిస్తే చాలు",
+        "వాచ్ ఫేస్ నుండి\nవెంటనే ప్రారంభం",
+        "పంపినవాటి\nచరిత్ర",
+        "టెస్ట్ పంపి\nచేరిందో చూడండి",
+        "మళ్లీ పంపినా\nఅదే సందేశ ID"
+      ],
+      "closing": "మాట్లాడినది\n*మీ సిస్టమ్‌కు*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "మాట్లాడు",
+    "sent": "“Slack #memo” కు పంపబడింది",
+    "history": "చరిత్ర",
+    "destinationsTitle": "గమ్యాలు",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "ఖర్చుల API"
+    ],
+    "spoken": [
+      "పాలు, గుడ్లు కొనాలి",
+      "రేపు 10 గంటలకు దంత వైద్యుడు",
+      "పార్కింగ్ B2, స్థలం 14"
+    ],
+    "statusSent": "పంపబడింది",
+    "statusPending": "పంపలేదు",
+    "siriDialog": "Slack #memo కు పంపబడింది.",
+    "defaultMark": "(డిఫాల్ట్)",
+    "siriAsk": "Hayate లో పంపు",
+    "siriQuestion": "ఏం పంపాలి?",
+    "quote": [
+      "“",
+      "”"
+    ],
+    "edit": {
+      "cancel": "రద్దు చేయి",
+      "save": "సేవ్ చేయి",
+      "nameLabel": "పేరు",
+      "name": "ఖర్చుల API",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "https URL లు మాత్రమే ఉపయోగించవచ్చు.",
+      "request": "అభ్యర్థన",
+      "method": "మెథడ్",
+      "bodyFormat": "బాడీ ఫార్మాట్",
+      "bodyFormatValue": "JSON",
+      "headers": "హెడర్",
+      "addHeader": "హెడర్ జోడించు",
+      "hideSecret": "రహస్య విలువగా దాచు",
+      "headersFooter": "Authorization వంటి ధృవీకరణ హెడర్‌లను నమోదు చేయవచ్చు. విలువలు iPhone, Apple Watch Keychain లో మాత్రమే నిల్వ అవుతాయి.",
+      "body": "బాడీ",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "టెస్ట్ పంపకం"
+    }
+  }
+}

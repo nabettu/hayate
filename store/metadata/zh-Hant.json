@@ -1,0 +1,17 @@
+{
+  "name": "Hayate",
+  "subtitle": "把 Apple Watch 的聲音傳到 webhook",
+  "promotionalText": "對著 Apple Watch 說話，就能傳到 Slack、Discord 或你自己的 webhook。想到什麼，直接從手腕傳出去。",
+  "keywords": "webhook,語音輸入,語音,備忘錄,Slack,Discord,Siri,手錶,API,自動化,捷徑,語音備忘,傳送",
+  "description": "Hayate 會把你對 Apple Watch 說的話，原封不動傳送到你登錄的傳送目的地 (webhook)。\n\n■ 功能\n・在 Apple Watch 上按「說話」並開口就能傳送（Series 9 / Ultra 2 以後也可用點兩下）\n・說「Hey Siri，用 Hayate 傳送」，不用動手就能傳送（iPhone 的 Siri 也可以）\n・傳送目的地可自由設定：URL、方法、標頭（Authorization 等）、內文範本\n・Slack 與 Discord 只要貼上 URL\n・由手錶直接傳送到目的地，不經過 iPhone\n・無法傳送的內容會保留，下次開啟時重新傳送\n・傳送記錄、測試傳送、錶面複雜功能\n\n■ 使用情境\n・把想到的備忘傳到 Slack 頻道\n・把購物清單或待辦事項傳到自己的服務\n・用 n8n、Zapier 或自己的伺服器接收並自動化\n\n■ 接收端的規格\n・內文可嵌入 {{text}}（說話內容）、{{id}}、{{sentAt}}、{{source}}\n・X-WatchHook-Message-Id 標頭在重新傳送時值也相同，可用來排除重複\n\n■ 資料的處理\n・傳送目的地的設定（包含驗證標頭）只會儲存在 iPhone 與 Apple Watch 的 Keychain\n・說話內容只會傳送到你登錄的目的地，不會經過開發者的伺服器\n\n■ 費用\n可免費試用 7 天。之後可透過 App 內的買斷方式繼續使用。沒有訂閱。",
+  "iap": {
+    "trial": {
+      "name": "7 天免費試用",
+      "description": "7 天內可免費使用所有功能，不會自動扣款。"
+    },
+    "unlock": {
+      "name": "Hayate（買斷）",
+      "description": "可長期使用 Apple Watch、Siri 與 iPhone 傳送，僅需付款一次。"
+    }
+  }
+}

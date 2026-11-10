@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "Puhu, ja se menee\n*webhookiin*",
+      "chips": [
+        "Slack",
+        "Discord",
+        "Oma API"
+      ],
+      "closing": "Lähetä heti\n*ranteestasi*"
+    },
+    "siri": {
+      "h1": "*Hey Siri*,\nilman käsiä",
+      "chips": [
+        "Siri",
+        "Kaksoisnapautus",
+        "Kellotaulu"
+      ],
+      "closing": "Kädet täynnä?\n*Käytä ääntä*"
+    },
+    "destination": {
+      "h1": "Valitse kohde\n*itse*",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "Todennus Keychainissa",
+        "{{text}} = puhuttu sisältö"
+      ],
+      "closing": "Myös omalle\n*palvelimellesi*"
+    },
+    "direct": {
+      "h1": "Suoraan\n*kellosta*",
+      "chips": [
+        "Wi-Fi",
+        "Mobiilidata"
+      ],
+      "floats": [
+        "Lähettämättä säilyy",
+        "Uusi yritys avattaessa"
+      ],
+      "closing": "Heikko kenttä?\n*Mitään ei huku*"
+    },
+    "more": {
+      "h1": "Ja *paljon*\nmuuta.",
+      "cells": [
+        "Todennus tallentuu\nKeychainiin",
+        "Slack ja Discord:\nliitä vain URL",
+        "Käynnistys\nkellotaulusta",
+        "Historia\nlähetetyistä",
+        "Testaa, että\nviesti menee perille",
+        "Sama viestin tunnus\nuudelleenlähetyksessä"
+      ],
+      "closing": "Sanasi\n*omaan järjestelmääsi*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "Puhu",
+    "sent": "Lähetetty kohteeseen ”Slack #memo”",
+    "history": "Historia",
+    "destinationsTitle": "Kohteet",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "Menoseuranta-API"
+    ],
+    "spoken": [
+      "Osta maitoa ja kananmunia",
+      "Hammaslääkäri huomenna klo 10",
+      "Pysäköinti B2, paikka 14"
+    ],
+    "statusSent": "Lähetetty",
+    "statusPending": "Ei lähetetty",
+    "siriDialog": "Lähetetty kohteeseen Slack #memo.",
+    "defaultMark": "(Oletus)",
+    "siriAsk": "Lähetä sovelluksella Hayate",
+    "siriQuestion": "Mitä haluat lähettää?",
+    "quote": [
+      "”",
+      "”"
+    ],
+    "edit": {
+      "cancel": "Peruuta",
+      "save": "Tallenna",
+      "nameLabel": "Nimi",
+      "name": "Menoseuranta-API",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "Vain https-URL-osoitteet toimivat.",
+      "request": "Pyyntö",
+      "method": "Metodi",
+      "bodyFormat": "Sisällön muoto",
+      "bodyFormatValue": "JSON",
+      "headers": "Otsikot",
+      "addHeader": "Lisää otsikko",
+      "hideSecret": "Piilota salaisena arvona",
+      "headersFooter": "Voit rekisteröidä todennusotsikoita, kuten Authorization. Arvot tallennetaan vain iPhonen ja Apple Watchin Keychainiin.",
+      "body": "Sisältö",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "Lähetä testi"
+    }
+  }
+}

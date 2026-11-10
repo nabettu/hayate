@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "Speak it,\nsend to *webhook*",
+      "chips": [
+        "Slack",
+        "Discord",
+        "Your own API"
+      ],
+      "closing": "Idea? Send it\nfrom your *wrist*"
+    },
+    "siri": {
+      "h1": "*Hey Siri*,\nno hands needed",
+      "chips": [
+        "Siri",
+        "Double tap",
+        "Watch face"
+      ],
+      "closing": "Hands full?\nSend by *voice*"
+    },
+    "destination": {
+      "h1": "You choose\nwhere it *goes*",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "Auth header in Keychain",
+        "{{text}} = what you said"
+      ],
+      "closing": "Straight to\nyour *own server*"
+    },
+    "direct": {
+      "h1": "Sent *straight*\nfrom the watch",
+      "chips": [
+        "Wi-Fi",
+        "Cellular"
+      ],
+      "floats": [
+        "Unsent items are kept",
+        "Resent on next open"
+      ],
+      "closing": "Weak signal?\n*Nothing is lost*"
+    },
+    "more": {
+      "h1": "And\n*more.*",
+      "cells": [
+        "Auth header\nstored in Keychain",
+        "Slack & Discord:\njust paste a URL",
+        "Launch from\nthe watch face",
+        "History of\nwhat you sent",
+        "Send a test\nto check delivery",
+        "Same message ID\neven if resent"
+      ],
+      "closing": "Your words,\ninto *your workflow*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "Speak",
+    "sent": "Sent to “Slack #memo”",
+    "history": "History",
+    "destinationsTitle": "Destinations",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "Expenses API"
+    ],
+    "spoken": [
+      "Buy milk and eggs",
+      "Dentist tomorrow at 10",
+      "Parking is B2, spot 14"
+    ],
+    "statusSent": "Sent",
+    "statusPending": "Not Sent",
+    "siriDialog": "Sent to Slack #memo.",
+    "defaultMark": "(Default)",
+    "siriAsk": "Send with Hayate",
+    "siriQuestion": "What do you want to send?",
+    "quote": [
+      "“",
+      "”"
+    ],
+    "edit": {
+      "cancel": "Cancel",
+      "save": "Save",
+      "nameLabel": "Name",
+      "name": "Expenses API",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "Only https URLs are supported.",
+      "request": "Request",
+      "method": "Method",
+      "bodyFormat": "Body Format",
+      "bodyFormatValue": "JSON",
+      "headers": "Headers",
+      "addHeader": "Add Header",
+      "hideSecret": "Hide as Secret Value",
+      "headersFooter": "You can add authentication headers such as Authorization. Values are stored only in the Keychain on iPhone and Apple Watch.",
+      "body": "Body",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "Send Test"
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "說一聲\n傳到 *webhook*",
+      "chips": [
+        "Slack",
+        "Discord",
+        "自家 API"
+      ],
+      "closing": "想到就\n*從手腕*傳出"
+    },
+    "siri": {
+      "h1": "用 *Hey Siri*\n不必動手",
+      "chips": [
+        "Siri",
+        "點兩下",
+        "從錶面"
+      ],
+      "closing": "雙手忙碌時\n*用聲音*就能傳"
+    },
+    "destination": {
+      "h1": "目的地\n*自由*決定",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "驗證標頭存在 Keychain",
+        "{{text}} 放說話內容"
+      ],
+      "closing": "自家伺服器\n*原樣*送達"
+    },
+    "direct": {
+      "h1": "由手錶\n*直接*送達",
+      "chips": [
+        "Wi-Fi",
+        "行動網路"
+      ],
+      "floats": [
+        "沒送出的會保留",
+        "下次開啟再重送"
+      ],
+      "closing": "訊號不佳\n*也不漏接*"
+    },
+    "more": {
+      "h1": "還有\n*更多。*",
+      "cells": [
+        "驗證標頭\n存在 Keychain",
+        "Slack、Discord\n貼上 URL 即可",
+        "從錶面\n快速啟動",
+        "傳送內容\n的記錄",
+        "用測試傳送\n確認送達",
+        "重傳也是同一個\n訊息 ID"
+      ],
+      "closing": "把說的話\n送進*你的系統*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "說話",
+    "sent": "已傳送到「Slack #memo」",
+    "history": "記錄",
+    "destinationsTitle": "傳送目的地",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "記帳 API"
+    ],
+    "spoken": [
+      "買牛奶和雞蛋",
+      "明天 10 點看牙醫",
+      "停車位在 B2 的 14 號"
+    ],
+    "statusSent": "已傳送",
+    "statusPending": "未傳送",
+    "siriDialog": "已傳送到 Slack #memo。",
+    "defaultMark": "（預設）",
+    "siriAsk": "用Hayate傳送",
+    "siriQuestion": "要傳送什麼？",
+    "quote": [
+      "「",
+      "」"
+    ],
+    "edit": {
+      "cancel": "取消",
+      "save": "儲存",
+      "nameLabel": "名稱",
+      "name": "記帳 API",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "僅支援 https 的 URL。",
+      "request": "請求",
+      "method": "方法",
+      "bodyFormat": "內文格式",
+      "bodyFormatValue": "JSON",
+      "headers": "標頭",
+      "addHeader": "加入標頭",
+      "hideSecret": "隱藏為機密值",
+      "headersFooter": "可登錄 Authorization 等驗證標頭。值只會儲存在 iPhone 與 Apple Watch 的 Keychain。",
+      "body": "內文",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "測試傳送"
+    }
+  }
+}

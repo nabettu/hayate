@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "말하면 바로\n*webhook*으로",
+      "chips": [
+        "Slack",
+        "Discord",
+        "내 API"
+      ],
+      "closing": "떠오르면\n*손목*에서 바로"
+    },
+    "siri": {
+      "h1": "*Hey Siri*로\n손 쓰지 않고",
+      "chips": [
+        "Siri",
+        "두 번 탭",
+        "시계 페이스"
+      ],
+      "closing": "두 손이 바빠도\n*목소리*만으로"
+    },
+    "destination": {
+      "h1": "보낼 곳은\n*마음대로*",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "인증 헤더는 Keychain에",
+        "{{text}}에 말한 내용"
+      ],
+      "closing": "내 서버에도\n*그대로* 도착"
+    },
+    "direct": {
+      "h1": "시계에서\n*직접* 전달",
+      "chips": [
+        "Wi-Fi",
+        "셀룰러"
+      ],
+      "floats": [
+        "못 보낸 건 보관",
+        "다음에 열면 재전송"
+      ],
+      "closing": "신호가 약해도\n*놓치지 않아요*"
+    },
+    "more": {
+      "h1": "그 밖에도\n*다양하게.*",
+      "cells": [
+        "인증 헤더는\nKeychain에 저장",
+        "Slack·Discord는\nURL만 붙여넣기",
+        "시계 페이스에서\n바로 실행",
+        "보낸 내용\n기록",
+        "테스트 전송으로\n도착 확인",
+        "재전송해도 같은\n메시지 ID"
+      ],
+      "closing": "말한 내용을\n*나만의 시스템*으로"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "말하기",
+    "sent": "“Slack #memo”(으)로 보냈습니다",
+    "history": "기록",
+    "destinationsTitle": "전송 대상",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "가계부 API"
+    ],
+    "spoken": [
+      "우유랑 계란 사기",
+      "내일 10시 치과",
+      "주차는 B2 14번"
+    ],
+    "statusSent": "전송 완료",
+    "statusPending": "미전송",
+    "siriDialog": "Slack #memo(으)로 보냈습니다.",
+    "defaultMark": "(기본)",
+    "siriAsk": "Hayate로 보내줘",
+    "siriQuestion": "무엇을 보낼까요?",
+    "quote": [
+      "“",
+      "”"
+    ],
+    "edit": {
+      "cancel": "취소",
+      "save": "저장",
+      "nameLabel": "이름",
+      "name": "가계부 API",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "https URL만 사용할 수 있습니다.",
+      "request": "요청",
+      "method": "메서드",
+      "bodyFormat": "본문 형식",
+      "bodyFormatValue": "JSON",
+      "headers": "헤더",
+      "addHeader": "헤더 추가",
+      "hideSecret": "비밀 값으로 숨기기",
+      "headersFooter": "Authorization 같은 인증 헤더를 등록할 수 있습니다. 값은 iPhone과 Apple Watch의 Keychain에만 저장됩니다.",
+      "body": "본문",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "테스트 전송"
+    }
+  }
+}

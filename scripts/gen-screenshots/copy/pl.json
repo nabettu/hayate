@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "Powiedz to —\n*webhook* odbierze",
+      "chips": [
+        "Slack",
+        "Discord",
+        "Własne API"
+      ],
+      "closing": "Masz pomysł?\nWyślij *z nadgarstka*"
+    },
+    "siri": {
+      "h1": "*Hey Siri*\nbez użycia rąk",
+      "chips": [
+        "Siri",
+        "Stuknij 2×",
+        "Z tarczy"
+      ],
+      "closing": "Masz zajęte ręce?\n*Głos* wystarczy"
+    },
+    "destination": {
+      "h1": "Odbiorcę\n*wybierasz Ty*",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "Autoryzacja w Keychain",
+        "{{text}} to Twoje słowa"
+      ],
+      "closing": "Dotrze też na\n*Twój* serwer"
+    },
+    "direct": {
+      "h1": "Prosto\n*z zegarka*",
+      "chips": [
+        "Wi-Fi",
+        "Sieć komórkowa"
+      ],
+      "floats": [
+        "Niewysłane czeka",
+        "Ponowna próba po otwarciu"
+      ],
+      "closing": "Słaby zasięg?\n*Nic nie zginie*"
+    },
+    "more": {
+      "h1": "A także\n*więcej.*",
+      "cells": [
+        "Autoryzacja\nw Keychain",
+        "Slack i Discord:\nwklej URL",
+        "Szybki start\nz tarczy",
+        "Historia\nwysłanych",
+        "Test: sprawdź,\nczy dotarło",
+        "To samo ID\nprzy ponowieniu"
+      ],
+      "closing": "Twoje słowa prosto\n*do Twojego systemu*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "Mów",
+    "sent": "Wysłano do „Slack #memo”",
+    "history": "Historia",
+    "destinationsTitle": "Odbiorcy",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "API wydatków"
+    ],
+    "spoken": [
+      "Kupić mleko i jajka",
+      "Jutro o 10 dentysta",
+      "Parking B2, miejsce 14"
+    ],
+    "statusSent": "Wysłano",
+    "statusPending": "Niewysłane",
+    "siriDialog": "Wysłano do Slack #memo.",
+    "defaultMark": "(domyślny)",
+    "siriAsk": "Wyślij przez Hayate",
+    "siriQuestion": "Co wysłać?",
+    "quote": [
+      "„",
+      "”"
+    ],
+    "edit": {
+      "cancel": "Anuluj",
+      "save": "Zapisz",
+      "nameLabel": "Nazwa",
+      "name": "API wydatków",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "Dozwolone są tylko adresy URL z https.",
+      "request": "Żądanie",
+      "method": "Metoda",
+      "bodyFormat": "Format treści",
+      "bodyFormatValue": "JSON",
+      "headers": "Nagłówki",
+      "addHeader": "Dodaj nagłówek",
+      "hideSecret": "Ukryj jako sekret",
+      "headersFooter": "Możesz dodać nagłówki uwierzytelniania, np. Authorization. Wartości są zapisywane tylko w Keychain na iPhonie i Apple Watch.",
+      "body": "Treść",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "Wiadomość testowa"
+    }
+  }
+}

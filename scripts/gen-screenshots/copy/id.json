@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "Cukup bicara,\nkirim ke *webhook*",
+      "chips": [
+        "Slack",
+        "Discord",
+        "API sendiri"
+      ],
+      "closing": "Ada ide?\nKirim dari *pergelangan*"
+    },
+    "siri": {
+      "h1": "*Hey Siri*,\ntanpa tangan",
+      "chips": [
+        "Siri",
+        "Ketuk 2x",
+        "Tampilan jam"
+      ],
+      "closing": "Tangan penuh?\nKirim *lewat suara*"
+    },
+    "destination": {
+      "h1": "Tujuan pesan\n*sesukamu*",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "Header autentikasi di Keychain",
+        "{{text}} berisi ucapan"
+      ],
+      "closing": "Sampai juga ke\n*server sendiri*"
+    },
+    "direct": {
+      "h1": "Langsung dari\n*jam tangan*",
+      "chips": [
+        "Wi-Fi",
+        "Seluler"
+      ],
+      "floats": [
+        "Yang gagal tetap disimpan",
+        "Dikirim ulang saat dibuka"
+      ],
+      "closing": "Sinyal lemah?\n*Tak ada yang hilang*"
+    },
+    "more": {
+      "h1": "Masih\n*banyak lagi.*",
+      "cells": [
+        "Header autentikasi\ndi Keychain",
+        "Slack & Discord:\ntempel URL saja",
+        "Langsung buka\ndari tampilan jam",
+        "Riwayat\npesan terkirim",
+        "Kirim uji untuk\ncek sampai",
+        "ID pesan sama\nsaat kirim ulang"
+      ],
+      "closing": "Ucapan Anda\nke *sistem Anda*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "Bicara",
+    "sent": "Terkirim ke “Slack #memo”",
+    "history": "Riwayat",
+    "destinationsTitle": "Tujuan",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "API Keuangan"
+    ],
+    "spoken": [
+      "Beli susu dan telur",
+      "Besok jam 10 ke dokter gigi",
+      "Parkir di B2 nomor 14"
+    ],
+    "statusSent": "Terkirim",
+    "statusPending": "Belum terkirim",
+    "siriDialog": "Terkirim ke Slack #memo.",
+    "defaultMark": "(Default)",
+    "siriAsk": "Kirim dengan Hayate",
+    "siriQuestion": "Apa yang ingin Anda kirim?",
+    "quote": [
+      "“",
+      "”"
+    ],
+    "edit": {
+      "cancel": "Batal",
+      "save": "Simpan",
+      "nameLabel": "Nama",
+      "name": "API Keuangan",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "Hanya URL https yang dapat digunakan.",
+      "request": "Permintaan",
+      "method": "Metode",
+      "bodyFormat": "Format isi pesan",
+      "bodyFormatValue": "JSON",
+      "headers": "Header",
+      "addHeader": "Tambah Header",
+      "hideSecret": "Sembunyikan sebagai nilai rahasia",
+      "headersFooter": "Anda dapat mendaftarkan header autentikasi seperti Authorization. Nilainya hanya disimpan di Keychain iPhone dan Apple Watch.",
+      "body": "Isi pesan",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "Kirim Uji"
+    }
+  }
+}

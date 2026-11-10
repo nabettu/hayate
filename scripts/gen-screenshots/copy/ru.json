@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "Скажите вслух —\n*webhook* получит",
+      "chips": [
+        "Slack",
+        "Discord",
+        "Свой API"
+      ],
+      "closing": "Пришла мысль —\n*с запястья* сразу"
+    },
+    "siri": {
+      "h1": "*Hey Siri* —\nбез рук",
+      "chips": [
+        "Siri",
+        "Касание ×2",
+        "Циферблат"
+      ],
+      "closing": "Руки заняты?\n*Голоса* хватит"
+    },
+    "destination": {
+      "h1": "Куда слать —\n*решаете вы*",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "Авторизация — в Keychain",
+        "{{text}} — то, что вы сказали"
+      ],
+      "closing": "Дойдёт и до\n*вашего* сервера"
+    },
+    "direct": {
+      "h1": "Прямо\n*с часов*",
+      "chips": [
+        "Wi-Fi",
+        "Сотовая сеть"
+      ],
+      "floats": [
+        "Неотправленное сохраняется",
+        "Повтор при следующем открытии"
+      ],
+      "closing": "Связь плохая?\n*Ничего не теряем*"
+    },
+    "more": {
+      "h1": "И многое\n*другое.*",
+      "cells": [
+        "Авторизация\nв Keychain",
+        "Slack и Discord:\nвставьте URL",
+        "Быстрый запуск\nс циферблата",
+        "История\nотправленного",
+        "Тест: проверьте,\nдойдёт ли",
+        "Один ID при\nповторной отправке"
+      ],
+      "closing": "Сказанное — прямо\n*в вашу систему*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "Говорить",
+    "sent": "Отправлено в «Slack #memo»",
+    "history": "История",
+    "destinationsTitle": "Получатели",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "API расходов"
+    ],
+    "spoken": [
+      "Купить молоко и яйца",
+      "Завтра в 10 стоматолог",
+      "Парковка B2, место 14"
+    ],
+    "statusSent": "Отправлено",
+    "statusPending": "Не отправлено",
+    "siriDialog": "Отправлено в Slack #memo.",
+    "defaultMark": "(по умолчанию)",
+    "siriAsk": "Отправь через Hayate",
+    "siriQuestion": "Что отправить?",
+    "quote": [
+      "«",
+      "»"
+    ],
+    "edit": {
+      "cancel": "Отмена",
+      "save": "Сохранить",
+      "nameLabel": "Название",
+      "name": "API расходов",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "Допускаются только URL с https.",
+      "request": "Запрос",
+      "method": "Метод",
+      "bodyFormat": "Формат тела",
+      "bodyFormatValue": "JSON",
+      "headers": "Заголовки",
+      "addHeader": "Добавить заголовок",
+      "hideSecret": "Скрыть как секрет",
+      "headersFooter": "Можно добавить заголовки авторизации, например Authorization. Значения хранятся только в Keychain на iPhone и Apple Watch.",
+      "body": "Тело",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "Тестовая отправка"
+    }
+  }
+}

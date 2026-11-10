@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "แค่พูด\nก็ส่งไป *webhook*",
+      "chips": [
+        "Slack",
+        "Discord",
+        "API ของคุณ"
+      ],
+      "closing": "นึกได้ปุ๊บ\nส่งจาก*ข้อมือ*"
+    },
+    "siri": {
+      "h1": "*Hey Siri*\nไม่ต้องใช้มือ",
+      "chips": [
+        "Siri",
+        "แตะสองครั้ง",
+        "หน้าปัด"
+      ],
+      "closing": "มือไม่ว่าง\nก็ส่ง*ด้วยเสียง*"
+    },
+    "destination": {
+      "h1": "เลือก\n*ปลายทาง*ได้เอง",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "เฮดเดอร์ยืนยันตัวตนใน Keychain",
+        "{{text}} คือสิ่งที่พูด"
+      ],
+      "closing": "ส่งถึงเซิร์ฟเวอร์\n*ของคุณเอง*"
+    },
+    "direct": {
+      "h1": "ส่ง*ตรง*\nจากนาฬิกา",
+      "chips": [
+        "Wi-Fi",
+        "เครือข่ายมือถือ"
+      ],
+      "floats": [
+        "ที่ส่งไม่ได้จะเก็บไว้",
+        "เปิดแอปแล้วส่งใหม่"
+      ],
+      "closing": "สัญญาณอ่อนก็\n*ไม่พลาดสักข้อความ*"
+    },
+    "more": {
+      "h1": "และ\n*ยังมีอีกมาก*",
+      "cells": [
+        "เฮดเดอร์ยืนยันตัวตน\nเก็บใน Keychain",
+        "Slack, Discord\nแค่วาง URL",
+        "เปิดได้เร็ว\nจากหน้าปัด",
+        "ประวัติ\nสิ่งที่ส่ง",
+        "ส่งทดสอบ\nเพื่อเช็กว่าถึง",
+        "ส่งใหม่ ID ข้อความ\nก็เหมือนเดิม"
+      ],
+      "closing": "สิ่งที่พูด\nสู่*ระบบของคุณ*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "พูด",
+    "sent": "ส่งไปที่ “Slack #memo” แล้ว",
+    "history": "ประวัติ",
+    "destinationsTitle": "ปลายทาง",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "API บัญชีรายจ่าย"
+    ],
+    "spoken": [
+      "ซื้อนมกับไข่",
+      "พรุ่งนี้ 10 โมงหาหมอฟัน",
+      "จอดรถชั้น B2 ช่อง 14"
+    ],
+    "statusSent": "ส่งแล้ว",
+    "statusPending": "ยังไม่ได้ส่ง",
+    "siriDialog": "ส่งไปที่ Slack #memo แล้ว",
+    "defaultMark": "(ค่าเริ่มต้น)",
+    "siriAsk": "ส่งด้วย Hayate",
+    "siriQuestion": "ต้องการส่งอะไร",
+    "quote": [
+      "“",
+      "”"
+    ],
+    "edit": {
+      "cancel": "ยกเลิก",
+      "save": "บันทึก",
+      "nameLabel": "ชื่อ",
+      "name": "API บัญชีรายจ่าย",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "ใช้ได้เฉพาะ URL แบบ https",
+      "request": "คำขอ",
+      "method": "เมธอด",
+      "bodyFormat": "รูปแบบเนื้อหา",
+      "bodyFormatValue": "JSON",
+      "headers": "เฮดเดอร์",
+      "addHeader": "เพิ่มเฮดเดอร์",
+      "hideSecret": "ซ่อนเป็นค่าลับ",
+      "headersFooter": "คุณลงทะเบียนเฮดเดอร์สำหรับยืนยันตัวตน เช่น Authorization ได้ ค่าจะถูกเก็บไว้ใน Keychain ของ iPhone และ Apple Watch เท่านั้น",
+      "body": "เนื้อหา",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "ส่งทดสอบ"
+    }
+  }
+}
