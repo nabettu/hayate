@@ -45,7 +45,8 @@ for (const [lang, locales] of Object.entries(ASC_LOCALES)) {
         "--path", sub, "--device-type", deviceType, "--replace", "--confirm", "--output", "table"];
       if (dryRun) a.push("--dry-run");
       console.log(`${locale} ${deviceType} (${files.length} 枚)`);
-      execFileSync("asc", a, { stdio: ["ignore", "ignore", "inherit"] });
+      // dry-run は上げる・消す予定の表を見るために出す。本番は表が長いので捨てる (エラーは出す)
+      execFileSync("asc", a, { stdio: ["ignore", dryRun ? "inherit" : "ignore", "inherit"] });
     }
   }
 }
