@@ -30,7 +30,7 @@ final class EntitlementStore {
     /// await の間に割り込まれ、先に始めた古い読み取りが後から終わって最新の状態を上書きしないように
     @ObservationIgnored private var refreshGate = LatestRequestGate()
 
-    var snapshot: EntitlementSnapshot { local.merging(hint) }
+    var snapshot: EntitlementSnapshot { local.merging(Self.usesHint ? hint : nil) }
 
     func access(now: Date = .now) -> AccessState {
         EntitlementPolicy().state(for: snapshot, now: now)
@@ -61,7 +61,7 @@ final class EntitlementStore {
     /// Siri から送るときの判定。画面を開かずに呼ばれるので、毎回 StoreKit から読み直す。
     /// 時刻は読み終えてから取る (読んでいる間に期限を過ぎたら送らない)。
     nonisolated static func currentAccess() async -> AccessState {
-        let s = await loadLocal().merging(storedHint())
+        let s = await loadLocal().merging(usesHint ? storedHint() : nil)
         return EntitlementPolicy().state(for: s, now: .now)
     }
 
@@ -93,6 +93,15 @@ final class EntitlementStore {
     }
 
     // MARK: - iPhone から届いた状態 (時計)
+
+    /// デバッグ用の起動引数で状態を決めているときは、iPhone から届いた状態を合わせない (指定した状態をそのまま見るため)。
+    private nonisolated static var usesHint: Bool {
+        #if DEBUG
+        return debugOverride() == nil
+        #else
+        return true
+        #endif
+    }
 
     private nonisolated static let hintKey = "entitlementHint"
 
@@ -148,7 +157,7 @@ final class EntitlementStore {
         do {
             try await AppStore.sync()
             // 画面用の refresh は別の refresh と重なると結果を捨てるので、結果の文はその場で読んだ状態で決める
-            let restored = await Self.loadLocal().merging(hint)
+            let restored = await Self.loadLocal().merging(Self.usesHint ? hint : nil)
             await refresh()
             message = restored.unlocked || restored.trialStartedAt != nil ? "購入を復元しました" : "復元できる購入はありませんでした"
         } catch StoreKitError.userCancelled {
