@@ -148,3 +148,27 @@ struct EntitlementTests {
         #expect(throws: (any Error).self) { try EntitlementSnapshot.decode(Data("x".utf8)) }
     }
 }
+
+@Suite("TestSendPolicy")
+struct TestSendPolicyTests {
+    let end = Date(timeIntervalSince1970: 1_800_000_000)
+
+    @Test func お試し中と購入済みは回数に関係なくテスト送信できる() {
+        #expect(TestSendPolicy.allows(access: .unlocked, usedBeforeTrial: 100))
+        #expect(TestSendPolicy.allows(access: .trial(endsAt: end), usedBeforeTrial: 100))
+        #expect(TestSendPolicy.counts(access: .unlocked) == false)
+        #expect(TestSendPolicy.counts(access: .trial(endsAt: end)) == false)
+    }
+
+    @Test func お試し前は決まった回数までテスト送信できる() {
+        let limit = TestSendPolicy.limitBeforeTrial
+        #expect(limit == 5)
+        #expect(TestSendPolicy.allows(access: .trialNotStarted, usedBeforeTrial: limit - 1))
+        #expect(TestSendPolicy.allows(access: .trialNotStarted, usedBeforeTrial: limit) == false)
+        #expect(TestSendPolicy.counts(access: .trialNotStarted))
+    }
+
+    @Test func お試しが終わったらテスト送信もできない() {
+        #expect(TestSendPolicy.allows(access: .trialExpired(endedAt: end), usedBeforeTrial: 0) == false)
+    }
+}

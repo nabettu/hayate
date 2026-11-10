@@ -143,3 +143,24 @@ public struct EntitlementPolicy: Sendable {
         return now < end ? .trial(endsAt: end) : .trialExpired(endedAt: end)
     }
 }
+
+/// 送り先の編集画面の「テスト送信」を許すか。
+///
+/// テスト送信の本文は固定の文だが、送り先の本文テンプレートを書き換えれば好きな内容を送れてしまう。
+/// お試し前は設定を確かめる分だけ (回数を決めて) 許し、お試しが終わったあとは許さない。
+public enum TestSendPolicy {
+    public static let limitBeforeTrial = 5
+
+    public static func allows(access: AccessState, usedBeforeTrial: Int) -> Bool {
+        switch access {
+        case .unlocked, .trial: true
+        case .trialNotStarted: usedBeforeTrial < limitBeforeTrial
+        case .trialExpired: false
+        }
+    }
+
+    /// この送信をお試し前の回数に数えるか。
+    public static func counts(access: AccessState) -> Bool {
+        access == .trialNotStarted
+    }
+}
