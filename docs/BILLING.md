@@ -115,7 +115,8 @@ ID と日数の正は `Packages/WatchHookCore/Sources/WatchHookCore/Entitlement.
 
 - 単体: `scripts/verify.sh` (`EntitlementTests`: 期間の境目・返金・合わせ方・残り日数)
 - 購入の流れ: Xcode で `WatchHook` スキームを実行すると `StoreKit/WatchHook.storekit` が効き、App Store Connect に商品が無くても購入・復元・返金を試せる (Debug > StoreKit > Manage Transactions)。
-  **ssh の `simctl launch` で起動したときは効かない** (StoreKit の設定ファイルは Xcode から起動したときだけ使われる)
+  **ssh の `simctl launch` で起動したときは効かない** (StoreKit の設定ファイルは Xcode から起動したときだけ使われる)。
+  ただし ASC に商品を作ったあとは、シミュレータを ssh で起動しても **Sandbox の本物の商品** が読める (2026-11-10 に mini の `WatchHook-Dev` で $0.00 / $9.99 が出た。米国のストアの値)
 - 画面の状態だけ見るとき (Debug ビルド): 起動引数 `-WatchHookDebugAccess none|trial|expired|unlocked` で StoreKit を通さずに状態を決められる。
   例: `xcrun simctl launch <udid> com.nabettu.watchhook.watchkitapp -WatchHookDebugAccess expired`
 - 時計のロック表示は送り先がある画面に出る。署名なし (`CODE_SIGNING_ALLOWED=NO`) のビルドは Keychain が読めず送り先が出ないので、既定の署名でビルドしたものを入れる
@@ -138,8 +139,12 @@ v1 に Firebase を入れるかは未決 (ROADMAP)。入れない間は App Stor
 
 - 有料アプリ契約: CROSSEDGE Inc. で 175 か国とも有効 (ASC > ビジネス で確認)
 - 両方ともファミリー共有はオフ (既定のまま。一度オンにすると戻せない)
-- **両方とも `MISSING_METADATA`**。残りは審査用のスクリーンショット (購入画面)。価格が出た状態の購入画面を Sandbox で撮ってから載せる。
-  載せるまでは Sandbox で商品が読めないことがある
+- 審査用のスクリーンショットを 2026-11-10 に載せ、両方とも **`READY_TO_SUBMIT`** になった (`MISSING_METADATA` から抜けた)。
+  お試しはお試し前 (`-WatchHookDebugAccess none`)、買い切りはお試し終了後 (`expired`) の購入画面。Sandbox の価格 ($0.00 / $9.99) が出ている。
+  撮り方: Debug ビルドを `WatchHook-Dev` に入れ、agent-device で `open com.nabettu.watchhook --relaunch --launch-args=-WatchHookDebugAccess --launch-args=none`
+  (`--launch-args` は 1 語ずつ繰り返す。`"-WatchHookDebugAccess none"` と 1 つにすると効かない) → 帯から購入画面 → `screenshot --pixel-density 3` →
+  アルファを消して (`magick in.png -background black -alpha remove -alpha off out.png`) `asc iap review-screenshots create --iap-id <id> --file <png>`。
+  購入画面の文言・ボタンを変えたら撮り直して `asc iap review-screenshots update` で差し替える
 - 英語のローカライズはまだ (アプリの英語化と一緒に足す)
 - `asc iap setup --price 0` は「price point not found」で失敗する (IAP と表示名は作られる)。0 円は `asc iap pricing price-points list --iap-id <id> --territory USA` で `customerPrice: 0.0` の ID を探し、`asc iap pricing schedules create --prices <ID>` で付ける
 

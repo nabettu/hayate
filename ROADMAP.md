@@ -33,5 +33,7 @@ MVP の土台を作った (未リリース・シミュレータでのみ確認)�
 - [ ] 強制アップデートと GA4 の計測 (課金のイベントは `docs/BILLING.md` の「計測」) (`~/work/docs/global-rules/app-analytics.md`) を v1 に入れるか決める (Firebase を入れるかどうか)
 - [x] 課金の形: 7 日間の無料お試し (0 円の非消耗型) + 買い切り $9.99 / 1,500 円 (2026-11-10 決定。`docs/BILLING.md`)
 - [x] App Store Connect にアプリと IAP 商品を 2 つ作る (2026-11-10。`docs/BILLING.md` の「App Store Connect の状態」)
-- [ ] IAP の審査用スクリーンショット (購入画面) を載せる。両方とも `MISSING_METADATA` のまま
+- [x] IAP の審査用スクリーンショット (購入画面) を載せる (2026-11-10。両方とも `READY_TO_SUBMIT`。撮り方は `docs/BILLING.md`)
+- [x] App Store のスクショ (iPhone 5 枚・Apple Watch 3 枚、日本語) を ASC のバージョン 1.0 に載せる (2026-11-10。`scripts/gen-screenshots/README.md`)
+- [ ] 英語化のときに、スクショの文言 (`scripts/gen-screenshots/copy.mjs`) に `en` を足して上げる
 - [ ] Sandbox で購入・復元・時計への反映を実機で確かめる
