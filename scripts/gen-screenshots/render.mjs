@@ -1,6 +1,6 @@
 // App Store のスクショの HTML。アプリの画面もシミュレータで撮らずに HTML で描く (~/work/docs/global-rules/mobile.md)。
 //
-// 形式は TypeAI / autofill の「広告としてのスクショ」: 太い 2 行の見出し (*...* を強調) → 補足 → チップ → 端末 (まわりに吹き出し) → 下の一言。
+// 形式は TypeAI / autofill の「広告としてのスクショ」: 太い 2 行の見出し (*...* を強調) → チップ → 端末 (まわりに吹き出し) → 下の一言。
 // 最後の 1 枚は「他にもいろいろ」。背景はアプリアイコン (design/app-icon.svg) の夜空に合わせて暗くしている。
 //
 // - iPhone 6.9" (1320x2868) 5 枚: hero / siri / destination / direct / more
