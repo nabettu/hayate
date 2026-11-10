@@ -49,9 +49,23 @@ const ASC_ENV = {
 };
 const jobs = [];
 // 同じチェックアウトで 2 つ動くと、記録を上書きし合い、--replace 同士で相手の画像を消すので、1 つだけにする。
-// 前のプロセスが落ちて残ったロックは、その pid が居なければ引き継ぐ
+// OS のロック (flock) を、ロックを持つだけの perl の子に持たせる。標準入力が閉じる (このプロセスが終わる) と perl も終わり、OS がロックを外す。
+// ファイルの作成・削除と pid の確認で組むと、残ったロックの引き継ぎに競合の隙間が残った (ai-review 11〜15 回目)
 const LOCK = path.join(ROOT, "screenshots/app-store/.upload.lock");
-const alive = (pid) => { try { process.kill(pid, 0); return true; } catch { return false; } };
+async function takeLock() {
+  fs.mkdirSync(path.dirname(LOCK), { recursive: true });
+  const locker = spawn("perl", ["-e", 'use Fcntl ":flock"; open(my $f, ">>", $ARGV[0]) or exit 2; flock($f, LOCK_EX | LOCK_NB) or exit 75; $| = 1; print "ok\n"; <STDIN>;', LOCK],
+    { stdio: ["pipe", "pipe", "inherit"] });
+  const ok = await new Promise((resolve) => {
+    locker.stdout.once("data", (d) => resolve(String(d).startsWith("ok")));
+    locker.once("exit", () => resolve(false));
+    locker.once("error", () => resolve(false));
+  });
+  if (!ok) { console.error("別の upload.mjs が動いている (またはロックを取れない)。終わってから動かす"); process.exit(2); }
+  locker.unref();
+  locker.stdout.unref?.();
+  locker.stdin._handle?.unref?.();
+}
 // 起動した asc。止められたら子に止めるよう伝え、全部終わってからロック・一時画像を消す (親だけ先に終わると、子が ASC を書き換え続けたまま次が動ける)
 const children = new Set();
 let stopping = false;
@@ -62,30 +76,8 @@ function stop(code = 130) {
   const wait = () => (children.size ? setTimeout(wait, 200) : process.exit(code));
   wait();
 }
-function takeLock() {
-  fs.mkdirSync(path.dirname(LOCK), { recursive: true });
-  const busy = (msg) => { console.error(msg); process.exit(2); };
-  try { fs.writeFileSync(LOCK, String(process.pid), { flag: "wx" }); return; } catch {}
-  // 残ったロックの引き継ぎは、もう 1 つのロック (TAKEOVER) を持っている間だけ行う。
-  // 普段のロックは wx でしか作らないので、引き継ぎが 1 つずつなら、動いているプロセスのロックを消すことは無い
-  const TAKEOVER = `${LOCK}.takeover`;
-  try { fs.writeFileSync(TAKEOVER, String(process.pid), { flag: "wx" }); } catch {
-    busy(`ほかのプロセスがロックを引き継いでいる。少し待って動かす (${TAKEOVER} が残っていて、その pid が居なければ消す)`);
-  }
-  // process.exit は finally を通らないので、TAKEOVER を外してから判定の結果を出す
-  // 生きているかは 1 回だけ判定し、その結果で決める (2 回見ると、間に前のプロセスが終わったとき、取らずに進んでしまう)
-  let owner = 0, taken = false;
-  try {
-    owner = Number(fs.readFileSync(LOCK, "utf8"));
-    if (!alive(owner)) { fs.writeFileSync(LOCK, String(process.pid)); taken = true; }
-  } finally {
-    fs.rmSync(TAKEOVER, { force: true });
-  }
-  if (!taken) busy(`別の upload.mjs (pid ${owner}) が動いている。終わってから動かす`);
-}
 if (!dryRun) {
-  takeLock();
-  process.on("exit", () => { try { if (Number(fs.readFileSync(LOCK, "utf8")) === process.pid) fs.rmSync(LOCK); } catch {} });
+  await takeLock();
   for (const sig of ["SIGINT", "SIGTERM", "SIGHUP"]) process.on(sig, () => stop(130));
 }
 // 上げ終わったセットの記録 (ロケール・端末 → 画像のハッシュ)。生成物と同じく git に入れない
