@@ -170,9 +170,6 @@ struct RectangularLauncher: View {
                 Text("タップして話す")
                     .font(.caption)
                     .foregroundStyle(fullColor ? Cosmos.lavender : .white.opacity(0.75))
-                Text("声を星の向こうへ")
-                    .font(.caption2)
-                    .foregroundStyle(fullColor ? Cosmos.lavender.opacity(0.6) : .white.opacity(0.5))
             }
             .lineLimit(1)
             .minimumScaleFactor(0.8)
