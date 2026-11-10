@@ -122,6 +122,15 @@ actor MessageDispatcher {
             var tried: Set<UUID> = []
             while let entry = log.pending.first(where: { !tried.contains($0.id) && !inFlight.contains($0.id) }) {
                 tried.insert(entry.id)
+                // お試し前・終了後は再送もしない (再送待ちは消さずに残し、購入したら送る)。1 件ごとに確かめる (送っている間に期限が切れることがある)。
+                // 再送は送る直前の送り先の設定で組み立て直すので、期限後に本文テンプレートを書き換えれば好きな内容を送れてしまうため
+                guard await EntitlementStore.currentAccess().canSend else {
+                    // 確かめている間に頼まれた再送 (購入した直後など) は、新しい状態でもう一度確かめる
+                    if flushRequested { Task { await self.flush() } }
+                    return
+                }
+                // 確かめている (await の) 間に、手動の再送・削除などで状態が変わっていれば飛ばす
+                guard case .pending = log.status(of: entry.id), !inFlight.contains(entry.id) else { continue }
                 // 設定を読めないとき (ロック中など) は「送り先が消えた」と決めつけず、再送待ちのまま次の機会に回す
                 guard let config = try? ConfigStore.loadFromKeychain() else { return }
                 guard let destination = config.destination(id: entry.message.destinationID) else {
@@ -148,7 +157,9 @@ actor MessageDispatcher {
         } while flushRequested
     }
 
+    /// 手動の再送。送れない状態 (お試し前・終了後) では何もしない (`flush` と同じ理由)。
     func retry(_ id: UUID) async {
+        guard await EntitlementStore.currentAccess().canSend else { return }
         log.retry(id)
         persist()
         await flush()

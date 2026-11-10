@@ -4,6 +4,9 @@ import WatchHookCore
 /// iPhone からテキストを入力して送り先へ送る画面。送り方 (履歴・再送) は時計と同じ `MessageDispatcher` を使う。
 struct ComposeView: View {
     @State private var store = ConfigStore.shared
+    @State private var entitlements = EntitlementStore.shared
+    /// お試しの期限を画面を開いたまま過ぎても、ボタンと購入への入口を切り替えるため 1 分ごとに進める。
+    @State private var now = Date.now
     /// iPhone の中だけで選ぶ送り先 (未選択なら既定)。時計の選択とは別に持つ。
     @AppStorage("composeDestinationID") private var selectedID: String = ""
     @State private var text = ""
@@ -17,7 +20,9 @@ struct ComposeView: View {
     var openDestinations: () -> Void = {}
 
     private var destination: Destination? { store.config.resolve(selectedID: selectedID) }
-    private var canSend: Bool { !isSending && destination != nil && MessageText.normalized(text) != nil }
+    private var canSend: Bool {
+        !isSending && destination != nil && MessageText.normalized(text) != nil && entitlements.access(now: now).canSend
+    }
 
     var body: some View {
         NavigationStack {
@@ -29,6 +34,13 @@ struct ComposeView: View {
                             Label(message, systemImage: "exclamationmark.triangle.fill")
                                 .font(.subheadline)
                                 .foregroundStyle(.red)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(14)
+                                .cosmicCard(cornerRadius: 16)
+                        }
+                        // お試し前・お試しが終わったときは、購入画面への入口を出す
+                        if !entitlements.access(now: now).canSend {
+                            AccessBanner()
                                 .frame(maxWidth: .infinity, alignment: .leading)
                                 .padding(14)
                                 .cosmicCard(cornerRadius: 16)
@@ -81,6 +93,7 @@ struct ComposeView: View {
             .onChange(of: store.config) { fixSelection() }
             // 前に送った結果を、選び直した送り先の結果と見間違えないように消す
             .onChange(of: selectedID) { if !isSending { lastResult = nil } }
+            .onReceive(Timer.publish(every: 60, on: .main, in: .common).autoconnect()) { now = $0 }
         }
     }
 
@@ -203,8 +216,20 @@ struct ComposeView: View {
     private static let headerPlaneWidth: CGFloat = 72
 
     private func send() async {
-        guard let destination, let body = MessageText.normalized(text) else { return }
+        guard let destination, let body = MessageText.normalized(text), !isSending else { return }
         focused = false
+        // 最初の await より前に立てる (StoreKit を読んでいる間にもう一度送れないように)
+        isSending = true
+        // お試しの期限を画面を開いたまま過ぎることがあるので、送る直前にその場で読んだ結果で確かめる
+        let access = await EntitlementStore.currentAccess()
+        Task { await entitlements.refresh() }
+        now = .now
+        if let blocked = access.blockedMessage {
+            isSending = false
+            lastResult = SendOutcome(status: .failed(reason: "送っていません。\(blocked)"), destinationName: destination.displayName)
+            UINotificationFeedbackGenerator().notificationOccurred(.error)
+            return
+        }
         await run(destinationName: destination.displayName) {
             await MessageDispatcher.shared.send(text: body, destination: destination, source: "phone")
         } onResult: { status in

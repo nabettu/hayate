@@ -8,6 +8,7 @@ struct DestinationListView: View {
     var body: some View {
         NavigationStack {
             List {
+                AccessBanner()
                 ForEach([store.saveError, store.syncError].compactMap { $0 }, id: \.self) { message in
                     Label(message, systemImage: "exclamationmark.triangle.fill").foregroundStyle(.red)
                 }

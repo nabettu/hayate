@@ -6,6 +6,8 @@ enum SyncKeys {
     static let request = "request"
     static let revision = "revision"
     static let epoch = "epoch"
+    /// 購入の状態 (`EntitlementSnapshot` の JSON)。秘密ではないので applicationContext に置く
+    static let entitlement = "entitlement"
     /// 時計 → iPhone の applicationContext。時計の履歴の写し (`HistorySnapshot` の JSON)。
     static let history = "history"
 }

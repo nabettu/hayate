@@ -10,6 +10,9 @@ struct WatchHookApp: App {
     init() {
         PhoneSync.shared.activate()
         ConfigStore.shared.onChange = { PhoneSync.shared.push($0) }  // 失敗の理由は ConfigStore.syncError に入る
+        // 購入の状態が変わったら時計へ知らせる (設定の版と一緒に applicationContext に載せる)
+        EntitlementStore.shared.onChange = { ConfigStore.shared.resync() }
+        EntitlementStore.shared.start()
     }
 
     var body: some Scene {
@@ -35,6 +38,7 @@ struct WatchHookApp: App {
         .onChange(of: scenePhase) { _, phase in
             if phase == .active {
                 ConfigStore.shared.reloadIfNeeded()
+                Task { await EntitlementStore.shared.refresh() }
                 WatchHistoryStore.shared.reloadIfNeeded()
                 Task { await MessageDispatcher.shared.flush() }
             }

@@ -11,6 +11,9 @@ struct WatchHomeView: View {
     @State private var flight: FlightPhase = .idle
     /// 話すボタンの位置 (送るときにここから紙飛行機が飛び立つ)。
     @State private var orbFrame: CGRect = .zero
+    @State private var entitlements = EntitlementStore.shared
+    /// お試しの期限を画面を開いたまま過ぎても表示を変えるため、1 分ごとに進める。
+    @State private var now = Date.now
 
     private var destination: Destination? { store.config.resolve(selectedID: selectedID) }
 
@@ -22,6 +25,7 @@ struct WatchHomeView: View {
                         ScrollView {
                             VStack(spacing: 8) {
                                 saveErrorView
+                                accessView
                                 // 標準の入力画面 (音声入力・スクリブル) を開く。ダブルタップでも押せる
                                 TextFieldLink(prompt: Text("話してください")) {
                                     MicOrb(isBusy: isSending)
@@ -31,7 +35,7 @@ struct WatchHomeView: View {
                                 }
                                 .buttonStyle(.plain)
                                 .handGestureShortcut(.primaryAction)
-                                .disabled(isSending)
+                                .disabled(isSending || !entitlements.access(now: now).canSend)
                                 .accessibilityLabel("話す")
 
                                 statusView
@@ -77,6 +81,7 @@ struct WatchHomeView: View {
                                     launchFadesIn: true)
                             .ignoresSafeArea()
                     }
+                    .onReceive(Timer.publish(every: 60, on: .main, in: .common).autoconnect()) { now = $0 }
                     .onAppear(perform: fixSelection)
                     .onChange(of: store.config) { fixSelection() }
                     // 前に送った結果を、選び直した送り先の結果と見間違えないように消す
@@ -106,6 +111,15 @@ struct WatchHomeView: View {
             .containerBackground(for: .navigation) { CosmicBackground(starCount: 26) }
         }
         .tint(Cosmos.lavender)
+    }
+
+    /// お試し前・お試しが終わったとき。購入は iPhone で行う。
+    @ViewBuilder private var accessView: some View {
+        if let message = entitlements.access(now: now).blockedMessage {
+            Label(message, systemImage: "lock.fill")
+                .font(.caption2)
+                .foregroundStyle(.orange)
+        }
     }
 
     /// iPhone から届いた設定を時計に保存できなかったとき。
@@ -148,7 +162,20 @@ struct WatchHomeView: View {
     }
 
     private func send(_ text: String, to destination: Destination) async {
-        guard let text = MessageText.normalized(text) else { return }
+        // 最初の await より前に立てる (StoreKit を読んでいる間にもう一度送れないように)
+        guard let text = MessageText.normalized(text), !isSending else { return }
+        isSending = true
+        // 画面を開いたままお試しの期限を過ぎることがあるので、送る直前にも確かめる。
+        // 画面用の refresh は別の refresh と重なると結果を捨てるので、判定はその場で読んだ結果で行う
+        let access = await EntitlementStore.currentAccess()
+        Task { await entitlements.refresh() }  // 画面の表示も合わせる
+        now = .now
+        if let blocked = access.blockedMessage {
+            isSending = false
+            lastResult = SendOutcome(status: .failed(reason: "送っていません。\(blocked)"), destinationName: destination.displayName)
+            WKHaptic.play(.failure)
+            return
+        }
         await run(destinationName: destination.displayName) {
             await MessageDispatcher.shared.send(text: text, destination: destination, source: "watch")
         }
@@ -219,6 +246,8 @@ private enum WKHaptic {
 struct WatchHistoryView: View {
     @State private var entries: [MessageLogEntry] = []
     @State private var sending: Set<UUID> = []
+    /// お試しの期限を画面を開いたまま過ぎても、再送ボタンを消すため 1 分ごとに進める。
+    @State private var now = Date.now
 
     var body: some View {
         List {
@@ -233,7 +262,7 @@ struct WatchHistoryView: View {
                 }
                 .listRowBackground(RoundedRectangle(cornerRadius: 14, style: .continuous).fill(Cosmos.card))
                 .swipeActions {
-                    if case .sent = e.status {} else {
+                    if case .sent = e.status {} else if EntitlementStore.shared.access(now: now).canSend {
                         Button("再送") {
                             Task {
                                 await MessageDispatcher.shared.retry(e.id)
@@ -245,6 +274,7 @@ struct WatchHistoryView: View {
             }
         }
         .navigationTitle("履歴")
+        .onReceive(Timer.publish(every: 60, on: .main, in: .common).autoconnect()) { now = $0 }
         .containerBackground(for: .navigation) { CosmicBackground(starCount: 26) }
         .task { await reload() }
         .onReceive(NotificationCenter.default.publisher(for: MessageDispatcher.didChange)) { _ in

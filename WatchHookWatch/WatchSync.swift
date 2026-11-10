@@ -1,4 +1,5 @@
 import Foundation
+import Synchronization
 import WatchConnectivity
 import WatchHookCore
 
@@ -47,6 +48,8 @@ final class WatchSync: NSObject, WCSessionDelegate, @unchecked Sendable {
 
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         guard activationState == .activated else { return }
+        // 前回の起動から後に届いていた購入の状態を拾う
+        receiveEntitlement(from: session.receivedApplicationContext)
         requestConfig()
         // 起動直後で、まだつながる前に保存された履歴も送る
         Task { await MessageDispatcher.shared.publishHistory() }
@@ -66,11 +69,27 @@ final class WatchSync: NSObject, WCSessionDelegate, @unchecked Sendable {
 
     /// iPhone で設定が変わった知らせ (版だけ)。手元より新しければ本体を取りに行く。
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String: Any]) {
+        // 購入の状態 (iPhone の StoreKit で読んだもの)。時計の StoreKit に届くまでの間も使えるように合わせて使う
+        receiveEntitlement(from: applicationContext)
         guard let revision = applicationContext[SyncKeys.revision] as? Int,
               let epoch = (applicationContext[SyncKeys.epoch] as? String).flatMap(UUID.init(uuidString:)) else { return }
         Task { @MainActor in
             if DestinationConfig(revision: revision, epoch: epoch).isNewer(than: ConfigStore.shared.config) {
                 self.requestConfig()
+            }
+        }
+    }
+
+    /// 届いた購入の状態は、最新の 1 件を置いてから MainActor で読む。
+    /// Task ごとに値を持たせると実行順が保証されず、購入済み → 返金済みと続けて届いたときに古いほうが最後に反映されうる
+    private let latestEntitlement = Mutex<EntitlementSnapshot?>(nil)
+
+    private func receiveEntitlement(from context: [String: Any]) {
+        guard let entitlement = (context[SyncKeys.entitlement] as? Data).flatMap({ try? EntitlementSnapshot.decode($0) }) else { return }
+        latestEntitlement.withLock { $0 = entitlement }
+        Task { @MainActor in
+            if let latest = self.latestEntitlement.withLock({ $0 }) {
+                EntitlementStore.shared.receiveHint(latest)
             }
         }
     }

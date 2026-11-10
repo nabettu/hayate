@@ -62,6 +62,10 @@ struct SendTextIntent: AppIntent {
         guard let trimmed = MessageText.normalized(text) else {
             return .result(dialog: "テキストが空でした。")
         }
+        // お試し前・お試しが終わったあとは送らない (送り先の登録・テスト送信・溜まった分の再送はできる)
+        if let blocked = await EntitlementStore.currentAccess().blockedMessage {
+            return .result(dialog: "送っていません。\(blocked)")
+        }
         #if os(watchOS)
         let source = "siri-watch"
         #else

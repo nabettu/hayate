@@ -7,6 +7,8 @@ struct HistoryView: View {
     @State private var entries: [MessageLogEntry] = []
     @State private var sending: Set<UUID> = []
     @State private var watchHistory = WatchHistoryStore.shared
+    /// お試しの期限を画面を開いたまま過ぎても、再送ボタンを消すため 1 分ごとに進める。
+    @State private var now = Date.now
 
     private var rows: [CombinedHistory.Row] {
         CombinedHistory.rows(local: entries, watch: watchHistory.entries)
@@ -47,7 +49,7 @@ struct HistoryView: View {
                             Button("削除", role: .destructive) {
                                 Task { await MessageDispatcher.shared.remove(e.id); await reload() }
                             }
-                            if !isSent(e.status) {
+                            if !isSent(e.status), EntitlementStore.shared.access(now: now).canSend {
                                 Button("再送") {
                                     Task { await MessageDispatcher.shared.retry(e.id); await reload() }
                                 }.tint(.blue)
@@ -65,6 +67,7 @@ struct HistoryView: View {
             }
             .navigationTitle("履歴")
             .cosmicListBackground()
+            .onReceive(Timer.publish(every: 60, on: .main, in: .common).autoconnect()) { now = $0 }
             .refreshable {
                 await MessageDispatcher.shared.flush()
                 await reload()

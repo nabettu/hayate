@@ -30,5 +30,8 @@ MVP の土台を作った (未リリース・シミュレータでのみ確認)�
 - [ ] サイトのドメイン: hayate.app / hayate.io / gethayate.com は取られている。hayateapp.com は空いていた (2026-11-10)
 - [ ] プライバシーポリシー (アプリ専用)・サポート URL
 - [ ] プライバシーラベル: 自前で集めるものは無い (送信先はユーザーが登録したもの)。SDK を入れたら `docs/privacy-labels.md` を作る
-- [ ] 強制アップデートと GA4 の計測 (`~/work/docs/global-rules/app-analytics.md`) を v1 に入れるか決める (Firebase を入れるかどうか)
-- [ ] 課金するか決める
+- [ ] 強制アップデートと GA4 の計測 (課金のイベントは `docs/BILLING.md` の「計測」) (`~/work/docs/global-rules/app-analytics.md`) を v1 に入れるか決める (Firebase を入れるかどうか)
+- [x] 課金の形: 7 日間の無料お試し (0 円の非消耗型) + 買い切り $9.99 / 1,500 円 (2026-11-10 決定。`docs/BILLING.md`)
+- [x] App Store Connect にアプリと IAP 商品を 2 つ作る (2026-11-10。`docs/BILLING.md` の「App Store Connect の状態」)
+- [ ] IAP の審査用スクリーンショット (購入画面) を載せる。両方とも `MISSING_METADATA` のまま
+- [ ] Sandbox で購入・復元・時計への反映を実機で確かめる
