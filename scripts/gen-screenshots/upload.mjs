@@ -52,17 +52,33 @@ const jobs = [];
 // 前のプロセスが落ちて残ったロックは、その pid が居なければ引き継ぐ
 const LOCK = path.join(ROOT, "screenshots/app-store/.upload.lock");
 const alive = (pid) => { try { process.kill(pid, 0); return true; } catch { return false; } };
-if (!dryRun) {
+// 起動した asc。止められたら子に止めるよう伝え、全部終わってからロック・一時画像を消す (親だけ先に終わると、子が ASC を書き換え続けたまま次が動ける)
+const children = new Set();
+let stopping = false;
+function stop() {
+  if (stopping) return;
+  stopping = true;
+  for (const c of children) c.kill("SIGTERM");
+  const wait = () => (children.size ? setTimeout(wait, 200) : process.exit(130));
+  wait();
+}
+function takeLock() {
   fs.mkdirSync(path.dirname(LOCK), { recursive: true });
-  try {
-    fs.writeFileSync(LOCK, String(process.pid), { flag: "wx" });
-  } catch {
-    const owner = Number(fs.readFileSync(LOCK, "utf8"));
-    if (alive(owner)) { console.error(`別の upload.mjs (pid ${owner}) が動いている。終わってから動かす`); process.exit(2); }
-    fs.writeFileSync(LOCK, String(process.pid));
-  }
+  try { fs.writeFileSync(LOCK, String(process.pid), { flag: "wx" }); return; } catch {}
+  const owner = Number(fs.readFileSync(LOCK, "utf8"));
+  if (alive(owner)) { console.error(`別の upload.mjs (pid ${owner}) が動いている。終わってから動かす`); process.exit(2); }
+  // 残ったロックを引き継ぐ。rename は 1 つしか成功しないので、同時に起動しても片方だけが進む
+  const stale = `${LOCK}.${process.pid}`;
+  try { fs.renameSync(LOCK, stale); } catch { console.error("ロックを別のプロセスが先に取った。終わってから動かす"); process.exit(2); }
+  const got = Number(fs.readFileSync(stale, "utf8"));
+  fs.rmSync(stale);
+  if (got !== owner) { console.error("ロックを別のプロセスが先に取った。終わってから動かす"); process.exit(2); }
+  try { fs.writeFileSync(LOCK, String(process.pid), { flag: "wx" }); } catch { console.error("ロックを別のプロセスが先に取った。終わってから動かす"); process.exit(2); }
+}
+if (!dryRun) {
+  takeLock();
   process.on("exit", () => { try { if (Number(fs.readFileSync(LOCK, "utf8")) === process.pid) fs.rmSync(LOCK); } catch {} });
-  for (const sig of ["SIGINT", "SIGTERM"]) process.on(sig, () => process.exit(130));
+  for (const sig of ["SIGINT", "SIGTERM", "SIGHUP"]) process.on(sig, stop);
 }
 // 上げ終わったセットの記録 (ロケール・端末 → 画像のハッシュ)。生成物と同じく git に入れない
 const DONE_FILE = path.join(ROOT, "screenshots/app-store/.uploaded.json");
@@ -105,19 +121,20 @@ const run = (job) => new Promise((resolve) => {
   // dry-run は上げる・消す予定の表を見るために出す。本番は表が長いので捨てる (エラーは集める)
   let err = "";
   const p = spawn("asc", a, { env: ASC_ENV, stdio: ["ignore", dryRun ? "inherit" : "ignore", "pipe"] });
+  children.add(p);
   let settled = false;
   const finish = (code, message) => { if (!settled) { settled = true; resolve({ ...job, code, err: message.trim() }); } };
   p.stderr.on("data", (d) => { err += d; });
   // asc が無い・起動できないときも 1 件の失敗として集め、ほかのジョブは続ける
-  p.on("error", (e) => finish(-1, String(e)));
-  p.on("close", (code) => finish(code, err));
+  p.on("error", (e) => { children.delete(p); finish(-1, String(e)); });
+  p.on("close", (code) => { children.delete(p); finish(code, err); });
 });
 
 const failures = [];
 let finished = 0;
 const queue = [...jobs];
 await Promise.all(Array.from({ length: dryRun ? 1 : CONCURRENCY }, async () => {
-  while (queue.length) {
+  while (queue.length && !stopping) {
     const r = await run(queue.shift());
     finished++;
     console.log(`[${finished}/${jobs.length}] ${r.locale} ${r.deviceType} (${r.count} 枚) ${r.code === 0 ? "OK" : "失敗"}`);
