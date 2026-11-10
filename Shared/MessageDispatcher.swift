@@ -99,7 +99,7 @@ actor MessageDispatcher {
         // (この呼び出しか、並行した別の送信の保存で一度でも書けていれば、次の flush で送り直される)
         if case .pending = status, !persistedIDs.contains(message.id) {
             // 表示と実際をそろえる: 再送待ちのまま残すと、あとで自動で送られて「送り直せません」と食い違う
-            let reason = "端末に保存できなかったため、送り直せません"
+            let reason = String(localized: "端末に保存できなかったため、送り直せません")
             log.apply(.permanentFailure(reason: reason), to: message.id)
             return .failed(reason: reason)
         }
@@ -135,7 +135,7 @@ actor MessageDispatcher {
                 // 設定を読めないとき (ロック中など) は「送り先が消えた」と決めつけず、再送待ちのまま次の機会に回す
                 guard let config = try? ConfigStore.loadFromKeychain() else { return }
                 guard let destination = config.destination(id: entry.message.destinationID) else {
-                    log.apply(.permanentFailure(reason: "送り先が削除されています"), to: entry.id)
+                    log.apply(.permanentFailure(reason: String(localized: "送り先が削除されています")), to: entry.id)
                     persist()
                     continue
                 }
@@ -246,16 +246,16 @@ actor MessageDispatcher {
 extension MessageLogEntry {
     /// 通信中かどうかは状態ではなく `MessageDispatcher.sendingIDs` で見る (キャンセル後に「送信中」のまま残さない)。
     func label(sending: Set<UUID>) -> String {
-        sending.contains(id) ? "送信中" : status.label
+        sending.contains(id) ? String(localized: "送信中") : status.label
     }
 }
 
 extension MessageStatus {
     var label: String {
         switch self {
-        case .sent: "送信済み"
-        case .pending: "未送信"
-        case .failed: "失敗"
+        case .sent: String(localized: "送信済み")
+        case .pending: String(localized: "未送信")
+        case .failed: String(localized: "失敗")
         }
     }
 

@@ -1,0 +1,17 @@
+{
+  "name": "Hayate",
+  "subtitle": "Från Apple Watch till webhook",
+  "promotionalText": "Tala till Apple Watch så skickas det till Slack, Discord eller din egen webhook. Skicka dina idéer direkt från handleden.",
+  "keywords": "webhook,röststyrning,röst,anteckning,Slack,Discord,Siri,klocka,API,automation,genväg,röstmemo,skicka",
+  "description": "Hayate skickar det du säger till Apple Watch rakt av till de mål (webhooks) du har registrerat.\n\n■ Det här kan du göra\n・Tryck på ”Tala” på Apple Watch och tala för att skicka (med Dubbeltryck på Series 9 / Ultra 2 eller senare)\n・Säg ”Hey Siri, skicka med Hayate” för att skicka handsfree (fungerar även med Siri på iPhone)\n・Fria målinställningar: URL, metod, rubriker (t.ex. Authorization) och innehållsmall\n・Slack och Discord: klistra bara in URL:en\n・Klockan skickar direkt till målet, utan att gå via iPhone\n・Det som inte kunde skickas sparas och skickas igen nästa gång du öppnar appen\n・Historik över skickat, testutskick och komplikation på urtavlan\n\n■ Användningsexempel\n・Skicka en snabb anteckning till en Slack-kanal\n・Skicka inköpslistor och uppgifter till din egen tjänst\n・Ta emot i n8n, Zapier eller din egen server och automatisera\n\n■ För mottagaren\n・I innehållet kan du använda {{text}} (det du sa), {{id}}, {{sentAt}} och {{source}}\n・Rubriken X-WatchHook-Message-Id har samma värde även vid omsändning, så den kan användas för att ta bort dubbletter\n\n■ Datahantering\n・Målinställningarna (inklusive autentiseringsrubriker) sparas bara i Keychain på iPhone och Apple Watch\n・Det du säger skickas bara till de mål du registrerat. Det går inte via utvecklarens servrar\n\n■ Pris\nDu kan prova gratis i 7 dagar. Därefter kan du fortsätta med ett engångsköp i appen. Det finns inget abonnemang.",
+  "iap": {
+    "trial": {
+      "name": "7 dagars gratis prov",
+      "description": "Alla funktioner i 7 dagar. Ingen automatisk debitering."
+    },
+    "unlock": {
+      "name": "Hayate (engångsköp)",
+      "description": "Skicka från klockan, Siri och iPhone. Betala en gång."
+    }
+  }
+}

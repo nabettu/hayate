@@ -10,12 +10,12 @@ public enum DestinationValidationError: Error, Equatable, Sendable, LocalizedErr
 
     public var errorDescription: String? {
         switch self {
-        case .invalidURL: "URL が正しくありません"
-        case .insecureURL: "https の URL だけ使えます"
-        case .forbiddenHeader(let n): "ヘッダ \(n) は指定できません"
-        case .invalidHeaderName(let n): "ヘッダ名「\(n)」が正しくありません"
-        case .invalidHeaderValue(let n): "ヘッダ \(n) の値に改行は入れられません"
-        case .bodyIsNotJSON: "本文が JSON になりません (テンプレートを確認してください)"
+        case .invalidURL: String(localized: "URL が正しくありません", bundle: .module)
+        case .insecureURL: String(localized: "https の URL だけ使えます", bundle: .module)
+        case .forbiddenHeader(let n): String(localized: "ヘッダ \(n) は指定できません", bundle: .module)
+        case .invalidHeaderName(let n): String(localized: "ヘッダ名「\(n)」が正しくありません", bundle: .module)
+        case .invalidHeaderValue(let n): String(localized: "ヘッダ \(n) の値に改行は入れられません", bundle: .module)
+        case .bodyIsNotJSON: String(localized: "本文が JSON になりません (テンプレートを確認してください)", bundle: .module)
         }
     }
 }

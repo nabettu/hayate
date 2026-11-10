@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "பேசினால் போதும்\n*webhook* க்குச் செல்லும்",
+      "chips": [
+        "Slack",
+        "Discord",
+        "சொந்த API"
+      ],
+      "closing": "நினைத்ததும்\n*மணிக்கட்டிலிருந்து* அனுப்பு"
+    },
+    "siri": {
+      "h1": "*Hey Siri* சொன்னால்\nகை தேவையில்லை",
+      "chips": [
+        "Siri",
+        "இரட்டைத் தட்டு",
+        "வாட்ச் ஃபேஸ்"
+      ],
+      "closing": "கைகள் நிறைந்திருந்தாலும்\n*குரலால்* அனுப்பு"
+    },
+    "destination": {
+      "h1": "சேருமிடம்\n*உங்கள் விருப்பம்*",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "Authorization Keychain இல்",
+        "{{text}} இல் பேசியது"
+      ],
+      "closing": "சொந்த சர்வருக்கும்\n*அப்படியே* சேரும்"
+    },
+    "direct": {
+      "h1": "வாட்சிலிருந்து\n*நேரடியாக*",
+      "chips": [
+        "Wi-Fi",
+        "மொபைல் டேட்டா"
+      ],
+      "floats": [
+        "செல்லாததைச் சேமிக்கும்",
+        "அடுத்து திறந்ததும் மீண்டும்"
+      ],
+      "closing": "சிக்னல் குறைவிலும்\n*எதுவும் தவறாது*"
+    },
+    "more": {
+      "h1": "இன்னும்\n*நிறைய.*",
+      "cells": [
+        "Authorization\nKeychain இல் சேமிப்பு",
+        "Slack, Discord க்கு\nURL ஒட்டினால் போதும்",
+        "வாட்ச் ஃபேஸிலிருந்து\nஉடனே தொடங்கும்",
+        "அனுப்பியவற்றின்\nவரலாறு",
+        "சோதனை அனுப்பி\nசேர்ந்ததா எனப் பார்",
+        "மீண்டும் அனுப்பினாலும்\nஅதே செய்தி ID"
+      ],
+      "closing": "பேசியது\n*உங்கள் அமைப்புக்கு*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "பேசு",
+    "sent": "“Slack #memo” க்கு அனுப்பப்பட்டது",
+    "history": "வரலாறு",
+    "destinationsTitle": "சேருமிடங்கள்",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "செலவு API"
+    ],
+    "spoken": [
+      "பாலும் முட்டையும் வாங்கணும்",
+      "நாளை 10 மணிக்குப் பல் மருத்துவர்",
+      "பார்க்கிங் B2, இடம் 14"
+    ],
+    "statusSent": "அனுப்பப்பட்டது",
+    "statusPending": "அனுப்பப்படவில்லை",
+    "siriDialog": "Slack #memo க்கு அனுப்பப்பட்டது.",
+    "defaultMark": "(இயல்புநிலை)",
+    "siriAsk": "Hayate இல் அனுப்பு",
+    "siriQuestion": "எதை அனுப்ப வேண்டும்?",
+    "quote": [
+      "“",
+      "”"
+    ],
+    "edit": {
+      "cancel": "ரத்துசெய்",
+      "save": "சேமி",
+      "nameLabel": "பெயர்",
+      "name": "செலவு API",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "https URL மட்டுமே பயன்படுத்தலாம்.",
+      "request": "கோரிக்கை",
+      "method": "முறை",
+      "bodyFormat": "உடற்பகுதியின் வடிவம்",
+      "bodyFormatValue": "JSON",
+      "headers": "ஹெடர்",
+      "addHeader": "ஹெடரைச் சேர்",
+      "hideSecret": "ரகசிய மதிப்பாக மறை",
+      "headersFooter": "Authorization போன்ற அங்கீகார ஹெடர்களைப் பதிவு செய்யலாம். மதிப்புகள் iPhone மற்றும் Apple Watch இன் Keychain இல் மட்டுமே சேமிக்கப்படும்.",
+      "body": "உடற்பகுதி",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "சோதனை அனுப்புதல்"
+    }
+  }
+}

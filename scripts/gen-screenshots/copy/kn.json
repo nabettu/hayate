@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "ಮಾತನಾಡಿದರೆ ಸಾಕು,\n*webhook* ಗೆ ತಲುಪುತ್ತದೆ",
+      "chips": [
+        "Slack",
+        "Discord",
+        "ಸ್ವಂತ API"
+      ],
+      "closing": "ಮನಸ್ಸಿಗೆ ಬಂದರೆ\n*ಮಣಿಕಟ್ಟಿನಿಂದ* ಕಳುಹಿಸಿ"
+    },
+    "siri": {
+      "h1": "*Hey Siri* ಎನ್ನಿ\nಕೈ ಬಳಸದೆ",
+      "chips": [
+        "Siri",
+        "ಡಬಲ್ ಟ್ಯಾಪ್",
+        "ವಾಚ್ ಫೇಸ್"
+      ],
+      "closing": "ಕೈ ತುಂಬಿದ್ದರೂ\n*ಧ್ವನಿಯಿಂದ* ಕಳುಹಿಸಿ"
+    },
+    "destination": {
+      "h1": "ಗಮ್ಯಸ್ಥಾನ ಆರಿಸಿ\n*ನಿಮ್ಮಿಷ್ಟದಂತೆ*",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "ಆಥ್ ಹೆಡರ್ Keychain ನಲ್ಲಿ",
+        "{{text}} ನಲ್ಲಿ ಹೇಳಿದ ಮಾತು"
+      ],
+      "closing": "ಸ್ವಂತ ಸರ್ವರ್‌ಗೂ\n*ನೇರವಾಗಿ* ತಲುಪುತ್ತದೆ"
+    },
+    "direct": {
+      "h1": "ವಾಚ್‌ನಿಂದ\n*ನೇರವಾಗಿ* ತಲುಪಿಸಿ",
+      "chips": [
+        "Wi-Fi",
+        "ಮೊಬೈಲ್ ಡೇಟಾ"
+      ],
+      "floats": [
+        "ಹೋಗದ್ದನ್ನು ಉಳಿಸುತ್ತದೆ",
+        "ಮುಂದಿನ ಬಾರಿ ಮತ್ತೆ ಕಳುಹಿಸುತ್ತದೆ"
+      ],
+      "closing": "ಸಿಗ್ನಲ್ ದುರ್ಬಲವಾದರೂ\n*ಏನೂ ಕಳೆದುಹೋಗದು*"
+    },
+    "more": {
+      "h1": "ಇನ್ನೂ\n*ಬಹಳಷ್ಟು.*",
+      "cells": [
+        "ಆಥ್ ಹೆಡರ್\nKeychain ನಲ್ಲಿ ಉಳಿತಾಯ",
+        "Slack, Discord ಗೆ\nURL ಪೇಸ್ಟ್ ಸಾಕು",
+        "ವಾಚ್ ಫೇಸ್‌ನಿಂದ\nತಕ್ಷಣ ಆರಂಭ",
+        "ಕಳುಹಿಸಿದ್ದರ\nಇತಿಹಾಸ",
+        "ಟೆಸ್ಟ್ ಕಳುಹಿಸಿ\nನೋಡಿಕೊಳ್ಳಿ",
+        "ಮರುಕಳುಹಿಸಿದರೂ\nಒಂದೇ ಸಂದೇಶ ID"
+      ],
+      "closing": "ಹೇಳಿದ ಮಾತು ಹೋಗಲಿ\n*ನಿಮ್ಮ ವ್ಯವಸ್ಥೆಗೆ*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "ಮಾತನಾಡಿ",
+    "sent": "“Slack #memo” ಗೆ ಕಳುಹಿಸಲಾಗಿದೆ",
+    "history": "ಇತಿಹಾಸ",
+    "destinationsTitle": "ಗಮ್ಯಸ್ಥಾನ",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "ಖರ್ಚು API"
+    ],
+    "spoken": [
+      "ಹಾಲು ಮತ್ತು ಮೊಟ್ಟೆ ಕೊಳ್ಳಬೇಕು",
+      "ನಾಳೆ ಬೆಳಿಗ್ಗೆ 10 ಕ್ಕೆ ದಂತವೈದ್ಯರು",
+      "ಪಾರ್ಕಿಂಗ್ B2 ನ 14 ನೇ ಸ್ಥಳ"
+    ],
+    "statusSent": "ಕಳುಹಿಸಲಾಗಿದೆ",
+    "statusPending": "ಕಳುಹಿಸಿಲ್ಲ",
+    "siriDialog": "Slack #memo ಗೆ ಕಳುಹಿಸಲಾಗಿದೆ.",
+    "defaultMark": "(ಡಿಫಾಲ್ಟ್)",
+    "siriAsk": "Hayate ನಲ್ಲಿ ಕಳುಹಿಸು",
+    "siriQuestion": "ಏನು ಕಳುಹಿಸಬೇಕು?",
+    "quote": [
+      "“",
+      "”"
+    ],
+    "edit": {
+      "cancel": "ರದ್ದುಮಾಡಿ",
+      "save": "ಉಳಿಸಿ",
+      "nameLabel": "ಹೆಸರು",
+      "name": "ಖರ್ಚು API",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "https URL ಮಾತ್ರ ಬಳಸಬಹುದು.",
+      "request": "ರಿಕ್ವೆಸ್ಟ್",
+      "method": "ಮೆಥಡ್",
+      "bodyFormat": "ಬಾಡಿಯ ಸ್ವರೂಪ",
+      "bodyFormatValue": "JSON",
+      "headers": "ಹೆಡರ್",
+      "addHeader": "ಹೆಡರ್ ಸೇರಿಸಿ",
+      "hideSecret": "ರಹಸ್ಯ ಮೌಲ್ಯವಾಗಿ ಮರೆಮಾಡಿ",
+      "headersFooter": "Authorization ನಂತಹ ದೃಢೀಕರಣ ಹೆಡರ್‌ಗಳನ್ನು ಸೇರಿಸಬಹುದು. ಮೌಲ್ಯವನ್ನು iPhone ಮತ್ತು Apple Watch ನ Keychain ನಲ್ಲಿ ಮಾತ್ರ ಉಳಿಸಲಾಗುತ್ತದೆ.",
+      "body": "ಬಾಡಿ",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "ಟೆಸ್ಟ್ ಕಳುಹಿಸಿ"
+    }
+  }
+}

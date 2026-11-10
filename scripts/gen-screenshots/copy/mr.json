@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "फक्त बोला,\n*webhook* वर पोहोचेल",
+      "chips": [
+        "Slack",
+        "Discord",
+        "स्वतःचा API"
+      ],
+      "closing": "मनात येताच\n*मनगटावरून* पाठवा"
+    },
+    "siri": {
+      "h1": "*Hey Siri* म्हणा\nहात न लावता",
+      "chips": [
+        "Siri",
+        "डबल टॅप",
+        "वॉच फेस"
+      ],
+      "closing": "हात भरलेले असले तरी\n*आवाजाने* पाठवा"
+    },
+    "destination": {
+      "h1": "गंतव्य ठरवा\n*हवे तसे*",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "ऑथ हेडर Keychain मध्ये",
+        "{{text}} मध्ये बोललेले"
+      ],
+      "closing": "स्वतःच्या सर्व्हरवरही\n*थेट* पोहोचते"
+    },
+    "direct": {
+      "h1": "घड्याळातून\n*थेट* पोहोचवा",
+      "chips": [
+        "Wi-Fi",
+        "मोबाइल डेटा"
+      ],
+      "floats": [
+        "न गेलेले साठवून ठेवते",
+        "पुढच्या वेळी उघडल्यावर पुन्हा पाठवते"
+      ],
+      "closing": "नेटवर्क कमकुवत असले तरी\n*काही हरवत नाही*"
+    },
+    "more": {
+      "h1": "आणखीही\n*बरेच काही.*",
+      "cells": [
+        "ऑथ हेडर\nKeychain मध्ये साठवले",
+        "Slack, Discord साठी\nफक्त URL पेस्ट",
+        "वॉच फेसवरून\nलगेच सुरू",
+        "पाठवलेल्याचा\nइतिहास",
+        "टेस्ट पाठवून\nखात्री करा",
+        "पुन्हा पाठवले तरी\nतोच संदेश ID"
+      ],
+      "closing": "बोललेले शब्द जावोत\n*तुमच्या प्रणालीत*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "बोला",
+    "sent": "“Slack #memo” वर पाठवले",
+    "history": "इतिहास",
+    "destinationsTitle": "गंतव्ये",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "खर्च API"
+    ],
+    "spoken": [
+      "दूध आणि अंडी आणायची",
+      "उद्या सकाळी 10 वाजता दंतवैद्य",
+      "पार्किंग B2 मध्ये 14 क्रमांक"
+    ],
+    "statusSent": "पाठवले",
+    "statusPending": "पाठवले नाही",
+    "siriDialog": "Slack #memo वर पाठवले.",
+    "defaultMark": "(डीफॉल्ट)",
+    "siriAsk": "Hayate ने पाठवा",
+    "siriQuestion": "काय पाठवायचे?",
+    "quote": [
+      "“",
+      "”"
+    ],
+    "edit": {
+      "cancel": "रद्द करा",
+      "save": "सेव्ह करा",
+      "nameLabel": "नाव",
+      "name": "खर्च API",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "फक्त https URL वापरता येतात.",
+      "request": "रिक्वेस्ट",
+      "method": "मेथड",
+      "bodyFormat": "बॉडीचे स्वरूप",
+      "bodyFormatValue": "JSON",
+      "headers": "हेडर",
+      "addHeader": "हेडर जोडा",
+      "hideSecret": "गुप्त मूल्य म्हणून लपवा",
+      "headersFooter": "Authorization सारखे ऑथेंटिकेशन हेडर नोंदवता येतात. मूल्य फक्त iPhone आणि Apple Watch च्या Keychain मध्ये साठवले जाते.",
+      "body": "बॉडी",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "टेस्ट पाठवा"
+    }
+  }
+}

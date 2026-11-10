@@ -10,6 +10,7 @@ Apple Watch の音声入力を webhook へ送るアプリ。画面に出る名�
 - 送り先の設定 (認証ヘッダを含む) は Keychain だけに置く。UserDefaults・ファイル・ログに出さない
 - 送信は時計から直接行う (iPhone を中継しない)。理由は docs/DESIGN.md
 - Bundle ID: `com.nabettu.watchhook` / `com.nabettu.watchhook.watchkitapp`。Team `2KDR72P2RA`
+- 文言は日本語で書き、44 言語に訳してある (String Catalog・ストア・スクショ)。文言を足したら訳も足す。手順は [scripts/l10n/README.md](scripts/l10n/README.md)
 - 新しい依存を足さない (今は Apple のフレームワークだけ)。足すなら `~/work/docs/global-rules/supply-chain.md`
 
 ## 完了の定義

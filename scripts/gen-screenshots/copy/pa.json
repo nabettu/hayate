@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "ਬੋਲੋ, ਬੱਸ\n*webhook* ਤੱਕ ਪਹੁੰਚ",
+      "chips": [
+        "Slack",
+        "Discord",
+        "ਆਪਣੀ API"
+      ],
+      "closing": "ਮਨ ਵਿੱਚ ਆਏ\n*ਗੁੱਟ ਤੋਂ* ਭੇਜੋ"
+    },
+    "siri": {
+      "h1": "*Hey Siri* ਨਾਲ\nਹੱਥ ਲਾਏ ਬਿਨਾਂ",
+      "chips": [
+        "Siri",
+        "ਡਬਲ ਟੈਪ",
+        "ਵਾਚ ਫੇਸ"
+      ],
+      "closing": "ਹੱਥ ਰੁੱਝੇ ਹੋਣ ਤਾਂ ਵੀ\n*ਆਵਾਜ਼ ਨਾਲ* ਭੇਜੋ"
+    },
+    "destination": {
+      "h1": "ਮੰਜ਼ਿਲ\n*ਆਪ* ਚੁਣੋ",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "Authorization Keychain ਵਿੱਚ",
+        "{{text}} ਵਿੱਚ ਬੋਲੀ ਗੱਲ"
+      ],
+      "closing": "ਆਪਣੇ ਸਰਵਰ ਤੱਕ ਵੀ\n*ਸਿੱਧਾ* ਪਹੁੰਚੇ"
+    },
+    "direct": {
+      "h1": "ਘੜੀ ਤੋਂ\n*ਸਿੱਧਾ* ਭੇਜੋ",
+      "chips": [
+        "Wi-Fi",
+        "ਮੋਬਾਈਲ ਡਾਟਾ"
+      ],
+      "floats": [
+        "ਨਾ ਗਿਆ ਹੋਇਆ ਰੱਖਿਆ ਜਾਂਦਾ",
+        "ਅਗਲੀ ਵਾਰ ਖੋਲ੍ਹਣ ’ਤੇ ਦੁਬਾਰਾ"
+      ],
+      "closing": "ਸਿਗਨਲ ਕਮਜ਼ੋਰ ਹੋਵੇ ਤਾਂ ਵੀ\n*ਕੁਝ ਨਹੀਂ ਛੁੱਟਦਾ*"
+    },
+    "more": {
+      "h1": "ਹੋਰ ਵੀ\n*ਬਹੁਤ ਕੁਝ।*",
+      "cells": [
+        "Authorization\nKeychain ਵਿੱਚ",
+        "Slack, Discord ਲਈ\nਬੱਸ URL ਪੇਸਟ",
+        "ਵਾਚ ਫੇਸ ਤੋਂ\nਤੁਰੰਤ ਖੁੱਲ੍ਹੇ",
+        "ਭੇਜੀਆਂ ਗੱਲਾਂ ਦਾ\nਇਤਿਹਾਸ",
+        "ਟੈਸਟ ਭੇਜ ਕੇ\nਪਹੁੰਚ ਦੇਖੋ",
+        "ਦੁਬਾਰਾ ਭੇਜਣ ’ਤੇ ਵੀ\nਉਹੀ ਸੁਨੇਹਾ ID"
+      ],
+      "closing": "ਬੋਲੀ ਗੱਲ\n*ਆਪਣੇ ਸਿਸਟਮ* ਤੱਕ"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "ਬੋਲੋ",
+    "sent": "“Slack #memo” ਨੂੰ ਭੇਜ ਦਿੱਤਾ",
+    "history": "ਇਤਿਹਾਸ",
+    "destinationsTitle": "ਮੰਜ਼ਿਲਾਂ",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "ਖਰਚ API"
+    ],
+    "spoken": [
+      "ਦੁੱਧ ਤੇ ਆਂਡੇ ਲੈਣੇ ਨੇ",
+      "ਕੱਲ੍ਹ 10 ਵਜੇ ਦੰਦਾਂ ਦਾ ਡਾਕਟਰ",
+      "ਪਾਰਕਿੰਗ B2 ਦੀ 14 ਨੰਬਰ"
+    ],
+    "statusSent": "ਭੇਜਿਆ ਗਿਆ",
+    "statusPending": "ਭੇਜਿਆ ਨਹੀਂ",
+    "siriDialog": "Slack #memo ਨੂੰ ਭੇਜ ਦਿੱਤਾ।",
+    "defaultMark": "(ਮੂਲ)",
+    "siriAsk": "Hayate ਨਾਲ ਭੇਜੋ",
+    "siriQuestion": "ਤੁਸੀਂ ਕੀ ਭੇਜਣਾ ਚਾਹੁੰਦੇ ਹੋ?",
+    "quote": [
+      "“",
+      "”"
+    ],
+    "edit": {
+      "cancel": "ਰੱਦ ਕਰੋ",
+      "save": "ਸੰਭਾਲੋ",
+      "nameLabel": "ਨਾਮ",
+      "name": "ਖਰਚ API",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "ਸਿਰਫ਼ https URL ਵਰਤੇ ਜਾ ਸਕਦੇ ਹਨ।",
+      "request": "ਬੇਨਤੀ",
+      "method": "ਮੈਥਡ",
+      "bodyFormat": "ਬਾਡੀ ਦਾ ਫਾਰਮੈਟ",
+      "bodyFormatValue": "JSON",
+      "headers": "ਹੈਡਰ",
+      "addHeader": "ਹੈਡਰ ਜੋੜੋ",
+      "hideSecret": "ਗੁਪਤ ਮੁੱਲ ਵਜੋਂ ਲੁਕਾਓ",
+      "headersFooter": "Authorization ਵਰਗੇ ਪ੍ਰਮਾਣੀਕਰਨ ਹੈਡਰ ਜੋੜ ਸਕਦੇ ਹੋ। ਮੁੱਲ ਸਿਰਫ਼ iPhone ਅਤੇ Apple Watch ਦੀ Keychain ਵਿੱਚ ਸੰਭਾਲੇ ਜਾਂਦੇ ਹਨ।",
+      "body": "ਬਾਡੀ",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "ਟੈਸਟ ਭੇਜੋ"
+    }
+  }
+}

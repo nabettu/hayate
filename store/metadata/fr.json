@@ -1,0 +1,17 @@
+{
+  "name": "Hayate",
+  "subtitle": "Votre voix vers un webhook",
+  "promotionalText": "Parlez à votre Apple Watch et envoyez à Slack, Discord ou à votre propre webhook. Ce qui vous passe par la tête part directement de votre poignet.",
+  "keywords": "webhook,dictée,voix,note,Slack,Discord,Siri,montre,API,automatisation,raccourcis,mémo,envoi,n8n",
+  "description": "Hayate envoie ce que vous dites à votre Apple Watch directement à la destination (webhook) que vous avez enregistrée.\n\n■ Fonctionnalités\n・Appuyez sur « Parler » sur l’Apple Watch et parlez pour envoyer (avec la Series 9 / Ultra 2 ou ultérieure, le double appui fonctionne aussi)\n・Dites « Dis Siri, envoie avec Hayate » pour envoyer sans les mains (aussi avec Siri sur l’iPhone)\n・Destinations librement configurables : URL, méthode, en-têtes (Authorization, etc.) et modèle de corps\n・Pour Slack et Discord, il suffit de coller l’URL\n・Envoi direct depuis la montre, sans passer par l’iPhone\n・Les envois qui échouent sont conservés et renvoyés à la prochaine ouverture de l’app\n・Historique des envois, envois de test et complication de cadran\n\n■ Exemples d’usage\n・Envoyer une note dans un canal Slack dès qu’elle vous vient\n・Envoyer une liste de courses ou de tâches vers votre propre service\n・Recevoir avec n8n, Zapier ou votre propre serveur pour automatiser\n\n■ Côté destinataire\n・Vous pouvez insérer dans le corps {{text}} (ce que vous avez dit), {{id}}, {{sentAt}} et {{source}}\n・L’en-tête X-WatchHook-Message-Id garde la même valeur en cas de renvoi, ce qui permet de supprimer les doublons\n\n■ Gestion des données\n・Les réglages de destination (en-têtes d’authentification compris) sont stockés uniquement dans le Keychain de l’iPhone et de l’Apple Watch\n・Ce que vous dites n’est envoyé qu’aux destinations que vous avez enregistrées, sans passer par les serveurs du développeur\n\n■ Tarif\nEssayez gratuitement pendant 7 jours. Ensuite, continuez avec un achat unique dans l’app. Il n’y a pas d’abonnement.",
+  "iap": {
+    "trial": {
+      "name": "Essai gratuit de 7 jours",
+      "description": "Toutes les fonctions 7 jours. Aucun prélèvement auto."
+    },
+    "unlock": {
+      "name": "Hayate (achat unique)",
+      "description": "Montre, Siri et iPhone. Un seul paiement."
+    }
+  }
+}

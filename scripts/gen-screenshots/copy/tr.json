@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "Konuşun,\n*webhook*’a gitsin",
+      "chips": [
+        "Slack",
+        "Discord",
+        "Kendi API’niz"
+      ],
+      "closing": "Aklınıza gelince\n*bilekten* gönderin"
+    },
+    "siri": {
+      "h1": "*Hey Siri*,\neller serbest",
+      "chips": [
+        "Siri",
+        "Çift Dokunma",
+        "Kadran"
+      ],
+      "closing": "Elleriniz doluyken\n*sesle* gönderin"
+    },
+    "destination": {
+      "h1": "Hedefi\n*siz seçin*",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "Başlık Keychain’de",
+        "{{text}} söylediğiniz metin"
+      ],
+      "closing": "Kendi sunucunuza\n*olduğu gibi* ulaşır"
+    },
+    "direct": {
+      "h1": "Saatten\n*doğrudan*",
+      "chips": [
+        "Wi-Fi",
+        "Hücresel"
+      ],
+      "floats": [
+        "Gönderilemeyen saklanır",
+        "Açılınca yeniden gönderilir"
+      ],
+      "closing": "Çekim zayıfsa da\n*hiçbiri kaybolmaz*"
+    },
+    "more": {
+      "h1": "Daha\n*fazlası.*",
+      "cells": [
+        "Kimlik başlığı\nKeychain’de",
+        "Slack ve Discord:\nyalnızca URL",
+        "Kadrandan\nhızlı açılış",
+        "Gönderilenlerin\ngeçmişi",
+        "Test gönderimiyle\nulaştığını doğrula",
+        "Yeniden gönderimde\naynı ileti kimliği"
+      ],
+      "closing": "Söyledikleriniz\n*kendi sisteminize*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "Konuş",
+    "sent": "“Slack #memo” hedefine gönderildi",
+    "history": "Geçmiş",
+    "destinationsTitle": "Hedefler",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "Harcama API’si"
+    ],
+    "spoken": [
+      "Süt ve yumurta al",
+      "Yarın 10’da diş hekimi",
+      "Otopark B2, 14 numara"
+    ],
+    "statusSent": "Gönderildi",
+    "statusPending": "Gönderilmedi",
+    "siriDialog": "Slack #memo hedefine gönderildi.",
+    "defaultMark": "(Varsayılan)",
+    "siriAsk": "Hayate ile gönder",
+    "siriQuestion": "Ne göndermek istiyorsunuz?",
+    "quote": [
+      "“",
+      "”"
+    ],
+    "edit": {
+      "cancel": "İptal",
+      "save": "Kaydet",
+      "nameLabel": "Ad",
+      "name": "Harcama API’si",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "Yalnızca https URL’leri kullanılabilir.",
+      "request": "İstek",
+      "method": "Yöntem",
+      "bodyFormat": "Gövde biçimi",
+      "bodyFormatValue": "JSON",
+      "headers": "Başlıklar",
+      "addHeader": "Başlık ekle",
+      "hideSecret": "Gizli değer olarak gizle",
+      "headersFooter": "Authorization gibi kimlik doğrulama başlıkları kaydedebilirsiniz. Değerler yalnızca iPhone ve Apple Watch’taki Keychain’de saklanır.",
+      "body": "Gövde",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "Test gönderimi"
+    }
+  }
+}

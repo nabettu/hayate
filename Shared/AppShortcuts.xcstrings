@@ -1,0 +1,456 @@
+{
+  "sourceLanguage" : "ja",
+  "strings" : {
+    "${applicationName}で送って" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ar" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "أرسل عبر ${applicationName}",
+              "أرسل بواسطة ${applicationName}",
+              "أرسل إلى ${applicationName}"
+            ]
+          }
+        },
+        "bn" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "${applicationName} দিয়ে পাঠাও",
+              "${applicationName}-এ পাঠাও",
+              "${applicationName} দিয়ে পাঠান"
+            ]
+          }
+        },
+        "ca" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Envia amb ${applicationName}",
+              "Envia-ho amb ${applicationName}",
+              "Envia per ${applicationName}"
+            ]
+          }
+        },
+        "cs" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Odešli přes ${applicationName}",
+              "Odeslat přes ${applicationName}",
+              "Odešli v ${applicationName}"
+            ]
+          }
+        },
+        "da" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Send med ${applicationName}",
+              "Send via ${applicationName}"
+            ]
+          }
+        },
+        "de" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Mit ${applicationName} senden",
+              "Sende mit ${applicationName}",
+              "Sende an ${applicationName}"
+            ]
+          }
+        },
+        "el" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Στείλε με το ${applicationName}",
+              "Αποστολή με το ${applicationName}",
+              "Στείλε στο ${applicationName}"
+            ]
+          }
+        },
+        "en" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Send with ${applicationName}",
+              "Send using ${applicationName}",
+              "Send to ${applicationName}"
+            ]
+          }
+        },
+        "es" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Enviar con ${applicationName}",
+              "Envía con ${applicationName}",
+              "Enviar a ${applicationName}"
+            ]
+          }
+        },
+        "fi" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Lähetä sovelluksella ${applicationName}",
+              "Lähetä ${applicationName}-sovelluksella"
+            ]
+          }
+        },
+        "fr" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Envoie avec ${applicationName}",
+              "Envoyer avec ${applicationName}",
+              "Envoie à ${applicationName}"
+            ]
+          }
+        },
+        "gu" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "${applicationName} થી મોકલો",
+              "${applicationName} માં મોકલો",
+              "${applicationName} થી મોકલ"
+            ]
+          }
+        },
+        "he" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "שלח עם ${applicationName}",
+              "שלח באמצעות ${applicationName}",
+              "שלח אל ${applicationName}"
+            ]
+          }
+        },
+        "hi" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "${applicationName} से भेजो",
+              "${applicationName} से भेजें",
+              "${applicationName} पर भेजो"
+            ]
+          }
+        },
+        "hr" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Pošalji s ${applicationName}",
+              "Pošalji preko ${applicationName}",
+              "Pošalji na ${applicationName}"
+            ]
+          }
+        },
+        "hu" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Küldd el a ${applicationName} appal",
+              "Küldés a ${applicationName} appal",
+              "Küldd a ${applicationName} appal"
+            ]
+          }
+        },
+        "id" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Kirim dengan ${applicationName}",
+              "Kirim lewat ${applicationName}",
+              "Kirim ke ${applicationName}"
+            ]
+          }
+        },
+        "it" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Invia con ${applicationName}",
+              "Manda con ${applicationName}",
+              "Invia a ${applicationName}"
+            ]
+          }
+        },
+        "ja" : {
+          "stringSet" : {
+            "state" : "new",
+            "values" : [
+              "${applicationName}で送って",
+              "${applicationName}で送る",
+              "${applicationName}に送って"
+            ]
+          }
+        },
+        "kn" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "${applicationName} ನಲ್ಲಿ ಕಳುಹಿಸು",
+              "${applicationName} ಮೂಲಕ ಕಳುಹಿಸು",
+              "${applicationName} ಗೆ ಕಳುಹಿಸು"
+            ]
+          }
+        },
+        "ko" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "${applicationName}로 보내줘",
+              "${applicationName}로 보내",
+              "${applicationName}에 보내줘"
+            ]
+          }
+        },
+        "ml" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "${applicationName} ൽ അയയ്ക്കൂ",
+              "${applicationName} വഴി അയയ്ക്കൂ",
+              "${applicationName} ലേക്ക് അയയ്ക്കൂ"
+            ]
+          }
+        },
+        "mr" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "${applicationName} ने पाठवा",
+              "${applicationName} मध्ये पाठव",
+              "${applicationName} वर पाठवा"
+            ]
+          }
+        },
+        "ms" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Hantar dengan ${applicationName}",
+              "Hantar menggunakan ${applicationName}"
+            ]
+          }
+        },
+        "nb" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Send med ${applicationName}",
+              "Send via ${applicationName}"
+            ]
+          }
+        },
+        "nl" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Verstuur met ${applicationName}",
+              "Stuur met ${applicationName}",
+              "Stuur via ${applicationName}"
+            ]
+          }
+        },
+        "or" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "${applicationName} ରେ ପଠାଅ",
+              "${applicationName} ରେ ପଠାନ୍ତୁ",
+              "${applicationName} କୁ ପଠାଅ"
+            ]
+          }
+        },
+        "pa" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "${applicationName} ਨਾਲ ਭੇਜੋ",
+              "${applicationName} ਰਾਹੀਂ ਭੇਜੋ",
+              "${applicationName} ਨੂੰ ਭੇਜੋ"
+            ]
+          }
+        },
+        "pl" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Wyślij przez ${applicationName}",
+              "Wyślij w ${applicationName}",
+              "Wyślij za pomocą ${applicationName}"
+            ]
+          }
+        },
+        "pt-BR" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Enviar com o ${applicationName}",
+              "Enviar pelo ${applicationName}",
+              "Mandar no ${applicationName}"
+            ]
+          }
+        },
+        "pt-PT" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Enviar com o ${applicationName}",
+              "Enviar pelo ${applicationName}",
+              "Mandar pelo ${applicationName}"
+            ]
+          }
+        },
+        "ro" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Trimite cu ${applicationName}",
+              "Trimite prin ${applicationName}",
+              "Trimite pe ${applicationName}"
+            ]
+          }
+        },
+        "ru" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Отправь через ${applicationName}",
+              "Отправить через ${applicationName}",
+              "Отправь в ${applicationName}"
+            ]
+          }
+        },
+        "sk" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Odošli cez ${applicationName}",
+              "Odoslať cez ${applicationName}",
+              "Odošli v ${applicationName}"
+            ]
+          }
+        },
+        "sl" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Pošlji s ${applicationName}",
+              "Pošlji prek ${applicationName}",
+              "Pošlji na ${applicationName}"
+            ]
+          }
+        },
+        "sv" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Skicka med ${applicationName}",
+              "Skicka via ${applicationName}"
+            ]
+          }
+        },
+        "ta" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "${applicationName} இல் அனுப்பு",
+              "${applicationName} மூலம் அனுப்பு",
+              "${applicationName} க்கு அனுப்பு"
+            ]
+          }
+        },
+        "te" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "${applicationName} లో పంపు",
+              "${applicationName} తో పంపు",
+              "${applicationName} కు పంపు"
+            ]
+          }
+        },
+        "th" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "ส่งด้วย ${applicationName}",
+              "ส่งผ่าน ${applicationName}",
+              "ส่งไปที่ ${applicationName}"
+            ]
+          }
+        },
+        "tr" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "${applicationName} ile gönder",
+              "${applicationName} ile yolla",
+              "${applicationName} uygulamasıyla gönder"
+            ]
+          }
+        },
+        "uk" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Надішли через ${applicationName}",
+              "Надіслати через ${applicationName}",
+              "Надішли в ${applicationName}"
+            ]
+          }
+        },
+        "ur" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "${applicationName} سے بھیجیں",
+              "${applicationName} کے ذریعے بھیجیں",
+              "${applicationName} پر بھیجیں"
+            ]
+          }
+        },
+        "vi" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "Gửi bằng ${applicationName}",
+              "Gửi qua ${applicationName}",
+              "Gửi tới ${applicationName}"
+            ]
+          }
+        },
+        "zh-Hans" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "用${applicationName}发送",
+              "用${applicationName}发",
+              "发送到${applicationName}"
+            ]
+          }
+        },
+        "zh-Hant" : {
+          "stringSet" : {
+            "state" : "translated",
+            "values" : [
+              "用${applicationName}傳送",
+              "用${applicationName}送出",
+              "傳送到${applicationName}"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Hayate",
+  "subtitle": "Fra Apple Watch til webhook",
+  "promotionalText": "Tal til Apple Watch, og det sendes til Slack, Discord eller din egen webhook. Send dine idéer direkte fra håndleddet.",
+  "keywords": "webhook,stemmestyring,stemme,note,Slack,Discord,Siri,ur,API,automatisering,genvej,talememo,send",
+  "description": "Hayate sender det, du siger til Apple Watch, direkte videre til de mål (webhooks), du har registreret.\n\n■ Det kan du\n・Tryk på »Tal« på Apple Watch, og tal for at sende (med Dobbelttryk på Series 9 / Ultra 2 eller nyere)\n・Sig »Hey Siri, send med Hayate« for at sende uden hænder (virker også med Siri på iPhone)\n・Frie mål-indstillinger: URL, metode, headere (f.eks. Authorization) og indholdsskabelon\n・Slack og Discord: indsæt blot URL'en\n・Uret sender direkte til målet uden om iPhone\n・Det, der ikke kunne sendes, gemmes og sendes igen, næste gang du åbner appen\n・Historik over sendt, testafsendelse og komplikation på urskiven\n\n■ Eksempler på brug\n・Send en hurtig note til en Slack-kanal\n・Send indkøbslister og opgaver til din egen tjeneste\n・Modtag i n8n, Zapier eller din egen server, og automatiser\n\n■ Til modtageren\n・I indholdet kan du bruge {{text}} (det, du sagde), {{id}}, {{sentAt}} og {{source}}\n・Headeren X-WatchHook-Message-Id har samme værdi, selv ved gensendelse, så den kan bruges til at fjerne dubletter\n\n■ Håndtering af data\n・Mål-indstillingerne (inklusive godkendelsesheadere) gemmes kun i Keychain på iPhone og Apple Watch\n・Det, du siger, sendes kun til de mål, du har registreret. Det går ikke gennem udviklerens servere\n\n■ Pris\nDu kan prøve gratis i 7 dage. Bagefter kan du fortsætte med et engangskøb i appen. Der er intet abonnement.",
+  "iap": {
+    "trial": {
+      "name": "7 dages gratis prøve",
+      "description": "Alle funktioner i 7 dage. Ingen automatisk betaling."
+    },
+    "unlock": {
+      "name": "Hayate (engangskøb)",
+      "description": "Send fra uret, Siri og iPhone. Betal én gang."
+    }
+  }
+}

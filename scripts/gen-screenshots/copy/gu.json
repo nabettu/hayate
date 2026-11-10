@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "ફક્ત બોલો,\n*webhook* માં પહોંચે",
+      "chips": [
+        "Slack",
+        "Discord",
+        "પોતાનું API"
+      ],
+      "closing": "મનમાં આવે કે\n*કાંડા પરથી* મોકલો"
+    },
+    "siri": {
+      "h1": "*Hey Siri* કહો\nહાથ વગર",
+      "chips": [
+        "Siri",
+        "ડબલ ટેપ",
+        "વૉચ ફેસ"
+      ],
+      "closing": "હાથ રોકાયેલા હોય તો પણ\n*અવાજથી* મોકલો"
+    },
+    "destination": {
+      "h1": "ગંતવ્ય નક્કી કરો\n*તમારી રીતે*",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "ઑથ હેડર Keychain માં",
+        "{{text}} માં બોલેલી વાત"
+      ],
+      "closing": "પોતાના સર્વર પર પણ\n*સીધું* પહોંચે"
+    },
+    "direct": {
+      "h1": "ઘડિયાળમાંથી\n*સીધું* પહોંચે",
+      "chips": [
+        "Wi-Fi",
+        "મોબાઇલ ડેટા"
+      ],
+      "floats": [
+        "ન ગયેલું સાચવી રાખે",
+        "આગલી વાર ખોલતાં ફરી મોકલે"
+      ],
+      "closing": "નેટવર્ક નબળું હોય તો પણ\n*કંઈ ખોવાય નહીં*"
+    },
+    "more": {
+      "h1": "બીજું પણ\n*ઘણું બધું.*",
+      "cells": [
+        "ઑથ હેડર\nKeychain માં સાચવાય",
+        "Slack અને Discord\nફક્ત URL પેસ્ટ",
+        "વૉચ ફેસ પરથી\nતરત શરૂ",
+        "મોકલેલાનો\nઇતિહાસ",
+        "ટેસ્ટ મોકલી\nજોઈ લો",
+        "ફરી મોકલો તો\nસમાન સંદેશ ID"
+      ],
+      "closing": "બોલેલી વાત જાય\n*તમારી સિસ્ટમમાં*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "બોલો",
+    "sent": "“Slack #memo” માં મોકલાયું",
+    "history": "ઇતિહાસ",
+    "destinationsTitle": "ગંતવ્ય",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "ખર્ચ API"
+    ],
+    "spoken": [
+      "દૂધ અને ઈંડાં લાવવાં",
+      "કાલે સવારે 10 વાગ્યે ડેન્ટિસ્ટ",
+      "પાર્કિંગ B2 માં 14 નંબર"
+    ],
+    "statusSent": "મોકલાયું",
+    "statusPending": "મોકલાયું નથી",
+    "siriDialog": "Slack #memo માં મોકલાયું.",
+    "defaultMark": "(ડિફૉલ્ટ)",
+    "siriAsk": "Hayate થી મોકલો",
+    "siriQuestion": "શું મોકલવું છે?",
+    "quote": [
+      "“",
+      "”"
+    ],
+    "edit": {
+      "cancel": "રદ કરો",
+      "save": "સાચવો",
+      "nameLabel": "નામ",
+      "name": "ખર્ચ API",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "ફક્ત https URL વાપરી શકાય છે.",
+      "request": "રિક્વેસ્ટ",
+      "method": "મેથડ",
+      "bodyFormat": "બૉડીનું ફૉર્મેટ",
+      "bodyFormatValue": "JSON",
+      "headers": "હેડર",
+      "addHeader": "હેડર ઉમેરો",
+      "hideSecret": "ગુપ્ત કિંમત તરીકે છુપાવો",
+      "headersFooter": "Authorization જેવા ઑથેન્ટિકેશન હેડર ઉમેરી શકાય છે. કિંમત ફક્ત iPhone અને Apple Watch ના Keychain માં સાચવાય છે.",
+      "body": "બૉડી",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "ટેસ્ટ મોકલો"
+    }
+  }
+}

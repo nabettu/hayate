@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "开口就发到\n*webhook*",
+      "chips": [
+        "Slack",
+        "Discord",
+        "自己的 API"
+      ],
+      "closing": "想到就发\n*手腕*上完成"
+    },
+    "siri": {
+      "h1": "*嘿 Siri*\n无需动手",
+      "chips": [
+        "Siri",
+        "轻点两下",
+        "表盘"
+      ],
+      "closing": "双手不空\n*动口*就能发"
+    },
+    "destination": {
+      "h1": "发送目标\n*自由*决定",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "认证请求头存于 Keychain",
+        "{{text}} 是说话内容"
+      ],
+      "closing": "自己的服务器\n*原样*送达"
+    },
+    "direct": {
+      "h1": "手表*直接*\n送出",
+      "chips": [
+        "Wi-Fi",
+        "蜂窝网络"
+      ],
+      "floats": [
+        "没发出的会保留",
+        "下次打开重新发送"
+      ],
+      "closing": "信号不好\n*也不漏发*"
+    },
+    "more": {
+      "h1": "还有\n*更多功能。*",
+      "cells": [
+        "认证请求头\n存于 Keychain",
+        "Slack、Discord\n只需粘贴 URL",
+        "从表盘\n快速启动",
+        "发送内容\n的记录",
+        "用测试发送\n确认能否送达",
+        "重发也不变的\n消息 ID"
+      ],
+      "closing": "把说的话\n送进*你的系统*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "说话",
+    "sent": "已发送到“Slack #memo”",
+    "history": "记录",
+    "destinationsTitle": "发送目标",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "记账 API"
+    ],
+    "spoken": [
+      "买牛奶和鸡蛋",
+      "明天 10 点看牙医",
+      "车停在 B2 的 14 号"
+    ],
+    "statusSent": "已发送",
+    "statusPending": "未发送",
+    "siriDialog": "已发送到 Slack #memo。",
+    "defaultMark": "（默认）",
+    "siriAsk": "用Hayate发送",
+    "siriQuestion": "要发送什么？",
+    "quote": [
+      "“",
+      "”"
+    ],
+    "edit": {
+      "cancel": "取消",
+      "save": "存储",
+      "nameLabel": "名称",
+      "name": "记账 API",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "只能使用 https 的 URL。",
+      "request": "请求",
+      "method": "方法",
+      "bodyFormat": "正文格式",
+      "bodyFormatValue": "JSON",
+      "headers": "请求头",
+      "addHeader": "添加请求头",
+      "hideSecret": "隐藏为机密值",
+      "headersFooter": "可以登记 Authorization 等认证请求头。值只保存在 iPhone 和 Apple Watch 的 Keychain 中。",
+      "body": "正文",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "测试发送"
+    }
+  }
+}

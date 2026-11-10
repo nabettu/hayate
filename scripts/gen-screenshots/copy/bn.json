@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "শুধু বলুন,\n*webhook*-এ পৌঁছে যাক",
+      "chips": [
+        "Slack",
+        "Discord",
+        "নিজের API"
+      ],
+      "closing": "মাথায় এলেই\n*কবজি থেকে* পাঠান"
+    },
+    "siri": {
+      "h1": "*Hey Siri* বলুন\nহাত না লাগিয়ে",
+      "chips": [
+        "Siri",
+        "ডাবল ট্যাপ",
+        "ওয়াচ ফেস"
+      ],
+      "closing": "হাত ভরা থাকলেও\n*শুধু কথায়* পাঠান"
+    },
+    "destination": {
+      "h1": "গন্তব্য ঠিক করুন\n*নিজের মতো*",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "অথেনটিকেশন হেডার Keychain-এ",
+        "{{text}}-এ বলা কথা"
+      ],
+      "closing": "নিজের সার্ভারেও\n*সরাসরি* পৌঁছায়"
+    },
+    "direct": {
+      "h1": "ঘড়ি থেকে\n*সরাসরি* পৌঁছায়",
+      "chips": [
+        "Wi-Fi",
+        "মোবাইল নেটওয়ার্ক"
+      ],
+      "floats": [
+        "যা যায়নি তা রেখে দেয়",
+        "পরের বার খুললে আবার পাঠায়"
+      ],
+      "closing": "সিগন্যাল দুর্বল হলেও\n*কিছু হারায় না*"
+    },
+    "more": {
+      "h1": "আরও\n*অনেক কিছু।*",
+      "cells": [
+        "অথেনটিকেশন হেডার\nKeychain-এ সংরক্ষিত",
+        "Slack ও Discord\nশুধু URL পেস্ট",
+        "ওয়াচ ফেস থেকে\nসঙ্গে সঙ্গে চালু",
+        "পাঠানো বার্তার\nইতিহাস",
+        "টেস্ট পাঠিয়ে\nদেখে নিন",
+        "আবার পাঠালেও\nএকই বার্তা ID"
+      ],
+      "closing": "বলা কথা চলুক\n*আপনার সিস্টেমে*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "বলুন",
+    "sent": "“Slack #memo”-এ পাঠানো হয়েছে",
+    "history": "ইতিহাস",
+    "destinationsTitle": "গন্তব্য",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "খরচের API"
+    ],
+    "spoken": [
+      "দুধ আর ডিম কিনতে হবে",
+      "কাল সকাল ১০টায় ডেন্টিস্ট",
+      "পার্কিং বি২-এর ১৪ নম্বরে"
+    ],
+    "statusSent": "পাঠানো হয়েছে",
+    "statusPending": "পাঠানো হয়নি",
+    "siriDialog": "Slack #memo-তে পাঠানো হয়েছে।",
+    "defaultMark": "(ডিফল্ট)",
+    "siriAsk": "Hayate দিয়ে পাঠাও",
+    "siriQuestion": "কী পাঠাতে চান?",
+    "quote": [
+      "“",
+      "”"
+    ],
+    "edit": {
+      "cancel": "বাতিল",
+      "save": "সংরক্ষণ",
+      "nameLabel": "নাম",
+      "name": "খরচের API",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "শুধু https URL ব্যবহার করা যায়।",
+      "request": "রিকোয়েস্ট",
+      "method": "মেথড",
+      "bodyFormat": "বডির ফরম্যাট",
+      "bodyFormatValue": "JSON",
+      "headers": "হেডার",
+      "addHeader": "হেডার যোগ করুন",
+      "hideSecret": "গোপন মান হিসেবে লুকান",
+      "headersFooter": "Authorization-এর মতো অথেনটিকেশন হেডার যোগ করা যায়। মান শুধু iPhone ও Apple Watch-এর Keychain-এ সংরক্ষিত থাকে।",
+      "body": "বডি",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "টেস্ট পাঠান"
+    }
+  }
+}

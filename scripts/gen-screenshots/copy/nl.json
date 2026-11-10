@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "Praat en stuur\nnaar je *webhook*",
+      "chips": [
+        "Slack",
+        "Discord",
+        "Eigen API"
+      ],
+      "closing": "Een ingeving?\nStuur *van je pols*"
+    },
+    "siri": {
+      "h1": "Met *Hey Siri*\nhandsfree",
+      "chips": [
+        "Siri",
+        "Dubbeltik",
+        "Wijzerplaat"
+      ],
+      "closing": "Handen vol?\nStuur *met je stem*"
+    },
+    "destination": {
+      "h1": "Jij bepaalt\nde *bestemming*",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "Auth-header in Keychain",
+        "{{text}} is je spraak"
+      ],
+      "closing": "Direct naar je\n*eigen server*"
+    },
+    "direct": {
+      "h1": "*Rechtstreeks*\nvan je horloge",
+      "chips": [
+        "Wi-Fi",
+        "Mobiel"
+      ],
+      "floats": [
+        "Mislukt? Blijft bewaard",
+        "Opnieuw bij openen"
+      ],
+      "closing": "Slecht bereik?\n*Niets verloren*"
+    },
+    "more": {
+      "h1": "En nog\n*veel meer.*",
+      "cells": [
+        "Authheader\nin de Keychain",
+        "Slack en Discord:\nplak de URL",
+        "Direct starten\nvia de wijzerplaat",
+        "Geschiedenis\nvan je berichten",
+        "Testbericht\nter controle",
+        "Zelfde ID bij\nopnieuw versturen"
+      ],
+      "closing": "Je stem naar\n*jouw systeem*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "Praat",
+    "sent": "Verstuurd naar “Slack #memo”",
+    "history": "Geschiedenis",
+    "destinationsTitle": "Bestemmingen",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "Uitgaven-API"
+    ],
+    "spoken": [
+      "Melk en eieren kopen",
+      "Morgen om 10 uur tandarts",
+      "Parkeerplek B2, nummer 14"
+    ],
+    "statusSent": "Verstuurd",
+    "statusPending": "Niet verstuurd",
+    "siriDialog": "Verstuurd naar Slack #memo.",
+    "defaultMark": "(Standaard)",
+    "siriAsk": "Verstuur met Hayate",
+    "siriQuestion": "Wat wil je versturen?",
+    "quote": [
+      "“",
+      "”"
+    ],
+    "edit": {
+      "cancel": "Annuleer",
+      "save": "Bewaar",
+      "nameLabel": "Naam",
+      "name": "Uitgaven-API",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "Alleen https-URL’s zijn toegestaan.",
+      "request": "Verzoek",
+      "method": "Methode",
+      "bodyFormat": "Inhoudsformaat",
+      "bodyFormatValue": "JSON",
+      "headers": "Headers",
+      "addHeader": "Header toevoegen",
+      "hideSecret": "Verberg als geheime waarde",
+      "headersFooter": "Je kunt authenticatieheaders zoals Authorization toevoegen. De waarden worden alleen opgeslagen in de Keychain van de iPhone en de Apple Watch.",
+      "body": "Inhoud",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "Testbericht"
+    }
+  }
+}

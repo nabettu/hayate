@@ -1,0 +1,17 @@
+{
+  "name": "Hayate",
+  "subtitle": "De pe Apple Watch la webhook",
+  "promotionalText": "Vorbește pe Apple Watch și trimite la Slack, Discord sau propriul tău webhook. Trimite ce îți trece prin minte direct de la încheietură, pe loc.",
+  "keywords": "webhook,Slack,Discord,Siri,voce,dictare,notițe,ceas,API,automatizare,comenzi rapide,trimitere",
+  "description": "Hayate trimite exact ce spui pe Apple Watch la destinația (webhook) pe care ai înregistrat-o.\n\n■ Ce poți face\n・Apasă „Vorbește” pe Apple Watch și vorbește pentru a trimite (începând cu Series 9 / Ultra 2, și cu Dublă atingere)\n・Spune „Hey Siri, trimite cu Hayate” pentru a trimite fără mâini (și cu Siri pe iPhone)\n・Destinații configurabile: URL, metodă, antete (precum Authorization) și șablon pentru corp\n・Pentru Slack și Discord e suficient să lipești URL-ul\n・Mesajul pleacă direct de pe ceas către destinație, fără să treacă prin iPhone\n・Ce nu a putut fi trimis se păstrează și se retrimite data viitoare când deschizi aplicația\n・Istoric al celor trimise, trimiteri de test și complicație pe cadran\n\n■ Pentru ce îl poți folosi\n・O idee ca notiță într-un canal Slack\n・Lista de cumpărături și sarcinile către propriul tău serviciu\n・Primire în n8n, Zapier sau pe propriul server, pentru automatizări\n\n■ Specificații pentru receptor\n・În corp poți insera {{text}} (ce ai spus), {{id}}, {{sentAt}} și {{source}}\n・Antetul X-WatchHook-Message-Id are aceeași valoare la retrimitere, deci poate fi folosit pentru a elimina duplicatele\n\n■ Folosirea datelor\n・Configurația destinației (inclusiv antetele de autentificare) se salvează doar în Keychain pe iPhone și pe Apple Watch\n・Ce spui este trimis doar la destinația înregistrată de tine, fără a trece prin serverele dezvoltatorului\n\n■ Preț\nPoți încerca gratuit 7 zile. Apoi continui cu o achiziție unică în aplicație. Nu există abonament.",
+  "iap": {
+    "trial": {
+      "name": "Probă gratuită de 7 zile",
+      "description": "7 zile cu toate funcțiile. Fără plată automată."
+    },
+    "unlock": {
+      "name": "Hayate (achiziție unică)",
+      "description": "Trimite de pe Apple Watch, Siri și iPhone. Plată unică."
+    }
+  }
+}

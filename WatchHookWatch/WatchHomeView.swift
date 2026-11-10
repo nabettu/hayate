@@ -45,7 +45,7 @@ struct WatchHomeView: View {
                                     Picker(selection: $selectedID) {
                                         ForEach(store.config.destinations) { d in
                                             // iPhone で既定にした送り先が、時計で何も選んでいないときの送り先
-                                            Text(d.id == store.config.defaultDestination?.id ? "\(d.displayName) (既定)" : d.displayName)
+                                            Text(d.id == store.config.defaultDestination?.id ? String(localized: "\(d.displayName) (既定)") : d.displayName)
                                                 .tag(d.id.uuidString)
                                         }
                                     } label: {
@@ -172,7 +172,7 @@ struct WatchHomeView: View {
         now = .now
         if let blocked = access.blockedMessage {
             isSending = false
-            lastResult = SendOutcome(status: .failed(reason: "送っていません。\(blocked)"), destinationName: destination.displayName)
+            lastResult = SendOutcome(status: .failed(reason: String(localized: "送っていません。\(blocked)")), destinationName: destination.displayName)
             WKHaptic.play(.failure)
             return
         }

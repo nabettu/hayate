@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "Csak beszéljen,\na *webhook* kapja",
+      "chips": [
+        "Slack",
+        "Discord",
+        "Saját API"
+      ],
+      "closing": "Eszébe jut,\nküldi *a csuklójáról*"
+    },
+    "siri": {
+      "h1": "*Hey Siri*,\nkéz nélkül",
+      "chips": [
+        "Siri",
+        "Dupla koppintás",
+        "Számlap"
+      ],
+      "closing": "Foglalt kézzel is\n*csak hanggal* küldhet"
+    },
+    "destination": {
+      "h1": "A célt\n*Ön választja*",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "Fejléc a Keychainben",
+        "A {{text}} a szövege"
+      ],
+      "closing": "A saját szerverre is\n*megérkezik*"
+    },
+    "direct": {
+      "h1": "Az órától\n*közvetlenül*",
+      "chips": [
+        "Wi-Fi",
+        "Mobilháló"
+      ],
+      "floats": [
+        "Ami nem ment el, marad",
+        "Megnyitáskor újra"
+      ],
+      "closing": "Gyenge jelnél is\n*semmi nem vész el*"
+    },
+    "more": {
+      "h1": "És még\n*sok más.*",
+      "cells": [
+        "Fejléc\na Keychainben",
+        "Slack és Discord:\ncsak az URL",
+        "Gyors indítás\na számlapról",
+        "Elküldöttek\nelőzményei",
+        "Teszt küldés:\nmegérkezik-e",
+        "Újraküldésnél is\nugyanaz az ID"
+      ],
+      "closing": "A kimondott szó\n*az Ön rendszerébe*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "Beszéd",
+    "sent": "Elküldve ide: „Slack #memo”",
+    "history": "Előzmények",
+    "destinationsTitle": "Célok",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "Háztartási API"
+    ],
+    "spoken": [
+      "Tej és tojás vétele",
+      "Holnap 10-kor fogorvos",
+      "Parkoló B2, 14-es hely"
+    ],
+    "statusSent": "Elküldve",
+    "statusPending": "Nincs elküldve",
+    "siriDialog": "Elküldve ide: Slack #memo.",
+    "defaultMark": "(Alapértelmezett)",
+    "siriAsk": "Küldd el a Hayate appal",
+    "siriQuestion": "Mit szeretne küldeni?",
+    "quote": [
+      "„",
+      "”"
+    ],
+    "edit": {
+      "cancel": "Mégse",
+      "save": "Mentés",
+      "nameLabel": "Név",
+      "name": "Háztartási API",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "Csak https URL használható.",
+      "request": "Kérés",
+      "method": "Metódus",
+      "bodyFormat": "Törzs formátuma",
+      "bodyFormatValue": "JSON",
+      "headers": "Fejlécek",
+      "addHeader": "Fejléc hozzáadása",
+      "hideSecret": "Titkos értékként elrejtés",
+      "headersFooter": "Hitelesítési fejléceket (pl. Authorization) adhat meg. Az értékek csak az iPhone és az Apple Watch Keychainjében tárolódnak.",
+      "body": "Törzs",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "Teszt küldés"
+    }
+  }
+}
