@@ -18,6 +18,7 @@ struct HistoryView: View {
                 if rows.isEmpty {
                     ContentUnavailableView("履歴はまだありません", systemImage: "clock",
                                            description: Text("この iPhone と Apple Watch から送った内容が表示されます。"))
+                        .listRowBackground(Color.clear)
                 }
                 ForEach(rows) { row in
                     let e = row.entry
@@ -40,6 +41,7 @@ struct HistoryView: View {
                             Text("再送・削除は Apple Watch の履歴から").font(.caption2).foregroundStyle(.secondary)
                         }
                     }
+                    .listRowBackground(Cosmos.card)
                     .swipeActions {
                         if !fromWatch {
                             Button("削除", role: .destructive) {
@@ -54,11 +56,15 @@ struct HistoryView: View {
                     }
                 }
                 if let updatedAt = watchHistory.updatedAt {
-                    Text("Apple Watch の履歴: \(updatedAt.formatted(date: .abbreviated, time: .shortened)) 時点")
-                        .font(.caption2).foregroundStyle(.secondary)
+                    // 履歴のカードとは別の区切りに置く (同じ区切りに入れると、最後のカードの角が丸くならない)
+                    Section {} footer: {
+                        Text("Apple Watch の履歴: \(updatedAt.formatted(date: .abbreviated, time: .shortened)) 時点")
+                            .font(.caption2).foregroundStyle(.secondary)
+                    }
                 }
             }
             .navigationTitle("履歴")
+            .cosmicListBackground()
             .refreshable {
                 await MessageDispatcher.shared.flush()
                 await reload()
