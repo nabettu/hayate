@@ -5,6 +5,7 @@
 // ⚠️ 本番のストアのページに出る。ユーザーの OK を取ってから
 
 import { spawn } from "node:child_process";
+import { createHash } from "node:crypto";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
@@ -47,6 +48,9 @@ const ASC_ENV = {
   ASC_UPLOAD_TIMEOUT: process.env.ASC_UPLOAD_TIMEOUT ?? "90m",
 };
 const jobs = [];
+// 上げ終わったセットの記録 (ロケール・端末 → 画像のハッシュ)。生成物と同じく git に入れない
+const DONE_FILE = path.join(ROOT, "screenshots/app-store/.uploaded.json");
+const done = fs.existsSync(DONE_FILE) ? JSON.parse(fs.readFileSync(DONE_FILE, "utf8")) : {};
 for (const [lang, locales] of Object.entries(ASC_LOCALES)) {
   if (only.length && !only.includes(lang)) continue;
   const dir = path.join(ROOT, "screenshots/app-store", lang);
@@ -63,7 +67,14 @@ for (const [lang, locales] of Object.entries(ASC_LOCALES)) {
     const sub = path.join(tmp, lang, prefix);
     fs.mkdirSync(sub, { recursive: true });
     for (const f of files) fs.copyFileSync(path.join(dir, f), path.join(sub, f));
-    for (const locale of locales) jobs.push({ locale, deviceType, sub, count: files.length });
+    const hash = createHash("sha256");
+    for (const f of files) hash.update(fs.readFileSync(path.join(dir, f)));
+    const digest = hash.digest("hex");
+    for (const locale of locales) {
+      // 同じ画像をもう上げたセットは飛ばす (回数制限で止まっても、続きから再開できる)
+      if (!dryRun && done[`${locale} ${deviceType}`] === digest) continue;
+      jobs.push({ locale, deviceType, sub, count: files.length, digest });
+    }
   }
 }
 
@@ -83,14 +94,18 @@ const run = (job) => new Promise((resolve) => {
 });
 
 const failures = [];
-let done = 0;
+let finished = 0;
 const queue = [...jobs];
 await Promise.all(Array.from({ length: dryRun ? 1 : CONCURRENCY }, async () => {
   while (queue.length) {
     const r = await run(queue.shift());
-    done++;
-    console.log(`[${done}/${jobs.length}] ${r.locale} ${r.deviceType} (${r.count} 枚) ${r.code === 0 ? "OK" : "失敗"}`);
+    finished++;
+    console.log(`[${finished}/${jobs.length}] ${r.locale} ${r.deviceType} (${r.count} 枚) ${r.code === 0 ? "OK" : "失敗"}`);
     if (r.code !== 0) failures.push(`${r.locale} ${r.deviceType}: ${r.err.split("\n")[0]}`);
+    else if (!dryRun) {
+      done[`${r.locale} ${r.deviceType}`] = r.digest;
+      fs.writeFileSync(DONE_FILE, JSON.stringify(done, null, 1));
+    }
   }
 }));
 if (failures.length) {
