@@ -174,10 +174,14 @@ struct PaperPlane: View {
 enum FlightPhase: Equatable {
     case idle
     case sending(since: Date)
+    /// 飛び立った紙飛行機と軌跡が消えたあと、通信の結果を待っているあいだ。何も描かない (描画を止めて電池を使わない)。
+    case waiting
     case sent(at: Date)
 
     /// 飛び立って画面の外へ出るまで。送信がこれより早く終わっても、飛び去ってから結果を出す。
     static let launch: TimeInterval = 0.7
+    /// 飛び立った紙飛行機の軌跡まで消えきるまで (軌跡は 16 粒 × 0.03 秒遅れ)。
+    static let launchSettled: TimeInterval = launch + 0.5
     /// 右下から左上へ横切る長さ。
     static let cross: TimeInterval = 1.25
 
@@ -189,7 +193,7 @@ enum FlightPhase: Equatable {
     /// 結果の演出の長さ。
     var duration: TimeInterval {
         switch self {
-        case .idle, .sending: 0
+        case .idle, .sending, .waiting: 0
         case .sent: Self.cross
         }
     }
@@ -199,14 +203,21 @@ enum FlightPhase: Equatable {
 /// `onResult` は結果が出た時点 (横切る演出の始まり) で呼ぶ。
 @MainActor
 func playFlight(
-    set: (FlightPhase) -> Void,
-    current: () -> FlightPhase,
+    set: @escaping @MainActor (FlightPhase) -> Void,
+    current: @escaping @MainActor () -> FlightPhase,
     onResult: (MessageStatus) -> Void,
     work: () async -> MessageStatus
 ) async {
     let start = Date.now
-    set(.sending(since: start))
+    let sending = FlightPhase.sending(since: start)
+    set(sending)
+    // 通信が長引いても、飛び立つ演出が消えたら描画を止める
+    let settle = Task { @MainActor in
+        try? await Task.sleep(for: .seconds(FlightPhase.launchSettled))
+        if !Task.isCancelled, current() == sending { set(.waiting) }
+    }
     let status = await work()
+    settle.cancel()
     // 飛び立った紙飛行機が画面から出てから結果を出す
     let remaining = FlightPhase.launch - Date.now.timeIntervalSince(start)
     if remaining > 0 { try? await Task.sleep(for: .seconds(remaining)) }
@@ -270,7 +281,7 @@ struct FlightStage: View {
     }
 
     var body: some View {
-        if phase == .idle {
+        if phase == .idle || phase == .waiting {
             Color.clear.allowsHitTesting(false)
         } else {
             GeometryReader { geo in
@@ -346,7 +357,7 @@ struct FlightStage: View {
     private func pose(at date: Date, size: CGSize, launch: CGRect) -> Pose? {
         let w = size.width, h = size.height
         switch phase {
-        case .idle:
+        case .idle, .waiting:
             return nil
 
         case .sending(let since):
