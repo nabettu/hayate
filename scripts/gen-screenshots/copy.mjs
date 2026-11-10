@@ -15,33 +15,28 @@ export const COPY = {
     iphone: {
       hero: {
         h1: "話すだけで\n*webhook* へ送る",
-        sub: "Apple Watch の音声入力を、そのまま",
         chips: ["Slack", "Discord", "自前の API"],
         closing: "思いついたら\n*手首から*すぐ送る",
       },
       siri: {
         h1: "*Hey Siri* で\n手を使わずに",
-        sub: "「Hayate で送って」と話しかけるだけ",
         chips: ["Siri", "ダブルタップ", "文字盤から"],
         closing: "両手がふさがっていても\n*声だけで*送れる",
       },
       destination: {
         h1: "送り先は\n*自由に*決める",
-        sub: "URL・ヘッダ・本文のテンプレートまで",
         chips: ["Webhook", "Slack", "Discord"],
         floats: ["認証ヘッダは Keychain に", "{{text}} に話した内容"],
         closing: "自前のサーバーにも\n*そのまま*届く",
       },
       direct: {
         h1: "時計から\n*直接*届ける",
-        sub: "iPhone を中継せず、送り先へそのまま",
         chips: ["Wi-Fi", "モバイル通信"],
         floats: ["送れなかった分は残す", "次に開いたら送り直す"],
         closing: "電波が悪くても\n*取りこぼさない*",
       },
       more: {
         h1: "他にも\n*いろいろ。*",
-        sub: "自分の仕組みにつなぐために",
         cells: [
           "認証ヘッダは\nKeychain に保存",
           "Slack・Discord は\nURL を貼るだけ",

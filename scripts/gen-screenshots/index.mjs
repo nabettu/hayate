@@ -17,7 +17,7 @@ import { IPHONE, IPHONE_SLIDES, ROOT, WATCH, WATCH_SLIDES, iphoneSlide, watchSli
 
 const OUT = path.join(ROOT, "screenshots/app-store");
 // これより小さく縮んだら読めないので止める
-const MIN_SIZE = { h1: 110, p: 40, closing: 70 };
+const MIN_SIZE = { h1: 110, closing: 70 };
 
 const langs = process.argv.slice(2).length ? process.argv.slice(2) : LANGS;
 for (const lang of langs) {
@@ -51,7 +51,7 @@ try {
       });
       const name = `iphone-${String(i + 1).padStart(2, "0")}_${key}`;
       for (const f of report.fit) {
-        const kind = f.cls.includes("closing") ? "closing" : f.cls === "P" ? "p" : "h1";
+        const kind = f.cls.includes("closing") ? "closing" : "h1";
         if (f.size < MIN_SIZE[kind]) problems.push(`${lang}/${name}: ${kind} が ${f.size}px まで縮んだ (下限 ${MIN_SIZE[kind]}px)`);
       }
       if (report.closingGap !== null && report.closingGap < 24) problems.push(`${lang}/${name}: 下の一言との間が ${Math.round(report.closingGap)}px`);

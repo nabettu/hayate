@@ -271,8 +271,7 @@ const SLIDE_CSS = `
   .head h1 { font-size: 138px; font-weight: 900; line-height: 1.16; letter-spacing: -.02em; }
   .line { display: block; white-space: nowrap; }
   em { font-style: normal; padding-bottom: .12em; background: linear-gradient(95deg,#FDE68A,#FDBA74 45%,#F9A8D4); -webkit-background-clip: text; color: transparent; }
-  .head p { margin-top: 34px; font-size: 54px; font-weight: 700; color: #C9C2F2; white-space: nowrap; }
-  .chips { display: flex; justify-content: center; gap: 22px; margin-top: 42px; white-space: nowrap; }
+  .chips { display: flex; justify-content: center; gap: 22px; margin-top: 56px; white-space: nowrap; }
   .chip { display: inline-flex; align-items: center; gap: 14px; border-radius: 999px; padding: 20px 36px; font-size: 40px; font-weight: 800; color: #fff;
     background: rgba(255,255,255,.1); box-shadow: inset 0 0 0 2px rgba(255,255,255,.16); }
   .closing { position: absolute; left: 0; right: 0; bottom: 96px; text-align: center; z-index: 30; color: #fff; font-size: 88px; font-weight: 900; line-height: 1.24; letter-spacing: -.01em; }
@@ -304,7 +303,7 @@ const SLIDE_CSS = `
 // 見出しが横に収まらないときは字を小さくする (行ごとではなく要素全体で揃える)。縮めすぎた言語は index.mjs が止める
 const FIT = `<script>
   window.__fit = [];
-  document.querySelectorAll(".head h1, .closing, .head p").forEach(function (el) {
+  document.querySelectorAll(".head h1, .closing").forEach(function (el) {
     var size = parseFloat(getComputedStyle(el).fontSize), start = size;
     var over = function () {
       var parts = el.querySelectorAll(".line"); if (!parts.length) parts = [el];
@@ -320,7 +319,7 @@ const FIT = `<script>
 </script>`;
 
 const CHIP_ICONS = { hero: ["hash", "chat", "code"], siri: ["siri", "tap", "watch"], destination: ["link", "hash", "chat"], direct: ["wifi", "antenna"] };
-const head = (c, key, top) => `<div class="head" style="top:${top}px"><h1>${lines(c.h1)}</h1><p>${esc(c.sub)}</p>
+const head = (c, key, top) => `<div class="head" style="top:${top}px"><h1>${lines(c.h1)}</h1>
   ${c.chips ? `<div class="chips">${c.chips.map((label, i) => `<span class="chip">${icon(CHIP_ICONS[key][i], 46, "#FDE68A")}${esc(label)}</span>`).join("")}</div>` : ""}</div>`;
 const closing = (s) => `<div class="fade"></div><div class="closing">${lines(s)}</div>`;
 
@@ -333,7 +332,7 @@ export function iphoneSlide(key, copy) {
   const t = copy.screen;
   switch (key) {
     case "hero":
-      return page(`${head(c, key, 150)}
+      return page(`${head(c, key, 200)}
         ${watchDevice(watchScreens.home(t), { width: 700, top: 930 })}
         <div class="bubble me" style="top:860px;left:70px">${icon("mic", 50, "#8B5CF6", 2.4)} ${esc(t.spoken[0])}</div>
         <div class="card" style="top:1930px">
@@ -343,26 +342,26 @@ export function iphoneSlide(key, copy) {
         </div>
         ${closing(c.closing)}`, 7);
     case "siri":
-      return page(`${head(c, key, 150)}
+      return page(`${head(c, key, 200)}
         ${watchDevice(watchScreens.siri(t), { width: 640, top: 900 })}
         <div class="bubble me" style="top:1830px;right:90px">${esc(t.quote[0] + t.siriAsk + t.quote[1])}</div>
         <div class="bubble siri" style="top:2010px;left:90px">${esc(t.siriQuestion)}</div>
         <div class="bubble me" style="top:2190px;right:90px">${esc(t.quote[0] + t.spoken[0] + t.quote[1])}</div>
         ${closing(c.closing)}`, 11);
     case "destination":
-      return page(`${head(c, key, 150)}
+      return page(`${head(c, key, 200)}
         ${iphoneDevice(phoneScreens.edit(t), 800)}
         <div class="float warm" style="top:1560px;right:30px">${icon("key", 54, "#1b1340", 2.4)}${esc(c.floats[0])}</div>
         <div class="float violet" style="top:2040px;left:30px">${icon("braces", 54, "#5b21b6", 2.4)}${esc(c.floats[1])}</div>
         ${closing(c.closing)}`, 23);
     case "direct":
-      return page(`${head(c, key, 150)}
+      return page(`${head(c, key, 200)}
         ${watchDevice(watchScreens.history(t), { width: 720, top: 880 })}
         <div class="float warm" style="top:1920px;left:90px">${icon("inbox", 54, "#1b1340", 2.4)}${esc(c.floats[0])}</div>
         <div class="float violet" style="top:2100px;right:90px">${icon("retry", 54, "#5b21b6", 2.4)}${esc(c.floats[1])}</div>
         ${closing(c.closing)}`, 31);
     case "more":
-      return page(`${head(c, key, 150)}
+      return page(`${head(c, key, 200)}
         <img class="appicon" style="top:640px" src="data:image/png;base64,${ICON_PNG}">
         <div class="grid" style="top:960px">${c.cells.map((label, i) => `<div class="cell"><div class="tile">${icon(["key", "link", "watch", "clock", "check", "id"][i], 78, "#FDE68A", 2)}</div><b>${esc(label).replace(/\n/g, "<br>")}</b></div>`).join("")}</div>
         ${closing(c.closing)}`, 43);
