@@ -1,7 +1,7 @@
 import SwiftUI
 import WidgetKit
 
-/// 文字盤のコンプリケーション / スマートスタックに置く、WatchHook を開くだけのウィジェット。
+/// 文字盤のコンプリケーション / スマートスタックに置く、Hayate を開くだけのウィジェット。
 /// 表示する中身は固定 (送り先の名前などは Keychain にあり、ウィジェットからは読まない)。
 @main
 struct WatchHookWidget: Widget {
@@ -10,8 +10,8 @@ struct WatchHookWidget: Widget {
             LauncherView()
                 .containerBackground(for: .widget) { Color.clear }
         }
-        .configurationDisplayName("WatchHook")
-        .description("タップして WatchHook を開き、話して送ります。")
+        .configurationDisplayName("Hayate")
+        .description("タップして Hayate を開き、話して送ります。")
         .supportedFamilies([.accessoryCircular, .accessoryCorner, .accessoryRectangular, .accessoryInline])
     }
 }
@@ -48,13 +48,13 @@ struct LauncherView: View {
                     .font(.title2)
                     .widgetAccentable()
                 VStack(alignment: .leading, spacing: 0) {
-                    Text("WatchHook").font(.headline).widgetAccentable()
+                    Text("Hayate").font(.headline).widgetAccentable()
                     Text("タップして話す").font(.caption)
                 }
                 Spacer(minLength: 0)
             }
         case .accessoryInline:
-            Label("WatchHook で話す", systemImage: "paperplane.fill")
+            Label("Hayate で話す", systemImage: "paperplane.fill")
         default:
             ZStack {
                 AccessoryWidgetBackground()

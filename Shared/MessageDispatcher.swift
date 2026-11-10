@@ -82,7 +82,7 @@ actor MessageDispatcher {
     @discardableResult
     func send(text: String, destination: Destination, source: String) async -> MessageStatus {
         let message = OutgoingMessage(text: text, destinationID: destination.id, source: source)
-        log.enqueue(message, destinationName: destination.name)
+        log.enqueue(message, destinationName: destination.displayName)
         inFlight.insert(message.id)
         persist()
 
@@ -183,6 +183,7 @@ actor MessageDispatcher {
         case .unreadable:
             return false
         }
+        publishHistory()
         NotificationCenter.default.post(name: Self.didChange, object: nil)
         return true
     }
@@ -200,6 +201,7 @@ actor MessageDispatcher {
             // 本文は他人に見せたくない内容のこともあるので、起動後の初回ロック解除までは読めないようにする
             try data.write(to: fileURL, options: [.atomic, .completeFileProtectionUntilFirstUserAuthentication])
             dirty = false
+            publishHistory()
             // 判定に使うのは履歴に残っている項目だけなので、それ以外は持たない (送るたびに増え続けないように)
             persistedIDs = Set(log.entries.map(\.id))
             return true
@@ -208,6 +210,15 @@ actor MessageDispatcher {
             dirty = true
             return false
         }
+    }
+
+    /// 時計の履歴の写しを iPhone に送る (iPhone の履歴画面で見せるため)。iPhone では何もしない。
+    func publishHistory() {
+        #if os(watchOS)
+        // 履歴を読めていないときに送ると、空の履歴で iPhone の写しを消してしまう。読めたとき (recoverIfNeeded) に送る
+        guard !readFailed else { return }
+        WatchSync.shared.pushHistory(HistorySnapshot(log: log, updatedAt: Date()))
+        #endif
     }
 
     private static func status(for result: SendResult) -> MessageStatus {

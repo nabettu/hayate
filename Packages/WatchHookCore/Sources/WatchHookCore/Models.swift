@@ -19,6 +19,15 @@ public enum DestinationKind: String, Codable, CaseIterable, Sendable {
     case custom
     case slack
     case discord
+
+    /// 画面に出す種類の名前。
+    public var label: String {
+        switch self {
+        case .custom: "Webhook"
+        case .slack: "Slack"
+        case .discord: "Discord"
+        }
+    }
 }
 
 public enum HTTPMethod: String, Codable, CaseIterable, Sendable {
@@ -71,6 +80,17 @@ public struct Destination: Codable, Hashable, Identifiable, Sendable {
         self.headers = headers
         self.bodyEncoding = bodyEncoding
         self.bodyTemplate = bodyTemplate
+    }
+
+    /// 画面 (iPhone・時計・Siri・履歴) に出す名前。名前が空なら URL のホスト、それも無ければ種類の名前。
+    /// URL のパスやクエリには Slack の webhook のように秘密が入ることがあるので、ホストより先は出さない。
+    public var displayName: String {
+        let trimmed = name.trimmingCharacters(in: .whitespacesAndNewlines)
+        if !trimmed.isEmpty { return trimmed }
+        if let host = URL(string: url.trimmingCharacters(in: .whitespacesAndNewlines))?.host, !host.isEmpty {
+            return host
+        }
+        return kind.label
     }
 
     public static func preset(_ kind: DestinationKind) -> Destination {

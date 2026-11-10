@@ -188,8 +188,8 @@ extension AccessState {
     var blockedMessage: String? {
         switch self {
         case .unlocked, .trial: nil
-        case .trialNotStarted: "iPhone の WatchHook で、7 日間の無料お試しを始めるか購入してください。"
-        case .trialExpired: "無料お試しの 7 日間が終わりました。iPhone の WatchHook で購入すると続けて使えます。"
+        case .trialNotStarted: "iPhone の Hayate で、7 日間の無料お試しを始めるか購入してください。"
+        case .trialExpired: "無料お試しの 7 日間が終わりました。iPhone の Hayate で購入すると続けて使えます。"
         }
     }
 }

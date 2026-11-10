@@ -17,15 +17,15 @@ struct DestinationQuery: EntityQuery {
     func entities(for identifiers: [UUID]) async throws -> [DestinationEntity] {
         try ConfigStore.loadFromKeychain().destinations
             .filter { identifiers.contains($0.id) }
-            .map { DestinationEntity(id: $0.id, name: $0.name) }
+            .map { DestinationEntity(id: $0.id, name: $0.displayName) }
     }
 
     func suggestedEntities() async throws -> [DestinationEntity] {
-        try ConfigStore.loadFromKeychain().destinations.map { DestinationEntity(id: $0.id, name: $0.name) }
+        try ConfigStore.loadFromKeychain().destinations.map { DestinationEntity(id: $0.id, name: $0.displayName) }
     }
 }
 
-/// 「Hey Siri、WatchHook で送って」→ Siri が聞き取ったテキストをそのまま送り先へ送る。
+/// 「Hey Siri、Hayate で送って」→ Siri が聞き取ったテキストをそのまま送り先へ送る。
 /// アプリの画面は開かない (時計でも iPhone でも裏で完結する)。
 struct SendTextIntent: AppIntent {
     static let title: LocalizedStringResource = "テキストを送る"
@@ -55,12 +55,11 @@ struct SendTextIntent: AppIntent {
             target = found
         } else {
             guard let found = config.defaultDestination else {
-                return .result(dialog: "送り先がありません。iPhone の WatchHook で登録してください。")
+                return .result(dialog: "送り先がありません。iPhone の Hayate で登録してください。")
             }
             target = found
         }
-        let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmed.isEmpty else {
+        guard let trimmed = MessageText.normalized(text) else {
             return .result(dialog: "テキストが空でした。")
         }
         // お試し前・お試しが終わったあとは送らない (送り先の登録・テスト送信・溜まった分の再送はできる)
@@ -75,7 +74,7 @@ struct SendTextIntent: AppIntent {
         let status = await MessageDispatcher.shared.send(text: trimmed, destination: target, source: source)
         switch status {
         case .sent:
-            return .result(dialog: "\(target.name) に送りました。")
+            return .result(dialog: "\(target.displayName) に送りました。")
         case .pending:
             return .result(dialog: "今は送れませんでした。あとで送り直します。")
         case .failed(let reason):

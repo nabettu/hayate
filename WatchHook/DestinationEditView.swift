@@ -14,76 +14,89 @@ struct DestinationEditView: View {
     var body: some View {
         NavigationStack {
             Form {
-                Section {
-                    TextField("名前", text: $destination.name)
-                    TextField(urlPlaceholder, text: $destination.url, axis: .vertical)
-                        .keyboardType(.URL)
-                        .textInputAutocapitalization(.never)
-                        .autocorrectionDisabled()
-                } footer: {
-                    Text(urlFooter)
-                }
-
-                if destination.kind == .custom {
-                    Section("リクエスト") {
-                        Picker("メソッド", selection: $destination.method) {
-                            ForEach(HTTPMethod.allCases, id: \.self) { Text($0.rawValue) }
-                        }
-                        Picker("本文の形式", selection: $destination.bodyEncoding) {
-                            Text("JSON").tag(BodyEncoding.json)
-                            Text("フォーム").tag(BodyEncoding.form)
-                            Text("テキスト").tag(BodyEncoding.plain)
-                        }
-                    }
-
+                Group {
                     Section {
-                        ForEach($destination.headers) { $h in
-                            HeaderRow(header: $h)
-                        }
-                        .onDelete { destination.headers.remove(atOffsets: $0) }
-                        Button("ヘッダを追加") {
-                            destination.headers.append(HeaderField(name: "Authorization", value: "Bearer ", isSecret: true))
-                        }
+                        TextField(namePlaceholder, text: $destination.name)
                     } header: {
-                        Text("ヘッダ")
+                        Text("名前")
                     } footer: {
-                        Text("Authorization などの認証ヘッダを登録できます。値は iPhone と Apple Watch の Keychain にだけ保存されます。")
+                        Text("Apple Watch・Siri・履歴で送り先として出る名前です。空のときは URL のホスト名を出します。")
                     }
 
                     Section {
-                        TextEditor(text: $destination.bodyTemplate)
-                            .font(.system(.footnote, design: .monospaced))
-                            .frame(minHeight: 120)
+                        TextField(urlPlaceholder, text: $destination.url, axis: .vertical)
+                            .keyboardType(.URL)
                             .textInputAutocapitalization(.never)
                             .autocorrectionDisabled()
                     } header: {
-                        Text("本文")
+                        Text("URL")
                     } footer: {
-                        Text("{{text}} = 話した内容、{{id}} = メッセージ ID (再送しても同じ)、{{sentAt}} = 送信日時 (UTC)、{{source}} = 送信元。JSON では値を \"\" で囲んでください。")
+                        Text(urlFooter)
                     }
-                }
 
-                Section {
-                    Button {
-                        Task { await sendTest() }
-                    } label: {
-                        HStack {
-                            Text("テスト送信")
-                            if isTesting { Spacer(); ProgressView() }
+                    if destination.kind == .custom {
+                        Section("リクエスト") {
+                            Picker("メソッド", selection: $destination.method) {
+                                ForEach(HTTPMethod.allCases, id: \.self) { Text($0.rawValue) }
+                            }
+                            Picker("本文の形式", selection: $destination.bodyEncoding) {
+                                Text("JSON").tag(BodyEncoding.json)
+                                Text("フォーム").tag(BodyEncoding.form)
+                                Text("テキスト").tag(BodyEncoding.plain)
+                            }
+                        }
+
+                        Section {
+                            ForEach($destination.headers) { $h in
+                                HeaderRow(header: $h)
+                            }
+                            .onDelete { destination.headers.remove(atOffsets: $0) }
+                            Button("ヘッダを追加") {
+                                destination.headers.append(HeaderField(name: "Authorization", value: "Bearer ", isSecret: true))
+                            }
+                        } header: {
+                            Text("ヘッダ")
+                        } footer: {
+                            Text("Authorization などの認証ヘッダを登録できます。値は iPhone と Apple Watch の Keychain にだけ保存されます。")
+                        }
+
+                        Section {
+                            TextEditor(text: $destination.bodyTemplate)
+                                .font(.system(.footnote, design: .monospaced))
+                                .frame(minHeight: 120)
+                                .textInputAutocapitalization(.never)
+                                .autocorrectionDisabled()
+                        } header: {
+                            Text("本文")
+                        } footer: {
+                            Text("{{text}} = 話した内容、{{id}} = メッセージ ID (再送しても同じ)、{{sentAt}} = 送信日時 (UTC)、{{source}} = 送信元。JSON では値を \"\" で囲んでください。")
                         }
                     }
-                    .disabled(isTesting)
-                    if let testResult {
-                        Text(testResult).font(.footnote).foregroundStyle(.secondary)
+
+                    Section {
+                        Button {
+                            Task { await sendTest() }
+                        } label: {
+                            HStack {
+                                Text("テスト送信")
+                                if isTesting { Spacer(); ProgressView() }
+                            }
+                        }
+                        .disabled(isTesting)
+                        if let testResult {
+                            Text(testResult).font(.footnote).foregroundStyle(.secondary)
+                        }
+                    }
+
+                    if let error {
+                        Section { Text(error).foregroundStyle(.red) }
                     }
                 }
-
-                if let error {
-                    Section { Text(error).foregroundStyle(.red) }
-                }
+                .listRowBackground(Cosmos.card)
             }
             .scrollDismissesKeyboard(.interactively)
-            .navigationTitle(destination.name.isEmpty ? "送り先" : destination.name)
+            .cosmicListBackground()
+            .navigationTitle(destination.displayName)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -99,6 +112,14 @@ struct DestinationEditView: View {
                     }
                 }
             }
+        }
+    }
+
+    private var namePlaceholder: String {
+        switch destination.kind {
+        case .slack: "例: 家族の Slack"
+        case .discord: "例: メモ用チャンネル"
+        case .custom: "例: 買い物リスト"
         }
     }
 
@@ -139,7 +160,7 @@ struct DestinationEditView: View {
         }
         isTesting = true
         defer { isTesting = false }
-        let message = OutgoingMessage(text: "WatchHook のテスト送信です", destinationID: destination.id, source: "test")
+        let message = OutgoingMessage(text: "Hayate のテスト送信です", destinationID: destination.id, source: "test")
         let result = await WebhookSender().send(message, to: destination)
         switch result {
         case .sent(let code): testResult = "届きました (HTTP \(code))"
