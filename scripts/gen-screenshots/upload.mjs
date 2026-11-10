@@ -73,14 +73,15 @@ function takeLock() {
     busy(`ほかのプロセスがロックを引き継いでいる。少し待って動かす (${TAKEOVER} が残っていて、その pid が居なければ消す)`);
   }
   // process.exit は finally を通らないので、TAKEOVER を外してから判定の結果を出す
-  let owner = 0;
+  // 生きているかは 1 回だけ判定し、その結果で決める (2 回見ると、間に前のプロセスが終わったとき、取らずに進んでしまう)
+  let owner = 0, taken = false;
   try {
     owner = Number(fs.readFileSync(LOCK, "utf8"));
-    if (!alive(owner)) fs.writeFileSync(LOCK, String(process.pid));
+    if (!alive(owner)) { fs.writeFileSync(LOCK, String(process.pid)); taken = true; }
   } finally {
     fs.rmSync(TAKEOVER, { force: true });
   }
-  if (alive(owner)) busy(`別の upload.mjs (pid ${owner}) が動いている。終わってから動かす`);
+  if (!taken) busy(`別の upload.mjs (pid ${owner}) が動いている。終わってから動かす`);
 }
 if (!dryRun) {
   takeLock();
