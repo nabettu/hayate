@@ -4,7 +4,7 @@
 // 先に scripts/l10n/push-store.mjs でロケール (バージョンのローカライズ) を作っておく。無いロケールには上げられない
 // ⚠️ 本番のストアのページに出る。ユーザーの OK を取ってから
 
-import { execFileSync } from "node:child_process";
+import { spawn } from "node:child_process";
 import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
@@ -30,6 +30,9 @@ fs.mkdirSync(path.join(os.tmpdir(), "claude-work"), { recursive: true });
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "claude-work", "hayate-upload-"));
 process.on("exit", () => fs.rmSync(tmp, { recursive: true, force: true }));
 
+// 1 セットに数分かかる (asc がサーバー側の処理の完了を待つ) ので、ロケールを並行で上げる
+const CONCURRENCY = 6;
+const jobs = [];
 for (const [lang, locales] of Object.entries(ASC_LOCALES)) {
   if (only.length && !only.includes(lang)) continue;
   const dir = path.join(ROOT, "screenshots/app-store", lang);
@@ -40,14 +43,34 @@ for (const [lang, locales] of Object.entries(ASC_LOCALES)) {
     const sub = path.join(tmp, lang, prefix);
     fs.mkdirSync(sub, { recursive: true });
     for (const f of files) fs.copyFileSync(path.join(dir, f), path.join(sub, f));
-    for (const locale of locales) {
-      const a = ["--profile", "crossedge", "screenshots", "upload", "--app", APP, "--version", VERSION, "--locale", locale,
-        "--path", sub, "--device-type", deviceType, "--replace", "--confirm", "--output", "table"];
-      if (dryRun) a.push("--dry-run");
-      console.log(`${locale} ${deviceType} (${files.length} 枚)`);
-      // dry-run は上げる・消す予定の表を見るために出す。本番は表が長いので捨てる (エラーは出す)
-      execFileSync("asc", a, { stdio: ["ignore", dryRun ? "inherit" : "ignore", "inherit"] });
-    }
+    for (const locale of locales) jobs.push({ locale, deviceType, sub, count: files.length });
   }
+}
+
+const run = (job) => new Promise((resolve) => {
+  const a = ["--profile", "crossedge", "screenshots", "upload", "--app", APP, "--version", VERSION, "--locale", job.locale,
+    "--path", job.sub, "--device-type", job.deviceType, "--replace", "--confirm", "--output", "table"];
+  if (dryRun) a.push("--dry-run");
+  // dry-run は上げる・消す予定の表を見るために出す。本番は表が長いので捨てる (エラーは集める)
+  let err = "";
+  const p = spawn("asc", a, { stdio: ["ignore", dryRun ? "inherit" : "ignore", "pipe"] });
+  p.stderr.on("data", (d) => { err += d; });
+  p.on("close", (code) => resolve({ ...job, code, err: err.trim() }));
+});
+
+const failures = [];
+let done = 0;
+const queue = [...jobs];
+await Promise.all(Array.from({ length: dryRun ? 1 : CONCURRENCY }, async () => {
+  while (queue.length) {
+    const r = await run(queue.shift());
+    done++;
+    console.log(`[${done}/${jobs.length}] ${r.locale} ${r.deviceType} (${r.count} 枚) ${r.code === 0 ? "OK" : "失敗"}`);
+    if (r.code !== 0) failures.push(`${r.locale} ${r.deviceType}: ${r.err.split("\n")[0]}`);
+  }
+}));
+if (failures.length) {
+  console.error(`\n失敗 ${failures.length} 件 (その言語だけ上げ直す: node upload.mjs <言語>):\n${failures.map((f) => `  ${f}`).join("\n")}`);
+  process.exit(1);
 }
 console.log(dryRun ? "(dry-run: 上げていない)" : "上げた");
