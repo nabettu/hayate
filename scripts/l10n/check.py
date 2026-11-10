@@ -3,8 +3,16 @@ units = json.load(open(__file__.replace('check.py','units.json')))
 store = json.load(open(__file__.replace('check.py','store-ja.json')))
 shots = json.load(open(__file__.replace('check.py','shots-ja.json')))
 o = json.load(open(sys.argv[1])); errs = []
-ph = re.compile(r'%(?:\d\$)?(?:@|lld|d)|\$\{applicationName\}|\{\{\w+\}\}')
-norm = lambda s: sorted(re.sub(r'%\d\$', '%', p) for p in ph.findall(s))
+FMT = re.compile(r'%(?:(\d+)\$)?(@|lld|d)')
+NAMED = re.compile(r'\$\{\w+\}|\{\{\w+\}\}')
+def norm(s):
+    """引数番号 → 型 (番号の無いものは出てきた順に 1, 2, ...) と、名前付きのもの (${text}・{{id}} など) の一覧"""
+    args, i = {}, 0
+    for m in FMT.finditer(s):
+        if m.group(1): n = int(m.group(1))
+        else: i += 1; n = i
+        args[n] = m.group(2)
+    return args, sorted(NAMED.findall(s))
 for u in units:
     if 'AppShortcuts' in u['file']: continue
     if u['id'] not in o.get('app', {}): errs.append(f"missing app id: {u['id'][:50]}"); continue

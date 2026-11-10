@@ -42,8 +42,10 @@ for lang in langs:
     for kind, rel in (("store", f"store/metadata/{lang}.json"), ("shots", f"scripts/gen-screenshots/copy/{lang}.json")):
         path = os.path.join(ROOT, rel)
         os.makedirs(os.path.dirname(path), exist_ok=True)
+        # 訳の対象でない設定 (nameByLocale・supportUrl など) は、取り込み直しても消さない
+        merged = {**(json.load(open(path)) if os.path.exists(path) else {}), **t[kind]}
         with open(path, "w") as f:
-            json.dump(t[kind], f, ensure_ascii=False, indent=2)
+            json.dump(merged, f, ensure_ascii=False, indent=2)
             f.write("\n")
 
 for rel, c in catalogs.items():
