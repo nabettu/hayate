@@ -63,9 +63,9 @@ struct OrbitBadge: View {
                 LaunchTrail(color: fullColor ? Cosmos.lavender : .white)
 
                 PaperPlane(monochrome: !fullColor)
-                    .frame(width: s * 0.54)
+                    .frame(width: s * Self.planeWidth)
                     .shadow(color: fullColor ? Cosmos.violet.opacity(0.9) : .clear, radius: s * 0.06)
-                    .position(x: s * 0.56, y: s * 0.44)
+                    .position(x: s * Self.planeCenter.x, y: s * Self.planeCenter.y)
                     .widgetAccentable()
 
                 SparkleShape()
@@ -88,28 +88,34 @@ struct OrbitBadge: View {
         }
         .accessibilityLabel("Hayate")
     }
+
+    /// 紙飛行機の幅と中心 (円の直径に対する割合)。光の粒の線もこれから決める。
+    static let planeWidth = 0.54
+    static let planeCenter = CGPoint(x: 0.56, y: 0.44)
 }
 
-/// 左下から紙飛行機の後ろまで続く光の粒。円の大きさに合わせて描く。
+/// 紙飛行機の中心線 (機首 → 後端) をそのまま後ろへ伸ばした直線上に並ぶ光の粒。
+/// 後端に近いほど大きく明るく、離れるほど小さく薄くする。円の大きさに合わせて描く。
 private struct LaunchTrail: View {
     var color: Color
 
     var body: some View {
         Canvas { ctx, size in
             let s = min(size.width, size.height)
-            // 紙飛行機 (幅 0.54・中心 0.56, 0.44) の後端のすぐ後ろまで、ゆるい弧で
-            let from = CGPoint(x: 0.12 * s, y: 0.84 * s)
-            let control = CGPoint(x: 0.24 * s, y: 0.64 * s)
-            let to = CGPoint(x: 0.44 * s, y: 0.62 * s)
+            let k = OrbitBadge.planeWidth * s / 700
+            // 紙飛行機の絵 (700×620) の左上
+            let origin = CGPoint(x: OrbitBadge.planeCenter.x * s - 350 * k, y: OrbitBadge.planeCenter.y * s - 310 * k)
+            let tail = CGPoint(x: origin.x + PaperPlane.tail.x * k, y: origin.y + PaperPlane.tail.y * k)
+            // 中心線の向き (後端 → 機首) の逆へ伸ばす
+            let back = CGPoint(x: -cos(PaperPlane.heading), y: -sin(PaperPlane.heading))
             let n = 7
             for i in 0..<n {
-                let t = Double(i) / Double(n - 1)
-                let u = 1 - t
-                let p = CGPoint(x: u * u * from.x + 2 * u * t * control.x + t * t * to.x,
-                                y: u * u * from.y + 2 * u * t * control.y + t * t * to.y)
-                let r = s * (0.012 + 0.022 * t)
+                let t = Double(i) / Double(n - 1)  // 0: 後端のすぐ後ろ, 1: いちばん遠い
+                let d = s * (0.05 + 0.3 * t)
+                let p = CGPoint(x: tail.x + back.x * d, y: tail.y + back.y * d)
+                let r = s * (0.034 - 0.022 * t)
                 ctx.fill(Path(ellipseIn: CGRect(x: p.x - r, y: p.y - r, width: r * 2, height: r * 2)),
-                         with: .color(color.opacity(0.25 + 0.6 * t)))
+                         with: .color(color.opacity(0.85 - 0.6 * t)))
             }
         }
         .allowsHitTesting(false)
