@@ -61,6 +61,10 @@ public struct Destination: Codable, Hashable, Identifiable, Sendable {
     public var bodyEncoding: BodyEncoding
     /// `{{text}}` `{{id}}` `{{sentAt}}` `{{source}}` を差し込める。
     public var bodyTemplate: String
+    /// 話した内容の前後に付ける文 (例: 前に「#買い物 」)。Slack・Discord のように本文が決まった送り先でも使える。
+    /// 空白や改行は書いたとおりに付ける。送る時点で付け、履歴・再送も付けた文のまま
+    public var textPrefix: String = ""
+    public var textSuffix: String = ""
 
     public init(
         id: UUID = UUID(),
@@ -80,6 +84,30 @@ public struct Destination: Codable, Hashable, Identifiable, Sendable {
         self.headers = headers
         self.bodyEncoding = bodyEncoding
         self.bodyTemplate = bodyTemplate
+    }
+
+    /// 話した内容に前後の文を付ける。
+    public func wrap(_ text: String) -> String {
+        textPrefix + text + textSuffix
+    }
+
+    private enum CodingKeys: String, CodingKey {
+        case id, name, kind, url, method, headers, bodyEncoding, bodyTemplate, textPrefix, textSuffix
+    }
+
+    /// 前後の文が入る前に保存された設定 (キーが無い) も読めるようにする
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        id = try c.decode(UUID.self, forKey: .id)
+        name = try c.decode(String.self, forKey: .name)
+        kind = try c.decode(DestinationKind.self, forKey: .kind)
+        url = try c.decode(String.self, forKey: .url)
+        method = try c.decode(HTTPMethod.self, forKey: .method)
+        headers = try c.decode([HeaderField].self, forKey: .headers)
+        bodyEncoding = try c.decode(BodyEncoding.self, forKey: .bodyEncoding)
+        bodyTemplate = try c.decode(String.self, forKey: .bodyTemplate)
+        textPrefix = try c.decodeIfPresent(String.self, forKey: .textPrefix) ?? ""
+        textSuffix = try c.decodeIfPresent(String.self, forKey: .textSuffix) ?? ""
     }
 
     /// 画面 (iPhone・時計・Siri・履歴) に出す名前。名前が空なら URL のホスト、それも無ければ種類の名前。

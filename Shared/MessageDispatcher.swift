@@ -81,7 +81,8 @@ actor MessageDispatcher {
     /// 1 件送って、その結果を返す。溜まっている未送信の再送は待たない (裏で始める)。
     @discardableResult
     func send(text: String, destination: Destination, source: String) async -> MessageStatus {
-        let message = OutgoingMessage(text: text, destinationID: destination.id, source: source)
+        // 送り先の前後の文はここで付ける (履歴・再送も付けた文のまま。あとで前後の文を変えても、送った分は変わらない)
+        let message = OutgoingMessage(text: destination.wrap(text), destinationID: destination.id, source: source)
         log.enqueue(message, destinationName: destination.displayName)
         inFlight.insert(message.id)
         persist()
