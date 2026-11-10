@@ -1,0 +1,60 @@
+{
+  "versionLocalizationId": "4d61829e-57e6-4ec7-aca9-9b296c12b5fd",
+  "path": ".asc/reports/screenshots-upload/failures-1794320742129317000.json",
+  "rootPath": "/var/folders/vx/667sfpd97z5dr2c3h7cr5_h00000gn/T/claude-work/hayate-upload-rzti5C/en/watch",
+  "deviceType": "WATCH_SERIES_10",
+  "displayType": "APP_WATCH_SERIES_10",
+  "replace": true,
+  "setId": "dea91ef3-6ea1-4311-8b07-81184a6787ef",
+  "files": [
+    "/var/folders/vx/667sfpd97z5dr2c3h7cr5_h00000gn/T/claude-work/hayate-upload-rzti5C/en/watch/watch-01_home.png",
+    "/var/folders/vx/667sfpd97z5dr2c3h7cr5_h00000gn/T/claude-work/hayate-upload-rzti5C/en/watch/watch-02_history.png",
+    "/var/folders/vx/667sfpd97z5dr2c3h7cr5_h00000gn/T/claude-work/hayate-upload-rzti5C/en/watch/watch-03_destinations.png"
+  ],
+  "orderedIds": [
+    "5fc00019-745e-82e2-800c-fdade8048687"
+  ],
+  "pendingFiles": [
+    "/var/folders/vx/667sfpd97z5dr2c3h7cr5_h00000gn/T/claude-work/hayate-upload-rzti5C/en/watch/watch-02_history.png",
+    "/var/folders/vx/667sfpd97z5dr2c3h7cr5_h00000gn/T/claude-work/hayate-upload-rzti5C/en/watch/watch-03_destinations.png"
+  ],
+  "pendingAssets": [
+    {
+      "fileName": "watch-02_history.png",
+      "filePath": "/var/folders/vx/667sfpd97z5dr2c3h7cr5_h00000gn/T/claude-work/hayate-upload-rzti5C/en/watch/watch-02_history.png",
+      "assetId": "fd800019-745e-82e2-8003-3a281ffb8322",
+      "checksum": "602dc50e286f30e804d37fe6fc914aaf",
+      "state": "UPLOAD_COMPLETE"
+    }
+  ],
+  "cleanupFailures": [
+    {
+      "fileName": "watch-03_destinations.png",
+      "filePath": "/var/folders/vx/667sfpd97z5dr2c3h7cr5_h00000gn/T/claude-work/hayate-upload-rzti5C/en/watch/watch-03_destinations.png",
+      "assetId": "6bc00019-745e-82e2-803b-8182bbe4553b",
+      "checksum": "eaf243e8b5dd5e2c2f99b30b626ba541",
+      "state": "UPLOAD_COMPLETE"
+    }
+  ],
+  "results": [
+    {
+      "fileName": "watch-01_home.png",
+      "filePath": "/var/folders/vx/667sfpd97z5dr2c3h7cr5_h00000gn/T/claude-work/hayate-upload-rzti5C/en/watch/watch-01_home.png",
+      "assetId": "5fc00019-745e-82e2-800c-fdade8048687",
+      "state": "COMPLETE"
+    }
+  ],
+  "failures": [
+    {
+      "fileName": "watch-02_history.png",
+      "filePath": "/var/folders/vx/667sfpd97z5dr2c3h7cr5_h00000gn/T/claude-work/hayate-upload-rzti5C/en/watch/watch-02_history.png",
+      "error": "fetch screenshot fd800019-745e-82e2-8003-3a281ffb8322 during checksum settlement: rate limited: upstream server asked to wait 34m19s, exceeding the 30s retry cap and the context deadline (9m45.155s remaining); raise ASC_MAX_DELAY and the request timeout to wait longer: rate limited by App Store Connect (status 429): The request rate limit has been reached.: We've received too many requests for this API. Please wait and try again or slow down your request rate. (retry after 34m19s)\ndelete screenshot \"6bc00019-745e-82e2-803b-8182bbe4553b\": rate limited: upstream server asked to wait 34m18s, exceeding the 30s retry cap and the context deadline (29.875s remaining); raise ASC_MAX_DELAY and the request timeout to wait longer: rate limited by App Store Connect (status 429): The request rate limit has been reached.: We've received too many requests for this API. Please wait and try again or slow down your request rate. (retry after 34m18s)"
+    },
+    {
+      "fileName": "screenshot cleanup",
+      "error": "fetch screenshot fd800019-745e-82e2-8003-3a281ffb8322 during checksum settlement: rate limited: upstream server asked to wait 34m19s, exceeding the 30s retry cap and the context deadline (9m45.155s remaining); raise ASC_MAX_DELAY and the request timeout to wait longer: rate limited by App Store Connect (status 429): The request rate limit has been reached.: We've received too many requests for this API. Please wait and try again or slow down your request rate. (retry after 34m19s)\ndelete screenshot \"6bc00019-745e-82e2-803b-8182bbe4553b\": rate limited: upstream server asked to wait 34m18s, exceeding the 30s retry cap and the context deadline (29.875s remaining); raise ASC_MAX_DELAY and the request timeout to wait longer: rate limited by App Store Connect (status 429): The request rate limit has been reached.: We've received too many requests for this API. Please wait and try again or slow down your request rate. (retry after 34m18s)"
+    }
+  ],
+  "error": "fetch screenshot fd800019-745e-82e2-8003-3a281ffb8322 during checksum settlement: rate limited: upstream server asked to wait 34m19s, exceeding the 30s retry cap and the context deadline (9m45.155s remaining); raise ASC_MAX_DELAY and the request timeout to wait longer: rate limited by App Store Connect (status 429): The request rate limit has been reached.: We've received too many requests for this API. Please wait and try again or slow down your request rate. (retry after 34m19s)\ndelete screenshot \"6bc00019-745e-82e2-803b-8182bbe4553b\": rate limited: upstream server asked to wait 34m18s, exceeding the 30s retry cap and the context deadline (29.875s remaining); raise ASC_MAX_DELAY and the request timeout to wait longer: rate limited by App Store Connect (status 429): The request rate limit has been reached.: We've received too many requests for this API. Please wait and try again or slow down your request rate. (retry after 34m18s)",
+  "generatedAt": "2026-11-10T14:25:42Z"
+}

@@ -105,18 +105,23 @@ const WATCH_CSS = `
   .ws { position: relative; width: 416px; height: 496px; color: #fff; overflow: hidden;
     font-family: "SF Compact Text", "SF Compact", var(--cjk), sans-serif; }
   .ws .appsky, .ps .appsky { position: absolute; inset: 0; }
-  .ws .bar { position: absolute; left: 26px; right: 30px; top: 22px; height: 56px; display: flex; align-items: center; justify-content: space-between; z-index: 2; }
-  .ws .title { font-family: "SF Compact Display", var(--cjk); font-size: 34px; font-weight: 600; display: flex; align-items: center; gap: 12px; }
+  .ws .bar { position: absolute; left: 26px; right: 30px; top: 22px; height: 56px; display: flex; align-items: center; justify-content: space-between; gap: 12px; z-index: 2; }
+  .ws .title { font-family: "SF Compact Display", var(--cjk); font-size: 34px; font-weight: 600; display: flex; align-items: center; gap: 12px; min-width: 0; white-space: nowrap; }
+  .ws .title .back { flex: none; }
+  .ws .title .tt { min-width: 0; overflow: hidden; }
+  .ws .time { flex: none; }
   .ws .back { width: 56px; height: 56px; border-radius: 50%; background: rgba(255,255,255,.16); display: flex; align-items: center; justify-content: center; }
   .ws .time { font-family: "SF Compact Display", var(--cjk); font-size: 34px; font-weight: 600; margin-inline-start: auto; }
   .ws .orbwrap { position: absolute; left: 50%; top: 88px; width: 168px; height: 168px; margin-left: -84px; }
   .ws .ring { position: absolute; inset: 0; border-radius: 50%; border: 3px solid rgba(196,181,253,.5); }
   .ws .orb { position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(45deg,#8B5CF6,#C4B5FD); box-shadow: 0 0 22px rgba(139,92,246,.9), inset 0 0 0 2px rgba(255,255,255,.35);
     display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 26px; font-weight: 700; }
-  .ws .status { position: absolute; left: 0; right: 0; top: 302px; text-align: center; font-size: 23px; font-weight: 500; white-space: nowrap; color: #FDE68A; display: flex; align-items: center; justify-content: center; gap: 8px; }
-  .ws .dest { position: absolute; left: 0; right: 0; top: 352px; display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 30px; color: #C4B5FD; }
+  .ws .status { position: absolute; left: 16px; right: 16px; top: 302px; overflow: hidden; text-align: center; font-size: 23px; font-weight: 500; white-space: nowrap; color: #FDE68A; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .ws .dest { position: absolute; left: 16px; right: 16px; top: 352px; overflow: hidden; white-space: nowrap; display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 30px; color: #C4B5FD; }
   .ws .pill { position: absolute; left: 30px; right: 30px; top: 404px; height: 104px; border-radius: 52px; background: rgba(150,130,230,.32);
-    display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 32px; color: #E4DCFF; }
+    display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 32px; color: #E4DCFF; overflow: hidden; white-space: nowrap; }
+  .ws .status svg, .ws .dest svg, .ws .pill svg { flex: none; }
+  .ws .orbtext { max-width: 136px; overflow: hidden; white-space: nowrap; }
   .ws .rows { position: absolute; left: 14px; right: 14px; top: 92px; display: flex; flex-direction: column; gap: 10px; }
   .ws .row { background: rgba(34,27,72,.96); border-radius: 28px; padding: 18px 24px; }
   .ws .row b { display: block; font-size: 31px; font-weight: 500; line-height: 1.25; }
@@ -131,7 +136,7 @@ const WATCH_CSS = `
   .ws.black { background: #000; }
 `;
 
-const watchBar = (title, { back = false } = {}) => `<div class="bar">${title ? `<div class="title">${back ? `<span class="back">${SYM.chevronLeft(28, "#fff")}</span>` : ""}${esc(title)}</div>` : ""}<div class="time">10:09</div></div>`;
+const watchBar = (title, { back = false } = {}) => `<div class="bar">${title ? `<div class="title">${back ? `<span class="back">${SYM.chevronLeft(28, "#fff")}</span>` : ""}<span class="tt">${esc(title)}</span></div>` : ""}<div class="time">10:09</div></div>`;
 const paperplaneLine = (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.8" stroke-linejoin="round"><path d="M21.5 2.5 2.5 10l7.5 3.5L13.5 21z"/><path d="m10 13.5 4.5-4.5"/></svg>`;
 const clockLine = (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5h-3"/></svg>`;
 
@@ -139,7 +144,7 @@ export const watchScreens = {
   /** 話して送った直後のホーム (WatchHomeView: 光る話すボタン・「〜」に送りました・送り先・履歴) */
   home: (t) => `<div class="ws">${appSky(416, 496, 26, 5)}${watchBar("")}
     <div class="orbwrap"><div class="ring" style="transform:scale(1.25);opacity:.75"></div><div class="ring" style="transform:scale(1.45);opacity:.3"></div>
-      <div class="orb">${SYM.mic(62, "#fff")}<span>${esc(t.speak)}</span></div></div>
+      <div class="orb">${SYM.mic(62, "#fff")}<span class="orbtext">${esc(t.speak)}</span></div></div>
     <div class="status">${SYM.checkFill(28, "#FDE68A")}${esc(t.sent)}</div>
     <div class="dest">${paperplaneLine(34, "#C4B5FD")}${esc(t.destinations[0])}</div>
     <div class="pill">${clockLine(34, "#E4DCFF")}${esc(t.history)}</div></div>`,
@@ -159,6 +164,19 @@ export const watchScreens = {
     <div class="siri"><div class="app"><img src="data:image/png;base64,${ICON_PNG}">${esc(t.appName.toUpperCase())}</div><p>${esc(t.siriDialog)}</p></div>
     <div class="siriorb"></div></div>`,
 };
+
+
+// Watch の画面の 1 行の文字 (送信結果・送り先・履歴・見出し・話す) は、収まらなければ字を小さくする。
+// 縮めても収まらないものは window.__watchOverflow に残し、index.mjs が生成を止める
+const WATCH_FIT = `<script>
+  window.__watchOverflow = [];
+  document.querySelectorAll(".ws .status, .ws .dest, .ws .pill, .ws .orbtext, .ws .title .tt").forEach(function (el) {
+    var over = function () { return el.scrollWidth > el.clientWidth + 1; };
+    var size = parseFloat(getComputedStyle(el).fontSize), min = size * 0.6;
+    while (over() && size > min) { size -= 1; el.style.fontSize = size + "px"; }
+    if (over()) window.__watchOverflow.push(el.className + ": " + el.textContent.trim());
+  });
+</script>`;
 
 // ---- iPhone の画面 (402x874 pt の CSS px で描き、端末の中で拡大する。ダーク固定) ----
 const PHONE_CSS = `
@@ -334,7 +352,7 @@ const head = (c, key, top) => `<div class="head" style="top:${top}px"><h1>${line
 const closing = (s) => `<div class="fade"></div><div class="closing">${lines(s)}</div>`;
 
 const page = (body, seed, lang) => `<!doctype html>${htmlOpen(lang)}<head><meta charset="utf-8"><style>${fontVars(lang)}${SLIDE_CSS}</style></head>
-<body><div class="slide">${sky(IPHONE.width, IPHONE.height, seed)}${body}</div>${FIT}</body></html>`;
+<body><div class="slide">${sky(IPHONE.width, IPHONE.height, seed)}${body}</div>${FIT}${WATCH_FIT}</body></html>`;
 
 /** iPhone のスクショ 1 枚の HTML */
 export function iphoneSlide(key, copy, lang = "ja") {
@@ -383,7 +401,7 @@ export function iphoneSlide(key, copy, lang = "ja") {
 /** Apple Watch のスクショ 1 枚の HTML (画面だけ) */
 export function watchSlide(key, copy, lang = "ja") {
   return `<!doctype html>${htmlOpen(lang)}<head><meta charset="utf-8"><style>${fontVars(lang)}* { margin: 0; padding: 0; box-sizing: border-box; } html, body { width: ${WATCH.width}px; height: ${WATCH.height}px; background: #000; overflow: hidden; -webkit-font-smoothing: antialiased; } ${WATCH_CSS}</style></head>
-<body>${watchScreens[key](copy.screen)}</body></html>`;
+<body>${watchScreens[key](copy.screen)}${WATCH_FIT}</body></html>`;
 }
 
 export const IPHONE_SLIDES = ["hero", "siri", "destination", "direct", "more"];

@@ -7,6 +7,7 @@
 // - 文言に禁止語がある (validate.mjs)
 // - 見出しが収まらず、決めた大きさより小さく縮んだ (copy.mjs の改行を増やす・短くする)
 // - 下の一言と、その上の吹き出し・カードの間が 24px 未満 / 見出しと端末・吹き出しが重なった
+// - 時計の画面の 1 行の文字が、字を小さくしても収まらない
 
 import * as fs from "node:fs";
 import * as path from "node:path";
@@ -45,6 +46,7 @@ try {
         const below = [...document.querySelectorAll(".watch, .iphone, .bubble, .float, .appicon, .grid")];
         return {
           fit: window.__fit,
+          watchOverflow: window.__watchOverflow,
           closingGap: closing ? box(closing).top - Math.max(0, ...above.map((el) => box(el).bottom)) : null,
           headGap: Math.min(...below.map((el) => box(el).top)) - box(head).bottom,
         };
@@ -55,6 +57,7 @@ try {
         if (f.size < MIN_SIZE[kind]) problems.push(`${lang}/${name}: ${kind} が ${f.size}px まで縮んだ (下限 ${MIN_SIZE[kind]}px)`);
       }
       if (report.closingGap !== null && report.closingGap < 24) problems.push(`${lang}/${name}: 下の一言との間が ${Math.round(report.closingGap)}px`);
+      for (const o of report.watchOverflow) problems.push(`${lang}/${name}: 時計の画面で収まらない (${o})`);
       if (report.headGap < 24) problems.push(`${lang}/${name}: 見出しとの間が ${Math.round(report.headGap)}px`);
       await phone.screenshot({ path: path.join(dir, `${name}.png`) });
       console.log(`  -> ${lang}/${name}.png`);
@@ -66,6 +69,7 @@ try {
       await watch.setContent(watchSlide(key, COPY[lang], lang), { waitUntil: "load" });
       await watch.evaluate(() => document.fonts.ready);
       const name = `watch-${String(i + 1).padStart(2, "0")}_${key}`;
+      for (const o of await watch.evaluate(() => window.__watchOverflow)) problems.push(`${lang}/${name}: 収まらない (${o})`);
       await watch.screenshot({ path: path.join(dir, `${name}.png`) });
       console.log(`  -> ${lang}/${name}.png`);
     }

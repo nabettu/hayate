@@ -6,13 +6,14 @@ o = json.load(open(sys.argv[1])); errs = []
 FMT = re.compile(r'%(?:(\d+)\$)?(@|lld|d)')
 NAMED = re.compile(r'\$\{\w+\}|\{\{\w+\}\}')
 def norm(s):
-    """引数番号 → 型 (番号の無いものは出てきた順に 1, 2, ...) と、名前付きのもの (${text}・{{id}} など) の一覧"""
-    args, i = {}, 0
+    """出てくるたびの (引数番号, 型) (番号の無いものは出てきた順に 1, 2, ...) と、名前付きのもの (${text}・{{id}} など)。
+    回数・型・番号がすべて元と同じでないと不一致にする (同じ番号に別の型を付けた訳も弾く)"""
+    occ, i = [], 0
     for m in FMT.finditer(s):
         if m.group(1): n = int(m.group(1))
         else: i += 1; n = i
-        args[n] = m.group(2)
-    return args, sorted(NAMED.findall(s))
+        occ.append((n, m.group(2)))
+    return sorted(occ), sorted(NAMED.findall(s))
 for u in units:
     if 'AppShortcuts' in u['file']: continue
     if u['id'] not in o.get('app', {}): errs.append(f"missing app id: {u['id'][:50]}"); continue
@@ -36,6 +37,8 @@ def shape(a, b, path):
             else: shape(a[k], b[k], f'{path}.{k}')
     elif isinstance(a, list):
         if not isinstance(b, list) or len(a) != len(b): errs.append(f'shots{path} must be list of {len(a)}')
+        else:
+            for i, (x, y) in enumerate(zip(a, b)): shape(x, y, f'{path}[{i}]')
     elif not isinstance(b, str) or not b: errs.append(f'shots{path} must be non-empty string')
 shape(shots, o.get('shots', {}), '')
 sh = o.get('shots', {})

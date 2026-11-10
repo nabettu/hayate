@@ -1,0 +1,78 @@
+{
+  "versionLocalizationId": "4d61829e-57e6-4ec7-aca9-9b296c12b5fd",
+  "path": ".asc/reports/screenshots-upload/failures-1794320743489434000.json",
+  "rootPath": "/var/folders/vx/667sfpd97z5dr2c3h7cr5_h00000gn/T/claude-work/hayate-upload-rzti5C/en/iphone",
+  "deviceType": "IPHONE_67",
+  "displayType": "APP_IPHONE_67",
+  "replace": true,
+  "setId": "b2b6e254-d10a-4abc-864d-ffee425c4104",
+  "files": [
+    "/var/folders/vx/667sfpd97z5dr2c3h7cr5_h00000gn/T/claude-work/hayate-upload-rzti5C/en/iphone/iphone-01_hero.png",
+    "/var/folders/vx/667sfpd97z5dr2c3h7cr5_h00000gn/T/claude-work/hayate-upload-rzti5C/en/iphone/iphone-02_siri.png",
+    "/var/folders/vx/667sfpd97z5dr2c3h7cr5_h00000gn/T/claude-work/hayate-upload-rzti5C/en/iphone/iphone-03_destination.png",
+    "/var/folders/vx/667sfpd97z5dr2c3h7cr5_h00000gn/T/claude-work/hayate-upload-rzti5C/en/iphone/iphone-04_direct.png",
+    "/var/folders/vx/667sfpd97z5dr2c3h7cr5_h00000gn/T/claude-work/hayate-upload-rzti5C/en/iphone/iphone-05_more.png"
+  ],
+  "orderedIds": [
+    "09400019-745e-82e2-8013-f689a9d3a503"
+  ],
+  "pendingFiles": [
+    "/var/folders/vx/667sfpd97z5dr2c3h7cr5_h00000gn/T/claude-work/hayate-upload-rzti5C/en/iphone/iphone-02_siri.png",
+    "/var/folders/vx/667sfpd97z5dr2c3h7cr5_h00000gn/T/claude-work/hayate-upload-rzti5C/en/iphone/iphone-03_destination.png",
+    "/var/folders/vx/667sfpd97z5dr2c3h7cr5_h00000gn/T/claude-work/hayate-upload-rzti5C/en/iphone/iphone-04_direct.png",
+    "/var/folders/vx/667sfpd97z5dr2c3h7cr5_h00000gn/T/claude-work/hayate-upload-rzti5C/en/iphone/iphone-05_more.png"
+  ],
+  "pendingAssets": [
+    {
+      "fileName": "iphone-02_siri.png",
+      "filePath": "/var/folders/vx/667sfpd97z5dr2c3h7cr5_h00000gn/T/claude-work/hayate-upload-rzti5C/en/iphone/iphone-02_siri.png",
+      "assetId": "edc00019-745e-82e2-8006-f087d78fd967",
+      "checksum": "c16d10904e2169e38a9577108792eb0d",
+      "state": "UPLOAD_COMPLETE"
+    }
+  ],
+  "cleanupFailures": [
+    {
+      "fileName": "iphone-05_more.png",
+      "filePath": "/var/folders/vx/667sfpd97z5dr2c3h7cr5_h00000gn/T/claude-work/hayate-upload-rzti5C/en/iphone/iphone-05_more.png",
+      "assetId": "a3800019-745e-82e2-8037-2894f7bd8dee",
+      "checksum": "",
+      "state": "COMPLETE"
+    },
+    {
+      "fileName": "iphone-04_direct.png",
+      "filePath": "/var/folders/vx/667sfpd97z5dr2c3h7cr5_h00000gn/T/claude-work/hayate-upload-rzti5C/en/iphone/iphone-04_direct.png",
+      "assetId": "8c000019-745e-82e2-8027-495353fb0f4f",
+      "checksum": "",
+      "state": "COMPLETE"
+    },
+    {
+      "fileName": "iphone-03_destination.png",
+      "filePath": "/var/folders/vx/667sfpd97z5dr2c3h7cr5_h00000gn/T/claude-work/hayate-upload-rzti5C/en/iphone/iphone-03_destination.png",
+      "assetId": "24400019-745e-82e2-800f-8a29b01dc8a2",
+      "checksum": "f1ab085516f332551c7a9524eb9a19d7",
+      "state": "UPLOAD_COMPLETE"
+    }
+  ],
+  "results": [
+    {
+      "fileName": "iphone-01_hero.png",
+      "filePath": "/var/folders/vx/667sfpd97z5dr2c3h7cr5_h00000gn/T/claude-work/hayate-upload-rzti5C/en/iphone/iphone-01_hero.png",
+      "assetId": "09400019-745e-82e2-8013-f689a9d3a503",
+      "state": "COMPLETE"
+    }
+  ],
+  "failures": [
+    {
+      "fileName": "iphone-02_siri.png",
+      "filePath": "/var/folders/vx/667sfpd97z5dr2c3h7cr5_h00000gn/T/claude-work/hayate-upload-rzti5C/en/iphone/iphone-02_siri.png",
+      "error": "fetch screenshot edc00019-745e-82e2-8006-f087d78fd967 during checksum settlement: rate limited: upstream server asked to wait 34m18s, exceeding the 30s retry cap and the context deadline (2m4.63s remaining); raise ASC_MAX_DELAY and the request timeout to wait longer: rate limited by App Store Connect (status 429): The request rate limit has been reached.: We've received too many requests for this API. Please wait and try again or slow down your request rate. (retry after 34m18s)\ndelete screenshot \"a3800019-745e-82e2-8037-2894f7bd8dee\": rate limited: upstream server asked to wait 34m17s, exceeding the 30s retry cap and the context deadline (29.805s remaining); raise ASC_MAX_DELAY and the request timeout to wait longer: rate limited by App Store Connect (status 429): The request rate limit has been reached.: We've received too many requests for this API. Please wait and try again or slow down your request rate. (retry after 34m17s)\ndelete screenshot \"8c000019-745e-82e2-8027-495353fb0f4f\": rate limited: upstream server asked to wait 34m17s, exceeding the 30s retry cap and the context deadline (29.639s remaining); raise ASC_MAX_DELAY and the request timeout to wait longer: rate limited by App Store Connect (status 429): The request rate limit has been reached.: We've received too many requests for this API. Please wait and try again or slow down your request rate. (retry after 34m17s)\ndelete screenshot \"24400019-745e-82e2-800f-8a29b01dc8a2\": rate limited: upstream server asked to wait 34m17s, exceeding the 30s retry cap and the context deadline (29.429s remaining); raise ASC_MAX_DELAY and the request timeout to wait longer: rate limited by App Store Connect (status 429): The request rate limit has been reached.: We've received too many requests for this API. Please wait and try again or slow down your request rate. (retry after 34m17s)"
+    },
+    {
+      "fileName": "screenshot cleanup",
+      "error": "fetch screenshot edc00019-745e-82e2-8006-f087d78fd967 during checksum settlement: rate limited: upstream server asked to wait 34m18s, exceeding the 30s retry cap and the context deadline (2m4.63s remaining); raise ASC_MAX_DELAY and the request timeout to wait longer: rate limited by App Store Connect (status 429): The request rate limit has been reached.: We've received too many requests for this API. Please wait and try again or slow down your request rate. (retry after 34m18s)\ndelete screenshot \"a3800019-745e-82e2-8037-2894f7bd8dee\": rate limited: upstream server asked to wait 34m17s, exceeding the 30s retry cap and the context deadline (29.805s remaining); raise ASC_MAX_DELAY and the request timeout to wait longer: rate limited by App Store Connect (status 429): The request rate limit has been reached.: We've received too many requests for this API. Please wait and try again or slow down your request rate. (retry after 34m17s)\ndelete screenshot \"8c000019-745e-82e2-8027-495353fb0f4f\": rate limited: upstream server asked to wait 34m17s, exceeding the 30s retry cap and the context deadline (29.639s remaining); raise ASC_MAX_DELAY and the request timeout to wait longer: rate limited by App Store Connect (status 429): The request rate limit has been reached.: We've received too many requests for this API. Please wait and try again or slow down your request rate. (retry after 34m17s)\ndelete screenshot \"24400019-745e-82e2-800f-8a29b01dc8a2\": rate limited: upstream server asked to wait 34m17s, exceeding the 30s retry cap and the context deadline (29.429s remaining); raise ASC_MAX_DELAY and the request timeout to wait longer: rate limited by App Store Connect (status 429): The request rate limit has been reached.: We've received too many requests for this API. Please wait and try again or slow down your request rate. (retry after 34m17s)"
+    }
+  ],
+  "error": "fetch screenshot edc00019-745e-82e2-8006-f087d78fd967 during checksum settlement: rate limited: upstream server asked to wait 34m18s, exceeding the 30s retry cap and the context deadline (2m4.63s remaining); raise ASC_MAX_DELAY and the request timeout to wait longer: rate limited by App Store Connect (status 429): The request rate limit has been reached.: We've received too many requests for this API. Please wait and try again or slow down your request rate. (retry after 34m18s)\ndelete screenshot \"a3800019-745e-82e2-8037-2894f7bd8dee\": rate limited: upstream server asked to wait 34m17s, exceeding the 30s retry cap and the context deadline (29.805s remaining); raise ASC_MAX_DELAY and the request timeout to wait longer: rate limited by App Store Connect (status 429): The request rate limit has been reached.: We've received too many requests for this API. Please wait and try again or slow down your request rate. (retry after 34m17s)\ndelete screenshot \"8c000019-745e-82e2-8027-495353fb0f4f\": rate limited: upstream server asked to wait 34m17s, exceeding the 30s retry cap and the context deadline (29.639s remaining); raise ASC_MAX_DELAY and the request timeout to wait longer: rate limited by App Store Connect (status 429): The request rate limit has been reached.: We've received too many requests for this API. Please wait and try again or slow down your request rate. (retry after 34m17s)\ndelete screenshot \"24400019-745e-82e2-800f-8a29b01dc8a2\": rate limited: upstream server asked to wait 34m17s, exceeding the 30s retry cap and the context deadline (29.429s remaining); raise ASC_MAX_DELAY and the request timeout to wait longer: rate limited by App Store Connect (status 429): The request rate limit has been reached.: We've received too many requests for this API. Please wait and try again or slow down your request rate. (retry after 34m17s)",
+  "generatedAt": "2026-11-10T14:25:43Z"
+}
