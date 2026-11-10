@@ -36,7 +36,7 @@ struct PurchaseView: View {
             Section {
                 if access == .trialNotStarted {
                     // 3.1.1: お試しの前に、続けて使うのに要る支払い (買い切りの価格) を見せる。価格を読めるまで始めさせない
-                    buyButton(StoreProducts.trialID, title: "\(StoreProducts.trialDays) 日間無料で試す", subtitle: "¥0・自動で課金されません",
+                    buyButton(StoreProducts.trialID, title: "\(StoreProducts.trialDays) 日間無料で試す", subtitle: "\(trialPrice)・自動で課金されません",
                               requires: [StoreProducts.unlockID])
                 }
                 if access != .unlocked {
@@ -60,6 +60,11 @@ struct PurchaseView: View {
 
     private var unlockPrice: String {
         store.products[StoreProducts.unlockID]?.displayPrice ?? "価格を読み込み中"
+    }
+
+    /// お試しも StoreKit の表示価格を出す (国ごとに ¥0 / $0.00 などと変わる。固定の「¥0」だと米国で $9.99 と並んでしまう)
+    private var trialPrice: String {
+        store.products[StoreProducts.trialID]?.displayPrice ?? "価格を読み込み中"
     }
 
     @ViewBuilder private func statusRow(_ access: AccessState, now: Date) -> some View {
