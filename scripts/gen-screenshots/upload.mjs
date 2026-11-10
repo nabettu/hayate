@@ -9,11 +9,11 @@ import * as fs from "node:fs";
 import * as os from "node:os";
 import * as path from "node:path";
 import { ASC_LOCALES } from "./copy.mjs";
-import { ROOT } from "./render.mjs";
+import { IPHONE_SLIDES, ROOT, WATCH_SLIDES } from "./render.mjs";
 
 const APP = "6832906978";
 const VERSION = "1.0";
-const SETS = [["iphone", "IPHONE_67"], ["watch", "WATCH_SERIES_10"]];
+const SETS = [["iphone", "IPHONE_67", IPHONE_SLIDES], ["watch", "WATCH_SERIES_10", WATCH_SLIDES]];
 
 const args = process.argv.slice(2);
 const dryRun = args.includes("--dry-run");
@@ -51,9 +51,15 @@ for (const [lang, locales] of Object.entries(ASC_LOCALES)) {
   if (only.length && !only.includes(lang)) continue;
   const dir = path.join(ROOT, "screenshots/app-store", lang);
   if (!fs.existsSync(dir)) { console.warn(`! ${lang}: ${dir} が無い (node index.mjs ${lang})`); continue; }
-  for (const [prefix, deviceType] of SETS) {
-    // 端末ごとにディレクトリを分けて渡す (asc は渡したディレクトリの PNG を連番の順に上げる)
-    const files = fs.readdirSync(dir).filter((f) => f.startsWith(`${prefix}-`) && f.endsWith(".png")).sort();
+  for (const [prefix, deviceType, slides] of SETS) {
+    // 端末ごとにディレクトリを分けて渡す (asc は渡したディレクトリの PNG を連番の順に上げる)。
+    // --replace で既存のセットを消すので、決まった枚数がそろっていなければ上げない (生成が途中で止まった等)
+    const files = slides.map((key, i) => `${prefix}-${String(i + 1).padStart(2, "0")}_${key}.png`);
+    const missing = files.filter((f) => !fs.existsSync(path.join(dir, f)));
+    if (missing.length) {
+      console.error(`${lang}: ${missing.join(", ")} が無い。node index.mjs ${lang} で作り直してから上げる`);
+      process.exit(1);
+    }
     const sub = path.join(tmp, lang, prefix);
     fs.mkdirSync(sub, { recursive: true });
     for (const f of files) fs.copyFileSync(path.join(dir, f), path.join(sub, f));

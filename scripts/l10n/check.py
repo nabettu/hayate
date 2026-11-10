@@ -47,3 +47,4 @@ for k, v in sh.get('iphone', {}).items():
         if f in v and v[f].count('\n') != 1: errs.append(f'shots.iphone.{k}.{f} must have exactly one \\n')
 if sc and sh.get('screen', {}).get('siriAsk') != sc[0].replace('${applicationName}', 'Hayate'): errs.append('screen.siriAsk must equal first appShortcuts phrase with Hayate')
 print('\n'.join(errs) if errs else 'OK')
+sys.exit(1 if errs else 0)
