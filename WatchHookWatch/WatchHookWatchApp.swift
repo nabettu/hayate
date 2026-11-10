@@ -11,7 +11,16 @@ struct WatchHookWatchApp: App {
 
     var body: some Scene {
         WindowGroup {
+            #if DEBUG
+            let gallery = UserDefaults.standard.integer(forKey: "widgetGallery")
+            if gallery > 0 {
+                WidgetGalleryView(page: gallery)
+            } else {
+                WatchHomeView()
+            }
+            #else
             WatchHomeView()
+            #endif
         }
         .onChange(of: scenePhase) { _, phase in
             if phase == .active {

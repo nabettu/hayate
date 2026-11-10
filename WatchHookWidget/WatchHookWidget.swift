@@ -3,12 +3,13 @@ import WidgetKit
 
 /// 文字盤のコンプリケーション / スマートスタックに置く、Hayate を開くだけのウィジェット。
 /// 表示する中身は固定 (送り先の名前などは Keychain にあり、ウィジェットからは読まない)。
+/// 見た目は LauncherViews.swift。背景の夜空はスマートスタックでだけ見え、文字盤では OS が外す。
 @main
 struct WatchHookWidget: Widget {
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: "WatchHookLauncher", provider: LauncherProvider()) { _ in
             LauncherView()
-                .containerBackground(for: .widget) { Color.clear }
+                .containerBackground(for: .widget) { WidgetCosmicBackground() }
         }
         .configurationDisplayName("Hayate")
         .description("タップして Hayate を開き、話して送ります。")
@@ -33,40 +34,13 @@ struct LauncherProvider: TimelineProvider {
     }
 }
 
-struct LauncherView: View {
-    @Environment(\.widgetFamily) private var family
-
-    var body: some View {
-        switch family {
-        case .accessoryCorner:
-            Image(systemName: "paperplane.fill")
-                .font(.title3)
-                .widgetLabel("話す")
-        case .accessoryRectangular:
-            HStack(spacing: 8) {
-                Image(systemName: "paperplane.fill")
-                    .font(.title2)
-                    .widgetAccentable()
-                VStack(alignment: .leading, spacing: 0) {
-                    Text("Hayate").font(.headline).widgetAccentable()
-                    Text("タップして話す").font(.caption)
-                }
-                Spacer(minLength: 0)
-            }
-        case .accessoryInline:
-            Label("Hayate で話す", systemImage: "paperplane.fill")
-        default:
-            ZStack {
-                AccessoryWidgetBackground()
-                Image(systemName: "paperplane.fill")
-                    .font(.title3)
-                    .widgetAccentable()
-            }
-        }
-    }
+#Preview(as: .accessoryRectangular) {
+    WatchHookWidget()
+} timeline: {
+    LauncherEntry(date: .now)
 }
 
-#Preview(as: .accessoryRectangular) {
+#Preview(as: .accessoryCircular) {
     WatchHookWidget()
 } timeline: {
     LauncherEntry(date: .now)
