@@ -17,7 +17,7 @@ final class EntitlementStore {
     static let shared = EntitlementStore()
 
     /// この端末の StoreKit から読んだ状態。
-    private(set) var local = EntitlementSnapshot(unlocked: false, trialStartedAt: nil)
+    private(set) var local = EntitlementSnapshot(trialStartedAt: nil)
     /// iPhone から届いた状態 (時計だけ)。
     private(set) var hint: EntitlementSnapshot? = EntitlementStore.storedHint()
     private(set) var products: [String: Product] = [:]
@@ -74,15 +74,18 @@ final class EntitlementStore {
             // 署名を確かめられないものは数えない
             guard case .verified(let t) = result else { continue }
             records.append(PurchaseRecord(
+                transactionID: t.originalID,
                 productID: t.productID,
                 originalPurchaseDate: t.originalPurchaseDate,
                 isRevoked: t.revocationDate != nil
             ))
         }
-        // currentEntitlements には返金済みが出てこない。時計で返金を確かめたら iPhone からの古い「購入済み」より優先するため、
-        // 買い切りの最新の取引が取り消されているかも見る
+        // currentEntitlements には返金済みが出てこない。もう一方の端末が持っている古い「購入済み」を打ち消せるよう、
+        // 買い切りの最新の取引が取り消されているかも見る。取引は originalID (端末・復元をまたいで同じ) で突き合わせる
         if case .verified(let t)? = await Transaction.latest(for: StoreProducts.unlockID), t.revocationDate != nil {
-            records.append(PurchaseRecord(productID: t.productID, originalPurchaseDate: t.originalPurchaseDate, isRevoked: true))
+            records.append(PurchaseRecord(
+                transactionID: t.originalID, productID: t.productID, originalPurchaseDate: t.originalPurchaseDate, isRevoked: true
+            ))
         }
         return EntitlementSnapshot(records: records)
     }
@@ -157,10 +160,10 @@ final class EntitlementStore {
     private nonisolated static func debugOverride() -> EntitlementSnapshot? {
         let day: TimeInterval = 86_400
         switch UserDefaults.standard.string(forKey: "WatchHookDebugAccess") {
-        case "none": return EntitlementSnapshot(unlocked: false, trialStartedAt: nil)
-        case "trial": return EntitlementSnapshot(unlocked: false, trialStartedAt: .now.addingTimeInterval(-2 * day))
-        case "expired": return EntitlementSnapshot(unlocked: false, trialStartedAt: .now.addingTimeInterval(-8 * day))
-        case "unlocked": return EntitlementSnapshot(unlocked: true, trialStartedAt: nil)
+        case "none": return EntitlementSnapshot(trialStartedAt: nil)
+        case "trial": return EntitlementSnapshot(trialStartedAt: .now.addingTimeInterval(-2 * day))
+        case "expired": return EntitlementSnapshot(trialStartedAt: .now.addingTimeInterval(-8 * day))
+        case "unlocked": return EntitlementSnapshot(unlockTransactionIDs: [0], trialStartedAt: nil)
         default: return nil
         }
     }

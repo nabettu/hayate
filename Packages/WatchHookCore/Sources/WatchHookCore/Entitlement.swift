@@ -12,13 +12,16 @@ public enum StoreProducts {
 
 /// StoreKit の取引から、判定に要るところだけを抜いたもの (StoreKit に依存せずにテストするため)。
 public struct PurchaseRecord: Sendable, Equatable {
+    /// `Transaction.id`。返金と購入を取引ごとに突き合わせるのに使う
+    public var transactionID: UInt64
     public var productID: String
     /// お試しの開始日に使う。復元・再インストールでも変わらない日付 (`Transaction.originalPurchaseDate`)
     public var originalPurchaseDate: Date
     /// 返金・取り消し済み
     public var isRevoked: Bool
 
-    public init(productID: String, originalPurchaseDate: Date, isRevoked: Bool = false) {
+    public init(transactionID: UInt64, productID: String, originalPurchaseDate: Date, isRevoked: Bool = false) {
+        self.transactionID = transactionID
         self.productID = productID
         self.originalPurchaseDate = originalPurchaseDate
         self.isRevoked = isRevoked
@@ -26,46 +29,53 @@ public struct PurchaseRecord: Sendable, Equatable {
 }
 
 /// 購入の状態。秘密ではないので、iPhone → 時計の applicationContext にそのまま載せる。
+///
+/// 買い切りは「有効と見た取引 ID」と「返金済みと見た取引 ID」で持つ。iPhone と時計の StoreKit は反映の早さが違うので、
+/// どちらか一方でも返金を確かめた取引は、もう一方が古い「有効」を持っていても数えない。
+/// 返金のあと別の取引で買い直した分は、ID が違うので消えない。
 public struct EntitlementSnapshot: Codable, Sendable, Equatable {
-    public var unlocked: Bool
+    public var unlockTransactionIDs: Set<UInt64>
+    public var revokedTransactionIDs: Set<UInt64>
     public var trialStartedAt: Date?
-    /// 買い切りが返金・取り消しされていて、買い直していない (この端末の StoreKit で確かめたもの)。
-    public var unlockRevoked: Bool
 
-    public init(unlocked: Bool, trialStartedAt: Date?, unlockRevoked: Bool = false) {
-        self.unlocked = unlocked
+    public var unlocked: Bool { !unlockTransactionIDs.subtracting(revokedTransactionIDs).isEmpty }
+
+    public init(unlockTransactionIDs: Set<UInt64> = [], revokedTransactionIDs: Set<UInt64> = [], trialStartedAt: Date?) {
+        self.unlockTransactionIDs = unlockTransactionIDs
+        self.revokedTransactionIDs = revokedTransactionIDs
         self.trialStartedAt = trialStartedAt
-        self.unlockRevoked = unlockRevoked
     }
 
     public init(records: [PurchaseRecord]) {
-        let valid = records.filter { !$0.isRevoked }
-        unlocked = valid.contains { $0.productID == StoreProducts.unlockID }
+        let known = records.filter { StoreProducts.all.contains($0.productID) }
+        // 同じ取引の有効な記録と返金済みの記録が両方あれば、返金を優先する
+        let revoked = Set(known.filter(\.isRevoked).map(\.transactionID))
+        let valid = known.filter { !$0.isRevoked && !revoked.contains($0.transactionID) }
+        unlockTransactionIDs = Set(valid.filter { $0.productID == StoreProducts.unlockID }.map(\.transactionID))
+        revokedTransactionIDs = revoked
         trialStartedAt = valid.filter { $0.productID == StoreProducts.trialID }.map(\.originalPurchaseDate).min()
-        unlockRevoked = !unlocked && records.contains { $0.productID == StoreProducts.unlockID && $0.isRevoked }
     }
 
-    private enum CodingKeys: String, CodingKey { case unlocked, trialStartedAt, unlockRevoked }
+    private enum CodingKeys: String, CodingKey { case unlockTransactionIDs, revokedTransactionIDs, trialStartedAt }
 
+    /// 項目が欠けていても読む (iPhone と時計でアプリの版がずれても止まらないように)。
     public init(from decoder: any Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
-        unlocked = try c.decode(Bool.self, forKey: .unlocked)
+        unlockTransactionIDs = try c.decodeIfPresent(Set<UInt64>.self, forKey: .unlockTransactionIDs) ?? []
+        revokedTransactionIDs = try c.decodeIfPresent(Set<UInt64>.self, forKey: .revokedTransactionIDs) ?? []
         trialStartedAt = try c.decodeIfPresent(Date.self, forKey: .trialStartedAt)
-        unlockRevoked = try c.decodeIfPresent(Bool.self, forKey: .unlockRevoked) ?? false
     }
 
-    /// この端末 (時計) の StoreKit の状態に、iPhone から届いた状態を合わせる。どちらかで買っていれば購入済み、お試しは早く始めた方。
-    /// (時計の StoreKit に iPhone での購入が届くまでの間も使えるようにするため。合わせる相手は「iPhone の最新の状態」だけで、
-    /// 過去に届いたものを積み上げないので、iPhone で返金されれば次の知らせで戻る)
-    /// ただし、この端末で返金を確かめていれば、iPhone から届いた古い「購入済み」は使わない (self を優先する。向きのある合わせ方)。
+    /// 時計の StoreKit の状態に、iPhone から届いた状態を合わせる (時計の StoreKit に iPhone での購入が届くまでの間も使えるように)。
+    /// 有効な取引も返金済みの取引も両方を足し、返金済みの取引は有効から外す。お試しは早く始めた方。
+    /// 合わせる相手は「iPhone の最新の状態」だけで、過去に届いたものを積み上げない。
     public func merging(_ other: EntitlementSnapshot?) -> EntitlementSnapshot {
         guard let other else { return self }
         let starts = [trialStartedAt, other.trialStartedAt].compactMap { $0 }
-        let unlockedNow = unlocked || (other.unlocked && !unlockRevoked)
         return EntitlementSnapshot(
-            unlocked: unlockedNow,
-            trialStartedAt: starts.min(),
-            unlockRevoked: !unlockedNow && (unlockRevoked || other.unlockRevoked)
+            unlockTransactionIDs: unlockTransactionIDs.union(other.unlockTransactionIDs),
+            revokedTransactionIDs: revokedTransactionIDs.union(other.revokedTransactionIDs),
+            trialStartedAt: starts.min()
         )
     }
 

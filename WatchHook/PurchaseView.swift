@@ -12,9 +12,18 @@ struct PurchaseView: View {
     @State private var busy = false
 
     var body: some View {
+        // 画面を開いたままお試しの期限を過ぎても表示が変わるよう、1 分ごとに描き直す (時刻の経過は Observation では届かない)
+        TimelineView(.everyMinute) { context in
+            content(access: store.access(now: context.date), now: context.date)
+        }
+        .navigationTitle("購入")
+        .task { await store.loadProducts() }
+    }
+
+    private func content(access: AccessState, now: Date) -> some View {
         List {
             Section {
-                statusRow
+                statusRow(access, now: now)
             }
 
             Section("料金") {
@@ -25,12 +34,12 @@ struct PurchaseView: View {
             }
 
             Section {
-                if store.access() == .trialNotStarted {
+                if access == .trialNotStarted {
                     // 3.1.1: お試しの前に、続けて使うのに要る支払い (買い切りの価格) を見せる。価格を読めるまで始めさせない
                     buyButton(StoreProducts.trialID, title: "\(StoreProducts.trialDays) 日間無料で試す", subtitle: "¥0・自動で課金されません",
                               requires: [StoreProducts.unlockID])
                 }
-                if store.access() != .unlocked {
+                if access != .unlocked {
                     buyButton(StoreProducts.unlockID, title: "買い切りで購入する", subtitle: "\(unlockPrice)・1 回だけの支払い")
                 }
                 Button("購入を復元") {
@@ -47,20 +56,18 @@ struct PurchaseView: View {
                 }
             }
         }
-        .navigationTitle("購入")
-        .task { await store.loadProducts() }
     }
 
     private var unlockPrice: String {
         store.products[StoreProducts.unlockID]?.displayPrice ?? "価格を読み込み中"
     }
 
-    @ViewBuilder private var statusRow: some View {
-        switch store.access() {
+    @ViewBuilder private func statusRow(_ access: AccessState, now: Date) -> some View {
+        switch access {
         case .unlocked:
             Label("購入済みです。ありがとうございます", systemImage: "checkmark.seal.fill").foregroundStyle(.green)
         case .trial(let end):
-            Label("無料お試し中: あと \(store.access().daysRemaining(now: .now) ?? 0) 日 (\(end.formatted(date: .abbreviated, time: .shortened)) まで)", systemImage: "hourglass")
+            Label("無料お試し中: あと \(access.daysRemaining(now: now) ?? 0) 日 (\(end.formatted(date: .abbreviated, time: .shortened)) まで)", systemImage: "hourglass")
         case .trialNotStarted:
             Label("まだお試しを始めていません", systemImage: "gift")
         case .trialExpired:
@@ -95,22 +102,24 @@ struct AccessBanner: View {
     @State private var store = EntitlementStore.shared
 
     var body: some View {
-        let access = store.access()
-        if access != .unlocked {
-            NavigationLink {
-                PurchaseView()
-            } label: {
-                label(access)
+        TimelineView(.everyMinute) { context in
+            let access = store.access(now: context.date)
+            if access != .unlocked {
+                NavigationLink {
+                    PurchaseView()
+                } label: {
+                    label(access, now: context.date)
+                }
             }
         }
     }
 
-    @ViewBuilder private func label(_ access: AccessState) -> some View {
+    @ViewBuilder private func label(_ access: AccessState, now: Date) -> some View {
         switch access {
         case .unlocked:
             EmptyView()
         case .trial:
-            Label("無料お試し中: あと \(access.daysRemaining(now: .now) ?? 0) 日", systemImage: "hourglass")
+            Label("無料お試し中: あと \(access.daysRemaining(now: now) ?? 0) 日", systemImage: "hourglass")
         case .trialNotStarted:
             Label("\(StoreProducts.trialDays) 日間の無料お試しを始める", systemImage: "gift").foregroundStyle(.tint)
         case .trialExpired:

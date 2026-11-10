@@ -125,10 +125,12 @@ struct WatchHomeView: View {
         guard !trimmed.isEmpty, !isSending else { return }
         isSending = true
         defer { isSending = false }
-        // 画面を開いたままお試しの期限を過ぎることがあるので、送る直前にも確かめる
-        await entitlements.refresh()
+        // 画面を開いたままお試しの期限を過ぎることがあるので、送る直前にも確かめる。
+        // 画面用の refresh は別の refresh と重なると結果を捨てるので、判定はその場で読んだ結果で行う
+        let access = await EntitlementStore.currentAccess()
+        Task { await entitlements.refresh() }  // 画面の表示も合わせる
         now = .now
-        if let blocked = entitlements.access(now: now).blockedMessage {
+        if let blocked = access.blockedMessage {
             lastStatus = .failed(reason: "送っていません。\(blocked)")
             WKHaptic.play(.failure)
             return
