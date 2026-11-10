@@ -123,9 +123,23 @@ v1 に Firebase を入れるかは未決 (ROADMAP)。入れない間は App Stor
 - 売上とトレンド → アプリ内課金で、`trial7d` の件数 = お試しを始めた人、`unlock` の件数 = 買った人。比が「お試し → 購入」の率
 - 入れるときは `~/work/docs/global-rules/app-analytics.md` の名前で `paywall_view`(`trigger` = `banner` / `help` / `watch`)・`purchase_start`・`purchase_success`(`free_trial` = trial7d なら true)・`purchase_cancel`・`purchase_fail`・`restore_purchases`、ユーザープロパティ `plan_status` (`AccessState` の 4 つ) を送る。呼ぶ場所は `PurchaseView` の `buyButton` / 復元と `EntitlementStore.handle`
 
-## App Store Connect でやること (ユーザーの OK を待つ)
+## App Store Connect の状態 (2026-11-10 に作成)
 
-まだ作っていない。作る前に、有料アプリ契約・銀行口座・税務フォームが有効か確かめる (反映に数日かかることがある)。
+| もの | ID | 状態 |
+|---|---|---|
+| アプリ「WatchHook」 | `6832906978` (SKU `com.nabettu.watchhook`、主言語 日本語) | ASC の画面で作成 (API では作れない。`asc web apps create` は Apple ID の Web ログインが要る) |
+| Bundle ID | `com.nabettu.watchhook` / `.watchkitapp` / `.watchkitapp.widget` | `asc bundle-ids create` で登録 |
+| お試し `trial7d` | IAP `6832907177` | ¥0 (価格ポイント `10000`)・ja の表示名と説明・175 か国 + 新しい国も自動 |
+| 買い切り `unlock` | IAP `6832907079` | **米国 $9.99・日本 ¥1,500 を手動で固定**、他の国は自動換算・ja の表示名と説明・175 か国 + 新しい国も自動 |
+
+- 有料アプリ契約: CROSSEDGE Inc. で 175 か国とも有効 (ASC > ビジネス で確認)
+- 両方ともファミリー共有はオフ (既定のまま。一度オンにすると戻せない)
+- **両方とも `MISSING_METADATA`**。残りは審査用のスクリーンショット (購入画面)。価格が出た状態の購入画面を Sandbox で撮ってから載せる。
+  載せるまでは Sandbox で商品が読めないことがある
+- 英語のローカライズはまだ (アプリの英語化と一緒に足す)
+- `asc iap setup --price 0` は「price point not found」で失敗する (IAP と表示名は作られる)。0 円は `asc iap pricing price-points list --iap-id <id> --territory USA` で `customerPrice: 0.0` の ID を探し、`asc iap pricing schedules create --prices <ID>` で付ける
+
+## App Store Connect でやること (作ったときの手順)
 
 1. 「アプリ内課金」→ 非消耗型を 2 つ作る (上の表の Product ID・参照名)
    - お試し: 価格は「無料 (0)」。表示名「7 日間の無料お試し」、説明「7 日間、すべての機能を無料で使えます。自動で課金されません。」
