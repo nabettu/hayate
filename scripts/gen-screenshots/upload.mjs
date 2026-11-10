@@ -48,6 +48,22 @@ const ASC_ENV = {
   ASC_UPLOAD_TIMEOUT: process.env.ASC_UPLOAD_TIMEOUT ?? "90m",
 };
 const jobs = [];
+// 同じチェックアウトで 2 つ動くと、記録を上書きし合い、--replace 同士で相手の画像を消すので、1 つだけにする。
+// 前のプロセスが落ちて残ったロックは、その pid が居なければ引き継ぐ
+const LOCK = path.join(ROOT, "screenshots/app-store/.upload.lock");
+const alive = (pid) => { try { process.kill(pid, 0); return true; } catch { return false; } };
+if (!dryRun) {
+  fs.mkdirSync(path.dirname(LOCK), { recursive: true });
+  try {
+    fs.writeFileSync(LOCK, String(process.pid), { flag: "wx" });
+  } catch {
+    const owner = Number(fs.readFileSync(LOCK, "utf8"));
+    if (alive(owner)) { console.error(`別の upload.mjs (pid ${owner}) が動いている。終わってから動かす`); process.exit(2); }
+    fs.writeFileSync(LOCK, String(process.pid));
+  }
+  process.on("exit", () => { try { if (Number(fs.readFileSync(LOCK, "utf8")) === process.pid) fs.rmSync(LOCK); } catch {} });
+  for (const sig of ["SIGINT", "SIGTERM"]) process.on(sig, () => process.exit(130));
+}
 // 上げ終わったセットの記録 (ロケール・端末 → 画像のハッシュ)。生成物と同じく git に入れない
 const DONE_FILE = path.join(ROOT, "screenshots/app-store/.uploaded.json");
 const done = fs.existsSync(DONE_FILE) ? JSON.parse(fs.readFileSync(DONE_FILE, "utf8")) : {};
