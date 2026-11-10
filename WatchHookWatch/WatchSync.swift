@@ -48,6 +48,20 @@ final class WatchSync: NSObject, WCSessionDelegate, @unchecked Sendable {
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         guard activationState == .activated else { return }
         requestConfig()
+        // 起動直後で、まだつながる前に保存された履歴も送る
+        Task { await MessageDispatcher.shared.publishHistory() }
+    }
+
+    /// 時計の履歴の写しを iPhone に送る。applicationContext は最新の 1 件だけが残り、iPhone のアプリが閉じていても次に起きたときに届く。
+    /// 送れなくても送信そのものには影響しないので、失敗は無視する (次に履歴が変わったときにまた送る)。
+    func pushHistory(_ snapshot: HistorySnapshot) {
+        let session = WCSession.default
+        guard WCSession.isSupported(), session.activationState == .activated, session.isCompanionAppInstalled,
+              let data = try? snapshot.encoded(maxBytes: HistorySnapshot.defaultMaxBytes) else { return }
+        // 設定の版など、ほかのキーを置くようになったら消さないように足し合わせる
+        var context = session.applicationContext
+        context[SyncKeys.history] = data
+        try? session.updateApplicationContext(context)
     }
 
     /// iPhone で設定が変わった知らせ (版だけ)。手元より新しければ本体を取りに行く。
