@@ -35,7 +35,8 @@ targets:
         INAlternativeAppNames:
           - INAlternativeAppName: はやて
             INAlternativeAppNamePronunciationHint: はやて
-        UILaunchScreen: {}
+        UILaunchScreen:
+          UIColorName: LaunchBackground
         ITSAppUsesNonExemptEncryption: false
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
     settings:

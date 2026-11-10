@@ -59,8 +59,7 @@ struct SendTextIntent: AppIntent {
             }
             target = found
         }
-        let trimmed = text.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !trimmed.isEmpty else {
+        guard let trimmed = MessageText.normalized(text) else {
             return .result(dialog: "テキストが空でした。")
         }
         #if os(watchOS)
