@@ -260,7 +260,7 @@ struct WatchHistoryView: View {
                 }
                 .listRowBackground(RoundedRectangle(cornerRadius: 14, style: .continuous).fill(Cosmos.card))
                 .swipeActions {
-                    if case .sent = e.status {} else {
+                    if case .sent = e.status {} else if EntitlementStore.shared.access().canSend {
                         Button("再送") {
                             Task {
                                 await MessageDispatcher.shared.retry(e.id)

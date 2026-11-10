@@ -157,7 +157,10 @@ struct DestinationEditView: View {
 
     private func sendTest() async {
         error = nil
-        do { try RequestBuilder.validate(destination) } catch {
+        // 押した時点の設定で確かめて送る。StoreKit を読む await の間に URL などを書き換えられても、
+        // 確かめていない設定 (書き換え後の URL に元の認証ヘッダ等) で送らないように
+        let target = destination
+        do { try RequestBuilder.validate(target) } catch {
             self.error = error.localizedDescription
             return
         }
@@ -175,8 +178,8 @@ struct DestinationEditView: View {
         if TestSendPolicy.counts(access: access) {
             UserDefaults.standard.set(used + 1, forKey: Self.testSendsKey)
         }
-        let message = OutgoingMessage(text: "Hayate のテスト送信です", destinationID: destination.id, source: "test")
-        let result = await WebhookSender().send(message, to: destination)
+        let message = OutgoingMessage(text: "Hayate のテスト送信です", destinationID: target.id, source: "test")
+        let result = await WebhookSender().send(message, to: target)
         switch result {
         case .sent(let code): testResult = "届きました (HTTP \(code))"
         case .retryableFailure(let r), .permanentFailure(let r): testResult = "送れませんでした: \(r)"

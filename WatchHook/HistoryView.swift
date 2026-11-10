@@ -47,7 +47,7 @@ struct HistoryView: View {
                             Button("削除", role: .destructive) {
                                 Task { await MessageDispatcher.shared.remove(e.id); await reload() }
                             }
-                            if !isSent(e.status) {
+                            if !isSent(e.status), EntitlementStore.shared.access().canSend {
                                 Button("再送") {
                                     Task { await MessageDispatcher.shared.retry(e.id); await reload() }
                                 }.tint(.blue)
