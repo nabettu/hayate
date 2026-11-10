@@ -50,6 +50,8 @@ targets:
     sources:
       - WatchHookWatch
       - path: Shared
+      # デバッグ用のウィジェットの見本 (WidgetGalleryView) で使う
+      - path: WatchHookWidget/LauncherViews.swift
     dependencies:
       - package: WatchHookCore
       - target: WatchHookWidget
@@ -74,6 +76,8 @@ targets:
     platform: watchOS
     sources:
       - WatchHookWidget
+      # 色・紙飛行機・星の形 (WatchHookCore に頼らない部分だけ)
+      - path: Shared/CosmosArt.swift
     info:
       path: WatchHookWidget/Info.plist
       properties:

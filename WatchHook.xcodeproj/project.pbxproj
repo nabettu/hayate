@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		099734375AE5DCAB334A54B3 /* WatchHookWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = C7A0484DDBC518FDA3920470 /* WatchHookWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		0B5BEDD340605666D5B198EA /* CosmosArt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC3DE07F831229B2A48CBAB /* CosmosArt.swift */; };
 		0FDD2A741915690780325F44 /* WatchHookWatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C88CFAE83A276AA4829E55FF /* WatchHookWatchApp.swift */; };
 		14A9B4F21AE313CA65B8A30E /* WatchHookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 2EB3EAEFBB5A10779796632F /* WatchHookCore */; };
 		18095E707A9F5F93705E107F /* WatchHookWidget.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B06AEF5A7AB19CF04D3878AB /* WatchHookWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -23,11 +24,14 @@
 		612F30B19A66C60638B566EF /* EntitlementStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2593FEE89812D39FCE4A3172 /* EntitlementStore.swift */; };
 		6B76E0B66E85F4CB6F19999A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D762826EAC49BE670D2C5ED /* Assets.xcassets */; };
 		73DA5B582906B4B9A993576B /* Cosmos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9345206AC65D94AA74FA9A28 /* Cosmos.swift */; };
+		74150B6C3C58C1226668B976 /* LauncherViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DCA4DD3AD4AF613D33C8BE /* LauncherViews.swift */; };
 		74C4234C94741A58759FCD44 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F931B1FC29F18452326948 /* HelpView.swift */; };
 		7512F29FC4D8AD66B4FB2DD5 /* SyncKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E374D443A268B6368C1CDA7 /* SyncKeys.swift */; };
 		7B61519B6FCB5B541EF46943 /* WatchHookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 6160AAEB5D06D61ED2A79C43 /* WatchHookCore */; };
 		83FAA035FB0598196BFF4741 /* ComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFB5F28C2B4D483D6BAFCD /* ComposeView.swift */; };
+		95F0D88AC9AF26F154F1A78C /* WidgetGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC7AF84AD4094A726CA5E03 /* WidgetGalleryView.swift */; };
 		9B834B8ADDACE581155FD64B /* Cosmos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9345206AC65D94AA74FA9A28 /* Cosmos.swift */; };
+		9BADFE073976FF6AE40C8BEE /* CosmosArt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC3DE07F831229B2A48CBAB /* CosmosArt.swift */; };
 		9CC9403CFE50B78C62D3DEDA /* WatchSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94E54804BFBEAEC43F24515A /* WatchSync.swift */; };
 		9F432E8CF4CA184C3452C3D1 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 92463EAA580E1CDDB1766B7B /* PrivacyInfo.xcprivacy */; };
 		A5CA575A5D745AECADECAB23 /* SyncKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E374D443A268B6368C1CDA7 /* SyncKeys.swift */; };
@@ -41,7 +45,9 @@
 		D14613103A539AB9998B2A6C /* PurchaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78DDF2C51BEA036FF47A2E63 /* PurchaseView.swift */; };
 		E36E521D8A9E1AB0A2E62610 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AFF7E167C34F929DA1DB1963 /* Assets.xcassets */; };
 		EA60FC8F063B935451E7FDD2 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8E94573EC0027AA49F1E8072 /* HistoryView.swift */; };
+		EEDD07B8B77130E779E18D7E /* LauncherViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DCA4DD3AD4AF613D33C8BE /* LauncherViews.swift */; };
 		F370D76C9515F0D003A51F92 /* ConfigStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20CB300C3E11A746221BF49 /* ConfigStore.swift */; };
+		FD0F1EF9AC1E00DC3D54A04E /* CosmosArt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC3DE07F831229B2A48CBAB /* CosmosArt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,7 +103,9 @@
 		404E2405D0914F194B5189D3 /* WatchHook.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = WatchHook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		51280A3A45390E87A0EB8F6B /* WatchHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchHomeView.swift; sourceTree = "<group>"; };
 		55041C1BEB6DE1D841E1598E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		57DCA4DD3AD4AF613D33C8BE /* LauncherViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LauncherViews.swift; sourceTree = "<group>"; };
 		5BF1CC8B6D5E673BAD8AD945 /* PhoneSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneSync.swift; sourceTree = "<group>"; };
+		5EC7AF84AD4094A726CA5E03 /* WidgetGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetGalleryView.swift; sourceTree = "<group>"; };
 		73029AB5597C3C45F3677649 /* WatchHistoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchHistoryStore.swift; sourceTree = "<group>"; };
 		77AEABFA41FA83B8FF7F024E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		78DDF2C51BEA036FF47A2E63 /* PurchaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseView.swift; sourceTree = "<group>"; };
@@ -114,6 +122,7 @@
 		B2BB8C3E36FB9082CAFACCDE /* DestinationEditView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DestinationEditView.swift; sourceTree = "<group>"; };
 		C7A0484DDBC518FDA3920470 /* WatchHookWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchHookWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C88CFAE83A276AA4829E55FF /* WatchHookWatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchHookWatchApp.swift; sourceTree = "<group>"; };
+		CAC3DE07F831229B2A48CBAB /* CosmosArt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CosmosArt.swift; sourceTree = "<group>"; };
 		E20CB300C3E11A746221BF49 /* ConfigStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigStore.swift; sourceTree = "<group>"; };
 		E2CCA20969E23F8A1AAFA096 /* WatchHookWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchHookWidget.swift; sourceTree = "<group>"; };
 		E95B75A74B1D2FEECD6F845C /* SendTextIntent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendTextIntent.swift; sourceTree = "<group>"; };
@@ -149,6 +158,7 @@
 				51280A3A45390E87A0EB8F6B /* WatchHomeView.swift */,
 				C88CFAE83A276AA4829E55FF /* WatchHookWatchApp.swift */,
 				94E54804BFBEAEC43F24515A /* WatchSync.swift */,
+				5EC7AF84AD4094A726CA5E03 /* WidgetGalleryView.swift */,
 			);
 			path = WatchHookWatch;
 			sourceTree = "<group>";
@@ -206,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				77AEABFA41FA83B8FF7F024E /* Info.plist */,
+				57DCA4DD3AD4AF613D33C8BE /* LauncherViews.swift */,
 				E2CCA20969E23F8A1AAFA096 /* WatchHookWidget.swift */,
 			);
 			path = WatchHookWidget;
@@ -216,6 +227,7 @@
 			children = (
 				E20CB300C3E11A746221BF49 /* ConfigStore.swift */,
 				9345206AC65D94AA74FA9A28 /* Cosmos.swift */,
+				CAC3DE07F831229B2A48CBAB /* CosmosArt.swift */,
 				2593FEE89812D39FCE4A3172 /* EntitlementStore.swift */,
 				AF6D2C5D54DC13FB85BB400C /* KeychainStore.swift */,
 				1ECBC5794158FF21843F0E65 /* MessageDispatcher.swift */,
@@ -362,6 +374,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0B5BEDD340605666D5B198EA /* CosmosArt.swift in Sources */,
+				EEDD07B8B77130E779E18D7E /* LauncherViews.swift in Sources */,
 				331A989E28F9468F88708030 /* WatchHookWidget.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -373,6 +387,7 @@
 				83FAA035FB0598196BFF4741 /* ComposeView.swift in Sources */,
 				F370D76C9515F0D003A51F92 /* ConfigStore.swift in Sources */,
 				9B834B8ADDACE581155FD64B /* Cosmos.swift in Sources */,
+				FD0F1EF9AC1E00DC3D54A04E /* CosmosArt.swift in Sources */,
 				3B5DBD700700803611E74001 /* DestinationEditView.swift in Sources */,
 				BFF459FE2E9A6A78BC85DEE7 /* DestinationListView.swift in Sources */,
 				612F30B19A66C60638B566EF /* EntitlementStore.swift in Sources */,
@@ -395,14 +410,17 @@
 			files = (
 				50ECA500BA6F1DC76B5F1DEB /* ConfigStore.swift in Sources */,
 				73DA5B582906B4B9A993576B /* Cosmos.swift in Sources */,
+				9BADFE073976FF6AE40C8BEE /* CosmosArt.swift in Sources */,
 				B1B6CC9F367541989F5BA4CE /* EntitlementStore.swift in Sources */,
 				3733E2E641CF106FBB3C0617 /* KeychainStore.swift in Sources */,
+				74150B6C3C58C1226668B976 /* LauncherViews.swift in Sources */,
 				C5C63CCEDDC9C442373982DB /* MessageDispatcher.swift in Sources */,
 				C2520D842885B2143941ECDF /* SendTextIntent.swift in Sources */,
 				A5CA575A5D745AECADECAB23 /* SyncKeys.swift in Sources */,
 				50521E18F8B1BB799C2510DB /* WatchHomeView.swift in Sources */,
 				0FDD2A741915690780325F44 /* WatchHookWatchApp.swift in Sources */,
 				9CC9403CFE50B78C62D3DEDA /* WatchSync.swift in Sources */,
+				95F0D88AC9AF26F154F1A78C /* WidgetGalleryView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
