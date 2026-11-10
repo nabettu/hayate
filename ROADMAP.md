@@ -12,7 +12,7 @@ MVP の土台を作った (未リリース・シミュレータでのみ確認)�
 - [ ] 実機 (Apple Watch) で Siri のフレーズ・ダブルタップ・時計単体 (iPhone から離れた状態) の送信を確かめる
 - [x] アプリアイコン (星空を飛ぶ紙飛行機。#2)
 - [ ] 英語のローカライズ (Siri のフレーズは `AppShortcuts.xcstrings` で言語ごとに要る)
-- [x] コンプリケーション / Smart Stack のウィジェット (2026-11-10。タップで WatchHook を開くだけの固定表示)
+- [x] コンプリケーション / Smart Stack のウィジェット (2026-11-10。タップでアプリを開くだけの固定表示)
 - [ ] ウィジェットのタップから入力画面まで直接開く。今はアプリのホームが開き、「話す」かダブルタップがもう 1 回要る。SwiftUI の `TextFieldLink` はコードから開けないので、別の入力の出し方を調べる
 - [x] アプリ内のマニュアル (iPhone の「使い方」タブ。送り先の登録・Watch での送り方・ウィジェット・困ったとき・受け取る側の仕様。2026-11-10)
 - [ ] バックグラウンドでの自動再送
@@ -21,6 +21,9 @@ MVP の土台を作った (未リリース・シミュレータでのみ確認)�
 
 ## 公開前に要るもの (`~/work/docs/global-rules/new-app-project.md`)
 
+- [ ] 「Hayate」の商標を J-PlatPat と USPTO で確かめる (第 9 類・第 42 類。JR 東日本の新幹線「はやて」の権利がソフトウェアに及ぶか)。App Store Connect でアプリを作る前に
+- [ ] 実機の Siri が「はやてで送って」を Hayate と結びつけるか確かめる (`INAlternativeAppNames` に「はやて」を入れてある)
+- [ ] サイトのドメイン: hayate.app / hayate.io / gethayate.com は取られている。hayateapp.com は空いていた (2026-11-10)
 - [ ] プライバシーポリシー (アプリ専用)・サポート URL
 - [ ] プライバシーラベル: 自前で集めるものは無い (送信先はユーザーが登録したもの)。SDK を入れたら `docs/privacy-labels.md` を作る
 - [ ] 強制アップデートと GA4 の計測 (`~/work/docs/global-rules/app-analytics.md`) を v1 に入れるか決める (Firebase を入れるかどうか)

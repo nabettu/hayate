@@ -1,6 +1,6 @@
-# WatchHook
+# WatchHook (アプリ名: Hayate)
 
-Apple Watch の音声入力を webhook へ送るアプリ。全体像は [README.md](README.md)、設計判断は [docs/DESIGN.md](docs/DESIGN.md)、予定は [ROADMAP.md](ROADMAP.md)。
+Apple Watch の音声入力を webhook へ送るアプリ。画面に出る名前は Hayate、コード・ターゲット・Bundle ID は WatchHook のまま ([docs/NAMING.md](docs/NAMING.md))。全体像は [README.md](README.md)、設計判断は [docs/DESIGN.md](docs/DESIGN.md)、予定は [ROADMAP.md](ROADMAP.md)。
 
 ## ルール
 
