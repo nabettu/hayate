@@ -82,7 +82,7 @@ actor MessageDispatcher {
     @discardableResult
     func send(text: String, destination: Destination, source: String) async -> MessageStatus {
         let message = OutgoingMessage(text: text, destinationID: destination.id, source: source)
-        log.enqueue(message, destinationName: destination.name)
+        log.enqueue(message, destinationName: destination.displayName)
         inFlight.insert(message.id)
         persist()
 

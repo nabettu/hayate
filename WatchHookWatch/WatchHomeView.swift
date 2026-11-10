@@ -41,7 +41,7 @@ struct WatchHomeView: View {
                                     Picker(selection: $selectedID) {
                                         ForEach(store.config.destinations) { d in
                                             // iPhone で既定にした送り先が、時計で何も選んでいないときの送り先
-                                            Text(d.id == store.config.defaultDestination?.id ? "\(d.name) (既定)" : d.name)
+                                            Text(d.id == store.config.defaultDestination?.id ? "\(d.displayName) (既定)" : d.displayName)
                                                 .tag(d.id.uuidString)
                                         }
                                     } label: {
@@ -49,7 +49,7 @@ struct WatchHomeView: View {
                                     }
                                     .tint(Cosmos.lavender)
                                 } else {
-                                    Label(destination.name, systemImage: "paperplane")
+                                    Label(destination.displayName, systemImage: "paperplane")
                                         .font(.footnote).foregroundStyle(Cosmos.lavender)
                                 }
 
@@ -149,7 +149,7 @@ struct WatchHomeView: View {
 
     private func send(_ text: String, to destination: Destination) async {
         guard let text = MessageText.normalized(text) else { return }
-        await run(destinationName: destination.name) {
+        await run(destinationName: destination.displayName) {
             await MessageDispatcher.shared.send(text: text, destination: destination, source: "watch")
         }
     }
@@ -171,7 +171,7 @@ struct WatchHomeView: View {
     #if DEBUG
     /// 送らずに演出だけ流す (履歴にも残らない)。
     private func playDemo(_ demo: FlightDemo) async {
-        await run(destinationName: destination?.name ?? "演出", demo.work)
+        await run(destinationName: destination?.displayName ?? "演出", demo.work)
     }
     #endif
 }

@@ -107,7 +107,7 @@ struct ComposeView: View {
         Menu {
             Picker("送り先", selection: $selectedID) {
                 ForEach(store.config.destinations) { d in
-                    Text(d.name).tag(d.id.uuidString)
+                    Text(d.displayName).tag(d.id.uuidString)
                 }
             }
         } label: {
@@ -115,7 +115,7 @@ struct ComposeView: View {
                 Image(systemName: "scope")
                     .foregroundStyle(Cosmos.star)
                 Text("送り先").foregroundStyle(.secondary)
-                Text(current.name).fontWeight(.semibold).foregroundStyle(.white).lineLimit(1)
+                Text(current.displayName).fontWeight(.semibold).foregroundStyle(.white).lineLimit(1)
                 Spacer(minLength: 0)
                 Image(systemName: "chevron.up.chevron.down").font(.caption).foregroundStyle(.secondary)
             }
@@ -205,7 +205,7 @@ struct ComposeView: View {
     private func send() async {
         guard let destination, let body = MessageText.normalized(text) else { return }
         focused = false
-        await run(destinationName: destination.name) {
+        await run(destinationName: destination.displayName) {
             await MessageDispatcher.shared.send(text: body, destination: destination, source: "phone")
         } onResult: { status in
             switch status {
@@ -237,7 +237,7 @@ struct ComposeView: View {
     /// 送らずに演出だけ流す (履歴にも残らない)。
     private func playDemo(_ demo: FlightDemo) async {
         focused = false
-        await run(destinationName: destination?.name ?? "演出", demo.work) { _ in }
+        await run(destinationName: destination?.displayName ?? "演出", demo.work) { _ in }
     }
     #endif
 }

@@ -24,8 +24,9 @@ struct DestinationListView: View {
                         HStack(spacing: 12) {
                             KindBadge(kind: d.kind)
                             VStack(alignment: .leading, spacing: 2) {
-                                Text(d.name).font(.headline)
-                                Text(d.url.isEmpty ? "URL 未設定" : d.url)
+                                Text(d.displayName).font(.headline)
+                                // URL のパスには秘密が入ることがある (Slack の webhook など) ので一覧には出さない
+                                Text(d.url.isEmpty ? "\(d.kind.label) · URL 未設定" : d.kind.label)
                                     .font(.caption).foregroundStyle(Cosmos.lavender.opacity(0.7)).lineLimit(1)
                             }
                             Spacer()
