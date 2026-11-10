@@ -28,7 +28,7 @@ struct PurchaseView: View {
 
             Section("料金") {
                 Bullet("最初の \(StoreProducts.trialDays) 日間は無料で、すべての機能を使えます。お試しは無料の購入として始まり、終わっても自動で課金されません。")
-                Bullet("お試しが終わると、Apple Watch と Siri から送れなくなります。送り先の登録・テスト送信・履歴の確認はそのまま使えます。")
+                Bullet("お試しが終わると、Apple Watch・Siri・iPhone の「送る」タブから送れなくなります。送り先の登録・テスト送信・履歴の確認はそのまま使えます。")
                 Bullet("続けて使うには、買い切りの購入 (\(unlockPrice)) が 1 回だけ必要です。月額の支払いや追加の請求はありません。")
                 Bullet("同じ Apple ID なら、機種変更やアプリの入れ直しのあとも「購入を復元」で戻せます。")
             }

@@ -69,7 +69,7 @@ ID と日数の正は `Packages/WatchHookCore/Sources/WatchHookCore/Entitlement.
 購入画面 (`WatchHook/PurchaseView.swift` の「料金」) に次を出してから、お試しのボタンを置いている。文言を変えるときは 3 つとも残す。
 
 - 期間: 7 日間。自動で課金されない
-- 終わると使えなくなるもの: Apple Watch と Siri からの送信 (送り先の登録・テスト送信・履歴は残る)
+- 終わると使えなくなるもの: Apple Watch・Siri・iPhone の「送る」タブからの送信 (送り先の登録・テスト送信・履歴は残る)
 - 続けて使うのに要る支払い: 買い切り 1 回 (StoreKit の `displayPrice` を出す。固定の文字列にしない)。**買い切りの価格を読めるまでお試しのボタンは押せない**
 
 ほか: 「購入を復元」を購入画面に置く (3.1.1「restore mechanism」)。購入画面には送り先の一覧の上の帯と「使い方」タブの「料金」から入れる。
@@ -77,7 +77,7 @@ ID と日数の正は `Packages/WatchHookCore/Sources/WatchHookCore/Entitlement.
 
 ## 何ができなくなるか
 
-| 状態 (`AccessState`) | Apple Watch / Siri からの新しい送信 | 送り先の登録・テスト送信・履歴・溜まった分の再送 |
+| 状態 (`AccessState`) | Apple Watch / Siri / iPhone の「送る」タブからの新しい送信 | 送り先の登録・テスト送信・履歴・溜まった分の再送 |
 |---|---|---|
 | お試し前 (`trialNotStarted`) | × | ○ |
 | お試し中 (`trial`) | ○ | ○ |
@@ -86,7 +86,7 @@ ID と日数の正は `Packages/WatchHookCore/Sources/WatchHookCore/Entitlement.
 
 - お試し前でも送り先の登録とテスト送信はできる。7 日間を設定の試行錯誤で使い切らないため。テスト送信は固定の文 (「WatchHook のテスト送信です」) しか送れないので、本来の使い方の代わりにはならない
 - 再送待ちは、送れる間に受け付けたものなので、期限が過ぎても送り直す
-- 止めるのは `SendTextIntent.perform` (Siri) と `WatchHomeView.send` (時計のボタン) の 2 か所。どちらも送る直前に StoreKit を読み直す
+- 止めるのは `SendTextIntent.perform` (Siri)・`WatchHomeView.send` (時計のボタン)・`ComposeView.send` (iPhone の「送る」タブ) の 3 か所。どれも送る直前に StoreKit を読み直す。**送る入口を足したら、ここにも足す**
 
 ## 時計での判定
 
@@ -127,7 +127,7 @@ v1 に Firebase を入れるかは未決 (ROADMAP)。入れない間は App Stor
 
 | もの | ID | 状態 |
 |---|---|---|
-| アプリ「WatchHook」 | `6832906978` (SKU `com.nabettu.watchhook`、主言語 日本語) | ASC の画面で作成 (API では作れない。`asc web apps create` は Apple ID の Web ログインが要る) |
+| アプリ「Hayate」(作成時は WatchHook。2026-11-10 に `asc apps rename` で改名) | `6832906978` (SKU `com.nabettu.watchhook`、主言語 日本語) | ASC の画面で作成 (API では作れない。`asc web apps create` は Apple ID の Web ログインが要る) |
 | Bundle ID | `com.nabettu.watchhook` / `.watchkitapp` / `.watchkitapp.widget` | `asc bundle-ids create` で登録 |
 | お試し `trial7d` | IAP `6832907177` | ¥0 (価格ポイント `10000`)・ja の表示名と説明・175 か国 + 新しい国も自動 |
 | 買い切り `unlock` | IAP `6832907079` | **米国 $9.99・日本 ¥1,500 を手動で固定**、他の国は自動換算・ja の表示名と説明・175 か国 + 新しい国も自動 |
@@ -143,7 +143,7 @@ v1 に Firebase を入れるかは未決 (ROADMAP)。入れない間は App Stor
 
 1. 「アプリ内課金」→ 非消耗型を 2 つ作る (上の表の Product ID・参照名)
    - お試し: 価格は「無料 (0)」。表示名「7 日間の無料お試し」、説明「7 日間、すべての機能を無料で使えます。自動で課金されません。」
-   - 買い切り: 価格は米国 $9.99・日本 1,500 円を手で決め、他の国は自動換算。表示名「Hayate (買い切り)」、説明「Apple Watch と Siri からの送信をずっと使えます。1 回だけの支払いです。」
+   - 買い切り: 価格は米国 $9.99・日本 1,500 円を手で決め、他の国は自動換算。表示名「Hayate (買い切り)」、説明「Apple Watch・Siri・iPhone からの送信をずっと使えます。1 回だけの支払いです。」
    - ファミリー共有: 両方オフ (オンにするなら買い切りだけ。お試しは共有しない)
    - 審査用のスクリーンショット: iPhone の購入画面
 2. **初回は 2 つの商品を、アプリ本体と同じ提出に含める** (含め忘れると公開後に買えない)
