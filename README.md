@@ -29,6 +29,7 @@ xcodegen generate              # project.yml を変えたら
 scripts/verify.sh              # Core の単体テスト
 scripts/verify.sh --full       # + プロジェクトの一致確認 + iOS / watchOS ビルド
 scripts/render-app-icon.sh     # design/app-icon.svg を変えたら (iPhone / Watch の AppIcon.png を作り直す)
+(cd scripts/gen-screenshots && npm ci && node index.mjs)  # App Store のスクショ (scripts/gen-screenshots/README.md)
 ```
 
 アプリアイコンの元は `design/app-icon.svg` (星空を飛ぶ紙飛行機。PC のカーソルに見えないよう、奥の翼・竜骨・折り目の面を描いている)。
