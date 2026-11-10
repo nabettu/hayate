@@ -54,8 +54,12 @@ const run = (job) => new Promise((resolve) => {
   // dry-run は上げる・消す予定の表を見るために出す。本番は表が長いので捨てる (エラーは集める)
   let err = "";
   const p = spawn("asc", a, { stdio: ["ignore", dryRun ? "inherit" : "ignore", "pipe"] });
+  let settled = false;
+  const finish = (code, message) => { if (!settled) { settled = true; resolve({ ...job, code, err: message.trim() }); } };
   p.stderr.on("data", (d) => { err += d; });
-  p.on("close", (code) => resolve({ ...job, code, err: err.trim() }));
+  // asc が無い・起動できないときも 1 件の失敗として集め、ほかのジョブは続ける
+  p.on("error", (e) => finish(-1, String(e)));
+  p.on("close", (code) => finish(code, err));
 });
 
 const failures = [];
