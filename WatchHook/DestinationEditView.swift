@@ -15,11 +15,20 @@ struct DestinationEditView: View {
         NavigationStack {
             Form {
                 Section {
-                    TextField("名前", text: $destination.name)
+                    TextField(namePlaceholder, text: $destination.name)
+                } header: {
+                    Text("名前")
+                } footer: {
+                    Text("Apple Watch・Siri・履歴で送り先として出る名前です。空のときは URL のホスト名を出します。")
+                }
+
+                Section {
                     TextField(urlPlaceholder, text: $destination.url, axis: .vertical)
                         .keyboardType(.URL)
                         .textInputAutocapitalization(.never)
                         .autocorrectionDisabled()
+                } header: {
+                    Text("URL")
                 } footer: {
                     Text(urlFooter)
                 }
@@ -83,7 +92,7 @@ struct DestinationEditView: View {
                 }
             }
             .scrollDismissesKeyboard(.interactively)
-            .navigationTitle(destination.name.isEmpty ? "送り先" : destination.name)
+            .navigationTitle(destination.displayName)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
@@ -99,6 +108,14 @@ struct DestinationEditView: View {
                     }
                 }
             }
+        }
+    }
+
+    private var namePlaceholder: String {
+        switch destination.kind {
+        case .slack: "例: 家族の Slack"
+        case .discord: "例: メモ用チャンネル"
+        case .custom: "例: 買い物リスト"
         }
     }
 

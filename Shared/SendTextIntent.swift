@@ -17,11 +17,11 @@ struct DestinationQuery: EntityQuery {
     func entities(for identifiers: [UUID]) async throws -> [DestinationEntity] {
         try ConfigStore.loadFromKeychain().destinations
             .filter { identifiers.contains($0.id) }
-            .map { DestinationEntity(id: $0.id, name: $0.name) }
+            .map { DestinationEntity(id: $0.id, name: $0.displayName) }
     }
 
     func suggestedEntities() async throws -> [DestinationEntity] {
-        try ConfigStore.loadFromKeychain().destinations.map { DestinationEntity(id: $0.id, name: $0.name) }
+        try ConfigStore.loadFromKeychain().destinations.map { DestinationEntity(id: $0.id, name: $0.displayName) }
     }
 }
 
@@ -71,7 +71,7 @@ struct SendTextIntent: AppIntent {
         let status = await MessageDispatcher.shared.send(text: trimmed, destination: target, source: source)
         switch status {
         case .sent:
-            return .result(dialog: "\(target.name) に送りました。")
+            return .result(dialog: "\(target.displayName) に送りました。")
         case .pending:
             return .result(dialog: "今は送れませんでした。あとで送り直します。")
         case .failed(let reason):

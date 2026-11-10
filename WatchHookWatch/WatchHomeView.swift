@@ -37,11 +37,11 @@ struct WatchHomeView: View {
                         if store.config.destinations.count > 1 {
                             Picker("送り先", selection: $selectedID) {
                                 ForEach(store.config.destinations) { d in
-                                    Text(d.name).tag(d.id.uuidString)
+                                    Text(d.displayName).tag(d.id.uuidString)
                                 }
                             }
                         } else {
-                            Text(destination.name).font(.footnote).foregroundStyle(.secondary)
+                            Text(destination.displayName).font(.footnote).foregroundStyle(.secondary)
                         }
 
                         NavigationLink("履歴") { WatchHistoryView() }
