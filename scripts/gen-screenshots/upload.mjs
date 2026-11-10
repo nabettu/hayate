@@ -18,6 +18,13 @@ const SETS = [["iphone", "IPHONE_67"], ["watch", "WATCH_SERIES_10"]];
 const args = process.argv.slice(2);
 const dryRun = args.includes("--dry-run");
 const only = args.filter((a) => !a.startsWith("--"));
+// 既存のスクショを入れ替えるので、知らないオプション (--help・--dryrun の誤記など) や言語が来たら何もせずに止める
+for (const a of args) {
+  if (a.startsWith("--") ? a !== "--dry-run" : !(a in ASC_LOCALES)) {
+    console.error(`知らない引数: ${a}\n使い方: node upload.mjs [--dry-run] [言語 ...]  (言語は ${Object.keys(ASC_LOCALES).join(" ")})`);
+    process.exit(2);
+  }
+}
 
 fs.mkdirSync(path.join(os.tmpdir(), "claude-work"), { recursive: true });
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "claude-work", "hayate-upload-"));

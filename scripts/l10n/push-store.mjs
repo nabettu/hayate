@@ -22,6 +22,13 @@ const args = process.argv.slice(2);
 const dryRun = args.includes("--dry-run");
 const only = args.filter((a) => !a.startsWith("--"));
 const { _comment, ...LOCALES } = JSON.parse(fs.readFileSync(path.join(ROOT, "scripts/l10n/locales.json"), "utf8"));
+// 本番を書き換えるので、知らないオプション (--help・--dryrun の誤記など) や言語が来たら何もせずに止める
+for (const a of args) {
+  if (a.startsWith("--") ? a !== "--dry-run" : !(a in LOCALES)) {
+    console.error(`知らない引数: ${a}\n使い方: node scripts/l10n/push-store.mjs [--dry-run] [言語 ...]  (言語は ${Object.keys(LOCALES).join(" ")})`);
+    process.exit(2);
+  }
+}
 
 function api(method, apiPath, body) {
   const a = ["--profile", "crossedge", "api", method, apiPath];
@@ -61,7 +68,7 @@ function upsert(kind, existing, locale, attrs, create, patchType) {
 const failures = [];
 
 const appInfoLocs = byLocale(api("GET", `/v1/appInfos/${APP_INFO_ID}/appInfoLocalizations?limit=200`));
-const versionLocs = byLocale(api("GET", `/v1/appStoreVersions/${VERSION_ID}/appStoreVersionLocalizations?limit=200`));
+let versionLocs = byLocale(api("GET", `/v1/appStoreVersions/${VERSION_ID}/appStoreVersionLocalizations?limit=200`));
 const iapLocs = Object.fromEntries(Object.entries(IAPS).map(([k, id]) => [k, byLocale(api("GET", `/v2/inAppPurchases/${id}/inAppPurchaseLocalizations?limit=200`))]));
 
 for (const [lang, locales] of Object.entries(LOCALES)) {
@@ -72,9 +79,13 @@ for (const [lang, locales] of Object.entries(LOCALES)) {
   check(lang, m);
   console.log(`${lang} → ${locales.join(" ")}`);
   for (const locale of locales) {
-    upsert("App 情報", appInfoLocs, locale, { name: m.name, subtitle: m.subtitle }, () => api("POST", "/v1/appInfoLocalizations", {
-      data: { type: "appInfoLocalizations", attributes: { locale, name: m.name, subtitle: m.subtitle }, relationships: { appInfo: { data: { type: "appInfos", id: APP_INFO_ID } } } },
+    // ストアの名前はロケールごとに他社と重ならないものしか使えない。en-US は「Hayate」が他社に使われているので nameByLocale で変える (2026-11-10)
+    const name = m.nameByLocale?.[locale] ?? m.name;
+    upsert("App 情報", appInfoLocs, locale, { name, subtitle: m.subtitle }, () => api("POST", "/v1/appInfoLocalizations", {
+      data: { type: "appInfoLocalizations", attributes: { locale, name, subtitle: m.subtitle }, relationships: { appInfo: { data: { type: "appInfos", id: APP_INFO_ID } } } },
     }), "appInfoLocalizations");
+    // App 情報のロケールを作ると ASC がバージョンのロケールも作るので、無ければ取り直してから作るか更新するかを決める
+    if (!versionLocs[locale] && !dryRun) versionLocs = byLocale(api("GET", `/v1/appStoreVersions/${VERSION_ID}/appStoreVersionLocalizations?limit=200`));
     const v = { description: m.description, keywords: m.keywords, promotionalText: m.promotionalText };
     // サポート URL は審査提出に要る。決まったら store/metadata/<lang>.json に supportUrl を書く (2026-11-10 時点では未定)
     if (m.supportUrl) v.supportUrl = m.supportUrl;

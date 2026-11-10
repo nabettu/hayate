@@ -1,5 +1,8 @@
 {
   "name": "Hayate",
+  "nameByLocale": {
+    "en-US": "Hayate: Voice to Webhook"
+  },
   "subtitle": "Apple Watch voice to webhook",
   "promotionalText": "Just speak to your Apple Watch and send it to Slack, Discord, or your own webhook. Send what comes to mind right from your wrist.",
   "keywords": "webhook,voice,dictation,note,Slack,Discord,Siri,watch,API,automation,shortcuts,voice memo,send,n8n",
