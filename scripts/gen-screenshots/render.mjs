@@ -271,8 +271,8 @@ const SLIDE_CSS = `
   .head h1 { font-size: 138px; font-weight: 900; line-height: 1.16; letter-spacing: -.02em; }
   .line { display: block; white-space: nowrap; }
   em { font-style: normal; padding-bottom: .12em; background: linear-gradient(95deg,#FDE68A,#FDBA74 45%,#F9A8D4); -webkit-background-clip: text; color: transparent; }
-  .chips { display: flex; justify-content: center; gap: 22px; margin-top: 56px; white-space: nowrap; }
-  .chip { display: inline-flex; align-items: center; gap: 14px; border-radius: 999px; padding: 20px 36px; font-size: 40px; font-weight: 800; color: #fff;
+  .chips { display: flex; justify-content: center; gap: 24px; margin-top: 60px; white-space: nowrap; }
+  .chip { display: inline-flex; align-items: center; gap: 16px; border-radius: 999px; padding: 26px 44px; font-size: 56px; font-weight: 800; color: #fff;
     background: rgba(255,255,255,.1); box-shadow: inset 0 0 0 2px rgba(255,255,255,.16); }
   .closing { position: absolute; left: 0; right: 0; bottom: 96px; text-align: center; z-index: 30; color: #fff; font-size: 88px; font-weight: 900; line-height: 1.24; letter-spacing: -.01em; }
   .fade { position: absolute; left: 0; right: 0; bottom: 0; height: 640px; z-index: 20; background: linear-gradient(to bottom, rgba(59,23,130,0), #2f1470 45%, #34167a); }
@@ -313,14 +313,14 @@ const FIT = `<script>
     window.__fit.push({ cls: el.className || el.tagName, start: start, size: size });
   });
   document.querySelectorAll(".chips").forEach(function (el) {
-    var w = [].reduce.call(el.children, function (a, c) { return a + c.offsetWidth + 22; }, -22);
+    var w = [].reduce.call(el.children, function (a, c) { return a + c.offsetWidth + 24; }, -24);
     if (w > ${IPHONE.width} - 80) el.style.zoom = (${IPHONE.width} - 80) / w;
   });
 </script>`;
 
 const CHIP_ICONS = { hero: ["hash", "chat", "code"], siri: ["siri", "tap", "watch"], destination: ["link", "hash", "chat"], direct: ["wifi", "antenna"] };
 const head = (c, key, top) => `<div class="head" style="top:${top}px"><h1>${lines(c.h1)}</h1>
-  ${c.chips ? `<div class="chips">${c.chips.map((label, i) => `<span class="chip">${icon(CHIP_ICONS[key][i], 46, "#FDE68A")}${esc(label)}</span>`).join("")}</div>` : ""}</div>`;
+  ${c.chips ? `<div class="chips">${c.chips.map((label, i) => `<span class="chip">${icon(CHIP_ICONS[key][i], 62, "#FDE68A")}${esc(label)}</span>`).join("")}</div>` : ""}</div>`;
 const closing = (s) => `<div class="fade"></div><div class="closing">${lines(s)}</div>`;
 
 const page = (body, seed) => `<!doctype html><html><head><meta charset="utf-8"><style>${SLIDE_CSS}</style></head>
