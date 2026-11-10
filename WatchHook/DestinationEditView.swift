@@ -34,6 +34,15 @@ struct DestinationEditView: View {
                         Text(urlFooter)
                     }
 
+                    Section {
+                        TextField("前に付ける文", text: $destination.textPrefix, axis: .vertical)
+                        TextField("後ろに付ける文", text: $destination.textSuffix, axis: .vertical)
+                    } header: {
+                        Text("前後に付ける文")
+                    } footer: {
+                        Text("話した内容の前後に、書いたとおりに付けて送ります (空白や改行もそのまま)。例: 前に「#買い物 」と書くと「#買い物 牛乳」と送ります。")
+                    }
+
                     if destination.kind == .custom {
                         Section("リクエスト") {
                             Picker("メソッド", selection: $destination.method) {
@@ -178,7 +187,7 @@ struct DestinationEditView: View {
         if TestSendPolicy.counts(access: access) {
             UserDefaults.standard.set(used + 1, forKey: Self.testSendsKey)
         }
-        let message = OutgoingMessage(text: "Hayate のテスト送信です", destinationID: target.id, source: "test")
+        let message = OutgoingMessage(text: target.wrap("Hayate のテスト送信です"), destinationID: target.id, source: "test")
         let result = await WebhookSender().send(message, to: target)
         switch result {
         case .sent(let code): testResult = "届きました (HTTP \(code))"
