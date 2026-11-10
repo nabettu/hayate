@@ -55,7 +55,8 @@ const LOCK = path.join(ROOT, "screenshots/app-store/.upload.lock");
 async function takeLock() {
   fs.mkdirSync(path.dirname(LOCK), { recursive: true });
   const locker = spawn("perl", ["-e", 'use Fcntl ":flock"; open(my $f, ">>", $ARGV[0]) or exit 2; flock($f, LOCK_EX | LOCK_NB) or exit 75; $| = 1; print "ok\n"; <STDIN>;', LOCK],
-    { stdio: ["pipe", "pipe", "inherit"] });
+    // 別のプロセスグループにする (端末の Ctrl+C が perl にも届くと、asc の終了を待つ間にロックが外れる)
+    { stdio: ["pipe", "pipe", "inherit"], detached: true });
   const ok = await new Promise((resolve) => {
     locker.stdout.once("data", (d) => resolve(String(d).startsWith("ok")));
     locker.once("exit", () => resolve(false));
