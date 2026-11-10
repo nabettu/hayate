@@ -30,8 +30,11 @@ fs.mkdirSync(path.join(os.tmpdir(), "claude-work"), { recursive: true });
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "claude-work", "hayate-upload-"));
 process.on("exit", () => fs.rmSync(tmp, { recursive: true, force: true }));
 
-// 1 セットに数分かかる (asc がサーバー側の処理の完了を待つ) ので、ロケールを並行で上げる
-const CONCURRENCY = 6;
+// 1 セットに数分かかる (asc がサーバー側の処理の完了を待つ) ので、ロケールを並行で上げる。
+// 6 本にしたら API の回数制限 (429、「34 分待て」) に当たり 100 セット中 99 が落ちた (2026-11-10)。
+// 同じ API キーをほかのアプリの作業でも使うので 2 本にし、制限に当たったら asc 自身に待たせる (ASC_MAX_DELAY)
+const CONCURRENCY = Number(process.env.UPLOAD_CONCURRENCY ?? 2);
+const ASC_ENV = { ...process.env, ASC_MAX_DELAY: process.env.ASC_MAX_DELAY ?? "40m", ASC_TIMEOUT: process.env.ASC_TIMEOUT ?? "90m" };
 const jobs = [];
 for (const [lang, locales] of Object.entries(ASC_LOCALES)) {
   if (only.length && !only.includes(lang)) continue;
@@ -53,7 +56,7 @@ const run = (job) => new Promise((resolve) => {
   if (dryRun) a.push("--dry-run");
   // dry-run は上げる・消す予定の表を見るために出す。本番は表が長いので捨てる (エラーは集める)
   let err = "";
-  const p = spawn("asc", a, { stdio: ["ignore", dryRun ? "inherit" : "ignore", "pipe"] });
+  const p = spawn("asc", a, { env: ASC_ENV, stdio: ["ignore", dryRun ? "inherit" : "ignore", "pipe"] });
   let settled = false;
   const finish = (code, message) => { if (!settled) { settled = true; resolve({ ...job, code, err: message.trim() }); } };
   p.stderr.on("data", (d) => { err += d; });
