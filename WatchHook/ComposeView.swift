@@ -194,8 +194,7 @@ struct ComposeView: View {
     }
 
     private func fixSelection() {
-        let resolved = store.config.resolve(selectedID: selectedID)?.id.uuidString ?? ""
-        if resolved != selectedID { selectedID = resolved }
+        if let corrected = store.config.correctedSelection(selectedID) { selectedID = corrected }
     }
 
     private static let headerPlaneWidth: CGFloat = 72

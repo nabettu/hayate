@@ -15,4 +15,13 @@ extension DestinationConfig {
     public func resolve(selectedID: String) -> Destination? {
         UUID(uuidString: selectedID).flatMap { destination(id: $0) } ?? defaultDestination
     }
+
+    /// 端末に覚えている選択を直すときの新しい値。直さなくてよければ nil。
+    /// 送り先が空のときは直さない: 設定を読めなかった (ロック中など) ときも空になり、消えたのか読めないのか分からないため。
+    /// ここで消すと、読めるようになっても元の選択に戻らない。
+    public func correctedSelection(_ selectedID: String) -> String? {
+        guard !destinations.isEmpty, let resolved = resolve(selectedID: selectedID) else { return nil }
+        let value = resolved.id.uuidString
+        return value == selectedID ? nil : value
+    }
 }

@@ -141,8 +141,7 @@ struct WatchHomeView: View {
 
     /// 選んでいた送り先が iPhone で消されたら、既定の送り先に合わせる (表示と実際の送り先をずらさない)。
     private func fixSelection() {
-        let resolved = store.config.resolve(selectedID: selectedID)?.id.uuidString ?? ""
-        if resolved != selectedID { selectedID = resolved }
+        if let corrected = store.config.correctedSelection(selectedID) { selectedID = corrected }
     }
 
     private func send(_ text: String, to destination: Destination) async {
