@@ -86,122 +86,140 @@ const sky = (w, h, seed) => `<svg class="sky" width="${w}" height="${h}" viewBox
   ${sparkle(w * 0.1, h * 0.06, 34)}${sparkle(w * 0.92, h * 0.33, 22, "#C4B5FD")}${sparkle(w * 0.07, h * 0.7, 18, "#C4B5FD")}
 </svg>`;
 
-// ---- Apple Watch の画面 (416x496 の CSS px で描く) ----
+// ---- アプリの中の夜空 (Shared/Cosmos.swift の CosmicBackground: night → deep → nebula、白い星と黄色の 4 つ角の星) ----
+const appSky = (w, h, count, seed) => {
+  let s = seed;
+  const rand = () => ((s = (s * 1103515245 + 12345) % 2147483648) / 2147483648);
+  let dots = "";
+  for (let i = 0; i < count; i++) {
+    const x = rand() * w, y = rand() * h, r = 0.6 + rand() * 1.4, o = 0.3 + rand() * 0.55;
+    dots += i % 13 === 5 ? sparkle(x, y, 5 + r * 3, "#FDE68A") : `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${r.toFixed(2)}" fill="#fff" opacity="${o.toFixed(2)}"/>`;
+  }
+  return `<svg class="appsky" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><defs><linearGradient id="as${seed}" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#0C1024"/><stop offset=".5" stop-color="#1C1244"/><stop offset="1" stop-color="#2E1162"/></linearGradient></defs>
+    <rect width="${w}" height="${h}" fill="url(#as${seed})"/>${dots}</svg>`;
+};
+
+// ---- Apple Watch の画面 (416x496 の CSS px = 208x248 pt の 2 倍で描く) ----
 const WATCH_CSS = `
-  .ws { position: relative; width: 416px; height: 496px; background: #000; color: #fff; overflow: hidden;
+  .ws { position: relative; width: 416px; height: 496px; color: #fff; overflow: hidden;
     font-family: "SF Compact Text", "SF Compact", "Hiragino Sans", sans-serif; }
-  .ws .bar { position: absolute; left: 26px; right: 26px; top: 14px; height: 50px; display: flex; align-items: center; justify-content: space-between; }
-  .ws .title { font-family: "SF Compact Display", "Hiragino Sans"; font-size: 33px; font-weight: 600; color: #fff; display: flex; align-items: center; gap: 10px; }
-  .ws .back { width: 50px; height: 50px; border-radius: 50%; background: #2a2a2d; display: flex; align-items: center; justify-content: center; }
-  .ws .time { font-family: "SF Compact Display", "Hiragino Sans"; font-size: 33px; font-weight: 600; }
-  .ws .body { position: absolute; left: 20px; right: 20px; top: 82px; display: flex; flex-direction: column; align-items: center; gap: 14px; }
-  .ws .speak { width: 100%; height: 128px; border-radius: 64px; background: #FF9F0A; display: flex; align-items: center; justify-content: center; gap: 12px;
-    font-family: "SF Compact Display", "Hiragino Sans"; font-size: 41px; font-weight: 700; color: #000; }
-  .ws .ok { display: flex; align-items: center; gap: 10px; font-size: 32px; font-weight: 600; color: #32D74B; }
-  .ws .dest { font-size: 28px; color: #9a9aa0; }
-  .ws .pill { width: 100%; height: 84px; border-radius: 42px; background: #232326; display: flex; align-items: center; justify-content: center; font-size: 30px; font-weight: 600; }
-  .ws .rows { position: absolute; left: 14px; right: 14px; top: 82px; display: flex; flex-direction: column; gap: 10px; }
-  .ws .row { background: #1c1c1f; border-radius: 34px; padding: 18px 24px; }
+  .ws .appsky, .ps .appsky { position: absolute; inset: 0; }
+  .ws .bar { position: absolute; left: 26px; right: 30px; top: 22px; height: 56px; display: flex; align-items: center; justify-content: space-between; z-index: 2; }
+  .ws .title { font-family: "SF Compact Display", "Hiragino Sans"; font-size: 34px; font-weight: 600; display: flex; align-items: center; gap: 12px; }
+  .ws .back { width: 56px; height: 56px; border-radius: 50%; background: rgba(255,255,255,.16); display: flex; align-items: center; justify-content: center; }
+  .ws .time { font-family: "SF Compact Display", "Hiragino Sans"; font-size: 34px; font-weight: 600; margin-left: auto; }
+  .ws .orbwrap { position: absolute; left: 50%; top: 88px; width: 168px; height: 168px; margin-left: -84px; }
+  .ws .ring { position: absolute; inset: 0; border-radius: 50%; border: 3px solid rgba(196,181,253,.5); }
+  .ws .orb { position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(45deg,#8B5CF6,#C4B5FD); box-shadow: 0 0 22px rgba(139,92,246,.9), inset 0 0 0 2px rgba(255,255,255,.35);
+    display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 26px; font-weight: 700; }
+  .ws .status { position: absolute; left: 0; right: 0; top: 302px; text-align: center; font-size: 23px; font-weight: 500; white-space: nowrap; color: #FDE68A; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .ws .dest { position: absolute; left: 0; right: 0; top: 352px; display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 30px; color: #C4B5FD; }
+  .ws .pill { position: absolute; left: 30px; right: 30px; top: 404px; height: 104px; border-radius: 52px; background: rgba(150,130,230,.32);
+    display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 32px; color: #E4DCFF; }
+  .ws .rows { position: absolute; left: 14px; right: 14px; top: 92px; display: flex; flex-direction: column; gap: 10px; }
+  .ws .row { background: rgba(34,27,72,.96); border-radius: 28px; padding: 18px 24px; }
   .ws .row b { display: block; font-size: 31px; font-weight: 500; line-height: 1.25; }
-  .ws .row small { display: block; margin-top: 4px; font-size: 25px; color: #9a9aa0; }
+  .ws .row small { display: block; margin-top: 4px; font-size: 25px; color: rgba(196,181,253,.8); }
   .ws .row.pick { display: flex; align-items: center; justify-content: space-between; padding: 26px 26px; }
-  .ws .row.pick b { font-size: 31px; }
-  .ws .siri { position: absolute; left: 28px; right: 28px; top: 92px; }
+  .ws .siri { position: absolute; left: 28px; right: 28px; top: 96px; }
   .ws .siri .app { display: flex; align-items: center; gap: 12px; font-size: 24px; font-weight: 600; letter-spacing: .04em; color: #9a9aa0; }
   .ws .siri .app img { width: 40px; height: 40px; border-radius: 50%; }
   .ws .siri p { margin-top: 18px; font-family: "SF Compact Display", "Hiragino Sans"; font-size: 40px; font-weight: 600; line-height: 1.3; word-break: keep-all; }
-  .ws .orb { position: absolute; left: 50%; bottom: -150px; width: 300px; height: 300px; margin-left: -150px; border-radius: 50%;
+  .ws .siriorb { position: absolute; left: 50%; bottom: -150px; width: 300px; height: 300px; margin-left: -150px; border-radius: 50%;
     background: radial-gradient(circle at 50% 40%, #fff 0, #7dd3fc 14%, #a78bfa 34%, #f472b6 52%, rgba(244,114,182,0) 70%); opacity: .9; }
+  .ws.black { background: #000; }
 `;
 
-const watchBar = (title, { back = false } = {}) => `<div class="bar"><div class="title">${back ? `<span class="back">${SYM.chevronLeft(26, "#fff")}</span>` : ""}${esc(title)}</div><div class="time">10:09</div></div>`;
+const watchBar = (title, { back = false } = {}) => `<div class="bar">${title ? `<div class="title">${back ? `<span class="back">${SYM.chevronLeft(28, "#fff")}</span>` : ""}${esc(title)}</div>` : ""}<div class="time">10:09</div></div>`;
+const paperplaneLine = (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.8" stroke-linejoin="round"><path d="M21.5 2.5 2.5 10l7.5 3.5L13.5 21z"/><path d="m10 13.5 4.5-4.5"/></svg>`;
+const clockLine = (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5h-3"/></svg>`;
 
 export const watchScreens = {
-  /** 話して送った直後のホーム (WatchHomeView: 話すボタン・送りました・送り先・履歴) */
-  home: (t) => `<div class="ws">${watchBar(t.appName)}
-    <div class="body">
-      <div class="speak">${SYM.mic(40, "#000")}${esc(t.speak)}</div>
-      <div class="ok">${SYM.checkFill(34, "#32D74B")}${esc(t.sent)}</div>
-      <div class="dest">${esc(t.destinations[0])}</div>
-      <div class="pill">${esc(t.history)}</div>
-    </div></div>`,
+  /** 話して送った直後のホーム (WatchHomeView: 光る話すボタン・「〜」に送りました・送り先・履歴) */
+  home: (t) => `<div class="ws">${appSky(416, 496, 26, 5)}${watchBar("")}
+    <div class="orbwrap"><div class="ring" style="transform:scale(1.25);opacity:.75"></div><div class="ring" style="transform:scale(1.45);opacity:.3"></div>
+      <div class="orb">${SYM.mic(62, "#fff")}<span>${esc(t.speak)}</span></div></div>
+    <div class="status">${SYM.checkFill(28, "#FDE68A")}${esc(t.sent)}</div>
+    <div class="dest">${paperplaneLine(34, "#C4B5FD")}${esc(t.destinations[0])}</div>
+    <div class="pill">${clockLine(34, "#E4DCFF")}${esc(t.history)}</div></div>`,
   /** 時計の履歴 (WatchHistoryView: 本文と「送り先 · 状態」) */
-  history: (t) => `<div class="ws">${watchBar(t.history, { back: true })}
+  history: (t) => `<div class="ws">${appSky(416, 496, 26, 9)}${watchBar(t.history, { back: true })}
     <div class="rows">
       ${[[0, 0, t.statusSent], [1, 2, t.statusPending], [2, 1, t.statusSent]].map(([s, d, st]) =>
         `<div class="row"><b>${esc(t.spoken[s])}</b><small>${esc(t.destinations[d])} · ${esc(st)}</small></div>`).join("")}
     </div></div>`,
-  /** 送り先の選択 (WatchHomeView の Picker を開いたところ) */
-  destinations: (t) => `<div class="ws">${watchBar(t.destinationsTitle, { back: true })}
+  /** 送り先の選択 (WatchHomeView の Picker を開いたところ。iPhone で既定にした送り先に「(既定)」) */
+  destinations: (t) => `<div class="ws">${appSky(416, 496, 26, 13)}${watchBar(t.destinationsTitle, { back: true })}
     <div class="rows">
-      ${t.destinations.map((d, i) => `<div class="row pick"><b>${esc(d)}</b>${i === 0 ? SYM.check(34, "#FF9F0A") : ""}</div>`).join("")}
+      ${t.destinations.map((d, i) => `<div class="row pick"><b>${esc(i === 0 ? `${d} ${t.defaultMark}` : d)}</b>${i === 0 ? SYM.check(34, "#C4B5FD") : ""}</div>`).join("")}
     </div></div>`,
-  /** Siri の返事 (SendTextIntent の dialog) */
-  siri: (t) => `<div class="ws"><div class="bar"><div></div><div class="time">10:09</div></div>
+  /** Siri の返事 (SendTextIntent の dialog)。Siri の画面なので背景は黒 */
+  siri: (t) => `<div class="ws black">${watchBar("")}
     <div class="siri"><div class="app"><img src="data:image/png;base64,${ICON_PNG}">${esc(t.appName.toUpperCase())}</div><p>${esc(t.siriDialog)}</p></div>
-    <div class="orb"></div></div>`,
+    <div class="siriorb"></div></div>`,
 };
 
-// ---- iPhone の画面 (402x874 pt の CSS px で描き、端末の中で拡大する) ----
+// ---- iPhone の画面 (402x874 pt の CSS px で描き、端末の中で拡大する。ダーク固定) ----
 const PHONE_CSS = `
-  .ps { position: relative; width: 402px; height: 874px; background: #F2F2F7; color: #000; overflow: hidden;
+  .ps { position: relative; width: 402px; height: 874px; color: #fff; overflow: hidden;
     font-family: -apple-system, "SF Pro Text", "Hiragino Sans", sans-serif; font-size: 17px; }
+  .ps > *:not(.appsky) { position: relative; }
   .ps .status { height: 54px; display: flex; align-items: center; justify-content: space-between; padding: 6px 34px 0 46px; font-weight: 600; font-size: 17px; }
   .ps .status .r { display: flex; gap: 6px; align-items: center; }
-  .ps .nav { height: 52px; display: flex; align-items: center; justify-content: space-between; padding: 0 16px; }
+  .ps .sheet { position: absolute !important; left: 0; right: 0; top: 40px; bottom: 0; border-radius: 38px 38px 0 0; overflow: hidden; }
+  .ps .sheet .appsky { position: absolute; inset: 0; }
+  .ps .sheet > *:not(.appsky) { position: relative; }
+  .ps .nav { height: 72px; display: flex; align-items: center; justify-content: space-between; padding: 8px 10px 0; }
   .ps .nav .t { font-weight: 600; font-size: 17px; }
-  .ps .glass { height: 44px; padding: 0 16px; border-radius: 22px; background: rgba(255,255,255,.85); box-shadow: 0 1px 6px rgba(0,0,0,.08); display: flex; align-items: center; font-size: 17px; }
-  .ps .glass.blue { background: #0A84FF; color: #fff; font-weight: 600; }
+  .ps .glass { height: 46px; padding: 0 18px; border-radius: 23px; background: rgba(120,110,170,.38); box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); display: flex; align-items: center; font-size: 17px; font-weight: 600; color: #C4B5FD; }
   .ps .sec { margin: 0 16px; }
-  .ps .sh { font-size: 13px; color: #6d6d72; padding: 18px 20px 7px; }
-  .ps .sf { font-size: 13px; color: #6d6d72; padding: 7px 20px 0; line-height: 1.4; }
-  .ps .grp { background: #fff; border-radius: 26px; overflow: hidden; }
-  .ps .cell { min-height: 50px; padding: 13px 20px; display: flex; align-items: center; justify-content: space-between; position: relative; }
-  .ps .cell + .cell::before { content: ""; position: absolute; left: 20px; right: 0; top: 0; height: 1px; background: #e3e3e8; }
-  .ps .v { color: #8a8a8e; display: flex; align-items: center; gap: 4px; }
-  .ps .blue { color: #0A84FF; }
-  .ps .mono { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13px; white-space: pre; line-height: 1.45; }
-  .ps .toggle { width: 51px; height: 31px; border-radius: 16px; background: #34C759; position: relative; flex: none; }
+  .ps .sh { font-size: 15px; font-weight: 600; color: rgba(235,235,245,.6); padding: 16px 12px 8px; }
+  .ps .sf { font-size: 12.5px; color: rgba(235,235,245,.6); padding: 8px 12px 0; line-height: 1.45; }
+  .ps .grp { background: rgba(34,27,72,.96); border-radius: 26px; overflow: hidden; box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); }
+  .ps .cell { min-height: 52px; padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; position: relative; }
+  .ps .cell + .cell::before { content: ""; position: absolute; left: 20px; right: 20px; top: 0; height: 1px; background: rgba(255,255,255,.12); }
+  .ps .v { color: #C4B5FD; display: flex; align-items: center; gap: 4px; }
+  .ps .accent { color: #C4B5FD; }
+  .ps .mono { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13px; white-space: pre; line-height: 1.5; }
+  .ps .toggle { width: 51px; height: 31px; border-radius: 16px; background: #8B5CF6; position: relative; flex: none; }
   .ps .toggle::after { content: ""; position: absolute; right: 2px; top: 2px; width: 27px; height: 27px; border-radius: 50%; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,.2); }
 `;
-const statusBar = () => `<div class="status"><span>9:41</span><span class="r">
+const statusBar = () => `<div class="status"><span>9:41</span><span class="r" style="fill:#fff">
   <svg width="19" height="12" viewBox="0 0 19 12"><rect x="0" y="8" width="3" height="4" rx="1"/><rect x="5" y="5.5" width="3" height="6.5" rx="1"/><rect x="10" y="3" width="3" height="9" rx="1"/><rect x="15" y="0" width="3" height="12" rx="1"/></svg>
   <svg width="17" height="12" viewBox="0 0 17 12"><path d="M8.5 2.5a10 10 0 0 1 7 2.8l1.2-1.3A11.8 11.8 0 0 0 8.5.7 11.8 11.8 0 0 0 .3 4l1.2 1.3a10 10 0 0 1 7-2.8zm0 3.6a6.4 6.4 0 0 1 4.5 1.8l1.2-1.3a8.2 8.2 0 0 0-11.4 0L4 7.9a6.4 6.4 0 0 1 4.5-1.8zm0 3.6c.8 0 1.5.3 2 .8L8.5 12.6 6.5 10.5c.5-.5 1.2-.8 2-.8z"/></svg>
-  <svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.5" fill="none" stroke="#000" opacity=".4"/><rect x="2" y="2" width="20" height="9" rx="2"/><path d="M25 4.5v4a2 2 0 0 0 0-4z" opacity=".4"/></svg>
+  <svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.5" fill="none" stroke="#fff" opacity=".4"/><rect x="2" y="2" width="20" height="9" rx="2"/><path d="M25 4.5v4a2 2 0 0 0 0-4z" opacity=".4"/></svg>
 </span></div>`;
 
 export const phoneScreens = {
-  /** 送り先の編集 (DestinationEditView。自由に設定する webhook) */
+  /** 送り先の編集 (DestinationEditView のシート。自由に設定する webhook・認証ヘッダ付き) */
   edit: (t) => {
     const e = t.edit;
-    return `<div class="ps">${statusBar()}
-    <div class="nav"><span class="glass">${esc(e.cancel)}</span><span class="t">${esc(e.name)}</span><span class="glass blue">${esc(e.save)}</span></div>
-    <div class="sec" style="margin-top:8px"><div class="grp">
-      <div class="cell">${esc(e.name)}</div>
-      <div class="cell">${esc(e.url)}</div>
-    </div><div class="sf">${esc(e.urlFooter)}</div></div>
+    return `<div class="ps" style="background:#06070f">${statusBar()}
+    <div class="sheet">${appSky(402, 834, 46, 3)}
+    <div class="nav"><span class="glass">${esc(e.cancel)}</span><span class="t">${esc(e.name)}</span><span class="glass">${esc(e.save)}</span></div>
+    <div class="sec"><div class="sh">${esc(e.nameLabel)}</div><div class="grp"><div class="cell">${esc(e.name)}</div></div></div>
+    <div class="sec"><div class="sh">URL</div><div class="grp"><div class="cell">${esc(e.url)}</div></div><div class="sf">${esc(e.urlFooter)}</div></div>
     <div class="sec"><div class="sh">${esc(e.request)}</div><div class="grp">
-      <div class="cell"><span>${esc(e.method)}</span><span class="v">POST ${SYM.updown(14, "#8a8a8e")}</span></div>
-      <div class="cell"><span>${esc(e.bodyFormat)}</span><span class="v">${esc(e.bodyFormatValue)} ${SYM.updown(14, "#8a8a8e")}</span></div>
+      <div class="cell"><span>${esc(e.method)}</span><span class="v">POST ${SYM.updown(14, "#C4B5FD")}</span></div>
+      <div class="cell"><span>${esc(e.bodyFormat)}</span><span class="v">${esc(e.bodyFormatValue)} ${SYM.updown(14, "#C4B5FD")}</span></div>
     </div></div>
     <div class="sec"><div class="sh">${esc(e.headers)}</div><div class="grp">
       <div class="cell" style="display:block">
         <div style="font-weight:700;font-size:15px">Authorization</div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px"><span style="letter-spacing:2px">••••••••••••••••</span>${SYM.eye(20, "#0A84FF")}</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px"><span style="letter-spacing:2px">••••••••••••••••</span>${SYM.eye(20, "#C4B5FD")}</div>
         <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:12px"><span>${esc(e.hideSecret)}</span><span class="toggle"></span></div>
       </div>
+      <div class="cell accent">${esc(e.addHeader)}</div>
     </div><div class="sf">${esc(e.headersFooter)}</div></div>
     <div class="sec"><div class="sh">${esc(e.body)}</div><div class="grp">
       <div class="cell" style="min-height:120px;align-items:flex-start"><span class="mono">${esc(e.bodyTemplate)}</span></div>
     </div></div>
-    <div class="sec" style="margin-top:22px"><div class="grp">
-      <div class="cell blue">${esc(e.test)}</div>
-      <div class="cell" style="font-size:13px;color:#6d6d72">${esc(e.testResult)}</div>
-    </div></div>
+    <div class="sec" style="margin-top:20px"><div class="grp"><div class="cell">${esc(e.test)}</div></div></div>
+    </div>
   </div>`;
   },
 };
-
 // ---- 端末の枠 ----
 const DEVICE_CSS = `
   .iphone { position: absolute; z-index: 5; left: 50%; width: 850px; margin-left: -425px; padding: 18px; border-radius: 120px; background: #121218;
