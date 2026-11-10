@@ -31,14 +31,14 @@ final class WatchSync: NSObject, WCSessionDelegate, @unchecked Sendable {
                 // 何度か取りに行ったとき、最後の要求への結果だけを使う。反映する直前 (MainActor の上) で確かめる
                 guard RequestGate.gate.isLatest(token) else { return }
                 guard let config else {
-                    ConfigStore.shared.setSyncError("iPhone から設定を受け取れませんでした")
+                    ConfigStore.shared.setSyncError(String(localized: "iPhone から設定を受け取れませんでした"))
                     return
                 }
                 ConfigStore.shared.setSyncError(nil)
                 ConfigStore.shared.receive(config)
             }
         }, errorHandler: { @Sendable error in
-            let message = "iPhone から設定を受け取れませんでした: \(error.localizedDescription)"
+            let message = String(localized: "iPhone から設定を受け取れませんでした: \(error.localizedDescription)")
             Task { @MainActor in
                 guard RequestGate.gate.isLatest(token) else { return }
                 ConfigStore.shared.setSyncError(message)

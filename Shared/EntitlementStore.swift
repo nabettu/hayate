@@ -133,10 +133,10 @@ final class EntitlementStore {
         do {
             let list = try await Product.products(for: StoreProducts.all)
             products = Dictionary(uniqueKeysWithValues: list.map { ($0.id, $0) })
-            productsError = list.count == StoreProducts.all.count ? nil : "商品の情報を読み込めませんでした"
+            productsError = list.count == StoreProducts.all.count ? nil : String(localized: "商品の情報を読み込めませんでした")
         } catch {
             storeLogger.error("products failed: \(String(describing: error), privacy: .public)")
-            productsError = "商品の情報を読み込めませんでした。通信できる状態でもう一度開いてください"
+            productsError = String(localized: "商品の情報を読み込めませんでした。通信できる状態でもう一度開いてください")
         }
     }
 
@@ -147,9 +147,9 @@ final class EntitlementStore {
             await t.finish()
             message = nil
         case .success(.unverified):
-            message = "購入を確認できませんでした。「購入を復元」を試してください"
+            message = String(localized: "購入を確認できませんでした。「購入を復元」を試してください")
         case .pending:
-            message = "購入の承認待ちです。承認されると自動で使えるようになります"
+            message = String(localized: "購入の承認待ちです。承認されると自動で使えるようになります")
         case .userCancelled:
             message = nil
         @unknown default:
@@ -160,7 +160,7 @@ final class EntitlementStore {
 
     func handle(error: any Error) {
         storeLogger.error("purchase failed: \(String(describing: error), privacy: .public)")
-        message = "購入できませんでした: \(error.localizedDescription)"
+        message = String(localized: "購入できませんでした: \(error.localizedDescription)")
     }
 
     func restore() async {
@@ -169,11 +169,11 @@ final class EntitlementStore {
             // 画面用の refresh は別の refresh と重なると結果を捨てるので、結果の文はその場で読んだ状態で決める
             let restored = await Self.loadLocal().merging(Self.usesHint ? hint : nil)
             await refresh()
-            message = restored.unlocked || restored.trialStartedAt != nil ? "購入を復元しました" : "復元できる購入はありませんでした"
+            message = restored.unlocked || restored.trialStartedAt != nil ? String(localized: "購入を復元しました") : String(localized: "復元できる購入はありませんでした")
         } catch StoreKitError.userCancelled {
             message = nil
         } catch {
-            message = "復元できませんでした: \(error.localizedDescription)"
+            message = String(localized: "復元できませんでした: \(error.localizedDescription)")
         }
     }
 
@@ -198,8 +198,8 @@ extension AccessState {
     var blockedMessage: String? {
         switch self {
         case .unlocked, .trial: nil
-        case .trialNotStarted: "iPhone の Hayate で、7 日間の無料お試しを始めるか購入してください。"
-        case .trialExpired: "無料お試しの 7 日間が終わりました。iPhone の Hayate で購入すると続けて使えます。"
+        case .trialNotStarted: String(localized: "iPhone の Hayate で、7 日間の無料お試しを始めるか購入してください。")
+        case .trialExpired: String(localized: "無料お試しの 7 日間が終わりました。iPhone の Hayate で購入すると続けて使えます。")
         }
     }
 }

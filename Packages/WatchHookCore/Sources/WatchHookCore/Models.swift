@@ -165,7 +165,7 @@ public struct DestinationConfig: Codable, Hashable, Sendable {
     public static let maxEncodedBytes = 48_000
 
     public struct TooLarge: Error, LocalizedError {
-        public var errorDescription: String? { "設定が大きすぎて Apple Watch へ送れません。本文テンプレートやヘッダを減らしてください" }
+        public var errorDescription: String? { String(localized: "設定が大きすぎて Apple Watch へ送れません。本文テンプレートやヘッダを減らしてください", bundle: .module) }
     }
 
     public func validateSize() throws {

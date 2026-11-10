@@ -32,7 +32,7 @@ final class PhoneSync: NSObject, WCSessionDelegate, @unchecked Sendable {
             try session.updateApplicationContext(context)
             return nil
         } catch {
-            return "Apple Watch へ設定を送れませんでした: \(error.localizedDescription)"
+            return String(localized: "Apple Watch へ設定を送れませんでした: \(error.localizedDescription)")
         }
     }
 

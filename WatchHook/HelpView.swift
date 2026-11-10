@@ -79,7 +79,7 @@ private struct WatchUsagePage: View {
                 Para("iPhone の Siri でも同じように送れます。")
             }
             Section("アプリから送る") {
-                Para("時計で Hayate を開き、オレンジの「話す」を押して話します。話し終えたら「完了」で送ります。")
+                Para("時計で Hayate を開き、紫の「話す」を押して話します。話し終えたら「完了」で送ります。")
                 Para("Series 9 / Ultra 2 以降は、親指と人差し指をダブルタップしても「話す」を押せます。")
                 Para("送れたら時計が振動し、「送りました」と出ます。")
             }
@@ -233,7 +233,7 @@ private struct PrivacyPage: View {
 // MARK: - 部品
 
 private struct HelpPage<Content: View>: View {
-    let title: String
+    let title: LocalizedStringKey
     @ViewBuilder let content: Content
 
     var body: some View {
@@ -246,7 +246,7 @@ private struct HelpPage<Content: View>: View {
 
 private struct Step: View {
     let number: Int
-    let text: String
+    let text: LocalizedStringKey
 
     var body: some View {
         HStack(alignment: .firstTextBaseline, spacing: 8) {
@@ -261,8 +261,8 @@ private struct Step: View {
 }
 
 private struct Para: View {
-    let text: String
-    init(_ text: String) { self.text = text }
+    let text: LocalizedStringKey
+    init(_ text: LocalizedStringKey) { self.text = text }
 
     var body: some View {
         Text(text).fixedSize(horizontal: false, vertical: true)
@@ -270,9 +270,9 @@ private struct Para: View {
 }
 
 private struct Code: View {
-    let code: String
-    let meaning: String
-    init(_ code: String, _ meaning: String) {
+    let code: LocalizedStringKey
+    let meaning: LocalizedStringKey
+    init(_ code: LocalizedStringKey, _ meaning: LocalizedStringKey) {
         self.code = code
         self.meaning = meaning
     }

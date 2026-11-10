@@ -1,0 +1,21 @@
+{
+  "sourceLanguage" : "ja",
+  "strings" : {
+    "${applicationName}で送って" : {
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ja" : {
+          "stringSet" : {
+            "state" : "new",
+            "values" : [
+              "${applicationName}で送って",
+              "${applicationName}で送る",
+              "${applicationName}に送って"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "version" : "1.0"
+}

@@ -35,7 +35,7 @@ try {
 
     const phone = await browser.newPage({ viewport: { width: IPHONE.width, height: IPHONE.height }, deviceScaleFactor: 1 });
     for (const [i, key] of IPHONE_SLIDES.entries()) {
-      await phone.setContent(iphoneSlide(key, COPY[lang]), { waitUntil: "load" });
+      await phone.setContent(iphoneSlide(key, COPY[lang], lang), { waitUntil: "load" });
       await phone.evaluate(() => document.fonts.ready);
       const report = await phone.evaluate(() => {
         const box = (el) => el.getBoundingClientRect();
@@ -63,7 +63,7 @@ try {
 
     const watch = await browser.newPage({ viewport: { width: WATCH.width, height: WATCH.height }, deviceScaleFactor: 1 });
     for (const [i, key] of WATCH_SLIDES.entries()) {
-      await watch.setContent(watchSlide(key, COPY[lang]), { waitUntil: "load" });
+      await watch.setContent(watchSlide(key, COPY[lang], lang), { waitUntil: "load" });
       await watch.evaluate(() => document.fonts.ready);
       const name = `watch-${String(i + 1).padStart(2, "0")}_${key}`;
       await watch.screenshot({ path: path.join(dir, `${name}.png`) });

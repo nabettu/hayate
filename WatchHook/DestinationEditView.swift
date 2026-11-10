@@ -117,9 +117,9 @@ struct DestinationEditView: View {
 
     private var namePlaceholder: String {
         switch destination.kind {
-        case .slack: "例: 家族の Slack"
-        case .discord: "例: メモ用チャンネル"
-        case .custom: "例: 買い物リスト"
+        case .slack: String(localized: "例: 家族の Slack")
+        case .discord: String(localized: "例: メモ用チャンネル")
+        case .custom: String(localized: "例: 買い物リスト")
         }
     }
 
@@ -133,9 +133,9 @@ struct DestinationEditView: View {
 
     private var urlFooter: String {
         switch destination.kind {
-        case .slack: "Slack の Incoming Webhook の URL を貼ってください。"
-        case .discord: "Discord のチャンネル設定 > 連携サービス > ウェブフック の URL を貼ってください。"
-        case .custom: "https の URL だけ使えます。"
+        case .slack: String(localized: "Slack の Incoming Webhook の URL を貼ってください。")
+        case .discord: String(localized: "Discord のチャンネル設定 > 連携サービス > ウェブフック の URL を貼ってください。")
+        case .custom: String(localized: "https の URL だけ使えます。")
         }
     }
 
@@ -145,7 +145,7 @@ struct DestinationEditView: View {
             if onSave(destination) {
                 dismiss()
             } else {
-                self.error = ConfigStore.shared.saveError ?? "端末に保存できませんでした"
+                self.error = ConfigStore.shared.saveError ?? String(localized: "端末に保存できませんでした")
             }
         } catch {
             self.error = error.localizedDescription
@@ -171,18 +171,18 @@ struct DestinationEditView: View {
         let used = UserDefaults.standard.integer(forKey: Self.testSendsKey)
         guard TestSendPolicy.allows(access: access, usedBeforeTrial: used) else {
             testResult = access == .trialNotStarted
-                ? "お試し前のテスト送信は \(TestSendPolicy.limitBeforeTrial) 回までです。7 日間の無料お試しを始めると続けて試せます"
-                : "お試し期間が終わったため、テスト送信もできません。購入すると続けて使えます"
+                ? String(localized: "お試し前のテスト送信は \(TestSendPolicy.limitBeforeTrial) 回までです。7 日間の無料お試しを始めると続けて試せます")
+                : String(localized: "お試し期間が終わったため、テスト送信もできません。購入すると続けて使えます")
             return
         }
         if TestSendPolicy.counts(access: access) {
             UserDefaults.standard.set(used + 1, forKey: Self.testSendsKey)
         }
-        let message = OutgoingMessage(text: "Hayate のテスト送信です", destinationID: target.id, source: "test")
+        let message = OutgoingMessage(text: String(localized: "Hayate のテスト送信です"), destinationID: target.id, source: "test")
         let result = await WebhookSender().send(message, to: target)
         switch result {
-        case .sent(let code): testResult = "届きました (HTTP \(code))"
-        case .retryableFailure(let r), .permanentFailure(let r): testResult = "送れませんでした: \(r)"
+        case .sent(let code): testResult = String(localized: "届きました (HTTP \(code))")
+        case .retryableFailure(let r), .permanentFailure(let r): testResult = String(localized: "送れませんでした: \(r)")
         case .cancelled: testResult = nil
         }
     }

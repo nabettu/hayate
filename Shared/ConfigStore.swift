@@ -36,12 +36,12 @@ final class ConfigStore {
             // 保存されている設定の形式が読めない (壊れた・古い形式)。待っても直らないので空から始め、上書きを許す
             config = .unsaved
             loadFailed = false
-            saveError = "保存されていた設定を読めなかったため、空の状態から始めます"
+            saveError = String(localized: "保存されていた設定を読めなかったため、空の状態から始めます")
         } catch {
             // Keychain が一時的に読めない (ロック中など)。このまま保存すると本物の設定を空で上書きしてしまうので、保存を止めて知らせる
             config = .unsaved
             loadFailed = true
-            saveError = "設定を読み込めませんでした。アプリを開き直してください"
+            saveError = String(localized: "設定を読み込めませんでした。アプリを開き直してください")
         }
     }
 
@@ -106,7 +106,7 @@ final class ConfigStore {
         // ここで読み直さない: 変更案は読み直す前の設定から作られているので、読めたとしても上書きしてはいけない
         guard !loadFailed else { return false }
         guard let data = try? c.encoded(), Self.keychain.save(data) else {
-            saveError = "設定を端末に保存できませんでした"
+            saveError = String(localized: "設定を端末に保存できませんでした")
             return false
         }
         config = c
