@@ -34311,6 +34311,542 @@
         }
       }
     },
+    "前に付ける文" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نص قبل"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "আগে যোগ হওয়া লেখা"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text abans"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text před"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst før"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text davor"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Κείμενο πριν"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text Before"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texto antes"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teksti ennen"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texte avant"
+          }
+        },
+        "gu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "પહેલાં ઉમેરવાનું લખાણ"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "טקסט לפני"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पहले जोड़ा जाने वाला टेक्स्ट"
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst prije"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Előtte lévő szöveg"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teks sebelum"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Testo prima"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಮೊದಲು ಸೇರಿಸುವ ಪಠ್ಯ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "앞에 붙일 문장"
+          }
+        },
+        "ml" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "മുമ്പ് ചേർക്കുന്ന വാചകം"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आधी जोडायचा मजकूर"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teks sebelum"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst før"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst ervoor"
+          }
+        },
+        "or" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ଆଗରେ ଯୋଡ଼ିବାର ଲେଖା"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ਪਹਿਲਾਂ ਜੋੜਿਆ ਜਾਣ ਵਾਲਾ ਲਿਖਤ"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst przed"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texto antes"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texto antes"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text înainte"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст перед"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text pred"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Besedilo pred"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text före"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "முன்னால் சேர்க்கும் உரை"
+          }
+        },
+        "te" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ముందు చేర్చే వచనం"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ข้อความนำหน้า"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öncesine eklenecek metin"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст перед"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "پہلے کا متن"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Văn bản đứng trước"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前置文字"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前置文字"
+          }
+        }
+      }
+    },
+    "前後に付ける文" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نص قبل وبعد"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "আগে ও পরে যোগ হওয়া লেখা"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text abans i després"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text před a za"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst før og efter"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text davor und danach"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Κείμενο πριν και μετά"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text Before & After"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texto antes y después"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teksti ennen ja jälkeen"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texte avant et après"
+          }
+        },
+        "gu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "પહેલાં અને પછી ઉમેરવાનું લખાણ"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "טקסט לפני ואחרי"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "पहले और बाद में जोड़ा जाने वाला टेक्स्ट"
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst prije i poslije"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Előtte és utána lévő szöveg"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teks sebelum & sesudah"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Testo prima e dopo"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಮೊದಲು ಮತ್ತು ನಂತರ ಸೇರಿಸುವ ಪಠ್ಯ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "앞뒤에 붙일 문장"
+          }
+        },
+        "ml" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "മുമ്പും ശേഷവും ചേർക്കുന്ന വാചകം"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "आधी आणि नंतर जोडायचा मजकूर"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teks sebelum & selepas"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst før og etter"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst ervoor en erna"
+          }
+        },
+        "or" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ଆଗରେ ଓ ପଛରେ ଯୋଡ଼ିବାର ଲେଖା"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ਪਹਿਲਾਂ ਅਤੇ ਬਾਅਦ ਜੋੜਿਆ ਜਾਣ ਵਾਲਾ ਲਿਖਤ"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst przed i po"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texto antes e depois"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texto antes e depois"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text înainte și după"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст до и после"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text pred a za"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Besedilo pred in za"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text före och efter"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "முன்னும் பின்னும் சேர்க்கும் உரை"
+          }
+        },
+        "te" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ముందు మరియు తర్వాత చేర్చే వచనం"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ข้อความนำหน้าและต่อท้าย"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Öncesine ve sonrasına eklenecek metin"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст до і після"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "پہلے اور بعد کا متن"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Văn bản đứng trước và sau"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前后附加文字"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "前後附加文字"
+          }
+        }
+      }
+    },
     "受け取る側の仕様" : {
       "localizations" : {
         "ar" : {
@@ -38863,6 +39399,274 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "尚無記錄"
+          }
+        }
+      }
+    },
+    "後ろに付ける文" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "نص بعد"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "পরে যোগ হওয়া লেখা"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text després"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text za"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst efter"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text danach"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Κείμενο μετά"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text After"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texto después"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teksti jälkeen"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texte après"
+          }
+        },
+        "gu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "પછી ઉમેરવાનું લખાણ"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "טקסט אחרי"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "बाद में जोड़ा जाने वाला टेक्स्ट"
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst poslije"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Utána lévő szöveg"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teks sesudah"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Testo dopo"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ನಂತರ ಸೇರಿಸುವ ಪಠ್ಯ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "뒤에 붙일 문장"
+          }
+        },
+        "ml" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ശേഷം ചേർക്കുന്ന വാചകം"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "नंतर जोडायचा मजकूर"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teks selepas"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst etter"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst erna"
+          }
+        },
+        "or" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ପଛରେ ଯୋଡ଼ିବାର ଲେଖା"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ਬਾਅਦ ਜੋੜਿਆ ਜਾਣ ਵਾਲਾ ਲਿਖਤ"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst po"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texto depois"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texto depois"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text după"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст после"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text za"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Besedilo za"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text efter"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "பின்னால் சேர்க்கும் உரை"
+          }
+        },
+        "te" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "తర్వాత చేర్చే వచనం"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ข้อความต่อท้าย"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sonrasına eklenecek metin"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст після"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "بعد کا متن"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Văn bản đứng sau"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "后置文字"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "後置文字"
           }
         }
       }
@@ -49861,6 +50665,274 @@
         }
       }
     },
+    "話した内容の前後に、書いたとおりに付けて送ります (空白や改行もそのまま)。例: 前に「#買い物 」と書くと「#買い物 牛乳」と送ります。" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "تتم إضافته قبل ما تقوله وبعده تمامًا كما تكتبه (بما في ذلك المسافات وفواصل الأسطر). مثال: إذا كتبت «#تسوق » كنص قبل، يُرسل «حليب» على هيئة «#تسوق حليب»."
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "আপনি যেমন লিখবেন ঠিক তেমনই (স্পেস ও নতুন লাইনসহ) বলা কথার আগে ও পরে যোগ করে পাঠানো হয়। উদাহরণ: আগে যোগ হওয়া লেখায় “#বাজার ” লিখলে “দুধ” পাঠানো হবে “#বাজার দুধ” হিসেবে।"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "S’afegeix abans i després del que dius, tal com ho escrius (amb espais i salts de línia). Exemple: si escrius «#compres » com a text abans, «llet» s’envia com a «#compres llet»."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Přidá se před a za to, co řeknete, přesně tak, jak ho napíšete (včetně mezer a zalomení řádků). Příklad: když jako text před zadáte „#nákup “, odešle se „mléko“ jako „#nákup mléko“."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tilføjes før og efter det, du sagde, præcis som du skriver det (inklusive mellemrum og linjeskift). Eksempel: Hvis du skriver “#indkøb ” som tekst før, sendes “mælk” som “#indkøb mælk”."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wird genau so, wie du es eingibst, vor und nach das Gesprochene gesetzt (Leerzeichen und Zeilenumbrüche inklusive). Beispiel: Gibst du „#Einkaufen “ als Text davor ein, wird „Milch“ als „#Einkaufen Milch“ gesendet."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Προστίθεται πριν και μετά από όσα λέτε, ακριβώς όπως το πληκτρολογείτε (μαζί με κενά και αλλαγές γραμμής). Παράδειγμα: αν πληκτρολογήσετε «#ψώνια » ως κείμενο πριν, το «γάλα» αποστέλλεται ως «#ψώνια γάλα»."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Added before and after what you said, exactly as you type it (spaces and line breaks included). Example: if you enter “#shopping ” as the text before, “milk” is sent as “#shopping milk”."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se añade antes y después de lo que dices, tal como lo escribes (con espacios y saltos de línea). Ejemplo: si escribes «#compras » como texto antes, «leche» se envía como «#compras leche»."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lisätään puhutun sisällön eteen ja perään täsmälleen kirjoittamallasi tavalla (välilyönnit ja rivinvaihdot mukaan lukien). Esimerkki: jos kirjoitat tekstiksi ennen ”#ostokset ”, ”maito” lähetetään muodossa ”#ostokset maito”."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ajouté avant et après ce que vous dites, exactement tel que vous le saisissez (espaces et retours à la ligne compris). Exemple : si vous saisissez « #courses  » comme texte avant, « lait » est envoyé sous la forme « #courses lait »."
+          }
+        },
+        "gu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "તમે જેવું લખો તેવું જ (જગ્યા અને નવી લાઇન સહિત) બોલેલી વાતની પહેલાં અને પછી ઉમેરીને મોકલાય છે. ઉદાહરણ: પહેલાં ઉમેરવાના લખાણમાં “#ખરીદી ” લખો તો “દૂધ” “#ખરીદી દૂધ” તરીકે મોકલાશે."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "מתווסף לפני ואחרי מה שנאמר, בדיוק כפי שהוקלד (כולל רווחים ומעברי שורה). לדוגמה: אם תכתבו „#קניות ” כטקסט לפני, „חלב” יישלח כ„#קניות חלב”."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "यह आपकी कही बात के पहले और बाद में, ठीक वैसे ही जोड़ा जाता है जैसा आप लिखते हैं (स्पेस और नई पंक्तियों सहित)। उदाहरण: पहले जोड़े जाने वाले टेक्स्ट में “#खरीदारी ” लिखने पर “दूध” को “#खरीदारी दूध” के रूप में भेजा जाएगा।"
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dodaje se prije i poslije izgovorenog teksta, točno onako kako ga upišete (uključujući razmake i prijelome redaka). Primjer: ako kao tekst prije upišete „#kupovina ”, „mlijeko” se šalje kao „#kupovina mlijeko”."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A kimondott szöveg elé és mögé kerül, pontosan úgy, ahogy beírja (szóközökkel és sortörésekkel együtt). Példa: ha az előtte lévő szövegnek a „#bevásárlás ” szöveget adja meg, a(z) „tej” így megy el: „#bevásárlás tej”."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ditambahkan sebelum dan sesudah ucapan Anda, persis seperti yang Anda ketik (termasuk spasi dan baris baru). Contoh: jika Anda mengetik “#belanja ” sebagai teks sebelum, “susu” dikirim sebagai “#belanja susu”."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Viene aggiunto prima e dopo ciò che dici, esattamente come lo scrivi (spazi e a capo inclusi). Esempio: se scrivi «#spesa » come testo prima, «latte» viene inviato come «#spesa latte»."
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ನೀವು ಬರೆದಂತೆಯೇ (ಖಾಲಿ ಜಾಗ ಮತ್ತು ಹೊಸ ಸಾಲುಗಳ ಸಹಿತ) ಹೇಳಿದ ಮಾತಿನ ಮೊದಲು ಮತ್ತು ನಂತರ ಸೇರಿಸಿ ಕಳುಹಿಸಲಾಗುತ್ತದೆ. ಉದಾಹರಣೆ: ಮೊದಲು ಸೇರಿಸುವ ಪಠ್ಯದಲ್ಲಿ “#ಖರೀದಿ ” ಎಂದು ಬರೆದರೆ “ಹಾಲು” ಅನ್ನು “#ಖರೀದಿ ಹಾಲು” ಎಂದು ಕಳುಹಿಸಲಾಗುತ್ತದೆ."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "말한 내용의 앞뒤에 쓴 그대로 붙여서 전송합니다(공백과 줄바꿈도 그대로). 예: 앞에 “#장보기 ”를 입력하면 “우유”가 “#장보기 우유”로 전송됩니다."
+          }
+        },
+        "ml" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "നിങ്ങൾ എഴുതിയതുപോലെ തന്നെ (സ്പേസുകളും പുതിയ വരികളും ഉൾപ്പെടെ) പറഞ്ഞ കാര്യത്തിന് മുമ്പും ശേഷവും ചേർത്ത് അയയ്ക്കുന്നു. ഉദാഹരണം: മുമ്പ് ചേർക്കുന്ന വാചകമായി “#ഷോപ്പിംഗ് ” എഴുതിയാൽ “പാൽ” “#ഷോപ്പിംഗ് പാൽ” ആയി അയയ്ക്കും."
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "तुम्ही जसा लिहाल तसाच (स्पेस आणि नवीन ओळींसह) बोललेल्या मजकुराच्या आधी आणि नंतर जोडून पाठवला जातो. उदाहरण: आधी जोडायच्या मजकुरात “#खरेदी ” लिहिल्यास “दूध” हे “#खरेदी दूध” म्हणून पाठवले जाईल."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ditambah sebelum dan selepas apa yang anda cakap, tepat seperti yang anda taip (termasuk ruang dan baris baharu). Contoh: jika anda taip “#beli-belah ” sebagai teks sebelum, “susu” dihantar sebagai “#beli-belah susu”."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legges til før og etter det du sa, akkurat slik du skriver det (inkludert mellomrom og linjeskift). Eksempel: Hvis du skriver «#handling » som tekst før, sendes «melk» som «#handling melk»."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wordt precies zoals je het typt voor en na wat je zegt geplaatst (spaties en regeleinden inbegrepen). Voorbeeld: typ je “#boodschappen ” als tekst ervoor, dan wordt “melk” verstuurd als “#boodschappen melk”."
+          }
+        },
+        "or" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ଆପଣ ଯେପରି ଲେଖିବେ ଠିକ୍ ସେପରି (ସ୍ପେସ୍ ଓ ନୂଆ ଧାଡ଼ି ସହିତ) କହିଥିବା କଥାର ଆଗରେ ଓ ପଛରେ ଯୋଡ଼ି ପଠାଯାଏ। ଉଦାହରଣ: ଆଗରେ ଯୋଡ଼ିବାର ଲେଖାରେ “#କିଣାକିଣି ” ଲେଖିଲେ “କ୍ଷୀର” “#କିଣାକିଣି କ୍ଷୀର” ଭାବରେ ପଠାଯିବ।"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ਤੁਸੀਂ ਜਿਵੇਂ ਲਿਖੋਗੇ ਬਿਲਕੁਲ ਉਸੇ ਤਰ੍ਹਾਂ (ਸਪੇਸ ਅਤੇ ਨਵੀਆਂ ਲਾਈਨਾਂ ਸਮੇਤ) ਬੋਲੀ ਗੱਲ ਤੋਂ ਪਹਿਲਾਂ ਅਤੇ ਬਾਅਦ ਜੋੜ ਕੇ ਭੇਜਿਆ ਜਾਂਦਾ ਹੈ। ਉਦਾਹਰਨ: ਪਹਿਲਾਂ ਜੋੜੇ ਜਾਣ ਵਾਲੇ ਲਿਖਤ ਵਿੱਚ “#ਖਰੀਦਦਾਰੀ ” ਲਿਖੋ ਤਾਂ “ਦੁੱਧ” ਨੂੰ “#ਖਰੀਦਦਾਰੀ ਦੁੱਧ” ਵਜੋਂ ਭੇਜਿਆ ਜਾਵੇਗਾ।"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dodawany przed i po tym, co powiesz, dokładnie tak, jak go wpiszesz (łącznie ze spacjami i podziałami wierszy). Przykład: jeśli jako tekst przed wpiszesz „#zakupy ”, „mleko” zostanie wysłane jako „#zakupy mleko”."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adicionado antes e depois do que você disse, exatamente como digitado (espaços e quebras de linha incluídos). Exemplo: se você digitar “#compras ” como texto antes, “leite” será enviado como “#compras leite”."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adicionado antes e depois do que disser, exatamente como o escrever (espaços e quebras de linha incluídos). Exemplo: se escrever “#compras ” como texto antes, “leite” é enviado como “#compras leite”."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se adaugă înainte și după ce spui, exact așa cum scrii (inclusiv spațiile și rândurile noi). Exemplu: dacă scrii „#cumpărături ” ca text înainte, „lapte” se trimite ca „#cumpărături lapte”."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавляется до и после сказанного ровно так, как вы его ввели (с пробелами и переносами строк). Пример: если в поле «Текст перед» ввести «#покупки », то «молоко» будет отправлено как «#покупки молоко»."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pridá sa pred a za to, čo poviete, presne tak, ako ho napíšete (vrátane medzier a zalomení riadkov). Príklad: ak ako text pred zadáte „#nákup “, odošle sa „mlieko“ ako „#nákup mlieko“."
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Doda se pred in za izgovorjeno besedilo, natanko tako, kot ga vpišete (vključno s presledki in prelomi vrstic). Primer: če kot besedilo pred vpišete »#nakup «, se »mleko« pošlje kot »#nakup mleko«."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Läggs till före och efter det du sa, precis som du skriver det (inklusive mellanslag och radbrytningar). Exempel: om du skriver ”#inköp ” som text före skickas ”mjölk” som ”#inköp mjölk”."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "நீங்கள் எழுதியபடியே (இடைவெளிகள், புதிய வரிகள் உட்பட) பேசிய உள்ளடக்கத்தின் முன்னும் பின்னும் சேர்த்து அனுப்பப்படும். எடுத்துக்காட்டு: முன்னால் சேர்க்கும் உரையில் “#பொருட்கள் ” என எழுதினால் “பால்” என்பது “#பொருட்கள் பால்” ஆக அனுப்பப்படும்."
+          }
+        },
+        "te" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "మీరు రాసినట్లే (ఖాళీలు, కొత్త లైన్లతో సహా) మాట్లాడిన విషయానికి ముందు, తర్వాత చేర్చి పంపబడుతుంది. ఉదాహరణ: ముందు చేర్చే వచనంలో “#షాపింగ్ ” అని రాస్తే “పాలు” అనేది “#షాపింగ్ పాలు” గా పంపబడుతుంది."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ระบบจะเพิ่มข้อความไว้หน้าและหลังสิ่งที่คุณพูดตามที่พิมพ์ทุกประการ (รวมถึงช่องว่างและการขึ้นบรรทัดใหม่) ตัวอย่าง: หากพิมพ์ “#ช้อปปิ้ง ” เป็นข้อความนำหน้า เมื่อพูดว่า “นม” จะส่งเป็น “#ช้อปปิ้ง นม”"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Söylediğiniz şeyin öncesine ve sonrasına, yazdığınız haliyle (boşluklar ve satır sonları dahil) eklenir. Örnek: Öncesine eklenecek metin olarak “#alışveriş ” yazarsanız “süt” “#alışveriş süt” olarak gönderilir."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Додається до і після сказаного саме так, як ви його ввели (з пробілами та переносами рядків). Приклад: якщо в полі «Текст перед» ввести «#покупки », то «молоко» буде надіслано як «#покупки молоко»."
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "یہ آپ کی کہی ہوئی بات سے پہلے اور بعد میں، بالکل ویسے ہی جوڑا جاتا ہے جیسے آپ لکھیں (خالی جگہیں اور نئی لائنیں بھی شامل)۔ مثال: اگر آپ پہلے کے متن میں “#خریداری ” لکھیں تو “دودھ” بطور “#خریداری دودھ” بھیجا جائے گا۔"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Được thêm vào trước và sau nội dung bạn nói, đúng như bạn nhập (kể cả dấu cách và xuống dòng). Ví dụ: nếu bạn nhập “#muasam ” làm văn bản đứng trước, “sữa” sẽ được gửi thành “#muasam sữa”."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "会按你输入的原样（包括空格和换行）添加到所说内容的前后再发送。例如：在前置文字中输入“#购物 ”，“牛奶”将作为“#购物 牛奶”发送。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "會依照你輸入的原樣（包括空格和換行）加在所說內容的前後再傳送。例如：在前置文字中輸入「#購物 」，「牛奶」將以「#購物 牛奶」傳送。"
+          }
+        }
+      }
+    },
     "話した内容は、あなたが登録した送り先へ直接送ります。開発者のサーバーは通りません。" : {
       "localizations" : {
         "ar" : {
@@ -57361,6 +58433,274 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "登錄傳送目的地"
+          }
+        }
+      }
+    },
+    "送り先の編集画面の「前後に付ける文」に書いた文を、話した内容の前後に付けて送ります。例: 前に「#買い物 」と書くと、「牛乳」と話せば「#買い物 牛乳」と届きます。Slack・Discord でも使えます。" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يُضاف النص الذي تكتبه ضمن «نص قبل وبعد» في شاشة تعديل الوجهة قبل ما تقوله وبعده. مثال: إذا كتبت «#تسوق » كنص قبل وقلت «حليب»، يصل «#تسوق حليب». يعمل أيضًا مع Slack وDiscord."
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "গন্তব্যের সম্পাদনা স্ক্রিনে “আগে ও পরে যোগ হওয়া লেখা”-য় আপনি যা লিখবেন, তা বলা কথার আগে ও পরে যোগ করে পাঠানো হয়। উদাহরণ: আগে যোগ হওয়া লেখায় “#বাজার ” লিখে “দুধ” বললে “#বাজার দুধ” পৌঁছাবে। Slack ও Discord-এও কাজ করে।"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El text que escriguis a «Text abans i després» a la pantalla d’edició del destí s’afegeix abans i després del que dius. Exemple: si escrius «#compres » com a text abans i dius «llet», arriba «#compres llet». També funciona amb Slack i Discord."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text zadaný v části „Text před a za“ na obrazovce úprav příjemce se přidá před a za to, co řeknete. Příklad: když jako text před zadáte „#nákup “ a řeknete „mléko“, dorazí „#nákup mléko“. Funguje i se Slackem a Discordem."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teksten, du skriver under “Tekst før og efter” på målets redigeringsskærm, tilføjes før og efter det, du sagde. Eksempel: Hvis du skriver “#indkøb ” som tekst før og siger “mælk”, modtages “#indkøb mælk”. Virker også med Slack og Discord."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Der Text, den du auf dem Bearbeitungsbildschirm des Ziels unter „Text davor und danach“ eingibst, wird vor und nach das Gesprochene gesetzt. Beispiel: Gibst du „#Einkaufen “ als Text davor ein und sagst „Milch“, kommt „#Einkaufen Milch“ an. Funktioniert auch mit Slack und Discord."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Το κείμενο που πληκτρολογείτε στο «Κείμενο πριν και μετά» στην οθόνη επεξεργασίας του προορισμού προστίθεται πριν και μετά από όσα λέτε. Παράδειγμα: αν πληκτρολογήσετε «#ψώνια » ως κείμενο πριν και πείτε «γάλα», παραδίδεται το «#ψώνια γάλα». Λειτουργεί και με Slack και Discord."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "The text you enter under “Text Before & After” on the destination’s edit screen is added before and after what you said. Example: if you enter “#shopping ” as the text before and say “milk”, “#shopping milk” is delivered. Also works with Slack and Discord."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El texto que escribas en «Texto antes y después» en la pantalla de edición del destino se añade antes y después de lo que dices. Ejemplo: si escribes «#compras » como texto antes y dices «leche», llega «#compras leche». También funciona con Slack y Discord."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kohteen muokkausnäytön kohtaan ”Teksti ennen ja jälkeen” kirjoittamasi teksti lisätään puhutun sisällön eteen ja perään. Esimerkki: jos kirjoitat tekstiksi ennen ”#ostokset ” ja sanot ”maito”, perille menee ”#ostokset maito”. Toimii myös Slackin ja Discordin kanssa."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le texte saisi sous « Texte avant et après » dans l’écran de modification de la destination est ajouté avant et après ce que vous dites. Exemple : si vous saisissez « #courses  » comme texte avant et dites « lait », « #courses lait » est envoyé. Fonctionne aussi avec Slack et Discord."
+          }
+        },
+        "gu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ગંતવ્યની સંપાદન સ્ક્રીનમાં “પહેલાં અને પછી ઉમેરવાનું લખાણ” માં તમે જે લખો તે બોલેલી વાતની પહેલાં અને પછી ઉમેરીને મોકલાય છે. ઉદાહરણ: પહેલાં ઉમેરવાના લખાણમાં “#ખરીદી ” લખો અને “દૂધ” બોલો તો “#ખરીદી દૂધ” પહોંચશે. Slack અને Discord સાથે પણ કામ કરે છે."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "הטקסט שתכתבו תחת „טקסט לפני ואחרי” במסך העריכה של היעד מתווסף לפני ואחרי מה שנאמר. לדוגמה: אם תכתבו „#קניות ” כטקסט לפני ותגידו „חלב”, יגיע „#קניות חלב”. פועל גם עם Slack ו-Discord."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मंज़िल की संपादन स्क्रीन में “पहले और बाद में जोड़ा जाने वाला टेक्स्ट” में आप जो लिखते हैं, वह आपकी कही बात के पहले और बाद में जोड़ा जाता है। उदाहरण: पहले जोड़े जाने वाले टेक्स्ट में “#खरीदारी ” लिखें और “दूध” बोलें, तो “#खरीदारी दूध” पहुँचेगा। Slack और Discord के साथ भी काम करता है।"
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst upisan pod „Tekst prije i poslije” na zaslonu za uređivanje odredišta dodaje se prije i poslije izgovorenog teksta. Primjer: ako kao tekst prije upišete „#kupovina ” i kažete „mlijeko”, stiže „#kupovina mlijeko”. Radi i sa Slackom i Discordom."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A cél szerkesztőképernyőjén az „Előtte és utána lévő szöveg” alatt megadott szöveg a kimondott szöveg elé és mögé kerül. Példa: ha az előtte lévő szövegnek a „#bevásárlás ” szöveget adja meg, és azt mondja: „tej”, ez érkezik: „#bevásárlás tej”. Slackkel és Discorddal is működik."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teks yang Anda ketik di “Teks sebelum & sesudah” pada layar edit tujuan ditambahkan sebelum dan sesudah ucapan Anda. Contoh: jika Anda mengetik “#belanja ” sebagai teks sebelum lalu mengucapkan “susu”, yang terkirim adalah “#belanja susu”. Berfungsi juga dengan Slack dan Discord."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Il testo che scrivi in «Testo prima e dopo» nella schermata di modifica della destinazione viene aggiunto prima e dopo ciò che dici. Esempio: se scrivi «#spesa » come testo prima e dici «latte», arriva «#spesa latte». Funziona anche con Slack e Discord."
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಗಮ್ಯಸ್ಥಾನದ ಸಂಪಾದನೆ ಪರದೆಯ “ಮೊದಲು ಮತ್ತು ನಂತರ ಸೇರಿಸುವ ಪಠ್ಯ” ದಲ್ಲಿ ನೀವು ಬರೆದ ಪಠ್ಯವನ್ನು ಹೇಳಿದ ಮಾತಿನ ಮೊದಲು ಮತ್ತು ನಂತರ ಸೇರಿಸಿ ಕಳುಹಿಸಲಾಗುತ್ತದೆ. ಉದಾಹರಣೆ: ಮೊದಲು ಸೇರಿಸುವ ಪಠ್ಯದಲ್ಲಿ “#ಖರೀದಿ ” ಎಂದು ಬರೆದು “ಹಾಲು” ಎಂದು ಹೇಳಿದರೆ “#ಖರೀದಿ ಹಾಲು” ತಲುಪುತ್ತದೆ. Slack ಮತ್ತು Discord ನಲ್ಲಿಯೂ ಕೆಲಸ ಮಾಡುತ್ತದೆ."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "전송 대상 편집 화면의 “앞뒤에 붙일 문장”에 입력한 문장을 말한 내용의 앞뒤에 붙여서 전송합니다. 예: 앞에 “#장보기 ”를 입력하고 “우유”라고 말하면 “#장보기 우유”로 전달됩니다. Slack, Discord에서도 사용할 수 있습니다."
+          }
+        },
+        "ml" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ലക്ഷ്യത്തിന്റെ എഡിറ്റ് സ്ക്രീനിലെ “മുമ്പും ശേഷവും ചേർക്കുന്ന വാചകം” എന്നതിൽ എഴുതുന്ന വാചകം പറഞ്ഞ കാര്യത്തിന് മുമ്പും ശേഷവും ചേർത്ത് അയയ്ക്കുന്നു. ഉദാഹരണം: മുമ്പ് ചേർക്കുന്ന വാചകമായി “#ഷോപ്പിംഗ് ” എഴുതി “പാൽ” എന്ന് പറഞ്ഞാൽ “#ഷോപ്പിംഗ് പാൽ” എത്തും. Slack, Discord എന്നിവയിലും പ്രവർത്തിക്കും."
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "गंतव्याच्या संपादन स्क्रीनमधील “आधी आणि नंतर जोडायचा मजकूर” मध्ये तुम्ही लिहिलेला मजकूर बोललेल्या मजकुराच्या आधी आणि नंतर जोडून पाठवला जातो. उदाहरण: आधी जोडायच्या मजकुरात “#खरेदी ” लिहून “दूध” म्हटल्यास “#खरेदी दूध” पोहोचेल. Slack आणि Discord सोबतही चालते."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teks yang anda taip di bawah “Teks sebelum & selepas” pada skrin edit destinasi ditambah sebelum dan selepas apa yang anda cakap. Contoh: jika anda taip “#beli-belah ” sebagai teks sebelum dan sebut “susu”, “#beli-belah susu” akan sampai. Turut berfungsi dengan Slack dan Discord."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Teksten du skriver under «Tekst før og etter» på målets redigeringsskjerm, legges til før og etter det du sa. Eksempel: Hvis du skriver «#handling » som tekst før og sier «melk», kommer «#handling melk» fram. Fungerer også med Slack og Discord."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "De tekst die je invult bij “Tekst ervoor en erna” in het bewerkscherm van de bestemming, wordt voor en na wat je zegt geplaatst. Voorbeeld: typ je “#boodschappen ” als tekst ervoor en zeg je “melk”, dan komt “#boodschappen melk” aan. Werkt ook met Slack en Discord."
+          }
+        },
+        "or" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ଗନ୍ତବ୍ୟର ସମ୍ପାଦନା ସ୍କ୍ରିନ୍‌ର “ଆଗରେ ଓ ପଛରେ ଯୋଡ଼ିବାର ଲେଖା”ରେ ଆପଣ ଯାହା ଲେଖିବେ, ତାହା କହିଥିବା କଥାର ଆଗରେ ଓ ପଛରେ ଯୋଡ଼ି ପଠାଯାଏ। ଉଦାହରଣ: ଆଗରେ ଯୋଡ଼ିବାର ଲେଖାରେ “#କିଣାକିଣି ” ଲେଖି “କ୍ଷୀର” କହିଲେ “#କିଣାକିଣି କ୍ଷୀର” ପହଞ୍ଚିବ। Slack ଓ Discord ସହ ମଧ୍ୟ କାମ କରେ।"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ਮੰਜ਼ਿਲ ਦੀ ਸੰਪਾਦਨ ਸਕ੍ਰੀਨ ਵਿੱਚ “ਪਹਿਲਾਂ ਅਤੇ ਬਾਅਦ ਜੋੜਿਆ ਜਾਣ ਵਾਲਾ ਲਿਖਤ” ਵਿੱਚ ਤੁਸੀਂ ਜੋ ਲਿਖੋਗੇ, ਉਹ ਬੋਲੀ ਗੱਲ ਤੋਂ ਪਹਿਲਾਂ ਅਤੇ ਬਾਅਦ ਜੋੜ ਕੇ ਭੇਜਿਆ ਜਾਂਦਾ ਹੈ। ਉਦਾਹਰਨ: ਪਹਿਲਾਂ ਜੋੜੇ ਜਾਣ ਵਾਲੇ ਲਿਖਤ ਵਿੱਚ “#ਖਰੀਦਦਾਰੀ ” ਲਿਖੋ ਅਤੇ “ਦੁੱਧ” ਬੋਲੋ ਤਾਂ “#ਖਰੀਦਦਾਰੀ ਦੁੱਧ” ਪਹੁੰਚੇਗਾ। Slack ਅਤੇ Discord ਨਾਲ ਵੀ ਕੰਮ ਕਰਦਾ ਹੈ।"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tekst wpisany w sekcji „Tekst przed i po” na ekranie edycji odbiorcy jest dodawany przed i po tym, co powiesz. Przykład: jeśli jako tekst przed wpiszesz „#zakupy ” i powiesz „mleko”, dotrze „#zakupy mleko”. Działa też ze Slackiem i Discordem."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O texto que você digitar em “Texto antes e depois” na tela de edição do destino é adicionado antes e depois do que você disser. Exemplo: se digitar “#compras ” como texto antes e disser “leite”, chega “#compras leite”. Também funciona com Slack e Discord."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O texto que escrever em “Texto antes e depois” no ecrã de edição do destino é adicionado antes e depois do que disser. Exemplo: se escrever “#compras ” como texto antes e disser “leite”, chega “#compras leite”. Também funciona com Slack e Discord."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Textul scris la „Text înainte și după” în ecranul de editare a destinației se adaugă înainte și după ce spui. Exemplu: dacă scrii „#cumpărături ” ca text înainte și spui „lapte”, ajunge „#cumpărături lapte”. Funcționează și cu Slack și Discord."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст, введённый в разделе «Текст до и после» на экране редактирования получателя, добавляется до и после сказанного. Пример: если в «Текст перед» ввести «#покупки » и сказать «молоко», придёт «#покупки молоко». Работает и со Slack, и с Discord."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Text zadaný v časti „Text pred a za“ na obrazovke úprav príjemcu sa pridá pred a za to, čo poviete. Príklad: ak ako text pred zadáte „#nákup “ a poviete „mlieko“, príde „#nákup mlieko“. Funguje aj so Slackom a Discordom."
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Besedilo, vpisano pod »Besedilo pred in za« na zaslonu za urejanje cilja, se doda pred in za izgovorjeno besedilo. Primer: če kot besedilo pred vpišete »#nakup « in rečete »mleko«, prispe »#nakup mleko«. Deluje tudi s Slackom in Discordom."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Texten du skriver under ”Text före och efter” på målets redigeringsskärm läggs till före och efter det du sa. Exempel: om du skriver ”#inköp ” som text före och säger ”mjölk” kommer ”#inköp mjölk” fram. Fungerar även med Slack och Discord."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "சேருமிட திருத்தத் திரையில் “முன்னும் பின்னும் சேர்க்கும் உரை” பகுதியில் எழுதும் உரை, பேசிய உள்ளடக்கத்தின் முன்னும் பின்னும் சேர்த்து அனுப்பப்படும். எடுத்துக்காட்டு: முன்னால் சேர்க்கும் உரையில் “#பொருட்கள் ” என எழுதி “பால்” எனப் பேசினால் “#பொருட்கள் பால்” சென்றடையும். Slack, Discord ஆகியவற்றிலும் வேலை செய்யும்."
+          }
+        },
+        "te" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "గమ్యం సవరణ స్క్రీన్‌లోని “ముందు మరియు తర్వాత చేర్చే వచనం” లో మీరు రాసిన వచనం, మాట్లాడిన విషయానికి ముందు, తర్వాత చేర్చి పంపబడుతుంది. ఉదాహరణ: ముందు చేర్చే వచనంలో “#షాపింగ్ ” అని రాసి “పాలు” అని మాట్లాడితే “#షాపింగ్ పాలు” చేరుతుంది. Slack, Discord లతో కూడా పనిచేస్తుంది."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ข้อความที่คุณพิมพ์ใน “ข้อความนำหน้าและต่อท้าย” บนหน้าจอแก้ไขปลายทางจะถูกเพิ่มไว้หน้าและหลังสิ่งที่คุณพูด ตัวอย่าง: หากพิมพ์ “#ช้อปปิ้ง ” เป็นข้อความนำหน้าแล้วพูดว่า “นม” ปลายทางจะได้รับ “#ช้อปปิ้ง นม” ใช้ได้กับ Slack และ Discord ด้วย"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hedefin düzenleme ekranında “Öncesine ve sonrasına eklenecek metin” altına yazdığınız metin, söylediğiniz şeyin öncesine ve sonrasına eklenir. Örnek: Öncesine eklenecek metin olarak “#alışveriş ” yazıp “süt” derseniz “#alışveriş süt” iletilir. Slack ve Discord ile de çalışır."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Текст, введений у розділі «Текст до і після» на екрані редагування отримувача, додається до і після сказаного. Приклад: якщо в «Текст перед» ввести «#покупки » і сказати «молоко», надійде «#покупки молоко». Працює і зі Slack, і з Discord."
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "منزل کی ترمیم اسکرین میں “پہلے اور بعد کا متن” کے تحت آپ جو متن لکھتے ہیں وہ آپ کی کہی ہوئی بات سے پہلے اور بعد میں جوڑا جاتا ہے۔ مثال: اگر آپ پہلے کے متن میں “#خریداری ” لکھیں اور “دودھ” کہیں تو “#خریداری دودھ” پہنچے گا۔ Slack اور Discord کے ساتھ بھی کام کرتا ہے۔"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Văn bản bạn nhập trong mục “Văn bản đứng trước và sau” ở màn hình chỉnh sửa nơi nhận sẽ được thêm vào trước và sau nội dung bạn nói. Ví dụ: nếu bạn nhập “#muasam ” làm văn bản đứng trước rồi nói “sữa”, “#muasam sữa” sẽ được gửi đi. Cũng dùng được với Slack và Discord."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在发送目标编辑界面的“前后附加文字”中输入的文字，会添加到所说内容的前后再发送。例如：在前置文字中输入“#购物 ”，然后说“牛奶”，对方将收到“#购物 牛奶”。也适用于 Slack 和 Discord。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "在傳送目的地編輯畫面的「前後附加文字」中輸入的文字，會加在所說內容的前後再傳送。例如：在前置文字中輸入「#購物 」，然後說「牛奶」，對方將收到「#購物 牛奶」。也適用於 Slack 和 Discord。"
           }
         }
       }
