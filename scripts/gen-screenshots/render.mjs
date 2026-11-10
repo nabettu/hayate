@@ -345,9 +345,9 @@ export function iphoneSlide(key, copy) {
     case "siri":
       return page(`${head(c, key, 150)}
         ${watchDevice(watchScreens.siri(t), { width: 640, top: 900 })}
-        <div class="bubble me" style="top:1830px;right:90px">「${esc(t.siriAsk)}」</div>
-        <div class="bubble siri" style="top:2010px;left:90px">何を送りますか？</div>
-        <div class="bubble me" style="top:2190px;right:90px">「${esc(t.spoken[0])}」</div>
+        <div class="bubble me" style="top:1830px;right:90px">${esc(t.quote[0] + t.siriAsk + t.quote[1])}</div>
+        <div class="bubble siri" style="top:2010px;left:90px">${esc(t.siriQuestion)}</div>
+        <div class="bubble me" style="top:2190px;right:90px">${esc(t.quote[0] + t.spoken[0] + t.quote[1])}</div>
         ${closing(c.closing)}`, 11);
     case "destination":
       return page(`${head(c, key, 150)}

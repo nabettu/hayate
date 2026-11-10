@@ -67,6 +67,10 @@ export const COPY = {
       siriDialog: "Slack #memo に送りました。",
       defaultMark: "(既定)",
       siriAsk: "Hayate で送って",
+      // Siri の聞き返し (SendTextIntent の requestValueDialog)
+      siriQuestion: "何を送りますか？",
+      // 話した言葉を囲むかっこ
+      quote: ["「", "」"],
       edit: {
         cancel: "キャンセル",
         save: "保存",
