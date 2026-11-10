@@ -1,8 +1,10 @@
-# WatchHook (開発名: ウォッチフック)
+# Hayate (はやて。開発名: WatchHook)
+
+アプリ名は **Hayate** (2026-11-10 決定。経緯は [docs/NAMING.md](docs/NAMING.md))。コード・ターゲット・Bundle ID・`X-WatchHook-*` ヘッダなどの内部の名前は WatchHook のまま。
 
 Apple Watch で話した内容を、登録した webhook (自社の受け口・Slack・Discord など) へそのまま送るアプリ。
 
-- **起動**: 「Hey Siri、WatchHook で送って」→ 続けて話す (手を使わない)。またはアプリを開いてダブルタップ (Series 9 / Ultra 2 以降)
+- **起動**: 「Hey Siri、はやてで送って」→ 続けて話す (手を使わない)。またはアプリを開いてダブルタップ (Series 9 / Ultra 2 以降)
 - **音声 → テキスト**: OS の音声入力 (Siri の聞き取り / watchOS の入力画面) をそのまま使う
 - **送信**: 時計から送り先へ直接 POST する。iPhone のアプリが閉じていても届く。送れなければ溜めて次に開いたとき送り直す
 - **送り先の設定**: iPhone アプリで登録 (URL・メソッド・ヘッダ (Authorization など)・本文テンプレート)。Keychain に保存し、WatchConnectivity で時計へ同期

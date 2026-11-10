@@ -12,7 +12,7 @@ struct HelpView: View {
                             Text("はじめに").font(.headline).padding(.top, 4)
                             Step(number: 1, text: "「送り先」タブの + から送り先を登録する")
                             Step(number: 2, text: "編集画面の「テスト送信」で届くか確かめる")
-                            Step(number: 3, text: "Apple Watch で「Hey Siri、WatchHook で送って」と話しかける")
+                            Step(number: 3, text: "Apple Watch で「Hey Siri、はやてで送って」と話しかける")
                         }
                         .padding(.vertical, 4)
                     }
@@ -67,12 +67,12 @@ private struct WatchUsagePage: View {
     var body: some View {
         HelpPage(title: "Apple Watch から送る") {
             Section("Siri で送る (手を使わない)") {
-                Para("「Hey Siri、WatchHook で送って」と話しかけ、「何を送りますか？」と聞かれたら送りたい内容を話します。")
-                Para("「WatchHook で送る」「WatchHook に送って」でも動きます。送り先は iPhone で「既定」にしたものです (ショートカット App で送り先を指定した場合はそちら)。")
+                Para("「Hey Siri、はやてで送って」と話しかけ、「何を送りますか？」と聞かれたら送りたい内容を話します。")
+                Para("「はやてで送る」「はやてに送って」でも動きます。送り先は iPhone で「既定」にしたものです (ショートカット App で送り先を指定した場合はそちら)。")
                 Para("iPhone の Siri でも同じように送れます。")
             }
             Section("アプリから送る") {
-                Para("時計で WatchHook を開き、オレンジの「話す」を押して話します。話し終えたら「完了」で送ります。")
+                Para("時計で Hayate を開き、オレンジの「話す」を押して話します。話し終えたら「完了」で送ります。")
                 Para("Series 9 / Ultra 2 以降は、親指と人差し指をダブルタップしても「話す」を押せます。")
                 Para("送れたら時計が振動し、「送りました」と出ます。")
             }
@@ -87,11 +87,11 @@ private struct WidgetPage: View {
     var body: some View {
         HelpPage(title: "文字盤・スマートスタックに置く") {
             Section("文字盤のコンプリケーション") {
-                Para("時計の文字盤を長押し →「編集」→ コンプリケーションの枠を選び、一覧の「WatchHook」から形を選びます。")
-                Para("タップすると WatchHook が開き、すぐ「話す」を押せます。")
+                Para("時計の文字盤を長押し →「編集」→ コンプリケーションの枠を選び、一覧の「Hayate」から形を選びます。")
+                Para("タップすると Hayate が開き、すぐ「話す」を押せます。")
             }
             Section("スマートスタック") {
-                Para("文字盤でデジタルクラウンを回す (または下からスワイプ) とスマートスタックが出ます。どれかのウィジェットを長押しして編集の状態にし、上の + から「WatchHook」を選んで足します。")
+                Para("文字盤でデジタルクラウンを回す (または下からスワイプ) とスマートスタックが出ます。どれかのウィジェットを長押しして編集の状態にし、上の + から「Hayate」を選んで足します。")
             }
             Section("iPhone の Watch アプリから") {
                 Para("iPhone の「Watch」アプリ →「マイウォッチ」の文字盤 → コンプリケーションでも設定できます。")
@@ -111,7 +111,7 @@ private struct ChooseDestinationPage: View {
                 Para("送り先が 2 つ以上あると、時計の「話す」の下に送り先の選択が出ます。ここで選んだものは時計のアプリから送るときだけ使います (iPhone の既定は変わりません)。")
             }
             Section("設定が時計に届かないとき") {
-                Para("送り先は iPhone から時計へ自動で送られます。時計に出てこないときは、iPhone と時計の両方で WatchHook を開いてください。時計に送り先が 1 つも無いときは、時計の画面の「再読み込み」でも受け取り直せます。")
+                Para("送り先は iPhone から時計へ自動で送られます。時計に出てこないときは、iPhone と時計の両方で Hayate を開いてください。時計に送り先が 1 つも無いときは、時計の画面の「再読み込み」でも受け取り直せます。")
             }
         }
     }
@@ -126,7 +126,7 @@ private struct SlackPage: View {
             }
             Section("登録する") {
                 Para("「送り先」タブの + →「Slack」を選び、URL を貼って保存します。本文などは自動で設定されます。")
-                Para("保存の前に「テスト送信」で、チャンネルに「WatchHook のテスト送信です」と出るか確かめてください。")
+                Para("保存の前に「テスト送信」で、チャンネルに「Hayate のテスト送信です」と出るか確かめてください。")
             }
         }
     }

@@ -91,7 +91,7 @@ struct ComposeView: View {
                 // 飛び立つときは演出の紙飛行機と入れ替える (すぐ消す)。戻るときだけふわっと出す
                 .opacity(flight == .idle ? 1 : 0)
                 .animation(flight == .idle ? .easeIn(duration: 0.5) : nil, value: flight == .idle)
-            Text("WatchHook")
+            Text("Hayate")
                 .font(.system(.title, design: .rounded, weight: .bold))
                 .foregroundStyle(.white)
             Text("テキストを書いて、webhook へ飛ばします")

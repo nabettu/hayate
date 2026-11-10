@@ -85,7 +85,7 @@ struct WatchHomeView: View {
                             saveErrorView
                             PaperPlane().frame(width: 44)
                                 .shadow(color: Cosmos.violet, radius: 8)
-                            Text("iPhone の WatchHook で送り先を登録してください")
+                            Text("iPhone の Hayate で送り先を登録してください")
                                 .multilineTextAlignment(.center)
                                 .font(.footnote)
                             Button("再読み込み") { WatchSync.shared.requestConfig() }

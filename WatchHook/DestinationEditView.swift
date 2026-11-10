@@ -143,7 +143,7 @@ struct DestinationEditView: View {
         }
         isTesting = true
         defer { isTesting = false }
-        let message = OutgoingMessage(text: "WatchHook のテスト送信です", destinationID: destination.id, source: "test")
+        let message = OutgoingMessage(text: "Hayate のテスト送信です", destinationID: destination.id, source: "test")
         let result = await WebhookSender().send(message, to: destination)
         switch result {
         case .sent(let code): testResult = "届きました (HTTP \(code))"

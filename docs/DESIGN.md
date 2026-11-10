@@ -6,7 +6,7 @@
 
 | 方法 | 手を使わない | サードパーティアプリで使えるか |
 |---|---|---|
-| Siri + App Intent (`SendTextIntent`) | ◎ | ◎ 「Hey Siri、WatchHook で送って」→ Siri が `requestValueDialog` でテキストを聞き取る。画面は開かない (`openAppWhenRun = false`) |
+| Siri + App Intent (`SendTextIntent`) | ◎ | ◎ 「Hey Siri、はやてで送って」→ Siri が `requestValueDialog` でテキストを聞き取る。画面は開かない (`openAppWhenRun = false`) |
 | ダブルタップ (`.handGestureShortcut(.primaryAction)`) | ○ | △ **アプリの画面を開いているときだけ**。文字盤からアプリを起動するのには使えない |
 | Ultra のアクションボタン | × (押す) | ◎ ショートカット / アプリを割り当てられる |
 | AssistiveTouch (手を握る) | ○ | 未検証。アクセシビリティ機能なので一般の利用者向けの案内にはしにくい |

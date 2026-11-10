@@ -25,7 +25,7 @@ struct DestinationQuery: EntityQuery {
     }
 }
 
-/// 「Hey Siri、WatchHook で送って」→ Siri が聞き取ったテキストをそのまま送り先へ送る。
+/// 「Hey Siri、Hayate で送って」→ Siri が聞き取ったテキストをそのまま送り先へ送る。
 /// アプリの画面は開かない (時計でも iPhone でも裏で完結する)。
 struct SendTextIntent: AppIntent {
     static let title: LocalizedStringResource = "テキストを送る"
@@ -55,7 +55,7 @@ struct SendTextIntent: AppIntent {
             target = found
         } else {
             guard let found = config.defaultDestination else {
-                return .result(dialog: "送り先がありません。iPhone の WatchHook で登録してください。")
+                return .result(dialog: "送り先がありません。iPhone の Hayate で登録してください。")
             }
             target = found
         }
