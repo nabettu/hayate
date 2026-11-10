@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "Cakap, terus ke\n*webhook*",
+      "chips": [
+        "Slack",
+        "Discord",
+        "API sendiri"
+      ],
+      "closing": "Hantar segera\n*dari pergelangan*"
+    },
+    "siri": {
+      "h1": "*Hey Siri*,\ntanpa tangan",
+      "chips": [
+        "Siri",
+        "Ketik Dua Kali",
+        "Wajah jam"
+      ],
+      "closing": "Tangan penuh?\n*Guna suara*"
+    },
+    "destination": {
+      "h1": "Pilih destinasi\n*sendiri*",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "Pengesahan dalam Keychain",
+        "{{text}} = apa yang dicakap"
+      ],
+      "closing": "Sampai juga ke\n*pelayan sendiri*"
+    },
+    "direct": {
+      "h1": "Terus dari\n*jam*",
+      "chips": [
+        "Wi-Fi",
+        "Data mudah alih"
+      ],
+      "floats": [
+        "Yang gagal disimpan",
+        "Dicuba lagi bila dibuka"
+      ],
+      "closing": "Liputan lemah?\n*Tiada yang hilang*"
+    },
+    "more": {
+      "h1": "Dan *banyak*\nlagi.",
+      "cells": [
+        "Pengesahan disimpan\ndalam Keychain",
+        "Slack dan Discord:\ntampal URL sahaja",
+        "Buka pantas\ndari wajah jam",
+        "Sejarah apa\nyang dihantar",
+        "Uji sama ada\nia sampai",
+        "ID mesej sama\nbila dihantar semula"
+      ],
+      "closing": "Kata-kata anda\n*ke sistem anda*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "Cakap",
+    "sent": "Dihantar ke “Slack #memo”",
+    "history": "Sejarah",
+    "destinationsTitle": "Destinasi",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "API Perbelanjaan"
+    ],
+    "spoken": [
+      "Beli susu dan telur",
+      "Doktor gigi esok pukul 10",
+      "Tempat letak kereta B2, petak 14"
+    ],
+    "statusSent": "Dihantar",
+    "statusPending": "Belum dihantar",
+    "siriDialog": "Dihantar ke Slack #memo.",
+    "defaultMark": "(Lalai)",
+    "siriAsk": "Hantar dengan Hayate",
+    "siriQuestion": "Apa yang anda mahu hantar?",
+    "quote": [
+      "“",
+      "”"
+    ],
+    "edit": {
+      "cancel": "Batal",
+      "save": "Simpan",
+      "nameLabel": "Nama",
+      "name": "API Perbelanjaan",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "Hanya URL https berfungsi.",
+      "request": "Permintaan",
+      "method": "Kaedah",
+      "bodyFormat": "Format kandungan",
+      "bodyFormatValue": "JSON",
+      "headers": "Pengepala",
+      "addHeader": "Tambah pengepala",
+      "hideSecret": "Sembunyikan sebagai nilai rahsia",
+      "headersFooter": "Anda boleh mendaftarkan pengepala pengesahan seperti Authorization. Nilai hanya disimpan dalam Keychain pada iPhone dan Apple Watch.",
+      "body": "Kandungan",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "Hantar ujian"
+    }
+  }
+}

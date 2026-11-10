@@ -226,7 +226,7 @@ struct ComposeView: View {
         now = .now
         if let blocked = access.blockedMessage {
             isSending = false
-            lastResult = SendOutcome(status: .failed(reason: "送っていません。\(blocked)"), destinationName: destination.displayName)
+            lastResult = SendOutcome(status: .failed(reason: String(localized: "送っていません。\(blocked)")), destinationName: destination.displayName)
             UINotificationFeedbackGenerator().notificationOccurred(.error)
             return
         }

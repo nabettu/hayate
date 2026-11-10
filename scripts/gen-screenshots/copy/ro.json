@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "Vorbești și\ntrimiți la *webhook*",
+      "chips": [
+        "Slack",
+        "Discord",
+        "API propriu"
+      ],
+      "closing": "O idee? Trimite\n*de la încheietură*"
+    },
+    "siri": {
+      "h1": "Cu *Hey Siri*,\nfără mâini",
+      "chips": [
+        "Siri",
+        "Atingere x2",
+        "Cadran"
+      ],
+      "closing": "Ai mâinile ocupate?\nTrimite *cu vocea*"
+    },
+    "destination": {
+      "h1": "Alegi tu\n*destinația*",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "Antet în Keychain",
+        "{{text}} e ce spui"
+      ],
+      "closing": "Ajunge direct pe\n*serverul tău*"
+    },
+    "direct": {
+      "h1": "Trimitere *directă*\nde pe ceas",
+      "chips": [
+        "Wi-Fi",
+        "Date mobile"
+      ],
+      "floats": [
+        "Ce eșuează se păstrează",
+        "Retrimis la deschidere"
+      ],
+      "closing": "Semnal slab?\n*Nu se pierde nimic*"
+    },
+    "more": {
+      "h1": "Și multe\n*altele.*",
+      "cells": [
+        "Antet salvat\nîn Keychain",
+        "Slack și Discord:\nlipești URL-ul",
+        "Pornire rapidă\nde pe cadran",
+        "Istoricul\ncelor trimise",
+        "Trimitere de test\npentru verificare",
+        "Același ID la\nretrimitere"
+      ],
+      "closing": "Vocea ta în\n*sistemul tău*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "Vorbește",
+    "sent": "Trimis la „Slack #memo”",
+    "history": "Istoric",
+    "destinationsTitle": "Destinații",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "API cheltuieli"
+    ],
+    "spoken": [
+      "Cumpără lapte și ouă",
+      "Mâine la 10 dentist",
+      "Parcare: B2, locul 14"
+    ],
+    "statusSent": "Trimis",
+    "statusPending": "Netrimis",
+    "siriDialog": "Trimis la Slack #memo.",
+    "defaultMark": "(Implicit)",
+    "siriAsk": "Trimite cu Hayate",
+    "siriQuestion": "Ce vrei să trimiți?",
+    "quote": [
+      "„",
+      "”"
+    ],
+    "edit": {
+      "cancel": "Anulează",
+      "save": "Salvează",
+      "nameLabel": "Nume",
+      "name": "API cheltuieli",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "Sunt permise doar adrese URL https.",
+      "request": "Solicitare",
+      "method": "Metodă",
+      "bodyFormat": "Formatul corpului",
+      "bodyFormatValue": "JSON",
+      "headers": "Antete",
+      "addHeader": "Adaugă antet",
+      "hideSecret": "Ascunde ca valoare secretă",
+      "headersFooter": "Poți înregistra antete de autentificare, precum Authorization. Valorile se salvează doar în Keychain pe iPhone și pe Apple Watch.",
+      "body": "Corp",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "Trimitere de test"
+    }
+  }
+}

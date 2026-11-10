@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "Μιλήστε και\nφτάνει στο *webhook*",
+      "chips": [
+        "Slack",
+        "Discord",
+        "Δικό σας API"
+      ],
+      "closing": "Σκέφτεστε, στέλνετε\n*από τον καρπό*"
+    },
+    "siri": {
+      "h1": "*Hey Siri*,\nχωρίς χέρια",
+      "chips": [
+        "Siri",
+        "Διπλό άγγιγμα",
+        "Πρόσοψη"
+      ],
+      "closing": "Με πιασμένα χέρια\n*μόνο με φωνή*"
+    },
+    "destination": {
+      "h1": "Τον προορισμό\n*τον ορίζετε εσείς*",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "Κεφαλίδα στο Keychain",
+        "Το {{text}} είναι το κείμενό σας"
+      ],
+      "closing": "Φτάνει και στον\n*δικό σας διακομιστή*"
+    },
+    "direct": {
+      "h1": "Από το ρολόι\n*απευθείας*",
+      "chips": [
+        "Wi-Fi",
+        "Δίκτυο κινητής"
+      ],
+      "floats": [
+        "Ό,τι δεν στάλθηκε μένει",
+        "Νέα αποστολή στο άνοιγμα"
+      ],
+      "closing": "Και με αδύναμο σήμα\n*δεν χάνεται τίποτα*"
+    },
+    "more": {
+      "h1": "Και\n*άλλα.*",
+      "cells": [
+        "Κεφαλίδα ταυτοποίησης\nστο Keychain",
+        "Slack και Discord:\nμόνο το URL",
+        "Γρήγορη εκκίνηση\nαπό την πρόσοψη",
+        "Ιστορικό\nαποστολών",
+        "Δοκιμαστική αποστολή\nγια έλεγχο",
+        "Ίδιο ID μηνύματος\nστην επαναποστολή"
+      ],
+      "closing": "Τα λόγια σας\n*στο δικό σας σύστημα*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "Μίλα",
+    "sent": "Στάλθηκε στο «Slack #memo»",
+    "history": "Ιστορικό",
+    "destinationsTitle": "Προορισμοί",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "API οικονομικών"
+    ],
+    "spoken": [
+      "Αγορά γάλα και αυγά",
+      "Αύριο στις 10 οδοντίατρος",
+      "Πάρκινγκ Β2, θέση 14"
+    ],
+    "statusSent": "Στάλθηκε",
+    "statusPending": "Δεν στάλθηκε",
+    "siriDialog": "Στάλθηκε στο Slack #memo.",
+    "defaultMark": "(Προεπιλογή)",
+    "siriAsk": "Στείλε με το Hayate",
+    "siriQuestion": "Τι θέλετε να στείλετε;",
+    "quote": [
+      "«",
+      "»"
+    ],
+    "edit": {
+      "cancel": "Ακύρωση",
+      "save": "Αποθήκευση",
+      "nameLabel": "Όνομα",
+      "name": "API οικονομικών",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "Επιτρέπονται μόνο URL https.",
+      "request": "Αίτημα",
+      "method": "Μέθοδος",
+      "bodyFormat": "Μορφή σώματος",
+      "bodyFormatValue": "JSON",
+      "headers": "Κεφαλίδες",
+      "addHeader": "Προσθήκη κεφαλίδας",
+      "hideSecret": "Απόκρυψη ως μυστική τιμή",
+      "headersFooter": "Μπορείτε να καταχωρίσετε κεφαλίδες ταυτοποίησης, όπως Authorization. Οι τιμές αποθηκεύονται μόνο στο Keychain του iPhone και του Apple Watch.",
+      "body": "Σώμα",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "Δοκιμαστική αποστολή"
+    }
+  }
+}

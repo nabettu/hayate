@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "Скажіть уголос —\n*webhook* отримає",
+      "chips": [
+        "Slack",
+        "Discord",
+        "Власний API"
+      ],
+      "closing": "З’явилась думка —\n*із зап’ястя* одразу"
+    },
+    "siri": {
+      "h1": "*Hey Siri* —\nбез рук",
+      "chips": [
+        "Siri",
+        "Дотик ×2",
+        "Циферблат"
+      ],
+      "closing": "Руки зайняті?\n*Голосу* досить"
+    },
+    "destination": {
+      "h1": "Куди слати —\n*вирішуєте ви*",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "Авторизація — в Keychain",
+        "{{text}} — те, що ви сказали"
+      ],
+      "closing": "Дійде й до\n*вашого* сервера"
+    },
+    "direct": {
+      "h1": "Просто\n*з годинника*",
+      "chips": [
+        "Wi-Fi",
+        "Стільниковий"
+      ],
+      "floats": [
+        "Ненадіслане зберігається",
+        "Повтор при наступному відкритті"
+      ],
+      "closing": "Поганий зв’язок?\n*Нічого не губимо*"
+    },
+    "more": {
+      "h1": "І багато\n*іншого.*",
+      "cells": [
+        "Авторизація\nв Keychain",
+        "Slack і Discord:\nвставте URL",
+        "Швидкий запуск\nз циферблата",
+        "Історія\nнадісланого",
+        "Тест: перевірте,\nчи дійде",
+        "Один ID під час\nповтору"
+      ],
+      "closing": "Сказане — просто\n*у вашу систему*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "Говорити",
+    "sent": "Надіслано до «Slack #memo»",
+    "history": "Історія",
+    "destinationsTitle": "Отримувачі",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "API витрат"
+    ],
+    "spoken": [
+      "Купити молоко й яйця",
+      "Завтра о 10 стоматолог",
+      "Паркінг B2, місце 14"
+    ],
+    "statusSent": "Надіслано",
+    "statusPending": "Не надіслано",
+    "siriDialog": "Надіслано до Slack #memo.",
+    "defaultMark": "(за замовчуванням)",
+    "siriAsk": "Надішли через Hayate",
+    "siriQuestion": "Що надіслати?",
+    "quote": [
+      "«",
+      "»"
+    ],
+    "edit": {
+      "cancel": "Скасувати",
+      "save": "Зберегти",
+      "nameLabel": "Назва",
+      "name": "API витрат",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "Дозволено лише URL з https.",
+      "request": "Запит",
+      "method": "Метод",
+      "bodyFormat": "Формат тіла",
+      "bodyFormatValue": "JSON",
+      "headers": "Заголовки",
+      "addHeader": "Додати заголовок",
+      "hideSecret": "Приховати як секрет",
+      "headersFooter": "Можна додати заголовки авторизації, наприклад Authorization. Значення зберігаються лише в Keychain на iPhone та Apple Watch.",
+      "body": "Тіло",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "Тестове надсилання"
+    }
+  }
+}

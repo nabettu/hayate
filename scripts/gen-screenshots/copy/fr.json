@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "Parlez, envoyez\nau *webhook*",
+      "chips": [
+        "Slack",
+        "Discord",
+        "Votre API"
+      ],
+      "closing": "Une idée ?\nEnvoi *au poignet*"
+    },
+    "siri": {
+      "h1": "*Dis Siri*,\nsans les mains",
+      "chips": [
+        "Siri",
+        "Double appui",
+        "Cadran"
+      ],
+      "closing": "Les mains prises ?\nEnvoyez *à la voix*"
+    },
+    "destination": {
+      "h1": "Choisissez\nla *destination*",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "Authorization dans le Keychain",
+        "{{text}} = ce que vous dites"
+      ],
+      "closing": "Jusqu’à votre\n*propre serveur*"
+    },
+    "direct": {
+      "h1": "Envoi *direct*\ndepuis la montre",
+      "chips": [
+        "Wi-Fi",
+        "Cellulaire"
+      ],
+      "floats": [
+        "Les envois ratés sont conservés",
+        "Renvoyés à la prochaine ouverture"
+      ],
+      "closing": "Réseau faible ?\n*Rien ne se perd*"
+    },
+    "more": {
+      "h1": "Et bien\n*plus encore.*",
+      "cells": [
+        "Authorization\ndans le Keychain",
+        "Slack et Discord :\ncollez l’URL",
+        "Lancement depuis\nle cadran",
+        "Historique des\nenvois",
+        "Envoi de test\npour vérifier",
+        "Même ID de message\nen cas de renvoi"
+      ],
+      "closing": "Vos mots vers\n*votre système*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "Parler",
+    "sent": "Envoyé à « Slack #memo »",
+    "history": "Historique",
+    "destinationsTitle": "Destinations",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "API budget"
+    ],
+    "spoken": [
+      "Acheter du lait et des œufs",
+      "Dentiste demain à 10 h",
+      "Parking : B2, place 14"
+    ],
+    "statusSent": "Envoyé",
+    "statusPending": "Non envoyé",
+    "siriDialog": "Envoyé à Slack #memo.",
+    "defaultMark": "(par défaut)",
+    "siriAsk": "Envoie avec Hayate",
+    "siriQuestion": "Que voulez-vous envoyer ?",
+    "quote": [
+      "« ",
+      " »"
+    ],
+    "edit": {
+      "cancel": "Annuler",
+      "save": "Enregistrer",
+      "nameLabel": "Nom",
+      "name": "API budget",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "Seules les URL https sont acceptées.",
+      "request": "Requête",
+      "method": "Méthode",
+      "bodyFormat": "Format du corps",
+      "bodyFormatValue": "JSON",
+      "headers": "En-têtes",
+      "addHeader": "Ajouter un en-tête",
+      "hideSecret": "Masquer comme valeur secrète",
+      "headersFooter": "Vous pouvez ajouter des en-têtes d’authentification comme Authorization. Les valeurs sont stockées uniquement dans le Keychain de l’iPhone et de l’Apple Watch.",
+      "body": "Corps",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "Envoi de test"
+    }
+  }
+}

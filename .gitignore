@@ -7,3 +7,4 @@ xcuserdata/
 *.xcuserstate
 /screenshots/
 scripts/gen-screenshots/node_modules/
+scripts/gen-screenshots/.asc/

@@ -27,7 +27,7 @@ struct DestinationListView: View {
                             VStack(alignment: .leading, spacing: 2) {
                                 Text(d.displayName).font(.headline)
                                 // URL のパスには秘密が入ることがある (Slack の webhook など) ので一覧には出さない
-                                Text(d.url.isEmpty ? "\(d.kind.label) · URL 未設定" : d.kind.label)
+                                Text(d.url.isEmpty ? String(localized: "\(d.kind.label) · URL 未設定") : d.kind.label)
                                     .font(.caption).foregroundStyle(Cosmos.lavender.opacity(0.7)).lineLimit(1)
                             }
                             Spacer()

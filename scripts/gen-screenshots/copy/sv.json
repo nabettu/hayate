@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "Tala och skicka\ntill *webhook*",
+      "chips": [
+        "Slack",
+        "Discord",
+        "Eget API"
+      ],
+      "closing": "Skicka direkt\n*från handleden*"
+    },
+    "siri": {
+      "h1": "*Hey Siri*,\nutan händer",
+      "chips": [
+        "Siri",
+        "Dubbeltryck",
+        "Urtavla"
+      ],
+      "closing": "Händerna fulla?\n*Använd rösten*"
+    },
+    "destination": {
+      "h1": "Välj *själv*\nvart det går",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "Autentisering i Keychain",
+        "{{text}} = det du sa"
+      ],
+      "closing": "Även till din\n*egen server*"
+    },
+    "direct": {
+      "h1": "Direkt från\n*klockan*",
+      "chips": [
+        "Wi-Fi",
+        "Mobildata"
+      ],
+      "floats": [
+        "Osänt sparas",
+        "Skickas om vid öppning"
+      ],
+      "closing": "Dålig täckning?\n*Inget går förlorat*"
+    },
+    "more": {
+      "h1": "Och *mycket*\nmer.",
+      "cells": [
+        "Autentisering\nsparas i Keychain",
+        "Slack och Discord:\nklistra in URL",
+        "Starta snabbt\nfrån urtavlan",
+        "Historik över\nskickat",
+        "Testa att det\nkommer fram",
+        "Samma meddelande-ID\nvid omsändning"
+      ],
+      "closing": "Dina ord till\n*ditt eget system*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "Tala",
+    "sent": "Skickat till ”Slack #memo”",
+    "history": "Historik",
+    "destinationsTitle": "Mål",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "Utgifts-API"
+    ],
+    "spoken": [
+      "Köp mjölk och ägg",
+      "Tandläkare i morgon kl. 10",
+      "Parkering på B2, plats 14"
+    ],
+    "statusSent": "Skickat",
+    "statusPending": "Ej skickat",
+    "siriDialog": "Skickat till Slack #memo.",
+    "defaultMark": "(Standard)",
+    "siriAsk": "Skicka med Hayate",
+    "siriQuestion": "Vad vill du skicka?",
+    "quote": [
+      "”",
+      "”"
+    ],
+    "edit": {
+      "cancel": "Avbryt",
+      "save": "Spara",
+      "nameLabel": "Namn",
+      "name": "Utgifts-API",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "Endast https-URL:er fungerar.",
+      "request": "Förfrågan",
+      "method": "Metod",
+      "bodyFormat": "Innehållsformat",
+      "bodyFormatValue": "JSON",
+      "headers": "Rubriker",
+      "addHeader": "Lägg till rubrik",
+      "hideSecret": "Dölj som hemligt värde",
+      "headersFooter": "Du kan registrera autentiseringsrubriker som Authorization. Värdena sparas bara i Keychain på iPhone och Apple Watch.",
+      "body": "Innehåll",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "Skicka test"
+    }
+  }
+}

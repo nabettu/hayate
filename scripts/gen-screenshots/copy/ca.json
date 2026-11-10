@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "Parla i envia\nal *webhook*",
+      "chips": [
+        "Slack",
+        "Discord",
+        "La teva API"
+      ],
+      "closing": "Una idea?\nEnvia del *canell*"
+    },
+    "siri": {
+      "h1": "Amb *Hey Siri*,\nsense mans",
+      "chips": [
+        "Siri",
+        "Doble toc",
+        "Esfera"
+      ],
+      "closing": "Mans ocupades?\nEnvia *amb la veu*"
+    },
+    "destination": {
+      "h1": "Tu tries\nel *destí*",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "Capçalera al Keychain",
+        "{{text}} és el que dius"
+      ],
+      "closing": "Arriba directe al\n*teu servidor*"
+    },
+    "direct": {
+      "h1": "Envia *directe*\ndes del rellotge",
+      "chips": [
+        "Wi-Fi",
+        "Dades mòbils"
+      ],
+      "floats": [
+        "El que falla es conserva",
+        "Es reenvia en obrir l’app"
+      ],
+      "closing": "Poca cobertura?\n*No es perd res*"
+    },
+    "more": {
+      "h1": "I encara\n*més coses.*",
+      "cells": [
+        "Capçalera desada\nal Keychain",
+        "Slack i Discord:\nenganxa l’URL",
+        "S’obre ràpid\ndes de l’esfera",
+        "Historial del\nque has enviat",
+        "Enviament de prova\nper comprovar-ho",
+        "Mateix ID en\nreenviar"
+      ],
+      "closing": "La teva veu al\n*teu sistema*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "Parla",
+    "sent": "S’ha enviat a «Slack #memo»",
+    "history": "Historial",
+    "destinationsTitle": "Destins",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "API de despeses"
+    ],
+    "spoken": [
+      "Comprar llet i ous",
+      "Demà a les 10 dentista",
+      "Pàrquing: B2, plaça 14"
+    ],
+    "statusSent": "Enviat",
+    "statusPending": "No enviat",
+    "siriDialog": "S’ha enviat a Slack #memo.",
+    "defaultMark": "(Per defecte)",
+    "siriAsk": "Envia amb Hayate",
+    "siriQuestion": "Què vols enviar?",
+    "quote": [
+      "«",
+      "»"
+    ],
+    "edit": {
+      "cancel": "Cancel·la",
+      "save": "Desa",
+      "nameLabel": "Nom",
+      "name": "API de despeses",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "Només es poden fer servir URL https.",
+      "request": "Sol·licitud",
+      "method": "Mètode",
+      "bodyFormat": "Format del cos",
+      "bodyFormatValue": "JSON",
+      "headers": "Capçaleres",
+      "addHeader": "Afegeix una capçalera",
+      "hideSecret": "Amaga com a valor secret",
+      "headersFooter": "Pots registrar capçaleres d’autenticació com Authorization. Els valors només es desen al Keychain de l’iPhone i de l’Apple Watch.",
+      "body": "Cos",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "Enviament de prova"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "name": "Hayate",
+  "subtitle": "Giọng nói Watch tới webhook",
+  "promotionalText": "Chỉ cần nói với Apple Watch, lời bạn nói sẽ được gửi tới Slack, Discord hoặc webhook của riêng bạn. Gửi ý tưởng vừa nghĩ ra ngay từ cổ tay.",
+  "keywords": "webhook,giọng nói,ghi chú,Slack,Discord,Siri,đồng hồ,API,tự động hóa,phím tắt,ghi âm,gửi,dictation",
+  "description": "Hayate là ứng dụng gửi nguyên lời bạn nói trên Apple Watch tới nơi nhận (webhook) mà bạn đã đăng ký.\n\n■ Tính năng\n・Chỉ cần nhấn \"Nói\" trên Apple Watch rồi nói là gửi được (Series 9 / Ultra 2 trở lên còn dùng được Chạm đúp)\n・Nói \"Hey Siri, gửi bằng Hayate\" để gửi rảnh tay (cũng dùng được với Siri trên iPhone)\n・Nơi nhận tùy chỉnh: URL, phương thức, header (như Authorization) và mẫu nội dung\n・Với Slack và Discord, chỉ cần dán URL\n・Gửi thẳng từ đồng hồ tới nơi nhận, không qua iPhone\n・Tin chưa gửi được sẽ được giữ lại và gửi lại vào lần mở ứng dụng tiếp theo\n・Lịch sử nội dung đã gửi, gửi thử và complication trên mặt đồng hồ\n\n■ Gợi ý sử dụng\n・Gửi ghi chú chợt nảy ra tới kênh Slack\n・Gửi danh sách mua sắm hoặc việc cần làm tới dịch vụ của riêng bạn\n・Nhận bằng n8n, Zapier hoặc máy chủ của bạn để tự động hóa\n\n■ Thông số phía bên nhận\n・Bạn có thể chèn {{text}} (lời nói), {{id}}, {{sentAt}} và {{source}} vào nội dung\n・Header X-WatchHook-Message-Id có giá trị không đổi khi gửi lại, nên dùng được để loại bỏ tin trùng\n\n■ Xử lý dữ liệu\n・Cài đặt nơi nhận (gồm cả header xác thực) chỉ được lưu trong Keychain của iPhone và Apple Watch\n・Lời bạn nói chỉ được gửi tới nơi nhận bạn đã đăng ký. Không đi qua máy chủ của nhà phát triển\n\n■ Giá\nDùng thử miễn phí 7 ngày. Sau đó bạn tiếp tục dùng bằng một lần mua trong ứng dụng. Không có gói đăng ký.",
+  "iap": {
+    "trial": {
+      "name": "Dùng thử miễn phí 7 ngày",
+      "description": "Mọi tính năng miễn phí 7 ngày. Không tự tính phí."
+    },
+    "unlock": {
+      "name": "Hayate (Mua một lần)",
+      "description": "Dùng mãi trên Watch, Siri, iPhone. Chỉ trả một lần."
+    }
+  }
+}

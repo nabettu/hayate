@@ -1,0 +1,17 @@
+{
+  "name": "Hayate",
+  "subtitle": "Głos z Apple Watch do webhooka",
+  "promotionalText": "Po prostu mów do Apple Watch, a Twoje słowa trafią do Slacka, Discorda lub własnego webhooka. Każdy pomysł wyślesz prosto z nadgarstka.",
+  "keywords": "webhook,wprowadzanie głosowe,głos,notatki,Slack,Discord,Siri,zegarek,API,automatyzacja,skróty",
+  "description": "Hayate wysyła to, co powiesz do Apple Watch, bez zmian do zapisanego przez Ciebie odbiorcy (webhooka).\n\n■ Co potrafi\n・Naciśnij „Mów” na Apple Watch i mów (na Series 9 / Ultra 2 i nowszych także podwójnym stuknięciem)\n・„Hey Siri, wyślij przez Hayate” — wysyłanie bez użycia rąk (także przez Siri na iPhonie)\n・Odbiorcę ustawisz dowolnie: URL, metoda, nagłówki (np. Authorization), szablon treści\n・W przypadku Slacka i Discorda wystarczy wkleić URL\n・Zegarek wysyła bezpośrednio do odbiorcy, bez pośrednictwa iPhone’a\n・Niewysłane wiadomości czekają i są wysyłane ponownie przy kolejnym otwarciu aplikacji\n・Historia wysłanych wiadomości, wiadomość testowa, komplikacje na tarczy\n\n■ Przykładowe zastosowania\n・Notatka, która przyszła Ci do głowy, na kanał Slack\n・Lista zakupów lub zadania w Twoim serwisie\n・Odbieranie w n8n, Zapier lub na własnym serwerze i automatyzacja\n\n■ Po stronie odbiorcy\n・W treści możesz użyć {{text}} (wypowiedź), {{id}}, {{sentAt}} i {{source}}\n・Nagłówek X-WatchHook-Message-Id ma tę samą wartość przy ponownym wysłaniu, więc posłuży do usuwania duplikatów\n\n■ Przetwarzanie danych\n・Ustawienia odbiorcy (w tym nagłówki uwierzytelniania) są zapisywane tylko w Keychain na iPhonie i Apple Watch\n・To, co powiesz, trafia tylko do wskazanego przez Ciebie odbiorcy i nie przechodzi przez serwery dewelopera\n\n■ Cena\nMożesz bezpłatnie wypróbować aplikację przez 7 dni. Potem korzystasz dalej po jednorazowym zakupie w aplikacji. Nie ma subskrypcji.",
+  "iap": {
+    "trial": {
+      "name": "7 dni bezpłatnie",
+      "description": "7 dni, wszystkie funkcje. Bez opłat automatycznych."
+    },
+    "unlock": {
+      "name": "Hayate (jednorazowy zakup)",
+      "description": "Wysyłanie z Apple Watch, Siri i iPhone’a. Jedna opłata."
+    }
+  }
+}

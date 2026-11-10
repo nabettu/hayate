@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "Samo govorite,\n*webhook* prima",
+      "chips": [
+        "Slack",
+        "Discord",
+        "Vlastiti API"
+      ],
+      "closing": "Dođe misao,\nšaljete *sa zapešća*"
+    },
+    "siri": {
+      "h1": "*Hey Siri*,\nbez ruku",
+      "chips": [
+        "Siri",
+        "Dvostruki dodir",
+        "Brojčanik"
+      ],
+      "closing": "Sa zauzetim rukama\n*samo glasom*"
+    },
+    "destination": {
+      "h1": "Odredište\n*birate sami*",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "Zaglavlje u Keychainu",
+        "{{text}} je vaš tekst"
+      ],
+      "closing": "Stiže i na\n*vlastiti poslužitelj*"
+    },
+    "direct": {
+      "h1": "Sa sata\n*izravno*",
+      "chips": [
+        "Wi-Fi",
+        "Mobilna mreža"
+      ],
+      "floats": [
+        "Neposlano ostaje",
+        "Pri otvaranju ponovno"
+      ],
+      "closing": "Čak i uz slab signal\n*ništa ne propušta*"
+    },
+    "more": {
+      "h1": "Ima i\n*više.*",
+      "cells": [
+        "Zaglavlje\nu Keychainu",
+        "Slack i Discord:\nsamo URL",
+        "Brzo pokretanje\ns brojčanika",
+        "Povijest\nposlanog",
+        "Probno slanje\nprovjerava dostavu",
+        "Isti ID poruke\npri ponovnom slanju"
+      ],
+      "closing": "Izgovoreno\nu *vaš sustav*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "Govori",
+    "sent": "Poslano na „Slack #memo”",
+    "history": "Povijest",
+    "destinationsTitle": "Odredišta",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "API za financije"
+    ],
+    "spoken": [
+      "Kupiti mlijeko i jaja",
+      "Sutra u 10 zubar",
+      "Parking B2, mjesto 14"
+    ],
+    "statusSent": "Poslano",
+    "statusPending": "Neposlano",
+    "siriDialog": "Poslano na Slack #memo.",
+    "defaultMark": "(Zadano)",
+    "siriAsk": "Pošalji s Hayate",
+    "siriQuestion": "Što želite poslati?",
+    "quote": [
+      "„",
+      "”"
+    ],
+    "edit": {
+      "cancel": "Odustani",
+      "save": "Spremi",
+      "nameLabel": "Naziv",
+      "name": "API za financije",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "Dopušteni su samo https URL-ovi.",
+      "request": "Zahtjev",
+      "method": "Metoda",
+      "bodyFormat": "Oblik tijela",
+      "bodyFormatValue": "JSON",
+      "headers": "Zaglavlja",
+      "addHeader": "Dodaj zaglavlje",
+      "hideSecret": "Sakrij kao tajnu",
+      "headersFooter": "Možete registrirati zaglavlja za autentifikaciju, poput Authorization. Vrijednosti se spremaju samo u Keychain na iPhoneu i Apple Watchu.",
+      "body": "Tijelo",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "Probno slanje"
+    }
+  }
+}

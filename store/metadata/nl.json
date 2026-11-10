@@ -1,0 +1,17 @@
+{
+  "name": "Hayate",
+  "subtitle": "Van Apple Watch naar webhook",
+  "promotionalText": "Praat tegen je Apple Watch en stuur het naar Slack, Discord of je eigen webhook. Verstuur wat je te binnen schiet direct vanaf je pols.",
+  "keywords": "webhook,Slack,Discord,Siri,spraak,dicteren,notities,horloge,API,automatisering,opdrachten,versturen",
+  "description": "Hayate stuurt wat je tegen je Apple Watch zegt ongewijzigd door naar de bestemming (webhook) die je hebt ingesteld.\n\n■ Wat je ermee kunt\n・Tik op de Apple Watch op “Praat” en spreek om te versturen (vanaf de Series 9 / Ultra 2 ook met Dubbeltik)\n・Zeg “Hey Siri, verstuur met Hayate” om handsfree te versturen (ook met Siri op de iPhone)\n・Vrij in te stellen bestemmingen: URL, methode, headers (zoals Authorization) en inhoudssjabloon\n・Voor Slack en Discord hoef je alleen de URL te plakken\n・Het bericht gaat rechtstreeks vanaf het horloge naar de bestemming, niet via de iPhone\n・Wat niet verstuurd kon worden, blijft bewaard en wordt de volgende keer dat je de app opent opnieuw verstuurd\n・Geschiedenis van verstuurde berichten, testberichten en een complicatie op de wijzerplaat\n\n■ Handig voor\n・Een ingeving als notitie naar een Slack-kanaal sturen\n・Boodschappenlijstjes en taken naar je eigen dienst sturen\n・Automatiseren met n8n, Zapier of je eigen server\n\n■ Specificaties voor de ontvanger\n・In de inhoud kun je {{text}} (wat je zei), {{id}}, {{sentAt}} en {{source}} invoegen\n・De header X-WatchHook-Message-Id heeft bij opnieuw versturen dezelfde waarde, dus je kunt hem gebruiken om dubbele berichten te filteren\n\n■ Omgang met gegevens\n・De configuratie van je bestemming (inclusief authenticatieheaders) wordt alleen opgeslagen in de Keychain van de iPhone en de Apple Watch\n・Wat je zegt gaat alleen naar de bestemming die je hebt ingesteld, niet via een server van de ontwikkelaar\n\n■ Prijs\nJe kunt 7 dagen gratis proberen. Daarna gebruik je Hayate verder met een eenmalige aankoop in de app. Er is geen abonnement.",
+  "iap": {
+    "trial": {
+      "name": "7 dagen gratis proberen",
+      "description": "7 dagen alle functies. Geen automatische betaling."
+    },
+    "unlock": {
+      "name": "Hayate (eenmalige aankoop)",
+      "description": "Versturen via Watch, Siri en iPhone. Eenmalig."
+    }
+  }
+}

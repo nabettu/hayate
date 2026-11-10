@@ -1,0 +1,17 @@
+{
+  "name": "Hayate",
+  "subtitle": "Glas iz Apple Watch na webhook",
+  "promotionalText": "Samo govorite v Apple Watch in sporočilo gre v Slack, Discord ali vaš webhook. Misel s zapestja pošljete takoj.",
+  "keywords": "webhook,glasovni vnos,glas,zapiski,Slack,Discord,Siri,ura,API,avtomatizacija,bližnjice",
+  "description": "Hayate je aplikacija, ki besede, izgovorjene v Apple Watch, pošlje neposredno na cilj (webhook), ki ste ga registrirali.\n\n■ Kaj zmore\n・V Apple Watch pritisnete »Govori« in govorite (pri Series 9 / Ultra 2 in novejših tudi z dvojnim dotikom)\n・Z »Hey Siri, pošlji s Hayate« pošljete brez rok (tudi s Siri v iPhonu)\n・Cilj nastavite po svoje: URL, metoda, glave (npr. Authorization) in predloga telesa\n・Za Slack in Discord samo prilepite URL\n・Ura pošilja neposredno na cilj, brez posrednika iPhona\n・Neposlano se ohrani in se ob naslednjem odprtju pošlje znova\n・Zgodovina poslanega, testno pošiljanje in komplikacija na številčnici\n\n■ Primeri uporabe\n・Zapiski v kanal v Slacku\n・Nakupovalni seznam ali opravila v lastno storitev\n・Avtomatizacija z n8n, Zapier ali lastnim strežnikom\n\n■ Podrobnosti za prejemnika\n・V telo lahko vstavite {{text}} (izgovorjeno besedilo), {{id}}, {{sentAt}} in {{source}}\n・Glava X-WatchHook-Message-Id je ob ponovnem pošiljanju enaka, zato jo lahko uporabite za odstranjevanje dvojnikov\n\n■ Obravnava podatkov\n・Nastavitve cilja (vključno z overitvenimi glavami) so shranjene samo v Keychain v iPhonu in Apple Watch\n・Izgovorjeno besedilo gre samo na cilj, ki ste ga registrirali. Ne gre prek strežnika razvijalca\n\n■ Cena\nZačnete lahko z 7-dnevnim brezplačnim preizkusom. Nato aplikacijo uporabljate z enkratnim nakupom v aplikaciji. Naročnine ni.",
+  "iap": {
+    "trial": {
+      "name": "7-dnevni brezplačni preizkus",
+      "description": "7 dni vse funkcije. Brez samodejnega zaračunavanja."
+    },
+    "unlock": {
+      "name": "Hayate (enkratni nakup)",
+      "description": "Pošiljanje iz Apple Watch, Siri, iPhona. Enkratno."
+    }
+  }
+}

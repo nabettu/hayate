@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "تكلّم فقط\nويصل إلى *webhook*",
+      "chips": [
+        "Slack",
+        "Discord",
+        "API خاص بك"
+      ],
+      "closing": "فكرة خطرت؟\n*من معصمك* فورًا"
+    },
+    "siri": {
+      "h1": "*Hey Siri*\nبلا لمس",
+      "chips": [
+        "Siri",
+        "النقر مرتين",
+        "وجه الساعة"
+      ],
+      "closing": "ويداك مشغولتان؟\nأرسل *بصوتك* فقط"
+    },
+    "destination": {
+      "h1": "اختر الوجهة\n*بحرية*",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "ترويسة المصادقة في Keychain",
+        "{{text}} هو ما قلته"
+      ],
+      "closing": "إلى خادمك\n*كما هو*"
+    },
+    "direct": {
+      "h1": "من الساعة\n*مباشرة*",
+      "chips": [
+        "Wi-Fi",
+        "بيانات الجوال"
+      ],
+      "floats": [
+        "ما لم يُرسل يُحفظ",
+        "يُعاد إرساله عند الفتح"
+      ],
+      "closing": "حتى مع ضعف الإشارة\n*لا شيء يضيع*"
+    },
+    "more": {
+      "h1": "وأكثر\n*من ذلك.*",
+      "cells": [
+        "ترويسة المصادقة\nفي Keychain",
+        "Slack وDiscord\nبلصق URL فقط",
+        "تشغيل سريع\nمن وجه الساعة",
+        "سجل\nلما أُرسل",
+        "إرسال تجريبي\nللتأكد من الوصول",
+        "المعرّف نفسه\nعند إعادة الإرسال"
+      ],
+      "closing": "كلامك يصل\nإلى *نظامك*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "تحدّث",
+    "sent": "تم الإرسال إلى «Slack #memo»",
+    "history": "السجل",
+    "destinationsTitle": "الوجهات",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "API المصروفات"
+    ],
+    "spoken": [
+      "شراء حليب وبيض",
+      "موعد طبيب الأسنان غدًا الساعة 10",
+      "موقف السيارة B2 رقم 14"
+    ],
+    "statusSent": "تم الإرسال",
+    "statusPending": "لم يُرسل",
+    "siriDialog": "تم الإرسال إلى Slack #memo.",
+    "defaultMark": "(افتراضي)",
+    "siriAsk": "أرسل عبر Hayate",
+    "siriQuestion": "ماذا تريد أن ترسل؟",
+    "quote": [
+      "«",
+      "»"
+    ],
+    "edit": {
+      "cancel": "إلغاء",
+      "save": "حفظ",
+      "nameLabel": "الاسم",
+      "name": "API المصروفات",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "يُسمح بعناوين URL من نوع https فقط.",
+      "request": "الطلب",
+      "method": "الأسلوب",
+      "bodyFormat": "صيغة النص",
+      "bodyFormatValue": "JSON",
+      "headers": "الترويسات",
+      "addHeader": "إضافة ترويسة",
+      "hideSecret": "إخفاء كقيمة سرية",
+      "headersFooter": "يمكنك تسجيل ترويسات المصادقة مثل Authorization. تُحفظ القيمة في Keychain على iPhone وApple Watch فقط.",
+      "body": "النص",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "إرسال تجريبي"
+    }
+  }
+}

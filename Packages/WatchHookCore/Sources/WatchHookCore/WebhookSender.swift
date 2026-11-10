@@ -65,7 +65,7 @@ public struct WebhookSender: Sendable {
         } catch is CancellationError {
             return .cancelled
         } catch let error as URLError {
-            return .retryableFailure(reason: "通信エラー (\(error.code.rawValue))")
+            return .retryableFailure(reason: String(localized: "通信エラー (\(error.code.rawValue))", bundle: .module))
         } catch {
             return .retryableFailure(reason: error.localizedDescription)
         }

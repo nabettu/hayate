@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "אומרים, וזה\nנשלח ל-*webhook*",
+      "chips": [
+        "Slack",
+        "Discord",
+        "API משלכם"
+      ],
+      "closing": "עלה רעיון?\n*מפרק היד* ישר"
+    },
+    "siri": {
+      "h1": "*Hey Siri*\nבלי ידיים",
+      "chips": [
+        "Siri",
+        "הקשה כפולה",
+        "תצוגת שעון"
+      ],
+      "closing": "הידיים תפוסות?\nשולחים *בקול*"
+    },
+    "destination": {
+      "h1": "היעד\n*לבחירתכם*",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "כותרת האימות ב-Keychain",
+        "{{text}} הוא מה שנאמר"
+      ],
+      "closing": "גם לשרת שלכם\n*כמו שהוא*"
+    },
+    "direct": {
+      "h1": "מהשעון\n*ישירות*",
+      "chips": [
+        "Wi-Fi",
+        "רשת סלולרית"
+      ],
+      "floats": [
+        "מה שלא נשלח נשמר",
+        "נשלח שוב בפתיחה הבאה"
+      ],
+      "closing": "גם בקליטה חלשה\n*בלי לאבד דבר*"
+    },
+    "more": {
+      "h1": "ועוד\n*הרבה.*",
+      "cells": [
+        "כותרת אימות\nב-Keychain",
+        "Slack ו-Discord\nמדביקים URL",
+        "הפעלה מהירה\nמתצוגת השעון",
+        "היסטוריית\nמה שנשלח",
+        "שליחת בדיקה\nלוודא שהגיע",
+        "אותו מזהה הודעה\nגם בשליחה חוזרת"
+      ],
+      "closing": "מה שאמרתם\nלתוך *המערכת שלכם*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "דברו",
+    "sent": "נשלח אל “Slack #memo”",
+    "history": "היסטוריה",
+    "destinationsTitle": "יעדים",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "API הוצאות"
+    ],
+    "spoken": [
+      "לקנות חלב וביצים",
+      "רופא שיניים מחר ב-10",
+      "החניה בקומה B2 מספר 14"
+    ],
+    "statusSent": "נשלח",
+    "statusPending": "לא נשלח",
+    "siriDialog": "נשלח אל Slack #memo.",
+    "defaultMark": "(ברירת מחדל)",
+    "siriAsk": "שלח עם Hayate",
+    "siriQuestion": "מה לשלוח?",
+    "quote": [
+      "“",
+      "”"
+    ],
+    "edit": {
+      "cancel": "ביטול",
+      "save": "שמירה",
+      "nameLabel": "שם",
+      "name": "API הוצאות",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "ניתן להשתמש רק בכתובות URL מסוג https.",
+      "request": "בקשה",
+      "method": "שיטה",
+      "bodyFormat": "פורמט הגוף",
+      "bodyFormatValue": "JSON",
+      "headers": "כותרות",
+      "addHeader": "הוספת כותרת",
+      "hideSecret": "הסתרה כערך סודי",
+      "headersFooter": "אפשר לרשום כותרות אימות כמו Authorization. הערך נשמר רק ב-Keychain ב-iPhone וב-Apple Watch.",
+      "body": "גוף",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "שליחת בדיקה"
+    }
+  }
+}

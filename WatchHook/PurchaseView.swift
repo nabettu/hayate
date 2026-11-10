@@ -59,12 +59,12 @@ struct PurchaseView: View {
     }
 
     private var unlockPrice: String {
-        store.products[StoreProducts.unlockID]?.displayPrice ?? "価格を読み込み中"
+        store.products[StoreProducts.unlockID]?.displayPrice ?? String(localized: "価格を読み込み中")
     }
 
     /// お試しも StoreKit の表示価格を出す (国ごとに ¥0 / $0.00 などと変わる。固定の「¥0」だと米国で $9.99 と並んでしまう)
     private var trialPrice: String {
-        store.products[StoreProducts.trialID]?.displayPrice ?? "価格を読み込み中"
+        store.products[StoreProducts.trialID]?.displayPrice ?? String(localized: "価格を読み込み中")
     }
 
     @ViewBuilder private func statusRow(_ access: AccessState, now: Date) -> some View {
@@ -80,7 +80,7 @@ struct PurchaseView: View {
         }
     }
 
-    private func buyButton(_ id: String, title: String, subtitle: String, requires: [String] = []) -> some View {
+    private func buyButton(_ id: String, title: LocalizedStringKey, subtitle: LocalizedStringKey, requires: [String] = []) -> some View {
         Button {
             guard let product = store.products[id] else { return }
             Task {
@@ -134,8 +134,8 @@ struct AccessBanner: View {
 }
 
 private struct Bullet: View {
-    let text: String
-    init(_ text: String) { self.text = text }
+    let text: LocalizedStringKey
+    init(_ text: LocalizedStringKey) { self.text = text }
 
     var body: some View {
         Label { Text(text) } icon: { Image(systemName: "circle.fill").font(.system(size: 6)) }

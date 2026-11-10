@@ -1,0 +1,105 @@
+{
+  "iphone": {
+    "hero": {
+      "h1": "Fale e envie\npara o *webhook*",
+      "chips": [
+        "Slack",
+        "Discord",
+        "Sua API"
+      ],
+      "closing": "Teve uma ideia?\nEnvie do *pulso*"
+    },
+    "siri": {
+      "h1": "Com *Hey Siri*,\nsem as mãos",
+      "chips": [
+        "Siri",
+        "Toque duplo",
+        "Mostrador"
+      ],
+      "closing": "Mãos ocupadas?\nEnvie *só falando*"
+    },
+    "destination": {
+      "h1": "Escolha *si*\no destino",
+      "chips": [
+        "Webhook",
+        "Slack",
+        "Discord"
+      ],
+      "floats": [
+        "Cabeçalho no Keychain",
+        "{{text}} é a sua fala"
+      ],
+      "closing": "Chega direto ao\n*seu servidor*"
+    },
+    "direct": {
+      "h1": "Envio *direto*\ndo relógio",
+      "chips": [
+        "Wi-Fi",
+        "Dados móveis"
+      ],
+      "floats": [
+        "O que falhou fica guardado",
+        "Reenvia ao abrir a app"
+      ],
+      "closing": "Sem rede boa?\n*Nada se perde*"
+    },
+    "more": {
+      "h1": "E tem\n*muito mais.*",
+      "cells": [
+        "Cabeçalho guardado\nno Keychain",
+        "Slack e Discord:\ncole a URL",
+        "Abre direto\nno mostrador",
+        "Histórico\ndo que enviou",
+        "Envio de teste\npara conferir",
+        "Mesmo ID\nem reenvios"
+      ],
+      "closing": "Sua voz chega\n*ao seu sistema*"
+    }
+  },
+  "screen": {
+    "appName": "Hayate",
+    "speak": "Falar",
+    "sent": "Enviado para “Slack #memo”",
+    "history": "Histórico",
+    "destinationsTitle": "Destinos",
+    "destinations": [
+      "Slack #memo",
+      "Discord #todo",
+      "API de despesas"
+    ],
+    "spoken": [
+      "Comprar leite e ovos",
+      "Dentista amanhã às 10h00",
+      "Lugar do carro: B2, n.º 14"
+    ],
+    "statusSent": "Enviado",
+    "statusPending": "Não enviado",
+    "siriDialog": "Enviado para Slack #memo.",
+    "defaultMark": "(Padrão)",
+    "siriAsk": "Enviar com o Hayate",
+    "siriQuestion": "O que quer enviar?",
+    "quote": [
+      "“",
+      "”"
+    ],
+    "edit": {
+      "cancel": "Cancelar",
+      "save": "Guardar",
+      "nameLabel": "Nome",
+      "name": "API de despesas",
+      "url": "https://api.example.com/hooks/expense",
+      "urlFooter": "Somente URLs https são permitidas.",
+      "request": "Requisição",
+      "method": "Método",
+      "bodyFormat": "Formato do corpo",
+      "bodyFormatValue": "JSON",
+      "headers": "Cabeçalhos",
+      "addHeader": "Adicionar cabeçalho",
+      "hideSecret": "Ocultar como valor secreto",
+      "headersFooter": "Pode registar cabeçalhos de autenticação, como Authorization. Os valores ficam guardados apenas no Keychain do iPhone e do Apple Watch.",
+      "body": "Corpo",
+      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
+      "test": "Enviar teste"
+    }
+  }
+}
