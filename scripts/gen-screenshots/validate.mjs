@@ -16,9 +16,13 @@ const FORBIDDEN = {
 
 const rulesFor = (lang) => FORBIDDEN[lang] ?? (["ko", "zh-Hans", "zh-Hant"].includes(lang) ? FORBIDDEN.ja : FORBIDDEN.en);
 
-/** text に含まれる禁止語を返す。 */
+/** 画像に出る文字。render.mjs は *...* を強調に変えるだけなので、記号を外したものが見た目どおり */
+export const displayText = (text) => text.replace(/\*/g, "");
+
+/** text に含まれる禁止語を返す (強調の記法を外した、画像に出る文字で見る)。 */
 export function findForbidden(lang, text) {
-  return rulesFor(lang).filter(([, re]) => re.test(text)).map(([word]) => ({ word }));
+  const shown = displayText(text);
+  return rulesFor(lang).filter(([, re]) => re.test(shown)).map(([word]) => ({ word }));
 }
 
 /** 1 言語ぶんの文言 (copy.mjs の COPY[lang]) から、文字列をパス付きですべて取り出す。 */

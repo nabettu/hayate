@@ -33,3 +33,9 @@ test("いまの文言に禁止語が無い", () => {
     assert.deepEqual(hits, []);
   }
 });
+
+test("強調の記法 (*...*) を外した表示の文字で見る", () => {
+  assert.deepEqual(findForbidden("ja", "*0*円で使える").map((h) => h.word), ["0円"]);
+  assert.deepEqual(findForbidden("ja", "*第1*位").map((h) => h.word), ["第1位"]);
+  assert.deepEqual(findForbidden("en", "the *b*est").map((h) => h.word), ["best"]);
+});
