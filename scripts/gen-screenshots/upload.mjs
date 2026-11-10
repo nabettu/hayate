@@ -68,7 +68,8 @@ for (const [lang, locales] of Object.entries(ASC_LOCALES)) {
     fs.mkdirSync(sub, { recursive: true });
     for (const f of files) fs.copyFileSync(path.join(dir, f), path.join(sub, f));
     const hash = createHash("sha256");
-    for (const f of files) hash.update(fs.readFileSync(path.join(dir, f)));
+    // 実際に上げるコピーから取る (元の画像が生成し直されても、上げたものと記録をずらさない)
+    for (const f of files) hash.update(fs.readFileSync(path.join(sub, f)));
     const digest = hash.digest("hex");
     for (const locale of locales) {
       // 同じ画像をもう上げたセットは飛ばす (回数制限で止まっても、続きから再開できる)
@@ -78,7 +79,10 @@ for (const [lang, locales] of Object.entries(ASC_LOCALES)) {
   }
 }
 
+const saveDone = () => fs.writeFileSync(DONE_FILE, JSON.stringify(done, null, 1));
 const run = (job) => new Promise((resolve) => {
+  // --replace は既存のセットを先に消す。途中で失敗したら ASC 側は欠けているので、始める前に成功の記録を消しておく
+  if (!dryRun) { delete done[`${job.locale} ${job.deviceType}`]; saveDone(); }
   const a = ["--profile", "crossedge", "screenshots", "upload", "--app", APP, "--version", VERSION, "--locale", job.locale,
     "--path", job.sub, "--device-type", job.deviceType, "--replace", "--confirm", "--output", "table"];
   if (dryRun) a.push("--dry-run");
@@ -104,7 +108,7 @@ await Promise.all(Array.from({ length: dryRun ? 1 : CONCURRENCY }, async () => {
     if (r.code !== 0) failures.push(`${r.locale} ${r.deviceType}: ${r.err.split("\n")[0]}`);
     else if (!dryRun) {
       done[`${r.locale} ${r.deviceType}`] = r.digest;
-      fs.writeFileSync(DONE_FILE, JSON.stringify(done, null, 1));
+      saveDone();
     }
   }
 }));
