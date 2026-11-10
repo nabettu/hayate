@@ -44,4 +44,19 @@ npm test              # 禁止語のチェックのテスト
 - 文言はアプリが実際にすることだけを言う。再送は「次に開いたとき」(裏での自動再送はまだ無い)、お試し前・終了後は送信も再送も止まる (`docs/BILLING.md`)
 - Slack・Discord は名前だけ出し、ロゴは使わない (他社の商標)
 - 例文の数字にも禁止語の規則が当たる (「980 円」が `0円` に当たった)
-- アップロードは未整備。ASC の本番のスクショの差し替えはユーザーの OK を取ってから
+
+## アップロード (asc)
+
+2026-11-10 にバージョン 1.0 の ja へ初めて上げた。差し替えは本番のストアのページに出るので、ユーザーの OK を取ってから。
+
+```sh
+cd screenshots/app-store/ja && d=$(~/bin/rmtmp --new wh-upload) && mkdir $d/iphone $d/watch && cp iphone-*.png $d/iphone/ && cp watch-*.png $d/watch/
+asc --profile crossedge screenshots upload --app 6832906978 --version 1.0 --locale ja --path $d/iphone --device-type IPHONE_67 --replace --confirm
+asc --profile crossedge screenshots upload --app 6832906978 --version 1.0 --locale ja --path $d/watch --device-type WATCH_SERIES_10 --replace --confirm
+~/bin/rmtmp $d
+```
+
+- 6.9" (1320x2868) は `IPHONE_67` の枠に入れる (locktodo と同じ)。ASC が小さい iPhone に流用する
+- Watch は 416x496 = `WATCH_SERIES_10`。iPhone と Watch を 1 つのディレクトリにまとめず、端末ごとに分けて渡す
+- 表示順はファイル名の連番 (`01_` 〜)
+- `--dry-run` で上がる・消える枚数を先に見られる
