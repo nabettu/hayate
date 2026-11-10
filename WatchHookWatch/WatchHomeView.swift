@@ -6,7 +6,7 @@ struct WatchHomeView: View {
     @State private var store = ConfigStore.shared
     /// 時計の中だけで選ぶ送り先 (iPhone の「既定」とは別に持つ)。
     @AppStorage("selectedDestinationID") private var selectedID: String = ""
-    @State private var lastStatus: MessageStatus?
+    @State private var lastResult: SendOutcome?
     @State private var isSending = false
     @State private var flight: FlightPhase = .idle
     /// 話すボタンの位置 (送るときにここから紙飛行機が飛び立つ)。
@@ -79,6 +79,8 @@ struct WatchHomeView: View {
                     }
                     .onAppear(perform: fixSelection)
                     .onChange(of: store.config) { fixSelection() }
+                    // 前に送った結果を、選び直した送り先の結果と見間違えないように消す
+                    .onChange(of: selectedID) { if !isSending { lastResult = nil } }
                 } else {
                     ScrollView {
                         VStack(spacing: 10) {
@@ -120,16 +122,17 @@ struct WatchHomeView: View {
     @ViewBuilder private var statusView: some View {
         if isSending {
             Text("送信中…").font(.footnote).foregroundStyle(Cosmos.lavender)
-        } else if let lastStatus {
+        } else if let lastResult {
+            let name = lastResult.destinationName
             Group {
-                switch lastStatus {
+                switch lastResult.status {
                 case .sent:
-                    Label("送りました", systemImage: "checkmark.circle.fill").foregroundStyle(Cosmos.star)
+                    Label("「\(name)」に送りました", systemImage: "checkmark.circle.fill").foregroundStyle(Cosmos.star)
                 case .pending:
-                    Label("あとで送り直します", systemImage: "arrow.clockwise").foregroundStyle(.orange)
+                    Label("「\(name)」へはあとで送り直します", systemImage: "arrow.clockwise").foregroundStyle(.orange)
                 case .failed(let reason):
                     VStack {
-                        Label("送れませんでした", systemImage: "xmark.circle.fill").foregroundStyle(.red)
+                        Label("「\(name)」に送れませんでした", systemImage: "xmark.circle.fill").foregroundStyle(.red)
                         Text(reason).font(.caption2).foregroundStyle(.secondary)
                     }
                 }
@@ -146,17 +149,17 @@ struct WatchHomeView: View {
 
     private func send(_ text: String, to destination: Destination) async {
         guard let text = MessageText.normalized(text) else { return }
-        await run {
+        await run(destinationName: destination.name) {
             await MessageDispatcher.shared.send(text: text, destination: destination, source: "watch")
         }
     }
 
-    private func run(_ work: () async -> MessageStatus) async {
+    private func run(destinationName: String, _ work: () async -> MessageStatus) async {
         isSending = true
-        lastStatus = nil
+        lastResult = nil
         await playFlight(set: { flight = $0 }, current: { flight }, onResult: { status in
             isSending = false
-            withAnimation(.spring(duration: 0.4)) { lastStatus = status }
+            withAnimation(.spring(duration: 0.4)) { lastResult = SendOutcome(status: status, destinationName: destinationName) }
             switch status {
             case .sent: WKHaptic.play(.success)
             case .pending: WKHaptic.play(.retry)
@@ -168,7 +171,7 @@ struct WatchHomeView: View {
     #if DEBUG
     /// 送らずに演出だけ流す (履歴にも残らない)。
     private func playDemo(_ demo: FlightDemo) async {
-        await run(demo.work)
+        await run(destinationName: destination?.name ?? "演出", demo.work)
     }
     #endif
 }

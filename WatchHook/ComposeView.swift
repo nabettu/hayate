@@ -9,7 +9,7 @@ struct ComposeView: View {
     @State private var text = ""
     @State private var isSending = false
     @State private var flight: FlightPhase = .idle
-    @State private var lastStatus: MessageStatus?
+    @State private var lastResult: SendOutcome?
     /// 見出しの紙飛行機の位置 (送るときにここから飛び立つ)。
     @State private var headerPlaneFrame: CGRect = .zero
     @FocusState private var focused: Bool
@@ -79,6 +79,8 @@ struct ComposeView: View {
             }
             .onAppear(perform: fixSelection)
             .onChange(of: store.config) { fixSelection() }
+            // 前に送った結果を、選び直した送り先の結果と見間違えないように消す
+            .onChange(of: selectedID) { if !isSending { lastResult = nil } }
         }
     }
 
@@ -155,16 +157,17 @@ struct ComposeView: View {
     @ViewBuilder private var statusView: some View {
         if isSending {
             Text("送信中…").foregroundStyle(Cosmos.lavender)
-        } else if let lastStatus {
+        } else if let lastResult {
+            let name = lastResult.destinationName
             Group {
-                switch lastStatus {
+                switch lastResult.status {
                 case .sent:
-                    Label("送りました", systemImage: "checkmark.circle.fill").foregroundStyle(Cosmos.star)
+                    Label("「\(name)」に送りました", systemImage: "checkmark.circle.fill").foregroundStyle(Cosmos.star)
                 case .pending:
-                    Label("今は送れませんでした。あとで送り直します", systemImage: "arrow.clockwise").foregroundStyle(.orange)
+                    Label("「\(name)」へは今は送れませんでした。あとで送り直します", systemImage: "arrow.clockwise").foregroundStyle(.orange)
                 case .failed(let reason):
                     VStack(spacing: 4) {
-                        Label("送れませんでした", systemImage: "xmark.circle.fill").foregroundStyle(.red)
+                        Label("「\(name)」に送れませんでした", systemImage: "xmark.circle.fill").foregroundStyle(.red)
                         Text(reason).font(.caption).foregroundStyle(.secondary)
                     }
                 }
@@ -202,7 +205,7 @@ struct ComposeView: View {
     private func send() async {
         guard let destination, let body = MessageText.normalized(text) else { return }
         focused = false
-        await run {
+        await run(destinationName: destination.name) {
             await MessageDispatcher.shared.send(text: body, destination: destination, source: "phone")
         } onResult: { status in
             switch status {
@@ -220,12 +223,12 @@ struct ComposeView: View {
         }
     }
 
-    private func run(_ work: () async -> MessageStatus, onResult: (MessageStatus) -> Void) async {
+    private func run(destinationName: String, _ work: () async -> MessageStatus, onResult: (MessageStatus) -> Void) async {
         isSending = true
-        lastStatus = nil
+        lastResult = nil
         await playFlight(set: { flight = $0 }, current: { flight }, onResult: { status in
             isSending = false
-            withAnimation(.spring(duration: 0.4)) { lastStatus = status }
+            withAnimation(.spring(duration: 0.4)) { lastResult = SendOutcome(status: status, destinationName: destinationName) }
             onResult(status)
         }, work: work)
     }
@@ -234,7 +237,7 @@ struct ComposeView: View {
     /// 送らずに演出だけ流す (履歴にも残らない)。
     private func playDemo(_ demo: FlightDemo) async {
         focused = false
-        await run(demo.work) { _ in }
+        await run(destinationName: destination?.name ?? "演出", demo.work) { _ in }
     }
     #endif
 }

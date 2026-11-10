@@ -199,6 +199,13 @@ enum FlightPhase: Equatable {
     }
 }
 
+/// 送った結果と、実際に送った送り先の名前。
+/// 送っているあいだに送り先が消えたり選び直されたりしても、結果をどこへ送った分か取り違えないように名前を一緒に持つ。
+struct SendOutcome {
+    var status: MessageStatus
+    var destinationName: String
+}
+
 /// 送信と演出の順番をそろえる。iPhone・時計・デバッグの「演出だけ見る」で共有する。
 /// `onResult` は結果が出た時点 (横切る演出の始まり) で呼ぶ。
 @MainActor
