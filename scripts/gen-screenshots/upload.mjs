@@ -55,30 +55,37 @@ const alive = (pid) => { try { process.kill(pid, 0); return true; } catch { retu
 // 起動した asc。止められたら子に止めるよう伝え、全部終わってからロック・一時画像を消す (親だけ先に終わると、子が ASC を書き換え続けたまま次が動ける)
 const children = new Set();
 let stopping = false;
-function stop() {
+function stop(code = 130) {
   if (stopping) return;
   stopping = true;
   for (const c of children) c.kill("SIGTERM");
-  const wait = () => (children.size ? setTimeout(wait, 200) : process.exit(130));
+  const wait = () => (children.size ? setTimeout(wait, 200) : process.exit(code));
   wait();
 }
 function takeLock() {
   fs.mkdirSync(path.dirname(LOCK), { recursive: true });
+  const busy = (msg) => { console.error(msg); process.exit(2); };
   try { fs.writeFileSync(LOCK, String(process.pid), { flag: "wx" }); return; } catch {}
-  const owner = Number(fs.readFileSync(LOCK, "utf8"));
-  if (alive(owner)) { console.error(`別の upload.mjs (pid ${owner}) が動いている。終わってから動かす`); process.exit(2); }
-  // 残ったロックを引き継ぐ。rename は 1 つしか成功しないので、同時に起動しても片方だけが進む
-  const stale = `${LOCK}.${process.pid}`;
-  try { fs.renameSync(LOCK, stale); } catch { console.error("ロックを別のプロセスが先に取った。終わってから動かす"); process.exit(2); }
-  const got = Number(fs.readFileSync(stale, "utf8"));
-  fs.rmSync(stale);
-  if (got !== owner) { console.error("ロックを別のプロセスが先に取った。終わってから動かす"); process.exit(2); }
-  try { fs.writeFileSync(LOCK, String(process.pid), { flag: "wx" }); } catch { console.error("ロックを別のプロセスが先に取った。終わってから動かす"); process.exit(2); }
+  // 残ったロックの引き継ぎは、もう 1 つのロック (TAKEOVER) を持っている間だけ行う。
+  // 普段のロックは wx でしか作らないので、引き継ぎが 1 つずつなら、動いているプロセスのロックを消すことは無い
+  const TAKEOVER = `${LOCK}.takeover`;
+  try { fs.writeFileSync(TAKEOVER, String(process.pid), { flag: "wx" }); } catch {
+    busy(`ほかのプロセスがロックを引き継いでいる。少し待って動かす (${TAKEOVER} が残っていて、その pid が居なければ消す)`);
+  }
+  // process.exit は finally を通らないので、TAKEOVER を外してから判定の結果を出す
+  let owner = 0;
+  try {
+    owner = Number(fs.readFileSync(LOCK, "utf8"));
+    if (!alive(owner)) fs.writeFileSync(LOCK, String(process.pid));
+  } finally {
+    fs.rmSync(TAKEOVER, { force: true });
+  }
+  if (alive(owner)) busy(`別の upload.mjs (pid ${owner}) が動いている。終わってから動かす`);
 }
 if (!dryRun) {
   takeLock();
   process.on("exit", () => { try { if (Number(fs.readFileSync(LOCK, "utf8")) === process.pid) fs.rmSync(LOCK); } catch {} });
-  for (const sig of ["SIGINT", "SIGTERM", "SIGHUP"]) process.on(sig, stop);
+  for (const sig of ["SIGINT", "SIGTERM", "SIGHUP"]) process.on(sig, () => stop(130));
 }
 // 上げ終わったセットの記録 (ロケール・端末 → 画像のハッシュ)。生成物と同じく git に入れない
 const DONE_FILE = path.join(ROOT, "screenshots/app-store/.uploaded.json");
@@ -133,18 +140,25 @@ const run = (job) => new Promise((resolve) => {
 const failures = [];
 let finished = 0;
 const queue = [...jobs];
-await Promise.all(Array.from({ length: dryRun ? 1 : CONCURRENCY }, async () => {
-  while (queue.length && !stopping) {
-    const r = await run(queue.shift());
-    finished++;
-    console.log(`[${finished}/${jobs.length}] ${r.locale} ${r.deviceType} (${r.count} 枚) ${r.code === 0 ? "OK" : "失敗"}`);
-    if (r.code !== 0) failures.push(`${r.locale} ${r.deviceType}: ${r.err.split("\n")[0]}`);
-    else if (!dryRun) {
-      done[`${r.locale} ${r.deviceType}`] = r.digest;
-      saveDone();
+try {
+  await Promise.all(Array.from({ length: dryRun ? 1 : CONCURRENCY }, async () => {
+    while (queue.length && !stopping) {
+      const r = await run(queue.shift());
+      finished++;
+      console.log(`[${finished}/${jobs.length}] ${r.locale} ${r.deviceType} (${r.count} 枚) ${r.code === 0 ? "OK" : "失敗"}`);
+      if (r.code !== 0) failures.push(`${r.locale} ${r.deviceType}: ${r.err.split("\n")[0]}`);
+      else if (!dryRun) {
+        done[`${r.locale} ${r.deviceType}`] = r.digest;
+        saveDone();
+      }
     }
-  }
-}));
+  }));
+} catch (e) {
+  // ワーカーの例外 (記録を書けない等) でも、子の asc を止めて終わるのを待ってから片付ける
+  console.error(e);
+  stop(1);
+  await new Promise(() => {}); // stop が子の終了を待って exit する
+}
 if (failures.length) {
   console.error(`\n失敗 ${failures.length} 件 (その言語だけ上げ直す: node upload.mjs <言語>):\n${failures.map((f) => `  ${f}`).join("\n")}`);
   process.exit(1);
