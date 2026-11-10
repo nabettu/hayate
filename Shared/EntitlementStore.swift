@@ -123,6 +123,8 @@ final class EntitlementStore {
         guard s != hint else { return }
         hint = s
         if let data = try? s.encoded() { UserDefaults.standard.set(data, forKey: Self.hintKey) }
+        // iPhone での購入が先に届いて送れるようになったら、止めていた再送待ちを送る
+        if access().canSend { Task { await MessageDispatcher.shared.flush() } }
     }
 
     // MARK: - 購入 (iPhone)
