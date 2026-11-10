@@ -25,7 +25,8 @@ final class PhoneSync: NSObject, WCSessionDelegate, @unchecked Sendable {
         do {
             // 認証ヘッダを含む本体は applicationContext に置かない (端末に保存され続けるため)。版だけ知らせ、時計が取りに来る
             var context: [String: Any] = [SyncKeys.revision: config.revision, SyncKeys.epoch: config.epoch.uuidString]
-            if let entitlement = try? EntitlementStore.shared.local.encoded() {
+            // StoreKit を読む前の状態 (空) を送ると、時計に残っている iPhone からの「購入済み」を消してしまう
+            if EntitlementStore.shared.hasLoaded, let entitlement = try? EntitlementStore.shared.local.encoded() {
                 context[SyncKeys.entitlement] = entitlement
             }
             try session.updateApplicationContext(context)

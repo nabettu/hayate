@@ -18,6 +18,8 @@ final class EntitlementStore {
 
     /// この端末の StoreKit から読んだ状態。
     private(set) var local = EntitlementSnapshot(trialStartedAt: nil)
+    /// StoreKit から一度でも読めたか。読む前の `local` は「購入なし」ではなく「まだ分からない」なので、時計へ送らない。
+    private(set) var hasLoaded = false
     /// iPhone から届いた状態 (時計だけ)。
     private(set) var hint: EntitlementSnapshot? = EntitlementStore.storedHint()
     private(set) var products: [String: Product] = [:]
@@ -51,7 +53,11 @@ final class EntitlementStore {
     func refresh() async {
         let token = refreshGate.begin()
         let latest = await Self.loadLocal()
-        guard refreshGate.isLatest(token), latest != local else { return }
+        guard refreshGate.isLatest(token) else { return }
+        let first = !hasLoaded
+        hasLoaded = true
+        // 初めて読めたときは、変わっていなくても時計へ知らせる (それまで送らずにいたため)
+        guard first || latest != local else { return }
         local = latest
         onChange?()
     }
