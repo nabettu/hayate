@@ -80,9 +80,11 @@ final class EntitlementStore {
                 isRevoked: t.revocationDate != nil
             ))
         }
-        // currentEntitlements には返金済みが出てこない。もう一方の端末が持っている古い「購入済み」を打ち消せるよう、
-        // 買い切りの最新の取引が取り消されているかも見る。取引は originalID (端末・復元をまたいで同じ) で突き合わせる
-        if case .verified(let t)? = await Transaction.latest(for: StoreProducts.unlockID), t.revocationDate != nil {
+        // currentEntitlements には返金・取り消し済みが出てこない。もう一方の端末が持っている古い「購入済み」「お試し」を打ち消せるよう、
+        // これまでの取引から取り消されたものをすべて拾う (最新の 1 件だけだと、返金 → 買い直し → 返金で最初の返金を取りこぼす)。
+        // 取引は originalID (端末・復元をまたいで同じ) で突き合わせる
+        for await result in Transaction.all {
+            guard case .verified(let t) = result, t.revocationDate != nil, StoreProducts.all.contains(t.productID) else { continue }
             records.append(PurchaseRecord(
                 transactionID: t.originalID, productID: t.productID, originalPurchaseDate: t.originalPurchaseDate, isRevoked: true
             ))
@@ -145,8 +147,10 @@ final class EntitlementStore {
     func restore() async {
         do {
             try await AppStore.sync()
+            // 画面用の refresh は別の refresh と重なると結果を捨てるので、結果の文はその場で読んだ状態で決める
+            let restored = await Self.loadLocal().merging(hint)
             await refresh()
-            message = snapshot.unlocked || snapshot.trialStartedAt != nil ? "購入を復元しました" : "復元できる購入はありませんでした"
+            message = restored.unlocked || restored.trialStartedAt != nil ? "購入を復元しました" : "復元できる購入はありませんでした"
         } catch StoreKitError.userCancelled {
             message = nil
         } catch {

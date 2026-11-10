@@ -30,20 +30,31 @@ public struct PurchaseRecord: Sendable, Equatable {
 
 /// 購入の状態。秘密ではないので、iPhone → 時計の applicationContext にそのまま載せる。
 ///
-/// 買い切りは「有効と見た取引 ID」と「返金済みと見た取引 ID」で持つ。iPhone と時計の StoreKit は反映の早さが違うので、
+/// 買い切りとお試しは「有効と見た取引 ID」と「返金・取り消し済みと見た取引 ID」で持つ。iPhone と時計の StoreKit は反映の早さが違うので、
 /// どちらか一方でも返金を確かめた取引は、もう一方が古い「有効」を持っていても数えない。
 /// 返金のあと別の取引で買い直した分は、ID が違うので消えない。
 public struct EntitlementSnapshot: Codable, Sendable, Equatable {
     public var unlockTransactionIDs: Set<UInt64>
     public var revokedTransactionIDs: Set<UInt64>
-    public var trialStartedAt: Date?
+    /// お試しの取引 ID → 開始日
+    public var trialStarts: [UInt64: Date]
 
     public var unlocked: Bool { !unlockTransactionIDs.subtracting(revokedTransactionIDs).isEmpty }
 
-    public init(unlockTransactionIDs: Set<UInt64> = [], revokedTransactionIDs: Set<UInt64> = [], trialStartedAt: Date?) {
+    /// 取り消されていないお試しのうち、最も早い開始日。
+    public var trialStartedAt: Date? {
+        trialStarts.filter { !revokedTransactionIDs.contains($0.key) }.values.min()
+    }
+
+    public init(unlockTransactionIDs: Set<UInt64> = [], revokedTransactionIDs: Set<UInt64> = [], trialStarts: [UInt64: Date] = [:]) {
         self.unlockTransactionIDs = unlockTransactionIDs
         self.revokedTransactionIDs = revokedTransactionIDs
-        self.trialStartedAt = trialStartedAt
+        self.trialStarts = trialStarts
+    }
+
+    /// テスト・デバッグ用: 取引 ID を気にしないで作る。
+    public init(unlockTransactionIDs: Set<UInt64> = [], trialStartedAt: Date?) {
+        self.init(unlockTransactionIDs: unlockTransactionIDs, trialStarts: trialStartedAt.map { [0: $0] } ?? [:])
     }
 
     public init(records: [PurchaseRecord]) {
@@ -53,29 +64,32 @@ public struct EntitlementSnapshot: Codable, Sendable, Equatable {
         let valid = known.filter { !$0.isRevoked && !revoked.contains($0.transactionID) }
         unlockTransactionIDs = Set(valid.filter { $0.productID == StoreProducts.unlockID }.map(\.transactionID))
         revokedTransactionIDs = revoked
-        trialStartedAt = valid.filter { $0.productID == StoreProducts.trialID }.map(\.originalPurchaseDate).min()
+        var starts: [UInt64: Date] = [:]
+        for r in valid where r.productID == StoreProducts.trialID {
+            starts[r.transactionID] = min(starts[r.transactionID] ?? r.originalPurchaseDate, r.originalPurchaseDate)
+        }
+        trialStarts = starts
     }
 
-    private enum CodingKeys: String, CodingKey { case unlockTransactionIDs, revokedTransactionIDs, trialStartedAt }
+    private enum CodingKeys: String, CodingKey { case unlockTransactionIDs, revokedTransactionIDs, trialStarts }
 
     /// 項目が欠けていても読む (iPhone と時計でアプリの版がずれても止まらないように)。
     public init(from decoder: any Decoder) throws {
         let c = try decoder.container(keyedBy: CodingKeys.self)
         unlockTransactionIDs = try c.decodeIfPresent(Set<UInt64>.self, forKey: .unlockTransactionIDs) ?? []
         revokedTransactionIDs = try c.decodeIfPresent(Set<UInt64>.self, forKey: .revokedTransactionIDs) ?? []
-        trialStartedAt = try c.decodeIfPresent(Date.self, forKey: .trialStartedAt)
+        trialStarts = try c.decodeIfPresent([UInt64: Date].self, forKey: .trialStarts) ?? [:]
     }
 
     /// 時計の StoreKit の状態に、iPhone から届いた状態を合わせる (時計の StoreKit に iPhone での購入が届くまでの間も使えるように)。
-    /// 有効な取引も返金済みの取引も両方を足し、返金済みの取引は有効から外す。お試しは早く始めた方。
+    /// 有効な取引も返金済みの取引も両方を足し、返金済みの取引は有効から外す。お試しは取り消されていないうち早く始めた方。
     /// 合わせる相手は「iPhone の最新の状態」だけで、過去に届いたものを積み上げない。
     public func merging(_ other: EntitlementSnapshot?) -> EntitlementSnapshot {
         guard let other else { return self }
-        let starts = [trialStartedAt, other.trialStartedAt].compactMap { $0 }
         return EntitlementSnapshot(
             unlockTransactionIDs: unlockTransactionIDs.union(other.unlockTransactionIDs),
             revokedTransactionIDs: revokedTransactionIDs.union(other.revokedTransactionIDs),
-            trialStartedAt: starts.min()
+            trialStarts: trialStarts.merging(other.trialStarts) { min($0, $1) }
         )
     }
 

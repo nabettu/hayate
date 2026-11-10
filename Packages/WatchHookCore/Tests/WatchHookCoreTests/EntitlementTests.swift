@@ -126,13 +126,24 @@ struct EntitlementTests {
         #expect(other.merging(s).unlocked)
     }
 
+    @Test func もう一方の端末で取り消されたお試しは数えない() {
+        let staleWatch = EntitlementSnapshot(records: [record(StoreProducts.trialID, id: 3, at: t0)])
+        let phone = EntitlementSnapshot(records: [record(StoreProducts.trialID, id: 3, at: t0, revoked: true)])
+        #expect(staleWatch.merging(phone).trialStartedAt == nil)
+        #expect(phone.merging(staleWatch).trialStartedAt == nil)
+    }
+
     @Test func 項目が欠けた形も読める() throws {
-        let old = Data(#"{"trialStartedAt":1800000000}"#.utf8)
-        #expect(try EntitlementSnapshot.decode(old) == EntitlementSnapshot(trialStartedAt: t0))
+        let old = Data(#"{}"#.utf8)
+        #expect(try EntitlementSnapshot.decode(old) == none)
     }
 
     @Test func 送るときの形とのやり取りで値が変わらない() throws {
-        let s = EntitlementSnapshot(unlockTransactionIDs: [1, 2], revokedTransactionIDs: [2], trialStartedAt: t0)
+        let s = EntitlementSnapshot(records: [
+            record(StoreProducts.unlockID, id: 1, at: t0),
+            record(StoreProducts.unlockID, id: 2, at: t0, revoked: true),
+            record(StoreProducts.trialID, id: 3, at: t0),
+        ])
         #expect(try EntitlementSnapshot.decode(s.encoded()) == s)
         #expect(throws: (any Error).self) { try EntitlementSnapshot.decode(Data("x".utf8)) }
     }

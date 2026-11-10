@@ -94,9 +94,9 @@ ID と日数の正は `Packages/WatchHookCore/Sources/WatchHookCore/Entitlement.
 - それに加えて、iPhone が読んだ状態を applicationContext (`SyncKeys.entitlement`) で送り、時計は `merging` で合わせる。iPhone で買った直後、時計の StoreKit に届くまでの間も使えるようにするため。
   秘密ではないので applicationContext と時計の UserDefaults に置いてよい (送り先の設定とは扱いが違う)
 - iPhone から届いたものは「最新の 1 件」で置き換え、積み上げない。iPhone で返金されれば次の知らせで戻る
-- 買い切りは取引 ID (`Transaction.originalID`。端末・復元をまたいで同じ) で「有効」「返金済み」を持ち、合わせるときは両方を足して、返金済みの取引を有効から外す。
+- 買い切りとお試しは取引 ID (`Transaction.originalID`。端末・復元をまたいで同じ) で「有効」「返金・取り消し済み」を持ち、合わせるときは両方を足して、取り消し済みの取引を有効から外す。
   iPhone と時計のどちらで先に返金を確かめても、もう一方の古い「購入済み」に負けない。返金のあと買い直した分は別の取引なので残る。
-  返金は `Transaction.latest(for:)` の `revocationDate` で見る (`currentEntitlements` には返金済みが出てこない)
+  取り消しは `Transaction.all` の `revocationDate` をすべて見る (`currentEntitlements` には出てこない。最新の 1 件だけだと、返金 → 買い直し → 返金で最初の返金を取りこぼす)
 - 時計で送る直前の判定は、画面用の状態ではなく、その場で StoreKit から読んだ結果 (`EntitlementStore.currentAccess()`) で行う
 - 状態の読み直し (`refresh`) は起動・前面化・購入・`Transaction.updates` で重なる。最後に始めた読み取りの結果だけを使う (`LatestRequestGate`)
 - applicationContext は丸ごと置き換わるので、`PhoneSync.push` は設定の版と購入の状態を毎回両方載せる
