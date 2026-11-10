@@ -1,0 +1,89 @@
+// App Store のスクショの文言。言語を足すときは LANGS に足して、同じ形のオブジェクトを COPY に書く。
+//
+// - h1 / closing は \n で改行し、*...* で囲んだ語を強調色にする。自動の折り返しに頼らない
+// - 文言はアプリが実際にすることだけを言う (README.md・docs/BILLING.md)。たとえば再送は「次に開いたとき」で、裏での自動再送はまだ無い (ROADMAP)
+// - 価格の語 (無料・free 等) は入れない (Guideline 2.3.7)。validate.mjs が止める
+// - 画面の中の例 (送り先の名前・話した内容) も言語ごとにここで持つ
+
+export const LANGS = ["ja"];
+
+/** App Store Connect のロケール。英語を足すときは en: ["en-US"] のように書く */
+export const ASC_LOCALES = { ja: ["ja"] };
+
+export const COPY = {
+  ja: {
+    iphone: {
+      hero: {
+        h1: "話すだけで\n*webhook* へ送る",
+        sub: "Apple Watch の音声入力を、そのまま",
+        chips: ["Slack", "Discord", "自前の API"],
+        closing: "思いついたら\n*手首から*すぐ送る",
+      },
+      siri: {
+        h1: "*Hey Siri* で\n手を使わずに",
+        sub: "「WatchHook で送って」と話しかけるだけ",
+        chips: ["Siri", "ダブルタップ", "文字盤から"],
+        closing: "両手がふさがっていても\n*声だけで*送れる",
+      },
+      destination: {
+        h1: "送り先は\n*自由に*決める",
+        sub: "URL・ヘッダ・本文のテンプレートまで",
+        chips: ["Webhook", "Slack", "Discord"],
+        floats: ["認証ヘッダは Keychain に", "{{text}} に話した内容"],
+        closing: "自前のサーバーにも\n*そのまま*届く",
+      },
+      direct: {
+        h1: "時計から\n*直接*届ける",
+        sub: "iPhone を中継せず、送り先へそのまま",
+        chips: ["Wi-Fi", "モバイル通信"],
+        floats: ["送れなかった分は残す", "次に開いたら送り直す"],
+        closing: "電波が悪くても\n*取りこぼさない*",
+      },
+      more: {
+        h1: "他にも\n*いろいろ。*",
+        sub: "自分の仕組みにつなぐために",
+        cells: [
+          "認証ヘッダは\nKeychain に保存",
+          "Slack・Discord は\nURL を貼るだけ",
+          "文字盤から\nすぐ起動",
+          "送った内容の\n履歴",
+          "テスト送信で\n届くか確かめる",
+          "再送しても同じ\nメッセージ ID",
+        ],
+        closing: "話した言葉を\n*あなたの仕組み*へ",
+      },
+    },
+    // 画面の中に出す例
+    screen: {
+      appName: "WatchHook",
+      speak: "話す",
+      sent: "送りました",
+      history: "履歴",
+      destinationsTitle: "送り先",
+      destinations: ["Slack #memo", "Discord #todo", "家計簿 API"],
+      spoken: ["牛乳と卵を買う", "明日 10 時に歯医者の予約", "駐車場は B2 の 14 番"],
+      statusSent: "送信済み",
+      statusPending: "未送信",
+      siriDialog: "Slack #memo に送りました。",
+      siriAsk: "WatchHook で送って",
+      edit: {
+        cancel: "キャンセル",
+        save: "保存",
+        name: "家計簿 API",
+        url: "https://api.example.com/hooks/expense",
+        urlFooter: "https の URL だけ使えます。",
+        request: "リクエスト",
+        method: "メソッド",
+        bodyFormat: "本文の形式",
+        bodyFormatValue: "JSON",
+        headers: "ヘッダ",
+        hideSecret: "秘密の値として伏せる",
+        headersFooter: "Authorization などの認証ヘッダを登録できます。値は iPhone と Apple Watch の Keychain にだけ保存されます。",
+        body: "本文",
+        bodyTemplate: '{\n  "text": "{{text}}",\n  "id": "{{id}}",\n  "sentAt": "{{sentAt}}"\n}',
+        test: "テスト送信",
+        testResult: "届きました (HTTP 200)",
+      },
+    },
+  },
+};

@@ -5,3 +5,5 @@ DerivedData/
 .swiftpm/
 xcuserdata/
 *.xcuserstate
+/screenshots/
+scripts/gen-screenshots/node_modules/
