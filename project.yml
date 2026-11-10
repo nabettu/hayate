@@ -29,9 +29,12 @@ targets:
     info:
       path: WatchHook/Info.plist
       properties:
-        CFBundleDisplayName: WatchHook
+        CFBundleDisplayName: Hayate
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        INAlternativeAppNames:
+          - INAlternativeAppName: はやて
+            INAlternativeAppNamePronunciationHint: はやて
         UILaunchScreen: {}
         ITSAppUsesNonExemptEncryption: false
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
@@ -52,9 +55,12 @@ targets:
     info:
       path: WatchHookWatch/Info.plist
       properties:
-        CFBundleDisplayName: WatchHook
+        CFBundleDisplayName: Hayate
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        INAlternativeAppNames:
+          - INAlternativeAppName: はやて
+            INAlternativeAppNamePronunciationHint: はやて
         WKApplication: true
         WKCompanionAppBundleIdentifier: com.nabettu.watchhook
         ITSAppUsesNonExemptEncryption: false
@@ -70,7 +76,7 @@ targets:
     info:
       path: WatchHookWidget/Info.plist
       properties:
-        CFBundleDisplayName: WatchHook
+        CFBundleDisplayName: Hayate
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)
         NSExtension:

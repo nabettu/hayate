@@ -48,7 +48,7 @@ struct WatchHomeView: View {
                             .font(.footnote)
                     }
                 }
-                .navigationTitle("WatchHook")
+                .navigationTitle("Hayate")
                 .onAppear(perform: fixSelection)
                 .onChange(of: store.config) { fixSelection() }
             } else {
@@ -56,7 +56,7 @@ struct WatchHomeView: View {
                     VStack(spacing: 8) {
                         saveErrorView
                         Image(systemName: "iphone").font(.title2)
-                        Text("iPhone の WatchHook で送り先を登録してください")
+                        Text("iPhone の Hayate で送り先を登録してください")
                             .multilineTextAlignment(.center)
                             .font(.footnote)
                         Button("再読み込み") { WatchSync.shared.requestConfig() }
@@ -65,7 +65,7 @@ struct WatchHomeView: View {
                             .font(.footnote)
                     }
                 }
-                .navigationTitle("WatchHook")
+                .navigationTitle("Hayate")
             }
         }
     }
