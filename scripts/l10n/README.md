@@ -40,5 +40,6 @@ json.dump(out, open(sys.argv[2], 'w'), ensure_ascii=False, indent=1)
 - スクショは 1 セットに数分かかる (asc がサーバー側の処理を待つ)。`upload.mjs` は 6 ロケールずつ並行で上げる。100 セット (50 ロケール × iPhone / Watch)
 - zsh で `node upload.mjs $LIST` と渡すと 1 つの引数になり、どの言語にも一致しない。両スクリプトとも知らない引数では止まる
 - 右から左の言語のスクショ: 縮小して入れる端末の中の画面は、置き場だけ左から右にしないと右に寄ってはみ出す (`render.mjs`)
-- 禁止語の誤検出: 英語の hands-free (free)・スペイン語の sale (出ていく) は言い換えた
+- 禁止語の誤検出: 英語の hands-free (free)・スペイン語の sale (出ていく) は言い換えた。
+  **`copy/<lang>.json`・`store/metadata/<lang>.json` を手で直したら、訳の元 (`out/<lang>.json`) も同じに直す**。`apply.py` で取り込み直すと訳の元で上書きされる (2026-11-10 に一度戻った。`npm test` の禁止語チェックで気づける)
 - サポート URL・プライバシーポリシーの URL はまだ無い (審査提出に要る)。決まったら `store/metadata/<lang>.json` に `supportUrl` を書けば `push-store.mjs` が送る
