@@ -91,6 +91,22 @@ struct EntitlementTests {
         #expect(AccessState.unlocked.daysRemaining(now: t0) == nil)
     }
 
+    /// 画面の時刻 (TimelineView の「分の始まり」) や Sandbox のサーバー時刻が開始より少し前だと、
+    /// 残りが 7 日をわずかに超えて切り上げで 8 日になっていた
+    @Test func 残り日数はお試しの日数を超えない() {
+        let end = t0.addingTimeInterval(7 * day)
+        let state = AccessState.trial(endsAt: end)
+        #expect(state.daysRemaining(now: t0.addingTimeInterval(-30)) == 7)
+        #expect(state.daysRemaining(now: t0.addingTimeInterval(-2 * day)) == 7)
+    }
+
+    @Test func 残り日数の上限は指定したお試しの期間に合わせる() {
+        let policy = EntitlementPolicy(trialDuration: 14 * day)
+        let state = policy.state(for: EntitlementSnapshot(trialStartedAt: t0), now: t0)
+        #expect(state.daysRemaining(now: t0, trialDuration: policy.trialDuration) == 14)
+        #expect(state.daysRemaining(now: t0.addingTimeInterval(-30), trialDuration: policy.trialDuration) == 14)
+    }
+
     // MARK: - iPhone から届いた状態との合わせ方
 
     @Test func 合わせると購入済みとお試し開始日の早い方が残る() {

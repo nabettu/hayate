@@ -121,17 +121,23 @@ public enum AccessState: Sendable, Equatable {
         }
     }
 
-    /// お試し中の残り日数 (切り上げ)。お試し中でなければ nil。
-    public func daysRemaining(now: Date) -> Int? {
+    /// お試し中の残り日数 (切り上げ、1〜お試しの日数)。お試し中でなければ nil。
+    /// 画面の時刻 (TimelineView は分の始まりを渡す) や購入日 (Sandbox はサーバー時刻) が少しずれて、
+    /// 開始より前の時刻で数えても日数を超えないよう頭打ちにする。`trialDuration` は `EntitlementPolicy` と揃える。
+    public func daysRemaining(now: Date, trialDuration: TimeInterval = EntitlementPolicy.defaultTrialDuration) -> Int? {
         guard case .trial(let end) = self else { return nil }
-        return max(1, Int((end.timeIntervalSince(now) / 86_400).rounded(.up)))
+        let days = Int((end.timeIntervalSince(now) / 86_400).rounded(.up))
+        let cap = max(1, Int((trialDuration / 86_400).rounded(.up)))
+        return min(cap, max(1, days))
     }
 }
 
 public struct EntitlementPolicy: Sendable {
     public var trialDuration: TimeInterval
 
-    public init(trialDuration: TimeInterval = TimeInterval(StoreProducts.trialDays) * 86_400) {
+    public static let defaultTrialDuration = TimeInterval(StoreProducts.trialDays) * 86_400
+
+    public init(trialDuration: TimeInterval = defaultTrialDuration) {
         self.trialDuration = trialDuration
     }
 
