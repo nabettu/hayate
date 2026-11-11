@@ -7,6 +7,10 @@ struct WatchHomeView: View {
     /// 時計の中だけで選ぶ送り先 (iPhone の「既定」とは別に持つ)。
     @AppStorage("selectedDestinationID") private var selectedID: String = ""
     @State private var lastResult: SendOutcome?
+    /// 結果を出すたびに進める。「送りました」を消すときに、その後に出た結果まで消さないため。
+    @State private var resultSerial = 0
+    /// 「送りました」を出しておく長さ。送れなかった・あとで送り直す、は読めるよう消さない。
+    private static let sentMessageDuration: Duration = .seconds(3)
     @State private var isSending = false
     @State private var flight: FlightPhase = .idle
     /// 送るボタンの位置 (送るときにここから紙飛行機が飛び立つ)。
@@ -173,6 +177,7 @@ struct WatchHomeView: View {
         if let blocked = access.blockedMessage {
             isSending = false
             lastResult = SendOutcome(status: .failed(reason: String(localized: "送っていません。\(blocked)")), destinationName: destination.displayName)
+            resultSerial += 1
             WKHaptic.play(.failure)
             return
         }
@@ -187,12 +192,22 @@ struct WatchHomeView: View {
         await playFlight(set: { flight = $0 }, current: { flight }, onResult: { status in
             isSending = false
             withAnimation(.spring(duration: 0.4)) { lastResult = SendOutcome(status: status, destinationName: destinationName) }
+            resultSerial += 1
+            if case .sent = status { hideSentMessage(serial: resultSerial) }
             switch status {
             case .sent: WKHaptic.play(.success)
             case .pending: WKHaptic.play(.retry)
             case .failed: WKHaptic.play(.failure)
             }
         }, work: work)
+    }
+
+    private func hideSentMessage(serial: Int) {
+        Task {
+            try? await Task.sleep(for: Self.sentMessageDuration)
+            guard resultSerial == serial, !isSending else { return }
+            withAnimation(.easeOut(duration: 0.4)) { lastResult = nil }
+        }
     }
 
     #if DEBUG
