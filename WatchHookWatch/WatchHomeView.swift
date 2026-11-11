@@ -28,7 +28,7 @@ struct WatchHomeView: View {
                                 accessView
                                 // 標準の入力画面 (音声入力・スクリブル・キーボード) を開く。ダブルタップでも押せる
                                 TextFieldLink(prompt: Text("話すか、文字を入力")) {
-                                    SendOrb(isBusy: isSending, planeLaunched: { if case .sending = flight { true } else { false } }())
+                                    SendOrb(isBusy: isSending, planeLaunched: flight.isFlying)
                                         .onGeometryChange(for: CGRect.self) { $0.frame(in: .global) } action: { orbFrame = $0 }
                                 } onSubmit: { text in
                                     Task { await send(text, to: destination) }

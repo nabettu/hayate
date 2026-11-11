@@ -103,6 +103,9 @@ enum FlightPhase: Equatable {
         case .sent: Self.cross
         }
     }
+
+    /// 舞台に紙飛行機を描いているか (飛び立つところ・成功して横切るところ)。
+    var isFlying: Bool { self != .idle && self != .waiting }
 }
 
 /// 送った結果と、実際に送った送り先の名前。
@@ -194,7 +197,7 @@ struct FlightStage: View {
     }
 
     var body: some View {
-        if phase == .idle || phase == .waiting {
+        if !phase.isFlying {
             Color.clear.allowsHitTesting(false)
         } else {
             GeometryReader { geo in
