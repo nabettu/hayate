@@ -121,10 +121,13 @@ public enum AccessState: Sendable, Equatable {
         }
     }
 
-    /// お試し中の残り日数 (切り上げ)。お試し中でなければ nil。
+    /// お試し中の残り日数 (切り上げ、1〜お試しの日数)。お試し中でなければ nil。
+    /// 画面の時刻 (TimelineView は分の始まりを渡す) や購入日 (Sandbox はサーバー時刻) が少しずれて、
+    /// 開始より前の時刻で数えても日数を超えないよう頭打ちにする。
     public func daysRemaining(now: Date) -> Int? {
         guard case .trial(let end) = self else { return nil }
-        return max(1, Int((end.timeIntervalSince(now) / 86_400).rounded(.up)))
+        let days = Int((end.timeIntervalSince(now) / 86_400).rounded(.up))
+        return min(StoreProducts.trialDays, max(1, days))
     }
 }
 
