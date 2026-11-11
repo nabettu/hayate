@@ -58,7 +58,7 @@
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "Beszéd",
+    "speak": "Küldés",
     "sent": "Elküldve ide: „Slack #memo”",
     "history": "Előzmények",
     "destinationsTitle": "Célok",

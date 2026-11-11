@@ -32,7 +32,7 @@ struct LauncherContent: View {
             RectangularLauncher(fullColor: fullColor)
         case .accessoryInline:
             // インラインは文字と SF Symbols しか出ない
-            Label("Hayate で話す", systemImage: "paperplane.fill")
+            Label("Hayate で送る", systemImage: "paperplane.fill")
         default:
             OrbitBadge(fullColor: fullColor)
         }
@@ -167,7 +167,7 @@ struct RectangularLauncher: View {
                         .fill(fullColor ? Cosmos.star : .white.opacity(0.8))
                         .frame(width: 9, height: 9)
                 }
-                Text("タップして話す")
+                Text("タップして送る")
                     .font(.caption)
                     .foregroundStyle(fullColor ? Cosmos.lavender : .white.opacity(0.75))
             }

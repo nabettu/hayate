@@ -3,7 +3,7 @@
   "subtitle": "把 Apple Watch 的话发到 webhook",
   "promotionalText": "对着 Apple Watch 说话，就能发送到 Slack、Discord 或你自己的 webhook。想到什么，直接从手腕发出去。",
   "keywords": "webhook,语音输入,语音,备忘,Slack,Discord,Siri,手表,API,自动化,快捷指令,语音备忘,发送,听写",
-  "description": "Hayate 会把你对 Apple Watch 说的话，原样发送到你登记的发送目标 (webhook)。\n\n■ 功能\n・在 Apple Watch 上按“说话”并开口就能发送（Series 9 / Ultra 2 及之后的机型也可用轻点两下）\n・说“嘿 Siri，用 Hayate 发送”，无需动手即可发送（也可用 iPhone 的 Siri）\n・发送目标可自由设置：URL、方法、请求头（如 Authorization）、正文模板\n・Slack 和 Discord 只需粘贴 URL\n・直接从手表发送到发送目标，不经过 iPhone\n・未能发送的内容会保留，下次打开时重新发送\n・发送内容的记录、测试发送、表盘复杂功能\n\n■ 适用场景\n・把想到的备忘发到 Slack 频道\n・把购物清单或待办发到自己的服务\n・用 n8n、Zapier 或自己的服务器接收并自动化\n\n■ 接收方的规格\n・正文中可以插入 {{text}}（说话内容）、{{id}}、{{sentAt}}、{{source}}\n・X-WatchHook-Message-Id 请求头在重新发送时值保持不变，可用于去重\n\n■ 数据处理\n・发送目标的设置（包括认证请求头）只保存在 iPhone 和 Apple Watch 的 Keychain 中\n・说话内容只会发送到你登记的发送目标，不会经过开发者的服务器\n\n■ 价格\n可免费试用 7 天。之后通过 App 内的一次性购买继续使用。没有订阅。",
+  "description": "Hayate 会把你对 Apple Watch 说的话，原样发送到你登记的发送目标 (webhook)。\n\n■ 功能\n・在 Apple Watch 上按“发送”并开口就能发送（Series 9 / Ultra 2 及之后的机型也可用轻点两下）\n・说“嘿 Siri，用 Hayate 发送”，无需动手即可发送（也可用 iPhone 的 Siri）\n・发送目标可自由设置：URL、方法、请求头（如 Authorization）、正文模板\n・Slack 和 Discord 只需粘贴 URL\n・直接从手表发送到发送目标，不经过 iPhone\n・未能发送的内容会保留，下次打开时重新发送\n・发送内容的记录、测试发送、表盘复杂功能\n\n■ 适用场景\n・把想到的备忘发到 Slack 频道\n・把购物清单或待办发到自己的服务\n・用 n8n、Zapier 或自己的服务器接收并自动化\n\n■ 接收方的规格\n・正文中可以插入 {{text}}（说话内容）、{{id}}、{{sentAt}}、{{source}}\n・X-WatchHook-Message-Id 请求头在重新发送时值保持不变，可用于去重\n\n■ 数据处理\n・发送目标的设置（包括认证请求头）只保存在 iPhone 和 Apple Watch 的 Keychain 中\n・说话内容只会发送到你登记的发送目标，不会经过开发者的服务器\n\n■ 价格\n可免费试用 7 天。之后通过 App 内的一次性购买继续使用。没有订阅。",
   "iap": {
     "trial": {
       "name": "7 天免费试用",

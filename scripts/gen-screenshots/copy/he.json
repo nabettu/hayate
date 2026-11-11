@@ -58,7 +58,7 @@
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "דברו",
+    "speak": "שליחה",
     "sent": "נשלח אל “Slack #memo”",
     "history": "היסטוריה",
     "destinationsTitle": "יעדים",

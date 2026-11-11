@@ -58,7 +58,7 @@
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "說話",
+    "speak": "傳送",
     "sent": "已傳送到「Slack #memo」",
     "history": "記錄",
     "destinationsTitle": "傳送目的地",

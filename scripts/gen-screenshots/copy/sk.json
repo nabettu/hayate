@@ -58,7 +58,7 @@
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "Hovoriť",
+    "speak": "Odoslať",
     "sent": "Odoslané príjemcovi „Slack #memo“",
     "history": "História",
     "destinationsTitle": "Príjemcovia",

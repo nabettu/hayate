@@ -16,7 +16,7 @@ Apple Watch で話した内容を、登録した webhook (自社の受け口・S
 | `Packages/WatchHookCore` | 送り先のモデル・本文テンプレート・リクエストの組み立てと検証・送信結果の分類・履歴 / 再送待ち。プラットフォームに依存しない (macOS で `swift test`) |
 | `Shared/` | iPhone と時計の両方に入るもの: Keychain・設定ストア・送信 (`MessageDispatcher`)・App Intent / Siri のフレーズ・見た目の部品 (`Cosmos.swift`: 配色・星空・紙飛行機と飛ぶ演出) |
 | `WatchHook/` | iPhone アプリ (テキストを入力して送る `ComposeView.swift`・送り先の編集・テスト送信・履歴・時計への同期・使い方のマニュアル `HelpView.swift`) |
-| `WatchHookWatch/` | watchOS アプリ (話すボタン・送り先の選択・履歴・iPhone からの設定の受け取り) |
+| `WatchHookWatch/` | watchOS アプリ (送るボタン = 音声入力・手書き・キーボード・送り先の選択・履歴・iPhone からの設定の受け取り) |
 | `WatchHookWidget/` | watchOS のウィジェット (文字盤のコンプリケーション・スマートスタック)。タップで WatchHook を開くだけの固定表示。見た目は `LauncherViews.swift` (Watch アプリの DEBUG ビルドの見本 `-widgetGallery 1\|2\|3` でも使う) |
 | `StoreKit/WatchHook.storekit` | Xcode から実行したときの課金商品 (7 日間お試し・買い切り)。`docs/BILLING.md` |
 | `project.yml` | XcodeGen の定義。`WatchHook.xcodeproj` はここから作る (コミットしてある) |

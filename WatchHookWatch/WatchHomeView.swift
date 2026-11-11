@@ -9,7 +9,7 @@ struct WatchHomeView: View {
     @State private var lastResult: SendOutcome?
     @State private var isSending = false
     @State private var flight: FlightPhase = .idle
-    /// 話すボタンの位置 (送るときにここから紙飛行機が飛び立つ)。
+    /// 送るボタンの位置 (送るときにここから紙飛行機が飛び立つ)。
     @State private var orbFrame: CGRect = .zero
     @State private var entitlements = EntitlementStore.shared
     /// お試しの期限を画面を開いたまま過ぎても表示を変えるため、1 分ごとに進める。
@@ -26,9 +26,9 @@ struct WatchHomeView: View {
                             VStack(spacing: 8) {
                                 saveErrorView
                                 accessView
-                                // 標準の入力画面 (音声入力・スクリブル) を開く。ダブルタップでも押せる
-                                TextFieldLink(prompt: Text("話してください")) {
-                                    MicOrb(isBusy: isSending)
+                                // 標準の入力画面 (音声入力・スクリブル・キーボード) を開く。ダブルタップでも押せる
+                                TextFieldLink(prompt: Text("話すか、文字を入力")) {
+                                    SendOrb(isBusy: isSending, planeLaunched: { if case .sending = flight { true } else { false } }())
                                         .onGeometryChange(for: CGRect.self) { $0.frame(in: .global) } action: { orbFrame = $0 }
                                 } onSubmit: { text in
                                     Task { await send(text, to: destination) }
@@ -36,7 +36,7 @@ struct WatchHomeView: View {
                                 .buttonStyle(.plain)
                                 .handGestureShortcut(.primaryAction)
                                 .disabled(isSending || !entitlements.access(now: now).canSend)
-                                .accessibilityLabel("話す")
+                                .accessibilityLabel("送る")
 
                                 statusView
                                     .frame(minHeight: 22)
@@ -203,9 +203,11 @@ struct WatchHomeView: View {
     #endif
 }
 
-/// 話すボタン。紫に光る丸と、ゆっくり広がる輪。
-private struct MicOrb: View {
+/// 送るボタン (話す・文字を入力する)。紫に光る丸と、ゆっくり広がる輪。
+private struct SendOrb: View {
     var isBusy: Bool
+    /// 紙飛行機が飛び立っているあいだはボタンの中の紙飛行機を隠す (飛んでいるのと 2 機に見えないように)。
+    var planeLaunched = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
@@ -223,8 +225,10 @@ private struct MicOrb: View {
                     .overlay(Circle().strokeBorder(.white.opacity(0.35), lineWidth: 1))
                     .shadow(color: Cosmos.violet.opacity(0.9), radius: 10)
                 VStack(spacing: 2) {
-                    Image(systemName: "mic.fill").font(.title2.bold())
-                    Text("話す").font(.caption2.bold())
+                    Image(systemName: "paperplane.fill").font(.title2.bold())
+                        .opacity(planeLaunched ? 0 : 1)
+                        .animation(.easeOut(duration: 0.15), value: planeLaunched)
+                    Text("送る").font(.caption2.bold())
                 }
                 .foregroundStyle(.white)
             }
