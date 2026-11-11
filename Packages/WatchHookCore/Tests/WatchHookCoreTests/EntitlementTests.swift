@@ -100,6 +100,13 @@ struct EntitlementTests {
         #expect(state.daysRemaining(now: t0.addingTimeInterval(-2 * day)) == 7)
     }
 
+    @Test func 残り日数の上限は指定したお試しの期間に合わせる() {
+        let policy = EntitlementPolicy(trialDuration: 14 * day)
+        let state = policy.state(for: EntitlementSnapshot(trialStartedAt: t0), now: t0)
+        #expect(state.daysRemaining(now: t0, trialDuration: policy.trialDuration) == 14)
+        #expect(state.daysRemaining(now: t0.addingTimeInterval(-30), trialDuration: policy.trialDuration) == 14)
+    }
+
     // MARK: - iPhone から届いた状態との合わせ方
 
     @Test func 合わせると購入済みとお試し開始日の早い方が残る() {
