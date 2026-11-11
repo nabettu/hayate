@@ -58,7 +58,7 @@
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "Bicara",
+    "speak": "Kirim",
     "sent": "Terkirim ke “Slack #memo”",
     "history": "Riwayat",
     "destinationsTitle": "Tujuan",

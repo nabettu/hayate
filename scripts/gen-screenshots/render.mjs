@@ -53,6 +53,7 @@ const icon = (name, size, color, width = 2) =>
 
 // SF Symbols に似せた塗りのアイコン (画面の中で使う)
 const SYM = {
+  paperplane: (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24"><path d="M22 2 2.2 10.3l7.6 3.9L13.7 22z" fill="${c}"/><path d="m9.8 14.2 5.4-5.4" stroke="rgba(76,29,149,.55)" stroke-width="1.4" stroke-linecap="round"/></svg>`,
   mic: (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24"><rect x="8" y="1.5" width="8" height="13.5" rx="4" fill="${c}"/><path d="M4.8 11.2a7.2 7.2 0 0 0 14.4 0M12 18.4v3.4" stroke="${c}" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>`,
   checkFill: (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="${c}"/><path d="m7 12.4 3.3 3.3L17.2 8.8" stroke="#000" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
   chevronLeft: (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24"><path d="M15 4 7 12l8 8" stroke="${c}" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
@@ -141,10 +142,10 @@ const paperplaneLine = (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 2
 const clockLine = (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5h-3"/></svg>`;
 
 export const watchScreens = {
-  /** 話して送った直後のホーム (WatchHomeView: 光る話すボタン・「〜」に送りました・送り先・履歴) */
+  /** 話して送った直後のホーム (WatchHomeView: 光る送るボタン・「〜」に送りました・送り先・履歴) */
   home: (t) => `<div class="ws">${appSky(416, 496, 26, 5)}${watchBar("")}
     <div class="orbwrap"><div class="ring" style="transform:scale(1.25);opacity:.75"></div><div class="ring" style="transform:scale(1.45);opacity:.3"></div>
-      <div class="orb">${SYM.mic(62, "#fff")}<span class="orbtext">${esc(t.speak)}</span></div></div>
+      <div class="orb">${SYM.paperplane(58, "#fff")}<span class="orbtext">${esc(t.speak)}</span></div></div>
     <div class="status">${SYM.checkFill(28, "#FDE68A")}${esc(t.sent)}</div>
     <div class="dest">${paperplaneLine(34, "#C4B5FD")}${esc(t.destinations[0])}</div>
     <div class="pill">${clockLine(34, "#E4DCFF")}${esc(t.history)}</div></div>`,

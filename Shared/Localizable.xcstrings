@@ -7511,270 +7511,270 @@
         }
       }
     },
-    "Hayate で話す" : {
+    "Hayate で送る" : {
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "تحدّث عبر Hayate"
+            "value" : "إرسال عبر Hayate"
           }
         },
         "bn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hayate-এ বলুন"
+            "value" : "Hayate দিয়ে পাঠান"
           }
         },
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Parla amb Hayate"
+            "value" : "Envia amb Hayate"
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mluvit v Hayate"
+            "value" : "Odeslat přes Hayate"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tal med Hayate"
+            "value" : "Send med Hayate"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mit Hayate sprechen"
+            "value" : "Mit Hayate senden"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Μιλήστε με το Hayate"
+            "value" : "Αποστολή με το Hayate"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Speak with Hayate"
+            "value" : "Send with Hayate"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hablar con Hayate"
+            "value" : "Enviar con Hayate"
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Puhu Hayatelle"
+            "value" : "Lähetä Hayatella"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Parler avec Hayate"
+            "value" : "Envoyer avec Hayate"
           }
         },
         "gu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hayate માં બોલો"
+            "value" : "Hayate થી મોકલો"
           }
         },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "דברו עם Hayate"
+            "value" : "שליחה עם Hayate"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hayate से बोलें"
+            "value" : "Hayate से भेजें"
           }
         },
         "hr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Govori s Hayate"
+            "value" : "Pošalji s Hayate"
           }
         },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Beszéd a Hayate appal"
+            "value" : "Küldés a Hayate appal"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bicara dengan Hayate"
+            "value" : "Kirim dengan Hayate"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Parla con Hayate"
+            "value" : "Invia con Hayate"
           }
         },
         "kn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hayate ನಲ್ಲಿ ಮಾತನಾಡಿ"
+            "value" : "Hayate ಮೂಲಕ ಕಳುಹಿಸಿ"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hayate로 말하기"
+            "value" : "Hayate로 보내기"
           }
         },
         "ml" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hayate ൽ സംസാരിക്കുക"
+            "value" : "Hayate വഴി അയയ്ക്കുക"
           }
         },
         "mr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hayate मध्ये बोला"
+            "value" : "Hayate ने पाठवा"
           }
         },
         "ms" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cakap dengan Hayate"
+            "value" : "Hantar dengan Hayate"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Snakk med Hayate"
+            "value" : "Send med Hayate"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Praten met Hayate"
+            "value" : "Versturen met Hayate"
           }
         },
         "or" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hayate ରେ କୁହନ୍ତୁ"
+            "value" : "Hayate ରେ ପଠାନ୍ତୁ"
           }
         },
         "pa" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hayate ਨਾਲ ਬੋਲੋ"
+            "value" : "Hayate ਨਾਲ ਭੇਜੋ"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mów w Hayate"
+            "value" : "Wyślij przez Hayate"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Falar com o Hayate"
+            "value" : "Enviar com o Hayate"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Falar com o Hayate"
+            "value" : "Enviar com o Hayate"
           }
         },
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vorbește cu Hayate"
+            "value" : "Trimite cu Hayate"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Говорить в Hayate"
+            "value" : "Отправить через Hayate"
           }
         },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hovoriť v Hayate"
+            "value" : "Odoslať cez Hayate"
           }
         },
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Govori s Hayate"
+            "value" : "Pošlji s Hayate"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tala med Hayate"
+            "value" : "Skicka med Hayate"
           }
         },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hayate இல் பேசு"
+            "value" : "Hayate மூலம் அனுப்பு"
           }
         },
         "te" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hayate లో మాట్లాడు"
+            "value" : "Hayate తో పంపు"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "พูดกับ Hayate"
+            "value" : "ส่งด้วย Hayate"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hayate ile konuş"
+            "value" : "Hayate ile gönder"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Говорити в Hayate"
+            "value" : "Надіслати через Hayate"
           }
         },
         "ur" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hayate سے بولیں"
+            "value" : "Hayate سے بھیجیں"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nói với Hayate"
+            "value" : "Gửi bằng Hayate"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "用 Hayate 说话"
+            "value" : "用 Hayate 发送"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "用 Hayate 說話"
+            "value" : "用 Hayate 傳送"
           }
         }
       }
@@ -9119,270 +9119,270 @@
         }
       }
     },
-    "Series 9 / Ultra 2 以降は、親指と人差し指をダブルタップしても「話す」を押せます。" : {
+    "Series 9 / Ultra 2 以降は、親指と人差し指をダブルタップしても「送る」を押せます。" : {
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "في Series 9 / Ultra 2 وما بعدها، يمكنك أيضًا الضغط على «تحدّث» بالنقر مرتين بالإبهام والسبابة."
+            "value" : "في Series 9 / Ultra 2 وما بعدها، يمكنك أيضًا الضغط على «إرسال» بالنقر مرتين بالإبهام والسبابة."
           }
         },
         "bn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Series 9 / Ultra 2 বা তার পরের মডেলে বুড়ো আঙুল ও তর্জনী দুবার ট্যাপ (ডাবল ট্যাপ) করেও “বলুন” চাপা যায়।"
+            "value" : "Series 9 / Ultra 2 বা তার পরের মডেলে বুড়ো আঙুল ও তর্জনী দুবার ট্যাপ (ডাবল ট্যাপ) করেও “পাঠান” চাপা যায়।"
           }
         },
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "A partir de l’Series 9 / Ultra 2, també pots tocar dues vegades amb el polze i l’índex (Doble toc) per prémer «Parla»."
+            "value" : "A partir de l’Series 9 / Ultra 2, també pots tocar dues vegades amb el polze i l’índex (Doble toc) per prémer «Envia»."
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Na Series 9 / Ultra 2 a novějších lze „Mluvit“ stisknout také dvojitým klepnutím palcem a ukazováčkem."
+            "value" : "Na Series 9 / Ultra 2 a novějších lze „Odeslat“ stisknout také dvojitým klepnutím palcem a ukazováčkem."
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "På Series 9 / Ultra 2 eller nyere kan du også trykke på »Tal« med Dobbelttryk (tommel- og pegefinger)."
+            "value" : "På Series 9 / Ultra 2 eller nyere kan du også trykke på »Send« med Dobbelttryk (tommel- og pegefinger)."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ab Series 9 / Ultra 2 kannst du auch mit Daumen und Zeigefinger doppeltippen, um „Sprechen“ zu drücken."
+            "value" : "Ab Series 9 / Ultra 2 kannst du auch mit Daumen und Zeigefinger doppeltippen, um „Senden“ zu drücken."
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Στα Series 9 / Ultra 2 και νεότερα, μπορείτε να πατήσετε «Μίλα» και με διπλό άγγιγμα αντίχειρα και δείκτη."
+            "value" : "Στα Series 9 / Ultra 2 και νεότερα, μπορείτε να πατήσετε «Αποστολή» και με διπλό άγγιγμα αντίχειρα και δείκτη."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "On Series 9 / Ultra 2 or later, you can also double tap your thumb and index finger to press “Speak”."
+            "value" : "On Series 9 / Ultra 2 or later, you can also double tap your thumb and index finger to press “Send”."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Desde el Series 9 / Ultra 2 también puedes hacer doble toque con el pulgar y el índice para pulsar “Hablar”."
+            "value" : "Desde el Series 9 / Ultra 2 también puedes hacer doble toque con el pulgar y el índice para pulsar “Enviar”."
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Series 9 / Ultra 2 -mallista alkaen voit painaa ”Puhu” myös kaksoisnapautuksella (peukalo ja etusormi)."
+            "value" : "Series 9 / Ultra 2 -mallista alkaen voit painaa ”Lähetä” myös kaksoisnapautuksella (peukalo ja etusormi)."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "À partir de la Series 9 / Ultra 2, vous pouvez aussi faire un double appui du pouce et de l’index pour appuyer sur « Parler »."
+            "value" : "À partir de la Series 9 / Ultra 2, vous pouvez aussi faire un double appui du pouce et de l’index pour appuyer sur « Envoyer »."
           }
         },
         "gu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Series 9 / Ultra 2 અને પછીનામાં અંગૂઠો અને તર્જની બે વાર ટેપ (ડબલ ટેપ) કરીને પણ “બોલો” દબાવી શકાય છે."
+            "value" : "Series 9 / Ultra 2 અને પછીનામાં અંગૂઠો અને તર્જની બે વાર ટેપ (ડબલ ટેપ) કરીને પણ “મોકલો” દબાવી શકાય છે."
           }
         },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ב-Series 9 / Ultra 2 ואילך אפשר ללחוץ על “דברו” גם בהקשה כפולה של האגודל והאצבע."
+            "value" : "ב-Series 9 / Ultra 2 ואילך אפשר ללחוץ על “שליחה” גם בהקשה כפולה של האגודל והאצבע."
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Series 9 / Ultra 2 और बाद के मॉडल में अँगूठे और तर्जनी से डबल टैप करके भी “बोलें” दबाया जा सकता है।"
+            "value" : "Series 9 / Ultra 2 और बाद के मॉडल में अँगूठे और तर्जनी से डबल टैप करके भी “भेजें” दबाया जा सकता है।"
           }
         },
         "hr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Na modelima Series 9 / Ultra 2 i novijima „Govori” možete pokrenuti i dvostrukim dodirom palca i kažiprsta."
+            "value" : "Na modelima Series 9 / Ultra 2 i novijima „Pošalji” možete pokrenuti i dvostrukim dodirom palca i kažiprsta."
           }
         },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Series 9 / Ultra 2 és újabb modelleken a hüvelyk- és mutatóujj dupla koppintásával is megnyomhatja a „Beszéd” gombot."
+            "value" : "Series 9 / Ultra 2 és újabb modelleken a hüvelyk- és mutatóujj dupla koppintásával is megnyomhatja a „Küldés” gombot."
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pada Series 9 / Ultra 2 dan yang lebih baru, Anda juga dapat menekan \"Bicara\" dengan mengetuk dua kali ibu jari dan telunjuk."
+            "value" : "Pada Series 9 / Ultra 2 dan yang lebih baru, Anda juga dapat menekan \"Kirim\" dengan mengetuk dua kali ibu jari dan telunjuk."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Da Series 9 / Ultra 2 in poi puoi anche toccare due volte pollice e indice (doppio tocco) per premere “Parla”."
+            "value" : "Da Series 9 / Ultra 2 in poi puoi anche toccare due volte pollice e indice (doppio tocco) per premere “Invia”."
           }
         },
         "kn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Series 9 / Ultra 2 ಮತ್ತು ನಂತರದ ಮಾದರಿಗಳಲ್ಲಿ ಹೆಬ್ಬೆರಳು ಮತ್ತು ತೋರುಬೆರಳನ್ನು ಎರಡು ಬಾರಿ ಟ್ಯಾಪ್ ಮಾಡಿ (ಡಬಲ್ ಟ್ಯಾಪ್) ಸಹ “ಮಾತನಾಡಿ” ಒತ್ತಬಹುದು."
+            "value" : "Series 9 / Ultra 2 ಮತ್ತು ನಂತರದ ಮಾದರಿಗಳಲ್ಲಿ ಹೆಬ್ಬೆರಳು ಮತ್ತು ತೋರುಬೆರಳನ್ನು ಎರಡು ಬಾರಿ ಟ್ಯಾಪ್ ಮಾಡಿ (ಡಬಲ್ ಟ್ಯಾಪ್) ಸಹ “ಕಳುಹಿಸಿ” ಒತ್ತಬಹುದು."
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Series 9 / Ultra 2 이후 모델은 엄지와 검지를 두 번 탭해서 \"말하기\"를 누를 수도 있습니다."
+            "value" : "Series 9 / Ultra 2 이후 모델은 엄지와 검지를 두 번 탭해서 \"보내기\"를 누를 수도 있습니다."
           }
         },
         "ml" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Series 9 / Ultra 2 മുതലുള്ള മോഡലുകളിൽ തള്ളവിരലും ചൂണ്ടുവിരലും രണ്ടുതവണ ടാപ്പ് (ഡബിൾ ടാപ്പ്) ചെയ്തും “സംസാരിക്കുക” അമർത്താം."
+            "value" : "Series 9 / Ultra 2 മുതലുള്ള മോഡലുകളിൽ തള്ളവിരലും ചൂണ്ടുവിരലും രണ്ടുതവണ ടാപ്പ് (ഡബിൾ ടാപ്പ്) ചെയ്തും “അയയ്ക്കുക” അമർത്താം."
           }
         },
         "mr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Series 9 / Ultra 2 आणि नंतरच्या मॉडेलवर अंगठा आणि तर्जनी दोनदा टॅप करूनही (डबल टॅप) “बोला” दाबता येते."
+            "value" : "Series 9 / Ultra 2 आणि नंतरच्या मॉडेलवर अंगठा आणि तर्जनी दोनदा टॅप करूनही (डबल टॅप) “पाठवा” दाबता येते."
           }
         },
         "ms" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pada Series 9 / Ultra 2 dan ke atas, anda juga boleh menekan “Cakap” dengan Ketik Dua Kali (ibu jari dan jari telunjuk)."
+            "value" : "Pada Series 9 / Ultra 2 dan ke atas, anda juga boleh menekan “Hantar” dengan Ketik Dua Kali (ibu jari dan jari telunjuk)."
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "På Series 9 / Ultra 2 eller nyere kan du også trykke på «Snakk» med Dobbelttrykk (tommel og pekefinger)."
+            "value" : "På Series 9 / Ultra 2 eller nyere kan du også trykke på «Send» med Dobbelttrykk (tommel og pekefinger)."
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vanaf de Series 9 / Ultra 2 kun je ook twee keer met duim en wijsvinger tikken (Dubbeltik) om op “Praat” te drukken."
+            "value" : "Vanaf de Series 9 / Ultra 2 kun je ook twee keer met duim en wijsvinger tikken (Dubbeltik) om op “Verstuur” te drukken."
           }
         },
         "or" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Series 9 / Ultra 2 ଓ ପରବର୍ତ୍ତୀ ମଡେଲରେ ବୁଢ଼ା ଆଙ୍ଗୁଠି ଓ ତର୍ଜନୀକୁ ଦୁଇଥର ଛୁଇଁ (ଡବଲ୍ ଟାପ୍) “କୁହନ୍ତୁ” ଦବାଇପାରିବେ।"
+            "value" : "Series 9 / Ultra 2 ଓ ପରବର୍ତ୍ତୀ ମଡେଲରେ ବୁଢ଼ା ଆଙ୍ଗୁଠି ଓ ତର୍ଜନୀକୁ ଦୁଇଥର ଛୁଇଁ (ଡବଲ୍ ଟାପ୍) “ପଠାନ୍ତୁ” ଦବାଇପାରିବେ।"
           }
         },
         "pa" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Series 9 / Ultra 2 ਅਤੇ ਇਸ ਤੋਂ ਬਾਅਦ ਦੇ ਮਾਡਲਾਂ ’ਤੇ ਅੰਗੂਠੇ ਅਤੇ ਉਂਗਲ ਨੂੰ ਦੋ ਵਾਰ ਜੋੜ ਕੇ (ਡਬਲ ਟੈਪ) “ਬੋਲੋ” ਦਬਾ ਸਕਦੇ ਹੋ।"
+            "value" : "Series 9 / Ultra 2 ਅਤੇ ਇਸ ਤੋਂ ਬਾਅਦ ਦੇ ਮਾਡਲਾਂ ’ਤੇ ਅੰਗੂਠੇ ਅਤੇ ਉਂਗਲ ਨੂੰ ਦੋ ਵਾਰ ਜੋੜ ਕੇ (ਡਬਲ ਟੈਪ) “ਭੇਜੋ” ਦਬਾ ਸਕਦੇ ਹੋ।"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Na Series 9 / Ultra 2 i nowszych „Mów” można też nacisnąć, stukając dwukrotnie kciukiem i palcem wskazującym."
+            "value" : "Na Series 9 / Ultra 2 i nowszych „Wyślij” można też nacisnąć, stukając dwukrotnie kciukiem i palcem wskazującym."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No Series 9 / Ultra 2 ou posterior, você também pode tocar duas vezes com o polegar e o indicador (Toque duplo) para pressionar “Falar”."
+            "value" : "No Series 9 / Ultra 2 ou posterior, você também pode tocar duas vezes com o polegar e o indicador (Toque duplo) para pressionar “Enviar”."
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No Series 9 / Ultra 2 ou posterior, também pode tocar duas vezes com o polegar e o indicador (Toque duplo) para premir “Falar”."
+            "value" : "No Series 9 / Ultra 2 ou posterior, também pode tocar duas vezes com o polegar e o indicador (Toque duplo) para premir “Enviar”."
           }
         },
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Începând cu Series 9 / Ultra 2, poți și să atingi de două ori cu degetul mare și arătătorul (Dublă atingere) pentru a apăsa „Vorbește”."
+            "value" : "Începând cu Series 9 / Ultra 2, poți și să atingi de două ori cu degetul mare și arătătorul (Dublă atingere) pentru a apăsa „Trimite”."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "На Series 9 / Ultra 2 и новее кнопку «Говорить» можно нажать двойным касанием большого и указательного пальцев."
+            "value" : "На Series 9 / Ultra 2 и новее кнопку «Отправить» можно нажать двойным касанием большого и указательного пальцев."
           }
         },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Na Series 9 / Ultra 2 a novších možno „Hovoriť“ stlačiť aj dvojitým ťuknutím palcom a ukazovákom."
+            "value" : "Na Series 9 / Ultra 2 a novších možno „Odoslať“ stlačiť aj dvojitým ťuknutím palcom a ukazovákom."
           }
         },
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pri modelih Series 9 / Ultra 2 in novejših lahko »Govori« sprožite tudi z dvojnim dotikom s palcem in kazalcem."
+            "value" : "Pri modelih Series 9 / Ultra 2 in novejših lahko »Pošlji« sprožite tudi z dvojnim dotikom s palcem in kazalcem."
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "På Series 9 / Ultra 2 eller senare kan du också trycka på ”Tala” med Dubbeltryck (tumme och pekfinger)."
+            "value" : "På Series 9 / Ultra 2 eller senare kan du också trycka på ”Skicka” med Dubbeltryck (tumme och pekfinger)."
           }
         },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Series 9 / Ultra 2 மற்றும் அதற்குப் பிந்தையவற்றில், கட்டைவிரலையும் ஆள்காட்டி விரலையும் இரட்டைத் தட்டாகத் தட்டியும் “பேசு” ஐ அழுத்தலாம்."
+            "value" : "Series 9 / Ultra 2 மற்றும் அதற்குப் பிந்தையவற்றில், கட்டைவிரலையும் ஆள்காட்டி விரலையும் இரட்டைத் தட்டாகத் தட்டியும் “அனுப்பு” ஐ அழுத்தலாம்."
           }
         },
         "te" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Series 9 / Ultra 2 మరియు తర్వాతి మోడల్స్‌లో బొటనవేలు, చూపుడువేలుతో డబుల్ ట్యాప్ చేసి కూడా “మాట్లాడు” నొక్కవచ్చు."
+            "value" : "Series 9 / Ultra 2 మరియు తర్వాతి మోడల్స్‌లో బొటనవేలు, చూపుడువేలుతో డబుల్ ట్యాప్ చేసి కూడా “పంపు” నొక్కవచ్చు."
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "บน Series 9 / Ultra 2 ขึ้นไป คุณยังกด \"พูด\" ได้โดยแตะนิ้วโป้งกับนิ้วชี้สองครั้ง"
+            "value" : "บน Series 9 / Ultra 2 ขึ้นไป คุณยังกด \"ส่ง\" ได้โดยแตะนิ้วโป้งกับนิ้วชี้สองครั้ง"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Series 9 / Ultra 2 ve sonrasında başparmak ile işaret parmağınızla Çift Dokunma yaparak da “Konuş”a basabilirsiniz."
+            "value" : "Series 9 / Ultra 2 ve sonrasında başparmak ile işaret parmağınızla Çift Dokunma yaparak da “Gönder”e basabilirsiniz."
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "На Series 9 / Ultra 2 і новіших кнопку «Говорити» можна натиснути подвійним торканням великого й вказівного пальців."
+            "value" : "На Series 9 / Ultra 2 і новіших кнопку «Надіслати» можна натиснути подвійним торканням великого й вказівного пальців."
           }
         },
         "ur" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Series 9 / Ultra 2 اور بعد کے ماڈلز میں انگوٹھے اور شہادت کی انگلی سے ڈبل ٹیپ کر کے بھی “بولیں” دبایا جا سکتا ہے۔"
+            "value" : "Series 9 / Ultra 2 اور بعد کے ماڈلز میں انگوٹھے اور شہادت کی انگلی سے ڈبل ٹیپ کر کے بھی “بھیجیں” دبایا جا سکتا ہے۔"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Trên Series 9 / Ultra 2 trở lên, bạn cũng có thể nhấn \"Nói\" bằng cách chạm đúp ngón cái và ngón trỏ."
+            "value" : "Trên Series 9 / Ultra 2 trở lên, bạn cũng có thể nhấn \"Gửi\" bằng cách chạm đúp ngón cái và ngón trỏ."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Series 9 / Ultra 2 及之后的机型，也可以用拇指和食指轻点两下来按“说话”。"
+            "value" : "Series 9 / Ultra 2 及之后的机型，也可以用拇指和食指轻点两下来按“发送”。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Series 9 / Ultra 2 以後的機型，也可以用拇指與食指點兩下來按「說話」。"
+            "value" : "Series 9 / Ultra 2 以後的機型，也可以用拇指與食指點兩下來按「傳送」。"
           }
         }
       }
@@ -25467,538 +25467,538 @@
         }
       }
     },
-    "タップして話す" : {
+    "タップして送る" : {
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "اضغط للتحدث"
+            "value" : "اضغط للإرسال"
           }
         },
         "bn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ট্যাপ করে বলুন"
+            "value" : "ট্যাপ করে পাঠান"
           }
         },
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toca per parlar"
+            "value" : "Toca per enviar"
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Klepněte a mluvte"
+            "value" : "Klepněte a odešlete"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tryk for at tale"
+            "value" : "Tryk for at sende"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tippen und sprechen"
+            "value" : "Tippen und senden"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Πατήστε και μιλήστε"
+            "value" : "Πατήστε για αποστολή"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tap to Speak"
+            "value" : "Tap to Send"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tocar para hablar"
+            "value" : "Tocar para enviar"
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Napauta ja puhu"
+            "value" : "Napauta ja lähetä"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toucher pour parler"
+            "value" : "Toucher pour envoyer"
           }
         },
         "gu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ટેપ કરીને બોલો"
+            "value" : "ટેપ કરીને મોકલો"
           }
         },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "הקישו כדי לדבר"
+            "value" : "הקישו כדי לשלוח"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "बोलने के लिए टैप करें"
+            "value" : "भेजने के लिए टैप करें"
           }
         },
         "hr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dodirni i govori"
+            "value" : "Dodirni i pošalji"
           }
         },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Koppintson és beszéljen"
+            "value" : "Koppintson a küldéshez"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ketuk untuk bicara"
+            "value" : "Ketuk untuk kirim"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tocca per parlare"
+            "value" : "Tocca per inviare"
           }
         },
         "kn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ಟ್ಯಾಪ್ ಮಾಡಿ ಮಾತನಾಡಿ"
+            "value" : "ಟ್ಯಾಪ್ ಮಾಡಿ ಕಳುಹಿಸಿ"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "탭해서 말하기"
+            "value" : "탭해서 보내기"
           }
         },
         "ml" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ടാപ്പ് ചെയ്ത് സംസാരിക്കുക"
+            "value" : "ടാപ്പ് ചെയ്ത് അയയ്ക്കുക"
           }
         },
         "mr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "टॅप करून बोला"
+            "value" : "टॅप करून पाठवा"
           }
         },
         "ms" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ketik untuk bercakap"
+            "value" : "Ketik untuk menghantar"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Trykk for å snakke"
+            "value" : "Trykk for å sende"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tik om te praten"
+            "value" : "Tik om te versturen"
           }
         },
         "or" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ଟାପ୍ କରି କୁହନ୍ତୁ"
+            "value" : "ଟାପ୍ କରି ପଠାନ୍ତୁ"
           }
         },
         "pa" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ਟੈਪ ਕਰਕੇ ਬੋਲੋ"
+            "value" : "ਟੈਪ ਕਰਕੇ ਭੇਜੋ"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Stuknij i mów"
+            "value" : "Stuknij i wyślij"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toque para falar"
+            "value" : "Toque para enviar"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toque para falar"
+            "value" : "Toque para enviar"
           }
         },
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Atinge pentru a vorbi"
+            "value" : "Atinge pentru a trimite"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Нажмите и говорите"
+            "value" : "Нажмите, чтобы отправить"
           }
         },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ťuknite a hovorte"
+            "value" : "Ťuknite a odošlite"
           }
         },
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tapnite in govorite"
+            "value" : "Tapnite in pošljite"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tryck för att tala"
+            "value" : "Tryck för att skicka"
           }
         },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "தட்டிப் பேசு"
+            "value" : "தட்டி அனுப்பு"
           }
         },
         "te" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ట్యాప్ చేసి మాట్లాడు"
+            "value" : "ట్యాప్ చేసి పంపు"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "แตะเพื่อพูด"
+            "value" : "แตะเพื่อส่ง"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dokun ve konuş"
+            "value" : "Dokun ve gönder"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Торкніться й говоріть"
+            "value" : "Торкніться, щоб надіслати"
           }
         },
         "ur" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "بولنے کے لیے ٹیپ کریں"
+            "value" : "بھیجنے کے لیے ٹیپ کریں"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chạm để nói"
+            "value" : "Chạm để gửi"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "轻点说话"
+            "value" : "轻点发送"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "點一下即可說話"
+            "value" : "點一下即可傳送"
           }
         }
       }
     },
-    "タップすると Hayate が開き、すぐ「話す」を押せます。" : {
+    "タップすると Hayate が開き、すぐ「送る」を押せます。" : {
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "عند الضغط يُفتح Hayate ويمكنك الضغط على «تحدّث» فورًا."
+            "value" : "عند الضغط يُفتح Hayate ويمكنك الضغط على «إرسال» فورًا."
           }
         },
         "bn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ট্যাপ করলে Hayate খুলবে এবং সঙ্গে সঙ্গে “বলুন” চাপতে পারবেন।"
+            "value" : "ট্যাপ করলে Hayate খুলবে এবং সঙ্গে সঙ্গে “পাঠান” চাপতে পারবেন।"
           }
         },
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toca per obrir Hayate i prémer «Parla» a l’instant."
+            "value" : "Toca per obrir Hayate i prémer «Envia» a l’instant."
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Po klepnutí se otevře Hayate a hned můžete stisknout „Mluvit“."
+            "value" : "Po klepnutí se otevře Hayate a hned můžete stisknout „Odeslat“."
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tryk, så åbnes Hayate, og du kan straks trykke på »Tal«."
+            "value" : "Tryk, så åbnes Hayate, og du kan straks trykke på »Send«."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tippe, um Hayate zu öffnen und sofort „Sprechen“ zu drücken."
+            "value" : "Tippe, um Hayate zu öffnen und sofort „Senden“ zu drücken."
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Με το πάτημα ανοίγει το Hayate και μπορείτε να πατήσετε αμέσως «Μίλα»."
+            "value" : "Με το πάτημα ανοίγει το Hayate και μπορείτε να πατήσετε αμέσως «Αποστολή»."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tap to open Hayate and press “Speak” right away."
+            "value" : "Tap to open Hayate and press “Send” right away."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toca para abrir Hayate y pulsar “Hablar” enseguida."
+            "value" : "Toca para abrir Hayate y pulsar “Enviar” enseguida."
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Napauttamalla Hayate avautuu, ja voit heti painaa ”Puhu”."
+            "value" : "Napauttamalla Hayate avautuu, ja voit heti painaa ”Lähetä”."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Touchez pour ouvrir Hayate et appuyer tout de suite sur « Parler »."
+            "value" : "Touchez pour ouvrir Hayate et appuyer tout de suite sur « Envoyer »."
           }
         },
         "gu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ટેપ કરતાં Hayate ખુલે છે અને તરત “બોલો” દબાવી શકાય છે."
+            "value" : "ટેપ કરતાં Hayate ખુલે છે અને તરત “મોકલો” દબાવી શકાય છે."
           }
         },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "הקשה פותחת את Hayate ומאפשרת ללחוץ מיד על “דברו”."
+            "value" : "הקשה פותחת את Hayate ומאפשרת ללחוץ מיד על “שליחה”."
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "टैप करने पर Hayate खुलता है और तुरंत “बोलें” दबाया जा सकता है।"
+            "value" : "टैप करने पर Hayate खुलता है और तुरंत “भेजें” दबाया जा सकता है।"
           }
         },
         "hr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dodirom se otvara Hayate i odmah možete pritisnuti „Govori”."
+            "value" : "Dodirom se otvara Hayate i odmah možete pritisnuti „Pošalji”."
           }
         },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Koppintásra megnyílik a Hayate, és azonnal megnyomhatja a „Beszéd” gombot."
+            "value" : "Koppintásra megnyílik a Hayate, és azonnal megnyomhatja a „Küldés” gombot."
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ketuk untuk membuka Hayate dan langsung menekan \"Bicara\"."
+            "value" : "Ketuk untuk membuka Hayate dan langsung menekan \"Kirim\"."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tocca per aprire Hayate e premere subito “Parla”."
+            "value" : "Tocca per aprire Hayate e premere subito “Invia”."
           }
         },
         "kn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ಟ್ಯಾಪ್ ಮಾಡಿದರೆ Hayate ತೆರೆಯುತ್ತದೆ ಮತ್ತು ತಕ್ಷಣ “ಮಾತನಾಡಿ” ಒತ್ತಬಹುದು."
+            "value" : "ಟ್ಯಾಪ್ ಮಾಡಿದರೆ Hayate ತೆರೆಯುತ್ತದೆ ಮತ್ತು ತಕ್ಷಣ “ಕಳುಹಿಸಿ” ಒತ್ತಬಹುದು."
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "탭하면 Hayate가 열리고 바로 \"말하기\"를 누를 수 있습니다."
+            "value" : "탭하면 Hayate가 열리고 바로 \"보내기\"를 누를 수 있습니다."
           }
         },
         "ml" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ടാപ്പ് ചെയ്താൽ Hayate തുറക്കും, ഉടൻ “സംസാരിക്കുക” അമർത്താം."
+            "value" : "ടാപ്പ് ചെയ്താൽ Hayate തുറക്കും, ഉടൻ “അയയ്ക്കുക” അമർത്താം."
           }
         },
         "mr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "टॅप केल्यावर Hayate उघडते आणि लगेच “बोला” दाबता येते."
+            "value" : "टॅप केल्यावर Hayate उघडते आणि लगेच “पाठवा” दाबता येते."
           }
         },
         "ms" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ketik untuk membuka Hayate dan terus tekan “Cakap”."
+            "value" : "Ketik untuk membuka Hayate dan terus tekan “Hantar”."
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Trykk, så åpnes Hayate, og du kan trykke på «Snakk» med en gang."
+            "value" : "Trykk, så åpnes Hayate, og du kan trykke på «Send» med en gang."
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tik om Hayate te openen en meteen op “Praat” te drukken."
+            "value" : "Tik om Hayate te openen en meteen op “Verstuur” te drukken."
           }
         },
         "or" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ଟାପ୍ କଲେ Hayate ଖୋଲିବ ଓ ତୁରନ୍ତ “କୁହନ୍ତୁ” ଦବାଇପାରିବେ।"
+            "value" : "ଟାପ୍ କଲେ Hayate ଖୋଲିବ ଓ ତୁରନ୍ତ “ପଠାନ୍ତୁ” ଦବାଇପାରିବେ।"
           }
         },
         "pa" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ਟੈਪ ਕਰਨ ’ਤੇ Hayate ਖੁੱਲ੍ਹੇਗੀ ਅਤੇ ਤੁਰੰਤ “ਬੋਲੋ” ਦਬਾ ਸਕਦੇ ਹੋ।"
+            "value" : "ਟੈਪ ਕਰਨ ’ਤੇ Hayate ਖੁੱਲ੍ਹੇਗੀ ਅਤੇ ਤੁਰੰਤ “ਭੇਜੋ” ਦਬਾ ਸਕਦੇ ਹੋ।"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Po stuknięciu otworzy się Hayate i od razu możesz nacisnąć „Mów”."
+            "value" : "Po stuknięciu otworzy się Hayate i od razu możesz nacisnąć „Wyślij”."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ao tocar, o Hayate abre e você já pode pressionar “Falar”."
+            "value" : "Ao tocar, o Hayate abre e você já pode pressionar “Enviar”."
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ao tocar, o Hayate abre e pode premir logo “Falar”."
+            "value" : "Ao tocar, o Hayate abre e pode premir logo “Enviar”."
           }
         },
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Atinge pentru a deschide Hayate și a apăsa imediat „Vorbește”."
+            "value" : "Atinge pentru a deschide Hayate și a apăsa imediat „Trimite”."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "При нажатии откроется Hayate, и сразу можно нажать «Говорить»."
+            "value" : "При нажатии откроется Hayate, и сразу можно нажать «Отправить»."
           }
         },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Po ťuknutí sa otvorí Hayate a hneď môžete stlačiť „Hovoriť“."
+            "value" : "Po ťuknutí sa otvorí Hayate a hneď môžete stlačiť „Odoslať“."
           }
         },
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ko tapnete, se odpre Hayate in takoj lahko pritisnete »Govori«."
+            "value" : "Ko tapnete, se odpre Hayate in takoj lahko pritisnete »Pošlji«."
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tryck så öppnas Hayate och du kan trycka på ”Tala” direkt."
+            "value" : "Tryck så öppnas Hayate och du kan trycka på ”Skicka” direkt."
           }
         },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "தட்டினால் Hayate திறக்கும், உடனே “பேசு” ஐ அழுத்தலாம்."
+            "value" : "தட்டினால் Hayate திறக்கும், உடனே “அனுப்பு” ஐ அழுத்தலாம்."
           }
         },
         "te" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ట్యాప్ చేస్తే Hayate తెరుచుకుంటుంది, వెంటనే “మాట్లాడు” నొక్కవచ్చు."
+            "value" : "ట్యాప్ చేస్తే Hayate తెరుచుకుంటుంది, వెంటనే “పంపు” నొక్కవచ్చు."
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "แตะเพื่อเปิด Hayate แล้วกด \"พูด\" ได้ทันที"
+            "value" : "แตะเพื่อเปิด Hayate แล้วกด \"ส่ง\" ได้ทันที"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dokunduğunuzda Hayate açılır ve hemen “Konuş”a basabilirsiniz."
+            "value" : "Dokunduğunuzda Hayate açılır ve hemen “Gönder”e basabilirsiniz."
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Після торкання відкриється Hayate, і одразу можна натиснути «Говорити»."
+            "value" : "Після торкання відкриється Hayate, і одразу можна натиснути «Надіслати»."
           }
         },
         "ur" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ٹیپ کرنے پر Hayate کھلتی ہے اور فوراً “بولیں” دبایا جا سکتا ہے۔"
+            "value" : "ٹیپ کرنے پر Hayate کھلتی ہے اور فوراً “بھیجیں” دبایا جا سکتا ہے۔"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chạm để mở Hayate và nhấn \"Nói\" ngay."
+            "value" : "Chạm để mở Hayate và nhấn \"Gửi\" ngay."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "轻点会打开 Hayate，可立即按“说话”。"
+            "value" : "轻点会打开 Hayate，可立即按“发送”。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "點一下會開啟 Hayate，隨即可按「說話」。"
+            "value" : "點一下會開啟 Hayate，隨即可按「傳送」。"
           }
         }
       }
@@ -42619,270 +42619,270 @@
         }
       }
     },
-    "時計で Hayate を開き、紫の「話す」を押して話します。話し終えたら「完了」で送ります。" : {
+    "時計で Hayate を開き、紫の「送る」を押して、話すか文字を入力します。終えたら「完了」で送ります。" : {
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "افتح Hayate على الساعة واضغط «تحدّث» البنفسجي ثم تكلّم. عند الانتهاء اضغط «تم» للإرسال."
+            "value" : "افتح Hayate على الساعة واضغط «إرسال» البنفسجي، ثم تحدّث أو اكتب. عند الانتهاء اضغط «تم» للإرسال."
           }
         },
         "bn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ঘড়িতে Hayate খুলে বেগুনি “বলুন” চাপুন ও কথা বলুন। শেষ হলে “সম্পন্ন” চেপে পাঠান।"
+            "value" : "ঘড়িতে Hayate খুলে বেগুনি “পাঠান” চাপুন, তারপর বলুন বা লিখুন। শেষ হলে “সম্পন্ন” চেপে পাঠান।"
           }
         },
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Obre Hayate al rellotge, prem el botó lila «Parla» i parla. Quan acabis, toca «Fet» per enviar."
+            "value" : "Obre Hayate al rellotge, prem el botó lila «Envia» i parla o escriu. Quan acabis, toca «Fet» per enviar."
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otevřete Hayate v hodinkách, stiskněte fialové tlačítko „Mluvit“ a mluvte. Po dokončení odešlete tlačítkem „Hotovo“."
+            "value" : "Otevřete Hayate v hodinkách, stiskněte fialové tlačítko „Odeslat“ a mluvte nebo pište. Po dokončení odešlete tlačítkem „Hotovo“."
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Åbn Hayate på uret, tryk på den lilla knap »Tal«, og tal. Når du er færdig, trykker du på »Færdig« for at sende."
+            "value" : "Åbn Hayate på uret, tryk på den lilla knap »Send«, og tal eller skriv. Når du er færdig, trykker du på »Færdig« for at sende."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Öffne Hayate auf der Watch, drücke die violette Taste „Sprechen“ und sprich. Tippe danach auf „Fertig“, um zu senden."
+            "value" : "Öffne Hayate auf der Watch, drücke die violette Taste „Senden“ und sprich oder tippe. Tippe danach auf „Fertig“, um zu senden."
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ανοίξτε το Hayate στο ρολόι, πατήστε το μωβ «Μίλα» και μιλήστε. Όταν τελειώσετε, πατήστε «Τέλος» για αποστολή."
+            "value" : "Ανοίξτε το Hayate στο ρολόι, πατήστε το μωβ «Αποστολή» και μιλήστε ή πληκτρολογήστε. Όταν τελειώσετε, πατήστε «Τέλος» για αποστολή."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "On the watch, open Hayate, press the purple “Speak” button, and speak. When you finish, tap “Done” to send."
+            "value" : "On the watch, open Hayate, press the purple “Send” button, then speak or type. When you finish, tap “Done” to send."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "En el reloj, abre Hayate, pulsa el botón morado “Hablar” y habla. Al terminar, toca “Listo” para enviar."
+            "value" : "En el reloj, abre Hayate, pulsa el botón morado “Enviar” y habla o escribe. Al terminar, toca “Listo” para enviar."
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Avaa Hayate kellossa, paina violettia ”Puhu”-painiketta ja puhu. Kun olet valmis, lähetä painamalla ”Valmis”."
+            "value" : "Avaa Hayate kellossa, paina violettia ”Lähetä”-painiketta ja puhu tai kirjoita. Kun olet valmis, lähetä painamalla ”Valmis”."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sur la montre, ouvrez Hayate, appuyez sur le bouton violet « Parler » et parlez. Quand vous avez fini, touchez « OK » pour envoyer."
+            "value" : "Sur la montre, ouvrez Hayate, appuyez sur le bouton violet « Envoyer », puis parlez ou écrivez. Quand vous avez fini, touchez « OK » pour envoyer."
           }
         },
         "gu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ઘડિયાળમાં Hayate ખોલી જાંબલી “બોલો” દબાવીને બોલો. બોલી લીધા પછી “થઈ ગયું” દબાવીને મોકલો."
+            "value" : "ઘડિયાળમાં Hayate ખોલી જાંબલી “મોકલો” દબાવો, પછી બોલો અથવા લખો. પૂરું થયા પછી “થઈ ગયું” દબાવીને મોકલો."
           }
         },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "פתחו את Hayate בשעון, לחצו על “דברו” הסגול ודברו. בסיום לחצו “סיום” כדי לשלוח."
+            "value" : "פתחו את Hayate בשעון, לחצו על “שליחה” הסגול ודברו או הקלידו. בסיום לחצו “סיום” כדי לשלוח."
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "वॉच पर Hayate खोलें, बैंगनी “बोलें” दबाएँ और बोलें। बोलना खत्म होने पर “पूर्ण” दबाकर भेजें।"
+            "value" : "वॉच पर Hayate खोलें, बैंगनी “भेजें” दबाएँ, फिर बोलें या लिखें। पूरा होने पर “पूर्ण” दबाकर भेजें।"
           }
         },
         "hr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Na satu otvorite Hayate, pritisnite ljubičasti „Govori” i govorite. Kad završite, pritisnite „Gotovo” za slanje."
+            "value" : "Na satu otvorite Hayate, pritisnite ljubičasti „Pošalji” pa govorite ili pišite. Kad završite, pritisnite „Gotovo” za slanje."
           }
         },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nyissa meg a Hayate appot az órán, nyomja meg a lila „Beszéd” gombot, és beszéljen. Ha végzett, a „Kész” gombbal küldje el."
+            "value" : "Nyissa meg a Hayate appot az órán, nyomja meg a lila „Küldés” gombot, majd beszéljen vagy írjon. Ha végzett, a „Kész” gombbal küldje el."
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Buka Hayate di jam, tekan \"Bicara\" yang berwarna ungu, lalu bicara. Setelah selesai, tekan \"Selesai\" untuk mengirim."
+            "value" : "Buka Hayate di jam, tekan \"Kirim\" yang berwarna ungu, lalu bicara atau ketik. Setelah selesai, tekan \"Selesai\" untuk mengirim."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sull’orologio apri Hayate, premi il pulsante viola “Parla” e parla. Quando hai finito, tocca “Fine” per inviare."
+            "value" : "Sull’orologio apri Hayate, premi il pulsante viola “Invia” e parla o scrivi. Quando hai finito, tocca “Fine” per inviare."
           }
         },
         "kn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ವಾಚ್‌ನಲ್ಲಿ Hayate ತೆರೆದು ನೇರಳೆ ಬಣ್ಣದ “ಮಾತನಾಡಿ” ಒತ್ತಿ ಮಾತನಾಡಿ. ಮುಗಿದ ನಂತರ “ಮುಗಿದಿದೆ” ಒತ್ತಿ ಕಳುಹಿಸಿ."
+            "value" : "ವಾಚ್‌ನಲ್ಲಿ Hayate ತೆರೆದು ನೇರಳೆ ಬಣ್ಣದ “ಕಳುಹಿಸಿ” ಒತ್ತಿ, ನಂತರ ಮಾತನಾಡಿ ಅಥವಾ ಟೈಪ್ ಮಾಡಿ. ಮುಗಿದ ನಂತರ “ಮುಗಿದಿದೆ” ಒತ್ತಿ ಕಳುಹಿಸಿ."
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "시계에서 Hayate를 열고 보라색 \"말하기\"를 눌러 말하세요. 말을 마치면 \"완료\"로 보냅니다."
+            "value" : "시계에서 Hayate를 열고 보라색 \"보내기\"를 누른 다음 말하거나 입력하세요. 마치면 \"완료\"로 보냅니다."
           }
         },
         "ml" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "വാച്ചിൽ Hayate തുറന്ന് പർപ്പിൾ “സംസാരിക്കുക” അമർത്തി സംസാരിക്കുക. കഴിഞ്ഞാൽ “പൂർത്തിയായി” അമർത്തി അയയ്ക്കുക."
+            "value" : "വാച്ചിൽ Hayate തുറന്ന് പർപ്പിൾ “അയയ്ക്കുക” അമർത്തി, സംസാരിക്കുകയോ ടൈപ്പ് ചെയ്യുകയോ ചെയ്യുക. കഴിഞ്ഞാൽ “പൂർത്തിയായി” അമർത്തി അയയ്ക്കുക."
           }
         },
         "mr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "घड्याळात Hayate उघडा, जांभळे “बोला” दाबून बोला. बोलून झाल्यावर “पूर्ण” दाबून पाठवा."
+            "value" : "घड्याळात Hayate उघडा, जांभळे “पाठवा” दाबा, मग बोला किंवा टाइप करा. झाल्यावर “पूर्ण” दाबून पाठवा."
           }
         },
         "ms" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Buka Hayate pada jam, tekan butang “Cakap” berwarna ungu dan bercakap. Apabila selesai, tekan “Selesai” untuk menghantar."
+            "value" : "Buka Hayate pada jam, tekan butang “Hantar” berwarna ungu, kemudian cakap atau taip. Apabila selesai, tekan “Selesai” untuk menghantar."
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Åpne Hayate på klokken, trykk på den lilla «Snakk»-knappen, og snakk. Når du er ferdig, trykker du på «Ferdig» for å sende."
+            "value" : "Åpne Hayate på klokken, trykk på den lilla «Send»-knappen, og snakk eller skriv. Når du er ferdig, trykker du på «Ferdig» for å sende."
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open Hayate op het horloge, druk op de paarse knop “Praat” en spreek. Tik als je klaar bent op “Gereed” om te versturen."
+            "value" : "Open Hayate op het horloge, druk op de paarse knop “Verstuur” en spreek of typ. Tik als je klaar bent op “Gereed” om te versturen."
           }
         },
         "or" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ଘଡ଼ିରେ Hayate ଖୋଲି ବାଇଗଣୀ “କୁହନ୍ତୁ” ଦବାଇ କୁହନ୍ତୁ। କହିସାରିଲେ “ସମାପ୍ତ” ଦବାଇ ପଠାନ୍ତୁ।"
+            "value" : "ଘଡ଼ିରେ Hayate ଖୋଲି ବାଇଗଣୀ “ପଠାନ୍ତୁ” ଦବାନ୍ତୁ, ତାପରେ କୁହନ୍ତୁ କିମ୍ବା ଲେଖନ୍ତୁ। ସରିଲେ “ସମାପ୍ତ” ଦବାଇ ପଠାନ୍ତୁ।"
           }
         },
         "pa" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ਘੜੀ ’ਤੇ Hayate ਖੋਲ੍ਹੋ, ਜਾਮਨੀ “ਬੋਲੋ” ਦਬਾ ਕੇ ਬੋਲੋ। ਬੋਲ ਕੇ “ਮੁਕੰਮਲ” ਦਬਾਉਣ ’ਤੇ ਭੇਜਿਆ ਜਾਂਦਾ ਹੈ।"
+            "value" : "ਘੜੀ ’ਤੇ Hayate ਖੋਲ੍ਹੋ, ਜਾਮਨੀ “ਭੇਜੋ” ਦਬਾਓ, ਫਿਰ ਬੋਲੋ ਜਾਂ ਲਿਖੋ। ਪੂਰਾ ਹੋਣ ’ਤੇ “ਮੁਕੰਮਲ” ਦਬਾ ਕੇ ਭੇਜੋ।"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otwórz Hayate na zegarku, naciśnij fioletowy przycisk „Mów” i mów. Po skończeniu naciśnij „Gotowe”, aby wysłać."
+            "value" : "Otwórz Hayate na zegarku, naciśnij fioletowy przycisk „Wyślij”, a potem mów lub pisz. Po skończeniu naciśnij „Gotowe”, aby wysłać."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abra o Hayate no relógio, pressione o botão roxo “Falar” e fale. Ao terminar, toque em “Concluído” para enviar."
+            "value" : "Abra o Hayate no relógio, pressione o botão roxo “Enviar” e fale ou digite. Ao terminar, toque em “Concluído” para enviar."
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abra o Hayate no relógio, prima o botão roxo “Falar” e fale. Ao terminar, toque em “Concluído” para enviar."
+            "value" : "Abra o Hayate no relógio, prima o botão roxo “Enviar” e fale ou escreva. Ao terminar, toque em “Concluído” para enviar."
           }
         },
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deschide Hayate pe ceas, apasă butonul violet „Vorbește” și vorbește. Când termini, atinge „Gata” pentru a trimite."
+            "value" : "Deschide Hayate pe ceas, apasă butonul violet „Trimite” și vorbește sau scrie. Când termini, atinge „Gata” pentru a trimite."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Откройте Hayate на часах, нажмите фиолетовую кнопку «Говорить» и говорите. Закончив, нажмите «Готово», чтобы отправить."
+            "value" : "Откройте Hayate на часах, нажмите фиолетовую кнопку «Отправить» и говорите или пишите. Закончив, нажмите «Готово», чтобы отправить."
           }
         },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otvorte Hayate v hodinkách, stlačte fialové tlačidlo „Hovoriť“ a hovorte. Po dokončení odošlite tlačidlom „Hotovo“."
+            "value" : "Otvorte Hayate v hodinkách, stlačte fialové tlačidlo „Odoslať“ a hovorte alebo píšte. Po dokončení odošlite tlačidlom „Hotovo“."
           }
         },
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "V uri odprite Hayate, pritisnite vijolični »Govori« in govorite. Ko končate, pritisnite »Končano« za pošiljanje."
+            "value" : "V uri odprite Hayate, pritisnite vijolični »Pošlji« in govorite ali pišite. Ko končate, pritisnite »Končano« za pošiljanje."
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Öppna Hayate på klockan, tryck på den lila knappen ”Tala” och tala. När du är klar trycker du på ”Klar” för att skicka."
+            "value" : "Öppna Hayate på klockan, tryck på den lila knappen ”Skicka” och tala eller skriv. När du är klar trycker du på ”Klar” för att skicka."
           }
         },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "வாட்சில் Hayate ஐத் திறந்து, ஊதா நிற “பேசு” ஐ அழுத்திப் பேசவும். பேசி முடித்ததும் “முடிந்தது” ஐ அழுத்தி அனுப்பவும்."
+            "value" : "வாட்சில் Hayate ஐத் திறந்து, ஊதா நிற “அனுப்பு” ஐ அழுத்தி, பேசவும் அல்லது தட்டச்சு செய்யவும். முடித்ததும் “முடிந்தது” ஐ அழுத்தி அனுப்பவும்."
           }
         },
         "te" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "వాచ్‌లో Hayate తెరిచి, ఊదా రంగు “మాట్లాడు” నొక్కి మాట్లాడండి. మాట్లాడటం అయ్యాక “పూర్తయింది” నొక్కి పంపండి."
+            "value" : "వాచ్‌లో Hayate తెరిచి, ఊదా రంగు “పంపు” నొక్కి, మాట్లాడండి లేదా టైప్ చేయండి. అయ్యాక “పూర్తయింది” నొక్కి పంపండి."
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "เปิด Hayate บนนาฬิกา กดปุ่ม \"พูด\" สีม่วงแล้วพูด เมื่อพูดจบให้กด \"เสร็จสิ้น\" เพื่อส่ง"
+            "value" : "เปิด Hayate บนนาฬิกา กดปุ่ม \"ส่ง\" สีม่วง แล้วพูดหรือพิมพ์ เมื่อเสร็จให้กด \"เสร็จสิ้น\" เพื่อส่ง"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Saatte Hayate’i açın, mor “Konuş”a basıp konuşun. Bitirince “Bitti”ye basarak gönderin."
+            "value" : "Saatte Hayate’i açın, mor “Gönder” düğmesine basın, ardından konuşun veya yazın. Bitirince “Bitti”ye basarak gönderin."
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Відкрийте Hayate на годиннику, натисніть фіолетову кнопку «Говорити» й говоріть. Закінчивши, натисніть «Готово», щоб надіслати."
+            "value" : "Відкрийте Hayate на годиннику, натисніть фіолетову кнопку «Надіслати» й говоріть або пишіть. Закінчивши, натисніть «Готово», щоб надіслати."
           }
         },
         "ur" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "گھڑی پر Hayate کھولیں، جامنی “بولیں” دبائیں اور بولیں۔ بول چکنے کے بعد “مکمل” دبا کر بھیجیں۔"
+            "value" : "گھڑی پر Hayate کھولیں، جامنی “بھیجیں” دبائیں، پھر بولیں یا لکھیں۔ مکمل ہونے پر “مکمل” دبا کر بھیجیں۔"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mở Hayate trên đồng hồ, nhấn nút \"Nói\" màu tím rồi nói. Nói xong, nhấn \"Xong\" để gửi."
+            "value" : "Mở Hayate trên đồng hồ, nhấn nút \"Gửi\" màu tím rồi nói hoặc nhập chữ. Xong thì nhấn \"Xong\" để gửi."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在手表上打开 Hayate，按紫色的“说话”按钮开始说话。说完后按“完成”即可发送。"
+            "value" : "在手表上打开 Hayate，按紫色的“发送”按钮，然后说话或输入文字。完成后按“完成”即可发送。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在手錶上開啟 Hayate，按紫色的「說話」並開始說話。說完後按「完成」即可傳送。"
+            "value" : "在手錶上開啟 Hayate，按紫色的「傳送」，然後說話或輸入文字。完成後按「完成」即可傳送。"
           }
         }
       }
@@ -51737,538 +51737,270 @@
         }
       }
     },
-    "話してください" : {
+    "話すか、文字を入力" : {
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "تحدّث الآن"
+            "value" : "تحدّث أو اكتب"
           }
         },
         "bn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "বলুন"
+            "value" : "বলুন বা লিখুন"
           }
         },
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Parla ara"
+            "value" : "Parla o escriu"
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mluvte"
+            "value" : "Mluvte nebo pište"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tal nu"
+            "value" : "Tal eller skriv"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Jetzt sprechen"
+            "value" : "Sprechen oder tippen"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Μιλήστε"
+            "value" : "Μιλήστε ή πληκτρολογήστε"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Speak now"
+            "value" : "Speak or type"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Habla ahora"
+            "value" : "Habla o escribe"
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Puhu nyt"
+            "value" : "Puhu tai kirjoita"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Parlez maintenant"
+            "value" : "Parlez ou écrivez"
           }
         },
         "gu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "બોલો"
+            "value" : "બોલો અથવા લખો"
           }
         },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "דברו"
+            "value" : "דברו או הקלידו"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "बोलिए"
+            "value" : "बोलें या लिखें"
           }
         },
         "hr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Govorite"
+            "value" : "Govorite ili pišite"
           }
         },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Beszéljen"
+            "value" : "Beszéljen vagy írjon"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Silakan bicara"
+            "value" : "Bicara atau ketik"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Parla ora"
+            "value" : "Parla o scrivi"
           }
         },
         "kn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ಮಾತನಾಡಿ"
+            "value" : "ಮಾತನಾಡಿ ಅಥವಾ ಟೈಪ್ ಮಾಡಿ"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "말씀해 주세요"
+            "value" : "말하거나 입력하세요"
           }
         },
         "ml" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "സംസാരിക്കുക"
+            "value" : "സംസാരിക്കുക അല്ലെങ്കിൽ ടൈപ്പ് ചെയ്യുക"
           }
         },
         "mr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "बोला"
+            "value" : "बोला किंवा टाइप करा"
           }
         },
         "ms" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sila cakap"
+            "value" : "Cakap atau taip"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Snakk nå"
+            "value" : "Snakk eller skriv"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Spreek nu"
+            "value" : "Spreek of typ"
           }
         },
         "or" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "କୁହନ୍ତୁ"
+            "value" : "କୁହନ୍ତୁ କିମ୍ବା ଲେଖନ୍ତୁ"
           }
         },
         "pa" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ਬੋਲੋ"
+            "value" : "ਬੋਲੋ ਜਾਂ ਲਿਖੋ"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mów"
+            "value" : "Mów lub pisz"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fale agora"
+            "value" : "Fale ou digite"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Fale agora"
+            "value" : "Fale ou escreva"
           }
         },
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vorbește acum"
+            "value" : "Vorbește sau scrie"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Говорите"
+            "value" : "Говорите или пишите"
           }
         },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hovorte"
+            "value" : "Hovorte alebo píšte"
           }
         },
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Govorite"
+            "value" : "Govorite ali pišite"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tala nu"
+            "value" : "Tala eller skriv"
           }
         },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "பேசுங்கள்"
+            "value" : "பேசுங்கள் அல்லது தட்டச்சு செய்யுங்கள்"
           }
         },
         "te" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "మాట్లాడండి"
+            "value" : "మాట్లాడండి లేదా టైప్ చేయండి"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "โปรดพูด"
+            "value" : "พูดหรือพิมพ์"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Konuşun"
+            "value" : "Konuşun veya yazın"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Говоріть"
+            "value" : "Говоріть або пишіть"
           }
         },
         "ur" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "بولیں"
+            "value" : "بولیں یا لکھیں"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hãy nói"
+            "value" : "Nói hoặc nhập"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "请说话"
+            "value" : "说话或输入文字"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "請說話"
-          }
-        }
-      }
-    },
-    "話す" : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "تحدّث"
-          }
-        },
-        "bn" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "বলুন"
-          }
-        },
-        "ca" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Parla"
-          }
-        },
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mluvit"
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tal"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sprechen"
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Μίλα"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Speak"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hablar"
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Puhu"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Parler"
-          }
-        },
-        "gu" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "બોલો"
-          }
-        },
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "דברו"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "बोलें"
-          }
-        },
-        "hr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Govori"
-          }
-        },
-        "hu" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Beszéd"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bicara"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Parla"
-          }
-        },
-        "kn" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ಮಾತನಾಡಿ"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "말하기"
-          }
-        },
-        "ml" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "സംസാരിക്കുക"
-          }
-        },
-        "mr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "बोला"
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Cakap"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Snakk"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Praat"
-          }
-        },
-        "or" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "କୁହନ୍ତୁ"
-          }
-        },
-        "pa" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ਬੋਲੋ"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Mów"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Falar"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Falar"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vorbește"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Говорить"
-          }
-        },
-        "sk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hovoriť"
-          }
-        },
-        "sl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Govori"
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Tala"
-          }
-        },
-        "ta" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "பேசு"
-          }
-        },
-        "te" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "మాట్లాడు"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "พูด"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Konuş"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Говорити"
-          }
-        },
-        "ur" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "بولیں"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nói"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "说话"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "說話"
+            "value" : "說話或輸入文字"
           }
         }
       }
@@ -56561,270 +56293,270 @@
         }
       }
     },
-    "送り先が 2 つ以上あると、時計の「話す」の下に送り先の選択が出ます。ここで選んだものは時計のアプリから送るときだけ使います (iPhone の既定は変わりません)。" : {
+    "送り先が 2 つ以上あると、時計の「送る」の下に送り先の選択が出ます。ここで選んだものは時計のアプリから送るときだけ使います (iPhone の既定は変わりません)。" : {
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "عند وجود وجهتين أو أكثر، يظهر اختيار الوجهة أسفل «تحدّث» على الساعة. ما تختاره هنا يُستخدم عند الإرسال من تطبيق الساعة فقط (لا يتغير افتراضي iPhone)."
+            "value" : "عند وجود وجهتين أو أكثر، يظهر اختيار الوجهة أسفل «إرسال» على الساعة. ما تختاره هنا يُستخدم عند الإرسال من تطبيق الساعة فقط (لا يتغير افتراضي iPhone)."
           }
         },
         "bn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "দুটি বা তার বেশি গন্তব্য থাকলে ঘড়ির “বলুন”-এর নিচে গন্তব্য বাছাইয়ের অপশন আসে। এখানে বাছা গন্তব্য শুধু ঘড়ির অ্যাপ থেকে পাঠানোর সময় ব্যবহার হয় (iPhone-এর ডিফল্ট বদলায় না)।"
+            "value" : "দুটি বা তার বেশি গন্তব্য থাকলে ঘড়ির “পাঠান”-এর নিচে গন্তব্য বাছাইয়ের অপশন আসে। এখানে বাছা গন্তব্য শুধু ঘড়ির অ্যাপ থেকে পাঠানোর সময় ব্যবহার হয় (iPhone-এর ডিফল্ট বদলায় না)।"
           }
         },
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Si hi ha 2 o més destins, sota «Parla» al rellotge apareix un selector de destí. El que triïs aquí només s’aplica als enviaments des de l’app del rellotge (el per defecte de l’iPhone no canvia)."
+            "value" : "Si hi ha 2 o més destins, sota «Envia» al rellotge apareix un selector de destí. El que triïs aquí només s’aplica als enviaments des de l’app del rellotge (el per defecte de l’iPhone no canvia)."
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Pokud jsou příjemci dva nebo více, zobrazí se v hodinkách pod tlačítkem „Mluvit“ výběr příjemce. Výběr platí jen pro odesílání z aplikace v hodinkách (výchozí příjemce v iPhonu se nemění)."
+            "value" : "Pokud jsou příjemci dva nebo více, zobrazí se v hodinkách pod tlačítkem „Odeslat“ výběr příjemce. Výběr platí jen pro odesílání z aplikace v hodinkách (výchozí příjemce v iPhonu se nemění)."
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hvis du har to eller flere mål, vises en målvælger under »Tal« på uret. Det, du vælger der, gælder kun, når du sender fra ur-appen (standarden på iPhone ændres ikke)."
+            "value" : "Hvis du har to eller flere mål, vises en målvælger under »Send« på uret. Det, du vælger der, gælder kun, når du sender fra ur-appen (standarden på iPhone ændres ikke)."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bei zwei oder mehr Zielen erscheint auf der Watch unter „Sprechen“ eine Zielauswahl. Deine Auswahl gilt nur beim Senden aus der Watch-App (das Standardziel auf dem iPhone bleibt unverändert)."
+            "value" : "Bei zwei oder mehr Zielen erscheint auf der Watch unter „Senden“ eine Zielauswahl. Deine Auswahl gilt nur beim Senden aus der Watch-App (das Standardziel auf dem iPhone bleibt unverändert)."
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Όταν υπάρχουν δύο ή περισσότεροι προορισμοί, κάτω από το «Μίλα» στο ρολόι εμφανίζεται επιλογή προορισμού. Η επιλογή ισχύει μόνο για αποστολή από την εφαρμογή του ρολογιού (η προεπιλογή στο iPhone δεν αλλάζει)."
+            "value" : "Όταν υπάρχουν δύο ή περισσότεροι προορισμοί, κάτω από το «Αποστολή» στο ρολόι εμφανίζεται επιλογή προορισμού. Η επιλογή ισχύει μόνο για αποστολή από την εφαρμογή του ρολογιού (η προεπιλογή στο iPhone δεν αλλάζει)."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "With two or more destinations, a destination picker appears below “Speak” on the watch. Your choice here applies only when sending from the watch app (the iPhone default doesn’t change)."
+            "value" : "With two or more destinations, a destination picker appears below “Send” on the watch. Your choice here applies only when sending from the watch app (the iPhone default doesn’t change)."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Con dos o más destinos, aparece un selector de destino debajo de “Hablar” en el reloj. Lo que elijas aquí solo se usa al enviar desde la app del reloj (el predeterminado del iPhone no cambia)."
+            "value" : "Con dos o más destinos, aparece un selector de destino debajo de “Enviar” en el reloj. Lo que elijas aquí solo se usa al enviar desde la app del reloj (el predeterminado del iPhone no cambia)."
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Jos kohteita on kaksi tai enemmän, kellon ”Puhu”-painikkeen alle tulee kohteen valinta. Tässä tehty valinta koskee vain kellon apista lähettämistä (iPhonen oletus ei muutu)."
+            "value" : "Jos kohteita on kaksi tai enemmän, kellon ”Lähetä”-painikkeen alle tulee kohteen valinta. Tässä tehty valinta koskee vain kellon apista lähettämistä (iPhonen oletus ei muutu)."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Avec au moins deux destinations, un sélecteur de destination apparaît sous « Parler » sur la montre. Votre choix ne s’applique qu’aux envois depuis l’app de la montre (la destination par défaut de l’iPhone ne change pas)."
+            "value" : "Avec au moins deux destinations, un sélecteur de destination apparaît sous « Envoyer » sur la montre. Votre choix ne s’applique qu’aux envois depuis l’app de la montre (la destination par défaut de l’iPhone ne change pas)."
           }
         },
         "gu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "બે કે વધુ ગંતવ્ય હોય તો ઘડિયાળના “બોલો” નીચે ગંતવ્ય પસંદગી આવે છે. અહીં પસંદ કરેલું ફક્ત ઘડિયાળની ઍપમાંથી મોકલતી વખતે વપરાય છે (iPhone નું ડિફૉલ્ટ બદલાતું નથી)."
+            "value" : "બે કે વધુ ગંતવ્ય હોય તો ઘડિયાળના “મોકલો” નીચે ગંતવ્ય પસંદગી આવે છે. અહીં પસંદ કરેલું ફક્ત ઘડિયાળની ઍપમાંથી મોકલતી વખતે વપરાય છે (iPhone નું ડિફૉલ્ટ બદલાતું નથી)."
           }
         },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "כשיש שני יעדים או יותר, מתחת ל“דברו” בשעון מופיעה בחירת יעד. הבחירה כאן משמשת רק לשליחה מאפליקציית השעון (ברירת המחדל ב-iPhone לא משתנה)."
+            "value" : "כשיש שני יעדים או יותר, מתחת ל“שליחה” בשעון מופיעה בחירת יעד. הבחירה כאן משמשת רק לשליחה מאפליקציית השעון (ברירת המחדל ב-iPhone לא משתנה)."
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "दो या अधिक मंज़िलें हों तो वॉच पर “बोलें” के नीचे मंज़िल का चुनाव आता है। यहाँ चुनी गई मंज़िल सिर्फ़ वॉच के ऐप से भेजते समय इस्तेमाल होती है (iPhone का डिफ़ॉल्ट नहीं बदलता)।"
+            "value" : "दो या अधिक मंज़िलें हों तो वॉच पर “भेजें” के नीचे मंज़िल का चुनाव आता है। यहाँ चुनी गई मंज़िल सिर्फ़ वॉच के ऐप से भेजते समय इस्तेमाल होती है (iPhone का डिफ़ॉल्ट नहीं बदलता)।"
           }
         },
         "hr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ako imate dva ili više odredišta, ispod „Govori” na satu pojavljuje se odabir odredišta. Odabir vrijedi samo za slanje iz aplikacije na satu (zadano na iPhoneu se ne mijenja)."
+            "value" : "Ako imate dva ili više odredišta, ispod „Pošalji” na satu pojavljuje se odabir odredišta. Odabir vrijedi samo za slanje iz aplikacije na satu (zadano na iPhoneu se ne mijenja)."
           }
         },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ha két vagy több cél van, az órán a „Beszéd” alatt megjelenik a célválasztó. Az itt választott csak az óra appjából küldéskor érvényes (az iPhone alapértelmezettje nem változik)."
+            "value" : "Ha két vagy több cél van, az órán a „Küldés” alatt megjelenik a célválasztó. Az itt választott csak az óra appjából küldéskor érvényes (az iPhone alapértelmezettje nem változik)."
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Jika ada 2 tujuan atau lebih, pilihan tujuan muncul di bawah \"Bicara\" di jam. Pilihan di sini hanya dipakai saat mengirim dari app jam (default di iPhone tidak berubah)."
+            "value" : "Jika ada 2 tujuan atau lebih, pilihan tujuan muncul di bawah \"Kirim\" di jam. Pilihan di sini hanya dipakai saat mengirim dari app jam (default di iPhone tidak berubah)."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Con due o più destinazioni, sull’orologio compare un selettore di destinazione sotto “Parla”. La scelta qui vale solo per gli invii dall’app dell’orologio (la predefinita su iPhone non cambia)."
+            "value" : "Con due o più destinazioni, sull’orologio compare un selettore di destinazione sotto “Invia”. La scelta qui vale solo per gli invii dall’app dell’orologio (la predefinita su iPhone non cambia)."
           }
         },
         "kn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ಎರಡು ಅಥವಾ ಹೆಚ್ಚು ಗಮ್ಯಸ್ಥಾನಗಳಿದ್ದರೆ ವಾಚ್‌ನ “ಮಾತನಾಡಿ” ಕೆಳಗೆ ಗಮ್ಯಸ್ಥಾನ ಆಯ್ಕೆ ಕಾಣಿಸುತ್ತದೆ. ಇಲ್ಲಿ ಆರಿಸಿದ್ದು ವಾಚ್ ಆ್ಯಪ್‌ನಿಂದ ಕಳುಹಿಸುವಾಗ ಮಾತ್ರ ಬಳಕೆಯಾಗುತ್ತದೆ (iPhone ನ ಡಿಫಾಲ್ಟ್ ಬದಲಾಗುವುದಿಲ್ಲ)."
+            "value" : "ಎರಡು ಅಥವಾ ಹೆಚ್ಚು ಗಮ್ಯಸ್ಥಾನಗಳಿದ್ದರೆ ವಾಚ್‌ನ “ಕಳುಹಿಸಿ” ಕೆಳಗೆ ಗಮ್ಯಸ್ಥಾನ ಆಯ್ಕೆ ಕಾಣಿಸುತ್ತದೆ. ಇಲ್ಲಿ ಆರಿಸಿದ್ದು ವಾಚ್ ಆ್ಯಪ್‌ನಿಂದ ಕಳುಹಿಸುವಾಗ ಮಾತ್ರ ಬಳಕೆಯಾಗುತ್ತದೆ (iPhone ನ ಡಿಫಾಲ್ಟ್ ಬದಲಾಗುವುದಿಲ್ಲ)."
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "전송 대상이 2개 이상이면 시계의 \"말하기\" 아래에 전송 대상 선택이 나타납니다. 여기서 고른 대상은 시계 앱에서 보낼 때만 사용됩니다(iPhone의 기본은 바뀌지 않음)."
+            "value" : "전송 대상이 2개 이상이면 시계의 \"보내기\" 아래에 전송 대상 선택이 나타납니다. 여기서 고른 대상은 시계 앱에서 보낼 때만 사용됩니다(iPhone의 기본은 바뀌지 않음)."
           }
         },
         "ml" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "രണ്ടോ അതിലധികമോ ലക്ഷ്യങ്ങളുണ്ടെങ്കിൽ വാച്ചിലെ “സംസാരിക്കുക” ന് താഴെ ലക്ഷ്യം തിരഞ്ഞെടുക്കാനുള്ള ഓപ്ഷൻ വരും. ഇവിടെ തിരഞ്ഞെടുത്തത് വാച്ച് ആപ്പിൽ നിന്ന് അയയ്ക്കുമ്പോൾ മാത്രം ഉപയോഗിക്കും (iPhone ന്റെ ഡിഫോൾട്ട് മാറില്ല)."
+            "value" : "രണ്ടോ അതിലധികമോ ലക്ഷ്യങ്ങളുണ്ടെങ്കിൽ വാച്ചിലെ “അയയ്ക്കുക” ന് താഴെ ലക്ഷ്യം തിരഞ്ഞെടുക്കാനുള്ള ഓപ്ഷൻ വരും. ഇവിടെ തിരഞ്ഞെടുത്തത് വാച്ച് ആപ്പിൽ നിന്ന് അയയ്ക്കുമ്പോൾ മാത്രം ഉപയോഗിക്കും (iPhone ന്റെ ഡിഫോൾട്ട് മാറില്ല)."
           }
         },
         "mr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "दोन किंवा अधिक गंतव्ये असतील तर घड्याळातील “बोला” च्या खाली गंतव्य निवड दिसते. येथे निवडलेले फक्त घड्याळाच्या ॲपमधून पाठवताना वापरले जाते (iPhone चा डीफॉल्ट बदलत नाही)."
+            "value" : "दोन किंवा अधिक गंतव्ये असतील तर घड्याळातील “पाठवा” च्या खाली गंतव्य निवड दिसते. येथे निवडलेले फक्त घड्याळाच्या ॲपमधून पाठवताना वापरले जाते (iPhone चा डीफॉल्ट बदलत नाही)."
           }
         },
         "ms" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Jika terdapat dua atau lebih destinasi, pemilih destinasi muncul di bawah “Cakap” pada jam. Pilihan di sini hanya digunakan semasa menghantar dari apl jam (lalai iPhone tidak berubah)."
+            "value" : "Jika terdapat dua atau lebih destinasi, pemilih destinasi muncul di bawah “Hantar” pada jam. Pilihan di sini hanya digunakan semasa menghantar dari apl jam (lalai iPhone tidak berubah)."
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hvis du har to eller flere mål, vises en målvelger under «Snakk» på klokken. Det du velger der, gjelder bare når du sender fra klokkeappen (standarden på iPhone endres ikke)."
+            "value" : "Hvis du har to eller flere mål, vises en målvelger under «Send» på klokken. Det du velger der, gjelder bare når du sender fra klokkeappen (standarden på iPhone endres ikke)."
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bij 2 of meer bestemmingen verschijnt onder “Praat” op het horloge een keuze voor de bestemming. Wat je hier kiest, geldt alleen voor versturen vanuit de app op het horloge (de standaard van de iPhone verandert niet)."
+            "value" : "Bij 2 of meer bestemmingen verschijnt onder “Verstuur” op het horloge een keuze voor de bestemming. Wat je hier kiest, geldt alleen voor versturen vanuit de app op het horloge (de standaard van de iPhone verandert niet)."
           }
         },
         "or" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ଦୁଇଟି ବା ଅଧିକ ଗନ୍ତବ୍ୟ ଥିଲେ ଘଡ଼ିର “କୁହନ୍ତୁ” ତଳେ ଗନ୍ତବ୍ୟ ବାଛିବାର ବିକଳ୍ପ ଦେଖାଯିବ। ଏଠି ବାଛିଥିବା ଗନ୍ତବ୍ୟ କେବଳ ଘଡ଼ିର ଆପ୍ ରୁ ପଠାଇଲେ ବ୍ୟବହୃତ ହେବ (iPhone ର ଡିଫଲ୍ଟ ବଦଳିବ ନାହିଁ)।"
+            "value" : "ଦୁଇଟି ବା ଅଧିକ ଗନ୍ତବ୍ୟ ଥିଲେ ଘଡ଼ିର “ପଠାନ୍ତୁ” ତଳେ ଗନ୍ତବ୍ୟ ବାଛିବାର ବିକଳ୍ପ ଦେଖାଯିବ। ଏଠି ବାଛିଥିବା ଗନ୍ତବ୍ୟ କେବଳ ଘଡ଼ିର ଆପ୍ ରୁ ପଠାଇଲେ ବ୍ୟବହୃତ ହେବ (iPhone ର ଡିଫଲ୍ଟ ବଦଳିବ ନାହିଁ)।"
           }
         },
         "pa" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ਦੋ ਜਾਂ ਵੱਧ ਮੰਜ਼ਿਲਾਂ ਹੋਣ ’ਤੇ ਘੜੀ ਦੇ “ਬੋਲੋ” ਹੇਠਾਂ ਮੰਜ਼ਿਲ ਚੁਣਨ ਦਾ ਵਿਕਲਪ ਦਿਸਦਾ ਹੈ। ਇੱਥੇ ਚੁਣੀ ਮੰਜ਼ਿਲ ਸਿਰਫ਼ ਘੜੀ ਦੀ ਐਪ ਤੋਂ ਭੇਜਣ ਵੇਲੇ ਵਰਤੀ ਜਾਂਦੀ ਹੈ (iPhone ਦੀ ਮੂਲ ਨਹੀਂ ਬਦਲਦੀ)।"
+            "value" : "ਦੋ ਜਾਂ ਵੱਧ ਮੰਜ਼ਿਲਾਂ ਹੋਣ ’ਤੇ ਘੜੀ ਦੇ “ਭੇਜੋ” ਹੇਠਾਂ ਮੰਜ਼ਿਲ ਚੁਣਨ ਦਾ ਵਿਕਲਪ ਦਿਸਦਾ ਹੈ। ਇੱਥੇ ਚੁਣੀ ਮੰਜ਼ਿਲ ਸਿਰਫ਼ ਘੜੀ ਦੀ ਐਪ ਤੋਂ ਭੇਜਣ ਵੇਲੇ ਵਰਤੀ ਜਾਂਦੀ ਹੈ (iPhone ਦੀ ਮੂਲ ਨਹੀਂ ਬਦਲਦੀ)।"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Gdy odbiorców jest co najmniej dwóch, pod przyciskiem „Mów” na zegarku pojawia się wybór odbiorcy. Wybór dotyczy tylko wysyłania z aplikacji na zegarku (domyślny odbiorca na iPhonie się nie zmienia)."
+            "value" : "Gdy odbiorców jest co najmniej dwóch, pod przyciskiem „Wyślij” na zegarku pojawia się wybór odbiorcy. Wybór dotyczy tylko wysyłania z aplikacji na zegarku (domyślny odbiorca na iPhonie się nie zmienia)."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Com 2 ou mais destinos, aparece uma seleção de destino abaixo de “Falar” no relógio. O que você escolher aqui vale só para envios pelo app do relógio (o padrão do iPhone não muda)."
+            "value" : "Com 2 ou mais destinos, aparece uma seleção de destino abaixo de “Enviar” no relógio. O que você escolher aqui vale só para envios pelo app do relógio (o padrão do iPhone não muda)."
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Com 2 ou mais destinos, aparece uma seleção de destino abaixo de “Falar” no relógio. O que escolher aqui vale apenas para envios pela app do relógio (o padrão do iPhone não muda)."
+            "value" : "Com 2 ou mais destinos, aparece uma seleção de destino abaixo de “Enviar” no relógio. O que escolher aqui vale apenas para envios pela app do relógio (o padrão do iPhone não muda)."
           }
         },
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dacă există 2 sau mai multe destinații, sub „Vorbește” pe ceas apare o alegere a destinației. Ce alegi aici se aplică doar trimiterilor din aplicația de pe ceas (destinația implicită de pe iPhone nu se schimbă)."
+            "value" : "Dacă există 2 sau mai multe destinații, sub „Trimite” pe ceas apare o alegere a destinației. Ce alegi aici se aplică doar trimiterilor din aplicația de pe ceas (destinația implicită de pe iPhone nu se schimbă)."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Если получателей два и больше, под кнопкой «Говорить» на часах появляется выбор получателя. Выбор действует только при отправке из приложения на часах (получатель по умолчанию на iPhone не меняется)."
+            "value" : "Если получателей два и больше, под кнопкой «Отправить» на часах появляется выбор получателя. Выбор действует только при отправке из приложения на часах (получатель по умолчанию на iPhone не меняется)."
           }
         },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ak sú príjemcovia dvaja alebo viac, zobrazí sa v hodinkách pod tlačidlom „Hovoriť“ výber príjemcu. Výber platí iba pre odosielanie z aplikácie v hodinkách (predvolený príjemca v iPhone sa nemení)."
+            "value" : "Ak sú príjemcovia dvaja alebo viac, zobrazí sa v hodinkách pod tlačidlom „Odoslať“ výber príjemcu. Výber platí iba pre odosielanie z aplikácie v hodinkách (predvolený príjemca v iPhone sa nemení)."
           }
         },
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Če imate dva ali več ciljev, se pod »Govori« v uri prikaže izbira cilja. Izbira velja le za pošiljanje iz aplikacije v uri (privzeti cilj v iPhonu se ne spremeni)."
+            "value" : "Če imate dva ali več ciljev, se pod »Pošlji« v uri prikaže izbira cilja. Izbira velja le za pošiljanje iz aplikacije v uri (privzeti cilj v iPhonu se ne spremeni)."
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Om du har två eller fler mål visas en målväljare under ”Tala” på klockan. Det du väljer där gäller bara när du skickar från klockappen (standard på iPhone ändras inte)."
+            "value" : "Om du har två eller fler mål visas en målväljare under ”Skicka” på klockan. Det du väljer där gäller bara när du skickar från klockappen (standard på iPhone ändras inte)."
           }
         },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "இரண்டு அல்லது அதற்கு மேற்பட்ட சேருமிடங்கள் இருந்தால், வாட்சின் “பேசு” க்குக் கீழே சேருமிடத் தேர்வு தோன்றும். இங்கே தேர்ந்தெடுப்பது வாட்ச் ஆப்பிலிருந்து அனுப்பும்போது மட்டுமே பயன்படும் (iPhone இன் இயல்புநிலை மாறாது)."
+            "value" : "இரண்டு அல்லது அதற்கு மேற்பட்ட சேருமிடங்கள் இருந்தால், வாட்சின் “அனுப்பு” க்குக் கீழே சேருமிடத் தேர்வு தோன்றும். இங்கே தேர்ந்தெடுப்பது வாட்ச் ஆப்பிலிருந்து அனுப்பும்போது மட்டுமே பயன்படும் (iPhone இன் இயல்புநிலை மாறாது)."
           }
         },
         "te" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "రెండు లేదా అంతకంటే ఎక్కువ గమ్యాలు ఉంటే వాచ్‌లో “మాట్లాడు” కింద గమ్యం ఎంపిక కనిపిస్తుంది. ఇక్కడ ఎంచుకున్నది వాచ్ యాప్ నుండి పంపేటప్పుడు మాత్రమే వాడతారు (iPhone డిఫాల్ట్ మారదు)."
+            "value" : "రెండు లేదా అంతకంటే ఎక్కువ గమ్యాలు ఉంటే వాచ్‌లో “పంపు” కింద గమ్యం ఎంపిక కనిపిస్తుంది. ఇక్కడ ఎంచుకున్నది వాచ్ యాప్ నుండి పంపేటప్పుడు మాత్రమే వాడతారు (iPhone డిఫాల్ట్ మారదు)."
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "เมื่อมีปลายทางตั้งแต่ 2 รายการขึ้นไป จะมีตัวเลือกปลายทางใต้ \"พูด\" บนนาฬิกา ตัวเลือกที่นี่ใช้เฉพาะเมื่อส่งจากแอปบนนาฬิกา (ค่าเริ่มต้นบน iPhone ไม่เปลี่ยน)"
+            "value" : "เมื่อมีปลายทางตั้งแต่ 2 รายการขึ้นไป จะมีตัวเลือกปลายทางใต้ \"ส่ง\" บนนาฬิกา ตัวเลือกที่นี่ใช้เฉพาะเมื่อส่งจากแอปบนนาฬิกา (ค่าเริ่มต้นบน iPhone ไม่เปลี่ยน)"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "İki veya daha fazla hedef varsa saatte “Konuş”un altında hedef seçimi görünür. Burada seçtiğiniz yalnızca saat uygulamasından gönderirken kullanılır (iPhone’daki varsayılan değişmez)."
+            "value" : "İki veya daha fazla hedef varsa saatte “Gönder”in altında hedef seçimi görünür. Burada seçtiğiniz yalnızca saat uygulamasından gönderirken kullanılır (iPhone’daki varsayılan değişmez)."
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Якщо отримувачів два чи більше, під кнопкою «Говорити» на годиннику з’являється вибір отримувача. Вибір діє лише під час надсилання із застосунку на годиннику (отримувач за замовчуванням на iPhone не змінюється)."
+            "value" : "Якщо отримувачів два чи більше, під кнопкою «Надіслати» на годиннику з’являється вибір отримувача. Вибір діє лише під час надсилання із застосунку на годиннику (отримувач за замовчуванням на iPhone не змінюється)."
           }
         },
         "ur" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "دو یا زیادہ منزلیں ہوں تو گھڑی پر “بولیں” کے نیچے منزل کا انتخاب آتا ہے۔ یہاں چنی گئی منزل صرف گھڑی کی ایپ سے بھیجتے وقت استعمال ہوتی ہے (iPhone کا ڈیفالٹ نہیں بدلتا)۔"
+            "value" : "دو یا زیادہ منزلیں ہوں تو گھڑی پر “بھیجیں” کے نیچے منزل کا انتخاب آتا ہے۔ یہاں چنی گئی منزل صرف گھڑی کی ایپ سے بھیجتے وقت استعمال ہوتی ہے (iPhone کا ڈیفالٹ نہیں بدلتا)۔"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Khi có từ 2 nơi nhận trở lên, mục chọn nơi nhận sẽ hiện bên dưới \"Nói\" trên đồng hồ. Lựa chọn ở đây chỉ dùng khi gửi từ ứng dụng trên đồng hồ (mặc định trên iPhone không đổi)."
+            "value" : "Khi có từ 2 nơi nhận trở lên, mục chọn nơi nhận sẽ hiện bên dưới \"Gửi\" trên đồng hồ. Lựa chọn ở đây chỉ dùng khi gửi từ ứng dụng trên đồng hồ (mặc định trên iPhone không đổi)."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "有 2 个以上发送目标时，手表上的“说话”下方会出现发送目标的选择。在这里选的目标只在从手表 App 发送时使用（不会改变 iPhone 上的默认目标）。"
+            "value" : "有 2 个以上发送目标时，手表上的“发送”下方会出现发送目标的选择。在这里选的目标只在从手表 App 发送时使用（不会改变 iPhone 上的默认目标）。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "有 2 個以上傳送目的地時，手錶的「說話」下方會出現目的地選擇。這裡選擇的項目僅用於從手錶 App 傳送（不會改變 iPhone 的預設）。"
+            "value" : "有 2 個以上傳送目的地時，手錶的「傳送」下方會出現目的地選擇。這裡選擇的項目僅用於從手錶 App 傳送（不會改變 iPhone 的預設）。"
           }
         }
       }

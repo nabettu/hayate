@@ -58,7 +58,7 @@
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "Говорити",
+    "speak": "Надіслати",
     "sent": "Надіслано до «Slack #memo»",
     "history": "Історія",
     "destinationsTitle": "Отримувачі",

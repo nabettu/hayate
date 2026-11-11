@@ -30,7 +30,7 @@ struct WidgetGalleryView: View {
                 sample("角 (Hayate)") { CornerLauncher(fullColor: true).frame(width: 34, height: 34) }
                 sample("角・色合わせ") { CornerLauncher(fullColor: false).frame(width: 34, height: 34) }
             }
-            Label("Hayate で話す", systemImage: "paperplane.fill").font(.footnote)
+            Label("Hayate で送る", systemImage: "paperplane.fill").font(.footnote)
         }
     }
 

@@ -269,270 +269,270 @@
         }
       }
     },
-    "Hayate で話す" : {
+    "Hayate で送る" : {
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "تحدّث عبر Hayate"
+            "value" : "إرسال عبر Hayate"
           }
         },
         "bn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hayate-এ বলুন"
+            "value" : "Hayate দিয়ে পাঠান"
           }
         },
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Parla amb Hayate"
+            "value" : "Envia amb Hayate"
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mluvit v Hayate"
+            "value" : "Odeslat přes Hayate"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tal med Hayate"
+            "value" : "Send med Hayate"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mit Hayate sprechen"
+            "value" : "Mit Hayate senden"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Μιλήστε με το Hayate"
+            "value" : "Αποστολή με το Hayate"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Speak with Hayate"
+            "value" : "Send with Hayate"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hablar con Hayate"
+            "value" : "Enviar con Hayate"
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Puhu Hayatelle"
+            "value" : "Lähetä Hayatella"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Parler avec Hayate"
+            "value" : "Envoyer avec Hayate"
           }
         },
         "gu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hayate માં બોલો"
+            "value" : "Hayate થી મોકલો"
           }
         },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "דברו עם Hayate"
+            "value" : "שליחה עם Hayate"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hayate से बोलें"
+            "value" : "Hayate से भेजें"
           }
         },
         "hr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Govori s Hayate"
+            "value" : "Pošalji s Hayate"
           }
         },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Beszéd a Hayate appal"
+            "value" : "Küldés a Hayate appal"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Bicara dengan Hayate"
+            "value" : "Kirim dengan Hayate"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Parla con Hayate"
+            "value" : "Invia con Hayate"
           }
         },
         "kn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hayate ನಲ್ಲಿ ಮಾತನಾಡಿ"
+            "value" : "Hayate ಮೂಲಕ ಕಳುಹಿಸಿ"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hayate로 말하기"
+            "value" : "Hayate로 보내기"
           }
         },
         "ml" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hayate ൽ സംസാരിക്കുക"
+            "value" : "Hayate വഴി അയയ്ക്കുക"
           }
         },
         "mr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hayate मध्ये बोला"
+            "value" : "Hayate ने पाठवा"
           }
         },
         "ms" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Cakap dengan Hayate"
+            "value" : "Hantar dengan Hayate"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Snakk med Hayate"
+            "value" : "Send med Hayate"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Praten met Hayate"
+            "value" : "Versturen met Hayate"
           }
         },
         "or" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hayate ରେ କୁହନ୍ତୁ"
+            "value" : "Hayate ରେ ପଠାନ୍ତୁ"
           }
         },
         "pa" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hayate ਨਾਲ ਬੋਲੋ"
+            "value" : "Hayate ਨਾਲ ਭੇਜੋ"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mów w Hayate"
+            "value" : "Wyślij przez Hayate"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Falar com o Hayate"
+            "value" : "Enviar com o Hayate"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Falar com o Hayate"
+            "value" : "Enviar com o Hayate"
           }
         },
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Vorbește cu Hayate"
+            "value" : "Trimite cu Hayate"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Говорить в Hayate"
+            "value" : "Отправить через Hayate"
           }
         },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hovoriť v Hayate"
+            "value" : "Odoslať cez Hayate"
           }
         },
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Govori s Hayate"
+            "value" : "Pošlji s Hayate"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tala med Hayate"
+            "value" : "Skicka med Hayate"
           }
         },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hayate இல் பேசு"
+            "value" : "Hayate மூலம் அனுப்பு"
           }
         },
         "te" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hayate లో మాట్లాడు"
+            "value" : "Hayate తో పంపు"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "พูดกับ Hayate"
+            "value" : "ส่งด้วย Hayate"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hayate ile konuş"
+            "value" : "Hayate ile gönder"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Говорити в Hayate"
+            "value" : "Надіслати через Hayate"
           }
         },
         "ur" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hayate سے بولیں"
+            "value" : "Hayate سے بھیجیں"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nói với Hayate"
+            "value" : "Gửi bằng Hayate"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "用 Hayate 说话"
+            "value" : "用 Hayate 发送"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "用 Hayate 說話"
+            "value" : "用 Hayate 傳送"
           }
         }
       }
@@ -805,270 +805,270 @@
         }
       }
     },
-    "タップして話す" : {
+    "タップして送る" : {
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "اضغط للتحدث"
+            "value" : "اضغط للإرسال"
           }
         },
         "bn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ট্যাপ করে বলুন"
+            "value" : "ট্যাপ করে পাঠান"
           }
         },
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toca per parlar"
+            "value" : "Toca per enviar"
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Klepněte a mluvte"
+            "value" : "Klepněte a odešlete"
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tryk for at tale"
+            "value" : "Tryk for at sende"
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tippen und sprechen"
+            "value" : "Tippen und senden"
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Πατήστε και μιλήστε"
+            "value" : "Πατήστε για αποστολή"
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tap to Speak"
+            "value" : "Tap to Send"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tocar para hablar"
+            "value" : "Tocar para enviar"
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Napauta ja puhu"
+            "value" : "Napauta ja lähetä"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toucher pour parler"
+            "value" : "Toucher pour envoyer"
           }
         },
         "gu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ટેપ કરીને બોલો"
+            "value" : "ટેપ કરીને મોકલો"
           }
         },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "הקישו כדי לדבר"
+            "value" : "הקישו כדי לשלוח"
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "बोलने के लिए टैप करें"
+            "value" : "भेजने के लिए टैप करें"
           }
         },
         "hr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dodirni i govori"
+            "value" : "Dodirni i pošalji"
           }
         },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Koppintson és beszéljen"
+            "value" : "Koppintson a küldéshez"
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ketuk untuk bicara"
+            "value" : "Ketuk untuk kirim"
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tocca per parlare"
+            "value" : "Tocca per inviare"
           }
         },
         "kn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ಟ್ಯಾಪ್ ಮಾಡಿ ಮಾತನಾಡಿ"
+            "value" : "ಟ್ಯಾಪ್ ಮಾಡಿ ಕಳುಹಿಸಿ"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "탭해서 말하기"
+            "value" : "탭해서 보내기"
           }
         },
         "ml" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ടാപ്പ് ചെയ്ത് സംസാരിക്കുക"
+            "value" : "ടാപ്പ് ചെയ്ത് അയയ്ക്കുക"
           }
         },
         "mr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "टॅप करून बोला"
+            "value" : "टॅप करून पाठवा"
           }
         },
         "ms" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ketik untuk bercakap"
+            "value" : "Ketik untuk menghantar"
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Trykk for å snakke"
+            "value" : "Trykk for å sende"
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tik om te praten"
+            "value" : "Tik om te versturen"
           }
         },
         "or" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ଟାପ୍ କରି କୁହନ୍ତୁ"
+            "value" : "ଟାପ୍ କରି ପଠାନ୍ତୁ"
           }
         },
         "pa" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ਟੈਪ ਕਰਕੇ ਬੋਲੋ"
+            "value" : "ਟੈਪ ਕਰਕੇ ਭੇਜੋ"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Stuknij i mów"
+            "value" : "Stuknij i wyślij"
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toque para falar"
+            "value" : "Toque para enviar"
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toque para falar"
+            "value" : "Toque para enviar"
           }
         },
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Atinge pentru a vorbi"
+            "value" : "Atinge pentru a trimite"
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Нажмите и говорите"
+            "value" : "Нажмите, чтобы отправить"
           }
         },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ťuknite a hovorte"
+            "value" : "Ťuknite a odošlite"
           }
         },
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tapnite in govorite"
+            "value" : "Tapnite in pošljite"
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tryck för att tala"
+            "value" : "Tryck för att skicka"
           }
         },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "தட்டிப் பேசு"
+            "value" : "தட்டி அனுப்பு"
           }
         },
         "te" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ట్యాప్ చేసి మాట్లాడు"
+            "value" : "ట్యాప్ చేసి పంపు"
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "แตะเพื่อพูด"
+            "value" : "แตะเพื่อส่ง"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dokun ve konuş"
+            "value" : "Dokun ve gönder"
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Торкніться й говоріть"
+            "value" : "Торкніться, щоб надіслати"
           }
         },
         "ur" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "بولنے کے لیے ٹیپ کریں"
+            "value" : "بھیجنے کے لیے ٹیپ کریں"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chạm để nói"
+            "value" : "Chạm để gửi"
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "轻点说话"
+            "value" : "轻点发送"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "點一下即可說話"
+            "value" : "點一下即可傳送"
           }
         }
       }

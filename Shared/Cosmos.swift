@@ -74,7 +74,7 @@ struct Starfield: View {
 // MARK: - 送信の演出
 
 /// 送信の演出の段階。
-/// 1. 送り始め (`sending`): 画面の紙飛行機 (iPhone は見出しの絵、時計は話すボタン) から飛び立ち、右へ飛び去る
+/// 1. 送り始め (`sending`): 画面の紙飛行機 (iPhone は見出しの絵、時計は送るボタン) から飛び立ち、右へ飛び去る
 /// 2. 送れた (`sent`): 別の紙飛行機が画面の右下から左上へ横切る
 ///    送れなかった・再送待ちは 2 の演出をしない (見出しの紙飛行機が戻るだけ)
 enum FlightPhase: Equatable {
@@ -103,6 +103,9 @@ enum FlightPhase: Equatable {
         case .sent: Self.cross
         }
     }
+
+    /// 舞台に紙飛行機を描いているか (飛び立つところ・成功して横切るところ)。
+    var isFlying: Bool { self != .idle && self != .waiting }
 }
 
 /// 送った結果と、実際に送った送り先の名前。
@@ -175,11 +178,11 @@ struct FlightStage: View {
     var phase: FlightPhase
     /// 横切る / 落ちる紙飛行機の幅。
     var planeSize: CGFloat
-    /// 飛び立つ紙飛行機がいる場所 (global 座標)。iPhone は見出しの紙飛行機、時計は話すボタン。
+    /// 飛び立つ紙飛行機がいる場所 (global 座標)。iPhone は見出しの紙飛行機、時計は送るボタン。
     var launchFrame: CGRect
     /// 飛び立つ紙飛行機の幅。
     var launchWidth: CGFloat
-    /// 時計: 話すボタンの中から現れる (はじめは見えない)。iPhone: 見出しの絵と入れ替わる (はじめから見える)。
+    /// 時計: 送るボタンの中から現れる (はじめは見えない)。iPhone: 見出しの絵と入れ替わる (はじめから見える)。
     var launchFadesIn = false
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
@@ -194,7 +197,7 @@ struct FlightStage: View {
     }
 
     var body: some View {
-        if phase == .idle || phase == .waiting {
+        if !phase.isFlying {
             Color.clear.allowsHitTesting(false)
         } else {
             GeometryReader { geo in

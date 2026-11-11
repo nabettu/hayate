@@ -58,7 +58,7 @@
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "Mów",
+    "speak": "Wyślij",
     "sent": "Wysłano do „Slack #memo”",
     "history": "Historia",
     "destinationsTitle": "Odbiorcy",

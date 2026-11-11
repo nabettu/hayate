@@ -58,7 +58,7 @@
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "Μίλα",
+    "speak": "Αποστολή",
     "sent": "Στάλθηκε στο «Slack #memo»",
     "history": "Ιστορικό",
     "destinationsTitle": "Προορισμοί",

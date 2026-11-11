@@ -58,7 +58,7 @@
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "Tal",
+    "speak": "Send",
     "sent": "Sendt til »Slack #memo«",
     "history": "Historik",
     "destinationsTitle": "Mål",
