@@ -46,19 +46,32 @@ struct WatchHomeView: View {
                                     .frame(minHeight: 22)
 
                                 if store.config.destinations.count > 1 {
-                                    Picker(selection: $selectedID) {
-                                        ForEach(store.config.destinations) { d in
-                                            // iPhone で既定にした送り先が、時計で何も選んでいないときの送り先
-                                            Text(d.id == store.config.defaultDestination?.id ? String(localized: "\(d.displayName) (既定)") : d.displayName)
-                                                .tag(d.id.uuidString)
-                                        }
+                                    // 選んでいる送り先を 1 行で出し、押すと一覧から選べるようにする (⇅ で選べることを示す)
+                                    NavigationLink {
+                                        DestinationChooser(
+                                            destinations: store.config.destinations,
+                                            current: destination.id,
+                                            defaultID: store.config.defaultDestination?.id
+                                        ) { selectedID = $0.uuidString }
                                     } label: {
-                                        Label("送り先", systemImage: "paperplane")
+                                        HStack(spacing: 6) {
+                                            Image(systemName: "paperplane")
+                                            Text(destination.displayName)
+                                                .lineLimit(1)
+                                                .truncationMode(.tail)
+                                            Image(systemName: "chevron.up.chevron.down")
+                                                .font(.caption2.bold())
+                                        }
+                                        .font(.footnote)
+                                        .foregroundStyle(Cosmos.lavender)
+                                        .padding(.horizontal, 12)
+                                        .padding(.vertical, 6)
+                                        .background(Capsule().fill(.white.opacity(0.08)))
+                                        .overlay(Capsule().strokeBorder(Cosmos.lavender.opacity(0.35), lineWidth: 1))
                                     }
-                                    // 既定の (回転式の) 見た目は 1 行の高さに押しつぶされて文字が切れるので、
-                                    // 押すと一覧が開く形にする
-                                    .pickerStyle(.navigationLink)
-                                    .tint(Cosmos.lavender)
+                                    .buttonStyle(.plain)
+                                    .accessibilityLabel(Text("送り先"))
+                                    .accessibilityValue(Text(verbatim: destination.displayName))
                                 } else {
                                     Label(destination.displayName, systemImage: "paperplane")
                                         .font(.footnote).foregroundStyle(Cosmos.lavender)
@@ -221,6 +234,39 @@ struct WatchHomeView: View {
         await run(destinationName: destination?.displayName ?? "演出", demo.work)
     }
     #endif
+}
+
+/// 送り先の一覧。押したものを選んで前の画面へ戻る。
+private struct DestinationChooser: View {
+    var destinations: [Destination]
+    var current: UUID
+    /// iPhone で既定にした送り先 (時計で何も選んでいないときの送り先)
+    var defaultID: UUID?
+    var onSelect: (UUID) -> Void
+    @Environment(\.dismiss) private var dismiss
+
+    var body: some View {
+        List(destinations) { d in
+            Button {
+                onSelect(d.id)
+                dismiss()
+            } label: {
+                HStack {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(d.displayName).lineLimit(2)
+                        if d.id == defaultID {
+                            Text("既定").font(.caption2).foregroundStyle(.secondary)
+                        }
+                    }
+                    Spacer(minLength: 4)
+                    if d.id == current {
+                        Image(systemName: "checkmark").foregroundStyle(Cosmos.lavender)
+                    }
+                }
+            }
+        }
+        .navigationTitle("送り先")
+    }
 }
 
 /// 送るボタン (話す・文字を入力する)。紫に光る丸と、ゆっくり広がる輪。
