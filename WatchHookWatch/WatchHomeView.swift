@@ -55,6 +55,9 @@ struct WatchHomeView: View {
                                     } label: {
                                         Label("送り先", systemImage: "paperplane")
                                     }
+                                    // 既定の (回転式の) 見た目は 1 行の高さに押しつぶされて文字が切れるので、
+                                    // 押すと一覧が開く形にする
+                                    .pickerStyle(.navigationLink)
                                     .tint(Cosmos.lavender)
                                 } else {
                                     Label(destination.displayName, systemImage: "paperplane")
