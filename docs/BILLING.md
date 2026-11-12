@@ -5,7 +5,7 @@
 | 商品 | Product ID | 種類 | 価格 | 参照名 |
 |---|---|---|---|---|
 | 7 日間の無料お試し | `com.nabettu.watchhook.trial7d` | 非消耗型 | 0 円 | `7-day Trial` |
-| 買い切り | `com.nabettu.watchhook.unlock` | 非消耗型 | $9.99 / 1,500 円 (下の「価格」) | `Full Unlock` |
+| 買い切り | `com.nabettu.watchhook.unlock` | 非消耗型 | $4.99 / 750 円 (下の「価格」) | `Full Unlock` |
 
 ID と日数の正は `Packages/WatchHookCore/Sources/WatchHookCore/Entitlement.swift` の `StoreProducts`。
 
@@ -29,7 +29,7 @@ ID と日数の正は `Packages/WatchHookCore/Sources/WatchHookCore/Entitlement.
 |---|---|---|
 | アプリ本体 | 無料 (アプリ内購入あり) | 無料 |
 | お試し | 非消耗型「7日間のお試し」¥0 (英語は `7-day Trial` $0.00) | 同じ形 (`7-day Trial`) |
-| 買い切り | 「Casement（買い切り）」¥2,000 (米国 `Casement — One-Time Purchase` $12.99) | $9.99 / ¥1,500 |
+| 買い切り | 「Casement（買い切り）」¥2,000 (米国 `Casement — One-Time Purchase` $12.99) | $4.99 / ¥750 (当初 $9.99 / ¥1,500) |
 | サブスク | なし (説明文・サポートに「サブスクリプションはありません」と明記) | なし |
 | 端末をまたぐ購入 | 1 回の購入で iPhone・iPad・Vision Pro・Mac すべて (ユニバーサル購入) | iPhone と時計で共有 (同じレコード) |
 | ペアのソフト | Mac 側の Casement Home は無料 (サイトで配布) | なし |
@@ -39,9 +39,13 @@ ID と日数の正は `Packages/WatchHookCore/Sources/WatchHookCore/Entitlement.
 - 価格はサポートに書かず「App Store のページでご確認ください」としている (国ごとに違うため)
 - レビューに「買い切りなのも良い」「即課金しました」「継続のための購入いたします」があり、買い切りであることが評価されている
 
-## 価格: $9.99 / ¥1,500 (2026-11-10)
+## 価格: $4.99 / ¥750 (2026-11-12 に $9.99 / ¥1,500 から下げた)
 
-**2026-11-10 にユーザーが決定。** ユーザーの希望は「$10 前後で一番売れる値段」。近い買い切りの相場 (米国の App Store、2026-11-10 に調べた):
+**2026-11-12 にユーザーが「もっと下げよう、$5 くらい」と決め、公開前に $4.99 / ¥750 へ下げた。** 日本の ¥750 は、前と同じ比 (約 150 円/ドル) でユーザーが選んだ (¥800・¥700 と比べて)。
+ASC では米国 $4.99 と日本 ¥750 を手で決め、他の国は自動換算 (`asc iap pricing schedules create --base-territory USA --prices <USA の ID>,<JPN の ID>`。価格ポイントの ID は `asc iap pricing price-points list --iap-id 6832907079 --territory <国> --min-price <> --max-price <> --paginate`)。
+相場の表のうち Talon $5.99・wrist/off $2.99 のあいだで、Watch の小物アプリの買い切り ($6.99〜$7.99) より下に置いた形。
+
+以下は最初に決めたとき (2026-11-10) の記録。**2026-11-10 にユーザーが決定。** ユーザーの希望は「$10 前後で一番売れる値段」。近い買い切りの相場 (米国の App Store、2026-11-10 に調べた):
 
 | アプリ | 形 | 価格 |
 |---|---|---|
@@ -59,7 +63,7 @@ ID と日数の正は `Packages/WatchHookCore/Sources/WatchHookCore/Entitlement.
   webhook を使う人 (開発者・自動化好き) は Pushcut の Lifetime $39.99 や月額サブスクを払う層なので、$9.99 なら「サブスク 1 か月分で一生」と比べて安く見える
 - 7 日間のお試しで価値を確かめてから買うので、値段の高さで入口を減らしにくい (お試しを始める数は価格に左右されない)
 - 日本の ¥1,500 は $9.99 とほぼ同じ (Casement の $12.99 ↔ ¥2,000 と同じ比)。App Store Connect では米国 $9.99 と日本 ¥1,500 を両方とも手で決め、他の国は自動換算
-- 非消耗型の価格はあとから変えられる。公開後 1〜2 か月、お試し → 購入の率 (下の「計測」) を見て、低ければ $7.99 を試す。
+- 非消耗型の価格はあとから変えられる。公開後 1〜2 か月、お試し → 購入の率 (下の「計測」) を見て、低ければさらに下げることを考える (当初の $9.99 のときは $7.99 を試す予定だった)。
   上げるのは下げるより反発が大きいので、最初から安くしすぎない
 
 ## 3.1.1 の条件と、どこで満たしているか
@@ -135,12 +139,12 @@ v1 に Firebase を入れるかは未決 (ROADMAP)。入れない間は App Stor
 | アプリ「Hayate」(作成時は WatchHook。2026-11-10 に `asc apps rename` で改名) | `6832906978` (SKU `com.nabettu.watchhook`、主言語 日本語) | ASC の画面で作成 (API では作れない。`asc web apps create` は Apple ID の Web ログインが要る) |
 | Bundle ID | `com.nabettu.watchhook` / `.watchkitapp` / `.watchkitapp.widget` | `asc bundle-ids create` で登録 |
 | お試し `trial7d` | IAP `6832907177` | ¥0 (価格ポイント `10000`)・ja の表示名と説明・175 か国 + 新しい国も自動 |
-| 買い切り `unlock` | IAP `6832907079` | **米国 $9.99・日本 ¥1,500 を手動で固定**、他の国は自動換算・ja の表示名と説明・175 か国 + 新しい国も自動 |
+| 買い切り `unlock` | IAP `6832907079` | **米国 $4.99・日本 ¥750 を手動で固定** (2026-11-12 に $9.99 / ¥1,500 から変更)、他の国は自動換算・ja の表示名と説明・175 か国 + 新しい国も自動 |
 
 - 有料アプリ契約: CROSSEDGE Inc. で 175 か国とも有効 (ASC > ビジネス で確認)
 - 両方ともファミリー共有はオフ (既定のまま。一度オンにすると戻せない)
 - 審査用のスクリーンショットを 2026-11-10 に載せ、両方とも **`READY_TO_SUBMIT`** になった (`MISSING_METADATA` から抜けた)。
-  お試しはお試し前 (`-WatchHookDebugAccess none`)、買い切りはお試し終了後 (`expired`) の購入画面。Sandbox の価格 ($0.00 / $9.99) が出ている。
+  お試しはお試し前 (`-WatchHookDebugAccess none`)、買い切りはお試し終了後 (`expired`) の購入画面。Sandbox の価格が出ている (買い切りは 2026-11-12 に $4.99 の画面で撮り直した。`update` では差し替えられないので `delete` → `create`)。
   撮り方: Debug ビルドを `WatchHook-Dev` に入れ、agent-device で `open com.nabettu.watchhook --relaunch --launch-args=-WatchHookDebugAccess --launch-args=none`
   (`--launch-args` は 1 語ずつ繰り返す。`"-WatchHookDebugAccess none"` と 1 つにすると効かない) → 帯から購入画面 → `screenshot --pixel-density 3` →
   アルファを消して (`magick in.png -background black -alpha remove -alpha off out.png`) `asc iap review-screenshots create --iap-id <id> --file <png>`。
@@ -152,7 +156,7 @@ v1 に Firebase を入れるかは未決 (ROADMAP)。入れない間は App Stor
 
 1. 「アプリ内課金」→ 非消耗型を 2 つ作る (上の表の Product ID・参照名)
    - お試し: 価格は「無料 (0)」。表示名「7 日間の無料お試し」、説明「7 日間、すべての機能を無料で使えます。自動で課金されません。」
-   - 買い切り: 価格は米国 $9.99・日本 1,500 円を手で決め、他の国は自動換算。表示名「Hayate (買い切り)」、説明「Apple Watch・Siri・iPhone からの送信をずっと使えます。1 回だけの支払いです。」
+   - 買い切り: 価格は米国 $4.99・日本 750 円を手で決め、他の国は自動換算。表示名「Hayate (買い切り)」、説明「Apple Watch・Siri・iPhone からの送信をずっと使えます。1 回だけの支払いです。」
    - ファミリー共有: 両方オフ (オンにするなら買い切りだけ。お試しは共有しない)
    - 審査用のスクリーンショット: iPhone の購入画面
 2. **初回は 2 つの商品を、アプリ本体と同じ提出に含める** (含め忘れると公開後に買えない)
