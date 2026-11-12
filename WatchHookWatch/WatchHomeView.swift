@@ -261,9 +261,12 @@ private struct DestinationChooser: View {
                     Spacer(minLength: 4)
                     if d.id == current {
                         Image(systemName: "checkmark").foregroundStyle(Cosmos.lavender)
+                            .accessibilityHidden(true)
                     }
                 }
             }
+            // 選んでいる送り先を読み上げでも分かるようにする (チェックは見た目だけ)
+            .accessibilityAddTraits(d.id == current ? .isSelected : [])
         }
         .navigationTitle("送り先")
     }
