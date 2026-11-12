@@ -59,8 +59,10 @@ struct WatchHomeView: View {
                                             Text(destination.displayName)
                                                 .lineLimit(1)
                                                 .truncationMode(.tail)
+                                            // 名前より目立たないよう小さく・薄くする
                                             Image(systemName: "chevron.up.chevron.down")
-                                                .font(.caption2.bold())
+                                                .font(.system(size: 9, weight: .semibold))
+                                                .opacity(0.8)
                                         }
                                         .font(.footnote)
                                         .foregroundStyle(Cosmos.lavender)
