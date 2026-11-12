@@ -18,6 +18,8 @@ struct WatchHomeView: View {
     @State private var entitlements = EntitlementStore.shared
     /// お試しの期限を画面を開いたまま過ぎても表示を変えるため、1 分ごとに進める。
     @State private var now = Date.now
+    /// 送り先の ⇅ の大きさ。名前より小さくしつつ、文字サイズの設定には合わせる。
+    @ScaledMetric(relativeTo: .caption2) private var chevronSize: CGFloat = 9
 
     private var destination: Destination? { store.config.resolve(selectedID: selectedID) }
 
@@ -59,8 +61,10 @@ struct WatchHomeView: View {
                                             Text(destination.displayName)
                                                 .lineLimit(1)
                                                 .truncationMode(.tail)
+                                            // 名前より目立たないよう小さく・薄くする
                                             Image(systemName: "chevron.up.chevron.down")
-                                                .font(.caption2.bold())
+                                                .font(.system(size: chevronSize, weight: .semibold))
+                                                .opacity(0.8)
                                         }
                                         .font(.footnote)
                                         .foregroundStyle(Cosmos.lavender)
