@@ -8,10 +8,14 @@ struct DestinationListView: View {
     var body: some View {
         NavigationStack {
             List {
-                AccessBanner()
-                ForEach([store.saveError, store.syncError].compactMap { $0 }, id: \.self) { message in
-                    Label(message, systemImage: "exclamationmark.triangle.fill").foregroundStyle(.red)
+                // お試しの状態・エラーは送り先のカードと別の区切りにする (同じ区切りだと 1 枚のカードにくっつく)
+                Section {
+                    AccessBanner()
+                    ForEach([store.saveError, store.syncError].compactMap { $0 }, id: \.self) { message in
+                        Label(message, systemImage: "exclamationmark.triangle.fill").foregroundStyle(.red)
+                    }
                 }
+                .listRowBackground(Cosmos.card)
                 if store.config.destinations.isEmpty {
                     ContentUnavailableView(
                         "送り先がありません",

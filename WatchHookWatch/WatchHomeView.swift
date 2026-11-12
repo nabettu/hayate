@@ -67,6 +67,8 @@ struct WatchHomeView: View {
                                     Label("履歴", systemImage: "clock")
                                 }
                                 .font(.footnote)
+                                // 送り先 (選択) と押し間違えないよう離す
+                                .padding(.top, 10)
 
                                 #if DEBUG
                                 VStack(spacing: 4) {

@@ -66,6 +66,8 @@ struct HistoryView: View {
                 }
             }
             .navigationTitle("履歴")
+            // 1 件ずつ別のカードにする (1 枚に詰めると行どうしがくっついて見える)
+            .listRowSpacing(10)
             .cosmicListBackground()
             .onReceive(Timer.publish(every: 60, on: .main, in: .common).autoconnect()) { now = $0 }
             .refreshable {
