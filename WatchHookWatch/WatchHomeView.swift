@@ -25,118 +25,112 @@ struct WatchHomeView: View {
 
     var body: some View {
         NavigationStack {
-            Group {
-                if let destination {
-                    ZStack {
-                        ScrollView {
-                            VStack(spacing: 8) {
-                                saveErrorView
-                                accessView
-                                // 標準の入力画面 (音声入力・スクリブル・キーボード) を開く。ダブルタップでも押せる
-                                TextFieldLink(prompt: Text("話すか、文字を入力")) {
-                                    SendOrb(isBusy: isSending, planeLaunched: flight.isFlying)
-                                        .onGeometryChange(for: CGRect.self) { $0.frame(in: .global) } action: { orbFrame = $0 }
-                                } onSubmit: { text in
-                                    Task { await send(text, to: destination) }
-                                }
-                                .buttonStyle(.plain)
-                                .handGestureShortcut(.primaryAction)
-                                .disabled(isSending || !entitlements.access(now: now).canSend)
-                                .accessibilityLabel("送る")
-
-                                statusView
-                                    .frame(minHeight: 22)
-
-                                if store.config.destinations.count > 1 {
-                                    // 選んでいる送り先を 1 行で出し、押すと一覧から選べるようにする (⇅ で選べることを示す)
-                                    NavigationLink {
-                                        DestinationChooser(
-                                            destinations: store.config.destinations,
-                                            current: destination.id,
-                                            defaultID: store.config.defaultDestination?.id
-                                        ) { selectedID = $0.uuidString }
-                                    } label: {
-                                        HStack(spacing: 6) {
-                                            Image(systemName: "paperplane")
-                                            Text(destination.displayName)
-                                                .lineLimit(1)
-                                                .truncationMode(.tail)
-                                            // 名前より目立たないよう小さく・薄くする
-                                            Image(systemName: "chevron.up.chevron.down")
-                                                .font(.system(size: chevronSize, weight: .semibold))
-                                                .opacity(0.8)
-                                        }
-                                        .font(.footnote)
-                                        .foregroundStyle(Cosmos.lavender)
-                                        .padding(.horizontal, 12)
-                                        .padding(.vertical, 6)
-                                        .background(Capsule().fill(.white.opacity(0.08)))
-                                        .overlay(Capsule().strokeBorder(Cosmos.lavender.opacity(0.35), lineWidth: 1))
-                                    }
-                                    .buttonStyle(.plain)
-                                    .accessibilityLabel(Text("送り先"))
-                                    .accessibilityValue(Text(verbatim: destination.displayName))
-                                } else {
-                                    Label(destination.displayName, systemImage: "paperplane")
-                                        .font(.footnote).foregroundStyle(Cosmos.lavender)
-                                }
-
-                                NavigationLink {
-                                    WatchHistoryView()
-                                } label: {
-                                    Label("履歴", systemImage: "clock")
-                                }
-                                .font(.footnote)
-                                // 送り先 (選択) と押し間違えないよう離す
-                                .padding(.top, 10)
-
-                                #if DEBUG
-                                VStack(spacing: 4) {
-                                    Text("演出だけ見る (デバッグ)").font(.caption2).foregroundStyle(.secondary)
-                                    ForEach(FlightDemo.allCases) { demo in
-                                        Button(demo.rawValue) { Task { await playDemo(demo) } }
-                                            .font(.caption2)
-                                            .disabled(isSending)
-                                    }
-                                }
-                                .padding(.top, 8)
-                                #endif
-                            }
-                        }
-                        FlightStage(phase: flight, planeSize: 56, launchFrame: orbFrame, launchWidth: 34,
-                                    launchFadesIn: true)
-                            .ignoresSafeArea()
-                    }
-                    .onReceive(Timer.publish(every: 60, on: .main, in: .common).autoconnect()) { now = $0 }
-                    .onAppear(perform: fixSelection)
-                    .onChange(of: store.config) { fixSelection() }
-                    // 前に送った結果を、選び直した送り先の結果と見間違えないように消す
-                    .onChange(of: selectedID) { if !isSending { lastResult = nil } }
-                } else {
-                    ScrollView {
-                        VStack(spacing: 10) {
-                            saveErrorView
-                            PaperPlane().frame(width: 44)
-                                .shadow(color: Cosmos.violet, radius: 8)
-                            Text("iPhone の Hayate で送り先を登録してください")
-                                .multilineTextAlignment(.center)
-                                .font(.footnote)
-                            Button("再読み込み") { WatchSync.shared.requestConfig() }
-                                .tint(Cosmos.violet)
-                            // 送り先が無くても、これまでの履歴は見られるようにする
-                            NavigationLink {
-                                WatchHistoryView()
-                            } label: {
-                                Label("履歴", systemImage: "clock")
-                            }
-                            .font(.footnote)
-                        }
-                    }
-                }
+            // 送る画面の下に履歴を置く (デジタルクラウンか下へのスワイプで移る。ボタンで開かない)
+            TabView {
+                homePage
+                    .containerBackground(for: .tabView) { CosmicBackground(starCount: 26) }
+                WatchHistoryView()
+                    .containerBackground(for: .tabView) { CosmicBackground(starCount: 26) }
             }
+            .tabViewStyle(.verticalPage)
+            // 送り先の一覧など、押して開く画面の背景
             .containerBackground(for: .navigation) { CosmicBackground(starCount: 26) }
         }
         .tint(Cosmos.lavender)
+    }
+
+    @ViewBuilder private var homePage: some View {
+        if let destination {
+            ZStack {
+                ScrollView {
+                    VStack(spacing: 8) {
+                        saveErrorView
+                        accessView
+                        // 標準の入力画面 (音声入力・スクリブル・キーボード) を開く。ダブルタップでも押せる
+                        TextFieldLink(prompt: Text("話すか、文字を入力")) {
+                            SendOrb(isBusy: isSending, planeLaunched: flight.isFlying)
+                                .onGeometryChange(for: CGRect.self) { $0.frame(in: .global) } action: { orbFrame = $0 }
+                        } onSubmit: { text in
+                            Task { await send(text, to: destination) }
+                        }
+                        .buttonStyle(.plain)
+                        .handGestureShortcut(.primaryAction)
+                        .disabled(isSending || !entitlements.access(now: now).canSend)
+                        .accessibilityLabel("送る")
+
+                        statusView
+                            .frame(minHeight: 22)
+
+                        if store.config.destinations.count > 1 {
+                            // 選んでいる送り先を 1 行で出し、押すと一覧から選べるようにする (⇅ で選べることを示す)
+                            NavigationLink {
+                                DestinationChooser(
+                                    destinations: store.config.destinations,
+                                    current: destination.id,
+                                    defaultID: store.config.defaultDestination?.id
+                                ) { selectedID = $0.uuidString }
+                            } label: {
+                                HStack(spacing: 6) {
+                                    Image(systemName: "paperplane")
+                                    Text(destination.displayName)
+                                        .lineLimit(1)
+                                        .truncationMode(.tail)
+                                    // 名前より目立たないよう小さく・薄くする
+                                    Image(systemName: "chevron.up.chevron.down")
+                                        .font(.system(size: chevronSize, weight: .semibold))
+                                        .opacity(0.8)
+                                }
+                                .font(.footnote)
+                                .foregroundStyle(Cosmos.lavender)
+                                .padding(.horizontal, 12)
+                                .padding(.vertical, 6)
+                                .background(Capsule().fill(.white.opacity(0.08)))
+                                .overlay(Capsule().strokeBorder(Cosmos.lavender.opacity(0.35), lineWidth: 1))
+                            }
+                            .buttonStyle(.plain)
+                            .accessibilityLabel(Text("送り先"))
+                            .accessibilityValue(Text(verbatim: destination.displayName))
+                        } else {
+                            Label(destination.displayName, systemImage: "paperplane")
+                                .font(.footnote).foregroundStyle(Cosmos.lavender)
+                        }
+
+                        #if DEBUG
+                        VStack(spacing: 4) {
+                            Text("演出だけ見る (デバッグ)").font(.caption2).foregroundStyle(.secondary)
+                            ForEach(FlightDemo.allCases) { demo in
+                                Button(demo.rawValue) { Task { await playDemo(demo) } }
+                                    .font(.caption2)
+                                    .disabled(isSending)
+                            }
+                        }
+                        .padding(.top, 8)
+                        #endif
+                    }
+                }
+                FlightStage(phase: flight, planeSize: 56, launchFrame: orbFrame, launchWidth: 34,
+                            launchFadesIn: true)
+                    .ignoresSafeArea()
+            }
+            .onReceive(Timer.publish(every: 60, on: .main, in: .common).autoconnect()) { now = $0 }
+            .onAppear(perform: fixSelection)
+            .onChange(of: store.config) { fixSelection() }
+            // 前に送った結果を、選び直した送り先の結果と見間違えないように消す
+            .onChange(of: selectedID) { if !isSending { lastResult = nil } }
+        } else {
+            ScrollView {
+                VStack(spacing: 10) {
+                    saveErrorView
+                    PaperPlane().frame(width: 44)
+                        .shadow(color: Cosmos.violet, radius: 8)
+                    Text("iPhone の Hayate で送り先を登録してください")
+                        .multilineTextAlignment(.center)
+                        .font(.footnote)
+                    Button("再読み込み") { WatchSync.shared.requestConfig() }
+                        .tint(Cosmos.violet)
+                }
+            }
+        }
     }
 
     /// お試し前・お試しが終わったとき。購入は iPhone で行う。
@@ -352,7 +346,6 @@ struct WatchHistoryView: View {
         }
         .navigationTitle("履歴")
         .onReceive(Timer.publish(every: 60, on: .main, in: .common).autoconnect()) { now = $0 }
-        .containerBackground(for: .navigation) { CosmicBackground(starCount: 26) }
         .task { await reload() }
         .onReceive(NotificationCenter.default.publisher(for: MessageDispatcher.didChange)) { _ in
             Task { await reload() }

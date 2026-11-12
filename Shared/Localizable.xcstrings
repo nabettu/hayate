@@ -54417,6 +54417,274 @@
         }
       }
     },
+    "送ったものは、デジタルクラウンを回すか下へスクロールすると「履歴」で見られます。" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يمكنك رؤية ما أرسلته في «السجل» بتدوير التاج الرقمي أو التمرير لأسفل."
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ডিজিটাল ক্রাউন ঘুরিয়ে বা নিচে স্ক্রল করে “ইতিহাস”-এ পাঠানো বার্তাগুলো দেখতে পাবেন।"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Per veure el que has enviat, gira la Digital Crown o desplaça’t cap avall fins a «Historial»."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odeslané zprávy uvidíte v „Historii“ otočením Digital Crown nebo posunutím dolů."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du kan se det, du har sendt, under »Historik« ved at dreje Digital Crown eller rulle ned."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gesendetes findest du im „Verlauf“: Digital Crown drehen oder nach unten scrollen."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Δείτε ό,τι στείλατε στο «Ιστορικό» γυρίζοντας το Digital Crown ή κάνοντας κύλιση προς τα κάτω."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "To see what you’ve sent, turn the Digital Crown or scroll down to “History”."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para ver lo que has enviado, gira la Digital Crown o desplázate hacia abajo hasta «Historial»."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Näet lähettämäsi viestit kohdassa ”Historia” kääntämällä Digital Crownia tai vierittämällä alas."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pour voir ce que vous avez envoyé, tournez la Digital Crown ou faites défiler vers le bas jusqu’à « Historique »."
+          }
+        },
+        "gu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ડિજિટલ ક્રાઉન ફેરવીને અથવા નીચે સ્ક્રોલ કરીને “ઇતિહાસ”માં મોકલેલું જોઈ શકો છો."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "אפשר לראות את מה ששלחת ב„היסטוריה” על־ידי סיבוב ה־Digital Crown או גלילה למטה."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डिजिटल क्राउन घुमाकर या नीचे स्क्रॉल करके “इतिहास” में भेजे गए संदेश देख सकते हैं।"
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poslano možete vidjeti u „Povijesti” okretanjem Digital Crowna ili pomicanjem prema dolje."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Az elküldötteket az „Előzmények” alatt látod: forgasd a Digital Crownt, vagy görgess lefelé."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Untuk melihat yang sudah dikirim, putar Digital Crown atau gulir ke bawah ke “Riwayat”."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Per vedere ciò che hai inviato, ruota la Digital Crown o scorri verso il basso fino a “Cronologia”."
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಡಿಜಿಟಲ್ ಕ್ರೌನ್ ತಿರುಗಿಸಿ ಅಥವಾ ಕೆಳಗೆ ಸ್ಕ್ರೋಲ್ ಮಾಡಿ “ಇತಿಹಾಸ”ದಲ್ಲಿ ಕಳುಹಿಸಿದುದನ್ನು ನೋಡಬಹುದು."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Digital Crown을 돌리거나 아래로 스크롤하면 ‘기록’에서 보낸 내용을 볼 수 있습니다."
+          }
+        },
+        "ml" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ഡിജിറ്റൽ ക്രൗൺ തിരിക്കുകയോ താഴേക്ക് സ്ക്രോൾ ചെയ്യുകയോ ചെയ്താൽ അയച്ചവ “ചരിത്രം” എന്നതിൽ കാണാം."
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "डिजिटल क्राउन फिरवून किंवा खाली स्क्रोल करून “इतिहास” मध्ये पाठवलेले पाहता येते."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Untuk melihat apa yang telah dihantar, putar Digital Crown atau tatal ke bawah ke “Sejarah”."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Du ser det du har sendt, under «Historikk» ved å vri på Digital Crown eller rulle ned."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wat je hebt verstuurd, zie je bij ‘Geschiedenis’: draai aan de Digital Crown of scrol omlaag."
+          }
+        },
+        "or" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ଡିଜିଟାଲ କ୍ରାଉନ ଘୁରାଇ କିମ୍ବା ତଳକୁ ସ୍କ୍ରୋଲ କରି “ଇତିହାସ”ରେ ପଠାଯାଇଥିବା ଦେଖିପାରିବେ।"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ਡਿਜੀਟਲ ਕ੍ਰਾਊਨ ਘੁਮਾ ਕੇ ਜਾਂ ਹੇਠਾਂ ਸਕ੍ਰੋਲ ਕਰਕੇ “ਇਤਿਹਾਸ” ਵਿੱਚ ਭੇਜਿਆ ਹੋਇਆ ਵੇਖ ਸਕਦੇ ਹੋ।"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wysłane wiadomości zobaczysz w „Historii” – obróć Digital Crown lub przewiń w dół."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para ver o que você enviou, gire a Digital Crown ou role para baixo até “Histórico”."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Para ver o que enviou, rode a Digital Crown ou desloque para baixo até “Histórico”."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ce ai trimis vezi în „Istoric”: rotește Digital Crown sau derulează în jos."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отправленное можно посмотреть в «Истории»: поверните Digital Crown или прокрутите вниз."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odoslané uvidíte v „Histórii“ otočením Digital Crown alebo posunutím nadol."
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poslano vidite v »Zgodovini«: zavrtite Digital Crown ali se pomaknite navzdol."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Det du har skickat ser du under ”Historik” genom att vrida på Digital Crown eller rulla nedåt."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "டிஜிட்டல் கிரவுனைச் சுழற்றி அல்லது கீழே ஸ்க்ரோல் செய்து “வரலாறு”-இல் அனுப்பியவற்றைப் பார்க்கலாம்."
+          }
+        },
+        "te" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "డిజిటల్ క్రౌన్‌ను తిప్పి లేదా కిందికి స్క్రోల్ చేసి “చరిత్ర”లో పంపినవి చూడవచ్చు."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "หมุน Digital Crown หรือเลื่อนลงเพื่อดูสิ่งที่ส่งแล้วใน “ประวัติ”"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gönderdiklerinizi görmek için Digital Crown’u çevirin veya aşağı kaydırarak “Geçmiş”e gidin."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Надіслане можна переглянути в «Історії»: поверніть Digital Crown або прокрутіть униз."
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ڈیجیٹل کراؤن گھما کر یا نیچے اسکرول کر کے “ہسٹری” میں بھیجا ہوا دیکھ سکتے ہیں۔"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Để xem những gì đã gửi, xoay Digital Crown hoặc cuộn xuống phần “Lịch sử”."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "转动数码表冠或向下滚动，即可在“记录”中查看已发送的内容。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "轉動數位錶冠或向下捲動，即可在「記錄」中查看已傳送的內容。"
+          }
+        }
+      }
+    },
     "送った日時 (UTC、ISO 8601)" : {
       "localizations" : {
         "ar" : {
