@@ -3,19 +3,25 @@ import WatchHookCore
 
 struct DestinationListView: View {
     @State private var store = ConfigStore.shared
+    @State private var entitlement = EntitlementStore.shared
     @State private var editing: Destination?
 
     var body: some View {
         NavigationStack {
             List {
-                // お試しの状態・エラーは送り先のカードと別の区切りにする (同じ区切りだと 1 枚のカードにくっつく)
-                Section {
-                    AccessBanner()
-                    ForEach([store.saveError, store.syncError].compactMap { $0 }, id: \.self) { message in
-                        Label(message, systemImage: "exclamationmark.triangle.fill").foregroundStyle(.red)
+                // お試しの状態・エラーは送り先のカードと別の区切りにする (同じ区切りだと 1 枚のカードにくっつく)。
+                // 購入済みでエラーも無いときは区切りごと出さない (出すと中身の無いカードが残る)
+                let errors = [store.saveError, store.syncError].compactMap { $0 }
+                let showsBanner = entitlement.access() != .unlocked
+                if showsBanner || !errors.isEmpty {
+                    Section {
+                        if showsBanner { AccessBanner() }
+                        ForEach(errors, id: \.self) { message in
+                            Label(message, systemImage: "exclamationmark.triangle.fill").foregroundStyle(.red)
+                        }
                     }
+                    .listRowBackground(Cosmos.card)
                 }
-                .listRowBackground(Cosmos.card)
                 if store.config.destinations.isEmpty {
                     ContentUnavailableView(
                         "送り先がありません",
