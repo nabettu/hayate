@@ -25,7 +25,7 @@ struct WatchHomeView: View {
 
     var body: some View {
         NavigationStack {
-            // 送る画面の下に履歴を置く (デジタルクラウンか下へのスワイプで移る。ボタンで開かない)
+            // 送る画面の下に履歴を置く (デジタルクラウンを回すか、上へスワイプ = 下へスクロールで移る。ボタンで開かない)
             TabView {
                 homePage
                     .containerBackground(for: .tabView) { CosmicBackground(starCount: 26) }
