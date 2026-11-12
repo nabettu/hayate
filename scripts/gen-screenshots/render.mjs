@@ -118,10 +118,16 @@ const WATCH_CSS = `
   .ws .orb { position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(45deg,#8B5CF6,#C4B5FD); box-shadow: 0 0 22px rgba(139,92,246,.9), inset 0 0 0 2px rgba(255,255,255,.35);
     display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 26px; font-weight: 700; }
   .ws .status { position: absolute; left: 16px; right: 16px; top: 302px; overflow: hidden; text-align: center; font-size: 23px; font-weight: 500; white-space: nowrap; color: #FDE68A; display: flex; align-items: center; justify-content: center; gap: 8px; }
-  .ws .dest { position: absolute; left: 16px; right: 16px; top: 352px; overflow: hidden; white-space: nowrap; display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 30px; color: #C4B5FD; }
-  .ws .pill { position: absolute; left: 30px; right: 30px; top: 404px; height: 104px; border-radius: 52px; background: rgba(150,130,230,.32);
-    display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 32px; color: #E4DCFF; overflow: hidden; white-space: nowrap; }
-  .ws .status svg, .ws .dest svg, .ws .pill svg { flex: none; }
+  .ws .destwrap { position: absolute; left: 24px; right: 24px; top: 336px; display: flex; justify-content: center; }
+  .ws .destpill { display: flex; align-items: center; gap: 12px; max-width: 100%; overflow: hidden; white-space: nowrap; padding: 12px 24px; border-radius: 999px; font-size: 30px; color: #C4B5FD;
+    background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 2px rgba(196,181,253,.35); }
+  .ws .dest { white-space: nowrap; }
+  .ws .destpill svg { flex: none; }
+  .ws .pager { position: absolute; right: 8px; top: 92px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+  .ws .pager i { width: 10px; height: 10px; border-radius: 5px; background: rgba(255,255,255,.4); }
+  .ws .pager i.on { height: 40px; background: #fff; }
+  .ws .ptitle { position: absolute; right: 30px; top: 74px; font-family: "SF Compact Display", var(--cjk); font-size: 34px; font-weight: 600; color: rgba(196,181,253,.75); white-space: nowrap; }
+  .ws .status svg { flex: none; }
   .ws .orbtext { max-width: 136px; overflow: hidden; white-space: nowrap; }
   .ws .rows { position: absolute; left: 14px; right: 14px; top: 92px; display: flex; flex-direction: column; gap: 10px; }
   .ws .row { background: rgba(34,27,72,.96); border-radius: 28px; padding: 18px 24px; }
@@ -139,26 +145,30 @@ const WATCH_CSS = `
 
 const watchBar = (title, { back = false } = {}) => `<div class="bar">${title ? `<div class="title">${back ? `<span class="back">${SYM.chevronLeft(28, "#fff")}</span>` : ""}<span class="tt">${esc(title)}</span></div>` : ""}<div class="time">10:09</div></div>`;
 const paperplaneLine = (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.8" stroke-linejoin="round"><path d="M21.5 2.5 2.5 10l7.5 3.5L13.5 21z"/><path d="m10 13.5 4.5-4.5"/></svg>`;
-const clockLine = (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5h-3"/></svg>`;
+const chevronUpDown = (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m7 9 5-5 5 5"/><path d="m7 15 5 5 5-5"/></svg>`;
+/** 縦のページの位置 (送る画面の下に履歴がある。WatchHomeView の TabView(.verticalPage)) */
+const pager = (page) => `<div class="pager">${[0, 1].map((i) => `<i${i === page ? ' class="on"' : ""}></i>`).join("")}</div>`;
+/** 「(既定)」の括弧を外す (一覧では名前の下に小さく出す) */
+const bare = (s) => s.replace(/^[(（]\s*|\s*[)）]$/g, "");
 
 export const watchScreens = {
-  /** 話して送った直後のホーム (WatchHomeView: 光る送るボタン・「〜」に送りました・送り先・履歴) */
+  /** 話して送った直後のホーム (WatchHomeView: 光る送るボタン・「〜」に送りました・送り先の選択。履歴は下のページ) */
   home: (t) => `<div class="ws">${appSky(416, 496, 26, 5)}${watchBar("")}
     <div class="orbwrap"><div class="ring" style="transform:scale(1.25);opacity:.75"></div><div class="ring" style="transform:scale(1.45);opacity:.3"></div>
       <div class="orb">${SYM.paperplane(58, "#fff")}<span class="orbtext">${esc(t.speak)}</span></div></div>
     <div class="status">${SYM.checkFill(28, "#FDE68A")}${esc(t.sent)}</div>
-    <div class="dest">${paperplaneLine(34, "#C4B5FD")}${esc(t.destinations[0])}</div>
-    <div class="pill">${clockLine(34, "#E4DCFF")}${esc(t.history)}</div></div>`,
-  /** 時計の履歴 (WatchHistoryView: 本文と「送り先 · 状態」) */
-  history: (t) => `<div class="ws">${appSky(416, 496, 26, 9)}${watchBar(t.history, { back: true })}
-    <div class="rows">
+    <div class="destwrap"><div class="destpill">${paperplaneLine(32, "#C4B5FD")}<span class="dest">${esc(t.destinations[0])}</span>${chevronUpDown(16, "#C4B5FD")}</div></div>
+    ${pager(0)}</div>`,
+  /** 時計の履歴 (WatchHistoryView: 送る画面の下のページ。本文と「送り先 · 状態」) */
+  history: (t) => `<div class="ws">${appSky(416, 496, 26, 9)}${watchBar("")}<div class="ptitle">${esc(t.history)}</div>
+    <div class="rows" style="top:128px">
       ${[[0, 0, t.statusSent], [1, 2, t.statusPending], [2, 1, t.statusSent]].map(([s, d, st]) =>
         `<div class="row"><b>${esc(t.spoken[s])}</b><small>${esc(t.destinations[d])} · ${esc(st)}</small></div>`).join("")}
-    </div></div>`,
-  /** 送り先の選択 (WatchHomeView の Picker を開いたところ。iPhone で既定にした送り先に「(既定)」) */
+    </div>${pager(1)}</div>`,
+  /** 送り先の選択 (WatchHomeView の送り先を押して開く DestinationChooser。iPhone で既定にした送り先の下に「既定」) */
   destinations: (t) => `<div class="ws">${appSky(416, 496, 26, 13)}${watchBar(t.destinationsTitle, { back: true })}
     <div class="rows">
-      ${t.destinations.map((d, i) => `<div class="row pick"><b>${esc(i === 0 ? `${d} ${t.defaultMark}` : d)}</b>${i === 0 ? SYM.check(34, "#C4B5FD") : ""}</div>`).join("")}
+      ${t.destinations.map((d, i) => `<div class="row pick"><div><b>${esc(d)}</b>${i === 0 ? `<small>${esc(bare(t.defaultMark))}</small>` : ""}</div>${i === 0 ? SYM.check(34, "#C4B5FD") : ""}</div>`).join("")}
     </div></div>`,
   /** Siri の返事 (SendTextIntent の dialog)。Siri の画面なので背景は黒 */
   siri: (t) => `<div class="ws black">${watchBar("")}
@@ -167,11 +177,11 @@ export const watchScreens = {
 };
 
 
-// Watch の画面の 1 行の文字 (送信結果・送り先・履歴・見出し・話す) は、収まらなければ字を小さくする。
+// Watch の画面の 1 行の文字 (送信結果・送り先・履歴の見出し・見出し・話す) は、収まらなければ字を小さくする。
 // 縮めても収まらないものは window.__watchOverflow に残し、index.mjs が生成を止める
 const WATCH_FIT = `<script>
   window.__watchOverflow = [];
-  document.querySelectorAll(".ws .status, .ws .dest, .ws .pill, .ws .orbtext, .ws .title .tt").forEach(function (el) {
+  document.querySelectorAll(".ws .status, .ws .destpill, .ws .ptitle, .ws .orbtext, .ws .title .tt").forEach(function (el) {
     var over = function () { return el.scrollWidth > el.clientWidth + 1; };
     var size = parseFloat(getComputedStyle(el).fontSize), min = size * 0.6;
     while (over() && size > min) { size -= 1; el.style.fontSize = size + "px"; }
