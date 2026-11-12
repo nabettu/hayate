@@ -37,3 +37,5 @@ Apple Watch の音声入力を webhook へ送るアプリ。画面に出る名�
 - **実機の時計に Watch アプリが入らないときは、署名のプロファイルに時計が入っているかを見る** (2026-11-10)。母艦の Xcode には Apple ID のログインが無く、`-allowProvisioningUpdates` だけだと手元の古い汎用プロファイル (`iOS Team Provisioning Profile: *`) を使い回す。時計 (Apple Watch S10、2026-09-19 登録) を登録する前に作られたものだと、時計にだけ入らない。
   実機ビルドは ASC の API キーを付けて Xcode にプロファイルを取り直させる: `-allowProvisioningUpdates -authenticationKeyPath ~/.appstoreconnect/private_keys/AuthKey_A2M34D6GQG.p8 -authenticationKeyID A2M34D6GQG -authenticationKeyIssuerID <TypeAI/scripts/.env の ISSUER_ID>`。
   確かめ方: `security cms -D -i <.app>/embedded.mobileprovision | grep 00008310-0008A21821D2601E`
+- **実機の iPhone へは `roamrun` で入れる** (2026-11-12。Tailscale 経由なので USB も同じ Wi-Fi も要らない)。上のビルドの .app を `roamrun up iphon15pro -d` → `roamrun install iphon15pro <.app>` → `roamrun down iphon15pro`。
+  iPhone がロック中だと断られる (ロックを解除して画面をつけたままにしてもらう)。`xcrun devicectl` だと Mac の近くに無い iPhone は unavailable のままで入らない
