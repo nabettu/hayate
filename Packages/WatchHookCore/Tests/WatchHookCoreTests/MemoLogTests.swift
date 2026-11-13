@@ -276,3 +276,34 @@ struct ManualDeliveryTests {
         #expect(back.id == d.id)
     }
 }
+
+@Suite("写しの新旧")
+struct MemoCopyTests {
+    func memo(_ deliveries: [Delivery]) -> Memo {
+        Memo(id: UUID(uuidString: "00000000-0000-0000-0000-000000000001")!, text: "a", source: "t", origin: .watch, deliveries: deliveries)
+    }
+
+    @Test func どの連携も版が同じか新しければ_古い写しの代わりになる() {
+        let a = Delivery(target: .reminder(listName: "L"), owner: .phone, text: "a", revision: 1)
+        var a2 = a
+        a2.revision = 2
+        let b = Delivery(target: .markdown(folderName: "F"), owner: .phone, text: "a", revision: 1)
+        #expect(memo([a2, b]).covers(memo([a, b])))
+        #expect(memo([a, b]).covers(memo([a, b])))
+        #expect(!memo([a, b]).covers(memo([a2, b])))
+        // 知らない連携がある写しの代わりにはならない
+        #expect(!memo([a2]).covers(memo([a, b])))
+        #expect(memo([a2, b]).covers(memo([a])))
+    }
+
+    @Test func 入力した時点のタイムゾーンを持ち_前の形式は今のものを使う() throws {
+        let m = Memo(text: "a", source: "t", origin: .phone, timeZoneID: "Asia/Tokyo")
+        #expect(m.timeZone.identifier == "Asia/Tokyo")
+        let back = try JSONDecoder().decode(Memo.self, from: JSONEncoder().encode(m))
+        #expect(back.timeZone.identifier == "Asia/Tokyo")
+        var json = try JSONSerialization.jsonObject(with: JSONEncoder().encode(m)) as! [String: Any]
+        json["timeZoneID"] = nil
+        let old = try JSONDecoder().decode(Memo.self, from: JSONSerialization.data(withJSONObject: json))
+        #expect(old.timeZone == .current)
+    }
+}

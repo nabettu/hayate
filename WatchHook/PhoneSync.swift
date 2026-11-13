@@ -38,37 +38,42 @@ final class PhoneSync: NSObject, WCSessionDelegate, @unchecked Sendable {
         let session = WCSession.default
         guard WCSession.isSupported(), session.activationState == .activated, session.isWatchAppInstalled,
               let data = try? JSONEncoder().encode(memo) else { return }
-        // 送っている最中 (isTransferring は届くまで true のまま) のものも取り消してよい。新しい写しが代わりに届く
-        for transfer in session.outstandingUserInfoTransfers {
-            if (transfer.userInfo[SyncKeys.memo] as? Data).flatMap({ try? JSONDecoder().decode(Memo.self, from: $0) })?.id == memo.id {
-                transfer.cancel()
-            }
+        if replaceQueuedCopies(of: memo, in: session) {
+            session.transferUserInfo([SyncKeys.memo: data])
         }
-        session.transferUserInfo([SyncKeys.memo: data])
     }
 
-    /// まだつながる準備ができていない (起動直後など) あいだに消したメモ。準備ができたら知らせる
-    private let deletionsBeforeActivation = Mutex<[UUID]>([])
+    /// 時計に知らせる前の、消したメモの ID。つながる準備ができる前 (起動直後など) に消したものや、
+    /// 知らせる前にアプリが終わったものも、次につながったときに知らせる。中身は ID だけなので UserDefaults に置く
+    private static let pendingDeletionsKey = "pendingWatchDeletions"
+    private let deletionLock = Mutex<Void>(())
 
     /// iPhone で消したメモを時計にも知らせる (時計の未送信を止めて消す)。
     /// transferUserInfo は届くまで OS が持ち続けるので、一度渡せば時計のアプリが閉じていても届く。
     func sendDeletion(_ memoID: UUID) {
-        let session = WCSession.default
         guard WCSession.isSupported() else { return }
-        guard session.activationState == .activated else {
-            deletionsBeforeActivation.withLock { $0.append(memoID) }
-            return
+        // 先に控えてから送る (つながった知らせと入れ違っても取り残さない)
+        deletionLock.withLock { _ in
+            var ids = UserDefaults.standard.stringArray(forKey: Self.pendingDeletionsKey) ?? []
+            ids.append(memoID.uuidString)
+            UserDefaults.standard.set(ids, forKey: Self.pendingDeletionsKey)
         }
-        guard session.isWatchAppInstalled else { return }
-        session.transferUserInfo([SyncKeys.deletedMemo: memoID.uuidString])
+        sendPendingDeletions()
     }
 
-    private func sendDeletionsBeforeActivation() {
-        let ids = deletionsBeforeActivation.withLock { ids in
-            defer { ids = [] }
+    private func sendPendingDeletions() {
+        let session = WCSession.default
+        guard session.activationState == .activated else { return }
+        let ids = deletionLock.withLock { _ in
+            let ids = UserDefaults.standard.stringArray(forKey: Self.pendingDeletionsKey) ?? []
+            UserDefaults.standard.removeObject(forKey: Self.pendingDeletionsKey)
             return ids
         }
-        for id in ids { sendDeletion(id) }
+        // 時計のアプリが無ければ、止める未送信も無い
+        guard session.isWatchAppInstalled else { return }
+        for id in ids {
+            session.transferUserInfo([SyncKeys.deletedMemo: id])
+        }
     }
 
     /// 時計から届いたメモを保存する。裏で起こされたときに途中で止められないよう、終わるまで時間をもらう。
@@ -87,7 +92,7 @@ final class PhoneSync: NSObject, WCSessionDelegate, @unchecked Sendable {
 
     func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
         guard activationState == .activated else { return }
-        sendDeletionsBeforeActivation()
+        sendPendingDeletions()
         Task { @MainActor in ConfigStore.shared.resync() }
     }
 

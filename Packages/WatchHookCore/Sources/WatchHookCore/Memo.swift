@@ -87,9 +87,12 @@ public struct Memo: Codable, Hashable, Identifiable, Sendable {
     public var phoneSync: PhoneSyncState?
     /// iPhone が初めて受け取ったとき、リマインダー・Markdown の連携を足してよいか (前の形式から移した履歴は false)
     public var wantsPhoneIntegrations: Bool
+    /// 入力した端末のタイムゾーン (Markdown の日付・時刻をあとで送り直しても変えないため)。前の形式には無い
+    public var timeZoneID: String?
 
     public init(id: UUID = UUID(), text: String, createdAt: Date = Date(), source: String, origin: DeviceRole,
-                deliveries: [Delivery] = [], phoneSync: PhoneSyncState? = nil, wantsPhoneIntegrations: Bool = true) {
+                deliveries: [Delivery] = [], phoneSync: PhoneSyncState? = nil, wantsPhoneIntegrations: Bool = true,
+                timeZoneID: String? = TimeZone.current.identifier) {
         self.id = id
         self.text = text
         self.createdAt = createdAt
@@ -98,6 +101,20 @@ public struct Memo: Codable, Hashable, Identifiable, Sendable {
         self.deliveries = deliveries
         self.phoneSync = phoneSync
         self.wantsPhoneIntegrations = wantsPhoneIntegrations
+        self.timeZoneID = timeZoneID
+    }
+
+    /// 入力したときのタイムゾーン。分からなければ今のもの。
+    public var timeZone: TimeZone {
+        timeZoneID.flatMap(TimeZone.init(identifier:)) ?? .current
+    }
+
+    /// この写しが `other` の代わりになるか (`other` の連携をすべて持ち、どれも版が同じか新しい)。
+    /// 送る前の古い写しを取り消すときに、新しい写しを古い写しで消さないため。
+    public func covers(_ other: Memo) -> Bool {
+        other.deliveries.allSatisfy { theirs in
+            deliveries.contains { $0.id == theirs.id && $0.revision >= theirs.revision }
+        }
     }
 
     public enum Summary: Hashable, Sendable {

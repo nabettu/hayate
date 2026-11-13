@@ -56,13 +56,9 @@ final class WatchSync: NSObject, WCSessionDelegate, @unchecked Sendable {
         guard WCSession.isSupported(), session.activationState == .activated,
               let data = try? JSONEncoder().encode(memo) else { return }
         // 同じメモの古い写しがまだ届いていなければ取り消す (最新の 1 通だけ届けばよい)
-        // 送っている最中 (isTransferring は届くまで true のまま) のものも取り消してよい。新しい写しが代わりに届く
-        for transfer in session.outstandingUserInfoTransfers {
-            if (transfer.userInfo[SyncKeys.memo] as? Data).flatMap({ try? JSONDecoder().decode(Memo.self, from: $0) })?.id == memo.id {
-                transfer.cancel()
-            }
+        if replaceQueuedCopies(of: memo, in: session) {
+            session.transferUserInfo([SyncKeys.memo: data])
         }
-        session.transferUserInfo([SyncKeys.memo: data])
         if urgent, session.isReachable {
             Self.sendNow(session: session, data: data)
         }

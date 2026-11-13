@@ -116,7 +116,7 @@ enum ReminderWriter {
 
 /// 選んだフォルダの `YYYY-MM-DD.md` に 1 行足す。
 enum MarkdownWriter {
-    static func append(text: String, createdAt: Date) -> DeliveryOutcome {
+    static func append(text: String, createdAt: Date, timeZone: TimeZone) -> DeliveryOutcome {
         guard let bookmark = IntegrationStore.markdownBookmark() else {
             return .permanent(reason: String(localized: "Markdown の保存先フォルダが選ばれていません"))
         }
@@ -133,8 +133,8 @@ enum MarkdownWriter {
             UserDefaults.standard.set(renewed, forKey: "markdownFolderBookmark")
         }
 
-        let file = folder.appending(path: MarkdownJournal.fileName(for: createdAt))
-        let line = MarkdownJournal.line(text: text, date: createdAt)
+        let file = folder.appending(path: MarkdownJournal.fileName(for: createdAt, timeZone: timeZone))
+        let line = MarkdownJournal.line(text: text, date: createdAt, timeZone: timeZone)
         var coordinationError: NSError?
         var writeError: Error?
         // iCloud Drive・他のアプリ (Obsidian など) と同時に書いても壊さないよう、ファイルの調整役を通す

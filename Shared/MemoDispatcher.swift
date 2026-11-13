@@ -32,13 +32,19 @@ actor MemoDispatcher {
     private var readFailed = false
     /// 直近の保存に失敗した。次の機会に書き直す。
     private var dirty = false
-    /// 一覧を読めないあいだに相手の端末から届いた写し・消したメモ。読めたら反映する (読めるまで捨てない)
+    /// 一覧を読めないあいだに相手の端末から届いた写し。読めたら反映する (読めるまで捨てない)
     private var receivedWhileUnreadable: [Memo] = []
-    private var deletedWhileUnreadable: [UUID: Date] = [:]
+    /// 消した知らせを受けたメモ。一覧に反映して保存できるまで、別のファイルにも残す (アプリが終わっても送らないため)
+    private var pendingDeletions: [UUID: Date]
+    private let deletionsURL: URL
+    /// 読めたあとに反映した写しのうち、保存できたら受領を返すもの (iPhone だけ)
+    private var acksAfterSave: Set<UUID> = []
 
     init(sender: WebhookSender = WebhookSender(), directory: URL = MemoDispatcher.defaultDirectory) {
         self.sender = sender
         self.fileURL = directory.appending(path: "memo-log.json")
+        self.deletionsURL = directory.appending(path: "memo-deletions.json")
+        pendingDeletions = (try? Data(contentsOf: deletionsURL)).flatMap { try? JSONDecoder().decode([UUID: Date].self, from: $0) } ?? [:]
         switch Self.readLog(at: fileURL, legacyURL: directory.appending(path: "message-log.json")) {
         case .loaded(let saved):
             log = saved
@@ -194,7 +200,7 @@ actor MemoDispatcher {
     /// 1 件送って結果を反映する。
     @discardableResult
     private func deliver(_ ref: MemoLog.DeliveryRef) async -> DeliverResult {
-        guard !inFlight.contains(ref.deliveryID), deletedWhileUnreadable[ref.memoID] == nil, let memo = log.memo(id: ref.memoID),
+        guard !inFlight.contains(ref.deliveryID), pendingDeletions[ref.memoID] == nil, let memo = log.memo(id: ref.memoID),
               let delivery = log.delivery(ref), delivery.owner == Self.role, delivery.status.isPending else { return .skipped }
         inFlight.insert(ref.deliveryID)
         NotificationCenter.default.post(name: Self.didChange, object: nil)  // 「送信中」の表示を出す
@@ -209,7 +215,7 @@ actor MemoDispatcher {
             return .stop
         }
         // 送っている間に消された / 手動で状態が変わったものは上書きしない
-        guard deletedWhileUnreadable[ref.memoID] == nil, var updated = log.memo(id: ref.memoID),
+        guard pendingDeletions[ref.memoID] == nil, var updated = log.memo(id: ref.memoID),
               let index = updated.deliveries.firstIndex(where: { $0.id == ref.deliveryID }),
               updated.deliveries[index].status.isPending else {
             NotificationCenter.default.post(name: Self.didChange, object: nil)
@@ -259,7 +265,7 @@ actor MemoDispatcher {
             guard IntegrationStore.load().markdown.isEnabled else {
                 return .permanent(reason: String(localized: "Markdown への追記がオフになっています"))
             }
-            return MarkdownWriter.append(text: memo.text, createdAt: memo.createdAt)
+            return MarkdownWriter.append(text: memo.text, createdAt: memo.createdAt, timeZone: memo.timeZone)
             #else
             return .permanent(reason: "unsupported")
             #endif
@@ -330,10 +336,11 @@ actor MemoDispatcher {
             receivedWhileUnreadable.append(remote)
             return nil
         }
-        return mergeFromWatch(remote)
+        return mergeFromWatch(remote, save: true)
     }
 
-    private func mergeFromWatch(_ remote: Memo) -> Memo? {
+    /// `save` が false なら保存は呼び出し側に任せる (読み直しの途中で保存を入れ子にしない)。
+    private func mergeFromWatch(_ remote: Memo, save: Bool) -> Memo? {
         if log.isDeleted(remote.id) {
             // 時計がまだ持っていれば、もう一度消すよう知らせる
             PhoneSync.shared.sendDeletion(remote.id)
@@ -345,6 +352,10 @@ actor MemoDispatcher {
             for d in MemoPlanner.phoneDeliveries(text: remote.text, settings: IntegrationStore.load()) {
                 log.addDelivery(d, to: remote.id)
             }
+        }
+        guard save else {
+            if result != .unchanged { dirty = true }
+            return log.memo(id: remote.id)
         }
         // 前の保存に失敗していたら、変わっていなくても書けるまで受領を返さない
         if result != .unchanged || dirty, !persist() {
@@ -389,11 +400,9 @@ actor MemoDispatcher {
     /// iPhone でメモを消したとき。時計の未送信も取り消して消す。
     /// 一覧を読めないあいだも、このメモは送らない (読めたら消す)。
     func receiveDeletion(_ memoID: UUID) {
-        guard recoverIfNeeded() else {
-            deletedWhileUnreadable[memoID] = Date()
-            return
-        }
-        log.remove(memoID: memoID)
+        pendingDeletions[memoID] = Date()
+        savePendingDeletions()
+        // 一覧に反映するのは保存のとき (読めなければ、読めてから)
         persist()
     }
 
@@ -402,6 +411,14 @@ actor MemoDispatcher {
         log.memos.filter { $0.phoneSync == .waiting }
     }
     #endif
+
+    private func sendAcksAfterSave() {
+        let ids = acksAfterSave
+        acksAfterSave = []
+        for id in ids {
+            if let memo = log.memo(id: id) { shareWithPeer(memo) }
+        }
+    }
 
     /// 相手の端末へ写しを送る。時計はすべて、iPhone は時計で入力されたものだけ。
     private func shareWithPeer(_ memo: Memo) {
@@ -435,23 +452,28 @@ actor MemoDispatcher {
         return true
     }
 
-    /// 読めなかったあいだに届いた写し・消したメモを、読めた一覧に反映する。
+    /// 読めなかったあいだに届いた写しを、読めた一覧に反映する。保存は呼び出し側 (`persist` など) で行う。
     private func replayReceivedWhileUnreadable() {
         let received = receivedWhileUnreadable
-        let deleted = deletedWhileUnreadable
         receivedWhileUnreadable = []
-        deletedWhileUnreadable = [:]
-        for (id, date) in deleted.sorted(by: { $0.value < $1.value }) {
-            log.remove(memoID: id, at: date)
-        }
         for remote in received {
             #if os(watchOS)
             mergeFromPhone(remote)
             #else
-            _ = mergeFromWatch(remote)
+            // 保存できたら時計に受領を返す (時計の「iPhone に渡せていない」を消すため)
+            if mergeFromWatch(remote, save: false) != nil { acksAfterSave.insert(remote.id) }
             #endif
         }
-        if !received.isEmpty || !deleted.isEmpty { dirty = true }
+        if !received.isEmpty { dirty = true }
+    }
+
+    private func savePendingDeletions() {
+        if pendingDeletions.isEmpty {
+            try? FileManager.default.removeItem(at: deletionsURL)
+        } else if let data = try? JSONEncoder().encode(pendingDeletions) {
+            // 中身は ID と日時だけ (本文を含まない) なので、ロック中でも書けるよう保護しない
+            try? data.write(to: deletionsURL, options: [.atomic, .noFileProtection])
+        }
     }
 
     @discardableResult
@@ -462,11 +484,20 @@ actor MemoDispatcher {
             dirty = true
             return false
         }
+        let deletions = pendingDeletions
+        for (id, date) in deletions.sorted(by: { $0.value < $1.value }) {
+            log.remove(memoID: id, at: date)
+        }
         guard let data = try? JSONEncoder().encode(log) else { return false }
         do {
             // 本文は他人に見せたくない内容のこともあるので、起動後の初回ロック解除までは読めないようにする
             try data.write(to: fileURL, options: [.atomic, .completeFileProtectionUntilFirstUserAuthentication])
             dirty = false
+            if !deletions.isEmpty {
+                for id in deletions.keys { pendingDeletions[id] = nil }
+                savePendingDeletions()
+            }
+            sendAcksAfterSave()
             return true
         } catch {
             dirty = true
