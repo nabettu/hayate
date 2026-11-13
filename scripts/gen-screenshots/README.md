@@ -1,7 +1,7 @@
 # App Store のスクショ (gen-screenshots)
 
 HTML で描いて Playwright (インストール済みの Google Chrome、`channel: "chrome"`) で PNG にする。
-**端末の中のアプリ画面もシミュレータで撮らずに HTML で描く** (`~/work/docs/global-rules/mobile.md`)。形式は autofill / TypeAI の「広告としてのスクショ」。
+**端末の中のアプリ画面もシミュレータで撮らずに HTML で描く** (言語ごとに作り直しやすく、架空の例文を載せられる)。形式は「広告としてのスクショ」(見出し + 端末 + 一言)。
 
 ```sh
 cd scripts/gen-screenshots && npm ci

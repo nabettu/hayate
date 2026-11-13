@@ -9,3 +9,4 @@ xcuserdata/
 scripts/gen-screenshots/node_modules/
 scripts/gen-screenshots/.asc/
 scripts/testflight.env
+CLAUDE.local.md

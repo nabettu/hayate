@@ -133,7 +133,7 @@ ASC では米国 $4.99 と日本 ¥750 を手で決め、他の国は自動換�
 
 v1 に Firebase を入れるかは未決 (ROADMAP)。入れない間は App Store Connect で見る:
 - 売上とトレンド → アプリ内課金で、`trial7d` の件数 = お試しを始めた人、`unlock` の件数 = 買った人。比が「お試し → 購入」の率
-- 入れるときは `~/work/docs/global-rules/app-analytics.md` の名前で `paywall_view`(`trigger` = `banner` / `help` / `watch`)・`purchase_start`・`purchase_success`(`free_trial` = trial7d なら true)・`purchase_cancel`・`purchase_fail`・`restore_purchases`、ユーザープロパティ `plan_status` (`AccessState` の 4 つ) を送る。呼ぶ場所は `PurchaseView` の `buyButton` / 復元と `EntitlementStore.handle`
+- 入れるときは `paywall_view`(`trigger` = `banner` / `help` / `watch`)・`purchase_start`・`purchase_success`(`free_trial` = trial7d なら true)・`purchase_cancel`・`purchase_fail`・`restore_purchases`、ユーザープロパティ `plan_status` (`AccessState` の 4 つ) を送る。呼ぶ場所は `PurchaseView` の `buyButton` / 復元と `EntitlementStore.handle`
 
 ## App Store Connect の状態 (2026-11-10 に作成)
 
