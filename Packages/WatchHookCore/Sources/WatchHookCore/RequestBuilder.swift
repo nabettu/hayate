@@ -7,6 +7,8 @@ public enum DestinationValidationError: Error, Equatable, Sendable, LocalizedErr
     case invalidHeaderName(String)
     case invalidHeaderValue(String)
     case bodyIsNotJSON
+    /// プリセットの <TOKEN> などを埋めていない
+    case unfilledPlaceholder
 
     public var errorDescription: String? {
         switch self {
@@ -16,6 +18,7 @@ public enum DestinationValidationError: Error, Equatable, Sendable, LocalizedErr
         case .invalidHeaderName(let n): String(localized: "ヘッダ名「\(n)」が正しくありません", bundle: .module)
         case .invalidHeaderValue(let n): String(localized: "ヘッダ \(n) の値に改行は入れられません", bundle: .module)
         case .bodyIsNotJSON: String(localized: "本文が JSON になりません (テンプレートを確認してください)", bundle: .module)
+        case .unfilledPlaceholder: String(localized: "URL・ヘッダ・本文の <…> を、自分の値に書き換えてください", bundle: .module)
         }
     }
 }
@@ -27,6 +30,11 @@ public enum RequestBuilder {
     static let forbiddenHeaders: Set<String> = ["host", "content-length", "connection", "transfer-encoding", "x-watchhook-message-id"]
     static let tokenCharacters = CharacterSet(charactersIn: "!#$%&'*+-.^_`|~0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ")
 
+    /// `<TOKEN>` `<DATABASE_ID>` のような、大文字と _ だけを <> で囲んだ埋める印。
+    static func hasPlaceholder(_ text: String) -> Bool {
+        text.range(of: "<[A-Z][A-Z_]*>", options: .regularExpression) != nil
+    }
+
     /// 設定の誤りだけを確かめる (編集画面の保存時に使う)。
     public static func validate(_ destination: Destination) throws {
         _ = try build(destination: destination, message: OutgoingMessage(text: "validate", destinationID: destination.id, source: "validate"))
@@ -34,6 +42,11 @@ public enum RequestBuilder {
 
     public static func build(destination: Destination, message: OutgoingMessage, now: Date = Date()) throws -> URLRequest {
         let trimmed = destination.url.trimmingCharacters(in: .whitespacesAndNewlines)
+        // プリセットの <TOKEN> を埋めずに保存すると、そのまま送られて分かりにくい失敗になる
+        if trimmed.contains("<") || trimmed.contains(">")
+            || destination.headers.contains(where: { hasPlaceholder($0.value) }) || hasPlaceholder(destination.bodyTemplate) {
+            throw DestinationValidationError.unfilledPlaceholder
+        }
         guard let url = URL(string: trimmed), let scheme = url.scheme?.lowercased(), url.host?.isEmpty == false else {
             throw DestinationValidationError.invalidURL
         }
