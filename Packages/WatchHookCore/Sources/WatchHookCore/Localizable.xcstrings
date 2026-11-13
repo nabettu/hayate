@@ -1,6 +1,277 @@
 {
   "sourceLanguage" : "ja",
   "strings" : {
+    "https の URL だけ使えます" : {
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يُسمح بعناوين URL من نوع https فقط"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "শুধু https URL ব্যবহার করা যায়"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Només es poden fer servir URL https"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Povoleny jsou jen adresy URL s https"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kun https-URL'er virker"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nur https-URLs werden unterstützt"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Επιτρέπονται μόνο URL https"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Only https URLs are supported"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Solo se admiten URL https"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vain https-URL-osoitteet toimivat"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Seules les URL https sont acceptées"
+          }
+        },
+        "gu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ફક્ત https URL વાપરી શકાય છે"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ניתן להשתמש רק בכתובות URL מסוג https"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "केवल https वाले URL इस्तेमाल हो सकते हैं"
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dopušteni su samo https URL-ovi"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Csak https URL használható"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hanya URL https yang dapat digunakan"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sono supportati solo URL https"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "https URL ಮಾತ್ರ ಬಳಸಬಹುದು"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "https URL만 사용할 수 있습니다"
+          }
+        },
+        "ml" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "https URL മാത്രമേ ഉപയോഗിക്കാനാകൂ"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "फक्त https URL वापरता येतात"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hanya URL https berfungsi"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bare https-URL-er fungerer"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Alleen https-URL’s zijn toegestaan"
+          }
+        },
+        "or" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "କେବଳ https URL ବ୍ୟବହାର କରାଯାଇପାରିବ"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ਸਿਰਫ਼ https URL ਵਰਤੇ ਜਾ ਸਕਦੇ ਹਨ"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dozwolone są tylko adresy URL z https"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Somente URLs https são permitidas"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Somente URLs https são permitidas"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sunt permise doar adrese URL https"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Допускаются только URL с https"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Povolené sú iba adresy URL s https"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dovoljeni so samo URL-ji https"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Endast https-URL:er fungerar"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "https URL மட்டுமே பயன்படுத்தலாம்"
+          }
+        },
+        "te" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "https URL లు మాత్రమే ఉపయోగించవచ్చు"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ใช้ได้เฉพาะ URL แบบ https"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Yalnızca https URL’leri kullanılabilir"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Дозволено лише URL з https"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "صرف https والے URL استعمال ہو سکتے ہیں"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chỉ dùng được URL https"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "只能使用 https 的 URL"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "僅支援 https 的 URL"
+          }
+        }
+      }
+    },
+    "Markdown (%@)" : {
+
+    },
     "URL が正しくありません" : {
       "localizations" : {
         "ar" : {
@@ -269,273 +540,11 @@
         }
       }
     },
-    "https の URL だけ使えます" : {
-      "localizations" : {
-        "ar" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "يُسمح بعناوين URL من نوع https فقط"
-          }
-        },
-        "bn" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "শুধু https URL ব্যবহার করা যায়"
-          }
-        },
-        "ca" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Només es poden fer servir URL https"
-          }
-        },
-        "cs" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Povoleny jsou jen adresy URL s https"
-          }
-        },
-        "da" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Kun https-URL'er virker"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Nur https-URLs werden unterstützt"
-          }
-        },
-        "el" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Επιτρέπονται μόνο URL https"
-          }
-        },
-        "en" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Only https URLs are supported"
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Solo se admiten URL https"
-          }
-        },
-        "fi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Vain https-URL-osoitteet toimivat"
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Seules les URL https sont acceptées"
-          }
-        },
-        "gu" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ફક્ત https URL વાપરી શકાય છે"
-          }
-        },
-        "he" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ניתן להשתמש רק בכתובות URL מסוג https"
-          }
-        },
-        "hi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "केवल https वाले URL इस्तेमाल हो सकते हैं"
-          }
-        },
-        "hr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dopušteni su samo https URL-ovi"
-          }
-        },
-        "hu" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Csak https URL használható"
-          }
-        },
-        "id" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hanya URL https yang dapat digunakan"
-          }
-        },
-        "it" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sono supportati solo URL https"
-          }
-        },
-        "kn" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "https URL ಮಾತ್ರ ಬಳಸಬಹುದು"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "https URL만 사용할 수 있습니다"
-          }
-        },
-        "ml" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "https URL മാത്രമേ ഉപയോഗിക്കാനാകൂ"
-          }
-        },
-        "mr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "फक्त https URL वापरता येतात"
-          }
-        },
-        "ms" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Hanya URL https berfungsi"
-          }
-        },
-        "nb" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Bare https-URL-er fungerer"
-          }
-        },
-        "nl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Alleen https-URL’s zijn toegestaan"
-          }
-        },
-        "or" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "କେବଳ https URL ବ୍ୟବହାର କରାଯାଇପାରିବ"
-          }
-        },
-        "pa" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ਸਿਰਫ਼ https URL ਵਰਤੇ ਜਾ ਸਕਦੇ ਹਨ"
-          }
-        },
-        "pl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dozwolone są tylko adresy URL z https"
-          }
-        },
-        "pt-BR" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Somente URLs https são permitidas"
-          }
-        },
-        "pt-PT" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Somente URLs https são permitidas"
-          }
-        },
-        "ro" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Sunt permise doar adrese URL https"
-          }
-        },
-        "ru" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Допускаются только URL с https"
-          }
-        },
-        "sk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Povolené sú iba adresy URL s https"
-          }
-        },
-        "sl" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Dovoljeni so samo URL-ji https"
-          }
-        },
-        "sv" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Endast https-URL:er fungerar"
-          }
-        },
-        "ta" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "https URL மட்டுமே பயன்படுத்தலாம்"
-          }
-        },
-        "te" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "https URL లు మాత్రమే ఉపయోగించవచ్చు"
-          }
-        },
-        "th" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "ใช้ได้เฉพาะ URL แบบ https"
-          }
-        },
-        "tr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Yalnızca https URL’leri kullanılabilir"
-          }
-        },
-        "uk" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Дозволено лише URL з https"
-          }
-        },
-        "ur" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "صرف https والے URL استعمال ہو سکتے ہیں"
-          }
-        },
-        "vi" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Chỉ dùng được URL https"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "只能使用 https 的 URL"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "僅支援 https 的 URL"
-          }
-        }
-      }
+    "URL・ヘッダ・本文の <…> を、自分の値に書き換えてください" : {
+
+    },
+    "Webhook (自由に設定)" : {
+
     },
     "ヘッダ %@ の値に改行は入れられません" : {
       "localizations" : {
@@ -1340,6 +1349,9 @@
           }
         }
       }
+    },
+    "リマインダー (%@)" : {
+
     },
     "本文が JSON になりません (テンプレートを確認してください)" : {
       "localizations" : {

@@ -18,6 +18,17 @@
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.nabettu.watchhook</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>hayate</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>INAlternativeAppNames</key>
@@ -31,6 +42,8 @@
 	</array>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
+	<key>NSRemindersFullAccessUsageDescription</key>
+	<string>合図の言葉で始めたメモを、選んだリストにリマインダーとして追加します。</string>
 	<key>UILaunchScreen</key>
 	<dict>
 		<key>UIColorName</key>

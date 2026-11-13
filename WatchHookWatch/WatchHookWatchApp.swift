@@ -6,7 +6,6 @@ struct WatchHookWatchApp: App {
 
     init() {
         WatchSync.shared.activate()
-        EntitlementStore.shared.start()
     }
 
     var body: some Scene {
@@ -26,8 +25,8 @@ struct WatchHookWatchApp: App {
             if phase == .active {
                 ConfigStore.shared.reloadIfNeeded()
                 WatchSync.shared.requestConfig()
-                Task { await EntitlementStore.shared.refresh() }
-                Task { await MessageDispatcher.shared.flush() }
+                WatchSync.shared.resendWaitingMemos()
+                Task { await MemoDispatcher.shared.flush() }
             }
         }
     }

@@ -551,6 +551,18 @@
         }
       }
     },
+    "NSRemindersFullAccessUsageDescription" : {
+      "comment" : "Privacy - Reminders Full Access Usage Description",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "合図の言葉で始めたメモを、選んだリストにリマインダーとして追加します。"
+          }
+        }
+      }
+    },
     "はやて" : {
       "localizations" : {
         "ar" : {

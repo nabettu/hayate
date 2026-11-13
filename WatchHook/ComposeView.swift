@@ -1,27 +1,22 @@
 import SwiftUI
 import WatchHookCore
 
-/// iPhone からテキストを入力して送り先へ送る画面。送り方 (履歴・再送) は時計と同じ `MessageDispatcher` を使う。
+/// iPhone でメモを入力する画面。保存と連携の送り方は時計と同じ `MemoDispatcher` を使う。
 struct ComposeView: View {
     @State private var store = ConfigStore.shared
-    @State private var entitlements = EntitlementStore.shared
-    /// お試しの期限を画面を開いたまま過ぎても、ボタンと購入への入口を切り替えるため 1 分ごとに進める。
-    @State private var now = Date.now
-    /// iPhone の中だけで選ぶ送り先 (未選択なら既定)。時計の選択とは別に持つ。
-    @AppStorage("composeDestinationID") private var selectedID: String = ""
+    @State private var integrations = IntegrationStore.shared
     @State private var text = ""
     @State private var isSending = false
     @State private var flight: FlightPhase = .idle
-    @State private var lastResult: SendOutcome?
+    @State private var lastResult: MemoFeedback?
     /// 見出しの紙飛行機の位置 (送るときにここから飛び立つ)。
     @State private var headerPlaneFrame: CGRect = .zero
     @FocusState private var focused: Bool
-    /// 送り先が無いときに「送り先」タブへ移る。
-    var openDestinations: () -> Void = {}
+    /// 「連携」タブへ移る。
+    var openIntegrations: () -> Void = {}
 
-    private var destination: Destination? { store.config.resolve(selectedID: selectedID) }
     private var canSend: Bool {
-        !isSending && destination != nil && MessageText.normalized(text) != nil && entitlements.access(now: now).canSend
+        !isSending && MessageText.normalized(text) != nil
     }
 
     var body: some View {
@@ -38,29 +33,17 @@ struct ComposeView: View {
                                 .padding(14)
                                 .cosmicCard(cornerRadius: 16)
                         }
-                        // お試し前・お試しが終わったときは、購入画面への入口を出す
-                        if !entitlements.access(now: now).canSend {
-                            AccessBanner()
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(14)
-                                .cosmicCard(cornerRadius: 16)
+                        editor
+                        Button {
+                            Task { await send() }
+                        } label: {
+                            Label("メモする", systemImage: "paperplane.fill")
                         }
-                        if let destination {
-                            destinationPicker(current: destination)
-                            editor
-                            Button {
-                                Task { await send() }
-                            } label: {
-                                Label("送る", systemImage: "paperplane.fill")
-                            }
-                            .buttonStyle(GlowButtonStyle())
-                            .disabled(!canSend)
-                            statusView
-                                .frame(minHeight: 44)
-                        } else if store.saveError == nil {
-                            // 設定を読めなかったとき (上にエラーを出す) は「未登録」と案内しない
-                            emptyState
-                        }
+                        .buttonStyle(GlowButtonStyle())
+                        .disabled(!canSend)
+                        statusView
+                            .frame(minHeight: 44)
+                        targetsCard
                     }
                     .padding(.horizontal, 20)
                     .padding(.bottom, 24)
@@ -89,12 +72,44 @@ struct ComposeView: View {
                     Button("完了") { focused = false }
                 }
             }
-            .onAppear(perform: fixSelection)
-            .onChange(of: store.config) { fixSelection() }
-            // 前に送った結果を、選び直した送り先の結果と見間違えないように消す
-            .onChange(of: selectedID) { if !isSending { lastResult = nil } }
-            .onReceive(Timer.publish(every: 60, on: .main, in: .common).autoconnect()) { now = $0 }
         }
+    }
+
+    /// 入力したメモがどこへ行くか。押すと「連携」タブへ。
+    private var targetsCard: some View {
+        Button(action: openIntegrations) {
+            VStack(alignment: .leading, spacing: 8) {
+                let enabled = store.config.enabledDestinations
+                Label {
+                    Text(enabled.isEmpty ? String(localized: "送り先なし (メモだけ保存)")
+                                         : enabled.map(\.displayName).joined(separator: "、"))
+                        .lineLimit(2)
+                } icon: {
+                    Image(systemName: "paperplane").foregroundStyle(Cosmos.star)
+                }
+                if integrations.settings.reminder.isEnabled, let list = integrations.settings.reminder.listName {
+                    let keyword = integrations.settings.reminder.keywords.first ?? ""
+                    Label {
+                        Text("「\(keyword)」で始めるとリマインダー (\(list)) に追加")
+                    } icon: {
+                        Image(systemName: "checklist").foregroundStyle(Cosmos.star)
+                    }
+                }
+                if integrations.settings.markdown.isEnabled, let folder = integrations.settings.markdown.folderName {
+                    Label {
+                        Text("Markdown (\(folder)) に追記")
+                    } icon: {
+                        Image(systemName: "doc.text").foregroundStyle(Cosmos.star)
+                    }
+                }
+            }
+            .font(.footnote)
+            .foregroundStyle(Cosmos.lavender)
+            .frame(maxWidth: .infinity, alignment: .leading)
+            .padding(14)
+            .cosmicCard(cornerRadius: 16)
+        }
+        .buttonStyle(.plain)
     }
 
     private var header: some View {
@@ -109,36 +124,11 @@ struct ComposeView: View {
             Text("Hayate")
                 .font(.system(.title, design: .rounded, weight: .bold))
                 .foregroundStyle(.white)
-            Text("テキストを書いて、webhook へ飛ばします")
+            Text("メモして、リマインダーや webhook へ飛ばします")
                 .font(.subheadline)
                 .foregroundStyle(Cosmos.lavender.opacity(0.85))
         }
         .padding(.top, 24)
-    }
-
-    private func destinationPicker(current: Destination) -> some View {
-        Menu {
-            Picker("送り先", selection: $selectedID) {
-                ForEach(store.config.destinations) { d in
-                    Text(d.displayName).tag(d.id.uuidString)
-                }
-            }
-        } label: {
-            HStack(spacing: 8) {
-                Image(systemName: "scope")
-                    .foregroundStyle(Cosmos.star)
-                Text("送り先").foregroundStyle(.secondary)
-                Text(current.displayName).fontWeight(.semibold).foregroundStyle(.white).lineLimit(1)
-                Spacer(minLength: 0)
-                Image(systemName: "chevron.up.chevron.down").font(.caption).foregroundStyle(.secondary)
-            }
-            .font(.subheadline)
-            .padding(.horizontal, 16)
-            .padding(.vertical, 12)
-            .cosmicCard(cornerRadius: 16)
-        }
-        // 送信中に変えると、結果の表示が実際に送った先とずれるので変えさせない
-        .disabled(store.config.destinations.count < 2 || isSending)
     }
 
     private var editor: some View {
@@ -152,7 +142,7 @@ struct ComposeView: View {
                 .frame(minHeight: 160)
                 .padding(10)
             if text.isEmpty {
-                Text("送りたいことを入力")
+                Text("メモを入力")
                     .foregroundStyle(.white.opacity(0.35))
                     .padding(.horizontal, 15)
                     .padding(.vertical, 18)
@@ -169,19 +159,20 @@ struct ComposeView: View {
 
     @ViewBuilder private var statusView: some View {
         if isSending {
-            Text("送信中…").foregroundStyle(Cosmos.lavender)
+            Text("保存中…").foregroundStyle(Cosmos.lavender)
         } else if let lastResult {
-            let name = lastResult.destinationName
             Group {
                 switch lastResult.status {
                 case .sent:
-                    Label("「\(name)」に送りました", systemImage: "checkmark.circle.fill").foregroundStyle(Cosmos.star)
+                    Label(lastResult.title, systemImage: "checkmark.circle.fill").foregroundStyle(Cosmos.star)
                 case .pending:
-                    Label("「\(name)」へは今は送れませんでした。あとで送り直します", systemImage: "arrow.clockwise").foregroundStyle(.orange)
-                case .failed(let reason):
+                    Label(lastResult.title, systemImage: "arrow.clockwise").foregroundStyle(.orange)
+                case .failed:
                     VStack(spacing: 4) {
-                        Label("「\(name)」に送れませんでした", systemImage: "xmark.circle.fill").foregroundStyle(.red)
-                        Text(reason).font(.caption).foregroundStyle(.secondary)
+                        Label(lastResult.title, systemImage: "xmark.circle.fill").foregroundStyle(.red)
+                        if let detail = lastResult.detail {
+                            Text(detail).font(.caption).foregroundStyle(.secondary)
+                        }
                     }
                 }
             }
@@ -191,78 +182,47 @@ struct ComposeView: View {
         }
     }
 
-    private var emptyState: some View {
-        VStack(spacing: 14) {
-            Text("送り先がまだありません")
-                .font(.headline).foregroundStyle(.white)
-            Text("「送り先」タブで Slack・Discord・webhook を登録すると、ここから送れます。")
-                .font(.subheadline).foregroundStyle(.secondary)
-                .multilineTextAlignment(.center)
-            Button {
-                openDestinations()
-            } label: {
-                Label("送り先を登録する", systemImage: "plus")
-            }
-            .buttonStyle(GlowButtonStyle())
-        }
-        .padding(20)
-        .cosmicCard()
-    }
-
-    private func fixSelection() {
-        if let corrected = store.config.correctedSelection(selectedID) { selectedID = corrected }
-    }
-
     private static let headerPlaneWidth: CGFloat = 72
 
     private func send() async {
-        guard let destination, let body = MessageText.normalized(text), !isSending else { return }
+        guard let body = MessageText.normalized(text), !isSending else { return }
         focused = false
-        // 最初の await より前に立てる (StoreKit を読んでいる間にもう一度送れないように)
-        isSending = true
-        // お試しの期限を画面を開いたまま過ぎることがあるので、送る直前にその場で読んだ結果で確かめる
-        let access = await EntitlementStore.currentAccess()
-        Task { await entitlements.refresh() }
-        now = .now
-        if let blocked = access.blockedMessage {
-            isSending = false
-            lastResult = SendOutcome(status: .failed(reason: String(localized: "送っていません。\(blocked)")), destinationName: destination.displayName)
-            UINotificationFeedbackGenerator().notificationOccurred(.error)
-            return
-        }
-        await run(destinationName: destination.displayName) {
-            await MessageDispatcher.shared.send(text: body, destination: destination, source: "phone")
+        var saved = false
+        await run {
+            let memo = await MemoDispatcher.shared.record(text: body, source: "phone")
+            saved = memo != nil
+            return MemoFeedback(memo: memo, role: .phone)
         } onResult: { status in
+            // 保存できたら入力欄を空にする (送れなかった分はメモの一覧から送り直せる)。保存できなければ残す
+            if saved { text = "" }
             switch status {
-            case .sent:
-                text = ""
-                UINotificationFeedbackGenerator().notificationOccurred(.success)
-            case .pending:
-                // 履歴に残って自動で送り直すので、入力欄は空にする (同じ内容を二重に送らないように)
-                text = ""
-                UINotificationFeedbackGenerator().notificationOccurred(.warning)
-            case .failed:
-                // 直して送り直せるよう、入力は残す
-                UINotificationFeedbackGenerator().notificationOccurred(.error)
+            case .sent: UINotificationFeedbackGenerator().notificationOccurred(.success)
+            case .pending: UINotificationFeedbackGenerator().notificationOccurred(.warning)
+            case .failed: UINotificationFeedbackGenerator().notificationOccurred(.error)
             }
         }
     }
 
-    private func run(destinationName: String, _ work: () async -> MessageStatus, onResult: (MessageStatus) -> Void) async {
+    private func run(_ work: () async -> MemoFeedback, onResult: (MessageStatus) -> Void) async {
         isSending = true
         lastResult = nil
+        var feedback: MemoFeedback?
         await playFlight(set: { flight = $0 }, current: { flight }, onResult: { status in
             isSending = false
-            withAnimation(.spring(duration: 0.4)) { lastResult = SendOutcome(status: status, destinationName: destinationName) }
+            withAnimation(.spring(duration: 0.4)) { lastResult = feedback }
             onResult(status)
-        }, work: work)
+        }, work: {
+            let result = await work()
+            feedback = result
+            return result.status
+        })
     }
 
     #if DEBUG
-    /// 送らずに演出だけ流す (履歴にも残らない)。
+    /// 保存せずに演出だけ流す。
     private func playDemo(_ demo: FlightDemo) async {
         focused = false
-        await run(destinationName: destination?.displayName ?? "演出", demo.work) { _ in }
+        await run({ MemoFeedback(demo: await demo.work()) }) { _ in }
     }
     #endif
 }

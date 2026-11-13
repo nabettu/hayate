@@ -49,15 +49,20 @@ public struct Delivery: Codable, Hashable, Identifiable, Sendable {
     public var text: String
     public var status: DeliveryStatus
     public var revision: Int
+    /// iPhone のメモ詳細から「後から送る」で足したもの (無効にしている送り先にも送る)。前の形式には無いので省略できる形で持つ
+    private var manual: Bool?
+
+    public var isManual: Bool { manual == true }
 
     public init(id: UUID = UUID(), target: DeliveryTarget, owner: DeviceRole, text: String,
-                status: DeliveryStatus = .pending(attempts: 0, lastError: nil), revision: Int = 0) {
+                status: DeliveryStatus = .pending(attempts: 0, lastError: nil), revision: Int = 0, isManual: Bool = false) {
         self.id = id
         self.target = target
         self.owner = owner
         self.text = text
         self.status = status
         self.revision = revision
+        self.manual = isManual ? true : nil
     }
 }
 

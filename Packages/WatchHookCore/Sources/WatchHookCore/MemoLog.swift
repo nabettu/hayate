@@ -24,6 +24,11 @@ public struct MemoLog: Codable, Hashable, Sendable {
     public struct DeliveryRef: Hashable, Sendable {
         public var memoID: UUID
         public var deliveryID: UUID
+
+        public init(memoID: UUID, deliveryID: UUID) {
+            self.memoID = memoID
+            self.deliveryID = deliveryID
+        }
     }
 
     /// 自分が受け持つ送信待ち。古いメモから。

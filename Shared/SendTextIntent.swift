@@ -2,84 +2,40 @@ import AppIntents
 import Foundation
 import WatchHookCore
 
-/// 送り先をショートカット / Siri から選べるようにする。
-struct DestinationEntity: AppEntity {
-    static let typeDisplayRepresentation: TypeDisplayRepresentation = "送り先"
-    static let defaultQuery = DestinationQuery()
-
-    var id: UUID
-    var name: String
-
-    var displayRepresentation: DisplayRepresentation { DisplayRepresentation(title: "\(name)") }
-}
-
-struct DestinationQuery: EntityQuery {
-    func entities(for identifiers: [UUID]) async throws -> [DestinationEntity] {
-        try ConfigStore.loadFromKeychain().destinations
-            .filter { identifiers.contains($0.id) }
-            .map { DestinationEntity(id: $0.id, name: $0.displayName) }
-    }
-
-    func suggestedEntities() async throws -> [DestinationEntity] {
-        try ConfigStore.loadFromKeychain().destinations.map { DestinationEntity(id: $0.id, name: $0.displayName) }
-    }
-}
-
-/// 「Hey Siri、Hayate で送って」→ Siri が聞き取ったテキストをそのまま送り先へ送る。
+/// 「Hey Siri、Hayate でメモして」→ Siri が聞き取ったテキストをメモに保存し、有効にした送り先へ送る。
 /// アプリの画面は開かない (時計でも iPhone でも裏で完結する)。
 struct SendTextIntent: AppIntent {
-    static let title: LocalizedStringResource = "テキストを送る"
-    static let description = IntentDescription("話した内容を登録した送り先 (webhook) へ送ります。")
+    static let title: LocalizedStringResource = "メモする"
+    static let description = IntentDescription("話した内容をメモに保存し、有効にした送り先 (webhook) へ送ります。")
     static let openAppWhenRun = false
 
-    @Parameter(title: "テキスト", requestValueDialog: "何を送りますか？")
+    @Parameter(title: "テキスト", requestValueDialog: "何をメモしますか？")
     var text: String
 
-    @Parameter(title: "送り先")
-    var destination: DestinationEntity?
-
     static var parameterSummary: some ParameterSummary {
-        Summary("\(\.$text) を \(\.$destination) へ送る")
+        Summary("\(\.$text) をメモする")
     }
 
     func perform() async throws -> some IntentResult & ProvidesDialog {
-        guard let config = try? ConfigStore.loadFromKeychain() else {
+        // 設定を読めないまま保存すると、送り先へ送らずにメモだけ残ってしまう
+        guard (try? ConfigStore.loadFromKeychain()) != nil else {
             return .result(dialog: "設定を読み込めませんでした。iPhone / Apple Watch のロックを解除してからもう一度試してください。")
-        }
-        // 送り先を指定されたのに見つからないときは、既定の送り先へ回さない (意図しない相手に送らない)
-        let target: Destination
-        if let destination {
-            guard let found = config.destination(id: destination.id) else {
-                return .result(dialog: "送り先「\(destination.name)」が見つかりません。送っていません。")
-            }
-            target = found
-        } else {
-            guard let found = config.defaultDestination else {
-                return .result(dialog: "送り先がありません。iPhone の Hayate で登録してください。")
-            }
-            target = found
         }
         guard let trimmed = MessageText.normalized(text) else {
             return .result(dialog: "テキストが空でした。")
         }
-        // お試し前・お試しが終わったあとは送らない (送り先の登録・テスト送信・溜まった分の再送はできる)
-        if let blocked = await EntitlementStore.currentAccess().blockedMessage {
-            return .result(dialog: "送っていません。\(blocked)")
-        }
         #if os(watchOS)
         let source = "siri-watch"
+        let role = DeviceRole.watch
         #else
         let source = "siri-phone"
+        let role = DeviceRole.phone
         #endif
-        let status = await MessageDispatcher.shared.send(text: trimmed, destination: target, source: source)
-        switch status {
-        case .sent:
-            return .result(dialog: "\(target.displayName) に送りました。")
-        case .pending:
-            return .result(dialog: "今は送れませんでした。あとで送り直します。")
-        case .failed(let reason):
-            return .result(dialog: "送れませんでした。\(reason)")
+        let feedback = MemoFeedback(memo: await MemoDispatcher.shared.record(text: trimmed, source: source), role: role)
+        if let detail = feedback.detail {
+            return .result(dialog: "\(feedback.title) \(detail)")
         }
+        return .result(dialog: "\(feedback.title)")
     }
 }
 
@@ -92,7 +48,7 @@ struct WatchHookShortcuts: AppShortcutsProvider {
                 "\(.applicationName)で送る",
                 "\(.applicationName)に送って",
             ],
-            shortTitle: "送る",
+            shortTitle: "メモする",
             systemImageName: "waveform"
         )
     }

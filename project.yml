@@ -42,6 +42,12 @@ targets:
           UIColorName: LaunchBackground
         ITSAppUsesNonExemptEncryption: false
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
+        # 合図の言葉で始めたメモをリマインダーに追加する (同じメモを二重に足さないよう、既存の項目を読む)
+        NSRemindersFullAccessUsageDescription: 合図の言葉で始めたメモを、選んだリストにリマインダーとして追加します。
+        # リマインダーの URL 欄 (hayate://memo/<id>) からメモを開く
+        CFBundleURLTypes:
+          - CFBundleURLName: com.nabettu.watchhook
+            CFBundleURLSchemes: [hayate]
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.nabettu.watchhook
@@ -99,6 +105,3 @@ schemes:
       targets:
         WatchHook: all
         WatchHookWatch: all
-    run:
-      # Xcode から実行したとき、App Store Connect の商品の代わりに使う (docs/BILLING.md)
-      storeKitConfiguration: StoreKit/WatchHook.storekit

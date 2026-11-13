@@ -1,9 +1,9 @@
 import Foundation
-import Synchronization
 import WatchConnectivity
 import WatchHookCore
 
-/// iPhone から届いた送り先の設定を時計の Keychain に保存する。送信は時計から直接行うので、送るときに iPhone は要らない。
+/// iPhone から届いた送り先の設定を時計の Keychain に保存し、時計で入力したメモを iPhone に渡す。
+/// webhook は時計から直接送るので、送るときに iPhone は要らない。
 final class WatchSync: NSObject, WCSessionDelegate, @unchecked Sendable {
     static let shared = WatchSync()
 
@@ -46,31 +46,55 @@ final class WatchSync: NSObject, WCSessionDelegate, @unchecked Sendable {
         })
     }
 
-    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        guard activationState == .activated else { return }
-        // 前回の起動から後に届いていた購入の状態を拾う
-        receiveEntitlement(from: session.receivedApplicationContext)
-        requestConfig()
-        // 起動直後で、まだつながる前に保存された履歴も送る
-        Task { await MessageDispatcher.shared.publishHistory() }
+    // MARK: - メモ
+
+    /// メモを iPhone に渡す。transferUserInfo は届くまで OS が持ち続け、iPhone のアプリが閉じていても次に起きたときに届く。
+    /// `urgent` (入力した直後) なら、つながっていれば sendMessage でも送り、iPhone のアプリを裏で起こしてすぐ保存させる
+    /// (リマインダーを早く作るため)。両方届いても iPhone は ID で 1 件にまとめる。
+    func sendMemo(_ memo: Memo, urgent: Bool) {
+        let session = WCSession.default
+        guard WCSession.isSupported(), session.activationState == .activated,
+              let data = try? JSONEncoder().encode(memo) else { return }
+        // 同じメモの古い写しがまだ届いていなければ取り消す (最新の 1 通だけ届けばよい)
+        for transfer in session.outstandingUserInfoTransfers where transfer.isTransferring == false {
+            if (transfer.userInfo[SyncKeys.memo] as? Data).flatMap({ try? JSONDecoder().decode(Memo.self, from: $0) })?.id == memo.id {
+                transfer.cancel()
+            }
+        }
+        session.transferUserInfo([SyncKeys.memo: data])
+        if urgent, session.isReachable {
+            Self.sendNow(session: session, data: data)
+        }
     }
 
-    /// 時計の履歴の写しを iPhone に送る。applicationContext は最新の 1 件だけが残り、iPhone のアプリが閉じていても次に起きたときに届く。
-    /// 送れなくても送信そのものには影響しないので、失敗は無視する (次に履歴が変わったときにまた送る)。
-    func pushHistory(_ snapshot: HistorySnapshot) {
-        let session = WCSession.default
-        guard WCSession.isSupported(), session.activationState == .activated, session.isCompanionAppInstalled,
-              let data = try? snapshot.encoded(maxBytes: HistorySnapshot.defaultMaxBytes) else { return }
-        // 設定の版など、ほかのキーを置くようになったら消さないように足し合わせる
-        var context = session.applicationContext
-        context[SyncKeys.history] = data
-        try? session.updateApplicationContext(context)
+    private nonisolated static func sendNow(session: WCSession, data: Data) {
+        session.sendMessage([SyncKeys.memo: data], replyHandler: { @Sendable reply in
+            guard let copy = (reply[SyncKeys.memo] as? Data).flatMap({ try? JSONDecoder().decode(Memo.self, from: $0) }) else { return }
+            Task { await MemoDispatcher.shared.receiveFromPhone(copy) }
+        }, errorHandler: { @Sendable _ in
+            // transferUserInfo でも送っているので、ここでは何もしない
+        })
+    }
+
+    /// iPhone に渡せていないメモを送り直す (前の transferUserInfo が残っていれば、それを最新に置き換える)。
+    func resendWaitingMemos() {
+        Task {
+            for memo in await MemoDispatcher.shared.memosWaitingForPhone() {
+                sendMemo(memo, urgent: false)
+            }
+        }
+    }
+
+    // MARK: - WCSessionDelegate
+
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        guard activationState == .activated else { return }
+        requestConfig()
+        resendWaitingMemos()
     }
 
     /// iPhone で設定が変わった知らせ (版だけ)。手元より新しければ本体を取りに行く。
     func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String: Any]) {
-        // 購入の状態 (iPhone の StoreKit で読んだもの)。時計の StoreKit に届くまでの間も使えるように合わせて使う
-        receiveEntitlement(from: applicationContext)
         guard let revision = applicationContext[SyncKeys.revision] as? Int,
               let epoch = (applicationContext[SyncKeys.epoch] as? String).flatMap(UUID.init(uuidString:)) else { return }
         Task { @MainActor in
@@ -80,22 +104,21 @@ final class WatchSync: NSObject, WCSessionDelegate, @unchecked Sendable {
         }
     }
 
-    /// 届いた購入の状態は、最新の 1 件を置いてから MainActor で読む。
-    /// Task ごとに値を持たせると実行順が保証されず、購入済み → 返金済みと続けて届いたときに古いほうが最後に反映されうる
-    private let latestEntitlement = Mutex<EntitlementSnapshot?>(nil)
-
-    private func receiveEntitlement(from context: [String: Any]) {
-        guard let entitlement = (context[SyncKeys.entitlement] as? Data).flatMap({ try? EntitlementSnapshot.decode($0) }) else { return }
-        latestEntitlement.withLock { $0 = entitlement }
-        Task { @MainActor in
-            if let latest = self.latestEntitlement.withLock({ $0 }) {
-                EntitlementStore.shared.receiveHint(latest)
-            }
+    /// iPhone からの写し (受領の知らせ・リマインダーなどの結果) と、消したメモの知らせ。
+    func session(_ session: WCSession, didReceiveUserInfo userInfo: [String: Any] = [:]) {
+        if let copy = (userInfo[SyncKeys.memo] as? Data).flatMap({ try? JSONDecoder().decode(Memo.self, from: $0) }) {
+            Task { await MemoDispatcher.shared.receiveFromPhone(copy) }
+        }
+        if let id = (userInfo[SyncKeys.deletedMemo] as? String).flatMap(UUID.init(uuidString:)) {
+            Task { await MemoDispatcher.shared.receiveDeletion(id) }
         }
     }
 
     func sessionReachabilityDidChange(_ session: WCSession) {
-        if session.isReachable { requestConfig() }
+        if session.isReachable {
+            requestConfig()
+            resendWaitingMemos()
+        }
     }
 }
 

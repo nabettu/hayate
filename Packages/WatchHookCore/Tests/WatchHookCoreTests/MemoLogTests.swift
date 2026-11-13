@@ -256,3 +256,23 @@ struct MemoLogTests {
         #expect(m.outgoingMessage(for: Delivery(target: .reminder(listName: "L"), owner: .phone, text: "x")) == nil)
     }
 }
+
+@Suite("後から送る印")
+struct ManualDeliveryTests {
+    @Test func 後から送ったものは印が付き_写しを経ても残る() throws {
+        let d = Delivery(target: .webhook(destinationID: UUID(), name: "A"), owner: .phone, text: "a", isManual: true)
+        #expect(d.isManual)
+        let back = try JSONDecoder().decode(Delivery.self, from: JSONEncoder().encode(d))
+        #expect(back.isManual)
+        #expect(Delivery(target: .reminder(listName: "L"), owner: .phone, text: "a").isManual == false)
+    }
+
+    @Test func 印の無い前の形式も読める() throws {
+        let d = Delivery(target: .webhook(destinationID: UUID(), name: "A"), owner: .watch, text: "a")
+        var json = try JSONSerialization.jsonObject(with: JSONEncoder().encode(d)) as! [String: Any]
+        json["manual"] = nil
+        let back = try JSONDecoder().decode(Delivery.self, from: JSONSerialization.data(withJSONObject: json))
+        #expect(back.isManual == false)
+        #expect(back.id == d.id)
+    }
+}

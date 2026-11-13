@@ -4,28 +4,27 @@ import SwiftUI
 struct WatchHookApp: App {
     @Environment(\.scenePhase) private var scenePhase
     @State private var tab: AppTab = .compose
+    /// リマインダーの URL (hayate://memo/<id>) から開くメモ
+    @State private var openMemoID: UUID?
 
-    enum AppTab: Hashable { case compose, destinations, history, help }
+    enum AppTab: Hashable { case compose, memos, integrations, help }
 
     init() {
         PhoneSync.shared.activate()
         ConfigStore.shared.onChange = { PhoneSync.shared.push($0) }  // 失敗の理由は ConfigStore.syncError に入る
-        // 購入の状態が変わったら時計へ知らせる (設定の版と一緒に applicationContext に載せる)
-        EntitlementStore.shared.onChange = { ConfigStore.shared.resync() }
-        EntitlementStore.shared.start()
     }
 
     var body: some Scene {
         WindowGroup {
             TabView(selection: $tab) {
-                Tab("送る", systemImage: "paperplane.fill", value: .compose) {
-                    ComposeView { tab = .destinations }
+                Tab("入力", systemImage: "square.and.pencil", value: .compose) {
+                    ComposeView { tab = .integrations }
                 }
-                Tab("送り先", systemImage: "scope", value: .destinations) {
+                Tab("メモ", systemImage: "note.text", value: .memos) {
+                    MemoListView(openMemoID: $openMemoID)
+                }
+                Tab("連携", systemImage: "point.3.connected.trianglepath.dotted", value: .integrations) {
                     DestinationListView()
-                }
-                Tab("履歴", systemImage: "clock", value: .history) {
-                    HistoryView()
                 }
                 Tab("使い方", systemImage: "book", value: .help) {
                     HelpView()
@@ -34,13 +33,17 @@ struct WatchHookApp: App {
             // アイコンに合わせて夜空の配色で固定する
             .preferredColorScheme(.dark)
             .tint(Cosmos.lavender)
+            .onOpenURL { url in
+                guard url.scheme == "hayate", url.host() == "memo",
+                      let id = UUID(uuidString: url.lastPathComponent) else { return }
+                tab = .memos
+                openMemoID = id
+            }
         }
         .onChange(of: scenePhase) { _, phase in
             if phase == .active {
                 ConfigStore.shared.reloadIfNeeded()
-                Task { await EntitlementStore.shared.refresh() }
-                WatchHistoryStore.shared.reloadIfNeeded()
-                Task { await MessageDispatcher.shared.flush() }
+                Task { await MemoDispatcher.shared.flush() }
             }
         }
     }
