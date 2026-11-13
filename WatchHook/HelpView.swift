@@ -196,7 +196,7 @@ private struct AboutPage: View {
         HelpPage(title: "ソースコード・応援") {
             Section {
                 Para("Hayate は無料のオープンソース (MIT ライセンス) です。")
-                Link("ソースコード (GitHub)", destination: URL(string: "https://github.com/nabettu/watchhook")!)
+                Link("ソースコード (GitHub)", destination: URL(string: "https://github.com/nabettu/hayate")!)
                 Link("GitHub Sponsors で応援する", destination: URL(string: "https://github.com/sponsors/nabettu")!)
             }
         }

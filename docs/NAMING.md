@@ -31,3 +31,9 @@ Hayate の同名は App Store にゲーム 2 つ (HAYATE: Katana Racer など) �
 ## まだ確かめていないこと
 
 ROADMAP の「公開前に要るもの」に書いた (商標・実機の Siri・ドメイン)。
+
+## リポジトリ名 (2026-11-13)
+
+公開に合わせて GitHub のリポジトリを `nabettu/watchhook` から **`nabettu/hayate`** に変えた (旧 URL は GitHub が転送する)。
+コード・Xcode のターゲット・Core パッケージ・Bundle ID・`X-WatchHook-*` ヘッダ・`User-Agent: WatchHook/1` は **WatchHook のまま** (ユーザー決定)。
+Bundle ID は App Store Connect に登録済みで変えられず、ヘッダは受け口の仕様なので、名前を揃えるためだけに変えない。

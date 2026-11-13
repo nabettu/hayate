@@ -27,7 +27,7 @@ Hayate (iPhone / Apple Watch のアプリ。以下「本アプリ」) の個人�
 
 ## 問い合わせ
 
-[GitHub の Issues](https://github.com/nabettu/watchhook/issues) へ。ソースコードは [github.com/nabettu/watchhook](https://github.com/nabettu/watchhook) で公開しています。
+[GitHub の Issues](https://github.com/nabettu/hayate/issues) へ。ソースコードは [github.com/nabettu/hayate](https://github.com/nabettu/hayate) で公開しています。
 
 このポリシーを変えたときは、このページを更新します。
 
@@ -54,4 +54,4 @@ This policy describes how Hayate (the iPhone / Apple Watch app, "the app") handl
 
 **Deletion**: you can delete memos and destinations in the app at any time. Deleting the app removes its memos, but destination settings in the Keychain may remain on the device by OS design. To remove them for sure, delete the destinations in the app before deleting the app.
 
-**Contact**: [GitHub Issues](https://github.com/nabettu/watchhook/issues). Source code: [github.com/nabettu/watchhook](https://github.com/nabettu/watchhook).
+**Contact**: [GitHub Issues](https://github.com/nabettu/hayate/issues). Source code: [github.com/nabettu/hayate](https://github.com/nabettu/hayate).
