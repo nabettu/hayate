@@ -1,5 +1,5 @@
 // App Store のメタデータで弾かれやすい語 (Guideline 2.3.7 の価格表現・順位・誇大表現) を、スクショに出る文言から探す。
-// 一覧は ~/work/docs/store-screenshot-design-guide.md の「禁止ワード検知」。見つかったら index.mjs が生成を止める。
+// Guideline 2.3.7 で弾かれやすい語の一覧。見つかったら index.mjs が生成を止める。
 
 const FORBIDDEN = {
   ja: [
