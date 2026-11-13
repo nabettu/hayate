@@ -1,6 +1,6 @@
 # Translation brief: Hayate (Apple Watch app)
 
-Hayate sends what you say to your Apple Watch straight to a webhook you registered (Slack, Discord, your own API).
+Hayate saves what you say to your Apple Watch (or iPhone / Siri) as a memo, then sends it to the integrations you switched on: iOS Reminders (memos that start with a trigger word such as “Reminder, buy milk”), a daily Markdown file (e.g. an Obsidian vault), and any number of webhooks (Slack, Discord, Notion, your own API...). Free, open source (MIT), no ads, no tracking (since 2026-11-13; there are no in-app purchases any more).
 Source language is Japanese. Translate natural, concise, native UI copy (as Apple's own apps would phrase it), not literal.
 
 ## Input files (in this directory)
@@ -8,8 +8,9 @@ Source language is Japanese. Translate natural, concise, native UI copy (as Appl
   - For `Shared/AppShortcuts.xcstrings` the `ja` is empty: the source is a SET of 3 Siri phrases:
     `${applicationName}で送って`, `${applicationName}で送る`, `${applicationName}に送って` ("Send with Hayate" style). Give 2-3 natural phrases a user would SAY to Siri, each containing `${applicationName}` exactly once.
   - `InfoPlist.xcstrings` items: `CFBundleDisplayName` → always `Hayate`. `CFBundleName` → keep the id's ja value unchanged. `はやて` (INAlternativeAppName, a spoken alias for Siri) → `Hayate` in your language's script if Siri would need it (e.g. ハヤテ-like transliteration in Cyrillic/Arabic/Devanagari...), otherwise `Hayate`.
-- `store-ja.json`: App Store metadata + 2 in-app purchase names/descriptions.
+- `store-ja.json`: App Store metadata (no in-app purchases).
 - `shots-ja.json`: text drawn on App Store screenshots (marketing headlines + mock app screen text).
+- `ReminderTrigger.swift`: `defaultKeywordsByLanguage` lists the default reminder trigger words of each language (your “first trigger word” below is the first one for your language).
 
 ## Rules
 - Keep placeholders EXACTLY: `%@`, `%lld`, `%1$@`, `%2$@`, `${applicationName}`, `{{text}}`, `{{id}}`, `{{sentAt}}`, `{{source}}`. Keep their count; you may reorder only positional ones (`%1$@`).
@@ -22,10 +23,10 @@ Source language is Japanese. Translate natural, concise, native UI copy (as Appl
   - `h1` and `closing` are big 2-line headlines: keep the `\n` line break (exactly 2 lines) and mark 1-3 key words with `*...*` (emphasis). Each line must be SHORT: aim ≤ 16 Latin chars / ≤ 9 CJK chars per line; ≤ 20 Latin chars hard limit. Rewrite freely as ad copy — meaning over literal.
   - `chips`: 1-2 words each, very short (≤ 12 chars).
   - `floats`, `cells` (cells keep one `\n` → 2 short lines).
-  - `screen.*` is text inside the mock app UI: translate like the app (consistent with your units.json translations: e.g. `speak` = the app's "送る" (Send) button on the watch, `statusSent`/`statusPending` = the app's 送信済み/未送信, `history`, `destinationsTitle`). `screen.spoken` = 3 short example dictations a user might say (localize them culturally: groceries, dentist, parking spot). `screen.destinations` = keep "Slack #memo", "Discord #todo", translate "家計簿 API" (expenses API). `screen.siriAsk` MUST equal your FIRST AppShortcuts phrase with `${applicationName}` replaced by `Hayate`. `screen.siriQuestion` = how Siri asks "What do you want to send?". `screen.siriDialog` = "Sent to Slack #memo." `screen.sent` = "Sent to “Slack #memo”" (use your quotes). `screen.quote` = [open, close] quote marks of your language. `screen.defaultMark` = "(Default)". `screen.edit.*` = mock of the destination edit screen (bodyTemplate: keep as is).
-  - FORBIDDEN in all screenshot text (App Store rule 2.3.7): words for free/price/sale/discount/best/top/#1/number one/guaranteed/proven/cheap/limited time, and their equivalents in your language.
-- Store metadata (`store-ja.json`), App Store limits (characters): `name` keep `Hayate`; `subtitle` ≤ 30; `promotionalText` ≤ 170; `keywords` ≤ 100 total, comma-separated, no spaces after commas, localized search terms people in that market would type (keep webhook,Slack,Discord,Siri); `description` ≤ 4000 (keep structure, ■ headings may become your language's heading style; keep the {{...}} and header names). Description MAY mention the free trial and one-time purchase (it's the pricing section) — that is fine there.
-  - IAP: `name` ≤ 30, `description` ≤ 55. Trial name should mean "7-Day Free Trial".
+  - `screen.*` is text inside the mock app UI: use EXACTLY the app's own translation from your units.json where one exists: `memoButton` = the watch button 「メモ」, `savedAndSent` = 「保存して送りました」, `destinationCount` = 「送り先 %lld 件」 with 3, `memosTitle` = the 「メモ」 screen title, `summary.*` / `status.*` = 送信済み・送信待ち・メモ・完了, `tabs` = 入力 / メモ / 連携 / 使い方, `detail.*` and `integrations.*` = the memo detail and 「連携」 screens (`reminderDetail` = 「「%@」で始めると「%@」に追加」 filled with your FIRST default reminder trigger word and the list name, `markdownDetail` = 「「%@」に日付ごとに追記」 with "Obsidian"), `reminderTarget` = 「リマインダー (%@)」 with a localized "Groceries" list name.
+    `screen.spoken` = 3 short example dictations (localize culturally: parking spot, dentist, an idea). `screen.reminderSpoken` = your language's FIRST default reminder trigger word + separator + a short to-do (“Reminder, buy milk”), and `screen.reminderTitle` = that to-do WITHOUT the trigger word, exactly as the app would add it. `iphone.reminder.floats[0]` must contain `reminderTitle`. `screen.date` = a local short date + time for Nov 13 10:09. `screen.destinations` / `markdownFile` / `markdownTarget` / `integrations.kinds`: keep as is (names). `screen.siriAsk` MUST equal your FIRST AppShortcuts phrase with `${applicationName}` replaced by `Hayate`. `screen.siriQuestion` = the app's 「何をメモしますか？」. `screen.siriDialog` = `savedAndSent`. `screen.quote` = [open, close] quote marks of your language.
+  - FORBIDDEN in all screenshot text (App Store rule 2.3.7): words for free/price/sale/discount/best/top/#1/number one/guaranteed/proven/cheap/limited time, and their equivalents in your language. (“Open source” and “no ads / no tracking” are fine.)
+- Store metadata (`store-ja.json`), App Store limits (characters): `name` keep `Hayate`; `subtitle` ≤ 30; `promotionalText` ≤ 170; `keywords` ≤ 100 total, comma-separated, no spaces after commas, localized search terms people in that market would type (keep webhook,Obsidian,Markdown,Slack,Notion,Siri; don't repeat words already in the subtitle); `description` ≤ 4000 (keep structure, ■ headings may become your language's heading style; keep the {{...}}, header names and the GitHub URL). Only the description may say “free” (the 無料・オープンソース section); never put price words in `subtitle`, `promotionalText` or `keywords`. The Siri phrase and 「何をメモしますか？」 in the description must match your appShortcuts / units.json translations, and the reminder example must use your first trigger word.
 
 ## Output
 Write ONE JSON file per language to `out/<lang>.json` (UTF-8, valid JSON) with this shape:
@@ -34,7 +35,7 @@ Write ONE JSON file per language to `out/<lang>.json` (UTF-8, valid JSON) with t
   "lang": "<lang>",
   "app": { "<id>": "<translation>", ...  ALL ids from units.json except the AppShortcuts one },
   "appShortcuts": ["phrase 1 with ${applicationName}", "phrase 2", "phrase 3 (optional)"],
-  "store": { same keys as store-ja.json, including "iap" },
+  "store": { same keys as store-ja.json },
   "shots": { same shape as shots-ja.json }
 }
 ```
