@@ -65,6 +65,8 @@ public struct Destination: Codable, Hashable, Identifiable, Sendable {
     /// 空白や改行は書いたとおりに付ける。送る時点で付け、履歴・再送も付けた文のまま
     public var textPrefix: String = ""
     public var textSuffix: String = ""
+    /// 入力したメモをこの送り先へ送るか。入力のたびに選ばず、有効なもの全部へ送る
+    public var isEnabled: Bool = true
 
     public init(
         id: UUID = UUID(),
@@ -92,7 +94,7 @@ public struct Destination: Codable, Hashable, Identifiable, Sendable {
     }
 
     private enum CodingKeys: String, CodingKey {
-        case id, name, kind, url, method, headers, bodyEncoding, bodyTemplate, textPrefix, textSuffix
+        case id, name, kind, url, method, headers, bodyEncoding, bodyTemplate, textPrefix, textSuffix, isEnabled
     }
 
     /// 前後の文が入る前に保存された設定 (キーが無い) も読めるようにする
@@ -108,6 +110,8 @@ public struct Destination: Codable, Hashable, Identifiable, Sendable {
         bodyTemplate = try c.decode(String.self, forKey: .bodyTemplate)
         textPrefix = try c.decodeIfPresent(String.self, forKey: .textPrefix) ?? ""
         textSuffix = try c.decodeIfPresent(String.self, forKey: .textSuffix) ?? ""
+        // 複数送信の前の設定 (キーが無い) は DestinationConfig が既定の送り先だけ有効に直す
+        isEnabled = try c.decodeIfPresent(Bool.self, forKey: .isEnabled) ?? true
     }
 
     /// 画面 (iPhone・時計・Siri・履歴) に出す名前。名前が空なら URL のホスト、それも無ければ種類の名前。
@@ -158,19 +162,49 @@ public struct OutgoingMessage: Codable, Hashable, Identifiable, Sendable {
 /// iPhone で編集し、時計へ同期する設定一式。
 public struct DestinationConfig: Codable, Hashable, Sendable {
     public var destinations: [Destination]
-    public var defaultDestinationID: UUID?
     /// 保存のたびに 1 増える版。時計は自分の持つものより新しい設定だけを受け入れる (遅れて届いた古い同期で巻き戻さない)。
     /// 端末の時刻は戻ることがあるので日時では比べない。
     public var revision: Int
     /// iPhone で設定を作り直した (アプリを入れ直した) ときに変わる ID。版が 0 からやり直しになっても受け入れるため。
     public var epoch: UUID
 
-    public init(destinations: [Destination] = [], defaultDestinationID: UUID? = nil, revision: Int = 0, epoch: UUID = UUID()) {
+    public init(destinations: [Destination] = [], revision: Int = 0, epoch: UUID = UUID()) {
         self.destinations = destinations
-        self.defaultDestinationID = defaultDestinationID
         self.revision = revision
         self.epoch = epoch
     }
+
+    /// 形式の版。2 で「送り先を 1 つ選ぶ」から「有効なもの全部へ送る」に変えた (docs/FREE_OSS.md)。
+    static let currentFormat = 2
+
+    private enum CodingKeys: String, CodingKey {
+        case destinations, revision, epoch, format, defaultDestinationID
+    }
+
+    public init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        destinations = try c.decode([Destination].self, forKey: .destinations)
+        revision = try c.decode(Int.self, forKey: .revision)
+        epoch = try c.decode(UUID.self, forKey: .epoch)
+        let format = try c.decodeIfPresent(Int.self, forKey: .format) ?? 1
+        if format < 2 {
+            // 前は入力のたびに 1 つ選び、選ばなければ既定 (★)。全部を有効にすると意図しない一斉送信になるので、既定の 1 つだけ有効にする
+            let defaultID = try c.decodeIfPresent(UUID.self, forKey: .defaultDestinationID)
+            let keep = destinations.first { $0.id == defaultID }?.id ?? destinations.first?.id
+            for i in destinations.indices { destinations[i].isEnabled = destinations[i].id == keep }
+        }
+    }
+
+    public func encode(to encoder: Encoder) throws {
+        var c = encoder.container(keyedBy: CodingKeys.self)
+        try c.encode(destinations, forKey: .destinations)
+        try c.encode(revision, forKey: .revision)
+        try c.encode(epoch, forKey: .epoch)
+        try c.encode(Self.currentFormat, forKey: .format)
+    }
+
+    /// 入力したメモを送る送り先。
+    public var enabledDestinations: [Destination] { destinations.filter(\.isEnabled) }
 
     public func isNewer(than other: DestinationConfig) -> Bool {
         epoch != other.epoch || revision > other.revision
@@ -198,11 +232,6 @@ public struct DestinationConfig: Codable, Hashable, Sendable {
 
     public func validateSize() throws {
         guard try encoded().count <= Self.maxEncodedBytes else { throw TooLarge() }
-    }
-
-    /// 既定に選んだ送り先。消されていたら先頭を返す。
-    public var defaultDestination: Destination? {
-        destinations.first { $0.id == defaultDestinationID } ?? destinations.first
     }
 
     public func destination(id: UUID) -> Destination? {

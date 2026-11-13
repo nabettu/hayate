@@ -4,28 +4,21 @@ import WatchHookCore
 
 struct WatchHomeView: View {
     @State private var store = ConfigStore.shared
-    /// 時計の中だけで選ぶ送り先 (iPhone の「既定」とは別に持つ)。
-    @AppStorage("selectedDestinationID") private var selectedID: String = ""
-    @State private var lastResult: SendOutcome?
-    /// 結果を出すたびに進める。「送りました」を消すときに、その後に出た結果まで消さないため。
+    @State private var lastResult: MemoFeedback?
+    /// 結果を出すたびに進める。「保存しました」を消すときに、その後に出た結果まで消さないため。
     @State private var resultSerial = 0
-    /// 「送りました」を出しておく長さ。送れなかった・あとで送り直す、は読めるよう消さない。
+    /// 「保存して送りました」を出しておく長さ。送れなかった・あとで送り直す、は読めるよう消さない。
     private static let sentMessageDuration: Duration = .seconds(3)
     @State private var isSending = false
+    /// 保存できなかった入力。入力し直さなくても、もう一度保存できるように持っておく
+    @State private var unsavedText: String?
     @State private var flight: FlightPhase = .idle
     /// 送るボタンの位置 (送るときにここから紙飛行機が飛び立つ)。
     @State private var orbFrame: CGRect = .zero
-    @State private var entitlements = EntitlementStore.shared
-    /// お試しの期限を画面を開いたまま過ぎても表示を変えるため、1 分ごとに進める。
-    @State private var now = Date.now
-    /// 送り先の ⇅ の大きさ。名前より小さくしつつ、文字サイズの設定には合わせる。
-    @ScaledMetric(relativeTo: .caption2) private var chevronSize: CGFloat = 9
-
-    private var destination: Destination? { store.config.resolve(selectedID: selectedID) }
 
     var body: some View {
         NavigationStack {
-            // 送る画面の下に履歴を置く (デジタルクラウンを回すか、上へスワイプ = 下へスクロールで移る。ボタンで開かない)
+            // 入力の画面の下にメモの一覧を置く (デジタルクラウンを回すか、上へスワイプ = 下へスクロールで移る)
             TabView {
                 homePage
                     .containerBackground(for: .tabView) { CosmicBackground(starCount: 26) }
@@ -33,114 +26,70 @@ struct WatchHomeView: View {
                     .containerBackground(for: .tabView) { CosmicBackground(starCount: 26) }
             }
             .tabViewStyle(.verticalPage)
-            // 送り先の一覧など、押して開く画面の背景
+            // 押して開く画面の背景
             .containerBackground(for: .navigation) { CosmicBackground(starCount: 26) }
         }
         .tint(Cosmos.lavender)
     }
 
-    @ViewBuilder private var homePage: some View {
-        if let destination {
-            ZStack {
-                ScrollView {
-                    // 「送りました」と送り先の選択が詰まって見えないよう、行のあいだを広めに取る
-                    VStack(spacing: 12) {
-                        saveErrorView
-                        accessView
-                        // 標準の入力画面 (音声入力・スクリブル・キーボード) を開く。ダブルタップでも押せる
-                        TextFieldLink(prompt: Text("話すか、文字を入力")) {
-                            SendOrb(isBusy: isSending, planeLaunched: flight.isFlying)
-                                .onGeometryChange(for: CGRect.self) { $0.frame(in: .global) } action: { orbFrame = $0 }
-                        } onSubmit: { text in
-                            Task { await send(text, to: destination) }
-                        }
-                        .buttonStyle(.plain)
-                        .handGestureShortcut(.primaryAction)
-                        .disabled(isSending || !entitlements.access(now: now).canSend)
-                        .accessibilityLabel("送る")
-
-                        statusView
-                            .frame(minHeight: 22)
-
-                        if store.config.destinations.count > 1 {
-                            // 選んでいる送り先を 1 行で出し、押すと一覧から選べるようにする (⇅ で選べることを示す)
-                            NavigationLink {
-                                DestinationChooser(
-                                    destinations: store.config.destinations,
-                                    current: destination.id,
-                                    defaultID: store.config.defaultDestination?.id
-                                ) { selectedID = $0.uuidString }
-                            } label: {
-                                HStack(spacing: 6) {
-                                    Image(systemName: "paperplane")
-                                    Text(destination.displayName)
-                                        .lineLimit(1)
-                                        .truncationMode(.tail)
-                                    // 名前より目立たないよう小さく・薄くする
-                                    Image(systemName: "chevron.up.chevron.down")
-                                        .font(.system(size: chevronSize, weight: .semibold))
-                                        .opacity(0.8)
-                                }
-                                .font(.footnote)
-                                .foregroundStyle(Cosmos.lavender)
-                                .padding(.horizontal, 12)
-                                .padding(.vertical, 6)
-                                .background(Capsule().fill(.white.opacity(0.08)))
-                                .overlay(Capsule().strokeBorder(Cosmos.lavender.opacity(0.35), lineWidth: 1))
-                            }
-                            .buttonStyle(.plain)
-                            .accessibilityLabel(Text("送り先"))
-                            .accessibilityValue(Text(verbatim: destination.displayName))
-                        } else {
-                            Label(destination.displayName, systemImage: "paperplane")
-                                .font(.footnote).foregroundStyle(Cosmos.lavender)
-                        }
-
-                        #if DEBUG
-                        VStack(spacing: 4) {
-                            Text("演出だけ見る (デバッグ)").font(.caption2).foregroundStyle(.secondary)
-                            ForEach(FlightDemo.allCases) { demo in
-                                Button(demo.rawValue) { Task { await playDemo(demo) } }
-                                    .font(.caption2)
-                                    .disabled(isSending)
-                            }
-                        }
-                        .padding(.top, 8)
-                        #endif
-                    }
-                }
-                FlightStage(phase: flight, planeSize: 56, launchFrame: orbFrame, launchWidth: 34,
-                            launchFadesIn: true)
-                    .ignoresSafeArea()
-            }
-            .onReceive(Timer.publish(every: 60, on: .main, in: .common).autoconnect()) { now = $0 }
-            .onAppear(perform: fixSelection)
-            .onChange(of: store.config) { fixSelection() }
-            // 前に送った結果を、選び直した送り先の結果と見間違えないように消す
-            .onChange(of: selectedID) { if !isSending { lastResult = nil } }
-        } else {
+    private var homePage: some View {
+        ZStack {
             ScrollView {
-                VStack(spacing: 10) {
+                VStack(spacing: 12) {
                     saveErrorView
-                    PaperPlane().frame(width: 44)
-                        .shadow(color: Cosmos.violet, radius: 8)
-                    Text("iPhone の Hayate で送り先を登録してください")
-                        .multilineTextAlignment(.center)
-                        .font(.footnote)
-                    Button("再読み込み") { WatchSync.shared.requestConfig() }
-                        .tint(Cosmos.violet)
+                    // 標準の入力画面 (音声入力・スクリブル・キーボード) を開く。ダブルタップでも押せる。
+                    // 送り先が無くてもメモとして保存できる
+                    TextFieldLink(prompt: Text("話すか、文字を入力")) {
+                        SendOrb(isBusy: isSending, planeLaunched: flight.isFlying)
+                            .onGeometryChange(for: CGRect.self) { $0.frame(in: .global) } action: { orbFrame = $0 }
+                    } onSubmit: { text in
+                        Task { await record(text) }
+                    }
+                    .buttonStyle(.plain)
+                    .handGestureShortcut(.primaryAction)
+                    .disabled(isSending)
+                    .accessibilityLabel("メモする")
+
+                    statusView
+                        .frame(minHeight: 22)
+
+                    destinationsLabel
+
+                    #if DEBUG
+                    VStack(spacing: 4) {
+                        Text("演出だけ見る (デバッグ)").font(.caption2).foregroundStyle(.secondary)
+                        ForEach(FlightDemo.allCases) { demo in
+                            Button(demo.rawValue) { Task { await playDemo(demo) } }
+                                .font(.caption2)
+                                .disabled(isSending)
+                        }
+                    }
+                    .padding(.top, 8)
+                    #endif
                 }
             }
+            FlightStage(phase: flight, planeSize: 56, launchFrame: orbFrame, launchWidth: 34,
+                        launchFadesIn: true)
+                .ignoresSafeArea()
         }
     }
 
-    /// お試し前・お試しが終わったとき。購入は iPhone で行う。
-    @ViewBuilder private var accessView: some View {
-        if let message = entitlements.access(now: now).blockedMessage {
-            Label(message, systemImage: "lock.fill")
-                .font(.caption2)
-                .foregroundStyle(.orange)
+    /// 入力したメモをどこへ送るか (iPhone で有効にした送り先)。選ぶ画面は無い。
+    @ViewBuilder private var destinationsLabel: some View {
+        let enabled = store.config.enabledDestinations
+        Group {
+            switch enabled.count {
+            case 0:
+                Label("メモだけ保存", systemImage: "note.text")
+            case 1:
+                Label(enabled[0].displayName, systemImage: "paperplane")
+            default:
+                Label("送り先 \(enabled.count) 件", systemImage: "paperplane")
+            }
         }
+        .font(.footnote)
+        .lineLimit(1)
+        .foregroundStyle(Cosmos.lavender)
     }
 
     /// iPhone から届いた設定を時計に保存できなかったとき。
@@ -156,59 +105,50 @@ struct WatchHomeView: View {
 
     @ViewBuilder private var statusView: some View {
         if isSending {
-            Text("送信中…").font(.footnote).foregroundStyle(Cosmos.lavender)
+            Text("保存中…").font(.footnote).foregroundStyle(Cosmos.lavender)
         } else if let lastResult {
-            let name = lastResult.destinationName
             Group {
                 switch lastResult.status {
                 case .sent:
-                    Label("「\(name)」に送りました", systemImage: "checkmark.circle.fill").foregroundStyle(Cosmos.star)
+                    Label(lastResult.title, systemImage: "checkmark.circle.fill").foregroundStyle(Cosmos.star)
                 case .pending:
-                    Label("「\(name)」へはあとで送り直します", systemImage: "arrow.clockwise").foregroundStyle(.orange)
-                case .failed(let reason):
+                    Label(lastResult.title, systemImage: "arrow.clockwise").foregroundStyle(.orange)
+                case .failed:
                     VStack(spacing: 2) {
-                        Label("「\(name)」に送れませんでした", systemImage: "xmark.circle.fill").foregroundStyle(.red)
-                        Text(reason).font(.caption2).foregroundStyle(.secondary)
+                        Label(lastResult.title, systemImage: "xmark.circle.fill").foregroundStyle(.red)
+                        if let detail = lastResult.detail {
+                            Text(detail).font(.caption2).foregroundStyle(.secondary)
+                        }
+                        if let unsavedText {
+                            Button("もう一度保存") { Task { await record(unsavedText) } }
+                                .font(.caption2)
+                                .disabled(isSending)
+                        }
                     }
                 }
             }
             .font(.footnote)
+            .multilineTextAlignment(.center)
             .transition(.scale.combined(with: .opacity))
         }
     }
 
-    /// 選んでいた送り先が iPhone で消されたら、既定の送り先に合わせる (表示と実際の送り先をずらさない)。
-    private func fixSelection() {
-        if let corrected = store.config.correctedSelection(selectedID) { selectedID = corrected }
-    }
-
-    private func send(_ text: String, to destination: Destination) async {
-        // 最初の await より前に立てる (StoreKit を読んでいる間にもう一度送れないように)
+    private func record(_ text: String) async {
         guard let text = MessageText.normalized(text), !isSending else { return }
-        isSending = true
-        // 画面を開いたままお試しの期限を過ぎることがあるので、送る直前にも確かめる。
-        // 画面用の refresh は別の refresh と重なると結果を捨てるので、判定はその場で読んだ結果で行う
-        let access = await EntitlementStore.currentAccess()
-        Task { await entitlements.refresh() }  // 画面の表示も合わせる
-        now = .now
-        if let blocked = access.blockedMessage {
-            isSending = false
-            lastResult = SendOutcome(status: .failed(reason: String(localized: "送っていません。\(blocked)")), destinationName: destination.displayName)
-            resultSerial += 1
-            WKHaptic.play(.failure)
-            return
-        }
-        await run(destinationName: destination.displayName) {
-            await MessageDispatcher.shared.send(text: text, destination: destination, source: "watch")
+        await run {
+            let memo = await MemoDispatcher.shared.record(text: text, source: "watch")
+            unsavedText = memo == nil ? text : nil
+            return MemoFeedback(memo: memo, role: .watch)
         }
     }
 
-    private func run(destinationName: String, _ work: () async -> MessageStatus) async {
+    private func run(_ work: () async -> MemoFeedback) async {
         isSending = true
         lastResult = nil
+        var feedback: MemoFeedback?
         await playFlight(set: { flight = $0 }, current: { flight }, onResult: { status in
             isSending = false
-            withAnimation(.spring(duration: 0.4)) { lastResult = SendOutcome(status: status, destinationName: destinationName) }
+            withAnimation(.spring(duration: 0.4)) { lastResult = feedback }
             resultSerial += 1
             if case .sent = status { hideSentMessage(serial: resultSerial) }
             switch status {
@@ -216,7 +156,11 @@ struct WatchHomeView: View {
             case .pending: WKHaptic.play(.retry)
             case .failed: WKHaptic.play(.failure)
             }
-        }, work: work)
+        }, work: {
+            let result = await work()
+            feedback = result
+            return result.status
+        })
     }
 
     private func hideSentMessage(serial: Int) {
@@ -228,47 +172,13 @@ struct WatchHomeView: View {
     }
 
     #if DEBUG
-    /// 送らずに演出だけ流す (履歴にも残らない)。
+    /// 保存せずに演出だけ流す。
     private func playDemo(_ demo: FlightDemo) async {
-        await run(destinationName: destination?.displayName ?? "演出", demo.work)
+        await run {
+            MemoFeedback(demo: await demo.work())
+        }
     }
     #endif
-}
-
-/// 送り先の一覧。押したものを選んで前の画面へ戻る。
-private struct DestinationChooser: View {
-    var destinations: [Destination]
-    var current: UUID
-    /// iPhone で既定にした送り先 (時計で何も選んでいないときの送り先)
-    var defaultID: UUID?
-    var onSelect: (UUID) -> Void
-    @Environment(\.dismiss) private var dismiss
-
-    var body: some View {
-        List(destinations) { d in
-            Button {
-                onSelect(d.id)
-                dismiss()
-            } label: {
-                HStack {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(d.displayName).lineLimit(2)
-                        if d.id == defaultID {
-                            Text("既定").font(.caption2).foregroundStyle(.secondary)
-                        }
-                    }
-                    Spacer(minLength: 4)
-                    if d.id == current {
-                        Image(systemName: "checkmark").foregroundStyle(Cosmos.lavender)
-                            .accessibilityHidden(true)
-                    }
-                }
-            }
-            // 選んでいる送り先を読み上げでも分かるようにする (チェックは見た目だけ)
-            .accessibilityAddTraits(d.id == current ? .isSelected : [])
-        }
-        .navigationTitle("送り先")
-    }
 }
 
 /// 送るボタン (話す・文字を入力する)。紫に光る丸と、ゆっくり広がる輪。
@@ -296,7 +206,7 @@ private struct SendOrb: View {
                     Image(systemName: "paperplane.fill").font(.title2.bold())
                         .opacity(planeLaunched ? 0 : 1)
                         .animation(.easeOut(duration: 0.15), value: planeLaunched)
-                    Text("送る").font(.caption2.bold())
+                    Text("メモ").font(.caption2.bold())
                 }
                 .foregroundStyle(.white)
             }
@@ -315,46 +225,93 @@ private enum WKHaptic {
     }
 }
 
+/// 時計に残っているメモ (直近 50 件)。消す・後から送るは iPhone で行う。
 struct WatchHistoryView: View {
-    @State private var entries: [MessageLogEntry] = []
+    @State private var memos: [Memo] = []
     @State private var sending: Set<UUID> = []
-    /// お試しの期限を画面を開いたまま過ぎても、再送ボタンを消すため 1 分ごとに進める。
-    @State private var now = Date.now
 
     var body: some View {
         List {
-            if entries.isEmpty {
+            if memos.isEmpty {
                 Text("まだありません").foregroundStyle(.secondary)
             }
-            ForEach(entries) { e in
-                VStack(alignment: .leading, spacing: 3) {
-                    Text(e.message.text).lineLimit(2)
-                    Text("\(e.destinationName) · \(e.label(sending: sending))")
-                        .font(.caption2).foregroundStyle(Cosmos.lavender.opacity(0.8))
-                }
-                .listRowBackground(RoundedRectangle(cornerRadius: 14, style: .continuous).fill(Cosmos.card))
-                .swipeActions {
-                    if case .sent = e.status {} else if EntitlementStore.shared.access(now: now).canSend {
-                        Button("再送") {
-                            Task {
-                                await MessageDispatcher.shared.retry(e.id)
-                                await reload()
+            ForEach(memos) { memo in
+                NavigationLink {
+                    WatchMemoDetailView(memoID: memo.id)
+                } label: {
+                    VStack(alignment: .leading, spacing: 3) {
+                        Text(memo.text).lineLimit(2)
+                        HStack(spacing: 4) {
+                            Image(systemName: memo.summary.symbol)
+                            Text(memo.summary.label)
+                            if memo.phoneSync == .waiting {
+                                Image(systemName: "iphone.slash").accessibilityLabel("iPhone に未同期")
                             }
                         }
+                        .font(.caption2).foregroundStyle(Cosmos.lavender.opacity(0.8))
                     }
                 }
+                .listRowBackground(RoundedRectangle(cornerRadius: 14, style: .continuous).fill(Cosmos.card))
             }
         }
-        .navigationTitle("履歴")
-        .onReceive(Timer.publish(every: 60, on: .main, in: .common).autoconnect()) { now = $0 }
+        .navigationTitle("メモ")
         .task { await reload() }
-        .onReceive(NotificationCenter.default.publisher(for: MessageDispatcher.didChange)) { _ in
+        .onReceive(NotificationCenter.default.publisher(for: MemoDispatcher.didChange)) { _ in
             Task { await reload() }
         }
     }
 
     private func reload() async {
-        entries = await MessageDispatcher.shared.entries
-        sending = await MessageDispatcher.shared.sendingIDs
+        memos = await MemoDispatcher.shared.memos
+        sending = await MemoDispatcher.shared.sendingIDs
+    }
+}
+
+/// 1 件のメモと、連携ごとの状態。時計から送る webhook は、送れなかったら送り直せる。
+private struct WatchMemoDetailView: View {
+    let memoID: UUID
+    @State private var memo: Memo?
+    @State private var sending: Set<UUID> = []
+
+    var body: some View {
+        List {
+            if let memo {
+                Text(memo.text)
+                Text(memo.createdAt.formatted(date: .abbreviated, time: .shortened))
+                    .font(.caption2).foregroundStyle(.secondary)
+                if memo.phoneSync == .waiting {
+                    Label("iPhone にまだ渡せていません", systemImage: "iphone.slash")
+                        .font(.caption2).foregroundStyle(.orange)
+                }
+                ForEach(memo.deliveries) { d in
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(d.target.displayName).font(.footnote).lineLimit(2)
+                        Text(d.status.label(isSending: sending.contains(d.id)))
+                            .font(.caption2).foregroundStyle(Cosmos.lavender.opacity(0.8))
+                        if let reason = d.status.reason, !d.status.isDone {
+                            Text(reason).font(.caption2).foregroundStyle(.secondary)
+                        }
+                        if d.owner == .watch, !d.status.isDone, d.status != .cancelled, !sending.contains(d.id) {
+                            Button("送り直す") {
+                                Task { await MemoDispatcher.shared.retry(memoID: memoID, deliveryID: d.id) }
+                            }
+                            .font(.caption2)
+                        }
+                    }
+                }
+            } else {
+                Text("このメモは削除されました").foregroundStyle(.secondary)
+            }
+        }
+        .navigationTitle("メモ")
+        .task { await reload() }
+        .onReceive(NotificationCenter.default.publisher(for: MemoDispatcher.didChange)) { _ in
+            Task { await reload() }
+        }
+    }
+
+    private func reload() async {
+        memo = await MemoDispatcher.shared.memo(id: memoID)
+        sending = await MemoDispatcher.shared.sendingIDs
     }
 }

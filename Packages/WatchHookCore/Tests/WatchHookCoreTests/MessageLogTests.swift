@@ -128,15 +128,6 @@ struct MessageLogTests {
 
 @Suite("DestinationConfig")
 struct DestinationConfigTests {
-    @Test func 既定の送り先が消えたら先頭にする() {
-        let a = Destination.preset(.slack)
-        let b = Destination.preset(.discord)
-        var c = DestinationConfig(destinations: [a, b], defaultDestinationID: b.id)
-        #expect(c.defaultDestination?.id == b.id)
-        c.destinations.removeAll { $0.id == b.id }
-        #expect(c.defaultDestination?.id == a.id)
-    }
-
     @Test func 版が大きい設定だけを新しいとみなす() {
         var older = DestinationConfig()
         older.revision = 3
@@ -189,14 +180,10 @@ struct DestinationConfigTests {
         #expect(gate.isLatest(second))
     }
 
-    @Test func 空なら既定も無い() {
-        #expect(DestinationConfig().defaultDestination == nil)
-    }
-
     @Test func JSONで往復できる() throws {
         var d = Destination.preset(.custom)
         d.headers = [HeaderField(name: "Authorization", value: "Bearer x", isSecret: true)]
-        let c = DestinationConfig(destinations: [d], defaultDestinationID: d.id)
+        let c = DestinationConfig(destinations: [d])
         let back = try DestinationConfig.decode(c.encoded())
         #expect(back == c)
     }

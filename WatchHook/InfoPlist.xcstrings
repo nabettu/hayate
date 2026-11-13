@@ -551,6 +551,282 @@
         }
       }
     },
+    "NSRemindersFullAccessUsageDescription" : {
+      "comment" : "Privacy - Reminders Full Access Usage Description",
+      "extractionState" : "extracted_with_value",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يضيف Hayate الملاحظات التي تبدأ بكلمة تفعيل كتذكيرات إلى القائمة التي تختارها."
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hayate ট্রিগার শব্দ দিয়ে শুরু হওয়া মেমো আপনার বাছাই করা তালিকায় রিমাইন্ডার হিসেবে যোগ করে।"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hayate afegeix com a recordatoris, a la llista que triïs, les notes que comencen amb una paraula clau."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hayate přidá poznámky začínající spouštěcím slovem jako připomínky do vybraného seznamu."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Noter, der begynder med et signalord, føjes som påmindelser til den valgte liste."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Fügt Notizen, die mit einem Signalwort beginnen, als Erinnerungen zur gewählten Liste hinzu."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Προσθέτει ως υπενθυμίσεις στην επιλεγμένη λίστα τις σημειώσεις που ξεκινούν με λέξη-κλειδί."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hayate adds memos that start with a trigger word, as reminders, to the list you choose."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Añade a la lista elegida, como recordatorios, las notas que empiezan por una palabra clave."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lisää avainsanalla alkavat muistiinpanot muistutuksina valittuun listaan."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hayate ajoute à une liste Rappels que vous choisissez les mémos qui commencent par un mot-clé."
+          }
+        },
+        "gu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hayate શરૂઆતમાં સંકેત શબ્દવાળી નોંધને તમે પસંદ કરેલી રિમાઇન્ડર્સ યાદીમાં રિમાઇન્ડર તરીકે ઉમેરે છે."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hayate מוסיף הערות שמתחילות במילת הפעלה לרשימת התזכורות שבחרתם."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hayate संकेत शब्द से शुरू होने वाले नोट को आपकी चुनी हुई रिमाइंडर सूची में जोड़ता है।"
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hayate dodaje bilješke koje počinju ključnom riječi u popis Podsjetnika koji odaberete."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A kulcsszóval kezdődő jegyzeteket a kiválasztott listához adja hozzá emlékeztetőként."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Catatan yang diawali kata kunci ditambahkan sebagai pengingat ke daftar yang dipilih."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Aggiunge come promemoria alla lista scelta gli appunti che iniziano con una parola chiave."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "new",
+            "value" : "合図の言葉で始めたメモを、選んだリストにリマインダーとして追加します。"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಕೀವರ್ಡ್‌ನಿಂದ ಆರಂಭವಾದ ಟಿಪ್ಪಣಿಯನ್ನು ಆರಿಸಿದ ಪಟ್ಟಿಗೆ ರಿಮೈಂಡರ್ ಆಗಿ ಸೇರಿಸುತ್ತದೆ."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "키워드로 시작한 메모를 선택한 목록에 미리 알림으로 추가합니다."
+          }
+        },
+        "ml" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ട്രിഗർ വാക്കിൽ തുടങ്ങുന്ന മെമ്മോ, തിരഞ്ഞെടുത്ത ലിസ്റ്റിൽ റിമൈൻഡറായി ചേർക്കും."
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ट्रिगर शब्दाने सुरू झालेला मेमो, निवडलेल्या लिस्टमध्ये रिमाइंडर म्हणून जोडला जातो."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Memo yang bermula dengan kata pencetus ditambah sebagai peringatan ke senarai yang dipilih."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Memoer som begynner med et utløserord, legges til som påminnelser i listen du har valgt."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Voegt memo’s die met een triggerwoord beginnen als herinnering toe aan de gekozen lijst."
+          }
+        },
+        "or" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ସେଭ୍ ହୋଇଥିବା ନୋଟ୍ କୁ ରିମାଇଣ୍ଡର୍ ରେ ଯୋଡ଼ିବା ପାଇଁ Hayate କୁ ରିମାଇଣ୍ଡର୍ ପ୍ରବେଶ ଆବଶ୍ୟକ।"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ਸੰਭਾਲੇ ਨੋਟ ਨੂੰ ਰਿਮਾਈਂਡਰ ਵਿੱਚ ਜੋੜਨ ਲਈ Hayate ਨੂੰ ਰਿਮਾਈਂਡਰ ਤੱਕ ਪਹੁੰਚ ਦੀ ਲੋੜ ਹੈ।"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hayate potrzebuje dostępu do Przypomnień, aby dodawać do nich zapisane notatki."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Hayate precisa de acesso aos Lembretes para adicionar as anotações salvas."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O Hayate precisa de acesso aos Lembretes para adicionar as notas guardadas."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O notiță care începe cu un cuvânt-cheie se adaugă ca mementou în lista aleasă."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Заметка, начатая с ключевого слова, добавляется как напоминание в выбранный список."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Poznámka začínajúca kľúčovým slovom sa pridá ako pripomienka do vybraného zoznamu."
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zapisek, ki se začne s ključno besedo, se doda kot opomnik v izbrani seznam."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anteckningar som börjar med ett nyckelord läggs till som påminnelser i den valda listan."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "குறிச்சொல்லுடன் தொடங்கிய குறிப்புகளைத் தேர்ந்தெடுத்த பட்டியலில் நினைவூட்டலாகச் சேர்க்கும்."
+          }
+        },
+        "te" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "సంకేత పదంతో మొదలైన నోట్స్‌ను, ఎంచుకున్న జాబితాలో రిమైండర్‌గా జోడిస్తుంది."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "เพิ่มบันทึกที่ขึ้นต้นด้วยคำสั่งลงในรายการที่เลือกเป็นการช่วยเตือน"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anahtar sözcükle başlayan notları, seçtiğiniz listeye anımsatıcı olarak ekler."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Нотатки, що починаються з ключового слова, додаються як нагадування до вибраного списку."
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hayate کو آپ کی یاد دہانیاں تک مکمل رسائی چاہیے تاکہ وہ نوٹ آپ کی منتخب فہرست میں شامل کر سکے۔"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hayate cần quyền truy cập đầy đủ vào Lời nhắc để thêm ghi chú vào danh sách bạn chọn."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hayate 需要完全访问你的提醒事项，才能把备忘添加到你选择的列表。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hayate 需要完整取用你的提醒事項，才能把備忘加入你選擇的清單。"
+          }
+        }
+      }
+    },
     "はやて" : {
       "localizations" : {
         "ar" : {

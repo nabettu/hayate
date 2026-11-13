@@ -122,7 +122,6 @@ final class ConfigStore {
             c.destinations[i] = destination
         } else {
             c.destinations.append(destination)
-            if c.defaultDestinationID == nil { c.defaultDestinationID = destination.id }
         }
         return update(c)
     }
@@ -131,14 +130,21 @@ final class ConfigStore {
         guard reloadIfNeeded() else { return }
         var c = config
         c.destinations.removeAll { $0.id == id }
-        if c.defaultDestinationID == id { c.defaultDestinationID = c.destinations.first?.id }
         update(c)
     }
 
-    func setDefault(_ id: UUID) {
+    /// 入力したメモを送るか (送り先ごとにオン / オフ)。
+    func setEnabled(_ id: UUID, _ enabled: Bool) {
+        guard reloadIfNeeded(), let i = config.destinations.firstIndex(where: { $0.id == id }) else { return }
+        var c = config
+        c.destinations[i].isEnabled = enabled
+        update(c)
+    }
+
+    func move(from offsets: IndexSet, to destination: Int) {
         guard reloadIfNeeded() else { return }
         var c = config
-        c.defaultDestinationID = id
+        c.destinations.move(fromOffsets: offsets, toOffset: destination)
         update(c)
     }
 }

@@ -1,9 +1,10 @@
 import Foundation
 import Synchronization
+import UIKit
 import WatchConnectivity
 import WatchHookCore
 
-/// iPhone → 時計へ送り先の設定を送る。applicationContext は最新の 1 件だけが届き、時計のアプリが閉じていても次に起きたときに受け取れる。
+/// iPhone → 時計へ送り先の設定を送り、時計からメモを受け取る。
 final class PhoneSync: NSObject, WCSessionDelegate, @unchecked Sendable {
     static let shared = PhoneSync()
 
@@ -14,7 +15,6 @@ final class PhoneSync: NSObject, WCSessionDelegate, @unchecked Sendable {
     }
 
     /// 時計へ送る。送れなかったら理由を返す (時計が無い・アプリ未インストールは失敗にしない)。
-    /// applicationContext は丸ごと置き換わるので、設定の版と購入の状態を毎回両方載せる。
     @MainActor
     @discardableResult
     func push(_ config: DestinationConfig) -> String? {
@@ -24,81 +24,143 @@ final class PhoneSync: NSObject, WCSessionDelegate, @unchecked Sendable {
         }
         do {
             // 認証ヘッダを含む本体は applicationContext に置かない (端末に保存され続けるため)。版だけ知らせ、時計が取りに来る
-            var context: [String: Any] = [SyncKeys.revision: config.revision, SyncKeys.epoch: config.epoch.uuidString]
-            // StoreKit を読む前の状態 (空) を送ると、時計に残っている iPhone からの「購入済み」を消してしまう
-            if EntitlementStore.shared.hasLoaded, let entitlement = try? EntitlementStore.shared.local.encoded() {
-                context[SyncKeys.entitlement] = entitlement
-            }
-            try session.updateApplicationContext(context)
+            try session.updateApplicationContext([SyncKeys.revision: config.revision, SyncKeys.epoch: config.epoch.uuidString])
             return nil
         } catch {
             return String(localized: "Apple Watch へ設定を送れませんでした: \(error.localizedDescription)")
         }
     }
 
-    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
-        guard activationState == .activated else { return }
-        Task { @MainActor in ConfigStore.shared.resync() }
-        // アプリが閉じている間に届いていた時計の履歴。今ペアの時計からまだ届いていなければ、前の時計の写しを消す
-        receiveHistory(from: session.receivedApplicationContext, clearIfMissing: true)
-    }
+    // MARK: - メモ
 
-    /// 時計から履歴の写しが届いたとき。
-    func session(_ session: WCSession, didReceiveApplicationContext applicationContext: [String: Any]) {
-        receiveHistory(from: applicationContext)
-    }
-
-    private enum HistoryUpdate: Sendable {
-        case snapshot(HistorySnapshot)
-        /// 時計が替わった・今の時計からまだ届いていない。前の時計の写しを残さない
-        case cleared
-    }
-
-    /// 最後に受け取った時計の履歴の状態。デリゲートは 1 本のキューから順に呼ばれるので、ここには常に最新が入る。
-    /// MainActor への受け渡しは Task ごとに順番が入れ替わりうるので、受け取った値ではなく、反映する時点の最新をここから読む
-    /// (古い写しで上書きして、送信済みが未送信に戻ったり、消したものが戻ったりしないように)。
-    private let latestHistory = Mutex<HistoryUpdate?>(nil)
-
-    private func receiveHistory(from context: [String: Any], clearIfMissing: Bool = false) {
-        guard let data = context[SyncKeys.history] as? Data else {
-            if clearIfMissing { applyHistory(.cleared) }
-            return
+    /// 時計で入力したメモの写しを時計へ返す (リマインダーなどの結果を時計の画面に出すため)。
+    func sendMemo(_ memo: Memo) {
+        let session = WCSession.default
+        guard WCSession.isSupported(), session.activationState == .activated, session.isWatchAppInstalled,
+              let data = try? JSONEncoder().encode(memo) else { return }
+        if replaceQueuedCopies(of: memo, in: session) {
+            session.transferUserInfo([SyncKeys.memo: data])
         }
-        // 読めない写しは捨てる (手元の写しは消さない)
-        guard let snapshot = try? HistorySnapshot.decode(data) else { return }
-        applyHistory(.snapshot(snapshot))
     }
 
-    private func applyHistory(_ update: HistoryUpdate) {
-        latestHistory.withLock { $0 = update }
-        Task { @MainActor in
-            switch self.latestHistory.withLock({ $0 }) {
-            case .snapshot(let latest): WatchHistoryStore.shared.receive(latest)
-            case .cleared: WatchHistoryStore.shared.clear()
-            case nil: break
+    /// 時計に知らせる前の、消したメモの ID。つながる準備ができる前 (起動直後など) に消したものや、
+    /// 知らせる前にアプリが終わったものも、次につながったときに知らせる。中身は ID だけなので UserDefaults に置く
+    private static let pendingDeletionsKey = "pendingWatchDeletions"
+    private let deletionLock = Mutex<Void>(())
+
+    /// iPhone で消したメモを時計にも知らせる (時計の未送信を止めて消す)。
+    /// transferUserInfo は届くまで OS が持ち続けるので、一度渡せば時計のアプリが閉じていても届く。
+    func sendDeletion(_ memoID: UUID) {
+        guard WCSession.isSupported() else { return }
+        // 先に控えてから送る (つながった知らせと入れ違っても取り残さない)
+        deletionLock.withLock { _ in
+            var ids = UserDefaults.standard.stringArray(forKey: Self.pendingDeletionsKey) ?? []
+            ids.append(memoID.uuidString)
+            UserDefaults.standard.set(ids, forKey: Self.pendingDeletionsKey)
+        }
+        sendPendingDeletions()
+    }
+
+    private func sendPendingDeletions() {
+        let session = WCSession.default
+        guard session.activationState == .activated else { return }
+        let ids = deletionLock.withLock { _ in UserDefaults.standard.stringArray(forKey: Self.pendingDeletionsKey) ?? [] }
+        // 時計のアプリが無ければ、止める未送信も無い
+        let installed = session.isWatchAppInstalled
+        for id in ids {
+            if installed { session.transferUserInfo([SyncKeys.deletedMemo: id]) }
+            // OS に渡してから控えを消す (途中でアプリが終わっても、残りは次に送る。2 回届いても害は無い)
+            deletionLock.withLock { _ in
+                var rest = UserDefaults.standard.stringArray(forKey: Self.pendingDeletionsKey) ?? []
+                if let i = rest.firstIndex(of: id) { rest.remove(at: i) }
+                UserDefaults.standard.set(rest, forKey: Self.pendingDeletionsKey)
             }
         }
     }
 
-    /// 時計が「設定をください」と言ってきたとき (初回インストール直後など)。
+    /// 時計から届いたメモを保存する。裏で起こされたときに途中で止められないよう、終わるまで時間をもらう。
+    private static func receive(_ data: Data?) async -> Memo? {
+        guard let remote = data.flatMap({ try? JSONDecoder().decode(Memo.self, from: $0) }) else { return nil }
+        let task = await BackgroundTask.begin("receive-memo")
+        defer { Task { @MainActor in task.end() } }
+        guard let saved = await MemoDispatcher.shared.receiveFromWatch(remote) else { return nil }
+        // このメモのリマインダー・Markdown を保存し終えてから返す (結果を早く時計に出すため)。溜まった分はそのあと
+        await MemoDispatcher.shared.deliverPending(memoID: remote.id)
+        Task { await MemoDispatcher.shared.flush() }
+        return await MemoDispatcher.shared.memo(id: remote.id) ?? saved
+    }
+
+    // MARK: - WCSessionDelegate
+
+    func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        guard activationState == .activated else { return }
+        sendPendingDeletions()
+        Task { @MainActor in ConfigStore.shared.resync() }
+    }
+
+    /// 時計からのメッセージ: 設定の取り寄せ / 入力した直後のメモ。
     func session(_ session: WCSession, didReceiveMessage message: [String: Any], replyHandler: @escaping ([String: Any]) -> Void) {
-        guard message[SyncKeys.request] as? String == SyncKeys.config else {
-            replyHandler([:])
+        if message[SyncKeys.request] as? String == SyncKeys.config {
+            let data = try? (try ConfigStore.loadFromKeychain()).encoded()
+            replyHandler(data.map { [SyncKeys.config: $0] } ?? [:])
             return
         }
-        let data = try? (try ConfigStore.loadFromKeychain()).encoded()
-        replyHandler(data.map { [SyncKeys.config: $0] } ?? [:])
+        if let data = message[SyncKeys.memo] as? Data {
+            Self.replyWithMemo(data: data, replyHandler: replyHandler)
+            return
+        }
+        replyHandler([:])
+    }
+
+    /// 返信のクロージャを MainActor の中で作らない (CLAUDE.md の「ハマりどころ」)。
+    private nonisolated static func replyWithMemo(data: Data, replyHandler: @escaping ([String: Any]) -> Void) {
+        let reply = UncheckedSendable(replyHandler)
+        Task {
+            let saved = await receive(data)
+            // 保存できなかったら受領を返さない (時計は transferUserInfo で送り直す)
+            reply.value((saved.flatMap { try? JSONEncoder().encode($0) }).map { [SyncKeys.memo: $0] } ?? [:])
+        }
+    }
+
+    func session(_ session: WCSession, didReceiveUserInfo userInfo: [String: Any] = [:]) {
+        guard let data = userInfo[SyncKeys.memo] as? Data else { return }
+        Task {
+            // 受け取れたら写しを返す (時計の「iPhone に渡せた」と、リマインダーの結果)
+            if let saved = await Self.receive(data) { self.sendMemo(saved) }
+        }
     }
 
     func sessionDidBecomeInactive(_ session: WCSession) {}
 
     func sessionDidDeactivate(_ session: WCSession) {
-        // 別の時計に切り替えたとき。前の時計の履歴は見せない (新しい時計の分は activate のあとに届く)
-        applyHistory(.cleared)
         session.activate()
     }
 
     func sessionWatchStateDidChange(_ session: WCSession) {
         Task { @MainActor in ConfigStore.shared.resync() }
     }
+}
+
+/// 裏で起こされたときに、終わるまで iOS に時間をもらう。時間切れになったら自分で終える (終えないとアプリが止められる)。
+@MainActor
+final class BackgroundTask {
+    private var id: UIBackgroundTaskIdentifier = .invalid
+
+    static func begin(_ name: String) -> BackgroundTask {
+        let task = BackgroundTask()
+        task.id = UIApplication.shared.beginBackgroundTask(withName: name) { task.end() }
+        return task
+    }
+
+    func end() {
+        guard id != .invalid else { return }
+        UIApplication.shared.endBackgroundTask(id)
+        id = .invalid
+    }
+}
+
+/// WatchConnectivity の返信クロージャを Task に渡すための包み (OS のキューから 1 回だけ呼ぶ)。
+struct UncheckedSendable<T>: @unchecked Sendable {
+    let value: T
+    init(_ value: T) { self.value = value }
 }

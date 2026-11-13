@@ -161,13 +161,9 @@ struct DestinationEditView: View {
         }
     }
 
-    /// お試し前にテスト送信した回数 (秘密ではないので UserDefaults)。
-    private static let testSendsKey = "testSendsBeforeTrial"
-
     private func sendTest() async {
         error = nil
-        // 押した時点の設定で確かめて送る。StoreKit を読む await の間に URL などを書き換えられても、
-        // 確かめていない設定 (書き換え後の URL に元の認証ヘッダ等) で送らないように
+        // 押した時点の設定で確かめて送る (送っている間に書き換えられても、確かめていない設定で送らない)
         let target = destination
         do { try RequestBuilder.validate(target) } catch {
             self.error = error.localizedDescription
@@ -175,18 +171,6 @@ struct DestinationEditView: View {
         }
         isTesting = true
         defer { isTesting = false }
-        // 本文テンプレートを書き換えれば好きな内容を送れるので、お試し前は回数を決め、お試しが終わったあとは送らない
-        let access = await EntitlementStore.currentAccess()
-        let used = UserDefaults.standard.integer(forKey: Self.testSendsKey)
-        guard TestSendPolicy.allows(access: access, usedBeforeTrial: used) else {
-            testResult = access == .trialNotStarted
-                ? String(localized: "お試し前のテスト送信は \(TestSendPolicy.limitBeforeTrial) 回までです。7 日間の無料お試しを始めると続けて試せます")
-                : String(localized: "お試し期間が終わったため、テスト送信もできません。購入すると続けて使えます")
-            return
-        }
-        if TestSendPolicy.counts(access: access) {
-            UserDefaults.standard.set(used + 1, forKey: Self.testSendsKey)
-        }
         let message = OutgoingMessage(text: target.wrap(String(localized: "Hayate のテスト送信です")), destinationID: target.id, source: "test")
         let result = await WebhookSender().send(message, to: target)
         switch result {
