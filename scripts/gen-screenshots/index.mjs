@@ -56,9 +56,9 @@ try {
         const kind = f.cls.includes("closing") ? "closing" : "h1";
         if (f.size < MIN_SIZE[kind]) problems.push(`${lang}/${name}: ${kind} が ${f.size}px まで縮んだ (下限 ${MIN_SIZE[kind]}px)`);
       }
-      if (report.closingGap !== null && report.closingGap < 24) problems.push(`${lang}/${name}: 下の一言との間が ${Math.round(report.closingGap)}px`);
+      if (report.closingGap !== null && report.closingGap < 40) problems.push(`${lang}/${name}: 下の一言との間が ${Math.round(report.closingGap)}px`);
       for (const o of report.watchOverflow) problems.push(`${lang}/${name}: 時計の画面で収まらない (${o})`);
-      if (report.headGap < 24) problems.push(`${lang}/${name}: 見出しとの間が ${Math.round(report.headGap)}px`);
+      if (report.headGap < 40) problems.push(`${lang}/${name}: 見出しとの間が ${Math.round(report.headGap)}px`);
       await phone.screenshot({ path: path.join(dir, `${name}.png`) });
       console.log(`  -> ${lang}/${name}.png`);
     }

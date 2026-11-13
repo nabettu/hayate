@@ -117,8 +117,8 @@ const WATCH_CSS = `
   .ws .ring { position: absolute; inset: 0; border-radius: 50%; border: 3px solid rgba(196,181,253,.5); }
   .ws .orb { position: absolute; inset: 0; border-radius: 50%; background: linear-gradient(45deg,#8B5CF6,#C4B5FD); box-shadow: 0 0 22px rgba(139,92,246,.9), inset 0 0 0 2px rgba(255,255,255,.35);
     display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 26px; font-weight: 700; }
-  .ws .status { position: absolute; left: 16px; right: 16px; top: 302px; overflow: hidden; text-align: center; font-size: 23px; font-weight: 500; white-space: nowrap; color: #FDE68A; display: flex; align-items: center; justify-content: center; gap: 8px; }
-  .ws .destwrap { position: absolute; left: 24px; right: 24px; top: 336px; display: flex; justify-content: center; }
+  .ws .status { position: absolute; left: 16px; right: 16px; top: 298px; overflow: hidden; text-align: center; font-size: 23px; font-weight: 500; white-space: nowrap; color: #FDE68A; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .ws .destwrap { position: absolute; left: 24px; right: 24px; top: 350px; display: flex; justify-content: center; }
   .ws .destpill { display: flex; align-items: center; gap: 12px; max-width: 100%; overflow: hidden; white-space: nowrap; padding: 12px 24px; border-radius: 999px; font-size: 30px; color: #C4B5FD;
     background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 2px rgba(196,181,253,.35); }
   .ws .dest { white-space: nowrap; }
@@ -132,7 +132,7 @@ const WATCH_CSS = `
   .ws .rows { position: absolute; left: 14px; right: 14px; top: 92px; display: flex; flex-direction: column; gap: 10px; }
   .ws .row { background: rgba(34,27,72,.96); border-radius: 28px; padding: 18px 24px; }
   .ws .row b { display: block; font-size: 31px; font-weight: 500; line-height: 1.25; }
-  .ws .row small { display: block; margin-top: 4px; font-size: 25px; color: rgba(196,181,253,.8); }
+  .ws .row small { display: block; margin-top: 6px; font-size: 25px; color: rgba(196,181,253,.8); }
   .ws .row.pick { display: flex; align-items: center; justify-content: space-between; padding: 26px 26px; }
   .ws .siri { position: absolute; left: 28px; right: 28px; top: 96px; }
   .ws .siri .app { display: flex; align-items: center; gap: 12px; font-size: 24px; font-weight: 600; letter-spacing: .04em; color: #9a9aa0; }
@@ -161,7 +161,7 @@ export const watchScreens = {
     ${pager(0)}</div>`,
   /** 時計の履歴 (WatchHistoryView: 送る画面の下のページ。本文と「送り先 · 状態」) */
   history: (t) => `<div class="ws">${appSky(416, 496, 26, 9)}${watchBar("")}<div class="ptitle">${esc(t.history)}</div>
-    <div class="rows" style="top:128px">
+    <div class="rows" style="top:140px">
       ${[[0, 0, t.statusSent], [1, 2, t.statusPending], [2, 1, t.statusSent]].map(([s, d, st]) =>
         `<div class="row"><b>${esc(t.spoken[s])}</b><small>${esc(t.destinations[d])} · ${esc(st)}</small></div>`).join("")}
     </div>${pager(1)}</div>`,
@@ -307,7 +307,7 @@ const SLIDE_CSS = `
   .head h1 { font-size: 138px; font-weight: 900; line-height: 1.16; letter-spacing: -.02em; }
   .line { display: block; white-space: nowrap; }
   em { font-style: normal; padding-bottom: .12em; background: linear-gradient(95deg,#FDE68A,#FDBA74 45%,#F9A8D4); -webkit-background-clip: text; color: transparent; }
-  .chips { display: flex; justify-content: center; gap: 24px; margin-top: 60px; white-space: nowrap; }
+  .chips { display: flex; justify-content: center; gap: 24px; margin-top: 80px; white-space: nowrap; }
   .chip { display: inline-flex; align-items: center; gap: 16px; border-radius: 999px; padding: 26px 44px; font-size: 56px; font-weight: 800; color: #fff;
     background: rgba(255,255,255,.1); box-shadow: inset 0 0 0 2px rgba(255,255,255,.16); }
   .closing { position: absolute; left: 0; right: 0; bottom: 96px; text-align: center; z-index: 30; color: #fff; font-size: 88px; font-weight: 900; line-height: 1.24; letter-spacing: -.01em; }
@@ -353,7 +353,7 @@ const FIT = `<script>
   });
   document.querySelectorAll(".chips").forEach(function (el) {
     var w = [].reduce.call(el.children, function (a, c) { return a + c.offsetWidth + 24; }, -24);
-    if (w > ${IPHONE.width} - 80) el.style.zoom = (${IPHONE.width} - 80) / w;
+    if (w > ${IPHONE.width} - 160) el.style.zoom = (${IPHONE.width} - 160) / w;  // 左右に 80px ずつ空ける
   });
 </script>`;
 

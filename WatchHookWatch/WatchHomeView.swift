@@ -43,7 +43,8 @@ struct WatchHomeView: View {
         if let destination {
             ZStack {
                 ScrollView {
-                    VStack(spacing: 8) {
+                    // 「送りました」と送り先の選択が詰まって見えないよう、行のあいだを広めに取る
+                    VStack(spacing: 12) {
                         saveErrorView
                         accessView
                         // 標準の入力画面 (音声入力・スクリブル・キーボード) を開く。ダブルタップでも押せる
@@ -165,7 +166,7 @@ struct WatchHomeView: View {
                 case .pending:
                     Label("「\(name)」へはあとで送り直します", systemImage: "arrow.clockwise").foregroundStyle(.orange)
                 case .failed(let reason):
-                    VStack {
+                    VStack(spacing: 2) {
                         Label("「\(name)」に送れませんでした", systemImage: "xmark.circle.fill").foregroundStyle(.red)
                         Text(reason).font(.caption2).foregroundStyle(.secondary)
                     }
@@ -326,7 +327,7 @@ struct WatchHistoryView: View {
                 Text("まだありません").foregroundStyle(.secondary)
             }
             ForEach(entries) { e in
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 3) {
                     Text(e.message.text).lineLimit(2)
                     Text("\(e.destinationName) · \(e.label(sending: sending))")
                         .font(.caption2).foregroundStyle(Cosmos.lavender.opacity(0.8))
