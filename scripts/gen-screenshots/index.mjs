@@ -6,7 +6,7 @@
 // 止める条件 (直してから作り直す):
 // - 文言に禁止語がある (validate.mjs)
 // - 見出しが収まらず、決めた大きさより小さく縮んだ (copy.mjs の改行を増やす・短くする)
-// - 下の一言と、その上の吹き出し・カードの間が 24px 未満 / 見出しと端末・吹き出しが重なった
+// - 下の一言と、その上の吹き出し・カードの間が 40px 未満 / 見出しと端末・吹き出しの間が 40px 未満 (詰まって見える)
 // - 時計の画面の 1 行の文字が、字を小さくしても収まらない
 
 import * as fs from "node:fs";
@@ -56,9 +56,9 @@ try {
         const kind = f.cls.includes("closing") ? "closing" : "h1";
         if (f.size < MIN_SIZE[kind]) problems.push(`${lang}/${name}: ${kind} が ${f.size}px まで縮んだ (下限 ${MIN_SIZE[kind]}px)`);
       }
-      if (report.closingGap !== null && report.closingGap < 24) problems.push(`${lang}/${name}: 下の一言との間が ${Math.round(report.closingGap)}px`);
+      if (report.closingGap !== null && report.closingGap < 40) problems.push(`${lang}/${name}: 下の一言との間が ${Math.round(report.closingGap)}px`);
       for (const o of report.watchOverflow) problems.push(`${lang}/${name}: 時計の画面で収まらない (${o})`);
-      if (report.headGap < 24) problems.push(`${lang}/${name}: 見出しとの間が ${Math.round(report.headGap)}px`);
+      if (report.headGap < 40) problems.push(`${lang}/${name}: 見出しとの間が ${Math.round(report.headGap)}px`);
       await phone.screenshot({ path: path.join(dir, `${name}.png`) });
       console.log(`  -> ${lang}/${name}.png`);
     }
