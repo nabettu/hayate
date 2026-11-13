@@ -70,7 +70,7 @@ Issue・PR を歓迎します (日本語でも英語でも)。
 - 文言を足したら `Shared/Localizable.xcstrings` に入る。訳は [scripts/l10n/README.md](scripts/l10n/README.md)
 - 開発のルールとハマりどころは [CLAUDE.md](CLAUDE.md) (AI エージェント向けに書いているが、人が読んでも同じ)
 
-不具合・要望は [Issues](https://github.com/nabettu/watchhook/issues) へ。セキュリティの問題は公開の Issue ではなく [GitHub の非公開の報告](https://github.com/nabettu/watchhook/security/advisories/new) でお願いします。
+不具合・要望は [Issues](https://github.com/nabettu/hayate/issues) へ。セキュリティの問題は公開の Issue ではなく [GitHub の非公開の報告](https://github.com/nabettu/hayate/security/advisories/new) でお願いします。
 
 ## 作者
 
@@ -95,6 +95,6 @@ Issue・PR を歓迎します (日本語でも英語でも)。
 
 **Build**: Xcode (developed with Xcode 27, Swift 6), iOS 18 / watchOS 11+. Open `WatchHook.xcodeproj`. To run on your devices, change `DEVELOPMENT_TEAM` and the `com.nabettu.watchhook*` bundle IDs in `project.yml`, then `xcodegen generate`. Tests: `scripts/verify.sh` (`--full` also builds the apps).
 
-**Contributing**: issues and PRs are welcome, in English or Japanese. Docs and code comments are mostly in Japanese. Please report security issues privately via [GitHub security advisories](https://github.com/nabettu/watchhook/security/advisories/new).
+**Contributing**: issues and PRs are welcome, in English or Japanese. Docs and code comments are mostly in Japanese. Please report security issues privately via [GitHub security advisories](https://github.com/nabettu/hayate/security/advisories/new).
 
 Made by [nabettu](https://github.com/nabettu). If you like it, you can support the work via [GitHub Sponsors](https://github.com/sponsors/nabettu).
