@@ -7,7 +7,7 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import { ROOT } from "./render.mjs";
 
-export const LOCK = path.join(ROOT, "screenshots/app-store/.lock");
+export const LOCK = path.join(ROOT, "screenshots/app-store/.upload.lock"); // 名前は前の upload.mjs のまま (動いている古い版とも排他する)
 
 export async function takeLock() {
   fs.mkdirSync(path.dirname(LOCK), { recursive: true });

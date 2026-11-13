@@ -60,8 +60,9 @@ function stop(code = 130) {
   const wait = () => (children.size ? setTimeout(wait, 200) : process.exit(code));
   wait();
 }
+// dry-run も画像を読むので、生成と重ならないようロックを取る
+await takeLock();
 if (!dryRun) {
-  await takeLock();
   for (const sig of ["SIGINT", "SIGTERM", "SIGHUP"]) process.on(sig, () => stop(130));
 }
 // 上げ終わったセットの記録 (ロケール・端末 → 画像のハッシュ)。生成物と同じく git に入れない
