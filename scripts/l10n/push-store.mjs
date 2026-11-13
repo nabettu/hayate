@@ -17,6 +17,9 @@ import { shapeErrors } from "../gen-screenshots/copy.mjs";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const APP_INFO_ID = "5faa8218-c59a-445c-be22-0b731f5c5f2c";
 const VERSION_ID = "a14da3e0-a800-4267-b815-f5e6fc426c2d"; // 1.0
+// 全ロケール共通の URL (2026-11-13。リポジトリを公開したので GitHub に置く)
+const SUPPORT_URL = "https://github.com/nabettu/hayate/issues";
+const PRIVACY_URL = "https://github.com/nabettu/hayate/blob/main/PRIVACY.md";
 
 const args = process.argv.slice(2);
 const dryRun = args.includes("--dry-run");
@@ -80,14 +83,13 @@ for (const [lang, locales] of Object.entries(LOCALES)) {
   for (const locale of locales) {
     // ストアの名前はロケールごとに他社と重ならないものしか使えない。en-US は「Hayate」が他社に使われているので nameByLocale で変える (2026-11-10)
     const name = m.nameByLocale?.[locale] ?? m.name;
-    upsert("App 情報", appInfoLocs, locale, { name, subtitle: m.subtitle }, () => api("POST", "/v1/appInfoLocalizations", {
-      data: { type: "appInfoLocalizations", attributes: { locale, name, subtitle: m.subtitle }, relationships: { appInfo: { data: { type: "appInfos", id: APP_INFO_ID } } } },
+    const info = { name, subtitle: m.subtitle, privacyPolicyUrl: PRIVACY_URL };
+    upsert("App 情報", appInfoLocs, locale, info, () => api("POST", "/v1/appInfoLocalizations", {
+      data: { type: "appInfoLocalizations", attributes: { locale, ...info }, relationships: { appInfo: { data: { type: "appInfos", id: APP_INFO_ID } } } },
     }), "appInfoLocalizations");
     // App 情報のロケールを作ると ASC がバージョンのロケールも作るので、無ければ取り直してから作るか更新するかを決める
     if (!versionLocs[locale] && !dryRun) versionLocs = byLocale(api("GET", `/v1/appStoreVersions/${VERSION_ID}/appStoreVersionLocalizations?limit=200`));
-    const v = { description: m.description, keywords: m.keywords, promotionalText: m.promotionalText };
-    // サポート URL は審査提出に要る。決まったら store/metadata/<lang>.json に supportUrl を書く (2026-11-10 時点では未定)
-    if (m.supportUrl) v.supportUrl = m.supportUrl;
+    const v = { description: m.description, keywords: m.keywords, promotionalText: m.promotionalText, supportUrl: SUPPORT_URL };
     upsert("バージョン", versionLocs, locale, v, () => api("POST", "/v1/appStoreVersionLocalizations", {
       data: { type: "appStoreVersionLocalizations", attributes: { locale, ...v }, relationships: { appStoreVersion: { data: { type: "appStoreVersions", id: VERSION_ID } } } },
     }), "appStoreVersionLocalizations");
