@@ -12,8 +12,9 @@
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { chromium } from "playwright";
-import { COPY, LANGS } from "./copy.mjs";
+import { COPY, LANGS, shapeErrors } from "./copy.mjs";
 import { assertNoForbidden } from "./validate.mjs";
+import { takeLock } from "./lock.mjs";
 import { IPHONE, IPHONE_SLIDES, ROOT, WATCH, WATCH_SLIDES, iphoneSlide, watchSlide } from "./render.mjs";
 
 const OUT = path.join(ROOT, "screenshots/app-store");
@@ -23,8 +24,13 @@ const MIN_SIZE = { h1: 110, closing: 70 };
 const langs = process.argv.slice(2).length ? process.argv.slice(2) : LANGS;
 for (const lang of langs) {
   if (!COPY[lang]) throw new Error(`copy.mjs に ${lang} が無い`);
+  const shape = shapeErrors(lang);
+  if (shape.length) throw new Error(`copy/${lang}.json が copy/ja.json と同じ形でない (ja から訳し直す。scripts/l10n/README.md):\n  ${shape.slice(0, 5).join("\n  ")}`);
   assertNoForbidden(lang, COPY[lang]);
 }
+
+// 消して書き直している間に、別の生成やアップロードが同じ画像を触らないように (lock.mjs)
+await takeLock();
 
 // インストール済みの Google Chrome を使う (Playwright のブラウザを落とさない。autofill と同じ)
 const browser = await chromium.launch({ channel: "chrome" });
@@ -33,6 +39,8 @@ try {
   for (const lang of langs) {
     const dir = path.join(OUT, lang);
     fs.mkdirSync(dir, { recursive: true });
+    // 前の構成の画像 (名前の違うもの) が残っていると upload.mjs が一緒に上げるので、先に消す
+    for (const f of fs.readdirSync(dir)) if (/^(iphone|watch)-\d\d_.*\.png$/.test(f)) fs.unlinkSync(path.join(dir, f));
 
     const phone = await browser.newPage({ viewport: { width: IPHONE.width, height: IPHONE.height }, deviceScaleFactor: 1 });
     for (const [i, key] of IPHONE_SLIDES.entries()) {

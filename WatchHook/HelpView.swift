@@ -85,7 +85,7 @@ private struct WatchUsagePage: View {
     var body: some View {
         HelpPage(title: "Apple Watch から送る") {
             Section("Siri で送る (手を使わない)") {
-                Para("「Hey Siri、はやてで送って」と話しかけ、「何を送りますか？」と聞かれたら送りたい内容を話します。")
+                Para("「Hey Siri、はやてで送って」と話しかけ、「何をメモしますか？」と聞かれたらメモしたい内容を話します。")
                 Para("「はやてで送る」「はやてに送って」でも動きます。話した内容はメモに保存し、iPhone で有効にした送り先へ送ります。")
                 Para("iPhone の Siri でも同じように送れます。")
             }

@@ -1,105 +1,126 @@
 {
   "iphone": {
     "hero": {
-      "h1": "Samo govorite,\n*webhook* prima",
+      "h1": "Recite zapešću,\nspremite *bilješku*",
       "chips": [
-        "Slack",
-        "Discord",
-        "Vlastiti API"
+        "Bilješka",
+        "Webhook",
+        "Podsjetnici"
       ],
-      "closing": "Dođe misao,\nšaljete *sa zapešća*"
+      "closing": "Imate ideju?\nZapišite *sa sata*"
     },
     "siri": {
       "h1": "*Hey Siri*,\nbez ruku",
       "chips": [
         "Siri",
-        "Dvostruki dodir",
+        "Dvaput dodirni",
         "Brojčanik"
       ],
-      "closing": "Sa zauzetim rukama\n*samo glasom*"
+      "closing": "Ruke su pune?\nBilježite *glasom*"
     },
-    "destination": {
-      "h1": "Odredište\n*birate sami*",
+    "reminder": {
+      "h1": "Jedna riječ\ni eto *podsjetnika*",
+      "floats": [
+        "Dodano „kupiti mlijeko”",
+        "iPhone dodaje na popis"
+      ],
+      "closing": "Zadaci idu\n*ravno na popis*"
+    },
+    "integrations": {
+      "h1": "Šaljite na *više*\nmjesta odjednom",
       "chips": [
         "Webhook",
-        "Slack",
-        "Discord"
+        "Markdown",
+        "Obsidian"
       ],
       "floats": [
-        "Zaglavlje u Keychainu",
-        "{{text}} je vaš tekst"
+        "Dodano u 2026-11-13.md",
+        "Slack, Notion, ntfy i dr."
       ],
-      "closing": "Stiže i na\n*vlastiti poslužitelj*"
-    },
-    "direct": {
-      "h1": "Sa sata\n*izravno*",
-      "chips": [
-        "Wi-Fi",
-        "Mobilna mreža"
-      ],
-      "floats": [
-        "Neposlano ostaje",
-        "Pri otvaranju ponovno"
-      ],
-      "closing": "Čak i uz slab signal\n*ništa ne propušta*"
+      "closing": "U chat, ali i\nu *vaše bilješke*"
     },
     "more": {
-      "h1": "Ima i\n*više.*",
+      "h1": "I još\n*mnogo toga.*",
       "cells": [
-        "Zaglavlje\nu Keychainu",
-        "Slack i Discord:\nsamo URL",
-        "Brzo pokretanje\ns brojčanika",
-        "Povijest\nposlanog",
-        "Probno slanje\nprovjerava dostavu",
-        "Isti ID poruke\npri ponovnom slanju"
+        "Sve bilješke\nostaju na iPhoneu",
+        "Zaglavlje za auth.\nu Keychainu",
+        "Otvoreni kod\nna GitHubu",
+        "Neposlano se\nšalje ponovno",
+        "Bez oglasa,\nbez praćenja",
+        "Dostupno na\n45 jezika"
       ],
-      "closing": "Izgovoreno\nu *vaš sustav*"
+      "closing": "Vaše riječi,\nu *vaš tijek rada*"
     }
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "Pošalji",
-    "sent": "Poslano na „Slack #memo”",
-    "history": "Povijest",
-    "destinationsTitle": "Odredišta",
+    "memoButton": "Bilješka",
+    "savedAndSent": "Spremljeno i poslano",
+    "destinationCount": "Odredišta: 3",
+    "memosTitle": "Bilješka",
+    "spoken": [
+      "Parking B2, mjesto 14",
+      "Sutra u 10 zubar",
+      "Ideja za članak: tržnica"
+    ],
+    "reminderSpoken": "Podsjetnik, kupiti mlijeko",
+    "reminderTitle": "kupiti mlijeko",
+    "summary": {
+      "sent": "Poslano",
+      "waiting": "Čeka slanje",
+      "memo": "Bilješka"
+    },
+    "status": {
+      "done": "Gotovo",
+      "waiting": "Čeka slanje"
+    },
+    "date": "13. stu 10:09",
+    "time": "10:09",
     "destinations": [
       "Slack #memo",
       "Discord #todo",
-      "API za financije"
+      "Notion",
+      "ntfy"
     ],
-    "spoken": [
-      "Kupiti mlijeko i jaja",
-      "Sutra u 10 zubar",
-      "Parking B2, mjesto 14"
-    ],
-    "statusSent": "Poslano",
-    "statusPending": "Neposlano",
-    "siriDialog": "Poslano na Slack #memo.",
-    "defaultMark": "(Zadano)",
+    "reminderTarget": "Podsjetnici (Namirnice)",
+    "markdownTarget": "Markdown (Obsidian)",
+    "markdownFile": "2026-11-13.md",
     "siriAsk": "Pošalji s Hayate",
-    "siriQuestion": "Što želite poslati?",
+    "siriQuestion": "Što želite zabilježiti?",
+    "siriDialog": "Spremljeno i poslano",
     "quote": [
       "„",
       "”"
     ],
-    "edit": {
-      "cancel": "Odustani",
-      "save": "Spremi",
-      "nameLabel": "Naziv",
-      "name": "API za financije",
-      "url": "https://api.example.com/hooks/expense",
-      "urlFooter": "Dopušteni su samo https URL-ovi.",
-      "request": "Zahtjev",
-      "method": "Metoda",
-      "bodyFormat": "Oblik tijela",
-      "bodyFormatValue": "JSON",
-      "headers": "Zaglavlja",
-      "addHeader": "Dodaj zaglavlje",
-      "hideSecret": "Sakrij kao tajnu",
-      "headersFooter": "Možete registrirati zaglavlja za autentifikaciju, poput Authorization. Vrijednosti se spremaju samo u Keychain na iPhoneu i Apple Watchu.",
-      "body": "Tijelo",
-      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
-      "test": "Probno slanje"
+    "tabs": [
+      "Unos",
+      "Bilješka",
+      "Integracije",
+      "Upute"
+    ],
+    "detail": {
+      "deliveries": "Odredišta i integracije",
+      "sendTo": "Pošalji na odredište",
+      "copy": "Kopiraj",
+      "share": "Dijeli",
+      "delete": "Izbriši",
+      "fromWatch": "Šalje se s Apple Watcha"
+    },
+    "integrations": {
+      "title": "Integracije",
+      "savedOnPhone": "Spremi na iPhone",
+      "reminders": "Podsjetnici",
+      "reminderDetail": "Ako počinje s „Podsjetnik”, dodaj u „Namirnice”",
+      "markdown": "Markdown datoteka",
+      "markdownDetail": "Dodaj u „Obsidian” po datumu",
+      "webhooks": "Odredište (webhook)",
+      "webhooksFooter": "Unesena bilješka šalje se na sva odredišta kojima je prekidač uključen. Ono uneseno na Apple Watchu šalje se izravno sa sata.",
+      "kinds": [
+        "Slack",
+        "Discord",
+        "Webhook",
+        "Webhook"
+      ]
     }
   }
 }

@@ -1,13 +1,13 @@
 {
   "iphone": {
     "hero": {
-      "h1": "Csak beszéljen,\na *webhook* kapja",
+      "h1": "Csak mondja,\nés *jegyzet* lesz",
       "chips": [
-        "Slack",
-        "Discord",
-        "Saját API"
+        "Jegyzet",
+        "Webhook",
+        "Emlékeztetők"
       ],
-      "closing": "Eszébe jut,\nküldi *a csuklójáról*"
+      "closing": "Ötlete támadt?\n*Csuklóról* mentse"
     },
     "siri": {
       "h1": "*Hey Siri*,\nkéz nélkül",
@@ -16,90 +16,111 @@
         "Dupla koppintás",
         "Számlap"
       ],
-      "closing": "Foglalt kézzel is\n*csak hanggal* küldhet"
+      "closing": "Tele a keze?\nElég a *hangja*"
     },
-    "destination": {
-      "h1": "A célt\n*Ön választja*",
+    "reminder": {
+      "h1": "Egy szóval\n*emlékeztető*",
+      "floats": [
+        "Hozzáadva: „tejet venni”",
+        "Az iPhone listára teszi"
+      ],
+      "closing": "A teendők\n*egyből a listára*"
+    },
+    "integrations": {
+      "h1": "*Több* helyre\negyszerre",
       "chips": [
         "Webhook",
-        "Slack",
-        "Discord"
+        "Markdown",
+        "Obsidian"
       ],
       "floats": [
-        "Fejléc a Keychainben",
-        "A {{text}} a szövege"
+        "Hozzáfűzve: 2026-11-13.md",
+        "Slack, Notion, ntfy stb."
       ],
-      "closing": "A saját szerverre is\n*megérkezik*"
-    },
-    "direct": {
-      "h1": "Az órától\n*közvetlenül*",
-      "chips": [
-        "Wi-Fi",
-        "Mobilháló"
-      ],
-      "floats": [
-        "Ami nem ment el, marad",
-        "Megnyitáskor újra"
-      ],
-      "closing": "Gyenge jelnél is\n*semmi nem vész el*"
+      "closing": "A chatbe és\n*a jegyzeteibe* is"
     },
     "more": {
       "h1": "És még\n*sok más.*",
       "cells": [
-        "Fejléc\na Keychainben",
-        "Slack és Discord:\ncsak az URL",
-        "Gyors indítás\na számlapról",
-        "Elküldöttek\nelőzményei",
-        "Teszt küldés:\nmegérkezik-e",
-        "Újraküldésnél is\nugyanaz az ID"
+        "Minden jegyzet\naz iPhone-on",
+        "Hitelesítés\na Keychainben",
+        "Nyílt forráskód\na GitHubon",
+        "Ami nem ment el,\nújraküldi",
+        "Nincs hirdetés,\nnincs követés",
+        "45 nyelven\nérhető el"
       ],
-      "closing": "A kimondott szó\n*az Ön rendszerébe*"
+      "closing": "Az Ön szavai,\n*az Ön módján*"
     }
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "Küldés",
-    "sent": "Elküldve ide: „Slack #memo”",
-    "history": "Előzmények",
-    "destinationsTitle": "Célok",
+    "memoButton": "Jegyzet",
+    "savedAndSent": "Mentve és elküldve",
+    "destinationCount": "Célok: 3",
+    "memosTitle": "Jegyzet",
+    "spoken": [
+      "Parkolás: B2, 14-es hely",
+      "Holnap 10-kor fogorvos",
+      "Cikkötlet: a vásárcsarnok"
+    ],
+    "reminderSpoken": "Emlékeztető, tejet venni",
+    "reminderTitle": "tejet venni",
+    "summary": {
+      "sent": "Elküldve",
+      "waiting": "Küldésre vár",
+      "memo": "Jegyzet"
+    },
+    "status": {
+      "done": "Kész",
+      "waiting": "Küldésre vár"
+    },
+    "date": "nov. 13. 10:09",
+    "time": "10:09",
     "destinations": [
       "Slack #memo",
       "Discord #todo",
-      "Háztartási API"
+      "Notion",
+      "ntfy"
     ],
-    "spoken": [
-      "Tej és tojás vétele",
-      "Holnap 10-kor fogorvos",
-      "Parkoló B2, 14-es hely"
-    ],
-    "statusSent": "Elküldve",
-    "statusPending": "Nincs elküldve",
-    "siriDialog": "Elküldve ide: Slack #memo.",
-    "defaultMark": "(Alapértelmezett)",
+    "reminderTarget": "Emlékeztetők (Bevásárlás)",
+    "markdownTarget": "Markdown (Obsidian)",
+    "markdownFile": "2026-11-13.md",
     "siriAsk": "Küldd el a Hayate appal",
-    "siriQuestion": "Mit szeretne küldeni?",
+    "siriQuestion": "Mit szeretne feljegyezni?",
+    "siriDialog": "Mentve és elküldve",
     "quote": [
       "„",
       "”"
     ],
-    "edit": {
-      "cancel": "Mégse",
-      "save": "Mentés",
-      "nameLabel": "Név",
-      "name": "Háztartási API",
-      "url": "https://api.example.com/hooks/expense",
-      "urlFooter": "Csak https URL használható.",
-      "request": "Kérés",
-      "method": "Metódus",
-      "bodyFormat": "Törzs formátuma",
-      "bodyFormatValue": "JSON",
-      "headers": "Fejlécek",
-      "addHeader": "Fejléc hozzáadása",
-      "hideSecret": "Titkos értékként elrejtés",
-      "headersFooter": "Hitelesítési fejléceket (pl. Authorization) adhat meg. Az értékek csak az iPhone és az Apple Watch Keychainjében tárolódnak.",
-      "body": "Törzs",
-      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
-      "test": "Teszt küldés"
+    "tabs": [
+      "Beírás",
+      "Jegyzet",
+      "Integrációk",
+      "Használat"
+    ],
+    "detail": {
+      "deliveries": "Célok és integrációk",
+      "sendTo": "Küldés célra",
+      "copy": "Másolás",
+      "share": "Megosztás",
+      "delete": "Törlés",
+      "fromWatch": "Küldés Apple Watchról"
+    },
+    "integrations": {
+      "title": "Integrációk",
+      "savedOnPhone": "Mentés az iPhone-ra",
+      "reminders": "Emlékeztetők",
+      "reminderDetail": "Ha „Emlékeztető” szóval kezdődik, hozzáadja ide: „Bevásárlás”",
+      "markdown": "Markdown-fájl",
+      "markdownDetail": "Naponta külön fájlba fűzi ide: „Obsidian”",
+      "webhooks": "Cél (webhook)",
+      "webhooksFooter": "A jegyzetet minden bekapcsolt célra elküldi. Az Apple Watchon beírtakat az óra közvetlenül küldi.",
+      "kinds": [
+        "Slack",
+        "Discord",
+        "Webhook",
+        "Webhook"
+      ]
     }
   }
 }

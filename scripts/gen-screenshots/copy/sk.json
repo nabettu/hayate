@@ -1,105 +1,126 @@
 {
   "iphone": {
     "hero": {
-      "h1": "Povedzte to —\n*webhook* prijme",
+      "h1": "Povedzte hodinkám\na máte *poznámku*",
       "chips": [
-        "Slack",
-        "Discord",
-        "Vlastné API"
+        "Poznámka",
+        "Webhook",
+        "Pripomienky"
       ],
-      "closing": "Napadlo vás niečo?\nPošlite *zo zápästia*"
+      "closing": "Nápad? Uložte ho\n*zo zápästia*"
     },
     "siri": {
-      "h1": "*Hey Siri*\nbez rúk",
+      "h1": "*Hey Siri*\na ruky sú voľné",
       "chips": [
         "Siri",
-        "Ťuknúť 2×",
-        "Z ciferníka"
+        "Dvojité ťuknutie",
+        "Ciferník"
       ],
-      "closing": "Plné ruky práce?\nStačí *hlas*"
+      "closing": "Plné ruky?\nZapíšte *hlasom*"
     },
-    "destination": {
-      "h1": "Príjemcu\n*vyberiete vy*",
+    "reminder": {
+      "h1": "Začnite slovom,\nmáte *pripomienku*",
+      "floats": [
+        "Pridané „kúpiť mlieko“",
+        "iPhone pridá do zoznamu"
+      ],
+      "closing": "Úlohy idú\n*rovno do zoznamu*"
+    },
+    "integrations": {
+      "h1": "Naraz na *veľa*\nrôznych miest",
       "chips": [
         "Webhook",
-        "Slack",
-        "Discord"
+        "Markdown",
+        "Obsidian"
       ],
       "floats": [
-        "Overenie v Keychain",
-        "{{text}} je vaša reč"
+        "Pripísané do 2026-11-13.md",
+        "Slack, Notion, ntfy a ďalšie"
       ],
-      "closing": "Dorazí aj na\n*váš* server"
-    },
-    "direct": {
-      "h1": "Rovno\n*z hodiniek*",
-      "chips": [
-        "Wi-Fi",
-        "Mobilná sieť"
-      ],
-      "floats": [
-        "Neodoslané počká",
-        "Znova po otvorení"
-      ],
-      "closing": "Slabý signál?\n*Nič sa nestratí*"
+      "closing": "Do četu aj\ndo *vašich poznámok*"
     },
     "more": {
-      "h1": "A tiež\n*ďalšie.*",
+      "h1": "A ešte\n*oveľa viac.*",
       "cells": [
-        "Overenie\nv Keychain",
-        "Slack a Discord:\nvložte URL",
-        "Rýchle spustenie\nz ciferníka",
-        "História\nodoslaného",
-        "Test: overte,\nže dorazilo",
-        "Rovnaké ID\npri opakovaní"
+        "Všetky poznámky\nzostanú v iPhone",
+        "Overovacia hlavička\nv Keychain",
+        "Otvorený kód\nna GitHube",
+        "Neodoslané sa\nodošlú pri otvorení",
+        "Bez reklám\na sledovania",
+        "K dispozícii\nv 45 jazykoch"
       ],
-      "closing": "Vaše slová rovno\n*do vášho systému*"
+      "closing": "Vaše slová\n*tam, kam patria*"
     }
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "Odoslať",
-    "sent": "Odoslané príjemcovi „Slack #memo“",
-    "history": "História",
-    "destinationsTitle": "Príjemcovia",
+    "memoButton": "Poznámka",
+    "savedAndSent": "Uložené a odoslané",
+    "destinationCount": "Príjemcovia: 3",
+    "memosTitle": "Poznámka",
+    "spoken": [
+      "Parkovanie: B2, miesto 14",
+      "Zajtra o 10 zubár",
+      "Nápad na článok: farmársky trh"
+    ],
+    "reminderSpoken": "Pripomienka, kúpiť mlieko",
+    "reminderTitle": "kúpiť mlieko",
+    "summary": {
+      "sent": "Odoslané",
+      "waiting": "Čaká na odoslanie",
+      "memo": "Poznámka"
+    },
+    "status": {
+      "done": "Hotovo",
+      "waiting": "Čaká na odoslanie"
+    },
+    "date": "13. 11. 10:09",
+    "time": "10:09",
     "destinations": [
       "Slack #memo",
       "Discord #todo",
-      "API výdavkov"
+      "Notion",
+      "ntfy"
     ],
-    "spoken": [
-      "Kúpiť mlieko a vajcia",
-      "Zajtra o 10 zubár",
-      "Parkovanie B2, miesto 14"
-    ],
-    "statusSent": "Odoslané",
-    "statusPending": "Neodoslané",
-    "siriDialog": "Odoslané do Slack #memo.",
-    "defaultMark": "(predvolený)",
+    "reminderTarget": "Pripomienky (Nákup)",
+    "markdownTarget": "Markdown (Obsidian)",
+    "markdownFile": "2026-11-13.md",
     "siriAsk": "Odošli cez Hayate",
-    "siriQuestion": "Čo chcete odoslať?",
+    "siriQuestion": "Čo chcete zapísať?",
+    "siriDialog": "Uložené a odoslané",
     "quote": [
       "„",
       "“"
     ],
-    "edit": {
-      "cancel": "Zrušiť",
-      "save": "Uložiť",
-      "nameLabel": "Názov",
-      "name": "API výdavkov",
-      "url": "https://api.example.com/hooks/expense",
-      "urlFooter": "Povolené sú iba adresy URL s https.",
-      "request": "Požiadavka",
-      "method": "Metóda",
-      "bodyFormat": "Formát tela",
-      "bodyFormatValue": "JSON",
-      "headers": "Hlavičky",
-      "addHeader": "Pridať hlavičku",
-      "hideSecret": "Skryť ako tajné",
-      "headersFooter": "Môžete pridať overovacie hlavičky, napríklad Authorization. Hodnoty sa ukladajú iba do Keychain v iPhone a Apple Watch.",
-      "body": "Telo",
-      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
-      "test": "Skúšobné odoslanie"
+    "tabs": [
+      "Vstup",
+      "Poznámka",
+      "Integrácie",
+      "Ako na to"
+    ],
+    "detail": {
+      "deliveries": "Príjemcovia a integrácie",
+      "sendTo": "Odoslať príjemcovi",
+      "copy": "Kopírovať",
+      "share": "Zdieľať",
+      "delete": "Vymazať",
+      "fromWatch": "Odosielanie z Apple Watch"
+    },
+    "integrations": {
+      "title": "Integrácie",
+      "savedOnPhone": "Uložiť do iPhonu",
+      "reminders": "Pripomienky",
+      "reminderDetail": "Ak začína na „Pripomienka“, pridá sa do „Nákup“",
+      "markdown": "Súbor Markdown",
+      "markdownDetail": "Pripisuje sa podľa dní do „Obsidian“",
+      "webhooks": "Príjemcovia (webhook)",
+      "webhooksFooter": "Zadaná poznámka sa odošle všetkým príjemcom so zapnutým prepínačom. Poznámky zadané na Apple Watch sa odosielajú priamo z hodiniek.",
+      "kinds": [
+        "Slack",
+        "Discord",
+        "Webhook",
+        "Webhook"
+      ]
     }
   }
 }

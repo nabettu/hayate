@@ -1,105 +1,126 @@
 {
   "iphone": {
     "hero": {
-      "h1": "Praat en stuur\nnaar je *webhook*",
+      "h1": "Spreek het in,\nbewaar als *memo*",
       "chips": [
-        "Slack",
-        "Discord",
-        "Eigen API"
+        "Memo",
+        "Webhook",
+        "Herinnering"
       ],
-      "closing": "Een ingeving?\nStuur *van je pols*"
+      "closing": "Idee? Bewaar het\n*vanaf je pols*"
     },
     "siri": {
-      "h1": "Met *Hey Siri*\nhandsfree",
+      "h1": "*Hey Siri*,\nhandenvrij",
       "chips": [
         "Siri",
         "Dubbeltik",
         "Wijzerplaat"
       ],
-      "closing": "Handen vol?\nStuur *met je stem*"
+      "closing": "Handen vol?\nNoteer met je *stem*"
     },
-    "destination": {
-      "h1": "Jij bepaalt\nde *bestemming*",
+    "reminder": {
+      "h1": "Eén woord vooraf:\neen *herinnering*",
+      "floats": [
+        "“melk kopen” toegevoegd",
+        "iPhone zet het in een lijst"
+      ],
+      "closing": "Taken direct\n*op je lijst*"
+    },
+    "integrations": {
+      "h1": "Naar *veel*\nplekken tegelijk",
       "chips": [
         "Webhook",
-        "Slack",
-        "Discord"
+        "Markdown",
+        "Obsidian"
       ],
       "floats": [
-        "Auth-header in Keychain",
-        "{{text}} is je spraak"
+        "Toegevoegd aan 2026-11-13.md",
+        "Slack, Notion, ntfy en meer"
       ],
-      "closing": "Direct naar je\n*eigen server*"
-    },
-    "direct": {
-      "h1": "*Rechtstreeks*\nvan je horloge",
-      "chips": [
-        "Wi-Fi",
-        "Mobiel"
-      ],
-      "floats": [
-        "Mislukt? Blijft bewaard",
-        "Opnieuw bij openen"
-      ],
-      "closing": "Slecht bereik?\n*Niets verloren*"
+      "closing": "Naar je chat en\n*je notities*"
     },
     "more": {
       "h1": "En nog\n*veel meer.*",
       "cells": [
-        "Authheader\nin de Keychain",
-        "Slack en Discord:\nplak de URL",
-        "Direct starten\nvia de wijzerplaat",
-        "Geschiedenis\nvan je berichten",
-        "Testbericht\nter controle",
-        "Zelfde ID bij\nopnieuw versturen"
+        "Elke memo\nbewaard op iPhone",
+        "Auth-header\nin de Keychain",
+        "Open source\nop GitHub",
+        "Niet verstuurd?\nOpnieuw bij openen",
+        "Geen reclame,\ngeen tracking",
+        "Beschikbaar\nin 45 talen"
       ],
-      "closing": "Je stem naar\n*jouw systeem*"
+      "closing": "Jouw woorden,\nin *jouw workflow*"
     }
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "Verstuur",
-    "sent": "Verstuurd naar “Slack #memo”",
-    "history": "Geschiedenis",
-    "destinationsTitle": "Bestemmingen",
+    "memoButton": "Memo",
+    "savedAndSent": "Bewaard en verstuurd",
+    "destinationCount": "Bestemmingen: 3",
+    "memosTitle": "Memo",
+    "spoken": [
+      "Parkeren: B2, plek 14",
+      "Morgen om 10 uur tandarts",
+      "Idee voor artikel: de weekmarkt"
+    ],
+    "reminderSpoken": "Herinnering, melk kopen",
+    "reminderTitle": "melk kopen",
+    "summary": {
+      "sent": "Verstuurd",
+      "waiting": "Wacht op versturen",
+      "memo": "Memo"
+    },
+    "status": {
+      "done": "Gereed",
+      "waiting": "Wacht op versturen"
+    },
+    "date": "13 nov. 10:09",
+    "time": "10:09",
     "destinations": [
       "Slack #memo",
       "Discord #todo",
-      "Uitgaven-API"
+      "Notion",
+      "ntfy"
     ],
-    "spoken": [
-      "Melk en eieren kopen",
-      "Morgen om 10 uur tandarts",
-      "Parkeerplek B2, nummer 14"
-    ],
-    "statusSent": "Verstuurd",
-    "statusPending": "Niet verstuurd",
-    "siriDialog": "Verstuurd naar Slack #memo.",
-    "defaultMark": "(Standaard)",
+    "reminderTarget": "Herinneringen (Boodschappen)",
+    "markdownTarget": "Markdown (Obsidian)",
+    "markdownFile": "2026-11-13.md",
     "siriAsk": "Verstuur met Hayate",
-    "siriQuestion": "Wat wil je versturen?",
+    "siriQuestion": "Wat wil je noteren?",
+    "siriDialog": "Bewaard en verstuurd",
     "quote": [
       "“",
       "”"
     ],
-    "edit": {
-      "cancel": "Annuleer",
-      "save": "Bewaar",
-      "nameLabel": "Naam",
-      "name": "Uitgaven-API",
-      "url": "https://api.example.com/hooks/expense",
-      "urlFooter": "Alleen https-URL’s zijn toegestaan.",
-      "request": "Verzoek",
-      "method": "Methode",
-      "bodyFormat": "Inhoudsformaat",
-      "bodyFormatValue": "JSON",
-      "headers": "Headers",
-      "addHeader": "Header toevoegen",
-      "hideSecret": "Verberg als geheime waarde",
-      "headersFooter": "Je kunt authenticatieheaders zoals Authorization toevoegen. De waarden worden alleen opgeslagen in de Keychain van de iPhone en de Apple Watch.",
-      "body": "Inhoud",
-      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
-      "test": "Testbericht"
+    "tabs": [
+      "Invoer",
+      "Memo",
+      "Integraties",
+      "Zo werkt het"
+    ],
+    "detail": {
+      "deliveries": "Bestemmingen en integraties",
+      "sendTo": "Versturen naar bestemming",
+      "copy": "Kopieer",
+      "share": "Deel",
+      "delete": "Verwijder",
+      "fromWatch": "Wordt verstuurd vanaf de Apple Watch"
+    },
+    "integrations": {
+      "title": "Integraties",
+      "savedOnPhone": "Bewaar op iPhone",
+      "reminders": "Herinneringen",
+      "reminderDetail": "Begint met “Herinnering”: toevoegen aan “Boodschappen”",
+      "markdown": "Markdown-bestand",
+      "markdownDetail": "Per datum toevoegen aan “Obsidian”",
+      "webhooks": "Bestemming (webhook)",
+      "webhooksFooter": "Verstuurt de memo naar alle bestemmingen waarvan de schakelaar aan staat. Wat op de Apple Watch is ingevoerd, wordt rechtstreeks vanaf het horloge verstuurd.",
+      "kinds": [
+        "Slack",
+        "Discord",
+        "Webhook",
+        "Webhook"
+      ]
     }
   }
 }

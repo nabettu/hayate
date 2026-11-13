@@ -1,17 +1,7 @@
 {
  "name": "Hayate",
- "subtitle": "Apple Watch の声を webhook へ",
- "promotionalText": "Apple Watch に話すだけで、Slack・Discord・自分の webhook へ。思いついたことを手首からすぐ送れます。",
- "keywords": "webhook,音声入力,声,メモ,Slack,Discord,Siri,ウォッチ,API,自動化,ショートカット,音声メモ,送信",
- "description": "Hayate は、Apple Watch に話した言葉を、あなたが登録した送り先 (webhook) へそのまま送るアプリです。\n\n■ できること\n・Apple Watch で「送る」を押して話すだけで送れます (Series 9 / Ultra 2 以降はダブルタップでも)\n・「Hey Siri、はやてで送って」で、手を使わずに送れます (iPhone の Siri からも)\n・送り先は自由に設定: URL・メソッド・ヘッダ (Authorization など)・本文のテンプレート\n・Slack と Discord は URL を貼るだけ\n・時計から送り先へ直接送ります。iPhone を中継しません\n・送れなかった分は残しておき、次に開いたときに送り直します\n・送った内容の履歴、テスト送信、文字盤のコンプリケーション\n\n■ こんな使い方に\n・思いついたメモを Slack のチャンネルへ\n・買い物リストや ToDo を自分のサービスへ\n・n8n・Zapier・自分のサーバーで受けて自動化\n\n■ 受け取る側の仕様\n・本文に {{text}} (話した内容)・{{id}}・{{sentAt}}・{{source}} を差し込めます\n・X-WatchHook-Message-Id ヘッダは送り直しても同じ値なので、重複の除去に使えます\n\n■ データの扱い\n・送り先の設定 (認証ヘッダを含む) は iPhone と Apple Watch の Keychain にだけ保存します\n・話した内容は、あなたが登録した送り先にだけ送ります。開発者のサーバーは通りません\n\n■ 料金\n7 日間無料でお試しいただけます。そのあとはアプリ内の買い切りで使い続けられます。サブスクリプションはありません。",
- "iap": {
-  "trial": {
-   "name": "7 日間の無料お試し",
-   "description": "7 日間、すべての機能を無料で使えます。自動で課金されません。"
-  },
-  "unlock": {
-   "name": "Hayate (買い切り)",
-   "description": "Apple Watch・Siri・iPhone からの送信をずっと使えます。1 回だけの支払いです。"
-  }
- }
+ "subtitle": "Apple Watch に話してメモ・連携",
+ "promotionalText": "Apple Watch に話すだけでメモに保存。リマインダー、Obsidian などの Markdown、Slack や Notion などの webhook へまとめて届けます。オープンソースで、広告も追跡もありません。",
+ "keywords": "音声メモ,webhook,リマインダー,Obsidian,Markdown,Slack,Discord,Notion,Siri,音声入力,ウォッチ,ToDo,自動化,オープンソース,n8n,ntfy",
+ "description": "Hayate は、Apple Watch に話した言葉をまずメモとして保存し、あなたが選んだ連携先へまとめて届けるアプリです。連携を何も設定しなくても、手首の音声メモとして使えます。\n\n■ できること\n・Apple Watch で「メモ」を押して話すだけ (Series 9 / Ultra 2 以降はダブルタップでも)\n・「Hey Siri、はやてで送って」→「何をメモしますか？」で、手を使わずにメモ (iPhone の Siri からも)\n・iPhone からも文字で入力できます\n・メモはすべて iPhone に残ります (Apple Watch には直近 50 件)。あとから見る・コピー・共有・削除、別の送り先へ送ることもできます\n・文字盤のコンプリケーションからすぐ起動\n\n■ 連携\n・リマインダー: 「リマインダー、牛乳を買う」のように合図の言葉で始めると、「牛乳を買う」を選んだリストに追加します (追加するのは iPhone です。合図の言葉は設定で足したり外したりできます)\n・Markdown: すべてのメモを、選んだフォルダの日付ごとのファイル (例: 2026-11-13.md) に追記します。iCloud Drive の中の Obsidian の保管庫なども選べます\n・Webhook: いくつでも登録でき、オンにした送り先すべてへ送ります。Slack・Discord・Google Chat・Microsoft Teams・Telegram・ntfy・Notion・Todoist・Home Assistant・n8n・IFTTT のひな形があり、URL・メソッド・ヘッダ (Authorization など)・本文のテンプレートも自由に設定できます\n・Apple Watch で入力したメモは、時計から webhook へ直接送ります\n・送れなかった分は残しておき、次にアプリを開いたときに送り直します\n・送り先・連携ごとに、完了・送信待ち・失敗を確認できます\n\n■ 受け取る側の仕様\n・本文に {{text}} (話した内容)・{{id}}・{{sentAt}}・{{source}} を差し込めます\n・X-WatchHook-Message-Id ヘッダは送り直しても同じ値なので、重複の除去に使えます\n\n■ 無料・オープンソース\n・すべての機能を無料で使えます。アプリ内課金も広告もありません\n・ソースコードを GitHub で公開しています (MIT ライセンス): github.com/nabettu/hayate\n\n■ データの扱い\n・メモは iPhone と Apple Watch の中に保存します。開発者のサーバーは通りません\n・送り先の設定 (認証ヘッダを含む) は iPhone と Apple Watch の Keychain にだけ保存します\n・話した内容は、あなたがオンにした連携先にだけ送ります\n・利用状況の計測・追跡はしていません"
 }

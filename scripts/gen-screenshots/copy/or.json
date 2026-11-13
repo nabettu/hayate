@@ -1,105 +1,126 @@
 {
   "iphone": {
     "hero": {
-      "h1": "କହିଲେ ହିଁ\n*webhook* କୁ ଯାଏ",
+      "h1": "ହାତଘଡ଼ିକୁ କୁହନ୍ତୁ,\n*ନୋଟ୍* ଭାବେ ରଖନ୍ତୁ",
       "chips": [
-        "Slack",
-        "Discord",
-        "ନିଜ API"
+        "ନୋଟ୍",
+        "Webhook",
+        "ରିମାଇଣ୍ଡର୍"
       ],
-      "closing": "ମନକୁ ଆସିଲେ\n*ଘଡ଼ିରୁ* ପଠାନ୍ତୁ"
+      "closing": "ଭାବନା ଆସିଲେ\n*ହାତରୁ* ରଖନ୍ତୁ"
     },
     "siri": {
-      "h1": "*Hey Siri* କହି\nହାତ ନ ଲଗାଇ",
+      "h1": "*Hey Siri* ରେ\nହାତ ବିନା",
       "chips": [
         "Siri",
         "ଡବଲ୍ ଟାପ୍",
         "ୱାଚ୍ ଫେସ୍"
       ],
-      "closing": "ହାତ ବ୍ୟସ୍ତ ଥିଲେ ବି\n*ସ୍ୱରରେ* ପଠାନ୍ତୁ"
+      "closing": "ହାତ ବ୍ୟସ୍ତ ଥିଲେ ବି\n*ସ୍ୱରରେ* ନୋଟ୍"
     },
-    "destination": {
-      "h1": "ଗନ୍ତବ୍ୟ\n*ନିଜେ* ବାଛନ୍ତୁ",
+    "reminder": {
+      "h1": "ଗୋଟିଏ ଶବ୍ଦରେ ଆରମ୍ଭ,\n*ରିମାଇଣ୍ଡର୍* ତିଆରି",
+      "floats": [
+        "“ଦୁଧ କିଣ” ଯୋଡ଼ାଗଲା",
+        "iPhone ତାଲିକାରେ ଯୋଡ଼େ"
+      ],
+      "closing": "କାମ ସିଧା\n*ତାଲିକାକୁ*"
+    },
+    "integrations": {
+      "h1": "*ଅନେକ* ସ୍ଥାନକୁ\nଏକାଥରେ ପଠାନ୍ତୁ",
       "chips": [
         "Webhook",
-        "Slack",
-        "Discord"
+        "Markdown",
+        "Obsidian"
       ],
       "floats": [
-        "Authorization Keychain ରେ",
-        "{{text}} ରେ କହିଥିବା କଥା"
+        "2026-11-13.md ରେ ଯୋଡ଼ାଗଲା",
+        "Slack, Notion, ntfy ଇତ୍ୟାଦି"
       ],
-      "closing": "ନିଜ ସର୍ଭରକୁ ବି\n*ସିଧା* ପହଞ୍ଚେ"
-    },
-    "direct": {
-      "h1": "ଘଡ଼ିରୁ\n*ସିଧାସଳଖ* ପଠାନ୍ତୁ",
-      "chips": [
-        "Wi-Fi",
-        "ମୋବାଇଲ୍ ଡାଟା"
-      ],
-      "floats": [
-        "ନ ଯାଇଥିବା ରଖାଯାଏ",
-        "ପରେ ଖୋଲିଲେ ପୁଣି ପଠାଯାଏ"
-      ],
-      "closing": "ସିଗ୍ନାଲ୍ ଦୁର୍ବଳ ହେଲେ ବି\n*କିଛି ଛାଡ଼େ ନାହିଁ*"
+      "closing": "ଚାଟ୍ ରେ ବି,\n*ନିଜ ନୋଟ୍ସ* ରେ ବି"
     },
     "more": {
       "h1": "ଆହୁରି\n*ଅନେକ କିଛି।*",
       "cells": [
-        "Authorization\nKeychain ରେ ସେଭ୍",
-        "Slack, Discord ପାଇଁ\nURL ଲେଖିଲେ ହେଲା",
-        "ୱାଚ୍ ଫେସ୍ ରୁ\nତୁରନ୍ତ ଖୋଲେ",
-        "ପଠାଇଥିବା କଥାର\nଇତିହାସ",
-        "ଟେଷ୍ଟ ପଠାଣରେ\nପହଞ୍ଚିଲା କି ଦେଖନ୍ତୁ",
-        "ପୁଣି ପଠାଇଲେ ବି\nସମାନ ମେସେଜ୍ ID"
+        "ସବୁ ନୋଟ୍\niPhone ରେ ରହେ",
+        "ଅଥ୍ ହେଡର୍\nKeychain ରେ",
+        "ସୋର୍ସ କୋଡ୍\nGitHub ରେ",
+        "ନ ଯାଇଥିବା ନୋଟ୍\nପରେ ପୁଣି ପଠାଯାଏ",
+        "ବିଜ୍ଞାପନ ନାହିଁ,\nଟ୍ରାକିଂ ନାହିଁ",
+        "45 ଭାଷାରେ\nଉପଲବ୍ଧ"
       ],
-      "closing": "କହିଥିବା କଥା\n*ନିଜ ସିଷ୍ଟମ୍* କୁ"
+      "closing": "ଆପଣଙ୍କ କଥା,\n*ଆପଣଙ୍କ ଢଙ୍ଗରେ*"
     }
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "ପଠାନ୍ତୁ",
-    "sent": "“Slack #memo” କୁ ପଠାଗଲା",
-    "history": "ଇତିହାସ",
-    "destinationsTitle": "ଗନ୍ତବ୍ୟ",
+    "memoButton": "ନୋଟ୍",
+    "savedAndSent": "ସେଭ୍ କରି ପଠାଗଲା",
+    "destinationCount": "ଗନ୍ତବ୍ୟ: 3",
+    "memosTitle": "ନୋଟ୍",
+    "spoken": [
+      "ପାର୍କିଂ B2, ସ୍ଥାନ 14",
+      "କାଲି 10 ଟାରେ ଦାନ୍ତ ଡାକ୍ତର",
+      "ଲେଖା ପାଇଁ ଭାବନା: ହାଟ"
+    ],
+    "reminderSpoken": "ରିମାଇଣ୍ଡର, ଦୁଧ କିଣ",
+    "reminderTitle": "ଦୁଧ କିଣ",
+    "summary": {
+      "sent": "ପଠାଗଲା",
+      "waiting": "ପଠାଣ ଅପେକ୍ଷାରେ",
+      "memo": "ନୋଟ୍"
+    },
+    "status": {
+      "done": "ସମାପ୍ତ",
+      "waiting": "ପଠାଣ ଅପେକ୍ଷାରେ"
+    },
+    "date": "13 ନଭେ, 10:09",
+    "time": "10:09",
     "destinations": [
       "Slack #memo",
       "Discord #todo",
-      "ଖର୍ଚ୍ଚ API"
+      "Notion",
+      "ntfy"
     ],
-    "spoken": [
-      "ଦୁଧ ଆଉ ଅଣ୍ଡା କିଣିବି",
-      "କାଲି 10 ଟାରେ ଦାନ୍ତ ଡାକ୍ତର",
-      "ପାର୍କିଂ B2 ର 14 ନମ୍ବର"
-    ],
-    "statusSent": "ପଠାଗଲା",
-    "statusPending": "ପଠାଯାଇନାହିଁ",
-    "siriDialog": "Slack #memo କୁ ପଠାଗଲା।",
-    "defaultMark": "(ଡିଫଲ୍ଟ)",
+    "reminderTarget": "ରିମାଇଣ୍ଡର୍ (ବଜାର)",
+    "markdownTarget": "Markdown (Obsidian)",
+    "markdownFile": "2026-11-13.md",
     "siriAsk": "Hayate ରେ ପଠାଅ",
-    "siriQuestion": "ଆପଣ କ’ଣ ପଠାଇବେ?",
+    "siriQuestion": "କ’ଣ ନୋଟ୍ କରିବେ?",
+    "siriDialog": "ସେଭ୍ କରି ପଠାଗଲା",
     "quote": [
       "“",
       "”"
     ],
-    "edit": {
-      "cancel": "ବାତିଲ୍",
-      "save": "ସେଭ୍",
-      "nameLabel": "ନାମ",
-      "name": "ଖର୍ଚ୍ଚ API",
-      "url": "https://api.example.com/hooks/expense",
-      "urlFooter": "କେବଳ https URL ବ୍ୟବହାର କରାଯାଇପାରିବ।",
-      "request": "ଅନୁରୋଧ",
-      "method": "ମେଥଡ୍",
-      "bodyFormat": "ବଡି ଫର୍ମାଟ୍",
-      "bodyFormatValue": "JSON",
-      "headers": "ହେଡର୍",
-      "addHeader": "ହେଡର୍ ଯୋଡ଼ନ୍ତୁ",
-      "hideSecret": "ଗୋପନୀୟ ମୂଲ୍ୟ ଭାବେ ଲୁଚାନ୍ତୁ",
-      "headersFooter": "Authorization ଭଳି ପ୍ରମାଣୀକରଣ ହେଡର୍ ଯୋଡ଼ିପାରିବେ। ମୂଲ୍ୟ କେବଳ iPhone ଓ Apple Watch ର Keychain ରେ ସଞ୍ଚିତ ହୁଏ।",
-      "body": "ବଡି",
-      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
-      "test": "ଟେଷ୍ଟ ପଠାଣ"
+    "tabs": [
+      "ଇନପୁଟ୍",
+      "ନୋଟ୍",
+      "ଇଣ୍ଟିଗ୍ରେସନ୍",
+      "ବ୍ୟବହାର ବିଧି"
+    ],
+    "detail": {
+      "deliveries": "ଗନ୍ତବ୍ୟ ଓ ଇଣ୍ଟିଗ୍ରେସନ୍",
+      "sendTo": "ଗନ୍ତବ୍ୟକୁ ପଠାନ୍ତୁ",
+      "copy": "କପି",
+      "share": "ସେୟାର",
+      "delete": "ବିଲୋପ",
+      "fromWatch": "Apple Watch ରୁ ପଠାନ୍ତୁ"
+    },
+    "integrations": {
+      "title": "ଇଣ୍ଟିଗ୍ରେସନ୍",
+      "savedOnPhone": "iPhone ରେ ସେଭ୍",
+      "reminders": "ରିମାଇଣ୍ଡର୍",
+      "reminderDetail": "“ରିମାଇଣ୍ଡର” ରୁ ଆରମ୍ଭ ହେଲେ “ବଜାର” ରେ ଯୋଡ଼ନ୍ତୁ",
+      "markdown": "Markdown ଫାଇଲ୍",
+      "markdownDetail": "“Obsidian” ରେ ତାରିଖ ଅନୁସାରେ ଯୋଡ଼ନ୍ତୁ",
+      "webhooks": "ଗନ୍ତବ୍ୟ (webhook)",
+      "webhooksFooter": "ସୁଇଚ୍ ଚାଲୁ ଥିବା ସମସ୍ତ ଗନ୍ତବ୍ୟକୁ ଲେଖିଥିବା ନୋଟ୍ ପଠାଯାଏ। Apple Watch ରେ ଲେଖିଥିବା ନୋଟ୍ ଘଡ଼ିରୁ ସିଧାସଳଖ ପଠାଯାଏ।",
+      "kinds": [
+        "Slack",
+        "Discord",
+        "Webhook",
+        "Webhook"
+      ]
     }
   }
 }

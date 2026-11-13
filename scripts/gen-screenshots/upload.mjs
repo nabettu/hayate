@@ -11,6 +11,7 @@ import * as os from "node:os";
 import * as path from "node:path";
 import { ASC_LOCALES } from "./copy.mjs";
 import { IPHONE_SLIDES, ROOT, WATCH_SLIDES } from "./render.mjs";
+import { takeLock } from "./lock.mjs";
 
 const APP = "6832906978";
 const VERSION = "1.0";
@@ -48,25 +49,7 @@ const ASC_ENV = {
   ASC_UPLOAD_TIMEOUT: process.env.ASC_UPLOAD_TIMEOUT ?? "90m",
 };
 const jobs = [];
-// 同じチェックアウトで 2 つ動くと、記録を上書きし合い、--replace 同士で相手の画像を消すので、1 つだけにする。
-// OS のロック (flock) を、ロックを持つだけの perl の子に持たせる。標準入力が閉じる (このプロセスが終わる) と perl も終わり、OS がロックを外す。
-// ファイルの作成・削除と pid の確認で組むと、残ったロックの引き継ぎに競合の隙間が残った (ai-review 11〜15 回目)
-const LOCK = path.join(ROOT, "screenshots/app-store/.upload.lock");
-async function takeLock() {
-  fs.mkdirSync(path.dirname(LOCK), { recursive: true });
-  const locker = spawn("perl", ["-e", 'use Fcntl ":flock"; open(my $f, ">>", $ARGV[0]) or exit 2; flock($f, LOCK_EX | LOCK_NB) or exit 75; $| = 1; print "ok\n"; <STDIN>;', LOCK],
-    // 別のプロセスグループにする (端末の Ctrl+C が perl にも届くと、asc の終了を待つ間にロックが外れる)
-    { stdio: ["pipe", "pipe", "inherit"], detached: true });
-  const ok = await new Promise((resolve) => {
-    locker.stdout.once("data", (d) => resolve(String(d).startsWith("ok")));
-    locker.once("exit", () => resolve(false));
-    locker.once("error", () => resolve(false));
-  });
-  if (!ok) { console.error("別の upload.mjs が動いている (またはロックを取れない)。終わってから動かす"); process.exit(2); }
-  locker.unref();
-  locker.stdout.unref?.();
-  locker.stdin._handle?.unref?.();
-}
+// 同じチェックアウトで 2 つ動く・生成 (index.mjs) と重なると、記録を上書きし合い、--replace 同士で相手の画像を消し、作りかけの画像を上げるので、1 つだけにする (lock.mjs)
 // 起動した asc。止められたら子に止めるよう伝え、全部終わってからロック・一時画像を消す (親だけ先に終わると、子が ASC を書き換え続けたまま次が動ける)
 const children = new Set();
 let stopping = false;
@@ -77,8 +60,9 @@ function stop(code = 130) {
   const wait = () => (children.size ? setTimeout(wait, 200) : process.exit(code));
   wait();
 }
+// dry-run も画像を読むので、生成と重ならないようロックを取る
+await takeLock();
 if (!dryRun) {
-  await takeLock();
   for (const sig of ["SIGINT", "SIGTERM", "SIGHUP"]) process.on(sig, () => stop(130));
 }
 // 上げ終わったセットの記録 (ロケール・端末 → 画像のハッシュ)。生成物と同じく git に入れない

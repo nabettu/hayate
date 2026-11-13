@@ -1,20 +1,10 @@
 {
   "name": "Hayate",
   "nameByLocale": {
-    "en-US": "Hayate: Voice to Webhook"
+    "en-US": "Hayate: Voice Memo & Webhook"
   },
-  "subtitle": "Apple Watch voice to webhook",
-  "promotionalText": "Just speak to your Apple Watch and send it to Slack, Discord, or your own webhook. Send what comes to mind right from your wrist.",
-  "keywords": "webhook,voice,dictation,note,Slack,Discord,Siri,watch,API,automation,shortcuts,voice memo,send,n8n",
-  "description": "Hayate sends what you say to your Apple Watch straight to the destination (webhook) you registered.\n\n■ What it does\n・Press “Send” on Apple Watch and talk to send (on Series 9 / Ultra 2 or later, you can also double tap)\n・Say “Hey Siri, send with Hayate” to send hands-free (Siri on iPhone works too)\n・Set up destinations freely: URL, method, headers (such as Authorization), and body template\n・For Slack and Discord, just paste the URL\n・Sends directly from the watch, without going through iPhone\n・Keeps anything that couldn’t be sent and retries the next time you open the app\n・History of what you sent, test sends, and a watch face complication\n\n■ Ways to use it\n・Send notes to a Slack channel the moment you think of them\n・Send shopping lists and to-dos to your own service\n・Receive in n8n, Zapier, or your own server to automate\n\n■ For the receiving side\n・You can insert {{text}} (what you said), {{id}}, {{sentAt}}, and {{source}} into the body\n・The X-WatchHook-Message-Id header stays the same when resent, so you can use it to remove duplicates\n\n■ How data is handled\n・Destination settings (including authentication headers) are stored only in the Keychain on iPhone and Apple Watch\n・What you say is sent only to the destinations you registered. It doesn’t pass through the developer’s servers\n\n■ Pricing\nTry it free for 7 days. After that, keep using it with a one-time in-app purchase. There is no subscription.",
-  "iap": {
-    "trial": {
-      "name": "7-Day Free Trial",
-      "description": "Use every feature free for 7 days. No automatic charge."
-    },
-    "unlock": {
-      "name": "Hayate (One-Time Purchase)",
-      "description": "Send from Watch, Siri, and iPhone. Pay once."
-    }
-  }
+  "subtitle": "Voice memos from Apple Watch",
+  "promotionalText": "Speak to your Apple Watch and it’s saved as a memo, then sent to Reminders, a Markdown file like your Obsidian vault, and webhooks such as Slack or Notion. Open source.",
+  "keywords": "reminders,Obsidian,Markdown,Slack,Discord,Notion,Siri,dictation,todo,notes,n8n,ntfy,automation",
+  "description": "Hayate saves what you say to your Apple Watch as a memo first, then delivers it to the integrations you choose. With no integrations set up, it works as a simple voice memo on your wrist.\n\n■ What it does\n・Press “Memo” on Apple Watch and talk (on Series 9 / Ultra 2 or later, you can also double tap)\n・Say “Hey Siri, send with Hayate”, then answer “What do you want to memo?” — no hands needed (Siri on iPhone works too)\n・Type memos on iPhone, too\n・Every memo is kept on iPhone (the latest 50 on Apple Watch). View, copy, share, or delete them later, or send one to another destination\n・Launch from a watch face complication\n\n■ Integrations\n・Reminders: start a memo with a trigger word, like “Reminder, buy milk”, and “buy milk” is added to the list you chose (iPhone adds it; you can add or remove trigger words in Settings)\n・Markdown: every memo is appended to a daily file (such as 2026-11-13.md) in a folder you pick, for example an Obsidian vault in iCloud Drive\n・Webhooks: register as many as you like, and memos go to every one that’s switched on. Templates for Slack, Discord, Google Chat, Microsoft Teams, Telegram, ntfy, Notion, Todoist, Home Assistant, n8n, and IFTTT, or set the URL, method, headers (such as Authorization), and body template yourself\n・Memos from Apple Watch are sent to webhooks directly from the watch\n・Anything that couldn’t be sent is kept and resent the next time you open the app\n・See Done, Waiting to Send, or Failed for each destination and integration\n\n■ For the receiving side\n・You can insert {{text}} (what you said), {{id}}, {{sentAt}}, and {{source}} into the body\n・The X-WatchHook-Message-Id header stays the same when resent, so you can use it to remove duplicates\n\n■ Free and open source\n・Every feature is free. No in-app purchases, no ads\n・The source code is on GitHub under the MIT License: github.com/nabettu/hayate\n\n■ How data is handled\n・Memos are stored on your iPhone and Apple Watch. Nothing passes through the developer’s servers\n・Destination settings (including authentication headers) are stored only in the Keychain on iPhone and Apple Watch\n・What you say is sent only to the integrations you switched on\n・No analytics or tracking"
 }

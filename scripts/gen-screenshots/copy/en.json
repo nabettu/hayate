@@ -1,13 +1,13 @@
 {
   "iphone": {
     "hero": {
-      "h1": "Speak it,\nsend to *webhook*",
+      "h1": "Speak to your wrist,\nkeep it as a *memo*",
       "chips": [
-        "Slack",
-        "Discord",
-        "Your own API"
+        "Memo",
+        "Webhook",
+        "Reminders"
       ],
-      "closing": "Idea? Send it\nfrom your *wrist*"
+      "closing": "Idea? Save it\nfrom your *wrist*"
     },
     "siri": {
       "h1": "*Hey Siri*,\nno hands needed",
@@ -16,90 +16,111 @@
         "Double tap",
         "Watch face"
       ],
-      "closing": "Hands full?\nSend by *voice*"
+      "closing": "Hands full?\nMemo by *voice*"
     },
-    "destination": {
-      "h1": "You choose\nwhere it *goes*",
+    "reminder": {
+      "h1": "Start with a word,\nget a *reminder*",
+      "floats": [
+        "Added “buy milk”",
+        "iPhone adds it to a list"
+      ],
+      "closing": "To-dos go\n*straight to a list*"
+    },
+    "integrations": {
+      "h1": "Send to *many*\nplaces at once",
       "chips": [
         "Webhook",
-        "Slack",
-        "Discord"
+        "Markdown",
+        "Obsidian"
       ],
       "floats": [
-        "Auth header in Keychain",
-        "{{text}} = what you said"
+        "Appended to 2026-11-13.md",
+        "Slack, Notion, ntfy & more"
       ],
-      "closing": "Straight to\nyour *own server*"
-    },
-    "direct": {
-      "h1": "Sent *straight*\nfrom the watch",
-      "chips": [
-        "Wi-Fi",
-        "Cellular"
-      ],
-      "floats": [
-        "Unsent items are kept",
-        "Resent on next open"
-      ],
-      "closing": "Weak signal?\n*Nothing is lost*"
+      "closing": "Your chat and\n*your notes*, too"
     },
     "more": {
       "h1": "And\n*more.*",
       "cells": [
+        "Every memo\nkept on iPhone",
         "Auth header\nstored in Keychain",
-        "Slack & Discord:\njust paste a URL",
-        "Launch from\nthe watch face",
-        "History of\nwhat you sent",
-        "Send a test\nto check delivery",
-        "Same message ID\neven if resent"
+        "Open source\non GitHub",
+        "Unsent ones resent\nwhen you reopen",
+        "No ads,\nno tracking",
+        "Available in\n45 languages"
       ],
       "closing": "Your words,\ninto *your workflow*"
     }
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "Send",
-    "sent": "Sent to “Slack #memo”",
-    "history": "History",
-    "destinationsTitle": "Destinations",
+    "memoButton": "Memo",
+    "savedAndSent": "Saved and sent",
+    "destinationCount": "Destinations: 3",
+    "memosTitle": "Memo",
+    "spoken": [
+      "Parking is B2, spot 14",
+      "Dentist tomorrow at 10",
+      "Story idea: the farmers market"
+    ],
+    "reminderSpoken": "Reminder, buy milk",
+    "reminderTitle": "buy milk",
+    "summary": {
+      "sent": "Sent",
+      "waiting": "Waiting to Send",
+      "memo": "Memo"
+    },
+    "status": {
+      "done": "Done",
+      "waiting": "Waiting to Send"
+    },
+    "date": "Nov 13, 10:09 AM",
+    "time": "10:09",
     "destinations": [
       "Slack #memo",
       "Discord #todo",
-      "Expenses API"
+      "Notion",
+      "ntfy"
     ],
-    "spoken": [
-      "Buy milk and eggs",
-      "Dentist tomorrow at 10",
-      "Parking is B2, spot 14"
-    ],
-    "statusSent": "Sent",
-    "statusPending": "Not Sent",
-    "siriDialog": "Sent to Slack #memo.",
-    "defaultMark": "(Default)",
+    "reminderTarget": "Reminders (Groceries)",
+    "markdownTarget": "Markdown (Obsidian)",
+    "markdownFile": "2026-11-13.md",
     "siriAsk": "Send with Hayate",
-    "siriQuestion": "What do you want to send?",
+    "siriQuestion": "What do you want to memo?",
+    "siriDialog": "Saved and sent",
     "quote": [
       "“",
       "”"
     ],
-    "edit": {
-      "cancel": "Cancel",
-      "save": "Save",
-      "nameLabel": "Name",
-      "name": "Expenses API",
-      "url": "https://api.example.com/hooks/expense",
-      "urlFooter": "Only https URLs are supported.",
-      "request": "Request",
-      "method": "Method",
-      "bodyFormat": "Body Format",
-      "bodyFormatValue": "JSON",
-      "headers": "Headers",
-      "addHeader": "Add Header",
-      "hideSecret": "Hide as Secret Value",
-      "headersFooter": "You can add authentication headers such as Authorization. Values are stored only in the Keychain on iPhone and Apple Watch.",
-      "body": "Body",
-      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
-      "test": "Send Test"
+    "tabs": [
+      "Input",
+      "Memo",
+      "Integrations",
+      "How to Use"
+    ],
+    "detail": {
+      "deliveries": "Destinations and Integrations",
+      "sendTo": "Send to Destination",
+      "copy": "Copy",
+      "share": "Share",
+      "delete": "Delete",
+      "fromWatch": "Sends from Apple Watch"
+    },
+    "integrations": {
+      "title": "Integrations",
+      "savedOnPhone": "Saved on iPhone",
+      "reminders": "Reminders",
+      "reminderDetail": "Starts with “Reminder” → added to “Groceries”",
+      "markdown": "Markdown File",
+      "markdownDetail": "Appended by date to “Obsidian”",
+      "webhooks": "Destinations (webhooks)",
+      "webhooksFooter": "Sends the memo to every destination whose switch is on. Memos entered on Apple Watch are sent directly from the watch.",
+      "kinds": [
+        "Slack",
+        "Discord",
+        "Webhook",
+        "Webhook"
+      ]
     }
   }
 }

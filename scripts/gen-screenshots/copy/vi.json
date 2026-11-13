@@ -1,105 +1,126 @@
 {
   "iphone": {
     "hero": {
-      "h1": "Nói là gửi\ntới *webhook*",
+      "h1": "Nói vào cổ tay,\nlưu thành *ghi chú*",
       "chips": [
-        "Slack",
-        "Discord",
-        "API riêng"
+        "Ghi chú",
+        "Webhook",
+        "Lời nhắc"
       ],
-      "closing": "Nghĩ ra là gửi\nngay từ *cổ tay*"
+      "closing": "Nảy ý tưởng?\nLưu ngay *từ cổ tay*"
     },
     "siri": {
-      "h1": "*Hey Siri*,\nrảnh tay",
+      "h1": "*Hey Siri*,\nrảnh cả hai tay",
       "chips": [
         "Siri",
-        "Chạm đúp",
+        "Chạm hai lần",
         "Mặt đồng hồ"
       ],
-      "closing": "Bận cả hai tay?\nCứ *nói* là gửi"
+      "closing": "Bận tay?\nGhi chú *bằng giọng*"
     },
-    "destination": {
-      "h1": "Nơi nhận\n*tùy bạn chọn*",
+    "reminder": {
+      "h1": "Mở đầu một từ,\nthành *lời nhắc*",
+      "floats": [
+        "Đã thêm “mua sữa”",
+        "iPhone thêm vào danh sách"
+      ],
+      "closing": "Việc cần làm\n*vào thẳng danh sách*"
+    },
+    "integrations": {
+      "h1": "Gửi tới *nhiều*\nnơi cùng lúc",
       "chips": [
         "Webhook",
-        "Slack",
-        "Discord"
+        "Markdown",
+        "Obsidian"
       ],
       "floats": [
-        "Header xác thực trong Keychain",
-        "{{text}} là lời bạn nói"
+        "Ghi vào 2026-11-13.md",
+        "Slack, Notion, ntfy..."
       ],
-      "closing": "Tới cả máy chủ\n*của riêng bạn*"
-    },
-    "direct": {
-      "h1": "Gửi thẳng\ntừ *đồng hồ*",
-      "chips": [
-        "Wi-Fi",
-        "Di động"
-      ],
-      "floats": [
-        "Tin chưa gửi được sẽ giữ lại",
-        "Mở lại là gửi lại"
-      ],
-      "closing": "Sóng yếu cũng\n*không sót tin*"
+      "closing": "Cả kênh chat lẫn\n*sổ ghi chép*"
     },
     "more": {
-      "h1": "Và còn\n*nhiều hơn nữa.*",
+      "h1": "Và còn\n*nhiều nữa.*",
       "cells": [
-        "Header xác thực\nlưu trong Keychain",
-        "Slack, Discord:\nchỉ cần dán URL",
-        "Mở nhanh\ntừ mặt đồng hồ",
-        "Lịch sử\nnội dung đã gửi",
-        "Gửi thử để\nkiểm tra tin tới",
-        "ID tin nhắn giữ\nnguyên khi gửi lại"
+        "Mọi ghi chú\nlưu trên iPhone",
+        "Header xác thực\nlưu ở Keychain",
+        "Mã nguồn mở\ntrên GitHub",
+        "Chưa gửi được?\nGửi lại khi mở",
+        "Không quảng cáo,\nkhông theo dõi",
+        "Hỗ trợ\n45 ngôn ngữ"
       ],
-      "closing": "Lời bạn nói\ntới *hệ thống của bạn*"
+      "closing": "Lời bạn nói,\nvào *hệ thống riêng*"
     }
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "Gửi",
-    "sent": "Đã gửi tới “Slack #memo”",
-    "history": "Lịch sử",
-    "destinationsTitle": "Nơi nhận",
+    "memoButton": "Ghi chú",
+    "savedAndSent": "Đã lưu và gửi",
+    "destinationCount": "Nơi nhận: 3",
+    "memosTitle": "Ghi chú",
+    "spoken": [
+      "Đỗ xe ở B2, ô số 14",
+      "Mai 10 giờ khám răng",
+      "Ý tưởng bài: chợ sáng"
+    ],
+    "reminderSpoken": "Lời nhắc, mua sữa",
+    "reminderTitle": "mua sữa",
+    "summary": {
+      "sent": "Đã gửi",
+      "waiting": "Đang chờ gửi",
+      "memo": "Ghi chú"
+    },
+    "status": {
+      "done": "Xong",
+      "waiting": "Đang chờ gửi"
+    },
+    "date": "13 thg 11, 10:09",
+    "time": "10:09",
     "destinations": [
       "Slack #memo",
       "Discord #todo",
-      "API chi tiêu"
+      "Notion",
+      "ntfy"
     ],
-    "spoken": [
-      "Mua sữa và trứng",
-      "10 giờ mai khám răng",
-      "Đỗ xe ở B2 ô số 14"
-    ],
-    "statusSent": "Đã gửi",
-    "statusPending": "Chưa gửi",
-    "siriDialog": "Đã gửi tới Slack #memo.",
-    "defaultMark": "(Mặc định)",
+    "reminderTarget": "Lời nhắc (Đi chợ)",
+    "markdownTarget": "Markdown (Obsidian)",
+    "markdownFile": "2026-11-13.md",
     "siriAsk": "Gửi bằng Hayate",
-    "siriQuestion": "Bạn muốn gửi gì?",
+    "siriQuestion": "Bạn muốn ghi chú gì?",
+    "siriDialog": "Đã lưu và gửi",
     "quote": [
       "“",
       "”"
     ],
-    "edit": {
-      "cancel": "Hủy",
-      "save": "Lưu",
-      "nameLabel": "Tên",
-      "name": "API chi tiêu",
-      "url": "https://api.example.com/hooks/expense",
-      "urlFooter": "Chỉ dùng được URL https.",
-      "request": "Yêu cầu",
-      "method": "Phương thức",
-      "bodyFormat": "Định dạng nội dung",
-      "bodyFormatValue": "JSON",
-      "headers": "Header",
-      "addHeader": "Thêm header",
-      "hideSecret": "Ẩn như giá trị bí mật",
-      "headersFooter": "Bạn có thể đăng ký header xác thực như Authorization. Giá trị chỉ được lưu trong Keychain của iPhone và Apple Watch.",
-      "body": "Nội dung",
-      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
-      "test": "Gửi thử"
+    "tabs": [
+      "Nhập",
+      "Ghi chú",
+      "Tích hợp",
+      "Cách dùng"
+    ],
+    "detail": {
+      "deliveries": "Nơi nhận và tích hợp",
+      "sendTo": "Gửi tới nơi nhận",
+      "copy": "Sao chép",
+      "share": "Chia sẻ",
+      "delete": "Xóa",
+      "fromWatch": "Gửi từ Apple Watch"
+    },
+    "integrations": {
+      "title": "Tích hợp",
+      "savedOnPhone": "Lưu vào iPhone",
+      "reminders": "Lời nhắc",
+      "reminderDetail": "Bắt đầu bằng \"Lời nhắc\" thì thêm vào \"Đi chợ\"",
+      "markdown": "Tệp Markdown",
+      "markdownDetail": "Ghi nối tiếp vào \"Obsidian\" theo ngày",
+      "webhooks": "Nơi nhận (webhook)",
+      "webhooksFooter": "Gửi ghi chú đã nhập tới mọi nơi nhận đã bật công tắc. Ghi chú nhập trên Apple Watch được đồng hồ gửi thẳng.",
+      "kinds": [
+        "Slack",
+        "Discord",
+        "Webhook",
+        "Webhook"
+      ]
     }
   }
 }

@@ -1,105 +1,126 @@
 {
   "iphone": {
     "hero": {
-      "h1": "Cukup bicara,\nkirim ke *webhook*",
+      "h1": "Bicara ke jam,\njadi *catatan*",
       "chips": [
-        "Slack",
-        "Discord",
-        "API sendiri"
+        "Catatan",
+        "Webhook",
+        "Pengingat"
       ],
-      "closing": "Ada ide?\nKirim dari *pergelangan*"
+      "closing": "Ada ide? Simpan\n*dari pergelangan*"
     },
     "siri": {
       "h1": "*Hey Siri*,\ntanpa tangan",
       "chips": [
         "Siri",
-        "Ketuk 2x",
+        "Ketuk 2 kali",
         "Tampilan jam"
       ],
-      "closing": "Tangan penuh?\nKirim *lewat suara*"
+      "closing": "Tangan penuh?\nCatat dengan *suara*"
     },
-    "destination": {
-      "h1": "Tujuan pesan\n*sesukamu*",
+    "reminder": {
+      "h1": "Awali satu kata,\njadi *pengingat*",
+      "floats": [
+        "“beli susu” ditambahkan",
+        "iPhone menambahkan ke daftar"
+      ],
+      "closing": "Tugas langsung\n*masuk daftar*"
+    },
+    "integrations": {
+      "h1": "Kirim ke *banyak*\ntujuan sekaligus",
       "chips": [
         "Webhook",
-        "Slack",
-        "Discord"
+        "Markdown",
+        "Obsidian"
       ],
       "floats": [
-        "Header autentikasi di Keychain",
-        "{{text}} berisi ucapan"
+        "Ditambahkan ke 2026-11-13.md",
+        "Slack, Notion, ntfy, dll."
       ],
-      "closing": "Sampai juga ke\n*server sendiri*"
-    },
-    "direct": {
-      "h1": "Langsung dari\n*jam tangan*",
-      "chips": [
-        "Wi-Fi",
-        "Seluler"
-      ],
-      "floats": [
-        "Yang gagal tetap disimpan",
-        "Dikirim ulang saat dibuka"
-      ],
-      "closing": "Sinyal lemah?\n*Tak ada yang hilang*"
+      "closing": "Ke chat dan\n*catatan Anda*"
     },
     "more": {
-      "h1": "Masih\n*banyak lagi.*",
+      "h1": "Dan masih\n*banyak lagi.*",
       "cells": [
+        "Semua catatan\ntersimpan di iPhone",
         "Header autentikasi\ndi Keychain",
-        "Slack & Discord:\ntempel URL saja",
-        "Langsung buka\ndari tampilan jam",
-        "Riwayat\npesan terkirim",
-        "Kirim uji untuk\ncek sampai",
-        "ID pesan sama\nsaat kirim ulang"
+        "Kode sumber\ndi GitHub",
+        "Gagal terkirim?\nDikirim ulang nanti",
+        "Tanpa iklan,\ntanpa pelacakan",
+        "Tersedia dalam\n45 bahasa"
       ],
-      "closing": "Ucapan Anda\nke *sistem Anda*"
+      "closing": "Ucapan Anda,\nke *alur kerja Anda*"
     }
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "Kirim",
-    "sent": "Terkirim ke “Slack #memo”",
-    "history": "Riwayat",
-    "destinationsTitle": "Tujuan",
+    "memoButton": "Catatan",
+    "savedAndSent": "Disimpan dan terkirim",
+    "destinationCount": "Tujuan: 3",
+    "memosTitle": "Catatan",
+    "spoken": [
+      "Parkir di B2 nomor 14",
+      "Dokter gigi besok jam 10",
+      "Ide artikel: liputan pasar pagi"
+    ],
+    "reminderSpoken": "Pengingat, beli susu",
+    "reminderTitle": "beli susu",
+    "summary": {
+      "sent": "Terkirim",
+      "waiting": "Menunggu dikirim",
+      "memo": "Catatan"
+    },
+    "status": {
+      "done": "Selesai",
+      "waiting": "Menunggu dikirim"
+    },
+    "date": "13 Nov 10.09",
+    "time": "10:09",
     "destinations": [
       "Slack #memo",
       "Discord #todo",
-      "API Keuangan"
+      "Notion",
+      "ntfy"
     ],
-    "spoken": [
-      "Beli susu dan telur",
-      "Besok jam 10 ke dokter gigi",
-      "Parkir di B2 nomor 14"
-    ],
-    "statusSent": "Terkirim",
-    "statusPending": "Belum terkirim",
-    "siriDialog": "Terkirim ke Slack #memo.",
-    "defaultMark": "(Default)",
+    "reminderTarget": "Pengingat (Belanja)",
+    "markdownTarget": "Markdown (Obsidian)",
+    "markdownFile": "2026-11-13.md",
     "siriAsk": "Kirim dengan Hayate",
-    "siriQuestion": "Apa yang ingin Anda kirim?",
+    "siriQuestion": "Apa yang ingin dicatat?",
+    "siriDialog": "Disimpan dan terkirim",
     "quote": [
       "“",
       "”"
     ],
-    "edit": {
-      "cancel": "Batal",
-      "save": "Simpan",
-      "nameLabel": "Nama",
-      "name": "API Keuangan",
-      "url": "https://api.example.com/hooks/expense",
-      "urlFooter": "Hanya URL https yang dapat digunakan.",
-      "request": "Permintaan",
-      "method": "Metode",
-      "bodyFormat": "Format isi pesan",
-      "bodyFormatValue": "JSON",
-      "headers": "Header",
-      "addHeader": "Tambah Header",
-      "hideSecret": "Sembunyikan sebagai nilai rahasia",
-      "headersFooter": "Anda dapat mendaftarkan header autentikasi seperti Authorization. Nilainya hanya disimpan di Keychain iPhone dan Apple Watch.",
-      "body": "Isi pesan",
-      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
-      "test": "Kirim Uji"
+    "tabs": [
+      "Ketik",
+      "Catatan",
+      "Integrasi",
+      "Cara pakai"
+    ],
+    "detail": {
+      "deliveries": "Tujuan & integrasi",
+      "sendTo": "Kirim ke tujuan",
+      "copy": "Salin",
+      "share": "Bagikan",
+      "delete": "Hapus",
+      "fromWatch": "Kirim dari Apple Watch"
+    },
+    "integrations": {
+      "title": "Integrasi",
+      "savedOnPhone": "Simpan di iPhone",
+      "reminders": "Pengingat",
+      "reminderDetail": "Jika diawali “Pengingat”, ditambahkan ke “Belanja”",
+      "markdown": "File Markdown",
+      "markdownDetail": "Ditambahkan per tanggal ke “Obsidian”",
+      "webhooks": "Tujuan (webhook)",
+      "webhooksFooter": "Catatan dikirim ke semua tujuan yang sakelarnya aktif. Yang diketik di Apple Watch dikirim langsung dari jam.",
+      "kinds": [
+        "Slack",
+        "Discord",
+        "Webhook",
+        "Webhook"
+      ]
     }
   }
 }

@@ -1,105 +1,126 @@
 {
   "iphone": {
     "hero": {
-      "h1": "ફક્ત બોલો,\n*webhook* માં પહોંચે",
+      "h1": "કાંડા પર બોલો,\n*નોંધ* બને",
       "chips": [
-        "Slack",
-        "Discord",
-        "પોતાનું API"
+        "નોંધ",
+        "Webhook",
+        "રિમાઇન્ડર"
       ],
-      "closing": "મનમાં આવે કે\n*કાંડા પરથી* મોકલો"
+      "closing": "વિચાર આવ્યો?\n*કાંડાથી* સાચવો"
     },
     "siri": {
-      "h1": "*Hey Siri* કહો\nહાથ વગર",
+      "h1": "*Hey Siri*\nહાથ વગર",
       "chips": [
         "Siri",
-        "ડબલ ટેપ",
+        "ડબલ ટૅપ",
         "વૉચ ફેસ"
       ],
-      "closing": "હાથ રોકાયેલા હોય તો પણ\n*અવાજથી* મોકલો"
+      "closing": "હાથ વ્યસ્ત?\n*અવાજથી* નોંધો"
     },
-    "destination": {
-      "h1": "ગંતવ્ય નક્કી કરો\n*તમારી રીતે*",
+    "reminder": {
+      "h1": "એક શબ્દથી\n*રિમાઇન્ડર*",
+      "floats": [
+        "“દૂધ લાવવું” ઉમેર્યું",
+        "iPhone યાદીમાં ઉમેરે"
+      ],
+      "closing": "કામ સીધાં\n*યાદીમાં*"
+    },
+    "integrations": {
+      "h1": "*ઘણી* જગ્યાએ\nએકસાથે મોકલો",
       "chips": [
         "Webhook",
-        "Slack",
-        "Discord"
+        "Markdown",
+        "Obsidian"
       ],
       "floats": [
-        "ઑથ હેડર Keychain માં",
-        "{{text}} માં બોલેલી વાત"
+        "2026-11-13.md માં ઉમેર્યું",
+        "Slack, Notion, ntfy વગેરે"
       ],
-      "closing": "પોતાના સર્વર પર પણ\n*સીધું* પહોંચે"
-    },
-    "direct": {
-      "h1": "ઘડિયાળમાંથી\n*સીધું* પહોંચે",
-      "chips": [
-        "Wi-Fi",
-        "મોબાઇલ ડેટા"
-      ],
-      "floats": [
-        "ન ગયેલું સાચવી રાખે",
-        "આગલી વાર ખોલતાં ફરી મોકલે"
-      ],
-      "closing": "નેટવર્ક નબળું હોય તો પણ\n*કંઈ ખોવાય નહીં*"
+      "closing": "ચેટમાં અને\n*તમારી નોંધોમાં*"
     },
     "more": {
-      "h1": "બીજું પણ\n*ઘણું બધું.*",
+      "h1": "અને\n*ઘણું વધુ.*",
       "cells": [
-        "ઑથ હેડર\nKeychain માં સાચવાય",
-        "Slack અને Discord\nફક્ત URL પેસ્ટ",
-        "વૉચ ફેસ પરથી\nતરત શરૂ",
-        "મોકલેલાનો\nઇતિહાસ",
-        "ટેસ્ટ મોકલી\nજોઈ લો",
-        "ફરી મોકલો તો\nસમાન સંદેશ ID"
+        "બધી નોંધો\niPhone પર",
+        "ઓથ હેડર\nKeychain માં",
+        "સોર્સ કોડ\nGitHub પર",
+        "ન ગયેલું\nફરી મોકલાય",
+        "જાહેરાત નહીં,\nટ્રેકિંગ નહીં",
+        "45 ભાષાઓમાં\nઉપલબ્ધ"
       ],
-      "closing": "બોલેલી વાત જાય\n*તમારી સિસ્ટમમાં*"
+      "closing": "તમારા શબ્દો,\n*તમારી રીતે*"
     }
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "મોકલો",
-    "sent": "“Slack #memo” માં મોકલાયું",
-    "history": "ઇતિહાસ",
-    "destinationsTitle": "ગંતવ્ય",
+    "memoButton": "નોંધ",
+    "savedAndSent": "સાચવીને મોકલ્યું",
+    "destinationCount": "ગંતવ્યો: 3",
+    "memosTitle": "નોંધ",
+    "spoken": [
+      "પાર્કિંગ B2, નંબર 14",
+      "કાલે 10 વાગે ડેન્ટિસ્ટ",
+      "લેખનો વિચાર: શાક માર્કેટ"
+    ],
+    "reminderSpoken": "રિમાઇન્ડર, દૂધ લાવવું",
+    "reminderTitle": "દૂધ લાવવું",
+    "summary": {
+      "sent": "મોકલાયું",
+      "waiting": "મોકલવાની રાહમાં",
+      "memo": "નોંધ"
+    },
+    "status": {
+      "done": "થઈ ગયું",
+      "waiting": "મોકલવાની રાહમાં"
+    },
+    "date": "13 નવે, 10:09",
+    "time": "10:09",
     "destinations": [
       "Slack #memo",
       "Discord #todo",
-      "ખર્ચ API"
+      "Notion",
+      "ntfy"
     ],
-    "spoken": [
-      "દૂધ અને ઈંડાં લાવવાં",
-      "કાલે સવારે 10 વાગ્યે ડેન્ટિસ્ટ",
-      "પાર્કિંગ B2 માં 14 નંબર"
-    ],
-    "statusSent": "મોકલાયું",
-    "statusPending": "મોકલાયું નથી",
-    "siriDialog": "Slack #memo માં મોકલાયું.",
-    "defaultMark": "(ડિફૉલ્ટ)",
+    "reminderTarget": "રિમાઇન્ડર્સ (કરિયાણું)",
+    "markdownTarget": "Markdown (Obsidian)",
+    "markdownFile": "2026-11-13.md",
     "siriAsk": "Hayate થી મોકલો",
-    "siriQuestion": "શું મોકલવું છે?",
+    "siriQuestion": "શું નોંધવું છે?",
+    "siriDialog": "સાચવીને મોકલ્યું",
     "quote": [
       "“",
       "”"
     ],
-    "edit": {
-      "cancel": "રદ કરો",
-      "save": "સાચવો",
-      "nameLabel": "નામ",
-      "name": "ખર્ચ API",
-      "url": "https://api.example.com/hooks/expense",
-      "urlFooter": "ફક્ત https URL વાપરી શકાય છે.",
-      "request": "રિક્વેસ્ટ",
-      "method": "મેથડ",
-      "bodyFormat": "બૉડીનું ફૉર્મેટ",
-      "bodyFormatValue": "JSON",
-      "headers": "હેડર",
-      "addHeader": "હેડર ઉમેરો",
-      "hideSecret": "ગુપ્ત કિંમત તરીકે છુપાવો",
-      "headersFooter": "Authorization જેવા ઑથેન્ટિકેશન હેડર ઉમેરી શકાય છે. કિંમત ફક્ત iPhone અને Apple Watch ના Keychain માં સાચવાય છે.",
-      "body": "બૉડી",
-      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
-      "test": "ટેસ્ટ મોકલો"
+    "tabs": [
+      "ઇનપુટ",
+      "નોંધ",
+      "એકીકરણ",
+      "ઉપયોગની રીત"
+    ],
+    "detail": {
+      "deliveries": "ગંતવ્યો અને એકીકરણ",
+      "sendTo": "ગંતવ્ય પર મોકલો",
+      "copy": "કૉપિ કરો",
+      "share": "શેર કરો",
+      "delete": "કાઢી નાખો",
+      "fromWatch": "Apple Watch પરથી મોકલાય છે"
+    },
+    "integrations": {
+      "title": "એકીકરણ",
+      "savedOnPhone": "iPhone પર સાચવો",
+      "reminders": "રિમાઇન્ડર્સ",
+      "reminderDetail": "“રિમાઇન્ડર” થી શરૂ થાય તો “કરિયાણું” માં ઉમેરો",
+      "markdown": "Markdown ફાઇલ",
+      "markdownDetail": "“Obsidian” માં તારીખ પ્રમાણે ઉમેરો",
+      "webhooks": "ગંતવ્ય (webhook)",
+      "webhooksFooter": "સ્વિચ ચાલુ હોય તે બધા ગંતવ્યો પર લખેલી નોંધ મોકલાય છે. Apple Watch પર લખેલી નોંધ ઘડિયાળ પરથી સીધી મોકલાય છે.",
+      "kinds": [
+        "Slack",
+        "Discord",
+        "Webhook",
+        "Webhook"
+      ]
     }
   }
 }

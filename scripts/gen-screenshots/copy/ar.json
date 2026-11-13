@@ -1,105 +1,126 @@
 {
   "iphone": {
     "hero": {
-      "h1": "تكلّم فقط\nويصل إلى *webhook*",
+      "h1": "تحدّث إلى معصمك\nواحفظه *ملاحظة*",
       "chips": [
-        "Slack",
-        "Discord",
-        "API خاص بك"
+        "ملاحظة",
+        "Webhook",
+        "التذكيرات"
       ],
-      "closing": "فكرة خطرت؟\n*من معصمك* فورًا"
+      "closing": "خطرت لك فكرة؟\nاحفظها *من معصمك*"
     },
     "siri": {
-      "h1": "*Hey Siri*\nبلا لمس",
+      "h1": "*Hey Siri*\nدون استخدام يديك",
       "chips": [
         "Siri",
-        "النقر مرتين",
+        "نقر مزدوج",
         "وجه الساعة"
       ],
-      "closing": "ويداك مشغولتان؟\nأرسل *بصوتك* فقط"
+      "closing": "يداك مشغولتان؟\nدوّن *بصوتك فقط*"
     },
-    "destination": {
-      "h1": "اختر الوجهة\n*بحرية*",
+    "reminder": {
+      "h1": "ابدأ بكلمة واحدة\nلتصبح *تذكيرًا*",
+      "floats": [
+        "أُضيف «اشترِ الحليب»",
+        "يضيفها iPhone إلى القائمة"
+      ],
+      "closing": "مهامك تذهب\n*مباشرة إلى القائمة*"
+    },
+    "integrations": {
+      "h1": "إلى *وجهات عديدة*\nفي آنٍ واحد",
       "chips": [
         "Webhook",
-        "Slack",
-        "Discord"
+        "Markdown",
+        "Obsidian"
       ],
       "floats": [
-        "ترويسة المصادقة في Keychain",
-        "{{text}} هو ما قلته"
+        "أُلحقت بـ 2026-11-13.md",
+        "Slack وNotion وntfy وغيرها"
       ],
-      "closing": "إلى خادمك\n*كما هو*"
-    },
-    "direct": {
-      "h1": "من الساعة\n*مباشرة*",
-      "chips": [
-        "Wi-Fi",
-        "بيانات الجوال"
-      ],
-      "floats": [
-        "ما لم يُرسل يُحفظ",
-        "يُعاد إرساله عند الفتح"
-      ],
-      "closing": "حتى مع ضعف الإشارة\n*لا شيء يضيع*"
+      "closing": "إلى محادثاتك\nوإلى *ملاحظاتك* أيضًا"
     },
     "more": {
-      "h1": "وأكثر\n*من ذلك.*",
+      "h1": "والمزيد\n*أيضًا.*",
       "cells": [
+        "كل الملاحظات\nمحفوظة على iPhone",
         "ترويسة المصادقة\nفي Keychain",
-        "Slack وDiscord\nبلصق URL فقط",
-        "تشغيل سريع\nمن وجه الساعة",
-        "سجل\nلما أُرسل",
-        "إرسال تجريبي\nللتأكد من الوصول",
-        "المعرّف نفسه\nعند إعادة الإرسال"
+        "مفتوح المصدر\nعلى GitHub",
+        "ما لم يُرسل يُعاد\nعند الفتح التالي",
+        "بلا إعلانات\nولا تتبّع",
+        "متوفر بـ\n45 لغة"
       ],
-      "closing": "كلامك يصل\nإلى *نظامك*"
+      "closing": "كلماتك\nإلى *سير عملك*"
     }
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "إرسال",
-    "sent": "تم الإرسال إلى «Slack #memo»",
-    "history": "السجل",
-    "destinationsTitle": "الوجهات",
+    "memoButton": "ملاحظة",
+    "savedAndSent": "حُفظت وأُرسلت",
+    "destinationCount": "الوجهات: 3",
+    "memosTitle": "ملاحظة",
+    "spoken": [
+      "الموقف B2، رقم 14",
+      "طبيب الأسنان غدًا الساعة 10",
+      "فكرة مقال: سوق الصباح"
+    ],
+    "reminderSpoken": "تذكير، اشترِ الحليب",
+    "reminderTitle": "اشترِ الحليب",
+    "summary": {
+      "sent": "تم الإرسال",
+      "waiting": "بانتظار الإرسال",
+      "memo": "ملاحظة"
+    },
+    "status": {
+      "done": "تم",
+      "waiting": "بانتظار الإرسال"
+    },
+    "date": "13 نوفمبر، 10:09 ص",
+    "time": "10:09",
     "destinations": [
       "Slack #memo",
       "Discord #todo",
-      "API المصروفات"
+      "Notion",
+      "ntfy"
     ],
-    "spoken": [
-      "شراء حليب وبيض",
-      "موعد طبيب الأسنان غدًا الساعة 10",
-      "موقف السيارة B2 رقم 14"
-    ],
-    "statusSent": "تم الإرسال",
-    "statusPending": "لم يُرسل",
-    "siriDialog": "تم الإرسال إلى Slack #memo.",
-    "defaultMark": "(افتراضي)",
+    "reminderTarget": "التذكيرات (البقالة)",
+    "markdownTarget": "Markdown (Obsidian)",
+    "markdownFile": "2026-11-13.md",
     "siriAsk": "أرسل عبر Hayate",
-    "siriQuestion": "ماذا تريد أن ترسل؟",
+    "siriQuestion": "ماذا تريد أن تدوّن؟",
+    "siriDialog": "حُفظت وأُرسلت",
     "quote": [
       "«",
       "»"
     ],
-    "edit": {
-      "cancel": "إلغاء",
-      "save": "حفظ",
-      "nameLabel": "الاسم",
-      "name": "API المصروفات",
-      "url": "https://api.example.com/hooks/expense",
-      "urlFooter": "يُسمح بعناوين URL من نوع https فقط.",
-      "request": "الطلب",
-      "method": "الأسلوب",
-      "bodyFormat": "صيغة النص",
-      "bodyFormatValue": "JSON",
-      "headers": "الترويسات",
-      "addHeader": "إضافة ترويسة",
-      "hideSecret": "إخفاء كقيمة سرية",
-      "headersFooter": "يمكنك تسجيل ترويسات المصادقة مثل Authorization. تُحفظ القيمة في Keychain على iPhone وApple Watch فقط.",
-      "body": "النص",
-      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
-      "test": "إرسال تجريبي"
+    "tabs": [
+      "إدخال",
+      "ملاحظة",
+      "التكاملات",
+      "طريقة الاستخدام"
+    ],
+    "detail": {
+      "deliveries": "الوجهات والتكاملات",
+      "sendTo": "إرسال إلى وجهة",
+      "copy": "نسخ",
+      "share": "مشاركة",
+      "delete": "حذف",
+      "fromWatch": "يرسل من Apple Watch"
+    },
+    "integrations": {
+      "title": "التكاملات",
+      "savedOnPhone": "محفوظة على iPhone",
+      "reminders": "التذكيرات",
+      "reminderDetail": "عند البدء بـ «تذكير» تُضاف إلى «البقالة»",
+      "markdown": "ملف Markdown",
+      "markdownDetail": "تُلحق حسب التاريخ في «Obsidian»",
+      "webhooks": "الوجهات (webhooks)",
+      "webhooksFooter": "ترسل الملاحظة إلى كل وجهة مفعّل مفتاحها. ما يُدخل على Apple Watch يُرسل مباشرة من الساعة.",
+      "kinds": [
+        "Slack",
+        "Discord",
+        "Webhook",
+        "Webhook"
+      ]
     }
   }
 }

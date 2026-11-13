@@ -1,105 +1,126 @@
 {
   "iphone": {
     "hero": {
-      "h1": "开口就发到\n*webhook*",
+      "h1": "对着手腕说\n存成*备忘*",
       "chips": [
-        "Slack",
-        "Discord",
-        "自己的 API"
+        "备忘",
+        "Webhook",
+        "提醒事项"
       ],
-      "closing": "想到就发\n*手腕*上完成"
+      "closing": "灵感一来\n*抬腕*就记"
     },
     "siri": {
       "h1": "*嘿 Siri*\n无需动手",
       "chips": [
         "Siri",
-        "轻点两下",
+        "互点两下",
         "表盘"
       ],
-      "closing": "双手不空\n*动口*就能发"
+      "closing": "双手没空时\n*动动嘴*就能记"
     },
-    "destination": {
-      "h1": "发送目标\n*自由*决定",
+    "reminder": {
+      "h1": "开头说一句\n就进*提醒事项*",
+      "floats": [
+        "已添加“买牛奶”",
+        "iPhone 添加到列表"
+      ],
+      "closing": "待办事项\n*直接进列表*"
+    },
+    "integrations": {
+      "h1": "*多个*目标\n一次送达",
       "chips": [
         "Webhook",
-        "Slack",
-        "Discord"
+        "Markdown",
+        "Obsidian"
       ],
       "floats": [
-        "认证请求头存于 Keychain",
-        "{{text}} 是说话内容"
+        "追加到 2026-11-13.md",
+        "Slack、Notion、ntfy 等"
       ],
-      "closing": "自己的服务器\n*原样*送达"
-    },
-    "direct": {
-      "h1": "手表*直接*\n送出",
-      "chips": [
-        "Wi-Fi",
-        "蜂窝网络"
-      ],
-      "floats": [
-        "没发出的会保留",
-        "下次打开重新发送"
-      ],
-      "closing": "信号不好\n*也不漏发*"
+      "closing": "发到聊天\n也存进*笔记*"
     },
     "more": {
-      "h1": "还有\n*更多功能。*",
+      "h1": "还有\n*更多。*",
       "cells": [
+        "备忘全部\n保留在 iPhone",
         "认证请求头\n存于 Keychain",
-        "Slack、Discord\n只需粘贴 URL",
-        "从表盘\n快速启动",
-        "发送内容\n的记录",
-        "用测试发送\n确认能否送达",
-        "重发也不变的\n消息 ID"
+        "源代码\n在 GitHub 公开",
+        "未发送的\n下次打开重发",
+        "无广告\n无追踪",
+        "支持\n45 种语言"
       ],
-      "closing": "把说的话\n送进*你的系统*"
+      "closing": "你说的话\n送进*你的流程*"
     }
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "发送",
-    "sent": "已发送到“Slack #memo”",
-    "history": "记录",
-    "destinationsTitle": "发送目标",
+    "memoButton": "备忘",
+    "savedAndSent": "已保存并发送",
+    "destinationCount": "发送目标：3",
+    "memosTitle": "备忘",
+    "spoken": [
+      "停车位在 B2 的 14 号",
+      "明天 10 点看牙医",
+      "选题：早市采访"
+    ],
+    "reminderSpoken": "提醒事项，买牛奶",
+    "reminderTitle": "买牛奶",
+    "summary": {
+      "sent": "已发送",
+      "waiting": "等待发送",
+      "memo": "备忘"
+    },
+    "status": {
+      "done": "完成",
+      "waiting": "等待发送"
+    },
+    "date": "11月13日 10:09",
+    "time": "10:09",
     "destinations": [
       "Slack #memo",
       "Discord #todo",
-      "记账 API"
+      "Notion",
+      "ntfy"
     ],
-    "spoken": [
-      "买牛奶和鸡蛋",
-      "明天 10 点看牙医",
-      "车停在 B2 的 14 号"
-    ],
-    "statusSent": "已发送",
-    "statusPending": "未发送",
-    "siriDialog": "已发送到 Slack #memo。",
-    "defaultMark": "（默认）",
+    "reminderTarget": "提醒事项（购物）",
+    "markdownTarget": "Markdown (Obsidian)",
+    "markdownFile": "2026-11-13.md",
     "siriAsk": "用Hayate发送",
-    "siriQuestion": "要发送什么？",
+    "siriQuestion": "要记下什么？",
+    "siriDialog": "已保存并发送",
     "quote": [
       "“",
       "”"
     ],
-    "edit": {
-      "cancel": "取消",
-      "save": "存储",
-      "nameLabel": "名称",
-      "name": "记账 API",
-      "url": "https://api.example.com/hooks/expense",
-      "urlFooter": "只能使用 https 的 URL。",
-      "request": "请求",
-      "method": "方法",
-      "bodyFormat": "正文格式",
-      "bodyFormatValue": "JSON",
-      "headers": "请求头",
-      "addHeader": "添加请求头",
-      "hideSecret": "隐藏为机密值",
-      "headersFooter": "可以登记 Authorization 等认证请求头。值只保存在 iPhone 和 Apple Watch 的 Keychain 中。",
-      "body": "正文",
-      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
-      "test": "测试发送"
+    "tabs": [
+      "输入",
+      "备忘",
+      "集成",
+      "使用方法"
+    ],
+    "detail": {
+      "deliveries": "发送目标与集成",
+      "sendTo": "发送到发送目标",
+      "copy": "拷贝",
+      "share": "共享",
+      "delete": "删除",
+      "fromWatch": "从 Apple Watch 发送"
+    },
+    "integrations": {
+      "title": "集成",
+      "savedOnPhone": "保存到 iPhone",
+      "reminders": "提醒事项",
+      "reminderDetail": "“提醒事项”开头时添加到“购物”",
+      "markdown": "Markdown 文件",
+      "markdownDetail": "按日期追加到“Obsidian”",
+      "webhooks": "发送目标 (webhook)",
+      "webhooksFooter": "会将输入的备忘发送到所有已打开开关的发送目标。在 Apple Watch 上输入的备忘由手表直接发送。",
+      "kinds": [
+        "Slack",
+        "Discord",
+        "Webhook",
+        "Webhook"
+      ]
     }
   }
 }

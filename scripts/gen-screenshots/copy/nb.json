@@ -1,105 +1,126 @@
 {
   "iphone": {
     "hero": {
-      "h1": "Snakk, og send\ntil *webhook*",
+      "h1": "Si det høyt,\nlagre som *memo*",
       "chips": [
-        "Slack",
-        "Discord",
-        "Eget API"
+        "Memo",
+        "Webhook",
+        "Påminnelser"
       ],
-      "closing": "Send rett\n*fra håndleddet*"
+      "closing": "Idé? Lagre den\n*fra håndleddet*"
     },
     "siri": {
-      "h1": "*Hey Siri*,\nuten hender",
+      "h1": "*Hey Siri*,\nhelt håndfritt",
       "chips": [
         "Siri",
         "Dobbelttrykk",
         "Urskive"
       ],
-      "closing": "Hendene opptatt?\n*Bruk stemmen*"
+      "closing": "Hendene fulle?\nNoter med *stemmen*"
     },
-    "destination": {
-      "h1": "Velg *selv*\nhvor det går",
+    "reminder": {
+      "h1": "Start med ett ord,\nfå en *påminnelse*",
+      "floats": [
+        "La til «kjøp melk»",
+        "iPhone legger det i en liste"
+      ],
+      "closing": "Gjøremål rett\n*inn i listen*"
+    },
+    "integrations": {
+      "h1": "Send til *mange*\nsteder samtidig",
       "chips": [
         "Webhook",
-        "Slack",
-        "Discord"
+        "Markdown",
+        "Obsidian"
       ],
       "floats": [
-        "Autentisering i Keychain",
-        "{{text}} = det du sa"
+        "Lagt til i 2026-11-13.md",
+        "Slack, Notion, ntfy m.m."
       ],
-      "closing": "Også til din\n*egen server*"
-    },
-    "direct": {
-      "h1": "Rett fra\n*klokken*",
-      "chips": [
-        "Wi-Fi",
-        "Mobildata"
-      ],
-      "floats": [
-        "Usendt lagres",
-        "Sendes på nytt ved åpning"
-      ],
-      "closing": "Dårlig dekning?\n*Ingenting går tapt*"
+      "closing": "Til chatten og\n*notatene dine*"
     },
     "more": {
-      "h1": "Og *mye*\nmer.",
+      "h1": "Og\n*mye mer.*",
       "cells": [
-        "Autentisering\nlagres i Keychain",
-        "Slack og Discord:\nlim inn URL",
-        "Start raskt\nfra urskiven",
-        "Historikk over\nsendt",
-        "Test at det\nkommer fram",
-        "Samme meldings-ID\nved ny sending"
+        "Alle memoer\nlagres på iPhone",
+        "Auth-header\nlagret i Keychain",
+        "Åpen kildekode\npå GitHub",
+        "Usendte sendes\nnår du åpner igjen",
+        "Ingen reklame,\ningen sporing",
+        "Tilgjengelig\npå 45 språk"
       ],
-      "closing": "Ordene dine til\n*ditt eget system*"
+      "closing": "Ordene dine,\ninn i *ditt oppsett*"
     }
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "Send",
-    "sent": "Sendt til «Slack #memo»",
-    "history": "Historikk",
-    "destinationsTitle": "Mål",
+    "memoButton": "Memo",
+    "savedAndSent": "Lagret og sendt",
+    "destinationCount": "Mål: 3",
+    "memosTitle": "Memo",
+    "spoken": [
+      "Parkert på B2, plass 14",
+      "Tannlege i morgen kl. 10",
+      "Artikkelidé: bondens marked"
+    ],
+    "reminderSpoken": "Påminnelse, kjøp melk",
+    "reminderTitle": "kjøp melk",
+    "summary": {
+      "sent": "Sendt",
+      "waiting": "Venter på sending",
+      "memo": "Memo"
+    },
+    "status": {
+      "done": "Ferdig",
+      "waiting": "Venter på sending"
+    },
+    "date": "13. nov. 10:09",
+    "time": "10:09",
     "destinations": [
       "Slack #memo",
       "Discord #todo",
-      "Budsjett-API"
+      "Notion",
+      "ntfy"
     ],
-    "spoken": [
-      "Kjøp melk og egg",
-      "Tannlege i morgen kl. 10",
-      "Parkering på B2, plass 14"
-    ],
-    "statusSent": "Sendt",
-    "statusPending": "Ikke sendt",
-    "siriDialog": "Sendt til Slack #memo.",
-    "defaultMark": "(Standard)",
+    "reminderTarget": "Påminnelser (Innkjøp)",
+    "markdownTarget": "Markdown (Obsidian)",
+    "markdownFile": "2026-11-13.md",
     "siriAsk": "Send med Hayate",
-    "siriQuestion": "Hva vil du sende?",
+    "siriQuestion": "Hva vil du notere?",
+    "siriDialog": "Lagret og sendt",
     "quote": [
       "«",
       "»"
     ],
-    "edit": {
-      "cancel": "Avbryt",
-      "save": "Lagre",
-      "nameLabel": "Navn",
-      "name": "Budsjett-API",
-      "url": "https://api.example.com/hooks/expense",
-      "urlFooter": "Bare https-URL-er fungerer.",
-      "request": "Forespørsel",
-      "method": "Metode",
-      "bodyFormat": "Innholdsformat",
-      "bodyFormatValue": "JSON",
-      "headers": "Headere",
-      "addHeader": "Legg til header",
-      "hideSecret": "Skjul som hemmelig verdi",
-      "headersFooter": "Du kan registrere autentiseringsheadere som Authorization. Verdiene lagres bare i Keychain på iPhone og Apple Watch.",
-      "body": "Innhold",
-      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
-      "test": "Send test"
+    "tabs": [
+      "Skriv inn",
+      "Memo",
+      "Integrasjoner",
+      "Slik bruker du appen"
+    ],
+    "detail": {
+      "deliveries": "Mål og integrasjoner",
+      "sendTo": "Send til mål",
+      "copy": "Kopier",
+      "share": "Del",
+      "delete": "Slett",
+      "fromWatch": "Sender fra Apple Watch"
+    },
+    "integrations": {
+      "title": "Integrasjoner",
+      "savedOnPhone": "Lagre på iPhone",
+      "reminders": "Påminnelser",
+      "reminderDetail": "Begynner med «Påminnelse», legges til i «Innkjøp»",
+      "markdown": "Markdown-fil",
+      "markdownDetail": "Legges til i «Obsidian» per dato",
+      "webhooks": "Mål (webhook)",
+      "webhooksFooter": "Sender memoet til alle mål som er slått på. Det som er skrevet på Apple Watch sendes direkte fra klokken.",
+      "kinds": [
+        "Slack",
+        "Discord",
+        "Webhook",
+        "Webhook"
+      ]
     }
   }
 }

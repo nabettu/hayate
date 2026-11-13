@@ -1,105 +1,126 @@
 {
   "iphone": {
     "hero": {
-      "h1": "Vorbești și\ntrimiți la *webhook*",
+      "h1": "Vorbește-i ceasului,\npăstrează o *notiță*",
       "chips": [
-        "Slack",
-        "Discord",
-        "API propriu"
+        "Notiță",
+        "Webhook",
+        "Mementouri"
       ],
-      "closing": "O idee? Trimite\n*de la încheietură*"
+      "closing": "Ai o idee?\nNoteaz-o de pe *ceas*"
     },
     "siri": {
-      "h1": "Cu *Hey Siri*,\nfără mâini",
+      "h1": "*Hey Siri*,\nfără mâini",
       "chips": [
         "Siri",
-        "Atingere x2",
+        "Atingere dublă",
         "Cadran"
       ],
-      "closing": "Ai mâinile ocupate?\nTrimite *cu vocea*"
+      "closing": "Mâinile ocupate?\nNotează cu *vocea*"
     },
-    "destination": {
-      "h1": "Alegi tu\n*destinația*",
+    "reminder": {
+      "h1": "Un cuvânt la început\nși ai un *memento*",
+      "floats": [
+        "„cumpără lapte” adăugat",
+        "iPhone-ul adaugă în listă"
+      ],
+      "closing": "Sarcinile ajung\n*direct în listă*"
+    },
+    "integrations": {
+      "h1": "Trimite în *multe*\nlocuri deodată",
       "chips": [
         "Webhook",
-        "Slack",
-        "Discord"
+        "Markdown",
+        "Obsidian"
       ],
       "floats": [
-        "Antet în Keychain",
-        "{{text}} e ce spui"
+        "Adăugat în 2026-11-13.md",
+        "Slack, Notion, ntfy și altele"
       ],
-      "closing": "Ajunge direct pe\n*serverul tău*"
-    },
-    "direct": {
-      "h1": "Trimitere *directă*\nde pe ceas",
-      "chips": [
-        "Wi-Fi",
-        "Date mobile"
-      ],
-      "floats": [
-        "Ce eșuează se păstrează",
-        "Retrimis la deschidere"
-      ],
-      "closing": "Semnal slab?\n*Nu se pierde nimic*"
+      "closing": "În chat și\nîn *notițele tale*"
     },
     "more": {
       "h1": "Și multe\n*altele.*",
       "cells": [
-        "Antet salvat\nîn Keychain",
-        "Slack și Discord:\nlipești URL-ul",
-        "Pornire rapidă\nde pe cadran",
-        "Istoricul\ncelor trimise",
-        "Trimitere de test\npentru verificare",
-        "Același ID la\nretrimitere"
+        "Toate notițele\nrămân pe iPhone",
+        "Antet de autentif.\nîn Keychain",
+        "Cod sursă\npe GitHub",
+        "Ce n-a plecat\nse retrimite",
+        "Fără reclame,\nfără urmărire",
+        "Disponibil în\n45 de limbi"
       ],
-      "closing": "Vocea ta în\n*sistemul tău*"
+      "closing": "Vorbele tale,\nîn *fluxul tău*"
     }
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "Trimite",
-    "sent": "Trimis la „Slack #memo”",
-    "history": "Istoric",
-    "destinationsTitle": "Destinații",
+    "memoButton": "Notiță",
+    "savedAndSent": "Salvat și trimis",
+    "destinationCount": "Destinații: 3",
+    "memosTitle": "Notiță",
+    "spoken": [
+      "Parcarea: B2, locul 14",
+      "Mâine la 10, dentist",
+      "Idee: reportaj la piață"
+    ],
+    "reminderSpoken": "Memento, cumpără lapte",
+    "reminderTitle": "cumpără lapte",
+    "summary": {
+      "sent": "Trimis",
+      "waiting": "În așteptare",
+      "memo": "Notiță"
+    },
+    "status": {
+      "done": "Gata",
+      "waiting": "În așteptare"
+    },
+    "date": "13 nov., 10:09",
+    "time": "10:09",
     "destinations": [
       "Slack #memo",
       "Discord #todo",
-      "API cheltuieli"
+      "Notion",
+      "ntfy"
     ],
-    "spoken": [
-      "Cumpără lapte și ouă",
-      "Mâine la 10 dentist",
-      "Parcare: B2, locul 14"
-    ],
-    "statusSent": "Trimis",
-    "statusPending": "Netrimis",
-    "siriDialog": "Trimis la Slack #memo.",
-    "defaultMark": "(Implicit)",
+    "reminderTarget": "Mementouri (Cumpărături)",
+    "markdownTarget": "Markdown (Obsidian)",
+    "markdownFile": "2026-11-13.md",
     "siriAsk": "Trimite cu Hayate",
-    "siriQuestion": "Ce vrei să trimiți?",
+    "siriQuestion": "Ce notezi?",
+    "siriDialog": "Salvat și trimis",
     "quote": [
       "„",
       "”"
     ],
-    "edit": {
-      "cancel": "Anulează",
-      "save": "Salvează",
-      "nameLabel": "Nume",
-      "name": "API cheltuieli",
-      "url": "https://api.example.com/hooks/expense",
-      "urlFooter": "Sunt permise doar adrese URL https.",
-      "request": "Solicitare",
-      "method": "Metodă",
-      "bodyFormat": "Formatul corpului",
-      "bodyFormatValue": "JSON",
-      "headers": "Antete",
-      "addHeader": "Adaugă antet",
-      "hideSecret": "Ascunde ca valoare secretă",
-      "headersFooter": "Poți înregistra antete de autentificare, precum Authorization. Valorile se salvează doar în Keychain pe iPhone și pe Apple Watch.",
-      "body": "Corp",
-      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
-      "test": "Trimitere de test"
+    "tabs": [
+      "Introducere",
+      "Notiță",
+      "Integrări",
+      "Mod de utilizare"
+    ],
+    "detail": {
+      "deliveries": "Destinații și integrări",
+      "sendTo": "Trimite la destinație",
+      "copy": "Copiază",
+      "share": "Partajează",
+      "delete": "Șterge",
+      "fromWatch": "Trimite de pe Apple Watch"
+    },
+    "integrations": {
+      "title": "Integrări",
+      "savedOnPhone": "Salvează pe iPhone",
+      "reminders": "Mementouri",
+      "reminderDetail": "Dacă începe cu „Memento”, se adaugă la „Cumpărături”",
+      "markdown": "Fișier Markdown",
+      "markdownDetail": "Se adaugă pe zile în „Obsidian”",
+      "webhooks": "Destinații (webhook)",
+      "webhooksFooter": "Notița introdusă se trimite la toate destinațiile cu comutatorul activat. Ce introduci pe Apple Watch se trimite direct de pe ceas.",
+      "kinds": [
+        "Slack",
+        "Discord",
+        "Webhook",
+        "Webhook"
+      ]
     }
   }
 }
