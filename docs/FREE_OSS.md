@@ -67,6 +67,9 @@ Hayate を「Apple Watch で思いついたことを手放しで記録し、必�
 ### 見送ったもの (2026-11-13)
 
 - **カレンダー**: 入力の書き方がばらばらで難しい。次の版で、OS 内蔵の日時の検出 (`NSDataDetector`。AI ではない) で日時が取れたときだけ予定を作り、取れなければリマインダーかメモに回す形を検討する。日本語でどこまで拾えるかを先に試す。同じ仕組みでリマインダーに期日も付けられる
+  - Foundation Models (Apple の LLM) で日時を読む案 (2026-11-13 調べ): watchOS 27 から時計でも使えるが、**時計では Private Cloud Compute (Apple のサーバー) 経由**で、通信と専用の entitlement が要る (初回ダウンロード 200 万未満は無料)。
+    時計で動かすと送るたびに待ちが入るので、やるなら**予定・リマインダーを保存する iPhone 側** (端末内のモデル。Apple Intelligence 対応機だけ) で読み、使えない機種は `NSDataDetector` に落とす。
+    出典: WWDC26 セッション 241 (https://developer.apple.com/videos/play/wwdc2026/241/)・Developer Forums (https://developer.apple.com/forums/thread/831742)。時計の端末内で汎用の言語モデルが動くかは確かめられていない
 - **ショートカット用のアクション** (「最新メモを取得」): 初版では入れない
 - **Apple のメモ・ジャーナル・メッセージ**: 裏で書き込む公開 API が無い (共有シート・ショートカット経由のみ)
 
