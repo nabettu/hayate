@@ -3,12 +3,12 @@
 // 形式は TypeAI / autofill の「広告としてのスクショ」: 太い 2 行の見出し (*...* を強調) → チップ → 端末 (まわりに吹き出し) → 下の一言。
 // 最後の 1 枚は「他にもいろいろ」。背景はアプリアイコン (design/app-icon.svg) の夜空に合わせて暗くしている。
 //
-// - iPhone 6.9" (1320x2868) 5 枚: hero / siri / destination / direct / more
-// - Apple Watch (416x496 = Series 10/11 46mm の実寸) 3 枚: home / history / destinations。
+// - iPhone 6.9" (1320x2868) 5 枚: hero (話す → メモ → 連携) / siri / reminder (合図でリマインダー) / integrations (複数の送り先・Markdown) / more
+// - Apple Watch (416x496 = Series 10/11 46mm の実寸) 3 枚: home (メモのボタン) / memos (メモの一覧) / detail (連携ごとの状態)。
 //   App Store が時計の枠を付けて見せるので、画面だけを描く (文字も載せない)
 //
-// 画面の中身は実際の SwiftUI の画面 (WatchHookWatch/WatchHomeView.swift・WatchHook/DestinationEditView.swift) に合わせる。
-// 画面を変えたらここも合わせる。
+// 画面の中身は実際の SwiftUI の画面 (WatchHookWatch/WatchHomeView.swift・WatchHook/MemoListView.swift・WatchHook/DestinationListView.swift・
+// WatchHook/WatchHookApp.swift のタブ・Shared/Cosmos.swift の色) に合わせる。画面を変えたらここも合わせる。
 
 import * as fs from "node:fs";
 import * as path from "node:path";
@@ -47,6 +47,19 @@ const ICONS = {
   link: `<path d="M10 14a4.5 4.5 0 0 0 6.4 0l3-3a4.5 4.5 0 0 0-6.4-6.4l-1 1M14 10a4.5 4.5 0 0 0-6.4 0l-3 3a4.5 4.5 0 0 0 6.4 6.4l1-1"/>`,
   server: `<rect x="4" y="3" width="16" height="7" rx="2"/><rect x="4" y="14" width="16" height="7" rx="2"/><path d="M8 6.5h.01M8 17.5h.01"/>`,
   phone: `<rect x="7" y="2" width="10" height="20" rx="2.5"/><path d="M11 18h2"/>`,
+  checklist: `<path d="m3.5 6 1.8 1.8L8.5 4.5M3.5 13l1.8 1.8 3.2-3.3M11.5 6.5h9M11.5 13.5h9M11.5 19.5h9M4 19.5h3"/>`,
+  doc: `<path d="M6 2.5h8l4.5 4.5v14.5H6z"/><path d="M14 2.5V7h4.5M9 12h6.5M9 16h6.5"/>`,
+  note: `<rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 8h8M8 12h8M8 16h5"/>`,
+  plane: `<path d="M21.5 2.5 2.5 10l7.5 3.5L13.5 21z"/><path d="m10 13.5 4.5-4.5"/>`,
+  copy: `<rect x="8" y="8" width="12" height="13" rx="2.5"/><path d="M16 8V5.5A2.5 2.5 0 0 0 13.5 3h-7A2.5 2.5 0 0 0 4 5.5v8A2.5 2.5 0 0 0 6.5 16H8"/>`,
+  share: `<path d="M12 15V3M7.5 7.5 12 3l4.5 4.5M8 10.5H6v10.5h12V10.5h-2"/>`,
+  trash: `<path d="M4 6.5h16M9.5 6.5V4h5v2.5M6.5 6.5l1 14h9l1-14M10 10.5v6.5M14 10.5v6.5"/>`,
+  pencil: `<path d="M4 20h4L19.5 8.5a2.8 2.8 0 0 0-4-4L4 16z"/><path d="M13.5 6.5l4 4"/>`,
+  book: `<path d="M12 6.5C10 4.5 6.5 4 3 4.5v14c3.5-.5 7 0 9 2 2-2 5.5-2.5 9-2v-14c-3.5-.5-7 0-9 2zM12 6.5v14"/>`,
+  connect: `<circle cx="12" cy="5" r="2.5"/><circle cx="5" cy="18.5" r="2.5"/><circle cx="19" cy="18.5" r="2.5"/><path d="M10.8 7.2 6.2 16.3M13.2 7.2l4.6 9.1M7.5 18.5h9" stroke-dasharray="2 2.4"/>`,
+  globe: `<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.6 2.6 3.8 5.6 3.8 9s-1.2 6.4-3.8 9c-2.6-2.6-3.8-5.6-3.8-9S9.4 5.6 12 3z"/>`,
+  shield: `<path d="M12 2.5 4.5 5.5v6c0 4.8 3.2 8.6 7.5 10 4.3-1.4 7.5-5.2 7.5-10v-6z"/><path d="m8.5 12 2.5 2.5 4.5-5"/>`,
+  github: `<path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/>`,
 };
 const icon = (name, size, color, width = 2) =>
   `<svg width="${size}" height="${size}" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="${width}" stroke-linecap="round" stroke-linejoin="round">${ICONS[name]}</svg>`;
@@ -56,9 +69,13 @@ const SYM = {
   paperplane: (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24"><path d="M22 2 2.2 10.3l7.6 3.9L13.7 22z" fill="${c}"/><path d="m9.8 14.2 5.4-5.4" stroke="rgba(76,29,149,.55)" stroke-width="1.4" stroke-linecap="round"/></svg>`,
   mic: (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24"><rect x="8" y="1.5" width="8" height="13.5" rx="4" fill="${c}"/><path d="M4.8 11.2a7.2 7.2 0 0 0 14.4 0M12 18.4v3.4" stroke="${c}" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>`,
   checkFill: (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="${c}"/><path d="m7 12.4 3.3 3.3L17.2 8.8" stroke="#000" stroke-width="2.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  chevronRight: (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24"><path d="m9 4 8 8-8 8" stroke="${c}" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
   chevronLeft: (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24"><path d="M15 4 7 12l8 8" stroke="${c}" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
   check: (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24"><path d="m4 12.5 5 5L20 6.5" stroke="${c}" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
   updown: (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24"><path d="m7 9 5-5 5 5M7 15l5 5 5-5" stroke="${c}" stroke-width="2.4" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>`,
+  clock: (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12A8.5 8.5 0 1 1 18 6"/><path d="M20.5 3.5V8h-4.5M12 7.5V12l3 2"/></svg>`,
+  note: (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="3"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>`,
+  plus: (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16" stroke="${c}" stroke-width="2.6" stroke-linecap="round"/></svg>`,
   eye: (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24"><path d="M1.5 12S5.5 5 12 5s10.5 7 10.5 7-4 7-10.5 7S1.5 12 1.5 12z" stroke="${c}" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="3.4" fill="${c}"/></svg>`,
 };
 
@@ -119,10 +136,9 @@ const WATCH_CSS = `
     display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; font-size: 26px; font-weight: 700; }
   .ws .status { position: absolute; left: 16px; right: 16px; top: 298px; overflow: hidden; text-align: center; font-size: 23px; font-weight: 500; white-space: nowrap; color: #FDE68A; display: flex; align-items: center; justify-content: center; gap: 8px; }
   .ws .destwrap { position: absolute; left: 24px; right: 24px; top: 350px; display: flex; justify-content: center; }
-  .ws .destpill { display: flex; align-items: center; gap: 12px; max-width: 100%; overflow: hidden; white-space: nowrap; padding: 12px 24px; border-radius: 999px; font-size: 30px; color: #C4B5FD;
-    background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 2px rgba(196,181,253,.35); }
+  .ws .destlabel { display: flex; align-items: center; gap: 10px; max-width: 100%; overflow: hidden; white-space: nowrap; font-size: 28px; color: #C4B5FD; }
   .ws .dest { white-space: nowrap; }
-  .ws .destpill svg { flex: none; }
+  .ws .destlabel svg { flex: none; }
   .ws .pager { position: absolute; right: 8px; top: 92px; display: flex; flex-direction: column; align-items: center; gap: 8px; }
   .ws .pager i { width: 10px; height: 10px; border-radius: 5px; background: rgba(255,255,255,.4); }
   .ws .pager i.on { height: 40px; background: #fff; }
@@ -133,7 +149,15 @@ const WATCH_CSS = `
   .ws .row { background: rgba(34,27,72,.96); border-radius: 28px; padding: 18px 24px; }
   .ws .row b { display: block; font-size: 31px; font-weight: 500; line-height: 1.25; }
   .ws .row small { display: block; margin-top: 6px; font-size: 25px; color: rgba(196,181,253,.8); }
-  .ws .row.pick { display: flex; align-items: center; justify-content: space-between; padding: 26px 26px; }
+  .ws .row b { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+  .ws .row .sum { display: flex; align-items: center; gap: 8px; }
+  .ws .row .sum svg { flex: none; }
+  .ws .plain { padding: 4px 14px 8px; }
+  .ws .plain b { display: block; font-size: 31px; font-weight: 500; line-height: 1.25; }
+  .ws .plain small { display: block; margin-top: 6px; font-size: 23px; color: rgba(235,235,245,.6); }
+  .ws .row.dl { padding: 14px 24px; border-radius: 24px; }
+  .ws .row.dl b { font-size: 27px; }
+  .ws .row.dl small { margin-top: 2px; font-size: 23px; }
   .ws .siri { position: absolute; left: 28px; right: 28px; top: 96px; }
   .ws .siri .app { display: flex; align-items: center; gap: 12px; font-size: 24px; font-weight: 600; letter-spacing: .04em; color: #9a9aa0; }
   .ws .siri .app img { width: 40px; height: 40px; border-radius: 50%; }
@@ -145,30 +169,34 @@ const WATCH_CSS = `
 
 const watchBar = (title, { back = false } = {}) => `<div class="bar">${title ? `<div class="title">${back ? `<span class="back">${SYM.chevronLeft(28, "#fff")}</span>` : ""}<span class="tt">${esc(title)}</span></div>` : ""}<div class="time">10:09</div></div>`;
 const paperplaneLine = (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="1.8" stroke-linejoin="round"><path d="M21.5 2.5 2.5 10l7.5 3.5L13.5 21z"/><path d="m10 13.5 4.5-4.5"/></svg>`;
-const chevronUpDown = (s, c) => `<svg width="${s}" height="${s}" viewBox="0 0 24 24" fill="none" stroke="${c}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m7 9 5-5 5 5"/><path d="m7 15 5 5 5-5"/></svg>`;
-/** 縦のページの位置 (送る画面の下に履歴がある。WatchHomeView の TabView(.verticalPage)) */
+/** 縦のページの位置 (メモする画面の下にメモの一覧がある。WatchHomeView の TabView(.verticalPage)) */
 const pager = (page) => `<div class="pager">${[0, 1].map((i) => `<i${i === page ? ' class="on"' : ""}></i>`).join("")}</div>`;
-/** 「(既定)」の括弧を外す (一覧では名前の下に小さく出す) */
-const bare = (s) => s.replace(/^[(（]\s*|\s*[)）]$/g, "");
+/** メモの一覧の状態 (Memo.Summary の label / symbol) */
+const summaryLine = (t, kind) => {
+  const sym = { sent: SYM.checkFill(24, "#C4B5FD"), waiting: SYM.clock(24, "#C4B5FD"), memo: SYM.note(24, "#C4B5FD") }[kind];
+  return `<small class="sum">${sym}<span>${esc(t.summary[kind])}</span></small>`;
+};
 
 export const watchScreens = {
-  /** 話して送った直後のホーム (WatchHomeView: 光る送るボタン・「〜」に送りました・送り先の選択。履歴は下のページ) */
+  /** メモした直後のホーム (WatchHomeView: 光るメモのボタン・「保存して送りました」・有効な送り先の件数。メモの一覧は下のページ) */
   home: (t) => `<div class="ws">${appSky(416, 496, 26, 5)}${watchBar("")}
     <div class="orbwrap"><div class="ring" style="transform:scale(1.25);opacity:.75"></div><div class="ring" style="transform:scale(1.45);opacity:.3"></div>
-      <div class="orb">${SYM.paperplane(58, "#fff")}<span class="orbtext">${esc(t.speak)}</span></div></div>
-    <div class="status">${SYM.checkFill(28, "#FDE68A")}${esc(t.sent)}</div>
-    <div class="destwrap"><div class="destpill">${paperplaneLine(32, "#C4B5FD")}<span class="dest">${esc(t.destinations[0])}</span>${chevronUpDown(16, "#C4B5FD")}</div></div>
+      <div class="orb">${SYM.paperplane(58, "#fff")}<span class="orbtext">${esc(t.memoButton)}</span></div></div>
+    <div class="status">${SYM.checkFill(28, "#FDE68A")}${esc(t.savedAndSent)}</div>
+    <div class="destwrap"><div class="destlabel">${paperplaneLine(30, "#C4B5FD")}<span class="dest">${esc(t.destinationCount)}</span></div></div>
     ${pager(0)}</div>`,
-  /** 時計の履歴 (WatchHistoryView: 送る画面の下のページ。本文と「送り先 · 状態」) */
-  history: (t) => `<div class="ws">${appSky(416, 496, 26, 9)}${watchBar("")}<div class="ptitle">${esc(t.history)}</div>
+  /** 時計のメモの一覧 (WatchHistoryView: ホームの下のページ。本文と状態) */
+  memos: (t) => `<div class="ws">${appSky(416, 496, 26, 9)}${watchBar("")}<div class="ptitle">${esc(t.memosTitle)}</div>
     <div class="rows" style="top:140px">
-      ${[[0, 0, t.statusSent], [1, 2, t.statusPending], [2, 1, t.statusSent]].map(([s, d, st]) =>
-        `<div class="row"><b>${esc(t.spoken[s])}</b><small>${esc(t.destinations[d])} · ${esc(st)}</small></div>`).join("")}
+      ${[[t.spoken[0], "sent"], [t.reminderSpoken, "sent"], [t.spoken[1], "waiting"]].map(([text, kind]) =>
+        `<div class="row"><b>${esc(text)}</b>${summaryLine(t, kind)}</div>`).join("")}
     </div>${pager(1)}</div>`,
-  /** 送り先の選択 (WatchHomeView の送り先を押して開く DestinationChooser。iPhone で既定にした送り先の下に「既定」) */
-  destinations: (t) => `<div class="ws">${appSky(416, 496, 26, 13)}${watchBar(t.destinationsTitle, { back: true })}
+  /** 1 件のメモと連携ごとの状態 (WatchMemoDetailView) */
+  detail: (t) => `<div class="ws">${appSky(416, 496, 26, 13)}${watchBar(t.memosTitle, { back: true })}
     <div class="rows">
-      ${t.destinations.map((d, i) => `<div class="row pick"><div><b>${esc(d)}</b>${i === 0 ? `<small>${esc(bare(t.defaultMark))}</small>` : ""}</div>${i === 0 ? SYM.check(34, "#C4B5FD") : ""}</div>`).join("")}
+      <div class="plain"><b>${esc(t.spoken[0])}</b><small>${esc(t.date)}</small></div>
+      ${[t.destinations[0], t.destinations[2], t.markdownTarget].map((d) =>
+        `<div class="row dl"><b>${esc(d)}</b><small>${esc(t.status.done)}</small></div>`).join("")}
     </div></div>`,
   /** Siri の返事 (SendTextIntent の dialog)。Siri の画面なので背景は黒 */
   siri: (t) => `<div class="ws black">${watchBar("")}
@@ -181,7 +209,7 @@ export const watchScreens = {
 // 縮めても収まらないものは window.__watchOverflow に残し、index.mjs が生成を止める
 const WATCH_FIT = `<script>
   window.__watchOverflow = [];
-  document.querySelectorAll(".ws .status, .ws .destpill, .ws .ptitle, .ws .orbtext, .ws .title .tt").forEach(function (el) {
+  document.querySelectorAll(".ws .status, .ws .destlabel, .ws .ptitle, .ws .orbtext, .ws .title .tt").forEach(function (el) {
     var over = function () { return el.scrollWidth > el.clientWidth + 1; };
     var size = parseFloat(getComputedStyle(el).fontSize), min = size * 0.6;
     while (over() && size > min) { size -= 1; el.style.fontSize = size + "px"; }
@@ -196,9 +224,6 @@ const PHONE_CSS = `
   .ps > *:not(.appsky) { position: relative; }
   .ps .status { height: 54px; display: flex; align-items: center; justify-content: space-between; padding: 6px 34px 0 46px; font-weight: 600; font-size: 17px; }
   .ps .status .r { display: flex; gap: 6px; align-items: center; }
-  .ps .sheet { position: absolute !important; left: 0; right: 0; top: 40px; bottom: 0; border-radius: 38px 38px 0 0; overflow: hidden; }
-  .ps .sheet .appsky { position: absolute; inset: 0; }
-  .ps .sheet > *:not(.appsky) { position: relative; }
   .ps .nav { height: 72px; display: flex; align-items: center; justify-content: space-between; padding: 8px 10px 0; }
   .ps .nav .t { font-weight: 600; font-size: 17px; }
   .ps .glass { height: 46px; padding: 0 18px; border-radius: 23px; background: rgba(120,110,170,.38); box-shadow: inset 0 0 0 1px rgba(255,255,255,.12); display: flex; align-items: center; font-size: 17px; font-weight: 600; color: #C4B5FD; }
@@ -212,6 +237,22 @@ const PHONE_CSS = `
   .ps .accent { color: #C4B5FD; }
   .ps .mono { font-family: ui-monospace, "SF Mono", Menlo, monospace; font-size: 13px; white-space: pre; line-height: 1.5; }
   .ps .toggle { width: 51px; height: 31px; border-radius: 16px; background: #8B5CF6; position: relative; flex: none; }
+  .ps .toggle.off { background: rgba(120,120,128,.36); }
+  .ps .toggle.off::after { right: auto; left: 2px; }
+  .ps .round { width: 46px; padding: 0; justify-content: center; }
+  .ps .large { font-size: 34px; font-weight: 700; padding: 0 26px 4px; }
+  .ps .hl { font-weight: 600; font-size: 17px; }
+  .ps .cap { font-size: 12.5px; color: rgba(235,235,245,.6); margin-top: 3px; line-height: 1.35; }
+  .ps .cap.lav { color: rgba(196,181,253,.75); }
+  .ps .cell.sub { font-size: 12.5px; color: rgba(235,235,245,.6); min-height: 40px; padding-top: 6px; }
+  .ps .cell.sub::before { display: none; }
+  .ps .ok { font-size: 12.5px; color: #4ADE80; }
+  .ps .badge { width: 34px; height: 34px; border-radius: 50%; flex: none; display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(45deg,#8B5CF6,#C4B5FD); box-shadow: 0 0 8px rgba(139,92,246,.6); }
+  .ps .tabbar { position: absolute !important; left: 22px; right: 22px; bottom: 26px; height: 62px; border-radius: 31px; display: flex; align-items: center; padding: 0 6px;
+    background: rgba(40,32,80,.82); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14), 0 8px 24px rgba(0,0,0,.35); }
+  .ps .tab { flex: 1; height: 52px; border-radius: 26px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 10px; font-weight: 600; white-space: nowrap; overflow: hidden; }
+  .ps .tab.on { background: rgba(255,255,255,.12); color: #C4B5FD; }
   .ps .toggle::after { content: ""; position: absolute; right: 2px; top: 2px; width: 27px; height: 27px; border-radius: 50%; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,.2); }
 `;
 const statusBar = () => `<div class="status"><span>9:41</span><span class="r" style="fill:#fff">
@@ -220,32 +261,54 @@ const statusBar = () => `<div class="status"><span>9:41</span><span class="r" st
   <svg width="27" height="13" viewBox="0 0 27 13"><rect x=".5" y=".5" width="23" height="12" rx="3.5" fill="none" stroke="#fff" opacity=".4"/><rect x="2" y="2" width="20" height="9" rx="2"/><path d="M25 4.5v4a2 2 0 0 0 0-4z" opacity=".4"/></svg>
 </span></div>`;
 
+/** 下のタブ (WatchHookApp: 入力 / メモ / 連携 / 使い方)。iOS 26 の浮いたガラスのタブ */
+const tabBar = (t, active) => `<div class="tabbar">${t.tabs.map((label, i) =>
+  `<div class="tab${i === active ? " on" : ""}">${icon(["pencil", "note", "connect", "book"][i], 24, i === active ? "#C4B5FD" : "#fff", 2)}<span>${esc(label)}</span></div>`).join("")}</div>`;
+/** 丸い光るバッジ (DestinationListView の IntegrationRow / KindBadge) */
+const badge = (name) => `<span class="badge">${icon(name, 18, "#fff", 2.4)}</span>`;
+
 export const phoneScreens = {
-  /** 送り先の編集 (DestinationEditView のシート。自由に設定する webhook・認証ヘッダ付き) */
-  edit: (t) => {
-    const e = t.edit;
-    return `<div class="ps" style="background:#06070f">${statusBar()}
-    <div class="sheet">${appSky(402, 834, 46, 3)}
-    <div class="nav"><span class="glass">${esc(e.cancel)}</span><span class="t">${esc(e.name)}</span><span class="glass">${esc(e.save)}</span></div>
-    <div class="sec"><div class="sh">${esc(e.nameLabel)}</div><div class="grp"><div class="cell">${esc(e.name)}</div></div></div>
-    <div class="sec"><div class="sh">URL</div><div class="grp"><div class="cell">${esc(e.url)}</div></div><div class="sf">${esc(e.urlFooter)}</div></div>
-    <div class="sec"><div class="sh">${esc(e.request)}</div><div class="grp">
-      <div class="cell"><span>${esc(e.method)}</span><span class="v">POST ${SYM.updown(14, "#C4B5FD")}</span></div>
-      <div class="cell"><span>${esc(e.bodyFormat)}</span><span class="v">${esc(e.bodyFormatValue)} ${SYM.updown(14, "#C4B5FD")}</span></div>
+  /** メモの詳細 (MemoDetailView: 本文・入力した端末と日時・送り先と連携ごとの状態・後から送る / コピー / 共有 / 削除) */
+  memoDetail: (t) => {
+    const d = t.detail;
+    const row = (sym, name, sub) => `<div class="cell" style="display:block">
+      <div style="display:flex;align-items:center;gap:10px">${icon(sym, 20, "#FDE68A", 2)}<span style="flex:1">${esc(name)}</span><span class="ok">${esc(t.status.done)}</span></div>
+      ${sub ? `<div class="cap">${esc(sub)}</div>` : ""}</div>`;
+    const act = (sym, label, red) => `<div class="cell" style="justify-content:flex-start;gap:12px${red ? ";color:#FF6961" : ";color:#C4B5FD"}">${icon(sym, 20, red ? "#FF6961" : "#C4B5FD", 2)}${esc(label)}</div>`;
+    return `<div class="ps">${appSky(402, 874, 46, 3)}${statusBar()}
+    <div class="nav"><span class="glass round">${SYM.chevronLeft(20, "#fff")}</span><span class="t">${esc(t.memosTitle)}</span><span style="width:46px"></span></div>
+    <div class="sec"><div class="grp">
+      <div class="cell">${esc(t.reminderSpoken)}</div>
+      <div class="cell sub"><span style="display:flex;align-items:center;gap:6px">${icon("watch", 16, "rgba(235,235,245,.6)", 2)}Apple Watch</span><span>${esc(t.date)}</span></div>
     </div></div>
-    <div class="sec"><div class="sh">${esc(e.headers)}</div><div class="grp">
-      <div class="cell" style="display:block">
-        <div style="font-weight:700;font-size:15px">Authorization</div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:8px"><span style="letter-spacing:2px">••••••••••••••••</span>${SYM.eye(20, "#C4B5FD")}</div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-top:10px;font-size:12px"><span>${esc(e.hideSecret)}</span><span class="toggle"></span></div>
-      </div>
-      <div class="cell accent">${esc(e.addHeader)}</div>
-    </div><div class="sf">${esc(e.headersFooter)}</div></div>
-    <div class="sec"><div class="sh">${esc(e.body)}</div><div class="grp">
-      <div class="cell" style="min-height:120px;align-items:flex-start"><span class="mono">${esc(e.bodyTemplate)}</span></div>
+    <div class="sec"><div class="sh">${esc(d.deliveries)}</div><div class="grp">
+      ${row("checklist", t.reminderTarget)}
+      ${row("plane", t.destinations[0], "HTTP 200")}
+      ${row("plane", t.destinations[2], "HTTP 200")}
+      ${row("doc", t.markdownTarget, t.markdownFile)}
     </div></div>
-    <div class="sec" style="margin-top:20px"><div class="grp"><div class="cell">${esc(e.test)}</div></div></div>
-    </div>
+    <div class="sec" style="margin-top:20px"><div class="grp">
+      ${act("plane", d.sendTo)}${act("copy", d.copy)}${act("share", d.share)}${act("trash", d.delete, true)}
+    </div></div>
+    ${tabBar(t, 1)}
+  </div>`;
+  },
+  /** 「連携」タブ (DestinationListView: iPhone に保存するリマインダー・Markdown と、webhook の送り先。スイッチでオン / オフ) */
+  integrations: (t) => {
+    const g = t.integrations;
+    const integ = (sym, title, detail) => `<div class="cell" style="justify-content:flex-start;gap:12px">${badge(sym)}<div style="flex:1;min-width:0"><div class="hl">${esc(title)}</div><div class="cap lav">${esc(detail)}</div></div>${SYM.chevronRight(14, "rgba(235,235,245,.35)")}</div>`;
+    const dest = (i, on) => `<div class="cell" style="justify-content:flex-start;gap:12px">${badge(["hash", "chat", "braces", "braces"][i])}<div style="flex:1;min-width:0"><div class="hl">${esc(t.destinations[i])}</div><div class="cap lav">${esc(g.kinds[i])}</div></div><span class="toggle${on ? "" : " off"}"></span></div>`;
+    return `<div class="ps">${appSky(402, 874, 46, 29)}${statusBar()}
+    <div class="nav"><span></span><span class="glass round">${SYM.plus(20, "#fff")}</span></div>
+    <div class="large">${esc(g.title)}</div>
+    <div class="sec"><div class="sh">${esc(g.savedOnPhone)}</div><div class="grp">
+      ${integ("checklist", g.reminders, g.reminderDetail)}
+      ${integ("doc", g.markdown, g.markdownDetail)}
+    </div></div>
+    <div class="sec"><div class="sh">${esc(g.webhooks)}</div><div class="grp">
+      ${[0, 1, 2, 3].map((i) => dest(i, i !== 3)).join("")}
+    </div><div class="sf">${esc(g.webhooksFooter)}</div></div>
+    ${tabBar(t, 2)}
   </div>`;
   },
 };
@@ -326,6 +389,12 @@ const SLIDE_CSS = `
   .card pre { margin-top: 26px; font-size: 44px; line-height: 1.45; font-family: inherit; }
   .card .key { color: #C4B5FD; } .card .str { color: #FDE68A; }
   .card .res { position: absolute; right: 50px; top: 44px; display: flex; align-items: center; gap: 12px; font-size: 38px; font-weight: 700; color: #4ADE80; }
+  .card.fan { font-family: -apple-system, "SF Pro Text", var(--cjk), sans-serif; padding: 40px 56px 30px; }
+  .card.fan .memo { display: flex; align-items: center; gap: 22px; font-size: 48px; font-weight: 700; padding-bottom: 26px; margin-bottom: 8px; border-bottom: 2px solid rgba(196,181,253,.22); white-space: nowrap; }
+  .card.fan .drow { display: flex; align-items: center; gap: 22px; font-size: 42px; padding: 14px 0; white-space: nowrap; }
+  .card.fan .dn { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+  .card.fan .dok { display: flex; align-items: center; gap: 10px; color: #4ADE80; font-weight: 700; font-size: 38px; }
+  .card svg { flex: none; }
   .grid { position: absolute; left: 80px; right: 80px; z-index: 5; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
   .grid .cell { border-radius: 64px; padding: 54px 20px 40px; height: 400px; text-align: center; background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 2px rgba(255,255,255,.14); }
   .grid .tile { width: 132px; height: 132px; border-radius: 38px; margin: 0 auto 30px; display: flex; align-items: center; justify-content: center; background: rgba(196,181,253,.16); }
@@ -357,7 +426,7 @@ const FIT = `<script>
   });
 </script>`;
 
-const CHIP_ICONS = { hero: ["hash", "chat", "code"], siri: ["siri", "tap", "watch"], destination: ["link", "hash", "chat"], direct: ["wifi", "antenna"] };
+const CHIP_ICONS = { hero: ["note", "link", "checklist"], siri: ["siri", "tap", "watch"], integrations: ["link", "doc", "book"] };
 const head = (c, key, top) => `<div class="head" style="top:${top}px"><h1>${lines(c.h1)}</h1>
   ${c.chips ? `<div class="chips">${c.chips.map((label, i) => `<span class="chip">${icon(CHIP_ICONS[key][i], 62, "#FDE68A")}${esc(label)}</span>`).join("")}</div>` : ""}</div>`;
 const closing = (s) => `<div class="fade"></div><div class="closing">${lines(s)}</div>`;
@@ -370,16 +439,18 @@ export function iphoneSlide(key, copy, lang = "ja") {
   const c = copy.iphone[key];
   const t = copy.screen;
   switch (key) {
-    case "hero":
+    case "hero": {
+      // 話す → メモに保存 → オンにした連携へ。カードは送り先・連携ごとの結果 (MemoDetailView の「送り先・連携」と同じ並び)
+      const done = (sym, name) => `<div class="drow">${icon(sym, 46, "#FDE68A", 2.2)}<span class="dn">${esc(name)}</span><span class="dok">${icon("check", 40, "#4ADE80", 2.6)}${esc(t.status.done)}</span></div>`;
       return page(`${head(c, key, 200)}
         ${watchDevice(watchScreens.home(t), { width: 700, top: 930 })}
         <div class="bubble me" style="top:860px;left:70px">${icon("mic", 50, "#8B5CF6", 2.4)} ${esc(t.spoken[0])}</div>
-        <div class="card" style="top:1930px">
-          <div class="req"><span class="verb">POST</span>hooks.slack.com/…</div>
-          <div class="res">${icon("check", 44, "#4ADE80", 2.6)}200</div>
-          <pre>{ <span class="key">"text"</span>: <span class="str">"${esc(t.spoken[0])}"</span> }</pre>
+        <div class="card fan" style="top:1930px">
+          <div class="memo">${icon("note", 48, "#C4B5FD", 2.2)}<span>${esc(t.spoken[0])}</span></div>
+          ${done("plane", t.destinations[0])}${done("plane", t.destinations[2])}${done("doc", t.markdownTarget)}
         </div>
         ${closing(c.closing)}`, 7, lang);
+    }
     case "siri":
       return page(`${head(c, key, 200)}
         ${watchDevice(watchScreens.siri(t), { width: 640, top: 900 })}
@@ -387,22 +458,23 @@ export function iphoneSlide(key, copy, lang = "ja") {
         <div class="bubble siri" style="top:2010px;left:90px">${esc(t.siriQuestion)}</div>
         <div class="bubble me" style="top:2190px;right:90px">${esc(t.quote[0] + t.spoken[0] + t.quote[1])}</div>
         ${closing(c.closing)}`, 11, lang);
-    case "destination":
+    case "reminder":
       return page(`${head(c, key, 200)}
-        ${iphoneDevice(phoneScreens.edit(t), 800)}
-        <div class="float warm" style="top:1560px;right:30px">${icon("key", 54, "#1b1340", 2.4)}${esc(c.floats[0])}</div>
-        <div class="float violet" style="top:2040px;left:30px">${icon("braces", 54, "#5b21b6", 2.4)}${esc(c.floats[1])}</div>
+        <div class="bubble me" style="top:600px;left:70px">${icon("mic", 50, "#8B5CF6", 2.4)} ${esc(t.reminderSpoken)}</div>
+        ${iphoneDevice(phoneScreens.memoDetail(t), 800)}
+        <div class="float warm" style="top:1250px;right:30px">${icon("checklist", 54, "#1b1340", 2.4)}${esc(c.floats[0])}</div>
+        <div class="float violet" style="top:1835px;left:30px">${icon("phone", 54, "#5b21b6", 2.4)}${esc(c.floats[1])}</div>
+        ${closing(c.closing)}`, 19, lang);
+    case "integrations":
+      return page(`${head(c, key, 200)}
+        ${iphoneDevice(phoneScreens.integrations(t), 800)}
+        <div class="float warm" style="top:950px;left:30px">${icon("doc", 54, "#1b1340", 2.4)}${esc(c.floats[0])}</div>
+        <div class="float violet" style="top:2290px;left:30px">${icon("plane", 54, "#5b21b6", 2.4)}${esc(c.floats[1])}</div>
         ${closing(c.closing)}`, 23, lang);
-    case "direct":
-      return page(`${head(c, key, 200)}
-        ${watchDevice(watchScreens.history(t), { width: 720, top: 880 })}
-        <div class="float warm" style="top:1920px;left:90px">${icon("inbox", 54, "#1b1340", 2.4)}${esc(c.floats[0])}</div>
-        <div class="float violet" style="top:2100px;right:90px">${icon("retry", 54, "#5b21b6", 2.4)}${esc(c.floats[1])}</div>
-        ${closing(c.closing)}`, 31, lang);
     case "more":
       return page(`${head(c, key, 200)}
         <img class="appicon" style="top:640px" src="data:image/png;base64,${ICON_PNG}">
-        <div class="grid" style="top:960px">${c.cells.map((label, i) => `<div class="cell"><div class="tile">${icon(["key", "link", "watch", "clock", "check", "id"][i], 78, "#FDE68A", 2)}</div><b>${esc(label).replace(/\n/g, "<br>")}</b></div>`).join("")}</div>
+        <div class="grid" style="top:960px">${c.cells.map((label, i) => `<div class="cell"><div class="tile">${icon(["inbox", "key", "github", "retry", "shield", "globe"][i], 78, "#FDE68A", 2)}</div><b>${esc(label).replace(/\n/g, "<br>")}</b></div>`).join("")}</div>
         ${closing(c.closing)}`, 43, lang);
     default:
       throw new Error(`unknown slide ${key}`);
@@ -415,5 +487,5 @@ export function watchSlide(key, copy, lang = "ja") {
 <body>${watchScreens[key](copy.screen)}${WATCH_FIT}</body></html>`;
 }
 
-export const IPHONE_SLIDES = ["hero", "siri", "destination", "direct", "more"];
-export const WATCH_SLIDES = ["home", "history", "destinations"];
+export const IPHONE_SLIDES = ["hero", "siri", "reminder", "integrations", "more"];
+export const WATCH_SLIDES = ["home", "memos", "detail"];

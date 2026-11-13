@@ -24,7 +24,7 @@ test("未定義の言語は英語の規則で見る", () => {
 test("collectTexts はスクショに出る文言をすべて拾う", () => {
   const texts = collectTexts(COPY.ja);
   assert.ok(texts.some((t) => t.text.includes("webhook")));
-  assert.ok(texts.some((t) => t.path === "screen.edit.test"));
+  assert.ok(texts.some((t) => t.path === "screen.detail.delete"));
 });
 
 test("いまの文言に禁止語が無い", () => {

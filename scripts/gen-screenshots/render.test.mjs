@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { COPY } from "./copy.mjs";
+import { COPY, shapeErrors } from "./copy.mjs";
 import { IPHONE_SLIDES, WATCH_SLIDES, iphoneSlide, watchSlide } from "./render.mjs";
 
 // 文言をすべて英字に置き換えたコピー (英語を足したときの代わり)
@@ -12,4 +12,8 @@ test("画面に出す文字はすべて copy.mjs から来る (日本語が残�
   const visible = (html) => html.replace(/<style>[\s\S]*?<\/style>/g, "").replace(/<script>[\s\S]*?<\/script>/g, "").replace(/<[^>]+>/g, " ");
   for (const key of IPHONE_SLIDES) assert.doesNotMatch(visible(iphoneSlide(key, copy)), /[　-ヿ一-鿿＀-￯]/, key);
   for (const key of WATCH_SLIDES) assert.doesNotMatch(visible(watchSlide(key, copy)), /[　-ヿ一-鿿＀-￯]/, key);
+});
+
+test("ja と en は同じ形 (ほかの言語は ja から訳し直すまで古い形のまま)", () => {
+  assert.deepEqual(shapeErrors("en"), []);
 });

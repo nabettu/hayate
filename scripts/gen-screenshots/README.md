@@ -5,17 +5,17 @@ HTML で描いて Playwright (インストール済みの Google Chrome、`chann
 
 ```sh
 cd scripts/gen-screenshots && npm ci
-node index.mjs        # 全言語 → <repo>/screenshots/app-store/<lang>/
-node index.mjs ja     # 一部の言語だけ
-npm test              # 禁止語のチェックのテスト
+node index.mjs        # 全言語 → <repo>/screenshots/app-store/<lang>/ (ja と同じ形でない言語があると止まる)
+node index.mjs ja en  # 一部の言語だけ (2026-11-13 の作り直しのあと、通るのは ja / en だけ)
+npm test              # 禁止語のチェック・en が ja と同じ形か
 ```
 
 生成物 (`/screenshots/`) は git に入れない。入れるのは文言・テンプレート・スクリプトだけ。
 
 | 出力 | サイズ | 中身 |
 |---|---|---|
-| `iphone-01_hero` 〜 `iphone-05_more` | 1320x2868 (6.9") | 見出し + 端末 (時計 / iPhone) + 吹き出し + 下の一言。5 枚目は「他にもいろいろ」 |
-| `watch-01_home` 〜 `watch-03_destinations` | 416x496 (Series 10/11 46mm) | 時計の画面だけ (App Store が枠を付けて見せるので文字は載せない) |
+| `iphone-01_hero` / `02_siri` / `03_reminder` / `04_integrations` / `05_more` | 1320x2868 (6.9") | 見出し + 端末 (時計 / iPhone) + 吹き出し + 下の一言。話す → メモ → 連携 / Siri / 合図でリマインダー / 複数の送り先と Markdown / 他にもいろいろ |
+| `watch-01_home` / `02_memos` / `03_detail` | 416x496 (Series 10/11 46mm) | 時計の画面だけ (App Store が枠を付けて見せるので文字は載せない)。メモのボタン / メモの一覧 / 連携ごとの状態 |
 
 6.9" だけ作る。ASC が小さい iPhone に流用する。Watch も 1 サイズで足りる。
 
@@ -23,10 +23,10 @@ npm test              # 禁止語のチェックのテスト
 
 | ファイル | 役割 |
 |---|---|
-| `copy.mjs` | 文言 (言語ごと)。見出しの `*...*` が強調、`\n` で改行。画面の中の例 (送り先名・話した内容) もここ |
+| `copy.mjs` / `copy/<lang>.json` | 文言 (言語ごと)。見出しの `*...*` が強調、`\n` で改行。画面の中の例 (送り先名・話した内容) もここ。形は `copy/ja.json` が正で、違う言語は `index.mjs` が止める |
 | `render.mjs` | HTML。背景 (夜空)・時計 / iPhone の枠・アプリの画面・5 枚の構図 |
 | `validate.mjs` | 価格・順位・誇大の語 (Guideline 2.3.7) を探す。見つかったら生成を止める |
-| `index.mjs` | 入口。見出しが縮みすぎた・要素が重なったときも止める (画像は書き出すので見て直す) |
+| `index.mjs` | 入口。見出しが縮みすぎた・要素が重なったときも止める (画像は書き出すので見て直す)。書き出す前に、その言語の前の画像 (`iphone-*` / `watch-*`) を消す (名前を変えたときに古い画像が一緒に上がらないように) |
 
 ## 英語を足すとき
 
@@ -36,13 +36,14 @@ npm test              # 禁止語のチェックのテスト
 
 ## 画面を変えたとき
 
-`render.mjs` の `watchScreens` / `phoneScreens` は、実際の SwiftUI の画面 (`WatchHookWatch/WatchHomeView.swift`・`WatchHook/DestinationEditView.swift`・`Shared/Cosmos.swift` の色) を見て描いている。
+`render.mjs` の `watchScreens` / `phoneScreens` は、実際の SwiftUI の画面 (`WatchHookWatch/WatchHomeView.swift` のホーム・メモの一覧・メモの詳細、`WatchHook/MemoListView.swift` のメモの詳細、`WatchHook/DestinationListView.swift` の「連携」、`WatchHook/WatchHookApp.swift` のタブ、`Shared/Cosmos.swift` の色) を見て描いている。
 アプリの見た目を変えたら、シミュレータで今の画面を一度見て、ここも合わせる (2026-11-10 にアプリが Hayate の夜空の見た目に変わり、描き直した)。
 
 ## 注意
 
-- 文言はアプリが実際にすることだけを言う。再送は「次に開いたとき」(裏での自動再送はまだ無い)、お試し前・終了後は送信も再送も止まる (`docs/BILLING.md`)
-- Slack・Discord は名前だけ出し、ロゴは使わない (他社の商標)
+- 文言はアプリが実際にすることだけを言う。再送は「次に開いたとき」(裏での自動再送はまだ無い)。リマインダー・Markdown に書くのは iPhone (時計からは iPhone に渡す)。webhook は時計で入力した分は時計から直接送る
+- 2026-11-13 に無料・OSS・メモ保存の方針 (`docs/FREE_OSS.md`) に合わせて作り直した。「無料」はスクショ・サブタイトル・プロモーション・キーワードに書かない (Guideline 2.3.7。スクショは `validate.mjs` が止める。ストアの文言は止める仕組みが無いので目で見る)。説明文の「無料・オープンソース」の節だけで言う。「オープンソース」「広告も追跡もなし」はスクショに出してよい
+- Slack・Discord・Notion・Obsidian などは名前だけ出し、ロゴは使わない (他社の商標)
 - 例文の数字にも禁止語の規則が当たる (「980 円」が `0円` に当たった)
 
 ## アップロード (asc)
