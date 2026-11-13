@@ -78,6 +78,10 @@
             "state" : "translated",
             "values" : [
               "Send with ${applicationName}",
+              "Memo with ${applicationName}",
+              "Take a memo in ${applicationName}",
+              "Note in ${applicationName}",
+              "Record with ${applicationName}",
               "Send using ${applicationName}",
               "Send to ${applicationName}"
             ]
@@ -187,6 +191,12 @@
             "state" : "new",
             "values" : [
               "${applicationName}で送って",
+              "${applicationName}でメモ",
+              "${applicationName}でメモして",
+              "${applicationName}にメモ",
+              "${applicationName}で記録",
+              "${applicationName}に記録して",
+              "${applicationName}を使ってメモ",
               "${applicationName}で送る",
               "${applicationName}に送って"
             ]

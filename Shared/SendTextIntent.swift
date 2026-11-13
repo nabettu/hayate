@@ -44,7 +44,15 @@ struct WatchHookShortcuts: AppShortcutsProvider {
         AppShortcut(
             intent: SendTextIntent(),
             phrases: [
+                // 「〜で送って」は Siri 標準のメッセージ送信 (「誰に送信しますか？」) に取られた (2026-11-13 実機)。
+                // どれが通るかを実機で確かめるため、候補を並べている。決まったら絞って全言語・使い方・ストアを直す
                 "\(.applicationName)で送って",
+                "\(.applicationName)でメモ",
+                "\(.applicationName)でメモして",
+                "\(.applicationName)にメモ",
+                "\(.applicationName)で記録",
+                "\(.applicationName)に記録して",
+                "\(.applicationName)を使ってメモ",
                 "\(.applicationName)で送る",
                 "\(.applicationName)に送って",
             ],
