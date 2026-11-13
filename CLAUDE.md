@@ -40,3 +40,6 @@ Apple Watch の音声入力を webhook へ送るアプリ。画面に出る名�
   確かめ方: `security cms -D -i <.app>/embedded.mobileprovision | grep 00008310-0008A21821D2601E`
 - **実機の iPhone へは `roamrun` で入れる** (2026-11-12。Tailscale 経由なので USB も同じ Wi-Fi も要らない)。上のビルドの .app を `roamrun up iphon15pro -d` → `roamrun install iphon15pro <.app>` → `roamrun down iphon15pro`。
   iPhone がロック中だと断られる (ロックを解除して画面をつけたままにしてもらう)。`xcrun devicectl` だと Mac の近くに無い iPhone は unavailable のままで入らない
+- **TestFlight へは `scripts/testflight.sh [build番号]` で上げる** (2026-11-13 に 1.0 (1) を初回アップロード)。設定は gitignore の `scripts/testflight.env` (中身の説明はスクリプトの先頭。値は `~/work/docs/asc-api-keys.md` と locktodo の `scripts/appstore/.env`)。
+  export は manual signing で、プロファイル `Hayate AppStore App / WatchApp / WatchWidget` (IOS_APP_STORE、証明書は iPhone Distribution: CROSSEDGE。秘密鍵は専用 keychain `lockdo-build.keychain` にあり、スクリプトがアンロックする) を名前で指す。API キーにクラウド署名の権限が無いので automatic にはしない。証明書を作り直したらこの 3 つも `asc profiles create` で作り直す。
+  build 番号は既定で `project.yml` の `CURRENT_PROJECT_VERSION`。上げたら次の番号に進めてコミットしておく
