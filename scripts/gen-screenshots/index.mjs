@@ -14,6 +14,7 @@ import * as path from "node:path";
 import { chromium } from "playwright";
 import { COPY, LANGS, shapeErrors } from "./copy.mjs";
 import { assertNoForbidden } from "./validate.mjs";
+import { takeLock } from "./lock.mjs";
 import { IPHONE, IPHONE_SLIDES, ROOT, WATCH, WATCH_SLIDES, iphoneSlide, watchSlide } from "./render.mjs";
 
 const OUT = path.join(ROOT, "screenshots/app-store");
@@ -27,6 +28,9 @@ for (const lang of langs) {
   if (shape.length) throw new Error(`copy/${lang}.json が copy/ja.json と同じ形でない (ja から訳し直す。scripts/l10n/README.md):\n  ${shape.slice(0, 5).join("\n  ")}`);
   assertNoForbidden(lang, COPY[lang]);
 }
+
+// 消して書き直している間に、別の生成やアップロードが同じ画像を触らないように (lock.mjs)
+await takeLock();
 
 // インストール済みの Google Chrome を使う (Playwright のブラウザを落とさない。autofill と同じ)
 const browser = await chromium.launch({ channel: "chrome" });
