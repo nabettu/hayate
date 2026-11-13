@@ -9,8 +9,8 @@ settings:
   base:
     DEVELOPMENT_TEAM: 2KDR72P2RA
     SWIFT_VERSION: "6.0"
-    MARKETING_VERSION: "0.1.0"
-    CURRENT_PROJECT_VERSION: "1"
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "2"
     CODE_SIGN_STYLE: Automatic
     ENABLE_USER_SCRIPT_SANDBOXING: YES
     # String Catalog (Localizable.xcstrings) に、Text 以外 (Label・Button・String(localized:) など) の文言もコンパイラから書き出す

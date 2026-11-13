@@ -34,3 +34,5 @@ Apple Watch の音声入力を webhook へ送るアプリ。画面に出る名�
 
 - **WatchConnectivity などの完了ハンドラを `Task { @MainActor in ... }` の中で作らない**。MainActor 所属とみなされ、OS のキューから呼ばれた瞬間に Swift 6 の実行時チェックで落ちる (`dispatch_assert_queue`)。nonisolated の関数でクロージャを作り、中で `Task { @MainActor in }` に移る
 - **実機の時計に Watch アプリが入らないときは、署名のプロファイルに時計が入っているかを見る**。Xcode に Apple ID のログインが無いと、`-allowProvisioningUpdates` だけでは時計を登録する前の古い汎用プロファイルを使い回し、時計にだけ入らない。App Store Connect の API キー (`-authenticationKeyPath` / `-authenticationKeyID` / `-authenticationKeyIssuerID`) を付けて取り直させる。確かめ方: `security cms -D -i <.app>/embedded.mobileprovision` に時計の UDID があるか
+- **TestFlight へは `scripts/testflight.sh [build番号]` で上げる**。設定は gitignore した `scripts/testflight.env` (中身の説明はスクリプトの先頭)。export は manual signing で、App Store 用のプロファイル 3 つ (iPhone・Watch・ウィジェット) を名前で指す (API キーにクラウド署名の権限が無いと automatic では書き出せない)。証明書を作り直したらプロファイルも作り直す。
+  build 番号は既定で `project.yml` の `CURRENT_PROJECT_VERSION`。上げたら次の番号に進めてコミットしておく
