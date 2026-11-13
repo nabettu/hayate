@@ -273,8 +273,7 @@ export const phoneScreens = {
     const d = t.detail;
     const row = (sym, name, sub) => `<div class="cell" style="display:block">
       <div style="display:flex;align-items:center;gap:10px">${icon(sym, 20, "#FDE68A", 2)}<span style="flex:1">${esc(name)}</span><span class="ok">${esc(t.status.done)}</span></div>
-      ${sub ? `<div class="cap">${esc(sub)}</div>` : ""}</div>`;
-    const act = (sym, label, red) => `<div class="cell" style="justify-content:flex-start;gap:12px${red ? ";color:#FF6961" : ";color:#C4B5FD"}">${icon(sym, 20, red ? "#FF6961" : "#C4B5FD", 2)}${esc(label)}</div>`;
+      ${[sub ?? []].flat().map((line) => `<div class="cap">${esc(line)}</div>`).join("")}</div>`;
     return `<div class="ps">${appSky(402, 874, 46, 3)}${statusBar()}
     <div class="nav"><span class="glass round">${SYM.chevronLeft(20, "#fff")}</span><span class="t">${esc(t.memosTitle)}</span><span style="width:46px"></span></div>
     <div class="sec"><div class="grp">
@@ -282,13 +281,11 @@ export const phoneScreens = {
       <div class="cell sub"><span style="display:flex;align-items:center;gap:6px">${icon("watch", 16, "rgba(235,235,245,.6)", 2)}Apple Watch</span><span>${esc(t.date)}</span></div>
     </div></div>
     <div class="sec"><div class="sh">${esc(d.deliveries)}</div><div class="grp">
-      ${t.destinations.slice(0, 3).map((name) => row("plane", name, d.fromWatch)).join("")}
+      ${t.destinations.slice(0, 3).map((name) => row("plane", name, ["HTTP 200", d.fromWatch])).join("")}
       ${row("checklist", t.reminderTarget)}
       ${row("doc", t.markdownTarget, t.markdownFile)}
     </div></div>
-    <div class="sec" style="margin-top:20px"><div class="grp">
-      ${act("plane", d.sendTo)}${act("copy", d.copy)}${act("share", d.share)}${act("trash", d.delete, true)}
-    </div></div>
+    <!-- 後から送る・コピー・共有・削除はこの下 (スクロールした先)。吹き出しと重ならないよう描かない -->
     ${tabBar(t, 1)}
   </div>`;
   },
@@ -462,7 +459,7 @@ export function iphoneSlide(key, copy, lang = "ja") {
         <div class="bubble me" style="top:600px;left:70px">${icon("mic", 50, "#8B5CF6", 2.4)} ${esc(t.reminderSpoken)}</div>
         ${iphoneDevice(phoneScreens.memoDetail(t), 800)}
         <div class="float warm" style="top:1250px;right:30px">${icon("checklist", 54, "#1b1340", 2.4)}${esc(c.floats[0])}</div>
-        <div class="float violet" style="top:1835px;left:30px">${icon("phone", 54, "#5b21b6", 2.4)}${esc(c.floats[1])}</div>
+        <div class="float violet" style="top:2235px;left:30px">${icon("phone", 54, "#5b21b6", 2.4)}${esc(c.floats[1])}</div>
         ${closing(c.closing)}`, 19, lang);
     case "integrations":
       return page(`${head(c, key, 200)}
