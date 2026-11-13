@@ -14,13 +14,15 @@
 #   ASC_KEY_PATH        同じキーの .p8 のパス (例: ~/.appstoreconnect/private_keys/AuthKey_XXXX.p8)
 #   SIGNING_KEYCHAIN       (任意) 配布用の証明書を置いた keychain の名前。指定するとアンロックする
 #   SIGNING_KEYCHAIN_PASS  (任意) その keychain のパスワード
+#   BUILD_WRAPPER       (任意) xcodebuild の前に付けるコマンド (同時に走るビルドの数を絞るラッパーなど)。
+#                       別のマシンへビルドを回すものは、archive / export をこの Mac で走らせるものに限る
 #
 # 署名の前提:
 #   - export は manual signing。API キーにはクラウド署名の権限が無く、automatic だと export で落ちるため。
 #   - 配布用の証明書 (iPhone Distribution / Apple Distribution) の秘密鍵がこの Mac の keychain にあること。
 #   - 3 つの Bundle ID それぞれに App Store 用のプロファイルを、下の PROFILE_* の名前で発行しておく。
 #     プロファイルはその証明書で作る。手元に無ければ -allowProvisioningUpdates と API キーで Xcode が取ってくる。
-#   - 署名の鍵がある Mac で直接走らせる (別のマシンへビルドを回すラッパーを通さない)。
+#   - 署名の鍵がある Mac で走らせる。
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -42,7 +44,7 @@ if [ -f "$ENVFILE" ]; then
   while IFS='=' read -r k v || [ -n "$k" ]; do
     k="${k%$'\r'}"; v="${v%$'\r'}"
     case "$k" in
-      ASC_KEY_ID|ASC_ISSUER_ID|ASC_KEY_PATH|SIGNING_KEYCHAIN|SIGNING_KEYCHAIN_PASS)
+      ASC_KEY_ID|ASC_ISSUER_ID|ASC_KEY_PATH|SIGNING_KEYCHAIN|SIGNING_KEYCHAIN_PASS|BUILD_WRAPPER)
         if [ -z "${!k:-}" ]; then export "$k=$v"; fi ;;
       ''|\#*) ;;
       *) echo "testflight.env の知らない名前を無視する: $k" >&2 ;;
@@ -54,6 +56,8 @@ fi
 : "${ASC_KEY_PATH:?ASC_KEY_PATH を設定する}"
 ASC_KEY_PATH="${ASC_KEY_PATH/#\~/$HOME}"
 [ -f "$ASC_KEY_PATH" ] || { echo "API キーが見つからない: $ASC_KEY_PATH" >&2; exit 1; }
+WRAP=()
+if [ -n "${BUILD_WRAPPER:-}" ]; then WRAP=("${BUILD_WRAPPER/#\~/$HOME}"); fi
 AUTH_ARGS=(-allowProvisioningUpdates -authenticationKeyPath "$ASC_KEY_PATH" -authenticationKeyID "$ASC_KEY_ID" -authenticationKeyIssuerID "$ASC_ISSUER_ID")
 
 MARKETING=$(sed -n 's/^ *MARKETING_VERSION: *"\{0,1\}\([^"]*\)"\{0,1\}$/\1/p' project.yml | head -1)
@@ -114,7 +118,7 @@ cat > "$OUT/ExportOptions.plist" <<EOF
 EOF
 
 echo "== archive (ログ: $OUT/archive.log)"
-if ! xcodebuild archive \
+if ! ${WRAP[@]+"${WRAP[@]}"} xcodebuild archive \
   -project "$PROJECT" \
   -scheme "$SCHEME" \
   -configuration Release \
@@ -143,7 +147,7 @@ ditto "$ARCHIVE" "$KEEP"
 echo "== archive を残した: $KEEP"
 
 echo "== export + upload (ログ: $OUT/export.log)"
-if ! xcodebuild -exportArchive \
+if ! ${WRAP[@]+"${WRAP[@]}"} xcodebuild -exportArchive \
   -archivePath "$ARCHIVE" \
   -exportPath "$OUT/export" \
   -exportOptionsPlist "$OUT/ExportOptions.plist" \
