@@ -189,6 +189,8 @@ actor MemoDispatcher {
         isFlushing = true
         defer { isFlushing = false }
         recoverIfNeeded()
+        // 送信待ちが無くても、前に読めなかった削除の控えを読み直して一覧に反映する
+        if deletionsUnreadable { loadPendingDeletions() }
         if dirty { persist() }
         repeat {
             flushRequested = false
@@ -489,6 +491,8 @@ actor MemoDispatcher {
         }
         pendingDeletions.merge(saved) { mine, _ in mine }
         deletionsUnreadable = false
+        // 読めた削除を一覧にも反映する (次の保存で)
+        if !pendingDeletions.isEmpty { dirty = true }
         return true
     }
 
