@@ -5,7 +5,7 @@
 // 送るもの (ロケールは scripts/l10n/locales.json。無いロケールは作る):
 // - App 情報: 名前・サブタイトル
 // - バージョン (VERSION_ID): 説明文・キーワード・プロモーションテキスト
-// - アプリ内課金 2 つ: 表示名・説明
+// (アプリ内課金は 2026-11-13 の無料化で商品ごと消したので送らない。docs/FREE_OSS.md)
 // ⚠️ 本番のストアのページに出る文言。ユーザーの OK を取ってから送る
 
 import { execFileSync } from "node:child_process";
@@ -16,7 +16,6 @@ import { fileURLToPath } from "node:url";
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const APP_INFO_ID = "5faa8218-c59a-445c-be22-0b731f5c5f2c";
 const VERSION_ID = "a14da3e0-a800-4267-b815-f5e6fc426c2d"; // 1.0
-const IAPS = { trial: "6832907177", unlock: "6832907079" };
 
 const args = process.argv.slice(2);
 const dryRun = args.includes("--dry-run");
@@ -44,9 +43,6 @@ function check(lang, m) {
   for (const [k, lim] of Object.entries(LIMITS)) {
     if ((m[k] ?? "").length > lim) throw new Error(`${lang}: ${k} が ${m[k].length} 文字 (上限 ${lim})`);
   }
-  for (const k of Object.keys(IAPS)) {
-    if (m.iap[k].name.length > 30 || m.iap[k].description.length > 55) throw new Error(`${lang}: iap.${k} が長すぎる`);
-  }
 }
 
 function upsert(kind, existing, locale, attrs, create, patchType) {
@@ -69,7 +65,6 @@ const failures = [];
 
 const appInfoLocs = byLocale(api("GET", `/v1/appInfos/${APP_INFO_ID}/appInfoLocalizations?limit=200`));
 let versionLocs = byLocale(api("GET", `/v1/appStoreVersions/${VERSION_ID}/appStoreVersionLocalizations?limit=200`));
-const iapLocs = Object.fromEntries(Object.entries(IAPS).map(([k, id]) => [k, byLocale(api("GET", `/v2/inAppPurchases/${id}/inAppPurchaseLocalizations?limit=200`))]));
 
 for (const [lang, locales] of Object.entries(LOCALES)) {
   if (only.length && !only.includes(lang)) continue;
@@ -92,12 +87,6 @@ for (const [lang, locales] of Object.entries(LOCALES)) {
     upsert("バージョン", versionLocs, locale, v, () => api("POST", "/v1/appStoreVersionLocalizations", {
       data: { type: "appStoreVersionLocalizations", attributes: { locale, ...v }, relationships: { appStoreVersion: { data: { type: "appStoreVersions", id: VERSION_ID } } } },
     }), "appStoreVersionLocalizations");
-    for (const [k, id] of Object.entries(IAPS)) {
-      const a = { name: m.iap[k].name, description: m.iap[k].description };
-      upsert(`IAP ${k}`, iapLocs[k], locale, a, () => api("POST", "/v1/inAppPurchaseLocalizations", {
-        data: { type: "inAppPurchaseLocalizations", attributes: { locale, ...a }, relationships: { inAppPurchaseV2: { data: { type: "inAppPurchases", id } } } },
-      }), "inAppPurchaseLocalizations");
-    }
   }
 }
 if (failures.length) {

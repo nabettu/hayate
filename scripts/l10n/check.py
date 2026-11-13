@@ -25,10 +25,6 @@ for k, lim in [('subtitle', 30), ('promotionalText', 170), ('keywords', 100), ('
     if not s.get(k): errs.append(f'store.{k} missing')
     elif len(s[k]) > lim: errs.append(f'store.{k} too long {len(s[k])}>{lim}')
 if s.get('keywords') and ', ' in s['keywords']: errs.append('keywords: no space after commas')
-for k in ('trial', 'unlock'):
-    i = s.get('iap', {}).get(k, {})
-    if not i.get('name') or len(i['name']) > 30: errs.append(f'iap.{k}.name missing/too long')
-    if not i.get('description') or len(i['description']) > 55: errs.append(f'iap.{k}.description missing/too long ({len(i.get("description",""))})')
 def shape(a, b, path):
     if isinstance(a, dict):
         if not isinstance(b, dict): errs.append(f'shots{path} must be object'); return

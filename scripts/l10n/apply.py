@@ -44,6 +44,7 @@ for lang in langs:
         os.makedirs(os.path.dirname(path), exist_ok=True)
         # 訳の対象でない設定 (nameByLocale・supportUrl など) は、取り込み直しても消さない
         merged = {**(json.load(open(path)) if os.path.exists(path) else {}), **t[kind]}
+        merged.pop("iap", None)  # アプリ内課金は 2026-11-13 に無くした。古い訳に残っていても書き戻さない
         with open(path, "w") as f:
             json.dump(merged, f, ensure_ascii=False, indent=2)
             f.write("\n")
