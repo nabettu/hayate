@@ -47,7 +47,7 @@
         "Open source\nop GitHub",
         "Niet verstuurd?\nOpnieuw bij openen",
         "Geen reclame,\ngeen tracking",
-        "Beschikbaar\nin 44 talen"
+        "Beschikbaar\nin 45 talen"
       ],
       "closing": "Jouw woorden,\nin *jouw workflow*"
     }
@@ -103,7 +103,8 @@
       "sendTo": "Versturen naar bestemming",
       "copy": "Kopieer",
       "share": "Deel",
-      "delete": "Verwijder"
+      "delete": "Verwijder",
+      "fromWatch": "Wordt verstuurd vanaf de Apple Watch"
     },
     "integrations": {
       "title": "Integraties",

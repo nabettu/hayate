@@ -37,6 +37,8 @@ export function shapeErrors(lang) {
     } else if (a && typeof a === "object") {
       if (!b || typeof b !== "object") return errs.push(`${p} が無い`);
       for (const k of Object.keys(a)) walk(a[k], b[k], p ? `${p}.${k}` : k);
+      // 余分なキーも弾く (描画が ja に無いキーを前提にしていないので、通すと描画の途中で落ちる)
+      for (const k of Object.keys(b)) if (!(k in a)) errs.push(`${p ? `${p}.${k}` : k} は ja に無い`);
     } else if (typeof b !== "string" || !b) errs.push(`${p} が無い`);
   };
   walk(COPY.ja, COPY[lang], "");

@@ -47,7 +47,7 @@
         "Nyílt forráskód\na GitHubon",
         "Ami nem ment el,\nújraküldi",
         "Nincs hirdetés,\nnincs követés",
-        "44 nyelven\nérhető el"
+        "45 nyelven\nérhető el"
       ],
       "closing": "Az Ön szavai,\n*az Ön módján*"
     }
@@ -103,7 +103,8 @@
       "sendTo": "Küldés célra",
       "copy": "Másolás",
       "share": "Megosztás",
-      "delete": "Törlés"
+      "delete": "Törlés",
+      "fromWatch": "Küldés Apple Watchról"
     },
     "integrations": {
       "title": "Integrációk",

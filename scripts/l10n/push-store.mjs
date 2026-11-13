@@ -12,6 +12,7 @@ import { execFileSync } from "node:child_process";
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { fileURLToPath } from "node:url";
+import { shapeErrors } from "../gen-screenshots/copy.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
 const APP_INFO_ID = "5faa8218-c59a-445c-be22-0b731f5c5f2c";
@@ -40,6 +41,9 @@ const byLocale = (list) => Object.fromEntries((list.data ?? []).map((d) => [d.at
 // 文字数の上限 (App Store Connect)
 const LIMITS = { name: 30, subtitle: 30, promotionalText: 170, keywords: 100, description: 4000 };
 function check(lang, m) {
+  // 無料化 (2026-11-13) の前の訳 (課金の説明が入っている) を送らない。訳し直した言語は iap が消え、スクショの文言も ja と同じ形になる
+  if ("iap" in m) throw new Error(`${lang}: 課金があった頃の文言のまま (iap が残っている)。訳し直してから送る`);
+  if (lang !== "ja" && shapeErrors(lang).length) throw new Error(`${lang}: スクショの文言が ja と同じ形でない (訳し直していない)`);
   for (const [k, lim] of Object.entries(LIMITS)) {
     if ((m[k] ?? "").length > lim) throw new Error(`${lang}: ${k} が ${m[k].length} 文字 (上限 ${lim})`);
   }

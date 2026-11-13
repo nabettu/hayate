@@ -47,7 +47,7 @@
         "Açık kaynak\nGitHub’da",
         "Gönderilemeyenler\naçınca yeniden",
         "Reklam yok,\ntakip yok",
-        "44 dilde\nkullanılabilir"
+        "45 dilde\nkullanılabilir"
       ],
       "closing": "Sözlerin,\n*kendi düzenine*"
     }
@@ -103,7 +103,8 @@
       "sendTo": "Hedeflere gönder",
       "copy": "Kopyala",
       "share": "Paylaş",
-      "delete": "Sil"
+      "delete": "Sil",
+      "fromWatch": "Apple Watch’tan gönderir"
     },
     "integrations": {
       "title": "Entegrasyonlar",

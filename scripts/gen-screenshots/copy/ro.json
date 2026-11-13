@@ -47,7 +47,7 @@
         "Cod sursă\npe GitHub",
         "Ce n-a plecat\nse retrimite",
         "Fără reclame,\nfără urmărire",
-        "Disponibil în\n44 de limbi"
+        "Disponibil în\n45 de limbi"
       ],
       "closing": "Vorbele tale,\nîn *fluxul tău*"
     }
@@ -103,7 +103,8 @@
       "sendTo": "Trimite la destinație",
       "copy": "Copiază",
       "share": "Partajează",
-      "delete": "Șterge"
+      "delete": "Șterge",
+      "fromWatch": "Trimite de pe Apple Watch"
     },
     "integrations": {
       "title": "Integrări",

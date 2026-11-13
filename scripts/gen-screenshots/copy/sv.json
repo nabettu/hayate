@@ -47,7 +47,7 @@
         "Öppen källkod\npå GitHub",
         "Osända skickas\nnär du öppnar igen",
         "Ingen reklam,\ningen spårning",
-        "Finns på\n44 språk"
+        "Finns på\n45 språk"
       ],
       "closing": "Dina ord,\nin i *ditt flöde*"
     }
@@ -103,7 +103,8 @@
       "sendTo": "Skicka till mål",
       "copy": "Kopiera",
       "share": "Dela",
-      "delete": "Radera"
+      "delete": "Radera",
+      "fromWatch": "Skickar från Apple Watch"
     },
     "integrations": {
       "title": "Integrationer",

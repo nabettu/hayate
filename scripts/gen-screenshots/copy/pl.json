@@ -47,7 +47,7 @@
         "Kod źródłowy\nna GitHubie",
         "Niewysłane – ponownie\nprzy otwarciu",
         "Bez reklam\ni śledzenia",
-        "Dostępna\nw 44 językach"
+        "Dostępna\nw 45 językach"
       ],
       "closing": "Twoje słowa\n*tam, gdzie chcesz*"
     }
@@ -103,7 +103,8 @@
       "sendTo": "Wyślij do odbiorcy",
       "copy": "Kopiuj",
       "share": "Udostępnij",
-      "delete": "Usuń"
+      "delete": "Usuń",
+      "fromWatch": "Wysyłanie z Apple Watch"
     },
     "integrations": {
       "title": "Integracje",

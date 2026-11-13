@@ -47,7 +47,7 @@
         "Open source\npå GitHub",
         "Usendte sendes igen,\nnår du åbner",
         "Ingen reklamer,\ningen sporing",
-        "Fås på\n44 sprog"
+        "Fås på\n45 sprog"
       ],
       "closing": "Dine ord,\nind i *dit workflow*"
     }
@@ -103,7 +103,8 @@
       "sendTo": "Send til mål",
       "copy": "Kopiér",
       "share": "Del",
-      "delete": "Slet"
+      "delete": "Slet",
+      "fromWatch": "Sender fra Apple Watch"
     },
     "integrations": {
       "title": "Integrationer",

@@ -47,7 +47,7 @@
         "Open source\non GitHub",
         "Unsent ones resent\nwhen you reopen",
         "No ads,\nno tracking",
-        "Available in\n44 languages"
+        "Available in\n45 languages"
       ],
       "closing": "Your words,\ninto *your workflow*"
     }
@@ -103,7 +103,8 @@
       "sendTo": "Send to Destination",
       "copy": "Copy",
       "share": "Share",
-      "delete": "Delete"
+      "delete": "Delete",
+      "fromWatch": "Sends from Apple Watch"
     },
     "integrations": {
       "title": "Integrations",

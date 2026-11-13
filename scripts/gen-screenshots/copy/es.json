@@ -47,7 +47,7 @@
         "Código abierto\nen GitHub",
         "Lo no enviado se\nreenvía al abrir",
         "Sin anuncios,\nsin rastreo",
-        "Disponible en\n44 idiomas"
+        "Disponible en\n45 idiomas"
       ],
       "closing": "Tus palabras,\nen *tu flujo*"
     }
@@ -103,7 +103,8 @@
       "sendTo": "Enviar a destino",
       "copy": "Copiar",
       "share": "Compartir",
-      "delete": "Borrar"
+      "delete": "Borrar",
+      "fromWatch": "Se envía desde el Apple Watch"
     },
     "integrations": {
       "title": "Integraciones",

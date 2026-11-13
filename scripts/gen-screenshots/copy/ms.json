@@ -47,7 +47,7 @@
         "Sumber terbuka\ndi GitHub",
         "Yang belum dihantar\ndihantar semula",
         "Tiada iklan,\ntiada penjejakan",
-        "Tersedia dalam\n44 bahasa"
+        "Tersedia dalam\n45 bahasa"
       ],
       "closing": "Kata-kata anda,\nke *sistem anda*"
     }
@@ -103,7 +103,8 @@
       "sendTo": "Hantar ke destinasi",
       "copy": "Salin",
       "share": "Kongsi",
-      "delete": "Padam"
+      "delete": "Padam",
+      "fromWatch": "Dihantar dari Apple Watch"
     },
     "integrations": {
       "title": "Integrasi",

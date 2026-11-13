@@ -47,7 +47,7 @@
         "Open source\nna GitHubu",
         "Neodeslané odejdou\npo dalším otevření",
         "Bez reklam\na sledování",
-        "K dispozici\nve 44 jazycích"
+        "K dispozici\nve 45 jazycích"
       ],
       "closing": "Vaše slova\ndo *vašeho systému*"
     }
@@ -103,7 +103,8 @@
       "sendTo": "Odeslat příjemci",
       "copy": "Kopírovat",
       "share": "Sdílet",
-      "delete": "Smazat"
+      "delete": "Smazat",
+      "fromWatch": "Odesílá z Apple Watch"
     },
     "integrations": {
       "title": "Integrace",

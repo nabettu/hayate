@@ -47,7 +47,7 @@
         "Codi obert\na GitHub",
         "El no enviat\nes reenvia en obrir",
         "Sense anuncis\nni seguiment",
-        "Disponible en\n44 idiomes"
+        "Disponible en\n45 idiomes"
       ],
       "closing": "La teva veu,\nal *teu sistema*"
     }
@@ -103,7 +103,8 @@
       "sendTo": "Envia a un destí",
       "copy": "Copia",
       "share": "Comparteix",
-      "delete": "Elimina"
+      "delete": "Elimina",
+      "fromWatch": "Envia des de l’Apple Watch"
     },
     "integrations": {
       "title": "Integracions",

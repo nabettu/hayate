@@ -47,7 +47,7 @@
         "Avoin lähdekoodi\nGitHubissa",
         "Lähettämättömät\nlähetetään uudelleen",
         "Ei mainoksia,\nei seurantaa",
-        "Saatavilla\n44 kielellä"
+        "Saatavilla\n45 kielellä"
       ],
       "closing": "Sanasi\n*omaan työnkulkuusi*"
     }
@@ -103,7 +103,8 @@
       "sendTo": "Lähetä kohteeseen",
       "copy": "Kopioi",
       "share": "Jaa",
-      "delete": "Poista"
+      "delete": "Poista",
+      "fromWatch": "Lähetetään Apple Watchista"
     },
     "integrations": {
       "title": "Integraatiot",

@@ -14,6 +14,15 @@ test("画面に出す文字はすべて copy.mjs から来る (日本語が残�
   for (const key of WATCH_SLIDES) assert.doesNotMatch(visible(watchSlide(key, copy)), /[　-ヿ一-鿿＀-￯]/, key);
 });
 
-test("ja と en は同じ形 (ほかの言語は ja から訳し直すまで古い形のまま)", () => {
-  assert.deepEqual(shapeErrors("en"), []);
+test("どの言語も ja と同じ形", () => {
+  for (const lang of Object.keys(COPY)) assert.deepEqual(shapeErrors(lang), [], lang);
+});
+
+test("ja に無いキーがあると形の違いとして弾く (描画の途中で落ちるのを防ぐ)", () => {
+  COPY.en.iphone.reminder.chips = ["Reminders"];
+  try {
+    assert.match(shapeErrors("en").join("\n"), /iphone\.reminder\.chips は ja に無い/);
+  } finally {
+    delete COPY.en.iphone.reminder.chips;
+  }
 });

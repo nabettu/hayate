@@ -195,7 +195,7 @@ export const watchScreens = {
   detail: (t) => `<div class="ws">${appSky(416, 496, 26, 13)}${watchBar(t.memosTitle, { back: true })}
     <div class="rows">
       <div class="plain"><b>${esc(t.spoken[0])}</b><small>${esc(t.date)}</small></div>
-      ${[t.destinations[0], t.destinations[2], t.markdownTarget].map((d) =>
+      ${t.destinations.slice(0, 3).map((d) =>
         `<div class="row dl"><b>${esc(d)}</b><small>${esc(t.status.done)}</small></div>`).join("")}
     </div></div>`,
   /** Siri の返事 (SendTextIntent の dialog)。Siri の画面なので背景は黒 */
@@ -282,9 +282,8 @@ export const phoneScreens = {
       <div class="cell sub"><span style="display:flex;align-items:center;gap:6px">${icon("watch", 16, "rgba(235,235,245,.6)", 2)}Apple Watch</span><span>${esc(t.date)}</span></div>
     </div></div>
     <div class="sec"><div class="sh">${esc(d.deliveries)}</div><div class="grp">
+      ${t.destinations.slice(0, 3).map((name) => row("plane", name, d.fromWatch)).join("")}
       ${row("checklist", t.reminderTarget)}
-      ${row("plane", t.destinations[0], "HTTP 200")}
-      ${row("plane", t.destinations[2], "HTTP 200")}
       ${row("doc", t.markdownTarget, t.markdownFile)}
     </div></div>
     <div class="sec" style="margin-top:20px"><div class="grp">
@@ -447,7 +446,7 @@ export function iphoneSlide(key, copy, lang = "ja") {
         <div class="bubble me" style="top:860px;left:70px">${icon("mic", 50, "#8B5CF6", 2.4)} ${esc(t.spoken[0])}</div>
         <div class="card fan" style="top:1930px">
           <div class="memo">${icon("note", 48, "#C4B5FD", 2.2)}<span>${esc(t.spoken[0])}</span></div>
-          ${done("plane", t.destinations[0])}${done("plane", t.destinations[2])}${done("doc", t.markdownTarget)}
+          ${t.destinations.slice(0, 3).map((name) => done("plane", name)).join("")}
         </div>
         ${closing(c.closing)}`, 7, lang);
     }

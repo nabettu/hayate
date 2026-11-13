@@ -47,7 +47,7 @@
         "Mã nguồn mở\ntrên GitHub",
         "Chưa gửi được?\nGửi lại khi mở",
         "Không quảng cáo,\nkhông theo dõi",
-        "Hỗ trợ\n44 ngôn ngữ"
+        "Hỗ trợ\n45 ngôn ngữ"
       ],
       "closing": "Lời bạn nói,\nvào *hệ thống riêng*"
     }
@@ -103,7 +103,8 @@
       "sendTo": "Gửi tới nơi nhận",
       "copy": "Sao chép",
       "share": "Chia sẻ",
-      "delete": "Xóa"
+      "delete": "Xóa",
+      "fromWatch": "Gửi từ Apple Watch"
     },
     "integrations": {
       "title": "Tích hợp",

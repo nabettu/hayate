@@ -47,7 +47,7 @@
         "Kode sumber\ndi GitHub",
         "Gagal terkirim?\nDikirim ulang nanti",
         "Tanpa iklan,\ntanpa pelacakan",
-        "Tersedia dalam\n44 bahasa"
+        "Tersedia dalam\n45 bahasa"
       ],
       "closing": "Ucapan Anda,\nke *alur kerja Anda*"
     }
@@ -103,7 +103,8 @@
       "sendTo": "Kirim ke tujuan",
       "copy": "Salin",
       "share": "Bagikan",
-      "delete": "Hapus"
+      "delete": "Hapus",
+      "fromWatch": "Kirim dari Apple Watch"
     },
     "integrations": {
       "title": "Integrasi",

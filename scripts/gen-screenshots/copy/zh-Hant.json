@@ -47,7 +47,7 @@
         "原始碼\n在 GitHub 公開",
         "未傳送的\n下次開啟重傳",
         "無廣告\n無追蹤",
-        "支援\n44 種語言"
+        "支援\n45 種語言"
       ],
       "closing": "你說的話\n送進*你的流程*"
     }
@@ -103,7 +103,8 @@
       "sendTo": "傳送到傳送目的地",
       "copy": "拷貝",
       "share": "分享",
-      "delete": "刪除"
+      "delete": "刪除",
+      "fromWatch": "從 Apple Watch 傳送"
     },
     "integrations": {
       "title": "整合",

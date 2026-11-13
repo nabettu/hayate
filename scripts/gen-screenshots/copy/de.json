@@ -47,7 +47,7 @@
         "Open Source\nauf GitHub",
         "Nicht Gesendetes\nwird nachgesendet",
         "Keine Werbung,\nkein Tracking",
-        "In 44 Sprachen\nverfügbar"
+        "In 45 Sprachen\nverfügbar"
       ],
       "closing": "Deine Worte,\nin *deinen Workflow*"
     }
@@ -103,7 +103,8 @@
       "sendTo": "An Ziel senden",
       "copy": "Kopieren",
       "share": "Teilen",
-      "delete": "Löschen"
+      "delete": "Löschen",
+      "fromWatch": "Sendet von der Apple Watch"
     },
     "integrations": {
       "title": "Integrationen",

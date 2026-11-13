@@ -47,7 +47,7 @@
         "Codice sorgente\nsu GitHub",
         "Non inviati?\nReinviati dopo",
         "Niente pubblicità,\nniente tracciamento",
-        "Disponibile in\n44 lingue"
+        "Disponibile in\n45 lingue"
       ],
       "closing": "Le tue parole,\nnel *tuo flusso*"
     }
@@ -103,7 +103,8 @@
       "sendTo": "Invia alla destinazione",
       "copy": "Copia",
       "share": "Condividi",
-      "delete": "Elimina"
+      "delete": "Elimina",
+      "fromWatch": "Invia da Apple Watch"
     },
     "integrations": {
       "title": "Integrazioni",

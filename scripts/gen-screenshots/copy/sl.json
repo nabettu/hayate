@@ -47,7 +47,7 @@
         "Odprta koda\nna GitHubu",
         "Neposlano gre\nob odprtju znova",
         "Brez oglasov\nin sledenja",
-        "Na voljo\nv 44 jezikih"
+        "Na voljo\nv 45 jezikih"
       ],
       "closing": "Vaše besede\n*tja, kamor sodijo*"
     }
@@ -103,7 +103,8 @@
       "sendTo": "Pošlji cilju",
       "copy": "Kopiraj",
       "share": "Deli",
-      "delete": "Izbriši"
+      "delete": "Izbriši",
+      "fromWatch": "Pošiljanje z Apple Watch"
     },
     "integrations": {
       "title": "Integracije",
