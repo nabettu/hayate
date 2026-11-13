@@ -120,12 +120,14 @@ public enum MarkdownJournal {
     /// 足したあとのファイルの中身。同じ行が既にあれば nil (送り直しで二重に足さない)。
     public static func appending(_ line: String, to existing: String) -> String? {
         let lines = existing.replacingOccurrences(of: "\r\n", with: "\n").components(separatedBy: "\n")
-        let first = line.components(separatedBy: "\n")
-        // 複数行の項目は、続きの行まで一致したときだけ「同じ」とみなす
-        if let start = lines.indices.first(where: { lines[$0] == first[0] }),
-           lines.count >= start + first.count, Array(lines[start..<start + first.count]) == first {
-            return nil
+        let item = line.components(separatedBy: "\n")
+        // 項目の全体 (続きの行まで) が一致し、その後ろに同じ項目の続き (字下げした行) が無いときだけ「同じ」とみなす
+        let isSame = lines.indices.contains { start in
+            let end = start + item.count
+            guard end <= lines.count, Array(lines[start..<end]) == item else { return false }
+            return end == lines.count || !lines[end].hasPrefix("  ")
         }
+        if isSame { return nil }
         var text = existing
         if !text.isEmpty, !text.hasSuffix("\n") { text += "\n" }
         return text + line + "\n"

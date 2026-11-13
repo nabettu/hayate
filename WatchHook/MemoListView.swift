@@ -86,6 +86,7 @@ struct MemoDetailView: View {
     @State private var store = ConfigStore.shared
     @State private var confirmDelete = false
     @State private var deleteFailed = false
+    @State private var saveFailed = false
     @Environment(\.dismiss) private var dismiss
 
     var body: some View {
@@ -107,7 +108,9 @@ struct MemoDetailView: View {
                         Text("メモとして保存しただけです").foregroundStyle(.secondary)
                     }
                     ForEach(memo.deliveries) { d in
-                        DeliveryRow(memoID: memo.id, delivery: d, isSending: sending.contains(d.id))
+                        DeliveryRow(memoID: memo.id, delivery: d, isSending: sending.contains(d.id)) {
+                            saveFailed = true
+                        }
                     }
                 }
                 Section {
@@ -151,6 +154,9 @@ struct MemoDetailView: View {
         .alert("削除できませんでした", isPresented: $deleteFailed) {
             Button("OK", role: .cancel) {}
         }
+        .alert("保存できなかったため、送りませんでした", isPresented: $saveFailed) {
+            Button("OK", role: .cancel) {}
+        }
         .task { await reload() }
         .onReceive(NotificationCenter.default.publisher(for: MemoDispatcher.didChange)) { _ in
             Task { await reload() }
@@ -161,7 +167,9 @@ struct MemoDetailView: View {
         Menu {
             ForEach(store.config.destinations) { d in
                 Button(d.displayName) {
-                    Task { await MemoDispatcher.shared.sendLater(memoID: memo.id, destination: d) }
+                    Task {
+                        if await !MemoDispatcher.shared.sendLater(memoID: memo.id, destination: d) { saveFailed = true }
+                    }
                 }
             }
         } label: {
@@ -180,6 +188,8 @@ private struct DeliveryRow: View {
     let memoID: UUID
     let delivery: Delivery
     let isSending: Bool
+    /// 送り直しを保存できなかったとき
+    var onRetryFailed: () -> Void = {}
 
     var body: some View {
         VStack(alignment: .leading, spacing: 4) {
@@ -197,7 +207,9 @@ private struct DeliveryRow: View {
                 Text("Apple Watch から送ります").font(.caption2).foregroundStyle(.secondary)
             } else if canRetry {
                 Button("送り直す") {
-                    Task { await MemoDispatcher.shared.retry(memoID: memoID, deliveryID: delivery.id) }
+                    Task {
+                        if await !MemoDispatcher.shared.retry(memoID: memoID, deliveryID: delivery.id) { onRetryFailed() }
+                    }
                 }
                 .font(.caption)
                 .buttonStyle(.borderless)

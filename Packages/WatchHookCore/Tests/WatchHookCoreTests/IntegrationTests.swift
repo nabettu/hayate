@@ -86,6 +86,17 @@ struct MarkdownJournalTests {
         #expect(MarkdownJournal.appending("- 10:00 a", to: "- 10:00 a\n") == nil)
         #expect(MarkdownJournal.appending("- 10:00 a", to: "- 10:00 ab\n") == "- 10:00 ab\n- 10:00 a\n")
     }
+
+    @Test func 複数行の項目は全体が一致したときだけ同じとみなす() {
+        // 先頭の行だけ同じ別の項目が前にあっても、後ろに同じ項目があれば足さない
+        let existing = "- 10:00 a\n  x\n- 10:00 a\n  b\n"
+        #expect(MarkdownJournal.appending("- 10:00 a\n  b", to: existing) == nil)
+        // 既にある複数行の項目の頭だけと一致する短いメモは、別のメモとして足す
+        #expect(MarkdownJournal.appending("- 10:00 a", to: "- 10:00 a\n  b\n") == "- 10:00 a\n  b\n- 10:00 a\n")
+        #expect(MarkdownJournal.appending("- 10:00 a\n  b", to: "- 10:00 a\n  b\n  c\n") == "- 10:00 a\n  b\n  c\n- 10:00 a\n  b\n")
+        // 同じ単一行の項目の後ろに別の項目が続いていても、同じとみなす
+        #expect(MarkdownJournal.appending("- 10:00 a", to: "- 10:00 a\n- 10:01 b\n") == nil)
+    }
 }
 
 @Suite("送り先の設定の移行")

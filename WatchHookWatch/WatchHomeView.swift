@@ -10,6 +10,8 @@ struct WatchHomeView: View {
     /// 「保存して送りました」を出しておく長さ。送れなかった・あとで送り直す、は読めるよう消さない。
     private static let sentMessageDuration: Duration = .seconds(3)
     @State private var isSending = false
+    /// 保存できなかった入力。入力し直さなくても、もう一度保存できるように持っておく
+    @State private var unsavedText: String?
     @State private var flight: FlightPhase = .idle
     /// 送るボタンの位置 (送るときにここから紙飛行機が飛び立つ)。
     @State private var orbFrame: CGRect = .zero
@@ -117,6 +119,11 @@ struct WatchHomeView: View {
                         if let detail = lastResult.detail {
                             Text(detail).font(.caption2).foregroundStyle(.secondary)
                         }
+                        if let unsavedText {
+                            Button("もう一度保存") { Task { await record(unsavedText) } }
+                                .font(.caption2)
+                                .disabled(isSending)
+                        }
                     }
                 }
             }
@@ -129,7 +136,9 @@ struct WatchHomeView: View {
     private func record(_ text: String) async {
         guard let text = MessageText.normalized(text), !isSending else { return }
         await run {
-            MemoFeedback(memo: await MemoDispatcher.shared.record(text: text, source: "watch"), role: .watch)
+            let memo = await MemoDispatcher.shared.record(text: text, source: "watch")
+            unsavedText = memo == nil ? text : nil
+            return MemoFeedback(memo: memo, role: .watch)
         }
     }
 

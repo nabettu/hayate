@@ -9,6 +9,7 @@ struct ReminderSettingsView: View {
     @State private var lists: [EKCalendar] = []
     @State private var newKeyword = ""
     @State private var requestError: String?
+    @Environment(\.scenePhase) private var scenePhase
     private let eventStore = EKEventStore()
 
     private var settings: IntegrationSettings.Reminder { integrations.settings.reminder }
@@ -99,6 +100,12 @@ struct ReminderSettingsView: View {
         .navigationBarTitleDisplayMode(.inline)
         .cosmicListBackground()
         .task { reloadLists() }
+        // 設定 App で許可して戻ってきたとき
+        .onChange(of: scenePhase) { _, phase in
+            guard phase == .active else { return }
+            eventStore.reset()  // 許可の前に作ったストアは、リストを読み直させる
+            reloadLists()
+        }
     }
 
     private func addKeyword() {

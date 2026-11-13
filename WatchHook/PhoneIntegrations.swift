@@ -78,9 +78,15 @@ enum ReminderWriter {
             return .permanent(reason: String(localized: "保存先のリストが見つかりません"))
         }
         let marker = marker(for: memoID)
-        // 前の保存が終わったあと、結果を書く前にアプリが終わっていた場合に二重に足さない
-        if await containsReminder(with: marker, in: calendar, store: store) {
+        // 前の保存が終わったあと、結果を書く前にアプリが終わっていた場合に二重に足さない。
+        // その間にリストを変えた・リマインダーを別のリストへ移したこともあるので、すべてのリストから探す
+        switch await findReminder(with: marker, store: store) {
+        case .found:
             return .done(detail: nil)
+        case .failed:
+            return .retryable(reason: String(localized: "リマインダーを読み込めませんでした"))
+        case .notFound:
+            break
         }
         let reminder = EKReminder(eventStore: store)
         reminder.calendar = calendar
@@ -94,11 +100,15 @@ enum ReminderWriter {
         }
     }
 
-    private static func containsReminder(with marker: URL, in calendar: EKCalendar, store: EKEventStore) async -> Bool {
-        let predicate = store.predicateForReminders(in: [calendar])
+    private enum Lookup { case found, notFound, failed }
+
+    private static func findReminder(with marker: URL, store: EKEventStore) async -> Lookup {
+        let predicate = store.predicateForReminders(in: nil)
         return await withCheckedContinuation { continuation in
             store.fetchReminders(matching: predicate) { reminders in
-                continuation.resume(returning: reminders?.contains { $0.url == marker } ?? false)
+                // nil は読み込みの失敗 (無いとみなして足すと二重になりうる)
+                guard let reminders else { return continuation.resume(returning: .failed) }
+                continuation.resume(returning: reminders.contains { $0.url == marker } ? .found : .notFound)
             }
         }
     }

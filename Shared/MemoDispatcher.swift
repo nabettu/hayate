@@ -32,6 +32,9 @@ actor MemoDispatcher {
     private var readFailed = false
     /// 直近の保存に失敗した。次の機会に書き直す。
     private var dirty = false
+    /// 一覧を読めないあいだに相手の端末から届いた写し・消したメモ。読めたら反映する (読めるまで捨てない)
+    private var receivedWhileUnreadable: [Memo] = []
+    private var deletedWhileUnreadable: [UUID: Date] = [:]
 
     init(sender: WebhookSender = WebhookSender(), directory: URL = MemoDispatcher.defaultDirectory) {
         self.sender = sender
@@ -45,10 +48,8 @@ actor MemoDispatcher {
             log = MemoLog(owner: Self.role, capacity: Self.capacity)
             readFailed = true
         }
-        #if os(iOS)
-        // 前の版で時計の履歴を写していたファイル。メモは時計から全文が届くようになったので要らない
-        try? FileManager.default.removeItem(at: directory.appending(path: "watch-history.json"))
-        #endif
+        // 前の版で iPhone に時計の履歴を写していたファイル (watch-history.json) は消さずに残す。
+        // メモは時計から全文が届き直すが、時計側の履歴が既に無くなっていたときの控えになる
     }
 
     static var defaultDirectory: URL {
@@ -193,7 +194,7 @@ actor MemoDispatcher {
     /// 1 件送って結果を反映する。
     @discardableResult
     private func deliver(_ ref: MemoLog.DeliveryRef) async -> DeliverResult {
-        guard !inFlight.contains(ref.deliveryID), let memo = log.memo(id: ref.memoID),
+        guard !inFlight.contains(ref.deliveryID), deletedWhileUnreadable[ref.memoID] == nil, let memo = log.memo(id: ref.memoID),
               let delivery = log.delivery(ref), delivery.owner == Self.role, delivery.status.isPending else { return .skipped }
         inFlight.insert(ref.deliveryID)
         NotificationCenter.default.post(name: Self.didChange, object: nil)  // 「送信中」の表示を出す
@@ -208,13 +209,22 @@ actor MemoDispatcher {
             return .stop
         }
         // 送っている間に消された / 手動で状態が変わったものは上書きしない
-        guard log.delivery(ref)?.status.isPending == true else {
+        guard deletedWhileUnreadable[ref.memoID] == nil, var updated = log.memo(id: ref.memoID),
+              let index = updated.deliveries.firstIndex(where: { $0.id == ref.deliveryID }),
+              updated.deliveries[index].status.isPending else {
             NotificationCenter.default.post(name: Self.didChange, object: nil)
             return .skipped
         }
-        log.apply(outcome, memoID: ref.memoID, deliveryID: ref.deliveryID)
+        guard let status = log.apply(outcome, memoID: ref.memoID, deliveryID: ref.deliveryID) else { return .skipped }
         persist()
-        if let updated = log.memo(id: ref.memoID) { shareWithPeer(updated) }
+        // 時計では、上限より古いメモは送り終えた時点で一覧から外れる。外れても結果は iPhone に知らせる
+        if let current = log.memo(id: ref.memoID) {
+            updated = current
+        } else {
+            updated.deliveries[index].status = status
+            updated.deliveries[index].revision += 1
+        }
+        shareWithPeer(updated)
         return .delivered
     }
 
@@ -235,12 +245,20 @@ actor MemoDispatcher {
             return await sender.send(message, to: destination).deliveryOutcome
         case .reminder:
             #if os(iOS)
-            return await ReminderWriter.save(title: delivery.text, memoID: memo.id, settings: IntegrationStore.load().reminder)
+            let settings = IntegrationStore.load().reminder
+            // 送信待ちのあいだにオフにした連携へは足さない (webhook の送り先と同じ)
+            guard settings.isEnabled else {
+                return .permanent(reason: String(localized: "リマインダーへの保存がオフになっています"))
+            }
+            return await ReminderWriter.save(title: delivery.text, memoID: memo.id, settings: settings)
             #else
             return .permanent(reason: "unsupported")
             #endif
         case .markdown:
             #if os(iOS)
+            guard IntegrationStore.load().markdown.isEnabled else {
+                return .permanent(reason: String(localized: "Markdown への追記がオフになっています"))
+            }
             return MarkdownWriter.append(text: memo.text, createdAt: memo.createdAt)
             #else
             return .permanent(reason: "unsupported")
@@ -248,26 +266,43 @@ actor MemoDispatcher {
         }
     }
 
-    /// 手動の再送 (自分が受け持つ、終わっていないものだけ)。
-    func retry(memoID: UUID, deliveryID: UUID) async {
-        guard recoverIfNeeded(), log.retry(memoID: memoID, deliveryID: deliveryID) else { return }
-        persist()
+    /// 手動の再送 (自分が受け持つ、終わっていないものだけ)。保存できなければ戻して false (送り直しを約束しない)。
+    /// 送り直せる状態でなくなっていた (その間に送れた・消した) ときは何もせず true。
+    @discardableResult
+    func retry(memoID: UUID, deliveryID: UUID) async -> Bool {
+        guard recoverIfNeeded() else { return false }
+        let before = log
+        guard log.retry(memoID: memoID, deliveryID: deliveryID) else { return true }
+        guard persist() else {
+            log = before
+            NotificationCenter.default.post(name: Self.didChange, object: nil)
+            return false
+        }
         if let memo = log.memo(id: memoID) { shareWithPeer(memo) }
         await flush()
+        return true
     }
 
     // MARK: - iPhone だけの操作
 
     #if os(iOS)
     /// 後から送る: 保存済みのメモを、登録済みの送り先へ (この iPhone から) 送る。
-    func sendLater(memoID: UUID, destination: Destination) async {
-        guard recoverIfNeeded(), let memo = log.memo(id: memoID) else { return }
+    /// 保存できなければ戻して false (記録の残らない送信をしない)。
+    @discardableResult
+    func sendLater(memoID: UUID, destination: Destination) async -> Bool {
+        guard recoverIfNeeded(), let memo = log.memo(id: memoID) else { return false }
         let delivery = Delivery(target: .webhook(destinationID: destination.id, name: destination.displayName),
                                 owner: .phone, text: destination.wrap(memo.text), isManual: true)
+        let before = log
         log.addDelivery(delivery, to: memoID)
-        persist()
+        guard persist() else {
+            log = before
+            NotificationCenter.default.post(name: Self.didChange, object: nil)
+            return false
+        }
         if let updated = log.memo(id: memoID) { shareWithPeer(updated) }
         await deliver(MemoLog.DeliveryRef(memoID: memoID, deliveryID: delivery.id))
+        return true
     }
 
     /// メモを消す。この iPhone の未送信は取り消し、時計にも知らせて時計の未送信も止める。
@@ -290,7 +325,15 @@ actor MemoDispatcher {
     /// 時計からメモが届いたとき。初めてなら iPhone が受け持つ連携 (リマインダー・Markdown) を足して保存する。
     /// 保存できたら、iPhone の写し (時計への受領の知らせ) を返す。保存できなければ nil (時計は送り直す)。
     func receiveFromWatch(_ remote: Memo) async -> Memo? {
-        guard recoverIfNeeded() else { return nil }
+        guard recoverIfNeeded() else {
+            // 一覧を読めるようになったら合わせる。受領は返さない (新しいメモは時計が送り直す)
+            receivedWhileUnreadable.append(remote)
+            return nil
+        }
+        return mergeFromWatch(remote)
+    }
+
+    private func mergeFromWatch(_ remote: Memo) -> Memo? {
         if log.isDeleted(remote.id) {
             // 時計がまだ持っていれば、もう一度消すよう知らせる
             PhoneSync.shared.sendDeletion(remote.id)
@@ -303,7 +346,8 @@ actor MemoDispatcher {
                 log.addDelivery(d, to: remote.id)
             }
         }
-        if result != .unchanged, !persist() {
+        // 前の保存に失敗していたら、変わっていなくても書けるまで受領を返さない
+        if result != .unchanged || dirty, !persist() {
             // 書けなかった: 受け取らなかったことにして時計に送り直させる (受領を返さない)
             if isNew { log.discard(memoID: remote.id) }
             return nil
@@ -325,16 +369,30 @@ actor MemoDispatcher {
     #if os(watchOS)
     /// iPhone から写しが届いたとき (受領の知らせを兼ねる)。iPhone が受け持つ連携の状態を合わせる。
     func receiveFromPhone(_ remote: Memo) {
-        guard recoverIfNeeded() else { return }
+        guard recoverIfNeeded() else {
+            receivedWhileUnreadable.append(remote)
+            return
+        }
+        // 前の保存に失敗していたら、変わっていなくても書き直す
+        if mergeFromPhone(remote) || dirty { persist() }
+    }
+
+    /// 変わったら true。
+    @discardableResult
+    private func mergeFromPhone(_ remote: Memo) -> Bool {
         let result = log.merge(remote, insertIfMissing: false)
         let wasWaiting = log.memo(id: remote.id)?.phoneSync == .waiting
         log.markPhoneSynced(remote.id)
-        if result == .updated || wasWaiting { persist() }
+        return result == .updated || wasWaiting
     }
 
     /// iPhone でメモを消したとき。時計の未送信も取り消して消す。
+    /// 一覧を読めないあいだも、このメモは送らない (読めたら消す)。
     func receiveDeletion(_ memoID: UUID) {
-        guard recoverIfNeeded() else { return }
+        guard recoverIfNeeded() else {
+            deletedWhileUnreadable[memoID] = Date()
+            return
+        }
         log.remove(memoID: memoID)
         persist()
     }
@@ -372,8 +430,28 @@ actor MemoDispatcher {
         case .unreadable:
             return false
         }
+        replayReceivedWhileUnreadable()
         NotificationCenter.default.post(name: Self.didChange, object: nil)
         return true
+    }
+
+    /// 読めなかったあいだに届いた写し・消したメモを、読めた一覧に反映する。
+    private func replayReceivedWhileUnreadable() {
+        let received = receivedWhileUnreadable
+        let deleted = deletedWhileUnreadable
+        receivedWhileUnreadable = []
+        deletedWhileUnreadable = [:]
+        for (id, date) in deleted.sorted(by: { $0.value < $1.value }) {
+            log.remove(memoID: id, at: date)
+        }
+        for remote in received {
+            #if os(watchOS)
+            mergeFromPhone(remote)
+            #else
+            _ = mergeFromWatch(remote)
+            #endif
+        }
+        if !received.isEmpty || !deleted.isEmpty { dirty = true }
     }
 
     @discardableResult
