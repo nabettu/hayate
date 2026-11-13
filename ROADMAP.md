@@ -1,19 +1,18 @@
 # ROADMAP
 
-## 現状 (2026-11-09)
+## 現状 (2026-11-13)
 
-MVP の土台を作った (未リリース・シミュレータでのみ確認)。
-- 送り先: 任意の webhook (メソッド・ヘッダ・本文テンプレート)、Slack / Discord の定型
-- Siri (時計 / iPhone) から送る App Intent、時計のアプリ (送るボタン + ダブルタップ。2026-11-11 に「話す」のマイクから紙飛行機の「送る」に変えた。入力画面は音声・手書き・キーボードのどれでも打てる)
-- 送信失敗の再送待ち・履歴、iPhone → 時計の設定同期
+未リリース (TestFlight で試している)。無料・MIT。
+- 時計 / iPhone / Siri で入力した内容をメモとして保存し、webhook (複数)・リマインダー・Markdown へ送る ([docs/FREE_OSS.md](docs/FREE_OSS.md))
+- 実機で確かめたのは、時計で話したメモが iPhone のリマインダーに入るところまで (2026-11-13)
 
 ## 次にやること
 
 - [x] **無料・OSS 化と機能変更 (メモ保存・複数の送り先・リマインダー連携・課金の撤廃)。2026-11-13 に方針決定、同日にアプリを作った。[docs/FREE_OSS.md](docs/FREE_OSS.md)**。下の課金まわりの項目はこれで不要になる
-- [ ] 実機で確かめる: 時計で入力 → iPhone のリマインダー・Markdown に入るまで (iPhone のアプリが閉じているとき・時計が iPhone から離れているとき)、`hayate://` からメモが開くか
+- [ ] 実機で確かめる: 時計で入力 → Markdown に入るまで、iPhone のアプリが閉じているとき・時計が iPhone から離れているとき、削除が時計に届くか、`hayate://` からメモが開くか (リマインダーに入るのは 2026-11-13 に確認)
 - [ ] ストアの文言・スクショを無料・メモ寄りに作り直す (44 言語。名前を変えるかも決める)。ASC へ送るのはユーザーの確認後
-- [ ] ASC の IAP 商品 2 つ (`trial7d` / `unlock`) を消す (ユーザーの確認後)
-- [ ] リポジトリを公開する (ユーザーの確認後)。その直前に `CLAUDE.md` から時計の UDID・ASC キー ID・非公開 doc への参照を外す
+- [x] ASC の IAP 商品 2 つ (`trial7d` / `unlock`) を消した (2026-11-13)
+- [x] リポジトリを公開する (2026-11-13)。直前に `CLAUDE.md` から作者の環境の話 (時計の UDID・ASC キー ID・非公開 doc への参照) を外した
 
 - [ ] 実機 (Apple Watch) で Siri のフレーズ・ダブルタップ・時計単体 (iPhone から離れた状態) の送信を確かめる
 - [x] アプリアイコン (星空を飛ぶ紙飛行機。#2)
@@ -30,14 +29,14 @@ MVP の土台を作った (未リリース・シミュレータでのみ確認)�
 - [ ] AI の API へ直接送る送り先 (OpenAI / Anthropic / Gemini。ユーザーの API キー。返答を時計に表示)。**入力を第三者 AI へ送るので、送る前の同意が要る (App Review 5.1.2(i))**
 - [ ] 受け口のサンプル (Cloudflare Workers 等) と、署名ヘッダ (HMAC) の任意対応
 
-## 公開前に要るもの (`~/work/docs/global-rules/new-app-project.md`)
+## ストア公開前に要るもの
 
 - [ ] 「Hayate」の商標を J-PlatPat と USPTO で確かめる (第 9 類・第 42 類。JR 東日本の新幹線「はやて」の権利がソフトウェアに及ぶか)。App Store Connect でアプリを作る前に
 - [ ] 実機の Siri が「はやてで送って」を Hayate と結びつけるか確かめる (`INAlternativeAppNames` に「はやて」を入れてある)
 - [ ] サイトのドメイン: hayate.app / hayate.io / gethayate.com は取られている。hayateapp.com は空いていた (2026-11-10)
 - [ ] プライバシーポリシー (アプリ専用)・サポート URL
 - [ ] プライバシーラベル: 自前で集めるものは無い (送信先はユーザーが登録したもの)。SDK を入れたら `docs/privacy-labels.md` を作る
-- [ ] 強制アップデートと GA4 の計測 (課金のイベントは `docs/BILLING.md` の「計測」) (`~/work/docs/global-rules/app-analytics.md`) を v1 に入れるか決める (Firebase を入れるかどうか)
+- [x] ~~強制アップデートと GA4 の計測を v1 に入れるか~~ 入れない (2026-11-13。無料・OSS で「何も集めない」。docs/FREE_OSS.md の未決 10)
 - [x] 課金の形: 7 日間の無料お試し (0 円の非消耗型) + 買い切り $4.99 / 750 円 (2026-11-10 に $9.99 / 1,500 円で決め、2026-11-12 に公開前に下げた。`docs/BILLING.md`)
 - [x] App Store Connect にアプリと IAP 商品を 2 つ作る (2026-11-10。`docs/BILLING.md` の「App Store Connect の状態」)
 - [x] IAP の審査用スクリーンショット (購入画面) を載せる (2026-11-10。両方とも `READY_TO_SUBMIT`。撮り方は `docs/BILLING.md`)
