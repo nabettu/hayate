@@ -307,3 +307,23 @@ struct MemoCopyTests {
         #expect(old.timeZone == .current)
     }
 }
+
+@Suite("タイムゾーンの埋め合わせ")
+struct MemoTimeZoneFillTests {
+    @Test func タイムゾーンの無いメモに埋めて_埋めたら_true() {
+        var log = MemoLog(owner: .phone, capacity: nil)
+        log.add(Memo(text: "a", source: "t", origin: .phone, timeZoneID: nil))
+        log.add(Memo(text: "b", source: "t", origin: .phone, timeZoneID: "Europe/Paris"))
+        let first = log.fillMissingTimeZones("Asia/Tokyo")
+        #expect(first)
+        #expect(log.memos.map(\.timeZoneID).sorted { ($0 ?? "") < ($1 ?? "") } == ["Asia/Tokyo", "Europe/Paris"])
+        let second = log.fillMissingTimeZones("Asia/Tokyo")
+        #expect(second == false)
+    }
+
+    @Test func 相手から届いたタイムゾーンの無いメモにも埋める() {
+        var log = MemoLog(owner: .phone, capacity: nil)
+        log.merge(Memo(text: "a", source: "t", origin: .watch, timeZoneID: nil), insertIfMissing: true, fallbackTimeZoneID: "Asia/Tokyo")
+        #expect(log.memos.first?.timeZoneID == "Asia/Tokyo")
+    }
+}

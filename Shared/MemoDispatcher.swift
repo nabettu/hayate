@@ -35,8 +35,10 @@ actor MemoDispatcher {
     /// 一覧を読めないあいだに相手の端末から届いた写し。読めたら反映する (読めるまで捨てない)
     private var receivedWhileUnreadable: [Memo] = []
     /// 消した知らせを受けたメモ。一覧に反映して保存できるまで、別のファイルにも残す (アプリが終わっても送らないため)
-    private var pendingDeletions: [UUID: Date]
+    private var pendingDeletions: [UUID: Date] = [:]
     private let deletionsURL: URL
+    /// 消した知らせの控えを読めなかった。読めるまで何も送らない (消したメモを送らないため) し、控えを上書きしない
+    private var deletionsUnreadable = false
     /// 読めたあとに反映した写しのうち、保存できたら受領を返すもの (iPhone だけ)
     private var acksAfterSave: Set<UUID> = []
 
@@ -44,7 +46,6 @@ actor MemoDispatcher {
         self.sender = sender
         self.fileURL = directory.appending(path: "memo-log.json")
         self.deletionsURL = directory.appending(path: "memo-deletions.json")
-        pendingDeletions = (try? Data(contentsOf: deletionsURL)).flatMap { try? JSONDecoder().decode([UUID: Date].self, from: $0) } ?? [:]
         switch Self.readLog(at: fileURL, legacyURL: directory.appending(path: "message-log.json")) {
         case .loaded(let saved):
             log = saved
@@ -54,6 +55,15 @@ actor MemoDispatcher {
             log = MemoLog(owner: Self.role, capacity: Self.capacity)
             readFailed = true
         }
+        // 前の版で保存したメモは、Markdown の日付・時刻が送り直すたびに変わらないよう、今のタイムゾーンに決める
+        if log.fillMissingTimeZones() { dirty = true }
+        if let saved = Self.readDeletions(at: deletionsURL) {
+            pendingDeletions = saved
+        } else {
+            deletionsUnreadable = true
+        }
+        // 前の起動で控えだけ書けていた削除を、一覧にも反映する (次の flush で保存する)
+        if !pendingDeletions.isEmpty { dirty = true }
         // 前の版で iPhone に時計の履歴を写していたファイル (watch-history.json) は消さずに残す。
         // メモは時計から全文が届き直すが、時計側の履歴が既に無くなっていたときの控えになる
     }
@@ -200,6 +210,8 @@ actor MemoDispatcher {
     /// 1 件送って結果を反映する。
     @discardableResult
     private func deliver(_ ref: MemoLog.DeliveryRef) async -> DeliverResult {
+        // 消した知らせの控えを読めないあいだは、消したメモかどうか分からないので送らない
+        if deletionsUnreadable, !loadPendingDeletions() { return .stop }
         guard !inFlight.contains(ref.deliveryID), pendingDeletions[ref.memoID] == nil, let memo = log.memo(id: ref.memoID),
               let delivery = log.delivery(ref), delivery.owner == Self.role, delivery.status.isPending else { return .skipped }
         inFlight.insert(ref.deliveryID)
@@ -442,6 +454,7 @@ actor MemoDispatcher {
             }
             log = saved
             readFailed = false
+            if log.fillMissingTimeZones() { dirty = true }
         case .missing:
             readFailed = false
         case .unreadable:
@@ -467,7 +480,35 @@ actor MemoDispatcher {
         if !received.isEmpty { dirty = true }
     }
 
+    /// 控えを読む。読めた (または無かった) ら true。読めたときは手元の分と合わせる。
+    @discardableResult
+    private func loadPendingDeletions() -> Bool {
+        guard let saved = Self.readDeletions(at: deletionsURL) else {
+            deletionsUnreadable = true
+            return false
+        }
+        pendingDeletions.merge(saved) { mine, _ in mine }
+        deletionsUnreadable = false
+        return true
+    }
+
+    /// 控えの中身。無ければ空、読めなければ nil。
+    private static func readDeletions(at url: URL) -> [UUID: Date]? {
+        let data: Data
+        do {
+            data = try Data(contentsOf: url)
+        } catch let error as CocoaError where error.code == .fileReadNoSuchFile {
+            return [:]
+        } catch {
+            return nil
+        }
+        // 壊れた控えは待っても直らない。消したメモが送られうるが、止め続けるよりよい
+        return (try? JSONDecoder().decode([UUID: Date].self, from: data)) ?? [:]
+    }
+
     private func savePendingDeletions() {
+        // 読めていない控えを上書きすると、前の削除を失う
+        guard !deletionsUnreadable || loadPendingDeletions() else { return }
         if pendingDeletions.isEmpty {
             try? FileManager.default.removeItem(at: deletionsURL)
         } else if let data = try? JSONEncoder().encode(pendingDeletions) {

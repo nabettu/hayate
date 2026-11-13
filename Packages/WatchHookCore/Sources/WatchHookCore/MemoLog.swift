@@ -121,6 +121,16 @@ public struct MemoLog: Codable, Hashable, Sendable {
         memos.removeAll { $0.id == memoID }
     }
 
+    /// タイムゾーンの無いメモ (前の版で保存したもの) に埋める。埋めたら true (保存し直す)。
+    public mutating func fillMissingTimeZones(_ identifier: String = TimeZone.current.identifier) -> Bool {
+        var changed = false
+        for i in memos.indices where memos[i].timeZoneID == nil {
+            memos[i].timeZoneID = identifier
+            changed = true
+        }
+        return changed
+    }
+
     public mutating func markPhoneSynced(_ memoID: UUID) {
         guard let m = memos.firstIndex(where: { $0.id == memoID }), memos[m].phoneSync == .waiting else { return }
         memos[m].phoneSync = .delivered
@@ -138,12 +148,15 @@ public struct MemoLog: Codable, Hashable, Sendable {
     /// 相手の端末から届いた写しを合わせる。連携ごとに版の大きいほうを取り、知らない連携は足す。
     /// 自分が受け持つ連携は自分の状態が正なので変えない。本文・端末だけの状態 (`phoneSync`) も変えない。
     @discardableResult
-    public mutating func merge(_ remote: Memo, insertIfMissing: Bool) -> MergeResult {
+    public mutating func merge(_ remote: Memo, insertIfMissing: Bool,
+                               fallbackTimeZoneID: String = TimeZone.current.identifier) -> MergeResult {
         guard !isDeleted(remote.id) else { return .ignored }
         guard let m = memos.firstIndex(where: { $0.id == remote.id }) else {
             guard insertIfMissing else { return .ignored }
             var copy = remote
             copy.phoneSync = nil
+            // 前の版の端末から届いたもの。受け取った時点で決めて、送り直しても変えない
+            if copy.timeZoneID == nil { copy.timeZoneID = fallbackTimeZoneID }
             memos.append(copy)
             sortAndTrim()
             return .inserted

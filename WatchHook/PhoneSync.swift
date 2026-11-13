@@ -64,15 +64,17 @@ final class PhoneSync: NSObject, WCSessionDelegate, @unchecked Sendable {
     private func sendPendingDeletions() {
         let session = WCSession.default
         guard session.activationState == .activated else { return }
-        let ids = deletionLock.withLock { _ in
-            let ids = UserDefaults.standard.stringArray(forKey: Self.pendingDeletionsKey) ?? []
-            UserDefaults.standard.removeObject(forKey: Self.pendingDeletionsKey)
-            return ids
-        }
+        let ids = deletionLock.withLock { _ in UserDefaults.standard.stringArray(forKey: Self.pendingDeletionsKey) ?? [] }
         // 時計のアプリが無ければ、止める未送信も無い
-        guard session.isWatchAppInstalled else { return }
+        let installed = session.isWatchAppInstalled
         for id in ids {
-            session.transferUserInfo([SyncKeys.deletedMemo: id])
+            if installed { session.transferUserInfo([SyncKeys.deletedMemo: id]) }
+            // OS に渡してから控えを消す (途中でアプリが終わっても、残りは次に送る。2 回届いても害は無い)
+            deletionLock.withLock { _ in
+                var rest = UserDefaults.standard.stringArray(forKey: Self.pendingDeletionsKey) ?? []
+                if let i = rest.firstIndex(of: id) { rest.remove(at: i) }
+                UserDefaults.standard.set(rest, forKey: Self.pendingDeletionsKey)
+            }
         }
     }
 
