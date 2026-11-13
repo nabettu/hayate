@@ -1,105 +1,125 @@
 {
   "iphone": {
     "hero": {
-      "h1": "শুধু বলুন,\n*webhook*-এ পৌঁছে যাক",
+      "h1": "কবজিতে বলুন\n*মেমো* রাখুন",
       "chips": [
-        "Slack",
-        "Discord",
-        "নিজের API"
+        "মেমো",
+        "Webhook",
+        "রিমাইন্ডার"
       ],
-      "closing": "মাথায় এলেই\n*কবজি থেকে* পাঠান"
+      "closing": "ভাবনা এলেই\n*কবজি থেকে* রাখুন"
     },
     "siri": {
-      "h1": "*Hey Siri* বলুন\nহাত না লাগিয়ে",
+      "h1": "*Hey Siri*\nহাত ছাড়াই",
       "chips": [
         "Siri",
         "ডাবল ট্যাপ",
         "ওয়াচ ফেস"
       ],
-      "closing": "হাত ভরা থাকলেও\n*শুধু কথায়* পাঠান"
+      "closing": "হাত ব্যস্ত?\n*শুধু কণ্ঠে* মেমো"
     },
-    "destination": {
-      "h1": "গন্তব্য ঠিক করুন\n*নিজের মতো*",
+    "reminder": {
+      "h1": "একটি শব্দে শুরু\n*রিমাইন্ডারে* যোগ",
+      "floats": [
+        "“দুধ কেনা” যোগ হয়েছে",
+        "iPhone তালিকায় যোগ করে"
+      ],
+      "closing": "কাজগুলো যায়\n*সোজা তালিকায়*"
+    },
+    "integrations": {
+      "h1": "*অনেক* গন্তব্যে\nএকসাথে পাঠান",
       "chips": [
         "Webhook",
-        "Slack",
-        "Discord"
+        "Markdown",
+        "Obsidian"
       ],
       "floats": [
-        "অথেনটিকেশন হেডার Keychain-এ",
-        "{{text}}-এ বলা কথা"
+        "2026-11-13.md-এ যোগ হয়েছে",
+        "Slack, Notion, ntfy ইত্যাদি"
       ],
-      "closing": "নিজের সার্ভারেও\n*সরাসরি* পৌঁছায়"
-    },
-    "direct": {
-      "h1": "ঘড়ি থেকে\n*সরাসরি* পৌঁছায়",
-      "chips": [
-        "Wi-Fi",
-        "মোবাইল নেটওয়ার্ক"
-      ],
-      "floats": [
-        "যা যায়নি তা রেখে দেয়",
-        "পরের বার খুললে আবার পাঠায়"
-      ],
-      "closing": "সিগন্যাল দুর্বল হলেও\n*কিছু হারায় না*"
+      "closing": "চ্যাটেও\n*নিজের নোটেও*"
     },
     "more": {
       "h1": "আরও\n*অনেক কিছু।*",
       "cells": [
-        "অথেনটিকেশন হেডার\nKeychain-এ সংরক্ষিত",
-        "Slack ও Discord\nশুধু URL পেস্ট",
-        "ওয়াচ ফেস থেকে\nসঙ্গে সঙ্গে চালু",
-        "পাঠানো বার্তার\nইতিহাস",
-        "টেস্ট পাঠিয়ে\nদেখে নিন",
-        "আবার পাঠালেও\nএকই বার্তা ID"
+        "সব মেমো থাকে\niPhone-এ",
+        "অথেন্টিকেশন হেডার\nKeychain-এ",
+        "ওপেন সোর্স\nGitHub-এ",
+        "না যাওয়া মেমো\nপরে খুললে যায়",
+        "বিজ্ঞাপন নেই,\nট্র্যাকিং নেই",
+        "44টি ভাষায়\nউপলব্ধ"
       ],
-      "closing": "বলা কথা চলুক\n*আপনার সিস্টেমে*"
+      "closing": "আপনার কথা\n*আপনার কাজে*"
     }
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "পাঠান",
-    "sent": "“Slack #memo”-এ পাঠানো হয়েছে",
-    "history": "ইতিহাস",
-    "destinationsTitle": "গন্তব্য",
+    "memoButton": "মেমো",
+    "savedAndSent": "সংরক্ষণ করে পাঠানো হয়েছে",
+    "destinationCount": "গন্তব্য: 3",
+    "memosTitle": "মেমো",
+    "spoken": [
+      "পার্কিং B2, 14 নম্বর",
+      "কাল সকাল 10টায় ডেন্টিস্ট",
+      "লেখার আইডিয়া: সকালের বাজার"
+    ],
+    "reminderSpoken": "রিমাইন্ডার, দুধ কেনা",
+    "reminderTitle": "দুধ কেনা",
+    "summary": {
+      "sent": "পাঠানো হয়েছে",
+      "waiting": "পাঠানোর অপেক্ষায়",
+      "memo": "মেমো"
+    },
+    "status": {
+      "done": "শেষ",
+      "waiting": "পাঠানোর অপেক্ষায়"
+    },
+    "date": "13 নভেম্বর, 10:09 AM",
+    "time": "10:09",
     "destinations": [
       "Slack #memo",
       "Discord #todo",
-      "খরচের API"
+      "Notion",
+      "ntfy"
     ],
-    "spoken": [
-      "দুধ আর ডিম কিনতে হবে",
-      "কাল সকাল ১০টায় ডেন্টিস্ট",
-      "পার্কিং বি২-এর ১৪ নম্বরে"
-    ],
-    "statusSent": "পাঠানো হয়েছে",
-    "statusPending": "পাঠানো হয়নি",
-    "siriDialog": "Slack #memo-তে পাঠানো হয়েছে।",
-    "defaultMark": "(ডিফল্ট)",
+    "reminderTarget": "রিমাইন্ডার (বাজার)",
+    "markdownTarget": "Markdown (Obsidian)",
+    "markdownFile": "2026-11-13.md",
     "siriAsk": "Hayate দিয়ে পাঠাও",
-    "siriQuestion": "কী পাঠাতে চান?",
+    "siriQuestion": "কী মেমো করবেন?",
+    "siriDialog": "সংরক্ষণ করে পাঠানো হয়েছে",
     "quote": [
       "“",
       "”"
     ],
-    "edit": {
-      "cancel": "বাতিল",
-      "save": "সংরক্ষণ",
-      "nameLabel": "নাম",
-      "name": "খরচের API",
-      "url": "https://api.example.com/hooks/expense",
-      "urlFooter": "শুধু https URL ব্যবহার করা যায়।",
-      "request": "রিকোয়েস্ট",
-      "method": "মেথড",
-      "bodyFormat": "বডির ফরম্যাট",
-      "bodyFormatValue": "JSON",
-      "headers": "হেডার",
-      "addHeader": "হেডার যোগ করুন",
-      "hideSecret": "গোপন মান হিসেবে লুকান",
-      "headersFooter": "Authorization-এর মতো অথেনটিকেশন হেডার যোগ করা যায়। মান শুধু iPhone ও Apple Watch-এর Keychain-এ সংরক্ষিত থাকে।",
-      "body": "বডি",
-      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
-      "test": "টেস্ট পাঠান"
+    "tabs": [
+      "ইনপুট",
+      "মেমো",
+      "ইন্টিগ্রেশন",
+      "ব্যবহারের নিয়ম"
+    ],
+    "detail": {
+      "deliveries": "গন্তব্য ও ইন্টিগ্রেশন",
+      "sendTo": "গন্তব্যে পাঠান",
+      "copy": "কপি",
+      "share": "শেয়ার",
+      "delete": "মুছুন"
+    },
+    "integrations": {
+      "title": "ইন্টিগ্রেশন",
+      "savedOnPhone": "iPhone-এ সংরক্ষিত",
+      "reminders": "রিমাইন্ডার",
+      "reminderDetail": "“রিমাইন্ডার” দিয়ে শুরু করলে “বাজার”-এ যোগ হয়",
+      "markdown": "Markdown ফাইল",
+      "markdownDetail": "তারিখ অনুযায়ী “Obsidian”-এ যোগ করা হয়",
+      "webhooks": "গন্তব্য (webhook)",
+      "webhooksFooter": "সুইচ চালু থাকা সব গন্তব্যে মেমো পাঠানো হয়। Apple Watch-এ লেখা মেমো ঘড়ি থেকে সরাসরি যায়।",
+      "kinds": [
+        "Slack",
+        "Discord",
+        "Webhook",
+        "Webhook"
+      ]
     }
   }
 }

@@ -1,105 +1,125 @@
 {
   "iphone": {
     "hero": {
-      "h1": "Puhu, ja se menee\n*webhookiin*",
+      "h1": "Puhu kelloon,\nja se on *muistissa*",
       "chips": [
-        "Slack",
-        "Discord",
-        "Oma API"
+        "Muistiinpano",
+        "Webhook",
+        "Muistutukset"
       ],
-      "closing": "Lähetä heti\n*ranteestasi*"
+      "closing": "Idea? Talteen\n*suoraan ranteesta*"
     },
     "siri": {
-      "h1": "*Hey Siri*,\nilman käsiä",
+      "h1": "*Hei Siri*,\nilman käsiä",
       "chips": [
         "Siri",
         "Kaksoisnapautus",
         "Kellotaulu"
       ],
-      "closing": "Kädet täynnä?\n*Käytä ääntä*"
+      "closing": "Kädet täynnä?\nMuistiin *äänellä*"
     },
-    "destination": {
-      "h1": "Valitse kohde\n*itse*",
+    "reminder": {
+      "h1": "Aloita sanalla,\nsaat *muistutuksen*",
+      "floats": [
+        "Lisätty ”osta maitoa”",
+        "iPhone lisää sen listaan"
+      ],
+      "closing": "Tehtävät\n*suoraan listaan*"
+    },
+    "integrations": {
+      "h1": "*Moneen kohteeseen*\nkerralla",
       "chips": [
         "Webhook",
-        "Slack",
-        "Discord"
+        "Markdown",
+        "Obsidian"
       ],
       "floats": [
-        "Todennus Keychainissa",
-        "{{text}} = puhuttu sisältö"
+        "Lisätty: 2026-11-13.md",
+        "Slack, Notion, ntfy ym."
       ],
-      "closing": "Myös omalle\n*palvelimellesi*"
-    },
-    "direct": {
-      "h1": "Suoraan\n*kellosta*",
-      "chips": [
-        "Wi-Fi",
-        "Mobiilidata"
-      ],
-      "floats": [
-        "Lähettämättä säilyy",
-        "Uusi yritys avattaessa"
-      ],
-      "closing": "Heikko kenttä?\n*Mitään ei huku*"
+      "closing": "Chattiin ja\n*omiin muistioihin*"
     },
     "more": {
-      "h1": "Ja *paljon*\nmuuta.",
+      "h1": "Ja\n*paljon muuta.*",
       "cells": [
-        "Todennus tallentuu\nKeychainiin",
-        "Slack ja Discord:\nliitä vain URL",
-        "Käynnistys\nkellotaulusta",
-        "Historia\nlähetetyistä",
-        "Testaa, että\nviesti menee perille",
-        "Sama viestin tunnus\nuudelleenlähetyksessä"
+        "Kaikki muistiinpanot\niPhonessa",
+        "Auth-otsake\nKeychainissa",
+        "Avoin lähdekoodi\nGitHubissa",
+        "Lähettämättömät\nlähetetään uudelleen",
+        "Ei mainoksia,\nei seurantaa",
+        "Saatavilla\n44 kielellä"
       ],
-      "closing": "Sanasi\n*omaan järjestelmääsi*"
+      "closing": "Sanasi\n*omaan työnkulkuusi*"
     }
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "Lähetä",
-    "sent": "Lähetetty kohteeseen ”Slack #memo”",
-    "history": "Historia",
-    "destinationsTitle": "Kohteet",
+    "memoButton": "Muistiinpano",
+    "savedAndSent": "Tallennettu ja lähetetty",
+    "destinationCount": "Kohteita: 3",
+    "memosTitle": "Muistiinpano",
+    "spoken": [
+      "Auto: B2, paikka 14",
+      "Hammaslääkäri huomenna klo 10",
+      "Juttuidea: kauppatori"
+    ],
+    "reminderSpoken": "Muistutus, osta maitoa",
+    "reminderTitle": "osta maitoa",
+    "summary": {
+      "sent": "Lähetetty",
+      "waiting": "Odottaa lähetystä",
+      "memo": "Muistiinpano"
+    },
+    "status": {
+      "done": "Valmis",
+      "waiting": "Odottaa lähetystä"
+    },
+    "date": "13.11. klo 10.09",
+    "time": "10.09",
     "destinations": [
       "Slack #memo",
       "Discord #todo",
-      "Menoseuranta-API"
+      "Notion",
+      "ntfy"
     ],
-    "spoken": [
-      "Osta maitoa ja kananmunia",
-      "Hammaslääkäri huomenna klo 10",
-      "Pysäköinti B2, paikka 14"
-    ],
-    "statusSent": "Lähetetty",
-    "statusPending": "Ei lähetetty",
-    "siriDialog": "Lähetetty kohteeseen Slack #memo.",
-    "defaultMark": "(Oletus)",
+    "reminderTarget": "Muistutukset (Ostokset)",
+    "markdownTarget": "Markdown (Obsidian)",
+    "markdownFile": "2026-11-13.md",
     "siriAsk": "Lähetä sovelluksella Hayate",
-    "siriQuestion": "Mitä haluat lähettää?",
+    "siriQuestion": "Mitä haluat kirjata?",
+    "siriDialog": "Tallennettu ja lähetetty",
     "quote": [
       "”",
       "”"
     ],
-    "edit": {
-      "cancel": "Peruuta",
-      "save": "Tallenna",
-      "nameLabel": "Nimi",
-      "name": "Menoseuranta-API",
-      "url": "https://api.example.com/hooks/expense",
-      "urlFooter": "Vain https-URL-osoitteet toimivat.",
-      "request": "Pyyntö",
-      "method": "Metodi",
-      "bodyFormat": "Sisällön muoto",
-      "bodyFormatValue": "JSON",
-      "headers": "Otsikot",
-      "addHeader": "Lisää otsikko",
-      "hideSecret": "Piilota salaisena arvona",
-      "headersFooter": "Voit rekisteröidä todennusotsikoita, kuten Authorization. Arvot tallennetaan vain iPhonen ja Apple Watchin Keychainiin.",
-      "body": "Sisältö",
-      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
-      "test": "Lähetä testi"
+    "tabs": [
+      "Syöte",
+      "Muistiinpano",
+      "Integraatiot",
+      "Käyttöohje"
+    ],
+    "detail": {
+      "deliveries": "Kohteet ja integraatiot",
+      "sendTo": "Lähetä kohteeseen",
+      "copy": "Kopioi",
+      "share": "Jaa",
+      "delete": "Poista"
+    },
+    "integrations": {
+      "title": "Integraatiot",
+      "savedOnPhone": "Tallennettu iPhoneen",
+      "reminders": "Muistutukset",
+      "reminderDetail": "Jos alkaa sanalla ”Muistutus”, lisätään kohteeseen ”Ostokset”",
+      "markdown": "Markdown-tiedosto",
+      "markdownDetail": "Lisätään päivän mukaan tiedostoon ”Obsidian”",
+      "webhooks": "Kohde (webhook)",
+      "webhooksFooter": "Lähettää kirjoitetun muistiinpanon kaikkiin kohteisiin, joiden kytkin on päällä. Apple Watchissa kirjoitetut lähetetään suoraan kellosta.",
+      "kinds": [
+        "Slack",
+        "Discord",
+        "Webhook",
+        "Webhook"
+      ]
     }
   }
 }

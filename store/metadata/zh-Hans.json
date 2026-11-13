@@ -1,17 +1,7 @@
 {
   "name": "Hayate",
-  "subtitle": "把 Apple Watch 的话发到 webhook",
-  "promotionalText": "对着 Apple Watch 说话，就能发送到 Slack、Discord 或你自己的 webhook。想到什么，直接从手腕发出去。",
-  "keywords": "webhook,语音输入,语音,备忘,Slack,Discord,Siri,手表,API,自动化,快捷指令,语音备忘,发送,听写",
-  "description": "Hayate 会把你对 Apple Watch 说的话，原样发送到你登记的发送目标 (webhook)。\n\n■ 功能\n・在 Apple Watch 上按“发送”并开口就能发送（Series 9 / Ultra 2 及之后的机型也可用轻点两下）\n・说“嘿 Siri，用 Hayate 发送”，无需动手即可发送（也可用 iPhone 的 Siri）\n・发送目标可自由设置：URL、方法、请求头（如 Authorization）、正文模板\n・Slack 和 Discord 只需粘贴 URL\n・直接从手表发送到发送目标，不经过 iPhone\n・未能发送的内容会保留，下次打开时重新发送\n・发送内容的记录、测试发送、表盘复杂功能\n\n■ 适用场景\n・把想到的备忘发到 Slack 频道\n・把购物清单或待办发到自己的服务\n・用 n8n、Zapier 或自己的服务器接收并自动化\n\n■ 接收方的规格\n・正文中可以插入 {{text}}（说话内容）、{{id}}、{{sentAt}}、{{source}}\n・X-WatchHook-Message-Id 请求头在重新发送时值保持不变，可用于去重\n\n■ 数据处理\n・发送目标的设置（包括认证请求头）只保存在 iPhone 和 Apple Watch 的 Keychain 中\n・说话内容只会发送到你登记的发送目标，不会经过开发者的服务器\n\n■ 价格\n可免费试用 7 天。之后通过 App 内的一次性购买继续使用。没有订阅。",
-  "iap": {
-    "trial": {
-      "name": "7 天免费试用",
-      "description": "7 天内可免费使用全部功能，不会自动扣费。"
-    },
-    "unlock": {
-      "name": "Hayate（一次性购买）",
-      "description": "永久使用 Watch、Siri、iPhone 发送，只需支付一次。"
-    }
-  }
+  "subtitle": "对 Apple Watch 说话即可记备忘",
+  "promotionalText": "对 Apple Watch 说一句，就能存为备忘，并一起送到提醒事项、Obsidian 等 Markdown 文件，以及 Slack、Notion 等 webhook。开源，无广告，无追踪。",
+  "keywords": "语音笔记,webhook,提醒事项,Obsidian,Markdown,Slack,Discord,Notion,Siri,语音输入,手表,待办,自动化,开源,n8n,ntfy,听写",
+  "description": "Hayate 会先把你对 Apple Watch 说的话保存为备忘，再一起送到你选择的集成。即使不设置任何集成，也可以当作手腕上的语音备忘使用。\n\n■ 功能\n・在 Apple Watch 上按“备忘”然后说话（Series 9 / Ultra 2 及更新机型也可以互点两下）\n・“嘿 Siri，用 Hayate 发送”→“要记下什么？”，无需动手即可记备忘（iPhone 上的 Siri 也可以）\n・也可以在 iPhone 上用文字输入\n・所有备忘都保留在 iPhone 上（Apple Watch 上保留最近 50 条）。之后可以查看、拷贝、共享、删除，或发送到其他发送目标\n・从表盘的复杂功能快速打开\n\n■ 集成\n・提醒事项：以触发词开头，例如“提醒事项，买牛奶”，就会把“买牛奶”添加到你选择的列表（由 iPhone 添加。触发词可以在设置中添加或删除）\n・Markdown：每条备忘都会追加到所选文件夹中按日期命名的文件（例如 2026-11-13.md）。也可以选择 iCloud 云盘中的 Obsidian 仓库等\n・Webhook：可以登记任意多个，备忘会发送到所有已打开的发送目标。提供 Slack、Discord、Google Chat、Microsoft Teams、Telegram、ntfy、Notion、Todoist、Home Assistant、n8n、IFTTT 的模板，也可以自由设置 URL、方法、请求头（如 Authorization）和正文模板\n・在 Apple Watch 上输入的备忘由手表直接发送到 webhook\n・未能发送的会保留下来，下次打开 App 时重新发送\n・可以按发送目标和集成查看完成、等待发送或失败\n\n■ 接收端规格\n・正文中可以插入 {{text}}（说出的内容）、{{id}}、{{sentAt}}、{{source}}\n・X-WatchHook-Message-Id 请求头在重新发送时保持不变，可用于去重\n\n■ 免费、开源\n・所有功能均可免费使用。没有 App 内购买，也没有广告\n・源代码已在 GitHub 公开（MIT 许可证）：github.com/nabettu/hayate\n\n■ 数据处理\n・备忘保存在 iPhone 和 Apple Watch 中，不经过开发者的服务器\n・发送目标的设置（包括认证请求头）只保存在 iPhone 和 Apple Watch 的 Keychain 中\n・你说的内容只会发送到你打开的集成\n・不进行使用情况统计或追踪"
 }

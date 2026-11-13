@@ -1,13 +1,13 @@
 {
   "iphone": {
     "hero": {
-      "h1": "Habla y envía\nal *webhook*",
+      "h1": "Habla al reloj\ny ya es una *nota*",
       "chips": [
-        "Slack",
-        "Discord",
-        "Tu propia API"
+        "Nota",
+        "Webhook",
+        "Recordatorio"
       ],
-      "closing": "¿Una idea?\nEnvíala desde tu *muñeca*"
+      "closing": "¿Una idea? Guárdala\n*desde la muñeca*"
     },
     "siri": {
       "h1": "*Oye Siri*,\nsin usar las manos",
@@ -16,90 +16,110 @@
         "Doble toque",
         "Esfera"
       ],
-      "closing": "¿Manos ocupadas?\nEnvía *con la voz*"
+      "closing": "¿Manos ocupadas?\nNota con la *voz*"
     },
-    "destination": {
-      "h1": "Tú eliges\nel *destino*",
+    "reminder": {
+      "h1": "Di una palabra\ny ya es *recordatorio*",
+      "floats": [
+        "Añadido “comprar leche”",
+        "El iPhone lo añade a la lista"
+      ],
+      "closing": "Tus tareas,\n*directas a la lista*"
+    },
+    "integrations": {
+      "h1": "A *muchos destinos*\na la vez",
       "chips": [
         "Webhook",
-        "Slack",
-        "Discord"
+        "Markdown",
+        "Obsidian"
       ],
       "floats": [
-        "Encabezado de autenticación en Keychain",
-        "{{text}} = lo que dices"
+        "Añadido a 2026-11-13.md",
+        "Slack, Notion, ntfy y más"
       ],
-      "closing": "Directo a tu\n*propio servidor*"
-    },
-    "direct": {
-      "h1": "Envío *directo*\ndesde el reloj",
-      "chips": [
-        "Wi-Fi",
-        "Móvil"
-      ],
-      "floats": [
-        "Lo no enviado se conserva",
-        "Se reenvía al abrir de nuevo"
-      ],
-      "closing": "¿Poca cobertura?\n*No se pierde nada*"
+      "closing": "A tu chat\ny a *tus notas*"
     },
     "more": {
-      "h1": "Y mucho\n*más.*",
+      "h1": "Y\n*mucho más.*",
       "cells": [
-        "Encabezado de\nautenticación en Keychain",
-        "Slack y Discord:\npega la URL",
-        "Ábrelo desde\nla esfera",
-        "Historial de\nlo enviado",
-        "Envío de prueba\npara comprobar",
-        "Mismo ID de mensaje\nal reenviar"
+        "Todas las notas\nen el iPhone",
+        "Cabecera auth\nen el Keychain",
+        "Código abierto\nen GitHub",
+        "Lo no enviado se\nreenvía al abrir",
+        "Sin anuncios,\nsin rastreo",
+        "Disponible en\n44 idiomas"
       ],
-      "closing": "Tus palabras,\nen *tu sistema*"
+      "closing": "Tus palabras,\nen *tu flujo*"
     }
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "Enviar",
-    "sent": "Enviado a “Slack #memo”",
-    "history": "Historial",
-    "destinationsTitle": "Destinos",
+    "memoButton": "Nota",
+    "savedAndSent": "Guardada y enviada",
+    "destinationCount": "Destinos: 3",
+    "memosTitle": "Nota",
+    "spoken": [
+      "Aparcado en B2, plaza 14",
+      "Dentista mañana a las 10",
+      "Idea: reportaje del mercado"
+    ],
+    "reminderSpoken": "Recordatorio, comprar leche",
+    "reminderTitle": "comprar leche",
+    "summary": {
+      "sent": "Enviado",
+      "waiting": "Pendiente de envío",
+      "memo": "Nota"
+    },
+    "status": {
+      "done": "Listo",
+      "waiting": "Pendiente de envío"
+    },
+    "date": "13 nov, 10:09",
+    "time": "10:09",
     "destinations": [
       "Slack #memo",
       "Discord #todo",
-      "API de gastos"
+      "Notion",
+      "ntfy"
     ],
-    "spoken": [
-      "Comprar leche y huevos",
-      "Dentista mañana a las 10",
-      "Parking en B2, plaza 14"
-    ],
-    "statusSent": "Enviado",
-    "statusPending": "No enviado",
-    "siriDialog": "Enviado a Slack #memo.",
-    "defaultMark": "(predeterminado)",
+    "reminderTarget": "Recordatorios (Compra)",
+    "markdownTarget": "Markdown (Obsidian)",
+    "markdownFile": "2026-11-13.md",
     "siriAsk": "Enviar con Hayate",
-    "siriQuestion": "¿Qué quieres enviar?",
+    "siriQuestion": "¿Qué quieres anotar?",
+    "siriDialog": "Guardada y enviada",
     "quote": [
       "“",
       "”"
     ],
-    "edit": {
-      "cancel": "Cancelar",
-      "save": "Guardar",
-      "nameLabel": "Nombre",
-      "name": "API de gastos",
-      "url": "https://api.example.com/hooks/expense",
-      "urlFooter": "Solo se admiten URL https.",
-      "request": "Solicitud",
-      "method": "Método",
-      "bodyFormat": "Formato del cuerpo",
-      "bodyFormatValue": "JSON",
-      "headers": "Encabezados",
-      "addHeader": "Añadir encabezado",
-      "hideSecret": "Ocultar como valor secreto",
-      "headersFooter": "Puedes añadir encabezados de autenticación como Authorization. Los valores se guardan solo en el Keychain del iPhone y del Apple Watch.",
-      "body": "Cuerpo",
-      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
-      "test": "Envío de prueba"
+    "tabs": [
+      "Entrada",
+      "Nota",
+      "Integraciones",
+      "Cómo se usa"
+    ],
+    "detail": {
+      "deliveries": "Destinos e integraciones",
+      "sendTo": "Enviar a destino",
+      "copy": "Copiar",
+      "share": "Compartir",
+      "delete": "Borrar"
+    },
+    "integrations": {
+      "title": "Integraciones",
+      "savedOnPhone": "Guardada en el iPhone",
+      "reminders": "Recordatorios",
+      "reminderDetail": "Si empieza por “Recordatorio”, se añade a “Compra”",
+      "markdown": "Archivo Markdown",
+      "markdownDetail": "Se añade por fecha a “Obsidian”",
+      "webhooks": "Destino (webhook)",
+      "webhooksFooter": "Envía la nota a todos los destinos cuyo interruptor esté activado. Las notas del Apple Watch se envían directamente desde el reloj.",
+      "kinds": [
+        "Slack",
+        "Discord",
+        "Webhook",
+        "Webhook"
+      ]
     }
   }
 }

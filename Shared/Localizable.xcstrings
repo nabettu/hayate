@@ -20662,10 +20662,268 @@
     },
     "「Hey Siri、はやてで送って」と話しかけ、「何をメモしますか？」と聞かれたらメモしたい内容を話します。" : {
       "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "قل «Hey Siri، أرسل عبر Hayate»، وعندما تسأل Siri «ماذا تريد أن تدوّن؟» قل ما تريد تدوينه."
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "বলুন “Hey Siri, Hayate দিয়ে পাঠাও”। “কী মেমো করবেন?” জিজ্ঞেস করলে যা মেমো করতে চান তা বলুন।"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Digues «Hey Siri, envia amb Hayate» i, quan et pregunti «Què vols anotar?», digues el que vols anotar."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Řekněte „Hey Siri, odešli přes Hayate“ a až se Siri zeptá „Co chcete zapsat?“, řekněte, co si chcete poznamenat."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sig »Hey Siri, send med Hayate«, og sig så, hvad du vil notere, når Siri spørger »Hvad vil du notere?«."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sage „Hey Siri, mit Hayate senden“ und sprich auf die Frage „Was möchtest du notieren?“ einfach deine Notiz."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Πείτε «Hey Siri, στείλε με το Hayate» και, όταν το Siri ρωτήσει «Τι θέλετε να σημειώσετε;», πείτε τη σημείωσή σας."
+          }
+        },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Say “Hey Siri, send with Hayate,” and when asked “What do you want to memo?”, say your memo."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Di “Oye Siri, enviar con Hayate” y, cuando pregunte “¿Qué quieres anotar?”, di lo que quieres anotar."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sano ”Hei Siri, lähetä sovelluksella Hayate” ja kerro, mitä haluat kirjata, kun Siri kysyy ”Mitä haluat kirjata?”."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dites « Dis Siri, envoie avec Hayate », puis, à la question « Que voulez-vous noter ? », dites ce que vous souhaitez noter."
+          }
+        },
+        "gu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“Hey Siri, Hayate થી મોકલો” કહો, અને “શું નોંધવું છે?” પૂછે ત્યારે જે નોંધવું હોય તે બોલો."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "אמרו “Hey Siri, שלח עם Hayate”, וכש-Siri שואלת “מה לרשום?” אמרו את מה שתרצו לרשום."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“Hey Siri, Hayate से भेजो” कहें, और Siri जब पूछे “क्या नोट करना है?” तो जो नोट करना है वह बोलें।"
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recite „Hey Siri, pošalji s Hayate” i kad Siri upita „Što želite zabilježiti?”, izgovorite što želite zabilježiti."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mondja: „Hey Siri, küldd el a Hayate appal”, majd amikor a Siri megkérdezi, „Mit szeretne feljegyezni?”, mondja el, amit fel szeretne jegyezni."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Katakan “Hey Siri, kirim dengan Hayate”, lalu saat ditanya “Apa yang ingin dicatat?”, ucapkan isi catatan Anda."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Di’ “Ehi Siri, invia con Hayate” e, quando ti viene chiesto “Cosa vuoi appuntare?”, di’ cosa vuoi annotare."
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“Hey Siri, Hayate ನಲ್ಲಿ ಕಳುಹಿಸು” ಎನ್ನಿ, “ಏನನ್ನು ಟಿಪ್ಪಣಿ ಮಾಡಬೇಕು?” ಎಂದು ಕೇಳಿದಾಗ ಟಿಪ್ಪಣಿ ಮಾಡಬೇಕಾದದ್ದನ್ನು ಹೇಳಿ."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "\"Hey Siri, Hayate로 보내줘\"라고 말하고, \"무엇을 메모할까요?\"라고 물으면 메모할 내용을 말하세요."
+          }
+        },
+        "ml" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“Hey Siri, Hayate വഴി അയയ്ക്കൂ” എന്ന് പറയുക. “എന്താണ് മെമ്മോ ചെയ്യേണ്ടത്?” എന്ന് ചോദിക്കുമ്പോൾ മെമ്മോ ചെയ്യേണ്ടത് പറയുക."
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“Hey Siri, Hayate ने पाठवा” म्हणा आणि “काय मेमो करायचा आहे?” असे विचारल्यावर मेमो करायचे ते बोला."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sebut “Hey Siri, hantar dengan Hayate”, kemudian sebut apa yang anda mahu catat apabila Siri bertanya “Apa yang anda mahu catat?”."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Si «Hey Siri, send med Hayate», og si det du vil notere når Siri spør «Hva vil du notere?»."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Zeg “Hey Siri, verstuur met Hayate” en zeg wat je wilt noteren als Siri vraagt “Wat wil je noteren?”."
+          }
+        },
+        "or" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“Hey Siri, Hayate ରେ ପଠାଅ” କୁହନ୍ତୁ, “କ’ଣ ନୋଟ୍ କରିବେ?” ପଚାରିଲେ ନୋଟ୍ କରିବାକୁ ଥିବା କଥା କୁହନ୍ତୁ।"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“Hey Siri, Hayate ਨਾਲ ਭੇਜੋ” ਕਹੋ, ਅਤੇ “ਕੀ ਨੋਟ ਕਰਨਾ ਹੈ?” ਪੁੱਛਣ ’ਤੇ ਜੋ ਨੋਟ ਕਰਨਾ ਹੈ ਉਹ ਬੋਲੋ।"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Powiedz „Hey Siri, wyślij przez Hayate”, a gdy Siri zapyta „Co zanotować?”, podyktuj treść notatki."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diga “Hey Siri, enviar com o Hayate” e, quando ela perguntar “O que anotar?”, diga o que quer anotar."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diga “Hey Siri, enviar com o Hayate” e, quando ela perguntar “O que quer anotar?”, diga o que pretende anotar."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Spune „Hey Siri, trimite cu Hayate” și, când te întreabă „Ce notezi?”, spune ce vrei să notezi."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скажите «Hey Siri, отправь через Hayate», а когда Siri спросит «Что записать?», продиктуйте заметку."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Povedzte „Hey Siri, odošli cez Hayate“ a keď sa Siri opýta „Čo chcete zapísať?“, nadiktujte poznámku."
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Recite »Hey Siri, pošlji s Hayate« in ko vas Siri vpraša »Kaj želite zapisati?«, izgovorite zapisek."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Säg ”Hey Siri, skicka med Hayate” och säg sedan vad du vill anteckna när Siri frågar ”Vad vill du anteckna?”."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“Hey Siri, Hayate இல் அனுப்பு” என்று சொல்லி, “எதைக் குறிப்பெடுக்க வேண்டும்?” என்று கேட்கும்போது குறிப்பெடுக்க வேண்டியதைச் சொல்லவும்."
+          }
+        },
+        "te" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“Hey Siri, Hayate లో పంపు” అని చెప్పి, “ఏమి నోట్ చేయాలి?” అని అడిగినప్పుడు నోట్ చేయాలనుకున్నది చెప్పండి."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "พูดว่า \"Hey Siri ส่งด้วย Hayate\" แล้วเมื่อถูกถามว่า \"จะจดอะไรดี\" ให้พูดสิ่งที่ต้องการจด"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“Hey Siri, Hayate ile gönder” deyin; Siri “Ne not almak istersiniz?” diye sorunca not almak istediğinizi söyleyin."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Скажіть «Hey Siri, надішли через Hayate», а коли Siri запитає «Що записати?», промовте те, що хочете записати."
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "“Hey Siri، Hayate سے بھیجیں” کہیں، اور جب Siri پوچھے “کیا نوٹ کرنا ہے؟” تو جو بات نوٹ کرنی ہو وہ بولیں۔"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nói \"Hey Siri, gửi bằng Hayate\", khi được hỏi \"Bạn muốn ghi chú gì?\" thì nói nội dung cần ghi chú."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "说“嘿 Siri，用 Hayate 发送”，当被问到“要记下什么？”时，说出要记下的内容。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "說「Hey Siri，用 Hayate 傳送」，當 Siri 問「要記下什麼？」時，說出要記下的內容。"
           }
         }
       }

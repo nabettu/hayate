@@ -1,105 +1,125 @@
 {
   "iphone": {
     "hero": {
-      "h1": "Konuşun,\n*webhook*’a gitsin",
+      "h1": "Bileğine söyle,\n*nota* dönüşsün",
       "chips": [
-        "Slack",
-        "Discord",
-        "Kendi API’niz"
+        "Not",
+        "Webhook",
+        "Anımsatıcı"
       ],
-      "closing": "Aklınıza gelince\n*bilekten* gönderin"
+      "closing": "Aklına geleni\n*bilekten* kaydet"
     },
     "siri": {
-      "h1": "*Hey Siri*,\neller serbest",
+      "h1": "*Hey Siri* ile\neller serbest",
       "chips": [
         "Siri",
-        "Çift Dokunma",
-        "Kadran"
+        "Çift dokunma",
+        "Kadrandan"
       ],
-      "closing": "Elleriniz doluyken\n*sesle* gönderin"
+      "closing": "Ellerin dolu mu?\n*Sesinle* not al"
     },
-    "destination": {
-      "h1": "Hedefi\n*siz seçin*",
+    "reminder": {
+      "h1": "Bir sözle başla,\n*anımsatıcı* olsun",
+      "floats": [
+        "“süt al” eklendi",
+        "iPhone listeye ekler"
+      ],
+      "closing": "Yapılacaklar\n*doğrudan listeye*"
+    },
+    "integrations": {
+      "h1": "*Birçok* hedefe\naynı anda gönder",
       "chips": [
         "Webhook",
-        "Slack",
-        "Discord"
+        "Markdown",
+        "Obsidian"
       ],
       "floats": [
-        "Başlık Keychain’de",
-        "{{text}} söylediğiniz metin"
+        "2026-11-13.md’ye eklendi",
+        "Slack, Notion, ntfy ve dahası"
       ],
-      "closing": "Kendi sunucunuza\n*olduğu gibi* ulaşır"
-    },
-    "direct": {
-      "h1": "Saatten\n*doğrudan*",
-      "chips": [
-        "Wi-Fi",
-        "Hücresel"
-      ],
-      "floats": [
-        "Gönderilemeyen saklanır",
-        "Açılınca yeniden gönderilir"
-      ],
-      "closing": "Çekim zayıfsa da\n*hiçbiri kaybolmaz*"
+      "closing": "Sohbete de,\n*notlarına* da"
     },
     "more": {
-      "h1": "Daha\n*fazlası.*",
+      "h1": "Dahası\n*da var.*",
       "cells": [
+        "Tüm notlar\niPhone’da kalır",
         "Kimlik başlığı\nKeychain’de",
-        "Slack ve Discord:\nyalnızca URL",
-        "Kadrandan\nhızlı açılış",
-        "Gönderilenlerin\ngeçmişi",
-        "Test gönderimiyle\nulaştığını doğrula",
-        "Yeniden gönderimde\naynı ileti kimliği"
+        "Açık kaynak\nGitHub’da",
+        "Gönderilemeyenler\naçınca yeniden",
+        "Reklam yok,\ntakip yok",
+        "44 dilde\nkullanılabilir"
       ],
-      "closing": "Söyledikleriniz\n*kendi sisteminize*"
+      "closing": "Sözlerin,\n*kendi düzenine*"
     }
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "Gönder",
-    "sent": "“Slack #memo” hedefine gönderildi",
-    "history": "Geçmiş",
-    "destinationsTitle": "Hedefler",
+    "memoButton": "Not",
+    "savedAndSent": "Kaydedildi ve gönderildi",
+    "destinationCount": "Hedefler: 3",
+    "memosTitle": "Not",
+    "spoken": [
+      "Otopark B2, 14 numara",
+      "Yarın 10’da dişçi",
+      "Yazı fikri: semt pazarı"
+    ],
+    "reminderSpoken": "Hatırlatıcı, süt al",
+    "reminderTitle": "süt al",
+    "summary": {
+      "sent": "Gönderildi",
+      "waiting": "Gönderim bekliyor",
+      "memo": "Not"
+    },
+    "status": {
+      "done": "Bitti",
+      "waiting": "Gönderim bekliyor"
+    },
+    "date": "13 Kas 10:09",
+    "time": "10:09",
     "destinations": [
       "Slack #memo",
       "Discord #todo",
-      "Harcama API’si"
+      "Notion",
+      "ntfy"
     ],
-    "spoken": [
-      "Süt ve yumurta al",
-      "Yarın 10’da diş hekimi",
-      "Otopark B2, 14 numara"
-    ],
-    "statusSent": "Gönderildi",
-    "statusPending": "Gönderilmedi",
-    "siriDialog": "Slack #memo hedefine gönderildi.",
-    "defaultMark": "(Varsayılan)",
+    "reminderTarget": "Anımsatıcılar (Alışveriş)",
+    "markdownTarget": "Markdown (Obsidian)",
+    "markdownFile": "2026-11-13.md",
     "siriAsk": "Hayate ile gönder",
-    "siriQuestion": "Ne göndermek istiyorsunuz?",
+    "siriQuestion": "Ne not almak istersiniz?",
+    "siriDialog": "Kaydedildi ve gönderildi",
     "quote": [
       "“",
       "”"
     ],
-    "edit": {
-      "cancel": "İptal",
-      "save": "Kaydet",
-      "nameLabel": "Ad",
-      "name": "Harcama API’si",
-      "url": "https://api.example.com/hooks/expense",
-      "urlFooter": "Yalnızca https URL’leri kullanılabilir.",
-      "request": "İstek",
-      "method": "Yöntem",
-      "bodyFormat": "Gövde biçimi",
-      "bodyFormatValue": "JSON",
-      "headers": "Başlıklar",
-      "addHeader": "Başlık ekle",
-      "hideSecret": "Gizli değer olarak gizle",
-      "headersFooter": "Authorization gibi kimlik doğrulama başlıkları kaydedebilirsiniz. Değerler yalnızca iPhone ve Apple Watch’taki Keychain’de saklanır.",
-      "body": "Gövde",
-      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
-      "test": "Test gönderimi"
+    "tabs": [
+      "Giriş",
+      "Not",
+      "Entegrasyonlar",
+      "Kullanım"
+    ],
+    "detail": {
+      "deliveries": "Hedefler ve entegrasyonlar",
+      "sendTo": "Hedeflere gönder",
+      "copy": "Kopyala",
+      "share": "Paylaş",
+      "delete": "Sil"
+    },
+    "integrations": {
+      "title": "Entegrasyonlar",
+      "savedOnPhone": "iPhone’a kaydet",
+      "reminders": "Anımsatıcılar",
+      "reminderDetail": "“Hatırlatıcı” ile başlarsa “Alışveriş” hedefine eklenir",
+      "markdown": "Markdown dosyası",
+      "markdownDetail": "Her gün için “Obsidian” dosyasına eklenir",
+      "webhooks": "Hedefler (webhook)",
+      "webhooksFooter": "Girdiğiniz not, anahtarı açık olan tüm hedeflere gönderilir. Apple Watch’ta girilenler doğrudan saatten gönderilir.",
+      "kinds": [
+        "Slack",
+        "Discord",
+        "Webhook",
+        "Webhook"
+      ]
     }
   }
 }

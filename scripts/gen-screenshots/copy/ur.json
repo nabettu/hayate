@@ -1,105 +1,125 @@
 {
   "iphone": {
     "hero": {
-      "h1": "بولیں، اور بات\n*webhook* تک",
+      "h1": "کلائی سے بولیں\n*نوٹ* میں محفوظ",
       "chips": [
-        "Slack",
-        "Discord",
-        "اپنا API"
+        "نوٹ",
+        "Webhook",
+        "یاد دہانیاں"
       ],
-      "closing": "خیال آتے ہی\n*کلائی سے* بھیجیں"
+      "closing": "خیال آیا؟\n*کلائی سے* محفوظ کریں"
     },
     "siri": {
-      "h1": "*Hey Siri* سے\nہاتھ لگائے بغیر",
+      "h1": "*Hey Siri*\nہاتھ لگائے بغیر",
       "chips": [
         "Siri",
         "ڈبل ٹیپ",
-        "واچ فیس"
+        "واچ فیس سے"
       ],
-      "closing": "ہاتھ مصروف ہوں؟\n*آواز سے* بھیجیں"
+      "closing": "ہاتھ مصروف ہیں؟\n*آواز سے* نوٹ کریں"
     },
-    "destination": {
-      "h1": "منزل\n*اپنی مرضی* کی",
+    "reminder": {
+      "h1": "ایک لفظ سے شروع\n*یاد دہانی* تیار",
+      "floats": [
+        "“دودھ خریدیں” شامل ہو گیا",
+        "iPhone فہرست میں شامل کرتا ہے"
+      ],
+      "closing": "کرنے کے کام\n*سیدھے فہرست* میں"
+    },
+    "integrations": {
+      "h1": "*کئی* منزلوں تک\nایک ساتھ",
       "chips": [
         "Webhook",
-        "Slack",
-        "Discord"
+        "Markdown",
+        "Obsidian"
       ],
       "floats": [
-        "تصدیقی ہیڈر Keychain میں",
-        "{{text}} میں بولی ہوئی بات"
+        "2026-11-13.md میں شامل",
+        "Slack، Notion، ntfy وغیرہ"
       ],
-      "closing": "اپنے سرور پر\n*جوں کا توں*"
-    },
-    "direct": {
-      "h1": "گھڑی سے\n*براہِ راست*",
-      "chips": [
-        "Wi-Fi",
-        "موبائل ڈیٹا"
-      ],
-      "floats": [
-        "نہ جانے والا محفوظ رہتا ہے",
-        "اگلی بار کھولنے پر دوبارہ"
-      ],
-      "closing": "سگنل کمزور ہو\n*کچھ ضائع نہیں*"
+      "closing": "چیٹ میں بھی\n*اپنے نوٹس* میں بھی"
     },
     "more": {
-      "h1": "اور\n*بہت کچھ۔*",
+      "h1": "اور بھی\n*بہت کچھ۔*",
       "cells": [
+        "ہر نوٹ iPhone\nمیں محفوظ",
         "تصدیقی ہیڈر\nKeychain میں",
-        "Slack، Discord\nبس URL پیسٹ",
-        "واچ فیس سے\nفوری شروعات",
-        "بھیجے ہوئے کی\nہسٹری",
-        "ٹیسٹ ارسال سے\nپہنچنا جانچیں",
-        "دوبارہ بھیجنے پر\nوہی پیغام ID"
+        "سورس کوڈ\nGitHub پر",
+        "جو نہ گیا وہ اگلی\nبار دوبارہ",
+        "نہ اشتہار،\nنہ ٹریکنگ",
+        "44 زبانوں\nمیں دستیاب"
       ],
-      "closing": "بولی ہوئی بات\n*آپ کے نظام* میں"
+      "closing": "آپ کی بات\n*آپ کے نظام* تک"
     }
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "بھیجیں",
-    "sent": "“Slack #memo” پر بھیج دیا گیا",
-    "history": "ہسٹری",
-    "destinationsTitle": "منزلیں",
+    "memoButton": "نوٹ",
+    "savedAndSent": "محفوظ کر کے بھیج دیا",
+    "destinationCount": "منزلیں: 3",
+    "memosTitle": "نوٹ",
+    "spoken": [
+      "پارکنگ B2، نمبر 14",
+      "کل 10 بجے ڈینٹسٹ",
+      "آئیڈیا: اتوار بازار پر مضمون"
+    ],
+    "reminderSpoken": "یاد دہانی، دودھ خریدیں",
+    "reminderTitle": "دودھ خریدیں",
+    "summary": {
+      "sent": "بھیج دیا گیا",
+      "waiting": "بھیجنے کا انتظار",
+      "memo": "نوٹ"
+    },
+    "status": {
+      "done": "مکمل",
+      "waiting": "بھیجنے کا انتظار"
+    },
+    "date": "13 نومبر، 10:09",
+    "time": "10:09",
     "destinations": [
       "Slack #memo",
       "Discord #todo",
-      "اخراجات API"
+      "Notion",
+      "ntfy"
     ],
-    "spoken": [
-      "دودھ اور انڈے خریدنے ہیں",
-      "کل 10 بجے ڈینٹسٹ",
-      "پارکنگ B2 میں 14 نمبر"
-    ],
-    "statusSent": "بھیج دیا گیا",
-    "statusPending": "نہیں بھیجا گیا",
-    "siriDialog": "Slack #memo پر بھیج دیا گیا۔",
-    "defaultMark": "(ڈیفالٹ)",
+    "reminderTarget": "یاد دہانیاں (خریداری)",
+    "markdownTarget": "Markdown (Obsidian)",
+    "markdownFile": "2026-11-13.md",
     "siriAsk": "Hayate سے بھیجیں",
-    "siriQuestion": "آپ کیا بھیجنا چاہتے ہیں؟",
+    "siriQuestion": "کیا نوٹ کرنا ہے؟",
+    "siriDialog": "محفوظ کر کے بھیج دیا",
     "quote": [
       "“",
       "”"
     ],
-    "edit": {
-      "cancel": "منسوخ کریں",
-      "save": "محفوظ کریں",
-      "nameLabel": "نام",
-      "name": "اخراجات API",
-      "url": "https://api.example.com/hooks/expense",
-      "urlFooter": "صرف https والے URL استعمال ہو سکتے ہیں۔",
-      "request": "درخواست",
-      "method": "میتھڈ",
-      "bodyFormat": "باڈی کا فارمیٹ",
-      "bodyFormatValue": "JSON",
-      "headers": "ہیڈر",
-      "addHeader": "ہیڈر شامل کریں",
-      "hideSecret": "خفیہ ویلیو کے طور پر چھپائیں",
-      "headersFooter": "Authorization جیسے تصدیقی ہیڈر درج کیے جا سکتے ہیں۔ ویلیو صرف iPhone اور Apple Watch کے Keychain میں محفوظ ہوتی ہے۔",
-      "body": "باڈی",
-      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
-      "test": "ٹیسٹ ارسال"
+    "tabs": [
+      "ان پٹ",
+      "نوٹ",
+      "انٹیگریشنز",
+      "استعمال کا طریقہ"
+    ],
+    "detail": {
+      "deliveries": "منزلیں اور انٹیگریشنز",
+      "sendTo": "منزل کو بھیجیں",
+      "copy": "کاپی",
+      "share": "شیئر",
+      "delete": "حذف کریں"
+    },
+    "integrations": {
+      "title": "انٹیگریشنز",
+      "savedOnPhone": "iPhone میں محفوظ کریں",
+      "reminders": "یاد دہانیاں",
+      "reminderDetail": "“یاد دہانی” سے شروع کرنے پر “خریداری” میں شامل ہوتا ہے",
+      "markdown": "Markdown فائل",
+      "markdownDetail": "تاریخ کے حساب سے “Obsidian” میں شامل کریں",
+      "webhooks": "منزل (webhook)",
+      "webhooksFooter": "جن منزلوں کا سوئچ آن ہے ان سب کو لکھا گیا نوٹ بھیجا جاتا ہے۔ Apple Watch پر لکھا گیا نوٹ گھڑی سے براہ راست بھیجا جاتا ہے۔",
+      "kinds": [
+        "Slack",
+        "Discord",
+        "Webhook",
+        "Webhook"
+      ]
     }
   }
 }

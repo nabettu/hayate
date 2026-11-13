@@ -1,105 +1,125 @@
 {
   "iphone": {
     "hero": {
-      "h1": "Cakap, terus ke\n*webhook*",
+      "h1": "Cakap sahaja,\njadi *memo*",
       "chips": [
-        "Slack",
-        "Discord",
-        "API sendiri"
+        "Memo",
+        "Webhook",
+        "Peringatan"
       ],
-      "closing": "Hantar segera\n*dari pergelangan*"
+      "closing": "Ada idea?\nSimpan *dari jam*"
     },
     "siri": {
       "h1": "*Hey Siri*,\ntanpa tangan",
       "chips": [
         "Siri",
-        "Ketik Dua Kali",
+        "Ketik 2 kali",
         "Wajah jam"
       ],
-      "closing": "Tangan penuh?\n*Guna suara*"
+      "closing": "Tangan penuh?\nCatat dengan *suara*"
     },
-    "destination": {
-      "h1": "Pilih destinasi\n*sendiri*",
+    "reminder": {
+      "h1": "Satu kata awal,\njadi *peringatan*",
+      "floats": [
+        "“beli susu” ditambah",
+        "iPhone tambah ke senarai"
+      ],
+      "closing": "Tugasan terus\n*ke senarai*"
+    },
+    "integrations": {
+      "h1": "Hantar ke *banyak*\ntempat serentak",
       "chips": [
         "Webhook",
-        "Slack",
-        "Discord"
+        "Markdown",
+        "Obsidian"
       ],
       "floats": [
-        "Pengesahan dalam Keychain",
-        "{{text}} = apa yang dicakap"
+        "Ditambah ke 2026-11-13.md",
+        "Slack, Notion, ntfy dll."
       ],
-      "closing": "Sampai juga ke\n*pelayan sendiri*"
-    },
-    "direct": {
-      "h1": "Terus dari\n*jam*",
-      "chips": [
-        "Wi-Fi",
-        "Data mudah alih"
-      ],
-      "floats": [
-        "Yang gagal disimpan",
-        "Dicuba lagi bila dibuka"
-      ],
-      "closing": "Liputan lemah?\n*Tiada yang hilang*"
+      "closing": "Ke sembang dan\n*nota anda*"
     },
     "more": {
-      "h1": "Dan *banyak*\nlagi.",
+      "h1": "Dan\n*banyak lagi.*",
       "cells": [
-        "Pengesahan disimpan\ndalam Keychain",
-        "Slack dan Discord:\ntampal URL sahaja",
-        "Buka pantas\ndari wajah jam",
-        "Sejarah apa\nyang dihantar",
-        "Uji sama ada\nia sampai",
-        "ID mesej sama\nbila dihantar semula"
+        "Semua memo\ndisimpan di iPhone",
+        "Pengepala auth\ndalam Keychain",
+        "Sumber terbuka\ndi GitHub",
+        "Yang belum dihantar\ndihantar semula",
+        "Tiada iklan,\ntiada penjejakan",
+        "Tersedia dalam\n44 bahasa"
       ],
-      "closing": "Kata-kata anda\n*ke sistem anda*"
+      "closing": "Kata-kata anda,\nke *sistem anda*"
     }
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "Hantar",
-    "sent": "Dihantar ke “Slack #memo”",
-    "history": "Sejarah",
-    "destinationsTitle": "Destinasi",
+    "memoButton": "Memo",
+    "savedAndSent": "Disimpan dan dihantar",
+    "destinationCount": "Destinasi: 3",
+    "memosTitle": "Memo",
+    "spoken": [
+      "Parkir di B2, petak 14",
+      "Doktor gigi esok pukul 10",
+      "Idea artikel: pasar tani"
+    ],
+    "reminderSpoken": "Peringatan, beli susu",
+    "reminderTitle": "beli susu",
+    "summary": {
+      "sent": "Dihantar",
+      "waiting": "Menunggu untuk dihantar",
+      "memo": "Memo"
+    },
+    "status": {
+      "done": "Selesai",
+      "waiting": "Menunggu untuk dihantar"
+    },
+    "date": "13 Nov 10:09",
+    "time": "10:09",
     "destinations": [
       "Slack #memo",
       "Discord #todo",
-      "API Perbelanjaan"
+      "Notion",
+      "ntfy"
     ],
-    "spoken": [
-      "Beli susu dan telur",
-      "Doktor gigi esok pukul 10",
-      "Tempat letak kereta B2, petak 14"
-    ],
-    "statusSent": "Dihantar",
-    "statusPending": "Belum dihantar",
-    "siriDialog": "Dihantar ke Slack #memo.",
-    "defaultMark": "(Lalai)",
+    "reminderTarget": "Peringatan (Barang Dapur)",
+    "markdownTarget": "Markdown (Obsidian)",
+    "markdownFile": "2026-11-13.md",
     "siriAsk": "Hantar dengan Hayate",
-    "siriQuestion": "Apa yang anda mahu hantar?",
+    "siriQuestion": "Apa yang anda mahu catat?",
+    "siriDialog": "Disimpan dan dihantar",
     "quote": [
       "“",
       "”"
     ],
-    "edit": {
-      "cancel": "Batal",
-      "save": "Simpan",
-      "nameLabel": "Nama",
-      "name": "API Perbelanjaan",
-      "url": "https://api.example.com/hooks/expense",
-      "urlFooter": "Hanya URL https berfungsi.",
-      "request": "Permintaan",
-      "method": "Kaedah",
-      "bodyFormat": "Format kandungan",
-      "bodyFormatValue": "JSON",
-      "headers": "Pengepala",
-      "addHeader": "Tambah pengepala",
-      "hideSecret": "Sembunyikan sebagai nilai rahsia",
-      "headersFooter": "Anda boleh mendaftarkan pengepala pengesahan seperti Authorization. Nilai hanya disimpan dalam Keychain pada iPhone dan Apple Watch.",
-      "body": "Kandungan",
-      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
-      "test": "Hantar ujian"
+    "tabs": [
+      "Input",
+      "Memo",
+      "Integrasi",
+      "Cara menggunakan"
+    ],
+    "detail": {
+      "deliveries": "Destinasi dan integrasi",
+      "sendTo": "Hantar ke destinasi",
+      "copy": "Salin",
+      "share": "Kongsi",
+      "delete": "Padam"
+    },
+    "integrations": {
+      "title": "Integrasi",
+      "savedOnPhone": "Simpan pada iPhone",
+      "reminders": "Peringatan",
+      "reminderDetail": "Bermula dengan “Peringatan”, tambah ke “Barang Dapur”",
+      "markdown": "Fail Markdown",
+      "markdownDetail": "Tambah mengikut tarikh ke “Obsidian”",
+      "webhooks": "Destinasi (webhook)",
+      "webhooksFooter": "Menghantar memo ke semua destinasi yang suisnya dihidupkan. Yang dimasukkan pada Apple Watch dihantar terus dari jam.",
+      "kinds": [
+        "Slack",
+        "Discord",
+        "Webhook",
+        "Webhook"
+      ]
     }
   }
 }

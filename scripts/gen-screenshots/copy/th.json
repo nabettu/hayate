@@ -1,105 +1,125 @@
 {
   "iphone": {
     "hero": {
-      "h1": "แค่พูด\nก็ส่งไป *webhook*",
+      "h1": "พูดกับข้อมือ\nเก็บเป็น*บันทึก*",
       "chips": [
-        "Slack",
-        "Discord",
-        "API ของคุณ"
+        "บันทึก",
+        "Webhook",
+        "การช่วยเตือน"
       ],
-      "closing": "นึกได้ปุ๊บ\nส่งจาก*ข้อมือ*"
+      "closing": "นึกอะไรได้\nจด*จากข้อมือ*ทันที"
     },
     "siri": {
       "h1": "*Hey Siri*\nไม่ต้องใช้มือ",
       "chips": [
         "Siri",
         "แตะสองครั้ง",
-        "หน้าปัด"
+        "จากหน้าปัด"
       ],
-      "closing": "มือไม่ว่าง\nก็ส่ง*ด้วยเสียง*"
+      "closing": "มือไม่ว่าง?\nจดได้*ด้วยเสียง*"
     },
-    "destination": {
-      "h1": "เลือก\n*ปลายทาง*ได้เอง",
+    "reminder": {
+      "h1": "ขึ้นต้นด้วยคำเดียว\nเป็น*การช่วยเตือน*",
+      "floats": [
+        "เพิ่ม \"ซื้อนม\" แล้ว",
+        "iPhone เพิ่มลงรายการ"
+      ],
+      "closing": "สิ่งที่ต้องทำ\n*เข้ารายการทันที*"
+    },
+    "integrations": {
+      "h1": "ส่งถึง*หลายปลายทาง*\nในครั้งเดียว",
       "chips": [
         "Webhook",
-        "Slack",
-        "Discord"
+        "Markdown",
+        "Obsidian"
       ],
       "floats": [
-        "เฮดเดอร์ยืนยันตัวตนใน Keychain",
-        "{{text}} คือสิ่งที่พูด"
+        "เพิ่มต่อท้ายใน 2026-11-13.md",
+        "Slack, Notion, ntfy และอื่นๆ"
       ],
-      "closing": "ส่งถึงเซิร์ฟเวอร์\n*ของคุณเอง*"
-    },
-    "direct": {
-      "h1": "ส่ง*ตรง*\nจากนาฬิกา",
-      "chips": [
-        "Wi-Fi",
-        "เครือข่ายมือถือ"
-      ],
-      "floats": [
-        "ที่ส่งไม่ได้จะเก็บไว้",
-        "เปิดแอปแล้วส่งใหม่"
-      ],
-      "closing": "สัญญาณอ่อนก็\n*ไม่พลาดสักข้อความ*"
+      "closing": "ทั้งแชต\nและ*โน้ตของคุณ*"
     },
     "more": {
-      "h1": "และ\n*ยังมีอีกมาก*",
+      "h1": "และยังมี\n*อีกมาก*",
       "cells": [
+        "บันทึกทั้งหมด\nเก็บไว้บน iPhone",
         "เฮดเดอร์ยืนยันตัวตน\nเก็บใน Keychain",
-        "Slack, Discord\nแค่วาง URL",
-        "เปิดได้เร็ว\nจากหน้าปัด",
-        "ประวัติ\nสิ่งที่ส่ง",
-        "ส่งทดสอบ\nเพื่อเช็กว่าถึง",
-        "ส่งใหม่ ID ข้อความ\nก็เหมือนเดิม"
+        "โอเพนซอร์ส\nบน GitHub",
+        "ที่ส่งไม่สำเร็จ\nส่งใหม่เมื่อเปิดแอป",
+        "ไม่มีโฆษณา\nไม่ติดตาม",
+        "รองรับ\n44 ภาษา"
       ],
-      "closing": "สิ่งที่พูด\nสู่*ระบบของคุณ*"
+      "closing": "คำพูดของคุณ\nสู่*ระบบของคุณ*"
     }
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "ส่ง",
-    "sent": "ส่งไปที่ “Slack #memo” แล้ว",
-    "history": "ประวัติ",
-    "destinationsTitle": "ปลายทาง",
+    "memoButton": "บันทึก",
+    "savedAndSent": "บันทึกและส่งแล้ว",
+    "destinationCount": "ปลายทาง: 3",
+    "memosTitle": "บันทึก",
+    "spoken": [
+      "จอดรถที่ B2 ช่อง 14",
+      "พรุ่งนี้ 10 โมงไปหาหมอฟัน",
+      "ไอเดียบทความ: ตลาดนัดเช้า"
+    ],
+    "reminderSpoken": "เตือนความจำ ซื้อนม",
+    "reminderTitle": "ซื้อนม",
+    "summary": {
+      "sent": "ส่งแล้ว",
+      "waiting": "รอส่ง",
+      "memo": "บันทึก"
+    },
+    "status": {
+      "done": "เสร็จสิ้น",
+      "waiting": "รอส่ง"
+    },
+    "date": "13 พ.ย. 10:09",
+    "time": "10:09",
     "destinations": [
       "Slack #memo",
       "Discord #todo",
-      "API บัญชีรายจ่าย"
+      "Notion",
+      "ntfy"
     ],
-    "spoken": [
-      "ซื้อนมกับไข่",
-      "พรุ่งนี้ 10 โมงหาหมอฟัน",
-      "จอดรถชั้น B2 ช่อง 14"
-    ],
-    "statusSent": "ส่งแล้ว",
-    "statusPending": "ยังไม่ได้ส่ง",
-    "siriDialog": "ส่งไปที่ Slack #memo แล้ว",
-    "defaultMark": "(ค่าเริ่มต้น)",
+    "reminderTarget": "การช่วยเตือน (ซื้อของ)",
+    "markdownTarget": "Markdown (Obsidian)",
+    "markdownFile": "2026-11-13.md",
     "siriAsk": "ส่งด้วย Hayate",
-    "siriQuestion": "ต้องการส่งอะไร",
+    "siriQuestion": "จะจดอะไรดี",
+    "siriDialog": "บันทึกและส่งแล้ว",
     "quote": [
-      "“",
-      "”"
+      "\"",
+      "\""
     ],
-    "edit": {
-      "cancel": "ยกเลิก",
-      "save": "บันทึก",
-      "nameLabel": "ชื่อ",
-      "name": "API บัญชีรายจ่าย",
-      "url": "https://api.example.com/hooks/expense",
-      "urlFooter": "ใช้ได้เฉพาะ URL แบบ https",
-      "request": "คำขอ",
-      "method": "เมธอด",
-      "bodyFormat": "รูปแบบเนื้อหา",
-      "bodyFormatValue": "JSON",
-      "headers": "เฮดเดอร์",
-      "addHeader": "เพิ่มเฮดเดอร์",
-      "hideSecret": "ซ่อนเป็นค่าลับ",
-      "headersFooter": "คุณลงทะเบียนเฮดเดอร์สำหรับยืนยันตัวตน เช่น Authorization ได้ ค่าจะถูกเก็บไว้ใน Keychain ของ iPhone และ Apple Watch เท่านั้น",
-      "body": "เนื้อหา",
-      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
-      "test": "ส่งทดสอบ"
+    "tabs": [
+      "ป้อนข้อมูล",
+      "บันทึก",
+      "การเชื่อมต่อ",
+      "วิธีใช้"
+    ],
+    "detail": {
+      "deliveries": "ปลายทางและการเชื่อมต่อ",
+      "sendTo": "ส่งไปปลายทาง",
+      "copy": "คัดลอก",
+      "share": "แชร์",
+      "delete": "ลบ"
+    },
+    "integrations": {
+      "title": "การเชื่อมต่อ",
+      "savedOnPhone": "บันทึกลง iPhone",
+      "reminders": "การช่วยเตือน",
+      "reminderDetail": "ถ้าขึ้นต้นด้วย \"เตือนความจำ\" จะเพิ่มไปที่ \"ซื้อของ\"",
+      "markdown": "ไฟล์ Markdown",
+      "markdownDetail": "เพิ่มต่อท้ายใน \"Obsidian\" แยกตามวันที่",
+      "webhooks": "ปลายทาง (webhook)",
+      "webhooksFooter": "ส่งบันทึกที่ป้อนไปยังปลายทางทุกแห่งที่เปิดสวิตช์ไว้ รายการที่ป้อนบน Apple Watch จะส่งจากนาฬิกาโดยตรง",
+      "kinds": [
+        "Slack",
+        "Discord",
+        "Webhook",
+        "Webhook"
+      ]
     }
   }
 }

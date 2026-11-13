@@ -1,105 +1,125 @@
 {
   "iphone": {
     "hero": {
-      "h1": "말하면 바로\n*webhook*으로",
+      "h1": "손목에 말하면\n*메모*로 남아요",
       "chips": [
-        "Slack",
-        "Discord",
-        "내 API"
+        "메모",
+        "Webhook",
+        "미리 알림"
       ],
-      "closing": "떠오르면\n*손목*에서 바로"
+      "closing": "떠오르면 바로\n*손목에서* 기록"
     },
     "siri": {
       "h1": "*Hey Siri*로\n손 쓰지 않고",
       "chips": [
         "Siri",
-        "두 번 탭",
+        "이중 탭",
         "시계 페이스"
       ],
-      "closing": "두 손이 바빠도\n*목소리*만으로"
+      "closing": "두 손이 바빠도\n*목소리로* 메모"
     },
-    "destination": {
-      "h1": "보낼 곳은\n*마음대로*",
+    "reminder": {
+      "h1": "한마디로 시작하면\n*미리 알림*에",
+      "floats": [
+        "“우유 사기” 추가됨",
+        "iPhone이 목록에 추가"
+      ],
+      "closing": "할 일은\n*바로 목록으로*"
+    },
+    "integrations": {
+      "h1": "*여러* 곳으로\n한 번에 전송",
       "chips": [
         "Webhook",
-        "Slack",
-        "Discord"
+        "Markdown",
+        "Obsidian"
       ],
       "floats": [
-        "인증 헤더는 Keychain에",
-        "{{text}}에 말한 내용"
+        "2026-11-13.md에 추가",
+        "Slack·Notion·ntfy 등"
       ],
-      "closing": "내 서버에도\n*그대로* 도착"
-    },
-    "direct": {
-      "h1": "시계에서\n*직접* 전달",
-      "chips": [
-        "Wi-Fi",
-        "셀룰러"
-      ],
-      "floats": [
-        "못 보낸 건 보관",
-        "다음에 열면 재전송"
-      ],
-      "closing": "신호가 약해도\n*놓치지 않아요*"
+      "closing": "채팅에도\n*내 노트*에도"
     },
     "more": {
       "h1": "그 밖에도\n*다양하게.*",
       "cells": [
-        "인증 헤더는\nKeychain에 저장",
-        "Slack·Discord는\nURL만 붙여넣기",
-        "시계 페이스에서\n바로 실행",
-        "보낸 내용\n기록",
-        "테스트 전송으로\n도착 확인",
-        "재전송해도 같은\n메시지 ID"
+        "메모는 모두\niPhone에 저장",
+        "인증 헤더는\nKeychain에",
+        "소스 코드를\nGitHub에 공개",
+        "못 보낸 메모는\n다시 열면 재전송",
+        "광고도 추적도\n없습니다",
+        "44개 언어\n지원"
       ],
-      "closing": "말한 내용을\n*나만의 시스템*으로"
+      "closing": "말한 그대로\n*나만의 흐름*으로"
     }
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "보내기",
-    "sent": "“Slack #memo”(으)로 보냈습니다",
-    "history": "기록",
-    "destinationsTitle": "전송 대상",
+    "memoButton": "메모",
+    "savedAndSent": "저장하고 보냈습니다",
+    "destinationCount": "전송 대상: 3",
+    "memosTitle": "메모",
+    "spoken": [
+      "주차는 B2 14번",
+      "내일 10시 치과",
+      "글감: 아침 시장 취재"
+    ],
+    "reminderSpoken": "리마인더, 우유 사기",
+    "reminderTitle": "우유 사기",
+    "summary": {
+      "sent": "전송 완료",
+      "waiting": "전송 대기 중",
+      "memo": "메모"
+    },
+    "status": {
+      "done": "완료",
+      "waiting": "전송 대기 중"
+    },
+    "date": "11월 13일 오전 10:09",
+    "time": "10:09",
     "destinations": [
       "Slack #memo",
       "Discord #todo",
-      "가계부 API"
+      "Notion",
+      "ntfy"
     ],
-    "spoken": [
-      "우유랑 계란 사기",
-      "내일 10시 치과",
-      "주차는 B2 14번"
-    ],
-    "statusSent": "전송 완료",
-    "statusPending": "미전송",
-    "siriDialog": "Slack #memo(으)로 보냈습니다.",
-    "defaultMark": "(기본)",
+    "reminderTarget": "미리 알림 (장보기)",
+    "markdownTarget": "Markdown (Obsidian)",
+    "markdownFile": "2026-11-13.md",
     "siriAsk": "Hayate로 보내줘",
-    "siriQuestion": "무엇을 보낼까요?",
+    "siriQuestion": "무엇을 메모할까요?",
+    "siriDialog": "저장하고 보냈습니다",
     "quote": [
       "“",
       "”"
     ],
-    "edit": {
-      "cancel": "취소",
-      "save": "저장",
-      "nameLabel": "이름",
-      "name": "가계부 API",
-      "url": "https://api.example.com/hooks/expense",
-      "urlFooter": "https URL만 사용할 수 있습니다.",
-      "request": "요청",
-      "method": "메서드",
-      "bodyFormat": "본문 형식",
-      "bodyFormatValue": "JSON",
-      "headers": "헤더",
-      "addHeader": "헤더 추가",
-      "hideSecret": "비밀 값으로 숨기기",
-      "headersFooter": "Authorization 같은 인증 헤더를 등록할 수 있습니다. 값은 iPhone과 Apple Watch의 Keychain에만 저장됩니다.",
-      "body": "본문",
-      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
-      "test": "테스트 전송"
+    "tabs": [
+      "입력",
+      "메모",
+      "연동",
+      "사용 방법"
+    ],
+    "detail": {
+      "deliveries": "전송 대상·연동",
+      "sendTo": "전송 대상으로 보내기",
+      "copy": "복사",
+      "share": "공유",
+      "delete": "삭제"
+    },
+    "integrations": {
+      "title": "연동",
+      "savedOnPhone": "iPhone에 저장",
+      "reminders": "미리 알림",
+      "reminderDetail": "\"리마인더\"로 시작하면 \"장보기\"에 추가",
+      "markdown": "Markdown 파일",
+      "markdownDetail": "\"Obsidian\"에 날짜별로 이어서 기록",
+      "webhooks": "전송 대상 (webhook)",
+      "webhooksFooter": "스위치를 켠 전송 대상 모두에 입력한 메모를 보냅니다. Apple Watch에서 입력한 메모는 시계에서 직접 보냅니다.",
+      "kinds": [
+        "Slack",
+        "Discord",
+        "Webhook",
+        "Webhook"
+      ]
     }
   }
 }

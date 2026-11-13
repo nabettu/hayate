@@ -1,105 +1,125 @@
 {
   "iphone": {
     "hero": {
-      "h1": "說一聲\n傳到 *webhook*",
+      "h1": "對著手腕說\n存成*備忘*",
       "chips": [
-        "Slack",
-        "Discord",
-        "自家 API"
+        "備忘",
+        "Webhook",
+        "提醒事項"
       ],
-      "closing": "想到就\n*從手腕*傳出"
+      "closing": "靈感一來\n*抬手*就記"
     },
     "siri": {
-      "h1": "用 *Hey Siri*\n不必動手",
+      "h1": "*Hey Siri*\n不必動手",
       "chips": [
         "Siri",
         "點兩下",
-        "從錶面"
+        "錶面"
       ],
-      "closing": "雙手忙碌時\n*用聲音*就能傳"
+      "closing": "雙手沒空時\n*用說的*就能記"
     },
-    "destination": {
-      "h1": "目的地\n*自由*決定",
+    "reminder": {
+      "h1": "開頭說一句\n就進*提醒事項*",
+      "floats": [
+        "已加入「買牛奶」",
+        "iPhone 加入清單"
+      ],
+      "closing": "待辦事項\n*直接進清單*"
+    },
+    "integrations": {
+      "h1": "*多個*目的地\n一次送達",
       "chips": [
         "Webhook",
-        "Slack",
-        "Discord"
+        "Markdown",
+        "Obsidian"
       ],
       "floats": [
-        "驗證標頭存在 Keychain",
-        "{{text}} 放說話內容"
+        "附加到 2026-11-13.md",
+        "Slack、Notion、ntfy 等"
       ],
-      "closing": "自家伺服器\n*原樣*送達"
-    },
-    "direct": {
-      "h1": "由手錶\n*直接*送達",
-      "chips": [
-        "Wi-Fi",
-        "行動網路"
-      ],
-      "floats": [
-        "沒送出的會保留",
-        "下次開啟再重送"
-      ],
-      "closing": "訊號不佳\n*也不漏接*"
+      "closing": "傳到聊天\n也存進*筆記*"
     },
     "more": {
       "h1": "還有\n*更多。*",
       "cells": [
-        "驗證標頭\n存在 Keychain",
-        "Slack、Discord\n貼上 URL 即可",
-        "從錶面\n快速啟動",
-        "傳送內容\n的記錄",
-        "用測試傳送\n確認送達",
-        "重傳也是同一個\n訊息 ID"
+        "備忘全部\n保留在 iPhone",
+        "驗證標頭\n存於 Keychain",
+        "原始碼\n在 GitHub 公開",
+        "未傳送的\n下次開啟重傳",
+        "無廣告\n無追蹤",
+        "支援\n44 種語言"
       ],
-      "closing": "把說的話\n送進*你的系統*"
+      "closing": "你說的話\n送進*你的流程*"
     }
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "傳送",
-    "sent": "已傳送到「Slack #memo」",
-    "history": "記錄",
-    "destinationsTitle": "傳送目的地",
+    "memoButton": "備忘",
+    "savedAndSent": "已儲存並傳送",
+    "destinationCount": "傳送目的地：3",
+    "memosTitle": "備忘",
+    "spoken": [
+      "停車位在 B2 的 14 號",
+      "明天 10 點看牙醫",
+      "題材：早市採訪"
+    ],
+    "reminderSpoken": "提醒事項，買牛奶",
+    "reminderTitle": "買牛奶",
+    "summary": {
+      "sent": "已傳送",
+      "waiting": "等待傳送",
+      "memo": "備忘"
+    },
+    "status": {
+      "done": "完成",
+      "waiting": "等待傳送"
+    },
+    "date": "11月13日 10:09",
+    "time": "10:09",
     "destinations": [
       "Slack #memo",
       "Discord #todo",
-      "記帳 API"
+      "Notion",
+      "ntfy"
     ],
-    "spoken": [
-      "買牛奶和雞蛋",
-      "明天 10 點看牙醫",
-      "停車位在 B2 的 14 號"
-    ],
-    "statusSent": "已傳送",
-    "statusPending": "未傳送",
-    "siriDialog": "已傳送到 Slack #memo。",
-    "defaultMark": "（預設）",
+    "reminderTarget": "提醒事項（購物）",
+    "markdownTarget": "Markdown (Obsidian)",
+    "markdownFile": "2026-11-13.md",
     "siriAsk": "用Hayate傳送",
-    "siriQuestion": "要傳送什麼？",
+    "siriQuestion": "要記下什麼？",
+    "siriDialog": "已儲存並傳送",
     "quote": [
       "「",
       "」"
     ],
-    "edit": {
-      "cancel": "取消",
-      "save": "儲存",
-      "nameLabel": "名稱",
-      "name": "記帳 API",
-      "url": "https://api.example.com/hooks/expense",
-      "urlFooter": "僅支援 https 的 URL。",
-      "request": "請求",
-      "method": "方法",
-      "bodyFormat": "內文格式",
-      "bodyFormatValue": "JSON",
-      "headers": "標頭",
-      "addHeader": "加入標頭",
-      "hideSecret": "隱藏為機密值",
-      "headersFooter": "可登錄 Authorization 等驗證標頭。值只會儲存在 iPhone 與 Apple Watch 的 Keychain。",
-      "body": "內文",
-      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
-      "test": "測試傳送"
+    "tabs": [
+      "輸入",
+      "備忘",
+      "整合",
+      "使用方式"
+    ],
+    "detail": {
+      "deliveries": "傳送目的地與整合",
+      "sendTo": "傳送到傳送目的地",
+      "copy": "拷貝",
+      "share": "分享",
+      "delete": "刪除"
+    },
+    "integrations": {
+      "title": "整合",
+      "savedOnPhone": "儲存到 iPhone",
+      "reminders": "提醒事項",
+      "reminderDetail": "以「提醒事項」開頭時加入「購物」",
+      "markdown": "Markdown 檔案",
+      "markdownDetail": "依日期附加到「Obsidian」",
+      "webhooks": "傳送目的地 (webhook)",
+      "webhooksFooter": "會將輸入的備忘傳送到所有已開啟開關的傳送目的地。在 Apple Watch 上輸入的備忘由手錶直接傳送。",
+      "kinds": [
+        "Slack",
+        "Discord",
+        "Webhook",
+        "Webhook"
+      ]
     }
   }
 }

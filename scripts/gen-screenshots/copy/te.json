@@ -1,105 +1,125 @@
 {
   "iphone": {
     "hero": {
-      "h1": "మాట్లాడితే చాలు\n*webhook* కు చేరుతుంది",
+      "h1": "మణికట్టుకు చెప్పండి\n*నోట్‌*గా దాచండి",
       "chips": [
-        "Slack",
-        "Discord",
-        "సొంత API"
+        "నోట్",
+        "Webhook",
+        "రిమైండర్‌లు"
       ],
-      "closing": "తట్టగానే\n*మణికట్టు* నుండే పంపు"
+      "closing": "ఆలోచన వస్తే\n*మణికట్టు నుండే*"
     },
     "siri": {
-      "h1": "*Hey Siri* అంటే\nచేతులతో పనిలేదు",
+      "h1": "*Hey Siri* తో\nచేతులు అక్కర్లేదు",
       "chips": [
         "Siri",
         "డబుల్ ట్యాప్",
         "వాచ్ ఫేస్"
       ],
-      "closing": "చేతులు ఖాళీ లేకపోయినా\n*గొంతుతో* పంపు"
+      "closing": "చేతులు ఖాళీ లేవా?\n*గొంతుతోనే* నోట్"
     },
-    "destination": {
-      "h1": "గమ్యం\n*మీ ఇష్టం*",
+    "reminder": {
+      "h1": "ఒక్క మాటతో మొదలు\n*రిమైండర్‌*గా మారు",
+      "floats": [
+        "“పాలు కొను” జోడించబడింది",
+        "iPhone జాబితాకు జోడిస్తుంది"
+      ],
+      "closing": "చేయాల్సినవి\n*నేరుగా జాబితాకు*"
+    },
+    "integrations": {
+      "h1": "*ఎన్నో* గమ్యాలకు\nఒకేసారి పంపండి",
       "chips": [
         "Webhook",
-        "Slack",
-        "Discord"
+        "Markdown",
+        "Obsidian"
       ],
       "floats": [
-        "Authorization Keychain లో",
-        "{{text}} లో మాట్లాడినది"
+        "2026-11-13.md లో జోడించబడింది",
+        "Slack, Notion, ntfy మొదలైనవి"
       ],
-      "closing": "సొంత సర్వర్‌కు కూడా\n*నేరుగా* చేరుతుంది"
-    },
-    "direct": {
-      "h1": "వాచ్ నుండి\n*నేరుగా*",
-      "chips": [
-        "Wi-Fi",
-        "మొబైల్ డేటా"
-      ],
-      "floats": [
-        "వెళ్లనివి దాచుకుంటుంది",
-        "తర్వాత తెరిస్తే మళ్లీ పంపుతుంది"
-      ],
-      "closing": "సిగ్నల్ తక్కువైనా\n*ఏదీ మిస్ కాదు*"
+      "closing": "చాట్‌కూ\n*మీ నోట్స్‌కూ*"
     },
     "more": {
       "h1": "ఇంకా\n*ఎన్నో.*",
       "cells": [
-        "Authorization\nKeychain లో నిల్వ",
-        "Slack, Discord కు\nURL అతికిస్తే చాలు",
-        "వాచ్ ఫేస్ నుండి\nవెంటనే ప్రారంభం",
-        "పంపినవాటి\nచరిత్ర",
-        "టెస్ట్ పంపి\nచేరిందో చూడండి",
-        "మళ్లీ పంపినా\nఅదే సందేశ ID"
+        "అన్ని నోట్స్\niPhone లో ఉంటాయి",
+        "ధృవీకరణ హెడర్\nKeychain లో",
+        "ఓపెన్ సోర్స్\nGitHub లో",
+        "పంపలేనివి\nమళ్లీ పంపబడతాయి",
+        "ప్రకటనలు లేవు\nట్రాకింగ్ లేదు",
+        "44 భాషల్లో\nఅందుబాటులో"
       ],
-      "closing": "మాట్లాడినది\n*మీ సిస్టమ్‌కు*"
+      "closing": "మీ మాటలు\n*మీ వ్యవస్థలోకి*"
     }
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "పంపు",
-    "sent": "“Slack #memo” కు పంపబడింది",
-    "history": "చరిత్ర",
-    "destinationsTitle": "గమ్యాలు",
+    "memoButton": "నోట్",
+    "savedAndSent": "సేవ్ చేసి పంపబడింది",
+    "destinationCount": "గమ్యాలు: 3",
+    "memosTitle": "నోట్",
+    "spoken": [
+      "పార్కింగ్ B2, నంబర్ 14",
+      "రేపు 10 గంటలకు డెంటిస్ట్",
+      "వ్యాసం ఆలోచన: రైతు బజార్"
+    ],
+    "reminderSpoken": "రిమైండర్, పాలు కొను",
+    "reminderTitle": "పాలు కొను",
+    "summary": {
+      "sent": "పంపబడింది",
+      "waiting": "పంపడానికి వేచి ఉంది",
+      "memo": "నోట్"
+    },
+    "status": {
+      "done": "పూర్తయింది",
+      "waiting": "పంపడానికి వేచి ఉంది"
+    },
+    "date": "13 నవం, 10:09 AM",
+    "time": "10:09",
     "destinations": [
       "Slack #memo",
       "Discord #todo",
-      "ఖర్చుల API"
+      "Notion",
+      "ntfy"
     ],
-    "spoken": [
-      "పాలు, గుడ్లు కొనాలి",
-      "రేపు 10 గంటలకు దంత వైద్యుడు",
-      "పార్కింగ్ B2, స్థలం 14"
-    ],
-    "statusSent": "పంపబడింది",
-    "statusPending": "పంపలేదు",
-    "siriDialog": "Slack #memo కు పంపబడింది.",
-    "defaultMark": "(డిఫాల్ట్)",
+    "reminderTarget": "రిమైండర్‌లు (కిరాణా)",
+    "markdownTarget": "Markdown (Obsidian)",
+    "markdownFile": "2026-11-13.md",
     "siriAsk": "Hayate లో పంపు",
-    "siriQuestion": "ఏం పంపాలి?",
+    "siriQuestion": "ఏమి నోట్ చేయాలి?",
+    "siriDialog": "సేవ్ చేసి పంపబడింది",
     "quote": [
       "“",
       "”"
     ],
-    "edit": {
-      "cancel": "రద్దు చేయి",
-      "save": "సేవ్ చేయి",
-      "nameLabel": "పేరు",
-      "name": "ఖర్చుల API",
-      "url": "https://api.example.com/hooks/expense",
-      "urlFooter": "https URL లు మాత్రమే ఉపయోగించవచ్చు.",
-      "request": "అభ్యర్థన",
-      "method": "మెథడ్",
-      "bodyFormat": "బాడీ ఫార్మాట్",
-      "bodyFormatValue": "JSON",
-      "headers": "హెడర్",
-      "addHeader": "హెడర్ జోడించు",
-      "hideSecret": "రహస్య విలువగా దాచు",
-      "headersFooter": "Authorization వంటి ధృవీకరణ హెడర్‌లను నమోదు చేయవచ్చు. విలువలు iPhone, Apple Watch Keychain లో మాత్రమే నిల్వ అవుతాయి.",
-      "body": "బాడీ",
-      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
-      "test": "టెస్ట్ పంపకం"
+    "tabs": [
+      "ఇన్‌పుట్",
+      "నోట్",
+      "ఇంటిగ్రేషన్లు",
+      "ఉపయోగించే విధానం"
+    ],
+    "detail": {
+      "deliveries": "గమ్యాలు · ఇంటిగ్రేషన్లు",
+      "sendTo": "గమ్యాలకు పంపు",
+      "copy": "కాపీ",
+      "share": "షేర్",
+      "delete": "తొలగించు"
+    },
+    "integrations": {
+      "title": "ఇంటిగ్రేషన్లు",
+      "savedOnPhone": "iPhone లో సేవ్ చేయి",
+      "reminders": "రిమైండర్‌లు",
+      "reminderDetail": "“రిమైండర్” తో మొదలైతే “కిరాణా” కు జోడించబడుతుంది",
+      "markdown": "Markdown ఫైల్",
+      "markdownDetail": "“Obsidian” లో తేదీల వారీగా జోడించబడుతుంది",
+      "webhooks": "గమ్యాలు (webhook)",
+      "webhooksFooter": "నమోదు చేసిన నోట్, స్విచ్ ఆన్ చేసిన అన్ని గమ్యాలకు పంపబడుతుంది. Apple Watch లో నమోదు చేసినవి వాచ్ నుండి నేరుగా పంపబడతాయి.",
+      "kinds": [
+        "Slack",
+        "Discord",
+        "Webhook",
+        "Webhook"
+      ]
     }
   }
 }

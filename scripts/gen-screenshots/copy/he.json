@@ -1,105 +1,125 @@
 {
   "iphone": {
     "hero": {
-      "h1": "אומרים, וזה\nנשלח ל-*webhook*",
+      "h1": "מדברים לשעון,\nושומרים *כהערה*",
       "chips": [
-        "Slack",
-        "Discord",
-        "API משלכם"
+        "הערה",
+        "Webhook",
+        "תזכורות"
       ],
-      "closing": "עלה רעיון?\n*מפרק היד* ישר"
+      "closing": "עלה רעיון?\nשמרו *מהשעון*"
     },
     "siri": {
       "h1": "*Hey Siri*\nבלי ידיים",
       "chips": [
         "Siri",
         "הקשה כפולה",
-        "תצוגת שעון"
+        "תצוגת השעון"
       ],
-      "closing": "הידיים תפוסות?\nשולחים *בקול*"
+      "closing": "הידיים מלאות?\nרושמים *בקול*"
     },
-    "destination": {
-      "h1": "היעד\n*לבחירתכם*",
+    "reminder": {
+      "h1": "מילה אחת\nוזו *תזכורת*",
+      "floats": [
+        "נוסף “לקנות חלב”",
+        "ה-iPhone מוסיף לרשימה"
+      ],
+      "closing": "משימות עוברות\n*ישר לרשימה*"
+    },
+    "integrations": {
+      "h1": "שולחים *להרבה*\nמקומות בבת אחת",
       "chips": [
         "Webhook",
-        "Slack",
-        "Discord"
+        "Markdown",
+        "Obsidian"
       ],
       "floats": [
-        "כותרת האימות ב-Keychain",
-        "{{text}} הוא מה שנאמר"
+        "נוסף ל-2026-11-13.md",
+        "Slack, Notion, ntfy ועוד"
       ],
-      "closing": "גם לשרת שלכם\n*כמו שהוא*"
-    },
-    "direct": {
-      "h1": "מהשעון\n*ישירות*",
-      "chips": [
-        "Wi-Fi",
-        "רשת סלולרית"
-      ],
-      "floats": [
-        "מה שלא נשלח נשמר",
-        "נשלח שוב בפתיחה הבאה"
-      ],
-      "closing": "גם בקליטה חלשה\n*בלי לאבד דבר*"
+      "closing": "לצ׳אט וגם\n*לפתקים שלכם*"
     },
     "more": {
       "h1": "ועוד\n*הרבה.*",
       "cells": [
-        "כותרת אימות\nב-Keychain",
-        "Slack ו-Discord\nמדביקים URL",
-        "הפעלה מהירה\nמתצוגת השעון",
-        "היסטוריית\nמה שנשלח",
-        "שליחת בדיקה\nלוודא שהגיע",
-        "אותו מזהה הודעה\nגם בשליחה חוזרת"
+        "כל ההערות\nנשמרות ב-iPhone",
+        "כותרת האימות\nב-Keychain",
+        "קוד פתוח\nב-GitHub",
+        "מה שלא נשלח\nנשלח שוב",
+        "בלי פרסומות,\nבלי מעקב",
+        "זמינה\nב-44 שפות"
       ],
-      "closing": "מה שאמרתם\nלתוך *המערכת שלכם*"
+      "closing": "המילים שלכם,\n*לתהליך שלכם*"
     }
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "שליחה",
-    "sent": "נשלח אל “Slack #memo”",
-    "history": "היסטוריה",
-    "destinationsTitle": "יעדים",
+    "memoButton": "הערה",
+    "savedAndSent": "נשמר ונשלח",
+    "destinationCount": "יעדים: 3",
+    "memosTitle": "הערה",
+    "spoken": [
+      "חניה B2, מקום 14",
+      "רופא שיניים מחר ב-10",
+      "רעיון לכתבה: שוק האיכרים"
+    ],
+    "reminderSpoken": "תזכורת, לקנות חלב",
+    "reminderTitle": "לקנות חלב",
+    "summary": {
+      "sent": "נשלח",
+      "waiting": "ממתין לשליחה",
+      "memo": "הערה"
+    },
+    "status": {
+      "done": "סיום",
+      "waiting": "ממתין לשליחה"
+    },
+    "date": "13 בנוב׳, 10:09",
+    "time": "10:09",
     "destinations": [
       "Slack #memo",
       "Discord #todo",
-      "API הוצאות"
+      "Notion",
+      "ntfy"
     ],
-    "spoken": [
-      "לקנות חלב וביצים",
-      "רופא שיניים מחר ב-10",
-      "החניה בקומה B2 מספר 14"
-    ],
-    "statusSent": "נשלח",
-    "statusPending": "לא נשלח",
-    "siriDialog": "נשלח אל Slack #memo.",
-    "defaultMark": "(ברירת מחדל)",
+    "reminderTarget": "תזכורות (קניות)",
+    "markdownTarget": "Markdown (Obsidian)",
+    "markdownFile": "2026-11-13.md",
     "siriAsk": "שלח עם Hayate",
-    "siriQuestion": "מה לשלוח?",
+    "siriQuestion": "מה לרשום?",
+    "siriDialog": "נשמר ונשלח",
     "quote": [
       "“",
       "”"
     ],
-    "edit": {
-      "cancel": "ביטול",
-      "save": "שמירה",
-      "nameLabel": "שם",
-      "name": "API הוצאות",
-      "url": "https://api.example.com/hooks/expense",
-      "urlFooter": "ניתן להשתמש רק בכתובות URL מסוג https.",
-      "request": "בקשה",
-      "method": "שיטה",
-      "bodyFormat": "פורמט הגוף",
-      "bodyFormatValue": "JSON",
-      "headers": "כותרות",
-      "addHeader": "הוספת כותרת",
-      "hideSecret": "הסתרה כערך סודי",
-      "headersFooter": "אפשר לרשום כותרות אימות כמו Authorization. הערך נשמר רק ב-Keychain ב-iPhone וב-Apple Watch.",
-      "body": "גוף",
-      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
-      "test": "שליחת בדיקה"
+    "tabs": [
+      "קלט",
+      "הערה",
+      "שילובים",
+      "איך משתמשים"
+    ],
+    "detail": {
+      "deliveries": "יעדים ושילובים",
+      "sendTo": "שליחה ליעד",
+      "copy": "העתקה",
+      "share": "שיתוף",
+      "delete": "מחיקה"
+    },
+    "integrations": {
+      "title": "שילובים",
+      "savedOnPhone": "שמירה ב-iPhone",
+      "reminders": "תזכורות",
+      "reminderDetail": "אם ההערה מתחילה ב-“תזכורת”, להוסיף ל-“קניות”",
+      "markdown": "קובץ Markdown",
+      "markdownDetail": "הוספה ל-“Obsidian” לפי תאריך",
+      "webhooks": "יעד (webhook)",
+      "webhooksFooter": "שולח את ההערה לכל היעדים שהמתג שלהם פועל. הערות שהוזנו ב-Apple Watch נשלחות ישירות מהשעון.",
+      "kinds": [
+        "Slack",
+        "Discord",
+        "Webhook",
+        "Webhook"
+      ]
     }
   }
 }

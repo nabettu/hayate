@@ -1,105 +1,125 @@
 {
   "iphone": {
     "hero": {
-      "h1": "Parla i envia\nal *webhook*",
+      "h1": "Parla al canell\ni *pren nota*",
       "chips": [
-        "Slack",
-        "Discord",
-        "La teva API"
+        "Nota",
+        "Webhook",
+        "Recordatoris"
       ],
-      "closing": "Una idea?\nEnvia del *canell*"
+      "closing": "Una idea? Desa-la\n*des del canell*"
     },
     "siri": {
-      "h1": "Amb *Hey Siri*,\nsense mans",
+      "h1": "*Hey Siri*,\nsense mans",
       "chips": [
         "Siri",
         "Doble toc",
         "Esfera"
       ],
-      "closing": "Mans ocupades?\nEnvia *amb la veu*"
+      "closing": "Mans ocupades?\nAnota *amb la veu*"
     },
-    "destination": {
-      "h1": "Tu tries\nel *destí*",
+    "reminder": {
+      "h1": "Una paraula\ni tens *recordatori*",
+      "floats": [
+        "S’ha afegit «comprar llet»",
+        "L’iPhone l’afegeix a la llista"
+      ],
+      "closing": "Les tasques van\n*a la llista*"
+    },
+    "integrations": {
+      "h1": "Envia a *molts*\nllocs alhora",
       "chips": [
         "Webhook",
-        "Slack",
-        "Discord"
+        "Markdown",
+        "Obsidian"
       ],
       "floats": [
-        "Capçalera al Keychain",
-        "{{text}} és el que dius"
+        "Afegit a 2026-11-13.md",
+        "Slack, Notion, ntfy i més"
       ],
-      "closing": "Arriba directe al\n*teu servidor*"
-    },
-    "direct": {
-      "h1": "Envia *directe*\ndes del rellotge",
-      "chips": [
-        "Wi-Fi",
-        "Dades mòbils"
-      ],
-      "floats": [
-        "El que falla es conserva",
-        "Es reenvia en obrir l’app"
-      ],
-      "closing": "Poca cobertura?\n*No es perd res*"
+      "closing": "Al teu xat\ni a *les teves notes*"
     },
     "more": {
-      "h1": "I encara\n*més coses.*",
+      "h1": "I\n*molt més.*",
       "cells": [
-        "Capçalera desada\nal Keychain",
-        "Slack i Discord:\nenganxa l’URL",
-        "S’obre ràpid\ndes de l’esfera",
-        "Historial del\nque has enviat",
-        "Enviament de prova\nper comprovar-ho",
-        "Mateix ID en\nreenviar"
+        "Totes les notes\nes queden a l’iPhone",
+        "Autenticació\nal Keychain",
+        "Codi obert\na GitHub",
+        "El no enviat\nes reenvia en obrir",
+        "Sense anuncis\nni seguiment",
+        "Disponible en\n44 idiomes"
       ],
-      "closing": "La teva veu al\n*teu sistema*"
+      "closing": "La teva veu,\nal *teu sistema*"
     }
   },
   "screen": {
     "appName": "Hayate",
-    "speak": "Envia",
-    "sent": "S’ha enviat a «Slack #memo»",
-    "history": "Historial",
-    "destinationsTitle": "Destins",
+    "memoButton": "Nota",
+    "savedAndSent": "Desada i enviada",
+    "destinationCount": "Destins: 3",
+    "memosTitle": "Nota",
+    "spoken": [
+      "Aparcament B2, plaça 14",
+      "Dentista demà a les 10",
+      "Idea d’article: el mercat"
+    ],
+    "reminderSpoken": "Recordatori, comprar llet",
+    "reminderTitle": "comprar llet",
+    "summary": {
+      "sent": "Enviat",
+      "waiting": "Pendent d’enviar",
+      "memo": "Nota"
+    },
+    "status": {
+      "done": "Fet",
+      "waiting": "Pendent d’enviar"
+    },
+    "date": "13 de nov., 10:09",
+    "time": "10:09",
     "destinations": [
       "Slack #memo",
       "Discord #todo",
-      "API de despeses"
+      "Notion",
+      "ntfy"
     ],
-    "spoken": [
-      "Comprar llet i ous",
-      "Demà a les 10 dentista",
-      "Pàrquing: B2, plaça 14"
-    ],
-    "statusSent": "Enviat",
-    "statusPending": "No enviat",
-    "siriDialog": "S’ha enviat a Slack #memo.",
-    "defaultMark": "(Per defecte)",
+    "reminderTarget": "Recordatoris (Compra)",
+    "markdownTarget": "Markdown (Obsidian)",
+    "markdownFile": "2026-11-13.md",
     "siriAsk": "Envia amb Hayate",
-    "siriQuestion": "Què vols enviar?",
+    "siriQuestion": "Què vols anotar?",
+    "siriDialog": "Desada i enviada",
     "quote": [
       "«",
       "»"
     ],
-    "edit": {
-      "cancel": "Cancel·la",
-      "save": "Desa",
-      "nameLabel": "Nom",
-      "name": "API de despeses",
-      "url": "https://api.example.com/hooks/expense",
-      "urlFooter": "Només es poden fer servir URL https.",
-      "request": "Sol·licitud",
-      "method": "Mètode",
-      "bodyFormat": "Format del cos",
-      "bodyFormatValue": "JSON",
-      "headers": "Capçaleres",
-      "addHeader": "Afegeix una capçalera",
-      "hideSecret": "Amaga com a valor secret",
-      "headersFooter": "Pots registrar capçaleres d’autenticació com Authorization. Els valors només es desen al Keychain de l’iPhone i de l’Apple Watch.",
-      "body": "Cos",
-      "bodyTemplate": "{\n  \"text\": \"{{text}}\",\n  \"id\": \"{{id}}\",\n  \"sentAt\": \"{{sentAt}}\"\n}",
-      "test": "Enviament de prova"
+    "tabs": [
+      "Entrada",
+      "Nota",
+      "Integracions",
+      "Com s’utilitza"
+    ],
+    "detail": {
+      "deliveries": "Destins i integracions",
+      "sendTo": "Envia a un destí",
+      "copy": "Copia",
+      "share": "Comparteix",
+      "delete": "Elimina"
+    },
+    "integrations": {
+      "title": "Integracions",
+      "savedOnPhone": "Desada a l’iPhone",
+      "reminders": "Recordatoris",
+      "reminderDetail": "Si comença per «Recordatori», s’afegeix a «Compra»",
+      "markdown": "Fitxer Markdown",
+      "markdownDetail": "S’afegeix per data a «Obsidian»",
+      "webhooks": "Destins (webhooks)",
+      "webhooksFooter": "Envia la nota a tots els destins amb l’interruptor activat. Les escrites a l’Apple Watch s’envien directament des del rellotge.",
+      "kinds": [
+        "Slack",
+        "Discord",
+        "Webhook",
+        "Webhook"
+      ]
     }
   }
 }
