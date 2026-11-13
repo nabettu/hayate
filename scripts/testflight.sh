@@ -20,6 +20,7 @@
 #   - 配布用の証明書 (iPhone Distribution / Apple Distribution) の秘密鍵がこの Mac の keychain にあること。
 #   - 3 つの Bundle ID それぞれに App Store 用のプロファイルを、下の PROFILE_* の名前で発行しておく。
 #     プロファイルはその証明書で作る。手元に無ければ -allowProvisioningUpdates と API キーで Xcode が取ってくる。
+#   - 署名の鍵がある Mac で直接走らせる (別のマシンへビルドを回すラッパーを通さない)。
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -36,10 +37,16 @@ PROFILE_WIDGET="Hayate AppStore WatchWidget"
 
 ENVFILE="$SCRIPT_DIR/testflight.env"
 if [ -f "$ENVFILE" ]; then
-  # 値をシェルに展開させないよう、1 行ずつ読む (既に環境変数にあるものはそちらを優先)
-  while IFS='=' read -r k v; do
-    case "$k" in ''|\#*) continue ;; esac
-    if [ -z "${!k:-}" ]; then export "$k=$v"; fi
+  # 値をシェルに展開させないよう、1 行ずつ読む (既に環境変数にあるものはそちらを優先)。
+  # 読むのは下の名前だけ。最終行に改行が無くても読み、CRLF の \r は落とす
+  while IFS='=' read -r k v || [ -n "$k" ]; do
+    k="${k%$'\r'}"; v="${v%$'\r'}"
+    case "$k" in
+      ASC_KEY_ID|ASC_ISSUER_ID|ASC_KEY_PATH|SIGNING_KEYCHAIN|SIGNING_KEYCHAIN_PASS)
+        if [ -z "${!k:-}" ]; then export "$k=$v"; fi ;;
+      ''|\#*) ;;
+      *) echo "testflight.env の知らない名前を無視する: $k" >&2 ;;
+    esac
   done < "$ENVFILE"
 fi
 : "${ASC_KEY_ID:?ASC_KEY_ID を設定する (scripts/testflight.env か環境変数)}"
@@ -55,15 +62,24 @@ case "$BUILD" in ''|*[!0-9]*) echo "build 番号が数字でない: '$BUILD'" >&
 echo "== Hayate $MARKETING ($BUILD) を TestFlight へ上げる"
 
 # 再起動後は専用 keychain がロックされていて、署名が errSecInternalComponent で止まる
-if [ -n "${SIGNING_KEYCHAIN:-}" ] && [ -n "${SIGNING_KEYCHAIN_PASS:-}" ]; then
-  security unlock-keychain -p "$SIGNING_KEYCHAIN_PASS" "$SIGNING_KEYCHAIN" \
-    && echo "== $SIGNING_KEYCHAIN をアンロックした"
+if [ -n "${SIGNING_KEYCHAIN:-}" ]; then
+  : "${SIGNING_KEYCHAIN_PASS:?SIGNING_KEYCHAIN を使うなら SIGNING_KEYCHAIN_PASS も設定する}"
+  if ! security unlock-keychain -p "$SIGNING_KEYCHAIN_PASS" "$SIGNING_KEYCHAIN"; then
+    echo "$SIGNING_KEYCHAIN のアンロックに失敗した" >&2
+    exit 1
+  fi
+  echo "== $SIGNING_KEYCHAIN をアンロックした"
 fi
 
-OUT="$ROOT/build/testflight"
+# 実行ごとに別の出力先にする (同時に走らせても互いのアーカイブを消したり上げ違えたりしない)
+mkdir -p "$ROOT/build"
+OUT=$(mktemp -d "$ROOT/build/testflight.XXXXXX")
 ARCHIVE="$OUT/Hayate.xcarchive"
-rm -rf "$OUT"
-mkdir -p "$OUT"
+
+# ログから要点を出す。拾えなければ末尾を出す
+show_errors() {
+  grep -iE "$2" "$1" | tail -20 >&2 || tail -20 "$1" >&2
+}
 
 cat > "$OUT/ExportOptions.plist" <<EOF
 <?xml version="1.0" encoding="UTF-8"?>
@@ -89,6 +105,8 @@ cat > "$OUT/ExportOptions.plist" <<EOF
 		<key>com.nabettu.watchhook.watchkitapp.widget</key>
 		<string>$PROFILE_WIDGET</string>
 	</dict>
+	<key>manageAppVersionAndBuildNumber</key>
+	<false/>
 	<key>uploadSymbols</key>
 	<true/>
 </dict>
@@ -105,16 +123,22 @@ if ! xcodebuild archive \
   "${AUTH_ARGS[@]}" \
   CURRENT_PROJECT_VERSION="$BUILD" \
   > "$OUT/archive.log" 2>&1; then
-  grep -E "error:|\*\* ARCHIVE FAILED" "$OUT/archive.log" | tail -20 >&2
+  show_errors "$OUT/archive.log" "error:|\*\* ARCHIVE FAILED"
   echo "archive に失敗した" >&2
   exit 1
 fi
 
 # dSYM を後から読めるよう、Xcode の Archives にも残す (Organizer がクラッシュをシンボル化する)
 KEEP_DIR="$HOME/Library/Developer/Xcode/Archives/$(date +%Y-%m-%d)"
-KEEP="$KEEP_DIR/Hayate $MARKETING ($BUILD).xcarchive"
-[ -e "$KEEP" ] && KEEP="$KEEP_DIR/Hayate $MARKETING ($BUILD) $(date +%H%M%S).xcarchive"
 mkdir -p "$KEEP_DIR"
+# mkdir で先に場所を取る (同じ名前があれば ditto は中身を混ぜるので、空いている名前を探す)
+KEEP="$KEEP_DIR/Hayate $MARKETING ($BUILD).xcarchive"
+n=2
+until mkdir "$KEEP" 2>/dev/null; do
+  KEEP="$KEEP_DIR/Hayate $MARKETING ($BUILD) #$n.xcarchive"
+  n=$((n + 1))
+  [ "$n" -le 100 ] || { echo "archive を残す場所を作れない: $KEEP_DIR" >&2; exit 1; }
+done
 ditto "$ARCHIVE" "$KEEP"
 echo "== archive を残した: $KEEP"
 
@@ -125,7 +149,7 @@ if ! xcodebuild -exportArchive \
   -exportOptionsPlist "$OUT/ExportOptions.plist" \
   "${AUTH_ARGS[@]}" \
   > "$OUT/export.log" 2>&1; then
-  grep -iE "error|fail" "$OUT/export.log" | tail -20 >&2
+  show_errors "$OUT/export.log" "error|fail"
   echo "export / upload に失敗した" >&2
   exit 1
 fi
