@@ -15,11 +15,23 @@ final class WatchSync: NSObject, WCSessionDelegate, @unchecked Sendable {
 
     /// iPhone に設定の本体を取りに行く。届かなければ、次に前面に来たとき / つながったときにやり直す。
     func requestConfig() {
-        let session = WCSession.default
-        guard session.activationState == .activated, session.isReachable else { return }
+        guard Self.canRequest else { return }
         Task { @MainActor in
-            Self.send(session: session, ticket: ConfigStore.shared.beginSyncRequest())
+            Self.requestConfigNow(retrying: nil)
         }
+    }
+
+    private static var canRequest: Bool {
+        WCSession.default.activationState == .activated && WCSession.default.isReachable
+    }
+
+    /// 要求番号を取ってすぐ送る。取り直しなら、まだ要るかを確かめるところから間を空けずに行う
+    /// (別のタスクに回すと、その間に出た新しい要求の返信を古いものとして捨ててしまう)。
+    @MainActor
+    private static func requestConfigNow(retrying ticket: ConfigSyncStatus.Ticket?) {
+        if let ticket, !ConfigStore.shared.shouldRetrySync(after: ticket) { return }
+        guard canRequest else { return }
+        send(session: WCSession.default, ticket: ConfigStore.shared.beginSyncRequest())
     }
 
     /// 返信のクロージャは WatchConnectivity のキューから呼ばれる。MainActor の中で作ると MainActor 所属とみなされ、
@@ -51,8 +63,7 @@ final class WatchSync: NSObject, WCSessionDelegate, @unchecked Sendable {
         guard case .retry(let delay) = ConfigStore.shared.syncFailed(message, ticket) else { return }
         Task {
             try? await Task.sleep(for: delay)
-            guard ConfigStore.shared.shouldRetrySync(after: ticket) else { return }
-            WatchSync.shared.requestConfig()
+            requestConfigNow(retrying: ticket)
         }
     }
 
