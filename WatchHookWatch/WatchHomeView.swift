@@ -49,14 +49,16 @@ struct WatchHomeView: View {
                     .handGestureShortcut(.primaryAction)
                     .disabled(isSending)
                     .accessibilityLabel("メモする")
-
-                    // 空のときも高さを取っておく (結果やローディングの出し入れで下の段がずれないように)
-                    ZStack {
-                        Color.clear.frame(height: 22)
-                        statusView
+                    // ボタンの下の余白 (「メモだけ保存」との間) に重ねる。高さを取らないので、出し入れでも普段の画面でもずれない
+                    // (offset は、ボタンの枠の下端から丸の下の余白までの距離。シミュレータで合わせた)
+                    .overlay(alignment: .bottom) {
                         startupIndicator
+                            .offset(y: 60)
+                            .animation(.easeOut(duration: 0.3), value: store.syncStatus.isStarting)
                     }
-                    .animation(.easeOut(duration: 0.3), value: store.syncStatus.isStarting)
+
+                    statusView
+                        .frame(minHeight: 22)
 
                     destinationsLabel
 
@@ -139,7 +141,6 @@ struct WatchHomeView: View {
     }
 
     /// 起動直後、iPhone とのつながりが落ち着くまで (取り寄せの失敗はまだ出さない)。
-    /// 結果の欄に重ねて出す。
     @ViewBuilder private var startupIndicator: some View {
         if store.syncStatus.isStarting, !isSending, lastResult == nil {
             ProgressView()
