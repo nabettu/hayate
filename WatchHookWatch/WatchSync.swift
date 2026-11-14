@@ -31,19 +31,40 @@ final class WatchSync: NSObject, WCSessionDelegate, @unchecked Sendable {
                 // 何度か取りに行ったとき、最後の要求への結果だけを使う。反映する直前 (MainActor の上) で確かめる
                 guard RequestGate.gate.isLatest(token) else { return }
                 guard let config else {
-                    ConfigStore.shared.setSyncError(String(localized: "iPhone から設定を受け取れませんでした"))
+                    Self.handleFailure(String(localized: "iPhone から設定を受け取れませんでした"))
                     return
                 }
-                ConfigStore.shared.setSyncError(nil)
+                ConfigStore.shared.syncSucceeded()
                 ConfigStore.shared.receive(config)
             }
         }, errorHandler: { @Sendable error in
             let message = String(localized: "iPhone から設定を受け取れませんでした: \(error.localizedDescription)")
             Task { @MainActor in
                 guard RequestGate.gate.isLatest(token) else { return }
-                ConfigStore.shared.setSyncError(message)
+                Self.handleFailure(message)
             }
         })
+    }
+
+    /// 起動直後 (準備中) の失敗はエラーを出さずに、少し待って取り直す。
+    @MainActor
+    private static func handleFailure(_ message: String) {
+        guard case .retry(let delay) = ConfigStore.shared.syncFailed(message) else { return }
+        Task {
+            try? await Task.sleep(for: delay)
+            WatchSync.shared.requestConfig()
+        }
+    }
+
+    /// 起動した・前面に戻ったとき。つながりが落ち着くまでは取り寄せの失敗を画面に出さない。
+    /// 成功か、取り直しても失敗したら準備完了になる。どちらにもならない (返事が来ない・つながらない) ときは打ち切る。
+    @MainActor
+    func beginStartup() {
+        let generation = ConfigStore.shared.beginSyncStartup()
+        Task {
+            try? await Task.sleep(for: ConfigSyncStatus.startupLimit)
+            ConfigStore.shared.endSyncStartup(generation: generation)
+        }
     }
 
     // MARK: - メモ

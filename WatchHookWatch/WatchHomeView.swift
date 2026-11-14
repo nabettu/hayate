@@ -50,8 +50,13 @@ struct WatchHomeView: View {
                     .disabled(isSending)
                     .accessibilityLabel("メモする")
 
-                    statusView
-                        .frame(minHeight: 22)
+                    // 空のときも高さを取っておく (結果やローディングの出し入れで下の段がずれないように)
+                    ZStack {
+                        Color.clear.frame(height: 22)
+                        statusView
+                        startupIndicator
+                    }
+                    .animation(.easeOut(duration: 0.3), value: store.syncStatus.isStarting)
 
                     destinationsLabel
 
@@ -94,7 +99,7 @@ struct WatchHomeView: View {
 
     /// iPhone から届いた設定を時計に保存できなかったとき。
     @ViewBuilder private var saveErrorView: some View {
-        if let error = store.saveError ?? store.syncError {
+        if let error = store.saveError ?? store.syncStatus.visibleError {
             VStack(spacing: 4) {
                 Label(error, systemImage: "exclamationmark.triangle.fill")
                     .font(.caption2).foregroundStyle(.red)
@@ -130,6 +135,17 @@ struct WatchHomeView: View {
             .font(.footnote)
             .multilineTextAlignment(.center)
             .transition(.scale.combined(with: .opacity))
+        }
+    }
+
+    /// 起動直後、iPhone とのつながりが落ち着くまで (取り寄せの失敗はまだ出さない)。
+    /// 結果の欄に重ねて出す。
+    @ViewBuilder private var startupIndicator: some View {
+        if store.syncStatus.isStarting, !isSending, lastResult == nil {
+            ProgressView()
+                .tint(Cosmos.lavender)
+                .scaleEffect(0.6)
+                .transition(.opacity)
         }
     }
 

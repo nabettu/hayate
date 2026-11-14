@@ -80,6 +80,7 @@ final class ConfigStore {
     /// 時計へ送り直す (iPhone のみ。時計とのつながりが変わったときにも呼ぶ)。
     func resync() {
         syncError = onChange?(config)
+        if let syncError { configLogger.error("sync failed: \(syncError, privacy: .public)") }
     }
 
     /// 起動時に Keychain が読めなかった (ロック中など) とき、前面に来たタイミングで読み直す。
@@ -90,10 +91,28 @@ final class ConfigStore {
         return !loadFailed
     }
 
-    /// 時計で、iPhone から設定を受け取れなかったとき。
-    func setSyncError(_ message: String?) {
-        syncError = message
+    #if os(watchOS)
+    /// 時計で、iPhone からの設定の取り寄せの状態。起動直後の失敗は出さずに取り直す (`ConfigSyncStatus`)。
+    /// 時計では `syncError` ではなくこちらの `visibleError` を画面に出す。
+    private(set) var syncStatus = ConfigSyncStatus()
+
+    func beginSyncStartup() -> Int {
+        syncStatus.beginStartup()
     }
+
+    func endSyncStartup(generation: Int) {
+        syncStatus.endStartup(generation: generation)
+    }
+
+    func syncSucceeded() {
+        syncStatus.succeeded()
+    }
+
+    func syncFailed(_ message: String) -> ConfigSyncStatus.FailureAction {
+        configLogger.error("sync failed: \(message, privacy: .public)")
+        return syncStatus.failed(message)
+    }
+    #endif
 
     /// 時計で、iPhone から届いた設定を受け取る。今持っているものより古ければ捨てる。
     func receive(_ incoming: DestinationConfig) {
