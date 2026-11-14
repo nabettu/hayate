@@ -104,13 +104,23 @@ final class ConfigStore {
         syncStatus.endStartup(generation: generation)
     }
 
-    func syncSucceeded() {
-        syncStatus.succeeded()
+    func beginSyncRequest() -> ConfigSyncStatus.Ticket {
+        syncStatus.beginRequest()
     }
 
-    func syncFailed(_ message: String) -> ConfigSyncStatus.FailureAction {
-        configLogger.error("sync failed: \(message, privacy: .public)")
-        return syncStatus.failed(message)
+    /// 最新の要求の成功なら true (届いた設定を使ってよい)。
+    func syncSucceeded(_ ticket: ConfigSyncStatus.Ticket) -> Bool {
+        syncStatus.succeeded(ticket)
+    }
+
+    func syncFailed(_ message: String, _ ticket: ConfigSyncStatus.Ticket) -> ConfigSyncStatus.FailureAction {
+        let action = syncStatus.failed(message, ticket)
+        if action != .ignore { configLogger.error("sync failed: \(message, privacy: .public)") }
+        return action
+    }
+
+    func shouldRetrySync(after ticket: ConfigSyncStatus.Ticket) -> Bool {
+        syncStatus.shouldRetry(after: ticket)
     }
     #endif
 
