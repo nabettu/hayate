@@ -1,7 +1,7 @@
 {
   "sourceLanguage" : "ja",
   "strings" : {
-    "${applicationName}で送って" : {
+    "${applicationName}で記録" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "ar" : {
@@ -78,6 +78,7 @@
             "state" : "translated",
             "values" : [
               "Send with ${applicationName}",
+              "Log with ${applicationName}",
               "Send using ${applicationName}",
               "Send to ${applicationName}"
             ]
@@ -186,9 +187,9 @@
           "stringSet" : {
             "state" : "new",
             "values" : [
-              "${applicationName}で送って",
-              "${applicationName}で送る",
-              "${applicationName}に送って"
+              "${applicationName}で記録",
+              "${applicationName}で記録して",
+              "${applicationName}を使って記録"
             ]
           }
         },
