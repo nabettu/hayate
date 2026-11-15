@@ -44,17 +44,12 @@ struct WatchHookShortcuts: AppShortcutsProvider {
         AppShortcut(
             intent: SendTextIntent(),
             phrases: [
-                // 「〜で送って」は Siri 標準のメッセージ送信 (「誰に送信しますか？」) に取られた (2026-11-13 実機)。
-                // どれが通るかを実機で確かめるため、候補を並べている。決まったら絞って全言語・使い方・ストアを直す
-                "\(.applicationName)で送って",
-                "\(.applicationName)でメモ",
-                "\(.applicationName)でメモして",
-                "\(.applicationName)にメモ",
+                // 日本語は「〜で記録」(2026-11-15 実機)。「〜で送って」は Siri 標準のメッセージ送信 (「誰に送信しますか？」)、
+                // 「〜でメモ」は標準のメモ作成 (「メモの作成に対応していません」) に取られた。「はやて」が人の名前と取られやすいので「〜に」も避ける。
+                // ほかの言語の言い回しは各言語の AppShortcuts.xcstrings にある (実機では試していない)
                 "\(.applicationName)で記録",
-                "\(.applicationName)に記録して",
-                "\(.applicationName)を使ってメモ",
-                "\(.applicationName)で送る",
-                "\(.applicationName)に送って",
+                "\(.applicationName)で記録して",
+                "\(.applicationName)を使って記録",
             ],
             shortTitle: "メモする",
             systemImageName: "waveform"

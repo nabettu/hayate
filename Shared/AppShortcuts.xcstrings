@@ -1,7 +1,7 @@
 {
   "sourceLanguage" : "ja",
   "strings" : {
-    "${applicationName}で送って" : {
+    "${applicationName}で記録" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "ar" : {
@@ -78,10 +78,7 @@
             "state" : "translated",
             "values" : [
               "Send with ${applicationName}",
-              "Memo with ${applicationName}",
-              "Take a memo in ${applicationName}",
-              "Note in ${applicationName}",
-              "Record with ${applicationName}",
+              "Log with ${applicationName}",
               "Send using ${applicationName}",
               "Send to ${applicationName}"
             ]
@@ -190,15 +187,9 @@
           "stringSet" : {
             "state" : "new",
             "values" : [
-              "${applicationName}で送って",
-              "${applicationName}でメモ",
-              "${applicationName}でメモして",
-              "${applicationName}にメモ",
               "${applicationName}で記録",
-              "${applicationName}に記録して",
-              "${applicationName}を使ってメモ",
-              "${applicationName}で送る",
-              "${applicationName}に送って"
+              "${applicationName}で記録して",
+              "${applicationName}を使って記録"
             ]
           }
         },
