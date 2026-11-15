@@ -57,7 +57,7 @@ final class IntegrationStore {
 
 /// iOS のリマインダーに 1 件足す。画面は出さない (権限・リストは設定画面で先に決める)。
 enum ReminderWriter {
-    /// 同じメモを二重に足さないための印。リマインダーの URL 欄に入れる (タップで Hayate が開く)
+    /// 同じメモを二重に足さないための印。リマインダーの URL に入れる。iOS 26 のリマインダー App の詳細には URL 欄が出ないので、人がタップして開く入口にはならない (2026-11-16 実機)
     static func marker(for memoID: UUID) -> URL {
         URL(string: "hayate://memo/\(memoID.uuidString)")!
     }
