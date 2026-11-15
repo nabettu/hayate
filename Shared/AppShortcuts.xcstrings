@@ -1,7 +1,7 @@
 {
   "sourceLanguage" : "ja",
   "strings" : {
-    "${applicationName}で記録" : {
+    "${applicationName}で飛ばして" : {
       "extractionState" : "extracted_with_value",
       "localizations" : {
         "ar" : {
@@ -187,12 +187,10 @@
           "stringSet" : {
             "state" : "new",
             "values" : [
+              "${applicationName}で飛ばして",
               "${applicationName}で記録",
               "${applicationName}で記録して",
-              "${applicationName}を使って記録",
-              "${applicationName}で飛ばして",
-              "${applicationName}で届けて",
-              "${applicationName}で投げて"
+              "${applicationName}を使って記録"
             ]
           }
         },
