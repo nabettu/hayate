@@ -15,35 +15,67 @@ final class WatchSync: NSObject, WCSessionDelegate, @unchecked Sendable {
 
     /// iPhone に設定の本体を取りに行く。届かなければ、次に前面に来たとき / つながったときにやり直す。
     func requestConfig() {
-        let session = WCSession.default
-        guard session.activationState == .activated, session.isReachable else { return }
+        guard Self.canRequest else { return }
         Task { @MainActor in
-            Self.send(session: session, token: RequestGate.gate.begin())
+            Self.requestConfigNow(retrying: nil)
         }
+    }
+
+    private static var canRequest: Bool {
+        WCSession.default.activationState == .activated && WCSession.default.isReachable
+    }
+
+    /// 要求番号を取ってすぐ送る。取り直しなら、まだ要るかを確かめるところから間を空けずに行う
+    /// (別のタスクに回すと、その間に出た新しい要求の返信を古いものとして捨ててしまう)。
+    @MainActor
+    private static func requestConfigNow(retrying ticket: ConfigSyncStatus.Ticket?) {
+        if let ticket, !ConfigStore.shared.shouldRetrySync(after: ticket) { return }
+        guard canRequest else { return }
+        send(session: WCSession.default, ticket: ConfigStore.shared.beginSyncRequest())
     }
 
     /// 返信のクロージャは WatchConnectivity のキューから呼ばれる。MainActor の中で作ると MainActor 所属とみなされ、
     /// 実行時の隔離チェックで落ちる (2026-11-09 にシミュレータで発生) ので、nonisolated の関数で作る。
-    private nonisolated static func send(session: WCSession, token: Int) {
+    private nonisolated static func send(session: WCSession, ticket: ConfigSyncStatus.Ticket) {
         session.sendMessage([SyncKeys.request: SyncKeys.config], replyHandler: { @Sendable reply in
             let config = (reply[SyncKeys.config] as? Data).flatMap { try? DestinationConfig.decode($0) }
             Task { @MainActor in
                 // 何度か取りに行ったとき、最後の要求への結果だけを使う。反映する直前 (MainActor の上) で確かめる
-                guard RequestGate.gate.isLatest(token) else { return }
                 guard let config else {
-                    ConfigStore.shared.setSyncError(String(localized: "iPhone から設定を受け取れませんでした"))
+                    Self.handleFailure(String(localized: "iPhone から設定を受け取れませんでした"), ticket: ticket)
                     return
                 }
-                ConfigStore.shared.setSyncError(nil)
+                guard ConfigStore.shared.syncSucceeded(ticket) else { return }
                 ConfigStore.shared.receive(config)
             }
         }, errorHandler: { @Sendable error in
             let message = String(localized: "iPhone から設定を受け取れませんでした: \(error.localizedDescription)")
             Task { @MainActor in
-                guard RequestGate.gate.isLatest(token) else { return }
-                ConfigStore.shared.setSyncError(message)
+                Self.handleFailure(message, ticket: ticket)
             }
         })
+    }
+
+    /// 起動直後 (準備中) の失敗はエラーを出さずに、少し待って取り直す。
+    /// 待っている間に別の要求を出した・前面に戻ったなら取り直さない (`ConfigSyncStatus.shouldRetry(after:)`)。
+    @MainActor
+    private static func handleFailure(_ message: String, ticket: ConfigSyncStatus.Ticket) {
+        guard case .retry(let delay) = ConfigStore.shared.syncFailed(message, ticket) else { return }
+        Task {
+            try? await Task.sleep(for: delay)
+            requestConfigNow(retrying: ticket)
+        }
+    }
+
+    /// 起動した・前面に戻ったとき。つながりが落ち着くまでは取り寄せの失敗を画面に出さない。
+    /// 成功か、取り直しても失敗したら準備完了になる。どちらにもならない (返事が来ない・つながらない) ときは打ち切る。
+    @MainActor
+    func beginStartup() {
+        let generation = ConfigStore.shared.beginSyncStartup()
+        Task {
+            try? await Task.sleep(for: ConfigSyncStatus.startupLimit)
+            ConfigStore.shared.endSyncStartup(generation: generation)
+        }
     }
 
     // MARK: - メモ
@@ -117,10 +149,4 @@ final class WatchSync: NSObject, WCSessionDelegate, @unchecked Sendable {
             resendWaitingMemos()
         }
     }
-}
-
-/// 設定の取り寄せの世代。MainActor だけで触る。
-@MainActor
-private enum RequestGate {
-    static var gate = LatestRequestGate()
 }

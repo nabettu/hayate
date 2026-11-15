@@ -49,6 +49,13 @@ struct WatchHomeView: View {
                     .handGestureShortcut(.primaryAction)
                     .disabled(isSending)
                     .accessibilityLabel("メモする")
+                    // ボタンの下の余白 (「メモだけ保存」との間) に重ねる。高さを取らないので、出し入れでも普段の画面でもずれない
+                    // (offset は、ボタンの枠の下端から丸の下の余白までの距離。シミュレータで合わせた)
+                    .overlay(alignment: .bottom) {
+                        startupIndicator
+                            .offset(y: 60)
+                            .animation(.easeOut(duration: 0.3), value: store.syncStatus.isStarting)
+                    }
 
                     statusView
                         .frame(minHeight: 22)
@@ -94,7 +101,7 @@ struct WatchHomeView: View {
 
     /// iPhone から届いた設定を時計に保存できなかったとき。
     @ViewBuilder private var saveErrorView: some View {
-        if let error = store.saveError ?? store.syncError {
+        if let error = store.saveError ?? store.syncStatus.visibleError {
             VStack(spacing: 4) {
                 Label(error, systemImage: "exclamationmark.triangle.fill")
                     .font(.caption2).foregroundStyle(.red)
@@ -130,6 +137,16 @@ struct WatchHomeView: View {
             .font(.footnote)
             .multilineTextAlignment(.center)
             .transition(.scale.combined(with: .opacity))
+        }
+    }
+
+    /// 起動直後、iPhone とのつながりが落ち着くまで (取り寄せの失敗はまだ出さない)。
+    @ViewBuilder private var startupIndicator: some View {
+        if store.syncStatus.isStarting, !isSending, lastResult == nil {
+            ProgressView()
+                .tint(Cosmos.lavender)
+                .scaleEffect(0.6)
+                .transition(.opacity)
         }
     }
 
