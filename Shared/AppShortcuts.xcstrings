@@ -189,7 +189,10 @@
             "values" : [
               "${applicationName}で記録",
               "${applicationName}で記録して",
-              "${applicationName}を使って記録"
+              "${applicationName}を使って記録",
+              "${applicationName}で飛ばして",
+              "${applicationName}で届けて",
+              "${applicationName}で投げて"
             ]
           }
         },

@@ -50,6 +50,10 @@ struct WatchHookShortcuts: AppShortcutsProvider {
                 "\(.applicationName)で記録",
                 "\(.applicationName)で記録して",
                 "\(.applicationName)を使って記録",
+                // 「送る」寄りの候補 (2026-11-15。実機で試している。通らなかったものは外す)
+                "\(.applicationName)で飛ばして",
+                "\(.applicationName)で届けて",
+                "\(.applicationName)で投げて",
             ],
             shortTitle: "メモする",
             systemImageName: "waveform"
