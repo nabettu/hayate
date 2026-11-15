@@ -28,6 +28,14 @@
 			<key>INAlternativeAppNamePronunciationHint</key>
 			<string>はやて</string>
 		</dict>
+		<dict>
+			<key>INAlternativeAppName</key>
+			<string>Voice Hook</string>
+		</dict>
+		<dict>
+			<key>INAlternativeAppName</key>
+			<string>Wrist Note</string>
+		</dict>
 	</array>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>

@@ -38,6 +38,9 @@ targets:
         INAlternativeAppNames:
           - INAlternativeAppName: はやて
             INAlternativeAppNamePronunciationHint: はやて
+          # 英語の Siri 向け (Hayate を聞き取れないため)。どれが通るか実機で試している (2026-11-15)
+          - INAlternativeAppName: Voice Hook
+          - INAlternativeAppName: Wrist Note
         UILaunchScreen:
           UIColorName: LaunchBackground
         ITSAppUsesNonExemptEncryption: false
@@ -73,6 +76,9 @@ targets:
         INAlternativeAppNames:
           - INAlternativeAppName: はやて
             INAlternativeAppNamePronunciationHint: はやて
+          # 英語の Siri 向け (Hayate を聞き取れないため)。どれが通るか実機で試している (2026-11-15)
+          - INAlternativeAppName: Voice Hook
+          - INAlternativeAppName: Wrist Note
         WKApplication: true
         WKCompanionAppBundleIdentifier: com.nabettu.watchhook
         ITSAppUsesNonExemptEncryption: false
