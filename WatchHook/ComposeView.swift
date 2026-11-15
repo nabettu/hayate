@@ -9,6 +9,10 @@ struct ComposeView: View {
     @State private var isSending = false
     @State private var flight: FlightPhase = .idle
     @State private var lastResult: MemoFeedback?
+    /// 結果を出すたびに進める。「保存しました」を消すときに、その後に出た結果まで消さないため。
+    @State private var resultSerial = 0
+    /// 「保存しました」を出しておく長さ (時計と同じ)。送れなかった・あとで送り直す、は読めるよう消さない。
+    private static let sentMessageDuration: Duration = .seconds(3)
     /// 見出しの紙飛行機の位置 (送るときにここから飛び立つ)。
     @State private var headerPlaneFrame: CGRect = .zero
     @FocusState private var focused: Bool
@@ -210,12 +214,22 @@ struct ComposeView: View {
         await playFlight(set: { flight = $0 }, current: { flight }, onResult: { status in
             isSending = false
             withAnimation(.spring(duration: 0.4)) { lastResult = feedback }
+            resultSerial += 1
+            if case .sent = status { hideSentMessage(serial: resultSerial) }
             onResult(status)
         }, work: {
             let result = await work()
             feedback = result
             return result.status
         })
+    }
+
+    private func hideSentMessage(serial: Int) {
+        Task {
+            try? await Task.sleep(for: Self.sentMessageDuration)
+            guard resultSerial == serial, !isSending else { return }
+            withAnimation(.easeOut(duration: 0.4)) { lastResult = nil }
+        }
     }
 
     #if DEBUG
