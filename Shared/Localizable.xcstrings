@@ -31648,270 +31648,270 @@
         }
       }
     },
-    "タップすると Hayate が開き、すぐ「メモ」を押せます。" : {
+    "タップすると Hayate が開き、すぐ入力画面が出ます。" : {
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "اضغط لفتح Hayate والضغط على «ملاحظة» فورًا."
+            "value" : "اضغط لفتح Hayate وستظهر شاشة الإدخال فورًا."
           }
         },
         "bn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ট্যাপ করলে Hayate খুলবে এবং সঙ্গে সঙ্গে “মেমো” চাপতে পারবেন।"
+            "value" : "ট্যাপ করলে Hayate খুলবে এবং সঙ্গে সঙ্গে ইনপুট স্ক্রিন আসবে।"
           }
         },
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toca per obrir Hayate i prémer «Nota» de seguida."
+            "value" : "Toca per obrir Hayate i apareixerà de seguida la pantalla d’entrada."
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Klepnutím otevřete Hayate a hned můžete stisknout „Poznámka“."
+            "value" : "Klepnutím otevřete Hayate a hned se zobrazí zadávání."
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tryk for at åbne Hayate og trykke på »Note« med det samme."
+            "value" : "Tryk for at åbne Hayate, så vises indtastningen med det samme."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tippe darauf, um Hayate zu öffnen und gleich „Notiz“ zu drücken."
+            "value" : "Tippe darauf, um Hayate zu öffnen – die Eingabe erscheint sofort."
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Πατήστε για να ανοίξει το Hayate και να πατήσετε αμέσως «Σημείωση»."
+            "value" : "Πατήστε για να ανοίξει το Hayate και θα εμφανιστεί αμέσως η οθόνη εισαγωγής."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tap to open Hayate and tap “Memo” right away."
+            "value" : "Tap to open Hayate with the input screen ready."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Toca para abrir Hayate y pulsar “Nota” al instante."
+            "value" : "Toca para abrir Hayate y aparecerá al instante la pantalla de entrada."
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Napauta avataksesi Hayaten ja painaaksesi heti ”Muistiinpano”-painiketta."
+            "value" : "Napauta, niin Hayate avautuu ja syöttönäkymä aukeaa heti."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Touchez pour ouvrir Hayate et appuyer tout de suite sur « Mémo »."
+            "value" : "Touchez pour ouvrir Hayate : l’écran de saisie s’affiche aussitôt."
           }
         },
         "gu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ટૅપ કરવાથી Hayate ખુલે છે અને તરત “નોંધ” દબાવી શકાય છે."
+            "value" : "ટૅપ કરવાથી Hayate ખુલે છે અને તરત ઇનપુટ સ્ક્રીન દેખાય છે."
           }
         },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "הקשה פותחת את Hayate ומאפשרת ללחוץ מיד על “הערה”."
+            "value" : "הקשה פותחת את Hayate ומסך ההזנה מופיע מיד."
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "टैप करने पर Hayate खुलता है और तुरंत “नोट” दबाया जा सकता है।"
+            "value" : "टैप करने पर Hayate खुलता है और तुरंत इनपुट स्क्रीन आ जाती है।"
           }
         },
         "hr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dodirom se otvara Hayate i odmah možete pritisnuti „Bilješka”."
+            "value" : "Dodirom se otvara Hayate i odmah se pojavljuje unos."
           }
         },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Koppintásra megnyílik a Hayate, és rögtön megnyomhatja a „Jegyzet” gombot."
+            "value" : "Koppintásra megnyílik a Hayate, és rögtön megjelenik a beviteli képernyő."
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ketuk untuk membuka Hayate dan langsung menekan “Catatan”."
+            "value" : "Ketuk untuk membuka Hayate, dan layar input langsung muncul."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tocca per aprire Hayate e premere subito “Appunto”."
+            "value" : "Tocca per aprire Hayate: compare subito la schermata di inserimento."
           }
         },
         "kn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ಟ್ಯಾಪ್ ಮಾಡಿದರೆ Hayate ತೆರೆಯುತ್ತದೆ ಮತ್ತು ತಕ್ಷಣ “ಟಿಪ್ಪಣಿ” ಒತ್ತಬಹುದು."
+            "value" : "ಟ್ಯಾಪ್ ಮಾಡಿದರೆ Hayate ತೆರೆಯುತ್ತದೆ ಮತ್ತು ತಕ್ಷಣ ಇನ್‌ಪುಟ್ ಪರದೆ ಬರುತ್ತದೆ."
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "탭하면 Hayate가 열리고 바로 \"메모\"를 누를 수 있습니다."
+            "value" : "탭하면 Hayate가 열리고 바로 입력 화면이 나타납니다."
           }
         },
         "ml" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ടാപ്പ് ചെയ്താൽ Hayate തുറന്ന് ഉടൻ “മെമ്മോ” അമർത്താം."
+            "value" : "ടാപ്പ് ചെയ്താൽ Hayate തുറന്ന് ഉടൻ ഇൻപുട്ട് സ്ക്രീൻ വരും."
           }
         },
         "mr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "टॅप केल्यावर Hayate उघडते आणि लगेच “मेमो” दाबता येतो."
+            "value" : "टॅप केल्यावर Hayate उघडते आणि लगेच इनपुट स्क्रीन येते."
           }
         },
         "ms" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ketik untuk membuka Hayate dan terus menekan “Memo”."
+            "value" : "Ketik untuk membuka Hayate, dan skrin input terus muncul."
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Trykk for å åpne Hayate og trykke «Memo» med en gang."
+            "value" : "Trykk for å åpne Hayate, så vises inntastingen med en gang."
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tik om Hayate te openen en meteen op “Memo” te drukken."
+            "value" : "Tik om Hayate te openen; het invoerscherm verschijnt meteen."
           }
         },
         "or" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ଟାପ୍ କଲେ Hayate ଖୋଲିବ ଏବଂ ସଙ୍ଗେ ସଙ୍ଗେ “ନୋଟ୍” ଦବାଇପାରିବେ।"
+            "value" : "ଟାପ୍ କଲେ Hayate ଖୋଲିବ ଏବଂ ସଙ୍ଗେ ସଙ୍ଗେ ଇନପୁଟ୍ ସ୍କ୍ରିନ୍ ଆସିବ।"
           }
         },
         "pa" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ਟੈਪ ਕਰਨ ’ਤੇ Hayate ਖੁੱਲ੍ਹੇਗਾ ਅਤੇ ਤੁਸੀਂ ਤੁਰੰਤ “ਨੋਟ” ਦਬਾ ਸਕਦੇ ਹੋ।"
+            "value" : "ਟੈਪ ਕਰਨ ’ਤੇ Hayate ਖੁੱਲ੍ਹੇਗਾ ਅਤੇ ਤੁਰੰਤ ਇਨਪੁਟ ਸਕ੍ਰੀਨ ਆ ਜਾਵੇਗੀ।"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Stuknięcie otwiera Hayate i od razu możesz nacisnąć „Notatka”."
+            "value" : "Stuknięcie otwiera Hayate i od razu pojawia się ekran wprowadzania."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ao tocar, o Hayate abre e você já pode tocar em “Anotar”."
+            "value" : "Ao tocar, o Hayate abre e a tela de entrada aparece na hora."
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ao tocar, o Hayate abre e já pode tocar em “Anotar”."
+            "value" : "Ao tocar, o Hayate abre e o ecrã de introdução aparece logo."
           }
         },
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Atinge pentru a deschide Hayate și a putea apăsa imediat „Notiță”."
+            "value" : "Atinge pentru a deschide Hayate; ecranul de introducere apare imediat."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Нажмите, чтобы открыть Hayate и сразу нажать «Заметка»."
+            "value" : "Нажмите, чтобы открыть Hayate, — экран ввода появится сразу."
           }
         },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ťuknutím otvoríte Hayate a hneď môžete stlačiť „Poznámku“."
+            "value" : "Ťuknutím otvoríte Hayate a hneď sa zobrazí zadávanie."
           }
         },
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tapnite, da odprete Hayate in takoj pritisnete »Zapisek«."
+            "value" : "Tapnite, da odprete Hayate, in vnos se takoj prikaže."
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Tryck för att öppna Hayate och trycka på ”Anteckning” direkt."
+            "value" : "Tryck för att öppna Hayate, så visas inmatningen direkt."
           }
         },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "தட்டினால் Hayate திறந்து, உடனே “குறிப்பு” ஐ அழுத்தலாம்."
+            "value" : "தட்டினால் Hayate திறந்து, உடனே உள்ளீட்டுத் திரை வரும்."
           }
         },
         "te" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ట్యాప్ చేస్తే Hayate తెరుచుకుంటుంది, వెంటనే “నోట్” నొక్కవచ్చు."
+            "value" : "ట్యాప్ చేస్తే Hayate తెరుచుకుని, వెంటనే ఇన్‌పుట్ స్క్రీన్ వస్తుంది."
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "แตะเพื่อเปิด Hayate แล้วกด \"บันทึก\" ได้ทันที"
+            "value" : "แตะเพื่อเปิด Hayate แล้วหน้าจอป้อนข้อความจะขึ้นทันที"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dokunduğunuzda Hayate açılır ve hemen “Not” düğmesine basabilirsiniz."
+            "value" : "Dokunduğunuzda Hayate açılır ve giriş ekranı hemen gelir."
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Торкніться, щоб відкрити Hayate й одразу натиснути «Нотатка»."
+            "value" : "Торкніться, щоб відкрити Hayate, — екран введення з’явиться одразу."
           }
         },
         "ur" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ٹیپ کرنے پر Hayate کھلتا ہے اور آپ فوراً “نوٹ” دبا سکتے ہیں۔"
+            "value" : "ٹیپ کرنے پر Hayate کھلتا ہے اور فوراً ان پٹ اسکرین آ جاتی ہے۔"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Chạm để mở Hayate và nhấn \"Ghi chú\" ngay."
+            "value" : "Chạm để mở Hayate, màn hình nhập sẽ hiện ra ngay."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "轻点即可打开 Hayate，并立即按“备忘”。"
+            "value" : "轻点即可打开 Hayate，并立即出现输入界面。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "點一下即可開啟 Hayate，並立即按「備忘」。"
+            "value" : "點一下即可開啟 Hayate，並立即出現輸入畫面。"
           }
         }
       }
@@ -57108,270 +57108,270 @@
         }
       }
     },
-    "時計で Hayate を開き、紫の「メモ」を押して、話すか文字を入力します。終えたら「完了」で保存します。" : {
+    "時計で Hayate を開くと、すぐ入力画面が出ます。話すか文字を入力し、「完了」で保存します。続けて入れるときは紫の「メモ」を押します。" : {
       "localizations" : {
         "ar" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "افتح Hayate على الساعة، واضغط «ملاحظة» الأرجوانية، ثم تحدّث أو اكتب. عند الانتهاء اضغط «تم» للحفظ."
+            "value" : "افتح Hayate على الساعة لتظهر شاشة الإدخال فورًا. تحدّث أو اكتب، ثم اضغط «تم» للحفظ. لإضافة ملاحظة أخرى اضغط «ملاحظة» الأرجوانية."
           }
         },
         "bn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ঘড়িতে Hayate খুলে বেগুনি “মেমো” চাপুন, তারপর বলুন বা লিখুন। শেষ হলে “শেষ” চেপে সংরক্ষণ করুন।"
+            "value" : "ঘড়িতে Hayate খুললেই ইনপুট স্ক্রিন আসে। বলুন বা লিখুন, তারপর “শেষ” চেপে সংরক্ষণ করুন। আরও লিখতে বেগুনি “মেমো” চাপুন।"
           }
         },
         "ca" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Obre Hayate al rellotge, prem «Nota» (la lila) i parla o escriu. Quan acabis, prem «Fet» per desar."
+            "value" : "Quan obres Hayate al rellotge, apareix de seguida la pantalla d’entrada. Parla o escriu i prem «Fet» per desar. Per afegir-ne més, prem «Nota» (la lila)."
           }
         },
         "cs" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otevřete na hodinkách Hayate, stiskněte fialové „Poznámka“ a mluvte nebo pište. Po dokončení uložte tlačítkem „Hotovo“."
+            "value" : "Po otevření Hayate na hodinkách se hned zobrazí zadávání. Mluvte nebo pište a uložte tlačítkem „Hotovo“. Další poznámku přidáte fialovým „Poznámka“."
           }
         },
         "da" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Åbn Hayate på uret, tryk på den lilla »Note«, og tal eller skriv. Tryk på »Færdig« for at gemme."
+            "value" : "Når du åbner Hayate på uret, vises indtastningen med det samme. Tal eller skriv, og tryk på »Færdig« for at gemme. Tryk på den lilla »Note« for at skrive mere."
           }
         },
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Öffne Hayate auf der Watch, drücke die violette „Notiz“-Taste und sprich oder tippe. Mit „Fertig“ wird gesichert."
+            "value" : "Wenn du Hayate auf der Watch öffnest, erscheint sofort die Eingabe. Sprich oder tippe und sichere mit „Fertig“. Für eine weitere Notiz drücke die violette „Notiz“-Taste."
           }
         },
         "el" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ανοίξτε το Hayate στο ρολόι, πατήστε το μωβ κουμπί «Σημείωση» και μιλήστε ή πληκτρολογήστε. Όταν τελειώσετε, πατήστε «Τέλος» για αποθήκευση."
+            "value" : "Όταν ανοίγετε το Hayate στο ρολόι, εμφανίζεται αμέσως η οθόνη εισαγωγής. Μιλήστε ή πληκτρολογήστε και πατήστε «Τέλος» για αποθήκευση. Για άλλη σημείωση, πατήστε το μωβ κουμπί «Σημείωση»."
           }
         },
         "en" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "On the watch, open Hayate, tap the purple “Memo”, then speak or type. When you finish, tap “Done” to save."
+            "value" : "Open Hayate on the watch and the input screen appears right away. Speak or type, then tap “Done” to save. To add another, tap the purple “Memo”."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Abre Hayate en el reloj, pulsa el botón morado “Nota” y habla o escribe. Cuando termines, pulsa “Listo” para guardar."
+            "value" : "Al abrir Hayate en el reloj, aparece al instante la pantalla de entrada. Habla o escribe y pulsa “Listo” para guardar. Para añadir otra, pulsa el botón morado “Nota”."
           }
         },
         "fi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Avaa Hayate kellossa, paina violettia ”Muistiinpano”-painiketta ja puhu tai kirjoita. Tallenna painamalla ”Valmis”."
+            "value" : "Kun avaat Hayaten kellossa, syöttönäkymä aukeaa heti. Puhu tai kirjoita ja tallenna painamalla ”Valmis”. Lisää uusi painamalla violettia ”Muistiinpano”-painiketta."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Sur la montre, ouvrez Hayate, appuyez sur « Mémo » (violet), puis parlez ou saisissez du texte. Appuyez sur « Terminé » pour enregistrer."
+            "value" : "À l’ouverture de Hayate sur la montre, l’écran de saisie s’affiche aussitôt. Parlez ou saisissez du texte, puis appuyez sur « Terminé » pour enregistrer. Pour en ajouter un autre, appuyez sur « Mémo » (violet)."
           }
         },
         "gu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ઘડિયાળ પર Hayate ખોલો, જાંબલી “નોંધ” દબાવો અને બોલો અથવા લખો. પૂરું થાય ત્યારે “પૂર્ણ” દબાવીને સાચવો."
+            "value" : "ઘડિયાળ પર Hayate ખોલતાં જ ઇનપુટ સ્ક્રીન દેખાય છે. બોલો અથવા લખો અને “પૂર્ણ” દબાવીને સાચવો. વધુ લખવા જાંબલી “નોંધ” દબાવો."
           }
         },
         "he" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "בשעון פתחו את Hayate, לחצו על “הערה” הסגולה ודברו או הקלידו. בסיום לחצו “סיום” כדי לשמור."
+            "value" : "כשפותחים את Hayate בשעון, מסך ההזנה מופיע מיד. דברו או הקלידו ולחצו “סיום” כדי לשמור. כדי להוסיף עוד, לחצו על “הערה” הסגולה."
           }
         },
         "hi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "वॉच पर Hayate खोलें, बैंगनी “नोट” दबाएँ और बोलें या लिखें। पूरा होने पर “पूर्ण” दबाकर सहेजें।"
+            "value" : "वॉच पर Hayate खोलते ही इनपुट स्क्रीन आ जाती है। बोलें या लिखें और “पूर्ण” दबाकर सहेजें। और जोड़ने के लिए बैंगनी “नोट” दबाएँ।"
           }
         },
         "hr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Na satu otvorite Hayate, pritisnite ljubičasto „Bilješka” i govorite ili tipkajte. Kad završite, pritisnite „Gotovo” za spremanje."
+            "value" : "Kad na satu otvorite Hayate, odmah se pojavljuje unos. Govorite ili tipkajte pa pritisnite „Gotovo” za spremanje. Za novu bilješku pritisnite ljubičasto „Bilješka”."
           }
         },
         "hu" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Nyissa meg a Hayate appot az órán, nyomja meg a lila „Jegyzet” gombot, majd mondjon vagy írjon be szöveget. Végül a „Kész” gombbal mentse."
+            "value" : "Ha megnyitja a Hayate appot az órán, rögtön megjelenik a beviteli képernyő. Mondjon vagy írjon be szöveget, majd a „Kész” gombbal mentse. Újabbhoz nyomja meg a lila „Jegyzet” gombot."
           }
         },
         "id" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Buka Hayate di jam, tekan “Catatan” yang ungu, lalu bicara atau ketik. Setelah selesai, tekan “Selesai” untuk menyimpan."
+            "value" : "Saat Hayate dibuka di jam, layar input langsung muncul. Bicara atau ketik, lalu tekan “Selesai” untuk menyimpan. Untuk menambah lagi, tekan “Catatan” yang ungu."
           }
         },
         "it" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apri Hayate sull’orologio, premi “Appunto” in viola e parla o scrivi. Quando hai finito, premi “Fine” per salvare."
+            "value" : "Quando apri Hayate sull’orologio, compare subito la schermata di inserimento. Parla o scrivi e premi “Fine” per salvare. Per aggiungerne un altro, premi “Appunto” in viola."
           }
         },
         "kn" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ವಾಚ್‌ನಲ್ಲಿ Hayate ತೆರೆದು, ನೇರಳೆ ಬಣ್ಣದ “ಟಿಪ್ಪಣಿ” ಒತ್ತಿ, ಮಾತನಾಡಿ ಅಥವಾ ಟೈಪ್ ಮಾಡಿ. ಮುಗಿದ ಮೇಲೆ “ಮುಗಿದಿದೆ” ಒತ್ತಿ ಉಳಿಸಿ."
+            "value" : "ವಾಚ್‌ನಲ್ಲಿ Hayate ತೆರೆದ ತಕ್ಷಣ ಇನ್‌ಪುಟ್ ಪರದೆ ಬರುತ್ತದೆ. ಮಾತನಾಡಿ ಅಥವಾ ಟೈಪ್ ಮಾಡಿ, “ಮುಗಿದಿದೆ” ಒತ್ತಿ ಉಳಿಸಿ. ಇನ್ನಷ್ಟು ಸೇರಿಸಲು ನೇರಳೆ “ಟಿಪ್ಪಣಿ” ಒತ್ತಿ."
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "시계에서 Hayate를 열고 보라색 \"메모\"를 눌러 말하거나 입력하세요. 끝나면 \"완료\"를 눌러 저장합니다."
+            "value" : "시계에서 Hayate를 열면 바로 입력 화면이 나타납니다. 말하거나 입력한 뒤 \"완료\"를 눌러 저장합니다. 이어서 입력하려면 보라색 \"메모\"를 누르세요."
           }
         },
         "ml" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "വാച്ചിൽ Hayate തുറന്ന് പർപ്പിൾ നിറത്തിലെ “മെമ്മോ” അമർത്തി, സംസാരിക്കുകയോ ടൈപ്പ് ചെയ്യുകയോ ചെയ്യുക. കഴിഞ്ഞാൽ “പൂർത്തിയായി” അമർത്തി സേവ് ചെയ്യുക."
+            "value" : "വാച്ചിൽ Hayate തുറന്നാലുടൻ ഇൻപുട്ട് സ്ക്രീൻ വരും. സംസാരിക്കുകയോ ടൈപ്പ് ചെയ്യുകയോ ചെയ്ത് “പൂർത്തിയായി” അമർത്തി സേവ് ചെയ്യുക. വീണ്ടും ചേർക്കാൻ പർപ്പിൾ “മെമ്മോ” അമർത്തുക."
           }
         },
         "mr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "घड्याळावर Hayate उघडा, जांभळा “मेमो” दाबा आणि बोला किंवा लिहा. झाल्यावर “पूर्ण” दाबून सेव्ह करा."
+            "value" : "घड्याळावर Hayate उघडताच इनपुट स्क्रीन येते. बोला किंवा लिहा आणि “पूर्ण” दाबून सेव्ह करा. आणखी लिहायला जांभळा “मेमो” दाबा."
           }
         },
         "ms" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Buka Hayate pada jam, tekan “Memo” yang berwarna ungu, kemudian cakap atau taip. Tekan “Selesai” apabila siap untuk menyimpan."
+            "value" : "Apabila Hayate dibuka pada jam, skrin input terus muncul. Cakap atau taip, kemudian tekan “Selesai” untuk menyimpan. Untuk menambah lagi, tekan “Memo” yang berwarna ungu."
           }
         },
         "nb" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Åpne Hayate på klokken, trykk på den lilla «Memo»-knappen og snakk eller skriv. Trykk «Ferdig» når du er ferdig for å lagre."
+            "value" : "Når du åpner Hayate på klokken, vises inntastingen med en gang. Snakk eller skriv, og trykk «Ferdig» for å lagre. Trykk på den lilla «Memo»-knappen for å skrive mer."
           }
         },
         "nl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Open Hayate op het horloge, tik op de paarse knop “Memo” en spreek of typ. Tik op “Gereed” om te bewaren."
+            "value" : "Als je Hayate op het horloge opent, verschijnt meteen het invoerscherm. Spreek of typ en tik op “Gereed” om te bewaren. Tik op de paarse knop “Memo” om er nog een toe te voegen."
           }
         },
         "or" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ଘଡ଼ିରେ Hayate ଖୋଲି ବାଇଗଣୀ “ନୋଟ୍” ଦବାନ୍ତୁ, କୁହନ୍ତୁ ବା ଲେଖନ୍ତୁ। ସରିଲେ “ସମାପ୍ତ” ଦବାଇ ସେଭ୍ କରନ୍ତୁ।"
+            "value" : "ଘଡ଼ିରେ Hayate ଖୋଲିବା ମାତ୍ରେ ଇନପୁଟ୍ ସ୍କ୍ରିନ୍ ଆସେ। କୁହନ୍ତୁ ବା ଲେଖନ୍ତୁ, ତାପରେ “ସମାପ୍ତ” ଦବାଇ ସେଭ୍ କରନ୍ତୁ। ଆଉ ଲେଖିବାକୁ ବାଇଗଣୀ “ନୋଟ୍” ଦବାନ୍ତୁ।"
           }
         },
         "pa" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ਘੜੀ ’ਤੇ Hayate ਖੋਲ੍ਹੋ, ਜਾਮਨੀ “ਨੋਟ” ਦਬਾਓ ਅਤੇ ਬੋਲੋ ਜਾਂ ਲਿਖੋ। ਪੂਰਾ ਹੋਣ ’ਤੇ “ਮੁਕੰਮਲ” ਦਬਾ ਕੇ ਸੰਭਾਲੋ।"
+            "value" : "ਘੜੀ ’ਤੇ Hayate ਖੋਲ੍ਹਦੇ ਹੀ ਇਨਪੁਟ ਸਕ੍ਰੀਨ ਆ ਜਾਂਦੀ ਹੈ। ਬੋਲੋ ਜਾਂ ਲਿਖੋ ਅਤੇ “ਮੁਕੰਮਲ” ਦਬਾ ਕੇ ਸੰਭਾਲੋ। ਹੋਰ ਜੋੜਨ ਲਈ ਜਾਮਨੀ “ਨੋਟ” ਦਬਾਓ।"
           }
         },
         "pl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Otwórz Hayate na zegarku, naciśnij fioletowy przycisk „Notatka” i mów albo wpisz tekst. Gdy skończysz, naciśnij „Gotowe”, aby zapisać."
+            "value" : "Po otwarciu Hayate na zegarku od razu pojawia się ekran wprowadzania. Mów albo wpisz tekst i naciśnij „Gotowe”, aby zapisać. Aby dodać kolejną, naciśnij fioletowy przycisk „Notatka”."
           }
         },
         "pt-BR" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No relógio, abra o Hayate, toque no botão roxo “Anotar” e fale ou digite. Ao terminar, toque em “Concluído” para salvar."
+            "value" : "Ao abrir o Hayate no relógio, a tela de entrada aparece na hora. Fale ou digite e toque em “Concluído” para salvar. Para adicionar outra, toque no botão roxo “Anotar”."
           }
         },
         "pt-PT" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No relógio, abra o Hayate, toque no botão roxo “Anotar” e fale ou escreva. Ao terminar, toque em “Concluído” para guardar."
+            "value" : "Ao abrir o Hayate no relógio, o ecrã de introdução aparece logo. Fale ou escreva e toque em “Concluído” para guardar. Para adicionar outra, toque no botão roxo “Anotar”."
           }
         },
         "ro" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Deschide Hayate pe ceas, apasă „Notiță” (violet), apoi vorbește sau scrie. Când termini, apasă „Gata” pentru a salva."
+            "value" : "Când deschizi Hayate pe ceas, apare imediat ecranul de introducere. Vorbește sau scrie, apoi apasă „Gata” pentru a salva. Pentru încă una, apasă „Notiță” (violet)."
           }
         },
         "ru" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Откройте Hayate на часах, нажмите фиолетовую кнопку «Заметка» и говорите или вводите текст. Закончив, нажмите «Готово», чтобы сохранить."
+            "value" : "Когда вы открываете Hayate на часах, сразу появляется экран ввода. Говорите или вводите текст, затем нажмите «Готово», чтобы сохранить. Чтобы добавить ещё, нажмите фиолетовую кнопку «Заметка»."
           }
         },
         "sk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Na hodinkách otvorte Hayate, stlačte fialové tlačidlo „Poznámka“ a hovorte alebo píšte. Po dokončení stlačte „Hotovo“ a poznámka sa uloží."
+            "value" : "Po otvorení Hayate na hodinkách sa hneď zobrazí zadávanie. Hovorte alebo píšte a uložte tlačidlom „Hotovo“. Ďalšiu poznámku pridáte fialovým tlačidlom „Poznámka“."
           }
         },
         "sl" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Na uri odprite Hayate, pritisnite vijolični »Zapisek« in govorite ali vnašajte besedilo. Ko končate, pritisnite »Končano« za shranjevanje."
+            "value" : "Ko na uri odprete Hayate, se takoj prikaže vnos. Govorite ali vnašajte besedilo in pritisnite »Končano« za shranjevanje. Za nov zapisek pritisnite vijolični »Zapisek«."
           }
         },
         "sv" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Öppna Hayate på klockan, tryck på den lila ”Anteckning” och tala eller skriv. Tryck på ”Klar” när du är färdig för att spara."
+            "value" : "När du öppnar Hayate på klockan visas inmatningen direkt. Tala eller skriv och tryck på ”Klar” för att spara. Tryck på den lila ”Anteckning” för att lägga till fler."
           }
         },
         "ta" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "வாட்சில் Hayate ஐத் திறந்து, ஊதா நிற “குறிப்பு” ஐ அழுத்தி, பேசவும் அல்லது தட்டச்சு செய்யவும். முடிந்ததும் “முடிந்தது” மூலம் சேமிக்கவும்."
+            "value" : "வாட்சில் Hayate ஐத் திறந்தவுடன் உள்ளீட்டுத் திரை வரும். பேசவும் அல்லது தட்டச்சு செய்யவும், “முடிந்தது” மூலம் சேமிக்கவும். மேலும் சேர்க்க ஊதா நிற “குறிப்பு” ஐ அழுத்தவும்."
           }
         },
         "te" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "వాచ్‌లో Hayate తెరిచి, ఊదా రంగు “నోట్” నొక్కి, మాట్లాడండి లేదా టైప్ చేయండి. పూర్తయ్యాక “పూర్తయింది” తో సేవ్ చేయండి."
+            "value" : "వాచ్‌లో Hayate తెరవగానే ఇన్‌పుట్ స్క్రీన్ వస్తుంది. మాట్లాడండి లేదా టైప్ చేసి, “పూర్తయింది” తో సేవ్ చేయండి. మరొకటి జోడించడానికి ఊదా రంగు “నోట్” నొక్కండి."
           }
         },
         "th" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "เปิด Hayate บนนาฬิกา กด \"บันทึก\" สีม่วง แล้วพูดหรือพิมพ์ เมื่อเสร็จแล้วกด \"เสร็จสิ้น\" เพื่อบันทึก"
+            "value" : "เมื่อเปิด Hayate บนนาฬิกา หน้าจอป้อนข้อความจะขึ้นทันที พูดหรือพิมพ์ แล้วกด \"เสร็จสิ้น\" เพื่อบันทึก หากต้องการเพิ่มอีก ให้กด \"บันทึก\" สีม่วง"
           }
         },
         "tr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Saatte Hayate’i açın, mor “Not” düğmesine basın ve konuşun ya da yazın. Bitince “Bitti” ile kaydedin."
+            "value" : "Saatte Hayate’i açtığınızda giriş ekranı hemen gelir. Konuşun ya da yazın, ardından “Bitti” ile kaydedin. Bir tane daha eklemek için mor “Not” düğmesine basın."
           }
         },
         "uk" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Відкрийте Hayate на годиннику, натисніть фіолетову кнопку «Нотатка» й говоріть або пишіть. Коли закінчите, натисніть «Готово», щоб зберегти."
+            "value" : "Коли ви відкриваєте Hayate на годиннику, одразу з’являється екран введення. Говоріть або пишіть і натисніть «Готово», щоб зберегти. Щоб додати ще, натисніть фіолетову кнопку «Нотатка»."
           }
         },
         "ur" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "گھڑی پر Hayate کھولیں، بنفشی “نوٹ” دبائیں، پھر بولیں یا ٹیکسٹ لکھیں۔ ہو جائے تو “مکمل” دبا کر محفوظ کریں۔"
+            "value" : "گھڑی پر Hayate کھولتے ہی ان پٹ اسکرین آ جاتی ہے۔ بولیں یا لکھیں، پھر “مکمل” دبا کر محفوظ کریں۔ مزید لکھنے کے لیے بنفشی “نوٹ” دبائیں۔"
           }
         },
         "vi" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mở Hayate trên đồng hồ, nhấn \"Ghi chú\" màu tím rồi nói hoặc nhập văn bản. Xong thì nhấn \"Xong\" để lưu."
+            "value" : "Khi mở Hayate trên đồng hồ, màn hình nhập hiện ra ngay. Nói hoặc nhập văn bản rồi nhấn \"Xong\" để lưu. Muốn thêm nữa, nhấn \"Ghi chú\" màu tím."
           }
         },
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在手表上打开 Hayate，按紫色的“备忘”，然后说话或输入文字。完成后按“完成”保存。"
+            "value" : "在手表上打开 Hayate，会立即出现输入界面。说话或输入文字后按“完成”保存。要继续添加，请按紫色的“备忘”。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "在手錶上開啟 Hayate，按紫色的「備忘」，然後說話或輸入文字。完成後按「完成」儲存。"
+            "value" : "在手錶上開啟 Hayate，會立即出現輸入畫面。說話或輸入文字後按「完成」儲存。要繼續新增，請按紫色的「備忘」。"
           }
         }
       }

@@ -10,7 +10,7 @@ Hayate is an iPhone / Apple Watch app that saves what you say to your watch as a
 
 ## Features
 
-- **Start**: say "Hey Siri, send with Hayate" and keep talking (hands-free). Or open the app and double tap (Series 9 / Ultra 2 or later), or tap the complication on your watch face.
+- **Start**: say "Hey Siri, send with Hayate" and keep talking (hands-free). Or open the app (or tap the complication on your watch face) and the input screen appears right away.
 - **Memos**: every input is saved on the device first, so nothing is lost when sending fails. The iPhone keeps all memos; the watch keeps the latest 50. On the iPhone you can view, copy, share and delete memos, and send any of them to a webhook later.
 - **Webhooks**: sent directly from the watch (not relayed through the iPhone) to every destination you turned on in the iPhone app. If a send fails, it is kept and retried the next time you open the app (there is no automatic retry in the background).
 - **Reminders**: start a memo with a trigger word (defaults for 44 languages; you can add your own), e.g. "Reminder, buy milk", and the iPhone adds "buy milk" to the Reminders list you chose.

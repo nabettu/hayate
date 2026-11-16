@@ -15,6 +15,8 @@ struct WatchHomeView: View {
     @State private var flight: FlightPhase = .idle
     /// 送るボタンの位置 (送るときにここから紙飛行機が飛び立つ)。
     @State private var orbFrame: CGRect = .zero
+    @Environment(\.scenePhase) private var scenePhase
+    @State private var autoInput = AutoInputTrigger()
 
     var body: some View {
         NavigationStack {
@@ -30,6 +32,16 @@ struct WatchHomeView: View {
             .containerBackground(for: .navigation) { CosmicBackground(starCount: 26) }
         }
         .tint(Cosmos.lavender)
+        // 開いたらボタンを押さなくても入力画面を出す (起動・裏から戻ったとき。手首の上げ下げでは出さない)。
+        // キャンセルしたらこの画面に戻り、続けて入れるときは「メモ」ボタンを使う
+        .onChange(of: scenePhase, initial: true) { _, phase in
+            guard autoInput.update(AutoInputTrigger.Phase(phase)), !isSending else { return }
+            Task {
+                if let text = await SystemTextInput.present() {
+                    await record(text)
+                }
+            }
+        }
     }
 
     private var homePage: some View {
