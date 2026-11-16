@@ -17,17 +17,26 @@ struct WatchHomeView: View {
     @State private var orbFrame: CGRect = .zero
     @Environment(\.scenePhase) private var scenePhase
     @State private var autoInput = AutoInputTrigger()
+    /// 縦に並べたページ (入力 / メモの一覧) のどちらを出しているか。
+    @State private var page = Page.input
+    /// メモの一覧から開いた画面 (メモの詳細)。
+    @State private var path: [UUID] = []
+
+    private enum Page: Hashable { case input, memos }
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             // 入力の画面の下にメモの一覧を置く (デジタルクラウンを回すか、上へスワイプ = 下へスクロールで移る)
-            TabView {
+            TabView(selection: $page) {
                 homePage
                     .containerBackground(for: .tabView) { CosmicBackground(starCount: 26) }
+                    .tag(Page.input)
                 WatchHistoryView()
                     .containerBackground(for: .tabView) { CosmicBackground(starCount: 26) }
+                    .tag(Page.memos)
             }
             .tabViewStyle(.verticalPage)
+            .navigationDestination(for: UUID.self) { WatchMemoDetailView(memoID: $0) }
             // 押して開く画面の背景
             .containerBackground(for: .navigation) { CosmicBackground(starCount: 26) }
         }
@@ -35,11 +44,26 @@ struct WatchHomeView: View {
         // 開いたらボタンを押さなくても入力画面を出す (起動・裏から戻ったとき。手首の上げ下げでは出さない)。
         // キャンセルしたらこの画面に戻り、続けて入れるときは「メモ」ボタンを使う
         .onChange(of: scenePhase, initial: true) { _, phase in
-            guard autoInput.update(AutoInputTrigger.Phase(phase)), !isSending else { return }
-            Task {
-                if let text = await SystemTextInput.present() {
-                    await record(text)
-                }
+            let phase = AutoInputTrigger.Phase(phase)
+            // 入力の途中で裏へ回ったら閉じる (戻ったときに新しく開く)
+            if phase == .background { SystemTextInput.dismiss() }
+            autoInput.update(phase)
+            openInputIfNeeded()
+        }
+        // 送信中に戻ってきたら、送り終えてから開く
+        .onChange(of: isSending) { openInputIfNeeded() }
+    }
+
+    /// 自動で入力画面を出す。結果やもう一度保存のボタンが見えるよう、入力のページに戻してから出す。
+    private func openInputIfNeeded() {
+        guard autoInput.take(busy: isSending || SystemTextInput.isPresented) else { return }
+        path = []
+        page = .input
+        Task {
+            switch await SystemTextInput.present() {
+            case .entered(let text): await record(text)
+            case .cancelled: break
+            case .unavailable: autoInput.couldNotOpen()
             }
         }
     }
@@ -265,9 +289,8 @@ struct WatchHistoryView: View {
                 Text("まだありません").foregroundStyle(.secondary)
             }
             ForEach(memos) { memo in
-                NavigationLink {
-                    WatchMemoDetailView(memoID: memo.id)
-                } label: {
+                // 開く画面は WatchHomeView の navigationDestination (自動で入力を出すときに一覧へ戻せるよう、値で積む)
+                NavigationLink(value: memo.id) {
                     VStack(alignment: .leading, spacing: 3) {
                         Text(memo.text).lineLimit(2)
                         HStack(spacing: 4) {
