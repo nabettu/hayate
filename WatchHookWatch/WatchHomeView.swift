@@ -15,21 +15,78 @@ struct WatchHomeView: View {
     @State private var flight: FlightPhase = .idle
     /// 送るボタンの位置 (送るときにここから紙飛行機が飛び立つ)。
     @State private var orbFrame: CGRect = .zero
+    @Environment(\.scenePhase) private var scenePhase
+    @State private var autoInput = AutoInputTrigger()
+    /// 縦に並べたページ (入力 / メモの一覧) のどちらを出しているか。
+    @State private var page = Page.input
+    /// メモの一覧から開いた画面 (メモの詳細)。
+    @State private var path: [UUID] = []
+    /// 自動で開こうとして画面が無く開けなかった回数 (開き直しを無限に続けない。裏へ回ったら数え直す)。
+    @State private var unopenedRetries = 0
+
+    private enum Page: Hashable { case input, memos }
 
     var body: some View {
-        NavigationStack {
+        NavigationStack(path: $path) {
             // 入力の画面の下にメモの一覧を置く (デジタルクラウンを回すか、上へスワイプ = 下へスクロールで移る)
-            TabView {
+            TabView(selection: $page) {
                 homePage
                     .containerBackground(for: .tabView) { CosmicBackground(starCount: 26) }
+                    .tag(Page.input)
                 WatchHistoryView()
                     .containerBackground(for: .tabView) { CosmicBackground(starCount: 26) }
+                    .tag(Page.memos)
             }
             .tabViewStyle(.verticalPage)
+            .navigationDestination(for: UUID.self) { WatchMemoDetailView(memoID: $0) }
             // 押して開く画面の背景
             .containerBackground(for: .navigation) { CosmicBackground(starCount: 26) }
         }
         .tint(Cosmos.lavender)
+        // 開いたらボタンを押さなくても入力画面を出す (起動・裏から戻ったとき。手首の上げ下げでは出さない)。
+        // キャンセルしたらこの画面に戻り、続けて入れるときは「メモ」ボタンを使う
+        .onChange(of: scenePhase, initial: true) { _, phase in
+            // 入力画面を出したまま裏へ回ると、OS は戻ったときにそれをキャンセルする (途中の文字は残らない)。
+            // その間は開かずに待ち、キャンセルが届いてから開き直す
+            let phase = AutoInputTrigger.Phase(phase)
+            if phase == .background { unopenedRetries = 0 }
+            autoInput.update(phase)
+            openInputIfNeeded()
+        }
+        // 送信中に戻ってきたら、送り終えてから開く
+        .onChange(of: isSending) { openInputIfNeeded() }
+    }
+
+    /// 自動で入力画面を出す。結果やもう一度保存のボタンが見えるよう、入力のページに戻してから出す。
+    private func openInputIfNeeded() {
+        guard autoInput.take(busy: isSending || SystemTextInput.isPresented) else { return }
+        path = []
+        page = .input
+        Task { await openInput(isAuto: true) }
+    }
+
+    /// 入力画面を出し、入力されたら保存する。「メモ」ボタンも自動もここを通す (入力画面を二重に出さないため)。
+    private func openInput(isAuto: Bool) async {
+        if !isAuto, !SystemTextInput.isPresented { autoInput.openedByHand() }
+        switch await SystemTextInput.present() {
+        case .entered(let text):
+            unopenedRetries = 0
+            await record(text)
+        case .cancelled:
+            unopenedRetries = 0
+        case .alreadyPresented:
+            // 出ている入力画面が閉じたときに、そちらで続きをする
+            return
+        case .unavailable:
+            // 起動直後で画面がまだ無いときなど。前面のまま少し待って開き直す
+            // (「メモ」ボタンで開けなかったときも、入れたくて押したので同じく開き直す)
+            autoInput.couldNotOpen()
+            guard unopenedRetries < 5 else { return }
+            unopenedRetries += 1
+            try? await Task.sleep(for: .milliseconds(500))
+        }
+        // 入力画面を出している間に裏から戻っていたら、ここで開く
+        openInputIfNeeded()
     }
 
     private var homePage: some View {
@@ -39,11 +96,12 @@ struct WatchHomeView: View {
                     saveErrorView
                     // 標準の入力画面 (音声入力・スクリブル・キーボード) を開く。ダブルタップでも押せる。
                     // 送り先が無くてもメモとして保存できる
-                    TextFieldLink(prompt: Text("話すか、文字を入力")) {
+                    // (TextFieldLink は使わない。自動で開く入力画面と同じものにして、二重に出さないため)
+                    Button {
+                        Task { await openInput(isAuto: false) }
+                    } label: {
                         SendOrb(isBusy: isSending, planeLaunched: flight.isFlying)
                             .onGeometryChange(for: CGRect.self) { $0.frame(in: .global) } action: { orbFrame = $0 }
-                    } onSubmit: { text in
-                        Task { await record(text) }
                     }
                     .buttonStyle(.plain)
                     .handGestureShortcut(.primaryAction)
@@ -253,9 +311,8 @@ struct WatchHistoryView: View {
                 Text("まだありません").foregroundStyle(.secondary)
             }
             ForEach(memos) { memo in
-                NavigationLink {
-                    WatchMemoDetailView(memoID: memo.id)
-                } label: {
+                // 開く画面は WatchHomeView の navigationDestination (自動で入力を出すときに一覧へ戻せるよう、値で積む)
+                NavigationLink(value: memo.id) {
                     VStack(alignment: .leading, spacing: 3) {
                         Text(memo.text).lineLimit(2)
                         HStack(spacing: 4) {

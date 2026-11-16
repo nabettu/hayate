@@ -32,6 +32,7 @@
 		74150B6C3C58C1226668B976 /* LauncherViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57DCA4DD3AD4AF613D33C8BE /* LauncherViews.swift */; };
 		74C4234C94741A58759FCD44 /* HelpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04F931B1FC29F18452326948 /* HelpView.swift */; };
 		7512F29FC4D8AD66B4FB2DD5 /* SyncKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E374D443A268B6368C1CDA7 /* SyncKeys.swift */; };
+		768A53617B07A5391221C81A /* SystemTextInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8702A450770F58857693EFDF /* SystemTextInput.swift */; };
 		7B61519B6FCB5B541EF46943 /* WatchHookCore in Frameworks */ = {isa = PBXBuildFile; productRef = 6160AAEB5D06D61ED2A79C43 /* WatchHookCore */; };
 		7F19D0A181E05BC650553D73 /* MemoListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 625288EC4A3CAFD8BE33692D /* MemoListView.swift */; };
 		83FAA035FB0598196BFF4741 /* ComposeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8FFB5F28C2B4D483D6BAFCD /* ComposeView.swift */; };
@@ -118,6 +119,7 @@
 		7775E6E238C56DD18D8D9AAC /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		77AEABFA41FA83B8FF7F024E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		8056E1E30D0990C0F64077FA /* WatchHookApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchHookApp.swift; sourceTree = "<group>"; };
+		8702A450770F58857693EFDF /* SystemTextInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemTextInput.swift; sourceTree = "<group>"; };
 		92463EAA580E1CDDB1766B7B /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		9345206AC65D94AA74FA9A28 /* Cosmos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cosmos.swift; sourceTree = "<group>"; };
 		94E54804BFBEAEC43F24515A /* WatchSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSync.swift; sourceTree = "<group>"; };
@@ -170,6 +172,7 @@
 				3DCF1DB948677787B73F4FAC /* Info.plist */,
 				E43BD67E98CD21DA1FE1B93A /* InfoPlist.xcstrings */,
 				92463EAA580E1CDDB1766B7B /* PrivacyInfo.xcprivacy */,
+				8702A450770F58857693EFDF /* SystemTextInput.swift */,
 				51280A3A45390E87A0EB8F6B /* WatchHomeView.swift */,
 				C88CFAE83A276AA4829E55FF /* WatchHookWatchApp.swift */,
 				94E54804BFBEAEC43F24515A /* WatchSync.swift */,
@@ -497,6 +500,7 @@
 				E176908E86BC4AE26F82AD49 /* MemoFeedback.swift in Sources */,
 				C2520D842885B2143941ECDF /* SendTextIntent.swift in Sources */,
 				A5CA575A5D745AECADECAB23 /* SyncKeys.swift in Sources */,
+				768A53617B07A5391221C81A /* SystemTextInput.swift in Sources */,
 				50521E18F8B1BB799C2510DB /* WatchHomeView.swift in Sources */,
 				0FDD2A741915690780325F44 /* WatchHookWatchApp.swift in Sources */,
 				9CC9403CFE50B78C62D3DEDA /* WatchSync.swift in Sources */,
