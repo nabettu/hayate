@@ -14,7 +14,7 @@ import WatchHookCore
         case unavailable
     }
 
-    /// 出している入力画面の結果の待ち。二重に出さないため・裏へ回ったときに閉じるために持つ。
+    /// 出している入力画面の結果の待ち。二重に出さないために持つ。
     private static var waiting: Waiting?
 
     static var isPresented: Bool { waiting != nil }
@@ -34,25 +34,16 @@ import WatchHookCore
         return text.map(Outcome.entered) ?? .cancelled
     }
 
-    /// 出している入力画面を閉じる (裏へ回ったとき)。戻ったときに新しく開き直す。
-    static func dismiss() {
-        guard let current = waiting else { return }
-        waiting = nil
-        currentController?.dismissTextInputController()
-        current.finish(nil)
-    }
-
     private static var currentController: WKInterfaceController? {
         let app = WKApplication.shared()
         return app.visibleInterfaceController ?? app.rootInterfaceController
     }
-
     /// 完了ハンドラは nonisolated で作る (MainActor の中で作ると、OS のキューから呼ばれたときに Swift 6 の実行時チェックで落ちる)。
     private nonisolated static func completion(resuming waiting: Waiting) -> ([Any]?) -> Void {
         { results in waiting.finish(results?.first as? String) }
     }
 
-    /// 結果を 1 回だけ返す (OS の完了ハンドラと `dismiss` のどちらが先でもよいように)。
+    /// 結果を 1 回だけ返す (OS が完了ハンドラを 2 回呼んでも落ちないように)。
     private final class Waiting: @unchecked Sendable {
         private let lock = NSLock()
         private var continuation: CheckedContinuation<String?, Never>?

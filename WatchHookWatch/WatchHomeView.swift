@@ -21,6 +21,8 @@ struct WatchHomeView: View {
     @State private var page = Page.input
     /// メモの一覧から開いた画面 (メモの詳細)。
     @State private var path: [UUID] = []
+    /// 自動で開こうとして画面が無く開けなかった回数 (開き直しを無限に続けない)。
+    @State private var unopenedRetries = 0
 
     private enum Page: Hashable { case input, memos }
 
@@ -44,10 +46,9 @@ struct WatchHomeView: View {
         // 開いたらボタンを押さなくても入力画面を出す (起動・裏から戻ったとき。手首の上げ下げでは出さない)。
         // キャンセルしたらこの画面に戻り、続けて入れるときは「メモ」ボタンを使う
         .onChange(of: scenePhase, initial: true) { _, phase in
-            let phase = AutoInputTrigger.Phase(phase)
-            // 入力の途中で裏へ回ったら閉じる (戻ったときに新しく開く)
-            if phase == .background { SystemTextInput.dismiss() }
-            autoInput.update(phase)
+            // 入力画面を出したまま裏へ回ると、OS は戻ったときにそれをキャンセルする (途中の文字は残らない)。
+            // その間は開かずに待ち、キャンセルが届いてから開き直す
+            autoInput.update(AutoInputTrigger.Phase(phase))
             openInputIfNeeded()
         }
         // 送信中に戻ってきたら、送り終えてから開く
@@ -59,13 +60,27 @@ struct WatchHomeView: View {
         guard autoInput.take(busy: isSending || SystemTextInput.isPresented) else { return }
         path = []
         page = .input
-        Task {
-            switch await SystemTextInput.present() {
-            case .entered(let text): await record(text)
-            case .cancelled: break
-            case .unavailable: autoInput.couldNotOpen()
-            }
+        Task { await openInput(isAuto: true) }
+    }
+
+    /// 入力画面を出し、入力されたら保存する。「メモ」ボタンも自動もここを通す (入力画面を二重に出さないため)。
+    private func openInput(isAuto: Bool) async {
+        switch await SystemTextInput.present() {
+        case .entered(let text):
+            unopenedRetries = 0
+            await record(text)
+        case .cancelled:
+            unopenedRetries = 0
+        case .unavailable:
+            // 起動直後で画面がまだ無いときなど。前面のまま少し待って開き直す
+            guard isAuto else { return }
+            autoInput.couldNotOpen()
+            guard unopenedRetries < 5 else { return }
+            unopenedRetries += 1
+            try? await Task.sleep(for: .milliseconds(500))
         }
+        // 入力画面を出している間に裏から戻っていたら、ここで開く
+        openInputIfNeeded()
     }
 
     private var homePage: some View {
@@ -75,11 +90,12 @@ struct WatchHomeView: View {
                     saveErrorView
                     // 標準の入力画面 (音声入力・スクリブル・キーボード) を開く。ダブルタップでも押せる。
                     // 送り先が無くてもメモとして保存できる
-                    TextFieldLink(prompt: Text("話すか、文字を入力")) {
+                    // (TextFieldLink は使わない。自動で開く入力画面と同じものにして、二重に出さないため)
+                    Button {
+                        Task { await openInput(isAuto: false) }
+                    } label: {
                         SendOrb(isBusy: isSending, planeLaunched: flight.isFlying)
                             .onGeometryChange(for: CGRect.self) { $0.frame(in: .global) } action: { orbFrame = $0 }
-                    } onSubmit: { text in
-                        Task { await record(text) }
                     }
                     .buttonStyle(.plain)
                     .handGestureShortcut(.primaryAction)
