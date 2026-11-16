@@ -69,6 +69,24 @@ struct AutoInputTriggerTests {
         #expect(take(&trigger, busy: false))
     }
 
+    @Test func 待っているあいだに手で入力画面を開いたら_自動では開かない() {
+        var trigger = AutoInputTrigger()
+        trigger.update(.active)
+        _ = trigger.take(busy: true)
+        trigger.openedByHand()
+        #expect(!take(&trigger, busy: false))
+    }
+
+    @Test func 手で開いた入力画面を出したまま裏から戻ったら_開く() {
+        var trigger = AutoInputTrigger()
+        trigger.update(.active)
+        trigger.openedByHand()
+        trigger.update(.background)
+        trigger.update(.active)
+        #expect(!take(&trigger, busy: true))
+        #expect(take(&trigger, busy: false))
+    }
+
     @Test func 開けなかったら_次に前面に来たとき開き直す() {
         var trigger = AutoInputTrigger()
         trigger.update(.active)

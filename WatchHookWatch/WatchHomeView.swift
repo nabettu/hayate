@@ -21,7 +21,7 @@ struct WatchHomeView: View {
     @State private var page = Page.input
     /// メモの一覧から開いた画面 (メモの詳細)。
     @State private var path: [UUID] = []
-    /// 自動で開こうとして画面が無く開けなかった回数 (開き直しを無限に続けない)。
+    /// 自動で開こうとして画面が無く開けなかった回数 (開き直しを無限に続けない。裏へ回ったら数え直す)。
     @State private var unopenedRetries = 0
 
     private enum Page: Hashable { case input, memos }
@@ -48,7 +48,9 @@ struct WatchHomeView: View {
         .onChange(of: scenePhase, initial: true) { _, phase in
             // 入力画面を出したまま裏へ回ると、OS は戻ったときにそれをキャンセルする (途中の文字は残らない)。
             // その間は開かずに待ち、キャンセルが届いてから開き直す
-            autoInput.update(AutoInputTrigger.Phase(phase))
+            let phase = AutoInputTrigger.Phase(phase)
+            if phase == .background { unopenedRetries = 0 }
+            autoInput.update(phase)
             openInputIfNeeded()
         }
         // 送信中に戻ってきたら、送り終えてから開く
@@ -65,6 +67,7 @@ struct WatchHomeView: View {
 
     /// 入力画面を出し、入力されたら保存する。「メモ」ボタンも自動もここを通す (入力画面を二重に出さないため)。
     private func openInput(isAuto: Bool) async {
+        if !isAuto, !SystemTextInput.isPresented { autoInput.openedByHand() }
         switch await SystemTextInput.present() {
         case .entered(let text):
             unopenedRetries = 0

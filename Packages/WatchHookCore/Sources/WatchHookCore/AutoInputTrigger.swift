@@ -28,6 +28,11 @@ public struct AutoInputTrigger: Sendable {
         return true
     }
 
+    /// 「メモ」ボタンで入力画面を開いたとき。待っていた自動の入力は、これで済んだことにする。
+    public mutating func openedByHand() {
+        pending = false
+    }
+
     /// `take` で開こうとしたが、入力画面を出せなかったとき。次に前面に来たときにまた開く。
     public mutating func couldNotOpen() {
         pending = true
