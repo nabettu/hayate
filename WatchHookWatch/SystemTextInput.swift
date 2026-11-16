@@ -10,8 +10,10 @@ import WatchHookCore
         case entered(String)
         /// キャンセルした・閉じた
         case cancelled
-        /// 入力画面を出せなかった (画面がまだ無い・すでに出している)
+        /// 入力画面を出せなかった (画面がまだ無い)
         case unavailable
+        /// すでに出している (連打など)。何もしない
+        case alreadyPresented
     }
 
     /// 出している入力画面の結果の待ち。二重に出さないために持つ。
@@ -21,7 +23,8 @@ import WatchHookCore
 
     /// 入力画面を開いて、閉じるまで待つ。
     static func present() async -> Outcome {
-        guard waiting == nil, let controller = currentController else { return .unavailable }
+        guard waiting == nil else { return .alreadyPresented }
+        guard let controller = currentController else { return .unavailable }
         let current = Waiting()
         waiting = current
         let text = await withCheckedContinuation { continuation in

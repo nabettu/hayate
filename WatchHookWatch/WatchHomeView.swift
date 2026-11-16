@@ -74,6 +74,9 @@ struct WatchHomeView: View {
             await record(text)
         case .cancelled:
             unopenedRetries = 0
+        case .alreadyPresented:
+            // 出ている入力画面が閉じたときに、そちらで続きをする
+            return
         case .unavailable:
             // 起動直後で画面がまだ無いときなど。前面のまま少し待って開き直す
             // (「メモ」ボタンで開けなかったときも、入れたくて押したので同じく開き直す)
