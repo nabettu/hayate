@@ -76,7 +76,7 @@ struct WatchHomeView: View {
             unopenedRetries = 0
         case .unavailable:
             // 起動直後で画面がまだ無いときなど。前面のまま少し待って開き直す
-            guard isAuto else { return }
+            // (「メモ」ボタンで開けなかったときも、入れたくて押したので同じく開き直す)
             autoInput.couldNotOpen()
             guard unopenedRetries < 5 else { return }
             unopenedRetries += 1
