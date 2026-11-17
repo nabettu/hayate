@@ -116,3 +116,42 @@ struct LocationFixTests {
         #expect(log.memo(id: memo.id)?.location == nil)
     }
 }
+
+@Suite("場所を送るをオンにしたときの本文")
+struct LocationTemplateTests {
+    @Test func JSONの本文に場所の項目を足す() {
+        #expect(LocationTemplate.adding(to: #"{"text":"{{text}}","id":"{{id}}"}"#, encoding: .json)
+                == #"{"text":"{{text}}","id":"{{id}}","location":"{{location}}"}"#)
+    }
+
+    @Test func 末尾の空白や改行があっても閉じ括弧の前に足す() {
+        #expect(LocationTemplate.adding(to: "{\n  \"text\": \"{{text}}\"\n}\n", encoding: .json)
+                == "{\n  \"text\": \"{{text}}\",\"location\":\"{{location}}\"\n}\n")
+    }
+
+    @Test func 空のJSONオブジェクトにはカンマを付けない() {
+        #expect(LocationTemplate.adding(to: "{}", encoding: .json) == #"{"location":"{{location}}"}"#)
+    }
+
+    @Test func フォームの本文には項目をつなげる() {
+        #expect(LocationTemplate.adding(to: "text={{text}}", encoding: .form) == "text={{text}}&location={{location}}")
+    }
+
+    @Test func すでに場所があれば変えない() {
+        let t = #"{"where":"{{location}}"}"#
+        #expect(LocationTemplate.adding(to: t, encoding: .json) == t)
+    }
+
+    @Test func オブジェクトでないJSONやテキストの本文は変えない() {
+        #expect(LocationTemplate.adding(to: "[1]", encoding: .json) == "[1]")
+        #expect(LocationTemplate.adding(to: "{{text}}", encoding: .plain) == "{{text}}")
+    }
+
+    @Test func オフにしたら足した項目だけを外す() {
+        #expect(LocationTemplate.removing(from: #"{"text":"{{text}}","location":"{{location}}"}"#, encoding: .json)
+                == #"{"text":"{{text}}"}"#)
+        #expect(LocationTemplate.removing(from: "text={{text}}&location={{location}}", encoding: .form) == "text={{text}}")
+        let custom = #"{"where":"{{location}}"}"#
+        #expect(LocationTemplate.removing(from: custom, encoding: .json) == custom)
+    }
+}
