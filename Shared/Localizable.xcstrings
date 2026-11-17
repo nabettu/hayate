@@ -72919,6 +72919,1106 @@
           }
         }
       }
+    },
+    "場所を送る" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "場所を送る"
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إرسال الموقع"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "অবস্থান পাঠান"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Envia la ubicació"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odeslat polohu"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send placering"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standort senden"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Αποστολή τοποθεσίας"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send Location"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enviar ubicación"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lähetä sijainti"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Envoyer la position"
+          }
+        },
+        "gu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "સ્થાન મોકલો"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "שלח מיקום"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्थान भेजें"
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pošalji lokaciju"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hely küldése"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kirim Lokasi"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invia posizione"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಸ್ಥಳ ಕಳುಹಿಸಿ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "위치 보내기"
+          }
+        },
+        "ml" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ലൊക്കേഷൻ അയയ്ക്കുക"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्थान पाठवा"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hantar lokasi"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Send posisjon"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Locatie verzenden"
+          }
+        },
+        "or" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ଅବସ୍ଥାନ ପଠାନ୍ତୁ"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ਸਥਾਨ ਭੇਜੋ"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wyślij lokalizację"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enviar localização"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Enviar localização"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trimite locația"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отправить местоположение"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odoslať polohu"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pošlji lokacijo"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skicka plats"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இருப்பிடத்தை அனுப்பு"
+          }
+        },
+        "te" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "స్థానాన్ని పంపు"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ส่งตำแหน่ง"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konumu gönder"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Надіслати місцезнаходження"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مقام بھیجیں"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gửi vị trí"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "发送位置"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "傳送位置"
+          }
+        }
+      }
+    },
+    "場所を付ける" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "場所を付ける"
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "إرفاق الموقع"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "অবস্থান যুক্ত করুন"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adjunta la ubicació"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Připojit polohu"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vedhæft placering"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standort anhängen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Επισύναψη τοποθεσίας"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Attach Location"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Adjuntar ubicación"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Liitä sijainti"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Joindre la position"
+          }
+        },
+        "gu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "સ્થાન જોડો"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "צרף מיקום"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्थान जोड़ें"
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dodaj lokaciju"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hely csatolása"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lampirkan Lokasi"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Allega posizione"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಸ್ಥಳ ಲಗತ್ತಿಸಿ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "위치 첨부"
+          }
+        },
+        "ml" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ലൊക്കേഷൻ ചേർക്കുക"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्थान जोडा"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lampirkan lokasi"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Legg ved posisjon"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Locatie toevoegen"
+          }
+        },
+        "or" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ଅବସ୍ଥାନ ଯୋଗ କରନ୍ତୁ"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ਸਥਾਨ ਜੋੜੋ"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dołącz lokalizację"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anexar localização"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Anexar localização"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Atașează locația"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Добавить местоположение"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pripojiť polohu"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Priloži lokacijo"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bifoga plats"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இருப்பிடத்தை இணை"
+          }
+        },
+        "te" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "స్థానాన్ని జత చేయి"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "แนบตำแหน่ง"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konumu ekle"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Додати місцезнаходження"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مقام شامل کریں"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đính kèm vị trí"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "附加位置"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "附加位置"
+          }
+        }
+      }
+    },
+    "場所は付けない" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "場所は付けない"
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "عدم إرفاق الموقع"
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "অবস্থান যুক্ত করবেন না"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No adjuntis la ubicació"
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nepřipojovat polohu"
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vedhæft ikke placering"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Standort nicht anhängen"
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Χωρίς τοποθεσία"
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Don't Attach Location"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No adjuntar ubicación"
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Älä liitä sijaintia"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ne pas joindre la position"
+          }
+        },
+        "gu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "સ્થાન ન જોડો"
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "אל תצרף מיקום"
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्थान न जोड़ें"
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ne dodaj lokaciju"
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ne csatoljon helyet"
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jangan Lampirkan Lokasi"
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Non allegare posizione"
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಸ್ಥಳ ಲಗತ್ತಿಸಬೇಡಿ"
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "위치 첨부 안 함"
+          }
+        },
+        "ml" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ലൊക്കേഷൻ ചേർക്കരുത്"
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "स्थान जोडू नका"
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Jangan lampirkan lokasi"
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ikke legg ved posisjon"
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Locatie niet toevoegen"
+          }
+        },
+        "or" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ଅବସ୍ଥାନ ଯୋଗ କରନ୍ତୁ ନାହିଁ"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ਸਥਾਨ ਨਾ ਜੋੜੋ"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nie dołączaj lokalizacji"
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não anexar localização"
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não anexar localização"
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nu atașa locația"
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не добавлять местоположение"
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nepripájať polohu"
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ne priloži lokacije"
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bifoga inte plats"
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "இருப்பிடத்தை இணைக்க வேண்டாம்"
+          }
+        },
+        "te" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "స్థానాన్ని జత చేయవద్దు"
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ไม่แนบตำแหน่ง"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Konumu ekleme"
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Не додавати місцезнаходження"
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "مقام شامل نہ کریں"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không đính kèm vị trí"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不附加位置"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "不附加位置"
+          }
+        }
+      }
+    },
+    "メモを入力した場所 (緯度,経度) を、本文の {{location}} の位置に入れて送ります。本文に {{location}} が無いと送られません。入力のときに 1 回だけ場所を取り、取れなかったときは空になります。時計で入力したメモは、時計の「場所を付ける」もオンのときだけ付きます。" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "メモを入力した場所 (緯度,経度) を、本文の {{location}} の位置に入れて送ります。本文に {{location}} が無いと送られません。入力のときに 1 回だけ場所を取り、取れなかったときは空になります。時計で入力したメモは、時計の「場所を付ける」もオンのときだけ付きます。"
+          }
+        },
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يُرسل الموقع الذي أُدخلت فيه المذكرة (خط العرض،خط الطول) إلى موضع {{location}} في النص. لا يُرسل إن لم يتضمن النص {{location}}. يُؤخذ الموقع مرة واحدة عند الإدخال، وإن تعذر الحصول عليه يبقى فارغا. المذكرات المدخلة على Apple Watch تتضمن الموقع فقط إذا كان خيار «إرفاق الموقع» مفعّلا على Apple Watch أيضا."
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "মেমো লেখার সময়ের অবস্থান (অক্ষাংশ,দ্রাঘিমাংশ) বর্ণে {{location}}-এর জায়গায় বসিয়ে পাঠানো হয়। বর্ণে {{location}} না থাকলে পাঠানো হবে না। লেখার সময় একবারই অবস্থান নেওয়া হয়; না পাওয়া গেলে ফাঁকা থাকবে। Apple Watch-এ লেখা মেমোতে Apple Watch-এর «অবস্থান যুক্ত করুন» চালু থাকলেই অবস্থান যুক্ত হবে।"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "S'envia la ubicació on s'ha introduït la nota (latitud,longitud) a la posició de {{location}} del text. No s'envia si el text no conté {{location}}. La ubicació s'obté una sola vegada en introduir la nota; si no es pot obtenir, queda buida. Les notes introduïdes a l'Apple Watch només hi porten la ubicació si també està activada «Adjunta la ubicació» a l'Apple Watch."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odešle polohu, kde byla poznámka zadána (zeměpisná šířka,délka), na místo {{location}} v těle zprávy. Bez {{location}} v textu se neodešle. Poloha se zjistí jednou při zadání; pokud ji nelze získat, zůstane prázdná. Poznámky zadané na Apple Watch dostanou polohu jen tehdy, když je na Apple Watch zapnuté také „Připojit polohu“."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sender den placering (breddegrad,længdegrad), hvor memoen blev indtastet, ind på {{location}}-positionen i teksten. Der sendes ikke noget, hvis teksten ikke indeholder {{location}}. Placeringen hentes én gang ved indtastning; kan den ikke hentes, bliver feltet tomt. Memoer indtastet på Apple Watch får kun en placering, når \"Vedhæft placering\" også er slået til på Apple Watch."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sendet den Ort, an dem die Notiz eingegeben wurde (Breitengrad,Längengrad), an die Stelle {{location}} im Text. Ohne {{location}} im Text wird nichts gesendet. Der Standort wird einmal bei der Eingabe ermittelt; kann er nicht ermittelt werden, bleibt er leer. Auf der Apple Watch eingegebene Notizen erhalten den Standort nur, wenn dort auch „Standort anhängen“ aktiviert ist."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Στέλνει την τοποθεσία όπου καταχωρίστηκε η σημείωση (γεωγραφικό πλάτος,γεωγραφικό μήκος) στη θέση {{location}} του κειμένου. Δεν αποστέλλεται αν το κείμενο δεν περιέχει το {{location}}. Η τοποθεσία λαμβάνεται μία φορά κατά την καταχώριση· αν δεν μπορεί να ληφθεί, μένει κενή. Οι σημειώσεις που καταχωρίζονται στο Apple Watch παίρνουν τοποθεσία μόνο αν είναι ενεργή και η «Επισύναψη τοποθεσίας» στο Apple Watch."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sends the location where the memo was entered (latitude,longitude) into the {{location}} position in the body. Not sent unless the body contains {{location}}. The location is taken once when the memo is entered; if it can't be obtained, it is left empty. Memos entered on Apple Watch get a location only when Attach Location is also on for Apple Watch."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Envía la ubicación donde se introdujo la nota (latitud,longitud) en la posición de {{location}} del cuerpo. No se envía si el cuerpo no contiene {{location}}. La ubicación se obtiene una sola vez al introducir la nota; si no se puede obtener, queda vacía. Las notas introducidas en el Apple Watch solo incluyen ubicación si también está activada «Adjuntar ubicación» en el Apple Watch."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lähettää muistiinpanon kirjoitushetken sijainnin (leveysaste,pituusaste) kohtaan {{location}} leipätekstissä. Ei lähetetä, jos leipätekstissä ei ole {{location}}-kohtaa. Sijainti haetaan kerran kirjoitettaessa; jos sitä ei saada, kenttä jää tyhjäksi. Apple Watchilla kirjoitettuihin muistiinpanoihin sijainti liitetään vain, jos Apple Watchin «Liitä sijainti» on myös päällä."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Envoie la position où la note a été saisie (latitude,longitude) à l'emplacement {{location}} du corps du texte. Rien n'est envoyé si le corps ne contient pas {{location}}. La position est relevée une seule fois à la saisie ; si elle est indisponible, le champ reste vide. Les notes saisies sur Apple Watch n'ont de position que si « Joindre la position » est aussi activé sur Apple Watch."
+          }
+        },
+        "gu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "મેમો દાખલ કર્યો તે સ્થાન (અક્ષાંશ,રેખાંશ) મુખ્ય લખાણમાં {{location}} ની જગ્યાએ મૂકીને મોકલે છે. લખાણમાં {{location}} ન હોય તો મોકલાતું નથી. દાખલ કરતી વખતે સ્થાન એક વાર લેવાય છે; ન મળે તો ખાલી રહે છે. Apple Watch પર દાખલ કરેલા મેમોમાં Apple Watch પર «સ્થાન જોડો» પણ ચાલુ હોય ત્યારે જ સ્થાન જોડાય છે."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "שולח את המיקום שבו הוזן המזכר (קו רוחב,קו אורך) אל המקום {{location}} בגוף הטקסט. לא נשלח אם בגוף הטקסט אין {{location}}. המיקום נלקח פעם אחת בזמן ההזנה; אם אי אפשר לקבל אותו, הוא נשאר ריק. מזכרים שהוזנו ב-Apple Watch מקבלים מיקום רק אם גם «צרף מיקום» פועל ב-Apple Watch."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जिस स्थान पर मेमो दर्ज किया गया, उसका निर्देशांक (अक्षांश,देशांतर) मुख्य पाठ में {{location}} की जगह डालकर भेजा जाता है। पाठ में {{location}} न हो तो नहीं भेजा जाता। दर्ज करते समय स्थान एक बार लिया जाता है; न मिलने पर वह खाली रहता है। Apple Watch पर दर्ज मेमो में तभी स्थान जुड़ता है जब Apple Watch पर «स्थान जोड़ें» भी चालू हो।"
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Šalje lokaciju na kojoj je bilješka unesena (zemljopisna širina,dužina) na mjesto {{location}} u tekstu. Ne šalje se ako tekst ne sadrži {{location}}. Lokacija se uzima jednom pri unosu; ako se ne može dobiti, ostaje prazno. Bilješke unesene na Apple Watchu dobivaju lokaciju samo kad je na Apple Watchu uključeno i „Dodaj lokaciju“."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A jegyzet bevitelének helyét (szélesség,hosszúság) a szöveg {{location}} helyére írva küldi el. A szövegben lévő {{location}} nélkül nem küldi el. A helyet bevitelkor egyszer kéri le; ha nem sikerül, üres marad. Az Apple Watchon bevitt jegyzetekhez csak akkor kerül hely, ha az Apple Watchon a „Hely csatolása” is be van kapcsolva."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mengirim lokasi tempat memo dimasukkan (lintang,bujur) ke posisi {{location}} di isi teks. Tidak dikirim jika isi teks tidak memuat {{location}}. Lokasi diambil sekali saat memo dimasukkan; jika tidak dapat diambil, dibiarkan kosong. Memo yang dimasukkan di Apple Watch hanya mendapat lokasi jika Lampirkan Lokasi di Apple Watch juga aktif."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Invia la posizione in cui è stata inserita la nota (latitudine,longitudine) nella posizione {{location}} del corpo del testo. Non viene inviata se il corpo non contiene {{location}}. La posizione viene rilevata una sola volta al momento dell'inserimento; se non è disponibile, resta vuota. Le note inserite su Apple Watch ricevono la posizione solo se anche «Allega posizione» è attivo su Apple Watch."
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಮೆಮೊ ನಮೂದಿಸಿದ ಸ್ಥಳವನ್ನು (ಅಕ್ಷಾಂಶ,ರೇಖಾಂಶ) ಮುಖ್ಯ ಪಠ್ಯದಲ್ಲಿರುವ {{location}} ಸ್ಥಾನಕ್ಕೆ ಹಾಕಿ ಕಳುಹಿಸಲಾಗುತ್ತದೆ. ಪಠ್ಯದಲ್ಲಿ {{location}} ಇಲ್ಲದಿದ್ದರೆ ಕಳುಹಿಸಲಾಗುವುದಿಲ್ಲ. ನಮೂದಿಸುವಾಗ ಸ್ಥಳ ಒಮ್ಮೆ ಮಾತ್ರ ಪಡೆಯಲಾಗುತ್ತದೆ; ಪಡೆಯಲಾಗದಿದ್ದರೆ ಖಾಲಿಯಾಗಿರುತ್ತದೆ. Apple Watch ನಲ್ಲಿ ನಮೂದಿಸಿದ ಮೆಮೊಗಳಿಗೆ Apple Watch ನಲ್ಲಿ «ಸ್ಥಳ ಲಗತ್ತಿಸಿ» ಆನ್ ಇದ್ದಾಗ ಮಾತ್ರ ಸ್ಥಳ ಸೇರುತ್ತದೆ."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "메모를 입력한 위치(위도,경도)를 본문의 {{location}} 자리에 넣어 보냅니다. 본문에 {{location}}이 없으면 보내지 않습니다. 입력할 때 위치를 한 번만 가져오며, 가져오지 못하면 비어 있게 됩니다. Apple Watch에서 입력한 메모는 Apple Watch의 '위치 첨부'도 켜져 있을 때만 위치가 붙습니다."
+          }
+        },
+        "ml" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "മെമോ നൽകിയ ലൊക്കേഷൻ (അക്ഷാംശം,രേഖാംശം) ബോഡിയിലെ {{location}} സ്ഥാനത്ത് ചേർത്താണ് അയയ്ക്കുന്നത്. ബോഡിയിൽ {{location}} ഇല്ലെങ്കിൽ അയയ്ക്കില്ല. നൽകുമ്പോൾ ലൊക്കേഷൻ ഒരു തവണ മാത്രം എടുക്കും; ലഭിച്ചില്ലെങ്കിൽ ശൂന്യമായിരിക്കും. Apple Watch-ൽ നൽകുന്ന മെമോകൾക്ക് Apple Watch-ലെ «ലൊക്കേഷൻ ചേർക്കുക» ഓണായിരിക്കുമ്പോൾ മാത്രമേ ലൊക്കേഷൻ ലഭിക്കൂ."
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मेमो प्रविष्ट केलेले स्थान (अक्षांश,रेखांश) मजकुरातील {{location}} च्या जागी टाकून पाठवले जाते. मजकुरात {{location}} नसल्यास पाठवले जात नाही. प्रविष्ट करताना स्थान एकदाच घेतले जाते; ते मिळाले नाही तर रिकामे राहते. Apple Watch वर प्रविष्ट केलेल्या मेमोंना Apple Watch वरील «स्थान जोडा» चालू असतानाच स्थान जोडले जाते."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Menghantar lokasi tempat memo dimasukkan (latitud,longitud) ke kedudukan {{location}} dalam badan teks. Tidak dihantar melainkan badan teks mengandungi {{location}}. Lokasi diambil sekali semasa memo dimasukkan; jika tidak dapat diperoleh, ia dibiarkan kosong. Memo yang dimasukkan pada Apple Watch hanya mendapat lokasi jika Lampirkan lokasi pada Apple Watch juga dihidupkan."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sender posisjonen der notatet ble skrevet (breddegrad,lengdegrad) inn på {{location}}-plassen i teksten. Sendes ikke hvis teksten ikke inneholder {{location}}. Posisjonen hentes én gang når notatet skrives; hvis den ikke kan hentes, blir den tom. Notater skrevet på Apple Watch får bare posisjon når Legg ved posisjon også er på på Apple Watch."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Verstuurt de locatie waar de memo is ingevoerd (breedtegraad,lengtegraad) op de plek {{location}} in de tekst. Er wordt niets verstuurd als de tekst geen {{location}} bevat. De locatie wordt één keer bepaald bij het invoeren; als dat niet lukt, blijft het leeg. Memo's die op Apple Watch zijn ingevoerd, krijgen alleen een locatie als Locatie toevoegen ook op Apple Watch aan staat."
+          }
+        },
+        "or" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ମେମୋ ଲେଖାଯାଇଥିବା ଅବସ୍ଥାନ (ଅକ୍ଷାଂଶ,ଦ୍ରାଘିମା) ମୂଳ ପାଠରେ {{location}} ସ୍ଥାନରେ ରଖି ପଠାଯାଏ। ପାଠରେ {{location}} ନଥିଲେ ପଠାଯାଏ ନାହିଁ। ଲେଖିବା ସମୟରେ ଅବସ୍ଥାନ ଏକ ଥର ନିଆଯାଏ; ମିଳେ ନାହିଁ ତ ଖାଲି ରହେ। Apple Watch ରେ ଲେଖାଯାଇଥିବା ମେମୋରେ Apple Watch ର «ଅବସ୍ଥାନ ଯୋଗ କରନ୍ତୁ» ମଧ୍ୟ ଅନ୍ ଥିଲେ ହିଁ ଅବସ୍ଥାନ ଯୋଗ ହୁଏ।"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ਮੈਮੋ ਦਰਜ ਕਰਨ ਵੇਲੇ ਦਾ ਸਥਾਨ (ਅਕਸ਼ਾਂਸ਼,ਰੇਖਾਂਸ਼) ਮੁੱਖ ਪਾਠ ਵਿੱਚ {{location}} ਦੀ ਥਾਂ ਰੱਖ ਕੇ ਭੇਜਿਆ ਜਾਂਦਾ ਹੈ। ਪਾਠ ਵਿੱਚ {{location}} ਨਾ ਹੋਵੇ ਤਾਂ ਨਹੀਂ ਭੇਜਿਆ ਜਾਂਦਾ। ਦਰਜ ਕਰਨ ਵੇਲੇ ਸਥਾਨ ਇੱਕ ਵਾਰ ਲਿਆ ਜਾਂਦਾ ਹੈ; ਨਾ ਮਿਲੇ ਤਾਂ ਖਾਲੀ ਰਹਿੰਦਾ ਹੈ। Apple Watch ਤੇ ਦਰਜ ਮੈਮੋ ਨੂੰ ਸਥਾਨ ਤਾਂ ਹੀ ਮਿਲਦਾ ਹੈ ਜਦੋਂ Apple Watch ਤੇ «ਸਥਾਨ ਜੋੜੋ» ਵੀ ਚਾਲੂ ਹੋਵੇ।"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wysyła lokalizację, w której wprowadzono notatkę (szerokość,długość geograficzna), w miejsce {{location}} w treści. Nie wysyła, jeśli treść nie zawiera {{location}}. Lokalizacja jest pobierana raz, przy wprowadzaniu notatki; jeśli nie uda się jej pobrać, pole pozostaje puste. Notatki wprowadzone na Apple Watch dostają lokalizację tylko wtedy, gdy na Apple Watch włączono także „Dołącz lokalizację”."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Envia a localização onde a nota foi digitada (latitude,longitude) na posição de {{location}} do corpo do texto. Não é enviada se o corpo não contiver {{location}}. A localização é obtida uma vez ao digitar a nota; se não puder ser obtida, fica vazia. As notas digitadas no Apple Watch só recebem localização se \"Anexar localização\" também estiver ativado no Apple Watch."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Envia a localização onde a nota foi introduzida (latitude,longitude) na posição de {{location}} do corpo do texto. Não é enviada se o corpo não contiver {{location}}. A localização é obtida uma vez ao introduzir a nota; se não for possível obtê-la, fica vazia. As notas introduzidas no Apple Watch só recebem localização se \"Anexar localização\" também estiver ativo no Apple Watch."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trimite locația în care a fost introdus memo-ul (latitudine,longitudine) în poziția {{location}} din corpul textului. Nu se trimite dacă corpul nu conține {{location}}. Locația se obține o singură dată la introducere; dacă nu poate fi obținută, rămâne goală. Memo-urile introduse pe Apple Watch primesc locația doar dacă „Atașează locația” este activat și pe Apple Watch."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Отправляет местоположение, где была введена заметка (широта,долгота), в место {{location}} в тексте. Без {{location}} в тексте не отправляется. Местоположение определяется один раз при вводе; если его не удалось получить, поле остаётся пустым. Заметки, введённые на Apple Watch, получают местоположение, только если на Apple Watch также включено «Добавить местоположение»."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Odošle polohu, kde bola poznámka zadaná (zemepisná šírka,dĺžka), na miesto {{location}} v texte. Ak text neobsahuje {{location}}, neodošle sa. Poloha sa zisťuje raz pri zadávaní; ak ju nemožno získať, zostane prázdna. Poznámky zadané na Apple Watch dostanú polohu, iba ak je na Apple Watch zapnuté aj „Pripojiť polohu“."
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Pošlje lokacijo, na kateri je bil zapis vnesen (zemljepisna širina,dolžina), na mesto {{location}} v besedilu. Ne pošlje se, če besedilo ne vsebuje {{location}}. Lokacija se pridobi enkrat ob vnosu; če je ni mogoče pridobiti, ostane prazna. Zapisi, vneseni na Apple Watchu, dobijo lokacijo le, če je na Apple Watchu vklopljeno tudi »Priloži lokacijo«."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Skickar platsen där anteckningen skrevs (latitud,longitud) till positionen {{location}} i texten. Skickas inte om texten inte innehåller {{location}}. Platsen hämtas en gång vid inmatningen; om den inte kan hämtas blir fältet tomt. Anteckningar som skrivs på Apple Watch får bara en plats om Bifoga plats också är påslagen på Apple Watch."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "குறிப்பு உள்ளிடப்பட்ட இருப்பிடத்தை (அட்சரேகை,தீர்க்கரேகை) உடலில் உள்ள {{location}} இடத்தில் வைத்து அனுப்பும். உடலில் {{location}} இல்லையெனில் அனுப்பப்படாது. உள்ளிடும்போது இருப்பிடம் ஒரு முறை மட்டுமே எடுக்கப்படும்; கிடைக்காவிட்டால் காலியாக இருக்கும். Apple Watch இல் உள்ளிடும் குறிப்புகளுக்கு Apple Watch இல் «இருப்பிடத்தை இணை» இயக்கத்தில் இருந்தால் மட்டுமே இருப்பிடம் சேரும்."
+          }
+        },
+        "te" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "మెమో నమోదు చేసిన స్థానాన్ని (అక్షాంశం,రేఖాంశం) పాఠ్యంలోని {{location}} స్థానంలో ఉంచి పంపుతుంది. పాఠ్యంలో {{location}} లేకపోతే పంపబడదు. నమోదు చేసేటప్పుడు స్థానాన్ని ఒకసారి మాత్రమే తీసుకుంటుంది; పొందలేకపోతే ఖాళీగా ఉంటుంది. Apple Watch లో నమోదు చేసిన మెమోలకు Apple Watch లో «స్థానాన్ని జత చేయి» కూడా ఆన్‌లో ఉంటేనే స్థానం జత అవుతుంది."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ส่งตำแหน่งที่บันทึกข้อความ (ละติจูด,ลองจิจูด) ไปยังตำแหน่ง {{location}} ในเนื้อความ จะไม่ส่งถ้าเนื้อความไม่มี {{location}} ตำแหน่งจะถูกดึงครั้งเดียวตอนบันทึก ถ้าดึงไม่ได้จะเว้นว่าง ข้อความที่บันทึกบน Apple Watch จะได้ตำแหน่งก็ต่อเมื่อเปิด \"แนบตำแหน่ง\" บน Apple Watch ด้วย"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Notun girildiği konumu (enlem,boylam), gövdedeki {{location}} yerine yerleştirerek gönderir. Gövdede {{location}} yoksa gönderilmez. Konum, not girilirken bir kez alınır; alınamazsa boş kalır. Apple Watch'ta girilen notlara konum, yalnızca Apple Watch'ta da \"Konumu ekle\" açıksa eklenir."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Надсилає місцезнаходження, де було введено нотатку (широта,довгота), на місце {{location}} у тексті. Якщо в тексті немає {{location}}, нічого не надсилається. Місцезнаходження визначається один раз під час введення; якщо його не вдалося отримати, поле лишається порожнім. Нотатки, введені на Apple Watch, отримують місцезнаходження, лише якщо на Apple Watch також увімкнено «Додати місцезнаходження»."
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جہاں میمو درج کیا گیا وہ مقام (عرض بلد،طول بلد) متن کے {{location}} کی جگہ پر ڈال کر بھیجا جاتا ہے۔ متن میں {{location}} نہ ہو تو نہیں بھیجا جاتا۔ درج کرتے وقت مقام ایک بار لیا جاتا ہے؛ اگر نہ مل سکے تو خالی رہتا ہے۔ Apple Watch پر درج میمو کو تب ہی مقام ملتا ہے جب Apple Watch پر «مقام شامل کریں» بھی آن ہو۔"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Gửi vị trí nơi ghi chú được nhập (vĩ độ,kinh độ) vào vị trí {{location}} trong nội dung. Không gửi nếu nội dung không có {{location}}. Vị trí chỉ lấy một lần khi nhập ghi chú; nếu không lấy được thì để trống. Ghi chú nhập trên Apple Watch chỉ có vị trí khi \"Đính kèm vị trí\" trên Apple Watch cũng đang bật."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "将输入备忘时的位置（纬度,经度）放入正文中的 {{location}} 位置后发送。正文中没有 {{location}} 时不会发送。输入时只获取一次位置，获取不到则留空。在 Apple Watch 上输入的备忘，只有 Apple Watch 上的“附加位置”也开启时才会附加位置。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "將輸入備忘時的位置（緯度,經度）放入內文中的 {{location}} 位置後傳送。內文中沒有 {{location}} 時不會傳送。輸入時只取得一次位置，取不到則留空。在 Apple Watch 上輸入的備忘，只有 Apple Watch 上的「附加位置」也開啟時才會附加位置。"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"
