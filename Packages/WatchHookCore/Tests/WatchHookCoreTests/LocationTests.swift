@@ -89,3 +89,28 @@ struct LocationTests {
         #expect(body?["loc"] == "35.681236,139.767125")
     }
 }
+
+@Suite("測位の結果の使い方")
+struct LocationFixTests {
+    let requested = Date(timeIntervalSince1970: 1_000)
+
+    @Test func 要求より前の測位は使わない() {
+        #expect(!LocationFix.isUsable(horizontalAccuracy: 10, timestamp: Date(timeIntervalSince1970: 999), requestedAt: requested))
+    }
+
+    @Test func 要求のあとの測位で精度が有効なら使う() {
+        #expect(LocationFix.isUsable(horizontalAccuracy: 10, timestamp: Date(timeIntervalSince1970: 1_001), requestedAt: requested))
+    }
+
+    @Test func 精度が負の測位は無効として使わない() {
+        #expect(!LocationFix.isUsable(horizontalAccuracy: -1, timestamp: Date(timeIntervalSince1970: 1_001), requestedAt: requested))
+    }
+
+    @Test func 入力後の場所はメモに後から入れられる() {
+        var log = MemoLog(owner: .phone)
+        let memo = Memo(text: "x", source: "phone", origin: .phone)
+        log.add(memo)
+        log.setLocation(MemoLocation(latitude: 1, longitude: 2), memoID: memo.id)
+        #expect(log.memo(id: memo.id)?.location == MemoLocation(latitude: 1, longitude: 2))
+    }
+}

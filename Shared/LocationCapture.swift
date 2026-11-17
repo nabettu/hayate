@@ -3,20 +3,36 @@ import Foundation
 import WatchHookCore
 
 /// 入力した瞬間の場所を 1 回だけ取る (Apple Watch と iPhone の共通)。
-/// 権限が無い・時間内に取れない・失敗したときは nil を返し、メモは場所なしで保存する (入力を止めない)。
-/// 権限の確認 (初回は OS の問い合わせ) も含めて `timeout` で打ち切る。
+/// 権限が無い・時間内に取れない・失敗したときは nil を返し、メモは場所なしのまま残す (入力を止めない)。
+/// 要求より前の測位 (キャッシュ) や精度の無い測位は使わない (`LocationFix`)。
 @MainActor
 final class LocationCapture: NSObject, CLLocationManagerDelegate {
     static let shared = LocationCapture()
 
+    private struct Request {
+        let id: Int
+        let requestedAt: Date
+        let continuation: CheckedContinuation<MemoLocation?, Never>
+    }
+
     private let manager = CLLocationManager()
-    private var pending: (id: Int, continuation: CheckedContinuation<MemoLocation?, Never>)?
+    private var pending: Request?
     private var nextID = 0
+    /// `requestLocation()` の結果がまだ返っていない (返っていないあいだ、もう一度頼んでも無視される)
+    private var isMeasuring = false
 
     private override init() {
         super.init()
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+    }
+
+    /// 送り先で「場所を送る」をオンにしたときに、前面で権限を聞いておく。
+    /// Siri は裏で動くため、権限の問い合わせは前面の画面からしかできない。
+    func prepareAuthorization() {
+        if manager.authorizationStatus == .notDetermined {
+            manager.requestWhenInUseAuthorization()
+        }
     }
 
     /// 今いる場所。`timeout` を過ぎたら nil。前の要求がまだ残っていれば nil にして置き換える。
@@ -25,7 +41,7 @@ final class LocationCapture: NSObject, CLLocationManagerDelegate {
         let id = nextID
         return await withCheckedContinuation { continuation in
             finish(id: nil, value: nil)
-            pending = (id, continuation)
+            pending = Request(id: id, requestedAt: Date(), continuation: continuation)
             Task { @MainActor in
                 try? await Task.sleep(for: timeout)
                 self.finish(id: id, value: nil)
@@ -37,7 +53,10 @@ final class LocationCapture: NSObject, CLLocationManagerDelegate {
     private func start() {
         switch manager.authorizationStatus {
         case .authorizedWhenInUse, .authorizedAlways:
-            manager.requestLocation()
+            if !isMeasuring {
+                isMeasuring = true
+                manager.requestLocation()
+            }
         case .notDetermined:
             manager.requestWhenInUseAuthorization()
         default:
@@ -45,7 +64,7 @@ final class LocationCapture: NSObject, CLLocationManagerDelegate {
         }
     }
 
-    /// 待っている要求を返す。`id` を指定したときは、その要求だけ返す (打ち切りの後に来た結果で次の要求を返さないため)。
+    /// 待っている要求を返す。`id` を指定したときは、その要求だけ返す (打ち切りの後の要求を取り違えないため)。
     private func finish(id: Int?, value: MemoLocation?) {
         guard let p = pending, id == nil || p.id == id else { return }
         pending = nil
@@ -59,7 +78,7 @@ final class LocationCapture: NSObject, CLLocationManagerDelegate {
         Task { @MainActor in
             switch status {
             case .authorizedWhenInUse, .authorizedAlways:
-                if self.pending != nil { self.manager.requestLocation() }
+                if self.pending != nil { self.start() }
             case .denied, .restricted:
                 self.finish(id: nil, value: nil)
             default:
@@ -69,15 +88,25 @@ final class LocationCapture: NSObject, CLLocationManagerDelegate {
     }
 
     nonisolated func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        let coordinate = locations.last?.coordinate
+        guard let last = locations.last else { return }
+        let fix = (last.coordinate.latitude, last.coordinate.longitude, last.horizontalAccuracy, last.timestamp)
         Task { @MainActor in
-            guard let c = coordinate else { return }
-            self.finish(id: nil, value: MemoLocation(latitude: c.latitude, longitude: c.longitude))
+            self.isMeasuring = false
+            guard let p = self.pending else { return }
+            if LocationFix.isUsable(horizontalAccuracy: fix.2, timestamp: fix.3, requestedAt: p.requestedAt) {
+                self.finish(id: nil, value: MemoLocation(latitude: fix.0, longitude: fix.1))
+            } else {
+                // 古い測位だった。待ち時間のあいだはもう一度測る
+                self.start()
+            }
         }
     }
 
     nonisolated func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        Task { @MainActor in self.finish(id: nil, value: nil) }
+        Task { @MainActor in
+            self.isMeasuring = false
+            self.finish(id: nil, value: nil)
+        }
     }
 }
 

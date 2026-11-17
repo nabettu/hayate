@@ -24,3 +24,10 @@ public enum LocationPolicy {
         return destinations.contains { $0.isEnabled && $0.sendsLocation }
     }
 }
+
+/// 測位の結果を使ってよいか。古い測位 (要求より前のキャッシュ) と、精度が無効な測位は使わない。
+public enum LocationFix {
+    public static func isUsable(horizontalAccuracy: Double, timestamp: Date, requestedAt: Date) -> Bool {
+        horizontalAccuracy >= 0 && timestamp >= requestedAt
+    }
+}

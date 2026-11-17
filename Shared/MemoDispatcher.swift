@@ -156,21 +156,23 @@ actor MemoDispatcher {
         #if os(iOS)
         deliveries += MemoPlanner.phoneDeliveries(text: text, settings: IntegrationStore.load())
         #endif
-        // 場所を送る送り先があるときだけ取る (時計は時計の設定もオンのときだけ)。取れなければ場所なしで保存する
-        var location: MemoLocation?
-        if LocationPolicy.shouldCapture(origin: Self.role, watchAttachEnabled: WatchLocationSetting.isOn, destinations: config.enabledDestinations) {
-            location = await LocationCapture.shared.current()
-        }
         let memo = Memo(text: text, source: source, origin: Self.role, deliveries: deliveries,
-                        phoneSync: Self.role == .watch ? .waiting : nil, location: location)
+                        phoneSync: Self.role == .watch ? .waiting : nil)
         log.add(memo)
         guard persist() else {
             // 一度も書けていなければ、アプリが終われば消える。保存したとは言わない
             log.discard(memoID: memo.id)
             return nil
         }
+        // 場所は保存のあとで取る (測位の待ちで入力を失わないため)。場所を送る送り先があるときだけ。
+        // 取れなければ場所なしのまま送る
+        if LocationPolicy.shouldCapture(origin: Self.role, watchAttachEnabled: WatchLocationSetting.isOn, destinations: config.enabledDestinations),
+           let location = await LocationCapture.shared.current() {
+            log.setLocation(location, memoID: memo.id)
+            _ = persist()
+        }
         #if os(watchOS)
-        WatchSync.shared.sendMemo(memo, urgent: true)
+        WatchSync.shared.sendMemo(log.memo(id: memo.id) ?? memo, urgent: true)
         #endif
         // 1 件目は並べて送る (時計では送り先の数だけ待たせない)
         let refs = memo.deliveries.filter { $0.owner == Self.role }.map { MemoLog.DeliveryRef(memoID: memo.id, deliveryID: $0.id) }

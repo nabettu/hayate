@@ -166,6 +166,8 @@ struct WatchHomeView: View {
             Button {
                 attachLocation.toggle()
                 WatchLocationSetting.isOn = attachLocation
+                // 許可は前面で聞いておく (Siri は裏で動き、許可の画面を出せないため)
+                if attachLocation { LocationCapture.shared.prepareAuthorization() }
             } label: {
                 Label(attachLocation ? "場所を付ける" : "場所は付けない",
                       systemImage: attachLocation ? "location.fill" : "location.slash")
