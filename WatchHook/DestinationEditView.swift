@@ -58,15 +58,19 @@ struct DestinationEditView: View {
                         Section {
                             Toggle("場所を送る", isOn: $destination.sendsLocation)
                                 .onChange(of: destination.sendsLocation) { _, on in
-                                    // 本文に {{location}} が無いと送られないので、JSON・フォームの本文には項目を足す (オフで外す)
-                                    destination.bodyTemplate = on
-                                        ? LocationTemplate.adding(to: destination.bodyTemplate, encoding: destination.bodyEncoding)
-                                        : LocationTemplate.removing(from: destination.bodyTemplate, encoding: destination.bodyEncoding)
                                     // Siri は裏で動くので、許可はここ (前面) で聞いておく
                                     if on { LocationCapture.prepareAuthorization() }
                                 }
+                            if destination.sendsLocation && !destination.bodyTemplate.contains("{{location}}") {
+                                Label("本文に {{location}} が無いので、場所は送られません", systemImage: "exclamationmark.triangle")
+                                    .font(.footnote)
+                                    .foregroundStyle(.orange)
+                                if let added = LocationTemplate.adding(to: destination.bodyTemplate, encoding: destination.bodyEncoding) {
+                                    Button("本文に location の項目を足す") { destination.bodyTemplate = added }
+                                }
+                            }
                         } footer: {
-                            Text("メモを入力した場所 (緯度,経度) を、本文の {{location}} の位置に入れて送ります。オンにすると、JSON・フォームの本文には location の項目を足します (テキストの本文は自分で {{location}} を書いてください)。入力のときに 1 回だけ場所を取り、取れなかったときは空になります。時計で入力したメモは、時計の「場所を付ける」もオンのときだけ付きます。")
+                            Text("メモを入力した場所 (緯度,経度) を、本文の {{location}} の位置に入れて送ります。本文に {{location}} が無いと送られません。入力のときに 1 回だけ場所を取り、取れなかったときは空になります。時計で入力したメモは、時計の「場所を付ける」もオンのときだけ付きます。")
                         }
 
                         Section {

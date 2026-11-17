@@ -117,7 +117,7 @@ struct LocationFixTests {
     }
 }
 
-@Suite("場所を送るをオンにしたときの本文")
+@Suite("本文に場所の項目を足すボタン")
 struct LocationTemplateTests {
     @Test func JSONの本文に場所の項目を足す() {
         #expect(LocationTemplate.adding(to: #"{"text":"{{text}}","id":"{{id}}"}"#, encoding: .json)
@@ -137,21 +137,23 @@ struct LocationTemplateTests {
         #expect(LocationTemplate.adding(to: "text={{text}}", encoding: .form) == "text={{text}}&location={{location}}")
     }
 
-    @Test func すでに場所があれば変えない() {
-        let t = #"{"where":"{{location}}"}"#
-        #expect(LocationTemplate.adding(to: t, encoding: .json) == t)
+    @Test func すでに場所があれば足さない() {
+        #expect(LocationTemplate.adding(to: #"{"where":"{{location}}"}"#, encoding: .json) == nil)
     }
 
-    @Test func オブジェクトでないJSONやテキストの本文は変えない() {
-        #expect(LocationTemplate.adding(to: "[1]", encoding: .json) == "[1]")
-        #expect(LocationTemplate.adding(to: "{{text}}", encoding: .plain) == "{{text}}")
+    @Test func 同じ名前の項目があれば足さない() {
+        #expect(LocationTemplate.adding(to: #"{"location":{"id":"office"},"text":"{{text}}"}"#, encoding: .json) == nil)
+        #expect(LocationTemplate.adding(to: "location=office&text={{text}}", encoding: .form) == nil)
     }
 
-    @Test func オフにしたら足した項目だけを外す() {
-        #expect(LocationTemplate.removing(from: #"{"text":"{{text}}","location":"{{location}}"}"#, encoding: .json)
-                == #"{"text":"{{text}}"}"#)
-        #expect(LocationTemplate.removing(from: "text={{text}}&location={{location}}", encoding: .form) == "text={{text}}")
-        let custom = #"{"where":"{{location}}"}"#
-        #expect(LocationTemplate.removing(from: custom, encoding: .json) == custom)
+    @Test func 入れ子のlocationは別の項目として足す() {
+        #expect(LocationTemplate.adding(to: #"{"payload":{"location":"x"}}"#, encoding: .json)
+                == #"{"payload":{"location":"x"},"location":"{{location}}"}"#)
+    }
+
+    @Test func オブジェクトでないJSONや読めないJSONやテキストの本文には足さない() {
+        #expect(LocationTemplate.adding(to: "[1]", encoding: .json) == nil)
+        #expect(LocationTemplate.adding(to: "{ broken", encoding: .json) == nil)
+        #expect(LocationTemplate.adding(to: "{{text}}", encoding: .plain) == nil)
     }
 }

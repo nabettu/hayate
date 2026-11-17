@@ -32,47 +32,34 @@ public enum LocationFix {
     }
 }
 
-/// 「場所を送る」を切り替えたときの本文。オンにしても本文に `{{location}}` が無いと場所が送られないため、
-/// JSON (オブジェクト) とフォームの本文には `location` の項目を自動で足し、オフにしたら足した形のものだけ外す。
+/// 本文に `{{location}}` が無いとき、ボタンで足す項目。送り先によって受け付ける項目が決まっているので、
+/// 自動では足さず、押されたときだけ足す。足せない本文 (JSON のオブジェクトでない・同じ名前の項目がある・テキスト) は nil。
 public enum LocationTemplate {
     static let placeholder = "{{location}}"
-    static let jsonField = #""location":"{{location}}""#
-    static let formField = "location={{location}}"
+    static let key = "location"
 
-    public static func adding(to template: String, encoding: BodyEncoding) -> String {
-        guard !template.contains(placeholder) else { return template }
+    public static func adding(to template: String, encoding: BodyEncoding) -> String? {
+        guard !template.contains(placeholder) else { return nil }
         switch encoding {
         case .json:
-            guard let close = template.lastIndex(of: "}"),
-                  template[template.index(after: close)...].allSatisfy(\.isWhitespace),
-                  let open = template.firstIndex(where: { !$0.isWhitespace }), template[open] == "{" else { return template }
-            let inner = template[template.index(after: open)..<close]
-            let isEmpty = inner.allSatisfy(\.isWhitespace)
+            guard let object = try? JSONSerialization.jsonObject(with: Data(template.utf8)) as? [String: Any],
+                  object[key] == nil,
+                  let close = template.lastIndex(of: "}") else { return nil }
+            let inner = template[..<close]
+            let last = inner.lastIndex(where: { !$0.isWhitespace })
+            let isEmpty = object.isEmpty
             // 閉じ括弧の前の空白・改行はそのまま残し、最後の値の直後に足す
-            let insertAt = isEmpty ? close : (inner.lastIndex(where: { !$0.isWhitespace }).map { template.index(after: $0) } ?? close)
+            let insertAt = isEmpty ? close : (last.map { template.index(after: $0) } ?? close)
             var result = template
-            result.insert(contentsOf: (isEmpty ? "" : ",") + jsonField, at: insertAt)
+            result.insert(contentsOf: (isEmpty ? "" : ",") + #""location":"{{location}}""#, at: insertAt)
             return result
         case .form:
-            return template.isEmpty ? formField : template + "&" + formField
+            let names = template.split(separator: "&").map { $0.split(separator: "=", maxSplits: 1).first.map(String.init) ?? "" }
+            guard !names.contains(key) else { return nil }
+            let field = "location={{location}}"
+            return template.isEmpty ? field : template + "&" + field
         case .plain:
-            return template
-        }
-    }
-
-    public static func removing(from template: String, encoding: BodyEncoding) -> String {
-        switch encoding {
-        case .json:
-            if let r = template.range(of: "," + jsonField) { return template.replacingCharacters(in: r, with: "") }
-            if let r = template.range(of: jsonField), template.replacingCharacters(in: r, with: "").filter({ !$0.isWhitespace }) == "{}" {
-                return template.replacingCharacters(in: r, with: "")
-            }
-            return template
-        case .form:
-            if template.hasSuffix("&" + formField) { return String(template.dropLast(formField.count + 1)) }
-            return template == formField ? "" : template
-        case .plain:
-            return template
+            return nil
         }
     }
 }
