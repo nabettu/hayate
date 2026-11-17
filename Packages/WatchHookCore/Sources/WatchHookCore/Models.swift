@@ -67,6 +67,8 @@ public struct Destination: Codable, Hashable, Identifiable, Sendable {
     public var textSuffix: String = ""
     /// 入力したメモをこの送り先へ送るか。入力のたびに選ばず、有効なもの全部へ送る
     public var isEnabled: Bool = true
+    /// メモを入力した場所 (緯度・経度) を `{{location}}` に入れて送るか。既定は送らない
+    public var sendsLocation: Bool = false
 
     public init(
         id: UUID = UUID(),
@@ -94,7 +96,7 @@ public struct Destination: Codable, Hashable, Identifiable, Sendable {
     }
 
     private enum CodingKeys: String, CodingKey {
-        case id, name, kind, url, method, headers, bodyEncoding, bodyTemplate, textPrefix, textSuffix, isEnabled
+        case id, name, kind, url, method, headers, bodyEncoding, bodyTemplate, textPrefix, textSuffix, isEnabled, sendsLocation
     }
 
     /// 前後の文が入る前に保存された設定 (キーが無い) も読めるようにする
@@ -112,6 +114,7 @@ public struct Destination: Codable, Hashable, Identifiable, Sendable {
         textSuffix = try c.decodeIfPresent(String.self, forKey: .textSuffix) ?? ""
         // 複数送信の前の設定 (キーが無い) は DestinationConfig が既定の送り先だけ有効に直す
         isEnabled = try c.decodeIfPresent(Bool.self, forKey: .isEnabled) ?? true
+        sendsLocation = try c.decodeIfPresent(Bool.self, forKey: .sendsLocation) ?? false
     }
 
     /// 画面 (iPhone・時計・Siri・履歴) に出す名前。名前が空なら URL のホスト、それも無ければ種類の名前。
@@ -149,13 +152,16 @@ public struct OutgoingMessage: Codable, Hashable, Identifiable, Sendable {
     public var destinationID: UUID
     /// どこから送ったか (`watch` / `phone` / `siri` など)。
     public var source: String
+    /// 入力したときの場所。送り先が場所を送るときだけ付く (無ければ nil)
+    public var location: MemoLocation?
 
-    public init(id: UUID = UUID(), text: String, createdAt: Date = Date(), destinationID: UUID, source: String) {
+    public init(id: UUID = UUID(), text: String, createdAt: Date = Date(), destinationID: UUID, source: String, location: MemoLocation? = nil) {
         self.id = id
         self.text = text
         self.createdAt = createdAt
         self.destinationID = destinationID
         self.source = source
+        self.location = location
     }
 }
 

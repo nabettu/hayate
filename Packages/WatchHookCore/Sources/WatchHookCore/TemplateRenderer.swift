@@ -5,12 +5,14 @@ public struct TemplateContext: Sendable {
     public var messageID: UUID
     public var sentAt: Date
     public var source: String
+    public var location: MemoLocation?
 
-    public init(text: String, messageID: UUID, sentAt: Date, source: String) {
+    public init(text: String, messageID: UUID, sentAt: Date, source: String, location: MemoLocation? = nil) {
         self.text = text
         self.messageID = messageID
         self.sentAt = sentAt
         self.source = source
+        self.location = location
     }
 }
 
@@ -25,6 +27,7 @@ public enum TemplateRenderer {
             "id": context.messageID.uuidString,
             "sentAt": iso.string(from: context.sentAt),
             "source": context.source,
+            "location": context.location?.text ?? "",
         ]
 
         var out = ""

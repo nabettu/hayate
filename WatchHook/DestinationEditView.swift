@@ -56,6 +56,12 @@ struct DestinationEditView: View {
                         }
 
                         Section {
+                            Toggle("場所を送る", isOn: $destination.sendsLocation)
+                        } footer: {
+                            Text("メモを入力した場所 (緯度,経度) を、本文の {{location}} の位置に入れて送ります。本文に {{location}} が無いと送られません。入力のときに 1 回だけ場所を取り、取れなかったときは空になります。時計で入力したメモは、時計の「場所を付ける」もオンのときだけ付きます。")
+                        }
+
+                        Section {
                             ForEach($destination.headers) { $h in
                                 HeaderRow(header: $h)
                             }

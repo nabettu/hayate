@@ -89,10 +89,12 @@ public struct Memo: Codable, Hashable, Identifiable, Sendable {
     public var wantsPhoneIntegrations: Bool
     /// 入力した端末のタイムゾーン (Markdown の日付・時刻をあとで送り直しても変えないため)。前の形式には無い
     public var timeZoneID: String?
+    /// 入力したときの場所 (緯度・経度)。場所を送る送り先があり、取れたときだけ入る。前の形式には無い
+    public var location: MemoLocation?
 
     public init(id: UUID = UUID(), text: String, createdAt: Date = Date(), source: String, origin: DeviceRole,
                 deliveries: [Delivery] = [], phoneSync: PhoneSyncState? = nil, wantsPhoneIntegrations: Bool = true,
-                timeZoneID: String? = TimeZone.current.identifier) {
+                timeZoneID: String? = TimeZone.current.identifier, location: MemoLocation? = nil) {
         self.id = id
         self.text = text
         self.createdAt = createdAt
@@ -102,6 +104,7 @@ public struct Memo: Codable, Hashable, Identifiable, Sendable {
         self.phoneSync = phoneSync
         self.wantsPhoneIntegrations = wantsPhoneIntegrations
         self.timeZoneID = timeZoneID
+        self.location = location
     }
 
     /// 入力したときのタイムゾーン。分からなければ今のもの。
@@ -135,9 +138,11 @@ public struct Memo: Codable, Hashable, Identifiable, Sendable {
     }
 
     /// webhook へ送るときの中身。webhook 以外なら nil。
-    public func outgoingMessage(for delivery: Delivery) -> OutgoingMessage? {
+    /// `sendsLocation` は送り先の「場所を送る」設定。オフなら場所は載せない (入力の時点で取っていても送らない)。
+    public func outgoingMessage(for delivery: Delivery, sendsLocation: Bool) -> OutgoingMessage? {
         guard case .webhook(let destinationID, _) = delivery.target else { return nil }
-        return OutgoingMessage(id: id, text: delivery.text, createdAt: createdAt, destinationID: destinationID, source: source)
+        return OutgoingMessage(id: id, text: delivery.text, createdAt: createdAt, destinationID: destinationID, source: source,
+                               location: sendsLocation ? location : nil)
     }
 }
 

@@ -156,8 +156,13 @@ actor MemoDispatcher {
         #if os(iOS)
         deliveries += MemoPlanner.phoneDeliveries(text: text, settings: IntegrationStore.load())
         #endif
+        // 場所を送る送り先があるときだけ取る (時計は時計の設定もオンのときだけ)。取れなければ場所なしで保存する
+        var location: MemoLocation?
+        if LocationPolicy.shouldCapture(origin: Self.role, watchAttachEnabled: WatchLocationSetting.isOn, destinations: config.enabledDestinations) {
+            location = await LocationCapture.shared.current()
+        }
         let memo = Memo(text: text, source: source, origin: Self.role, deliveries: deliveries,
-                        phoneSync: Self.role == .watch ? .waiting : nil)
+                        phoneSync: Self.role == .watch ? .waiting : nil, location: location)
         log.add(memo)
         guard persist() else {
             // 一度も書けていなければ、アプリが終われば消える。保存したとは言わない
@@ -261,7 +266,7 @@ actor MemoDispatcher {
             guard destination.isEnabled || delivery.isManual else {
                 return .permanent(reason: String(localized: "送り先が無効になっています"))
             }
-            guard let message = memo.outgoingMessage(for: delivery) else { return .permanent(reason: "invalid") }
+            guard let message = memo.outgoingMessage(for: delivery, sendsLocation: destination.sendsLocation) else { return .permanent(reason: "invalid") }
             return await sender.send(message, to: destination).deliveryOutcome
         case .reminder:
             #if os(iOS)

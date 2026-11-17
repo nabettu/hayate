@@ -24,6 +24,7 @@
 		52ADC18493249E965488EA75 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E6BED828B4ACCECAEBB203D2 /* Localizable.xcstrings */; };
 		5658AA0ABD7E57DA15F301AB /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6D2C5D54DC13FB85BB400C /* KeychainStore.swift */; };
 		5FF82324BCFD834C950C1E2C /* InfoPlist.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = 74D52C74BA8ACE895BE52108 /* InfoPlist.xcstrings */; };
+		62E552E3BA7BF25AE80E05B9 /* LocationCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6506B1C05FAE0D3763234F /* LocationCapture.swift */; };
 		64E8B656DF51490748112B20 /* AppShortcuts.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = CC4749F3AF054424EB80B265 /* AppShortcuts.xcstrings */; };
 		6B0CE23EC153A6D4B9E55481 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = E6BED828B4ACCECAEBB203D2 /* Localizable.xcstrings */; };
 		6B76E0B66E85F4CB6F19999A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3D762826EAC49BE670D2C5ED /* Assets.xcassets */; };
@@ -57,6 +58,7 @@
 		F370D76C9515F0D003A51F92 /* ConfigStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20CB300C3E11A746221BF49 /* ConfigStore.swift */; };
 		F696965CC4E82ACE2421ECC9 /* IntegrationSettingsViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7FDC4FF39182E8BDB9D7BA7 /* IntegrationSettingsViews.swift */; };
 		FD0F1EF9AC1E00DC3D54A04E /* CosmosArt.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC3DE07F831229B2A48CBAB /* CosmosArt.swift */; };
+		FF22D5C61579ACE02351F9EB /* LocationCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6506B1C05FAE0D3763234F /* LocationCapture.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +125,7 @@
 		92463EAA580E1CDDB1766B7B /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		9345206AC65D94AA74FA9A28 /* Cosmos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cosmos.swift; sourceTree = "<group>"; };
 		94E54804BFBEAEC43F24515A /* WatchSync.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSync.swift; sourceTree = "<group>"; };
+		9D6506B1C05FAE0D3763234F /* LocationCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCapture.swift; sourceTree = "<group>"; };
 		9E374D443A268B6368C1CDA7 /* SyncKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncKeys.swift; sourceTree = "<group>"; };
 		A7FDC4FF39182E8BDB9D7BA7 /* IntegrationSettingsViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntegrationSettingsViews.swift; sourceTree = "<group>"; };
 		A8FFB5F28C2B4D483D6BAFCD /* ComposeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComposeView.swift; sourceTree = "<group>"; };
@@ -252,6 +255,7 @@
 				CAC3DE07F831229B2A48CBAB /* CosmosArt.swift */,
 				AF6D2C5D54DC13FB85BB400C /* KeychainStore.swift */,
 				E6BED828B4ACCECAEBB203D2 /* Localizable.xcstrings */,
+				9D6506B1C05FAE0D3763234F /* LocationCapture.swift */,
 				C51DC2D6DE93FF0D8CC6D784 /* MemoDispatcher.swift */,
 				350DBBECA4F315EE8E0398EA /* MemoFeedback.swift */,
 				E95B75A74B1D2FEECD6F845C /* SendTextIntent.swift */,
@@ -476,6 +480,7 @@
 				74C4234C94741A58759FCD44 /* HelpView.swift in Sources */,
 				F696965CC4E82ACE2421ECC9 /* IntegrationSettingsViews.swift in Sources */,
 				5658AA0ABD7E57DA15F301AB /* KeychainStore.swift in Sources */,
+				FF22D5C61579ACE02351F9EB /* LocationCapture.swift in Sources */,
 				E9A89B0FEEFC71805CFDAD33 /* MemoDispatcher.swift in Sources */,
 				CDB35DB27AD3F4B3E2B63F42 /* MemoFeedback.swift in Sources */,
 				7F19D0A181E05BC650553D73 /* MemoListView.swift in Sources */,
@@ -496,6 +501,7 @@
 				9BADFE073976FF6AE40C8BEE /* CosmosArt.swift in Sources */,
 				3733E2E641CF106FBB3C0617 /* KeychainStore.swift in Sources */,
 				74150B6C3C58C1226668B976 /* LauncherViews.swift in Sources */,
+				62E552E3BA7BF25AE80E05B9 /* LocationCapture.swift in Sources */,
 				70262C33CCE09F56DFE606AF /* MemoDispatcher.swift in Sources */,
 				E176908E86BC4AE26F82AD49 /* MemoFeedback.swift in Sources */,
 				C2520D842885B2143941ECDF /* SendTextIntent.swift in Sources */,
