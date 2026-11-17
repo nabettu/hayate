@@ -56,6 +56,24 @@ struct DestinationEditView: View {
                         }
 
                         Section {
+                            Toggle("場所を送る", isOn: $destination.sendsLocation)
+                                .onChange(of: destination.sendsLocation) { _, on in
+                                    // Siri は裏で動くので、許可はここ (前面) で聞いておく
+                                    if on { LocationCapture.prepareAuthorization() }
+                                }
+                            if destination.sendsLocation && !LocationTemplate.mentionsLocation(destination.bodyTemplate) {
+                                Label("本文に {{location}} が無いので、場所は送られません", systemImage: "exclamationmark.triangle")
+                                    .font(.footnote)
+                                    .foregroundStyle(.orange)
+                                if let added = LocationTemplate.adding(to: destination.bodyTemplate, encoding: destination.bodyEncoding) {
+                                    Button("本文に location の項目を足す") { destination.bodyTemplate = added }
+                                }
+                            }
+                        } footer: {
+                            Text("メモを入力した場所 (緯度,経度) を、本文の {{location}} の位置に入れて送ります。本文に {{location}} が無いと送られません。入力のときに 1 回だけ場所を取り、取れなかったときは空になります。時計で入力したメモは、時計の「場所を付ける」もオンのときだけ付きます。")
+                        }
+
+                        Section {
                             ForEach($destination.headers) { $h in
                                 HeaderRow(header: $h)
                             }

@@ -78,7 +78,7 @@ public enum RequestBuilder {
 
         let body = TemplateRenderer.render(
             destination.bodyTemplate,
-            context: TemplateContext(text: message.text, messageID: message.id, sentAt: now, source: message.source),
+            context: TemplateContext(text: message.text, messageID: message.id, sentAt: now, source: message.source, location: message.location),
             encoding: destination.bodyEncoding
         )
         let data = Data(body.utf8)

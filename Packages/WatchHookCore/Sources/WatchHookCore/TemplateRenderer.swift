@@ -5,18 +5,31 @@ public struct TemplateContext: Sendable {
     public var messageID: UUID
     public var sentAt: Date
     public var source: String
+    public var location: MemoLocation?
 
-    public init(text: String, messageID: UUID, sentAt: Date, source: String) {
+    public init(text: String, messageID: UUID, sentAt: Date, source: String, location: MemoLocation? = nil) {
         self.text = text
         self.messageID = messageID
         self.sentAt = sentAt
         self.source = source
+        self.location = location
     }
 }
 
 /// 本文テンプレートの `{{name}}` を差し込む。
 /// 差し込んだ値の中にある `{{...}}` は再展開しない (1 回の走査で置き換える)。
 public enum TemplateRenderer {
+    /// 本文に書かれた `{{name}}` の名前 (前後の空白を除く)。`render` と同じ読み方。
+    public static func placeholderNames(in template: String) -> [String] {
+        var names: [String] = []
+        var rest = template[...]
+        while let open = rest.range(of: "{{"), let close = rest[open.upperBound...].range(of: "}}") {
+            names.append(rest[open.upperBound..<close.lowerBound].trimmingCharacters(in: .whitespaces))
+            rest = rest[close.upperBound...]
+        }
+        return names
+    }
+
     public static func render(_ template: String, context: TemplateContext, encoding: BodyEncoding) -> String {
         let iso = ISO8601DateFormatter()
         iso.timeZone = TimeZone(identifier: "UTC")
@@ -25,6 +38,7 @@ public enum TemplateRenderer {
             "id": context.messageID.uuidString,
             "sentAt": iso.string(from: context.sentAt),
             "source": context.source,
+            "location": context.location?.text ?? "",
         ]
 
         var out = ""

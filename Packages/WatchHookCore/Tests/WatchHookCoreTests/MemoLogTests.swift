@@ -249,11 +249,11 @@ struct MemoLogTests {
     @Test func 送信用のメッセージはメモの_ID_を使う() {
         let a = webhook(destA)
         let m = memo(deliveries: [a])
-        let out = m.outgoingMessage(for: a)
+        let out = m.outgoingMessage(for: a, sendsLocation: false)
         #expect(out?.id == m.id)
         #expect(out?.destinationID == destA)
         #expect(out?.text == a.text)
-        #expect(m.outgoingMessage(for: Delivery(target: .reminder(listName: "L"), owner: .phone, text: "x")) == nil)
+        #expect(m.outgoingMessage(for: Delivery(target: .reminder(listName: "L"), owner: .phone, text: "x"), sendsLocation: false) == nil)
     }
 }
 

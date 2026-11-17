@@ -47,6 +47,8 @@ targets:
         UISupportedInterfaceOrientations: [UIInterfaceOrientationPortrait]
         # 合図の言葉で始めたメモをリマインダーに追加する (同じメモを二重に足さないよう、既存の項目を読む)
         NSRemindersFullAccessUsageDescription: 合図の言葉で始めたメモを、選んだリストにリマインダーとして追加します。
+        # 「場所を送る」を選んだ送り先へ、入力した場所 (緯度・経度) を送る。入力のときに 1 回だけ使う
+        NSLocationWhenInUseUsageDescription: 場所を送る設定の送り先へ、メモを入力した場所を送るために使います。
         # リマインダーの URL 欄 (hayate://memo/<id>) からメモを開く
         CFBundleURLTypes:
           - CFBundleURLName: com.nabettu.watchhook
@@ -81,6 +83,7 @@ targets:
           - INAlternativeAppName: Wrist Note
         WKApplication: true
         WKCompanionAppBundleIdentifier: com.nabettu.watchhook
+        NSLocationWhenInUseUsageDescription: 場所を送る設定の送り先へ、メモを入力した場所を送るために使います。
         ITSAppUsesNonExemptEncryption: false
     settings:
       base:

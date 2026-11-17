@@ -824,6 +824,276 @@
           }
         }
       }
+    },
+    "NSLocationWhenInUseUsageDescription" : {
+      "comment" : "Privacy - Location When In Use Usage Description",
+      "extractionState" : "manual",
+      "localizations" : {
+        "ar" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "يُستخدم لإرسال الموقع الذي أُدخلت فيه المذكرة إلى وجهة إعداد «إرسال الموقع»."
+          }
+        },
+        "bn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "মেমো লেখার জায়গাটি «অবস্থান পাঠান» সেটিংয়ের গন্তব্যে পাঠাতে ব্যবহৃত হয়।"
+          }
+        },
+        "ca" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "S'utilitza per enviar la ubicació on s'ha introduït la nota al destí de la configuració «Envia la ubicació»."
+          }
+        },
+        "cs" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slouží k odeslání polohy, kde byla poznámka zadána, do cíle nastavení „Odeslat polohu“."
+          }
+        },
+        "da" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bruges til at sende den placering, hvor memoen blev indtastet, til destinationen i indstillingen \"Send placering\"."
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wird verwendet, um den Ort, an dem die Notiz eingegeben wurde, an das Ziel der Einstellung „Standort senden“ zu senden."
+          }
+        },
+        "el" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Χρησιμοποιείται για την αποστολή της τοποθεσίας όπου καταχωρίστηκε η σημείωση στον προορισμό της ρύθμισης «Αποστολή τοποθεσίας»."
+          }
+        },
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Used to send the location where the memo was entered to the destination of the Send Location setting."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Se usa para enviar la ubicación donde se introdujo la nota al destino de la configuración «Enviar ubicación»."
+          }
+        },
+        "fi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Käytetään lähettämään muistion kirjoituspaikka «Lähetä sijainti» -asetuksen kohteeseen."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sert à envoyer la position où le mémo a été saisi à la destination du réglage « Envoyer la position »."
+          }
+        },
+        "gu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "મેમો દાખલ કર્યો એ સ્થાન «સ્થાન મોકલો» સેટિંગના ગંતવ્ય પર મોકલવા માટે વપરાય છે."
+          }
+        },
+        "he" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "משמש לשליחת המיקום שבו הוזן המזכר אל היעד של ההגדרה «שלח מיקום»."
+          }
+        },
+        "hi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "जिस स्थान पर मेमो दर्ज किया गया, उसे «स्थान भेजें» सेटिंग के गंतव्य पर भेजने के लिए उपयोग किया जाता है।"
+          }
+        },
+        "hr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Koristi se za slanje lokacije na kojoj je bilješka unesena na odredište postavke „Pošalji lokaciju“."
+          }
+        },
+        "hu" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Azt a helyet küldi el, ahol a jegyzet készült, a „Hely küldése” beállítás céljába."
+          }
+        },
+        "id" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Digunakan untuk mengirim lokasi tempat memo dimasukkan ke tujuan pengaturan Kirim Lokasi."
+          }
+        },
+        "it" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usato per inviare la posizione in cui è stata inserita la nota alla destinazione dell'impostazione «Invia posizione»."
+          }
+        },
+        "kn" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ಮೆಮೊ ನಮೂದಿಸಿದ ಸ್ಥಳವನ್ನು «ಸ್ಥಳ ಕಳುಹಿಸಿ» ಸೆಟ್ಟಿಂಗ್‌ನ ಗಮ್ಯಸ್ಥಾನಕ್ಕೆ ಕಳುಹಿಸಲು ಬಳಸಲಾಗುತ್ತದೆ."
+          }
+        },
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "메모를 입력한 위치를 '위치 보내기' 설정의 대상으로 보내는 데 사용합니다."
+          }
+        },
+        "ml" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "മെമോ നൽകിയ ലൊക്കേഷൻ «ലൊക്കേഷൻ അയയ്ക്കുക» ക്രമീകരണത്തിലെ ലക്ഷ്യത്തിലേക്ക് അയയ്ക്കാൻ ഉപയോഗിക്കുന്നു."
+          }
+        },
+        "mr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "मेमो प्रविष्ट केलेले स्थान «स्थान पाठवा» सेटिंगच्या गंतव्यस्थानावर पाठवण्यासाठी वापरले जाते."
+          }
+        },
+        "ms" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Digunakan untuk menghantar lokasi tempat memo dimasukkan ke destinasi tetapan Hantar lokasi."
+          }
+        },
+        "nb" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Brukes til å sende posisjonen der notatet ble skrevet, til mottakeren i innstillingen Send posisjon."
+          }
+        },
+        "nl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Wordt gebruikt om de locatie waar de memo is ingevoerd, te verzenden naar de bestemming van de instelling Locatie verzenden."
+          }
+        },
+        "or" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ମେମୋ ଲେଖାଯାଇଥିବା ଅବସ୍ଥାନକୁ «ଅବସ୍ଥାନ ପଠାନ୍ତୁ» ସେଟିଂର ଗନ୍ତବ୍ୟକୁ ପଠାଇବା ପାଇଁ ବ୍ୟବହୃତ ହୁଏ।"
+          }
+        },
+        "pa" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ਮੈਮੋ ਦਰਜ ਕਰਨ ਵਾਲਾ ਸਥਾਨ «ਸਥਾਨ ਭੇਜੋ» ਸੈਟਿੰਗ ਦੀ ਮੰਜ਼ਿਲ ਨੂੰ ਭੇਜਣ ਲਈ ਵਰਤਿਆ ਜਾਂਦਾ ਹੈ।"
+          }
+        },
+        "pl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Służy do wysyłania lokalizacji, w której wprowadzono notatkę, do miejsca docelowego ustawienia „Wyślij lokalizację”."
+          }
+        },
+        "pt-BR" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usado para enviar a localização onde a nota foi digitada ao destino da configuração \"Enviar localização\"."
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Usado para enviar a localização onde a nota foi introduzida para o destino da definição \"Enviar localização\"."
+          }
+        },
+        "ro" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Este folosit pentru a trimite locația în care a fost introdus memo-ul la destinația setării „Trimite locația”."
+          }
+        },
+        "ru" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Используется, чтобы отправить место, где была введена заметка, в пункт назначения настройки «Отправить местоположение»."
+          }
+        },
+        "sk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Slúži na odoslanie polohy, kde bola poznámka zadaná, do cieľa nastavenia „Odoslať polohu“."
+          }
+        },
+        "sl" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uporablja se za pošiljanje lokacije, na kateri je bil zapis vnesen, na cilj nastavitve »Pošlji lokacijo«."
+          }
+        },
+        "sv" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Används för att skicka platsen där anteckningen skrevs till målet för inställningen Skicka plats."
+          }
+        },
+        "ta" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "குறிப்பு உள்ளிடப்பட்ட இடத்தை «இருப்பிடத்தை அனுப்பு» அமைப்பின் சேருமிடத்திற்கு அனுப்ப பயன்படுகிறது."
+          }
+        },
+        "te" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "మెమో నమోదు చేసిన స్థానాన్ని «స్థానాన్ని పంపు» సెట్టింగ్ గమ్యస్థానానికి పంపడానికి ఉపయోగిస్తారు."
+          }
+        },
+        "th" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ใช้เพื่อส่งตำแหน่งที่บันทึกข้อความไปยังปลายทางของการตั้งค่า «ส่งตำแหน่ง»"
+          }
+        },
+        "tr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Not girilen konumu, «Konumu gönder» ayarındaki hedefe göndermek için kullanılır."
+          }
+        },
+        "uk" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Використовується, щоб надсилати місцезнаходження, де було введено нотатку, до адресата налаштування «Надіслати місцезнаходження»."
+          }
+        },
+        "ur" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "جہاں میمو درج کیا گیا وہ مقام «مقام بھیجیں» ترتیب کی منزل پر بھیجنے کے لیے استعمال ہوتا ہے۔"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Dùng để gửi vị trí nơi ghi chú được nhập đến đích của cài đặt «Gửi vị trí»."
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "用于将输入备忘时的位置发送到“发送位置”设置中的目标。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "用於將輸入備忘時的位置傳送到「傳送位置」設定中的目的地。"
+          }
+        }
+      }
     }
   },
   "version" : "1.0"

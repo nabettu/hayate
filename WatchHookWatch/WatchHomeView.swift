@@ -23,6 +23,8 @@ struct WatchHomeView: View {
     @State private var path: [UUID] = []
     /// 自動で開こうとして画面が無く開けなかった回数 (開き直しを無限に続けない。裏へ回ったら数え直す)。
     @State private var unopenedRetries = 0
+    /// 時計で入力したメモに場所を付けるか (表示の切り替えに使う。保存先は WatchLocationSetting)
+    @State private var attachLocation = WatchLocationSetting.isOn
 
     private enum Page: Hashable { case input, memos }
 
@@ -119,6 +121,7 @@ struct WatchHomeView: View {
                         .frame(minHeight: 22)
 
                     destinationsLabel
+                    locationToggle
 
                     #if DEBUG
                     VStack(spacing: 4) {
@@ -155,6 +158,25 @@ struct WatchHomeView: View {
         .font(.footnote)
         .lineLimit(1)
         .foregroundStyle(Cosmos.lavender)
+    }
+
+    /// 時計で入力したメモに場所を付けるか。場所を送る送り先があるときだけ出す (時計だけの設定)。
+    @ViewBuilder private var locationToggle: some View {
+        if store.config.enabledDestinations.contains(where: \.sendsLocation) {
+            Button {
+                attachLocation.toggle()
+                WatchLocationSetting.isOn = attachLocation
+                // 許可は前面で聞いておく (Siri は裏で動き、許可の画面を出せないため)
+                if attachLocation { LocationCapture.prepareAuthorization() }
+            } label: {
+                Label(attachLocation ? "場所を付ける" : "場所は付けない",
+                      systemImage: attachLocation ? "mappin.and.ellipse" : "mappin.slash")
+                    .font(.caption2)
+                    .lineLimit(1)
+            }
+            .buttonStyle(.plain)
+            .foregroundStyle(Cosmos.lavender)
+        }
     }
 
     /// iPhone から届いた設定を時計に保存できなかったとき。
