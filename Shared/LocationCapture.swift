@@ -16,11 +16,13 @@ enum LocationCapture {
     /// 送り先で「場所を送る」をオンにしたときに、前面で権限を聞いておく。
     /// Siri は裏で動くため、権限の問い合わせは前面の画面からしかできない。
     static func prepareAuthorization() {
-        let manager = CLLocationManager()
-        if manager.authorizationStatus == .notDetermined {
-            manager.requestWhenInUseAuthorization()
+        // 許可の画面が出て答えが返るまで manager を生かしておく (途中で解放するとダイアログが出ない)
+        if authManager.authorizationStatus == .notDetermined {
+            authManager.requestWhenInUseAuthorization()
         }
     }
+
+    private static let authManager = CLLocationManager()
 }
 
 /// 1 回の測位の要求。結果が出た・時間切れ・失敗のどれか 1 回だけ答えを返す。
