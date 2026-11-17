@@ -117,12 +117,6 @@ public struct MemoLog: Codable, Hashable, Sendable {
     }
 
     /// 保存しきれなかったメモを、消した記録 (墓標) を残さずに取り除く (あとで送り直されたら受け取れるように)。
-    /// 入力のあとで取れた場所を入れる (保存のあとに測位するため)。
-    public mutating func setLocation(_ location: MemoLocation, memoID: UUID) {
-        guard let m = memos.firstIndex(where: { $0.id == memoID }) else { return }
-        memos[m].location = location
-    }
-
     public mutating func discard(memoID: UUID) {
         memos.removeAll { $0.id == memoID }
     }

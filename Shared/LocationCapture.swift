@@ -35,12 +35,13 @@ final class LocationCapture: NSObject, CLLocationManagerDelegate {
         }
     }
 
-    /// 今いる場所。`timeout` を過ぎたら nil。前の要求がまだ残っていれば nil にして置き換える。
+    /// 今いる場所。`timeout` を過ぎたら nil。別の要求が待っているあいだは測らず nil
+    /// (測位を途中で取り消せず、遅れて届いた結果やエラーを次の要求に付けないため)。
     func current(timeout: Duration = .seconds(5)) async -> MemoLocation? {
+        if pending != nil { return nil }
         nextID += 1
         let id = nextID
         return await withCheckedContinuation { continuation in
-            finish(id: nil, value: nil)
             pending = Request(id: id, requestedAt: Date(), continuation: continuation)
             Task { @MainActor in
                 try? await Task.sleep(for: timeout)
