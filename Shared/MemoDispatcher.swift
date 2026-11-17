@@ -171,7 +171,7 @@ actor MemoDispatcher {
             return nil
         }
         if wantsLocation {
-            let location = await LocationCapture.shared.current()
+            let location = await LocationCapture.current()
             locating.remove(memo.id)
             if let location {
                 log.setLocation(location, memoID: memo.id)
@@ -452,6 +452,8 @@ actor MemoDispatcher {
 
     /// 相手の端末へ写しを送る。時計はすべて、iPhone は時計で入力されたものだけ。
     private func shareWithPeer(_ memo: Memo) {
+        // 場所を待っているあいだは渡さない (場所なしの写しを先に渡さないため。取り終えたら record が渡す)
+        guard !locating.contains(memo.id) else { return }
         #if os(watchOS)
         WatchSync.shared.sendMemo(memo, urgent: false)
         #else
