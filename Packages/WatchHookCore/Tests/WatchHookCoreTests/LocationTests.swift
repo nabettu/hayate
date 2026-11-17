@@ -156,4 +156,15 @@ struct LocationTemplateTests {
         #expect(LocationTemplate.adding(to: "{ broken", encoding: .json) == nil)
         #expect(LocationTemplate.adding(to: "{{text}}", encoding: .plain) == nil)
     }
+
+    @Test func 空白入りのプレースホルダーも場所ありとみなす() {
+        #expect(LocationTemplate.mentionsLocation(#"{"w":"{{ location }}"}"#))
+        #expect(!LocationTemplate.mentionsLocation(#"{"w":"{{text}}","location":"x"}"#))
+        #expect(LocationTemplate.adding(to: #"{"w":"{{ location }}"}"#, encoding: .json) == nil)
+    }
+
+    @Test func フォームのキーはデコードしてから比べる() {
+        #expect(LocationTemplate.adding(to: "%6Cocation=office", encoding: .form) == nil)
+        #expect(LocationTemplate.adding(to: "=location", encoding: .form) == "=location&location={{location}}")
+    }
 }

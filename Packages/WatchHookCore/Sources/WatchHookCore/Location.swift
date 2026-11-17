@@ -35,11 +35,15 @@ public enum LocationFix {
 /// 本文に `{{location}}` が無いとき、ボタンで足す項目。送り先によって受け付ける項目が決まっているので、
 /// 自動では足さず、押されたときだけ足す。足せない本文 (JSON のオブジェクトでない・同じ名前の項目がある・テキスト) は nil。
 public enum LocationTemplate {
-    static let placeholder = "{{location}}"
     static let key = "location"
 
+    /// 本文に場所の差し込み (`{{location}}`・`{{ location }}`) があるか。
+    public static func mentionsLocation(_ template: String) -> Bool {
+        TemplateRenderer.placeholderNames(in: template).contains(key)
+    }
+
     public static func adding(to template: String, encoding: BodyEncoding) -> String? {
-        guard !template.contains(placeholder) else { return nil }
+        guard !mentionsLocation(template) else { return nil }
         switch encoding {
         case .json:
             guard let object = try? JSONSerialization.jsonObject(with: Data(template.utf8)) as? [String: Any],
@@ -54,7 +58,11 @@ public enum LocationTemplate {
             result.insert(contentsOf: (isEmpty ? "" : ",") + #""location":"{{location}}""#, at: insertAt)
             return result
         case .form:
-            let names = template.split(separator: "&").map { $0.split(separator: "=", maxSplits: 1).first.map(String.init) ?? "" }
+            // 受け取る側と同じく、キーは + を空白に・%XX を戻してから比べる
+            let names = template.split(separator: "&", omittingEmptySubsequences: false).map { item in
+                let raw = item.split(separator: "=", maxSplits: 1, omittingEmptySubsequences: false).first.map(String.init) ?? ""
+                return raw.replacingOccurrences(of: "+", with: " ").removingPercentEncoding ?? raw
+            }
             guard !names.contains(key) else { return nil }
             let field = "location={{location}}"
             return template.isEmpty ? field : template + "&" + field

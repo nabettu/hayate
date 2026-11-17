@@ -61,7 +61,7 @@ struct DestinationEditView: View {
                                     // Siri は裏で動くので、許可はここ (前面) で聞いておく
                                     if on { LocationCapture.prepareAuthorization() }
                                 }
-                            if destination.sendsLocation && !destination.bodyTemplate.contains("{{location}}") {
+                            if destination.sendsLocation && !LocationTemplate.mentionsLocation(destination.bodyTemplate) {
                                 Label("本文に {{location}} が無いので、場所は送られません", systemImage: "exclamationmark.triangle")
                                     .font(.footnote)
                                     .foregroundStyle(.orange)

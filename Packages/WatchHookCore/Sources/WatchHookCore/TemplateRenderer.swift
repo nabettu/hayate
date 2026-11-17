@@ -19,6 +19,17 @@ public struct TemplateContext: Sendable {
 /// 本文テンプレートの `{{name}}` を差し込む。
 /// 差し込んだ値の中にある `{{...}}` は再展開しない (1 回の走査で置き換える)。
 public enum TemplateRenderer {
+    /// 本文に書かれた `{{name}}` の名前 (前後の空白を除く)。`render` と同じ読み方。
+    public static func placeholderNames(in template: String) -> [String] {
+        var names: [String] = []
+        var rest = template[...]
+        while let open = rest.range(of: "{{"), let close = rest[open.upperBound...].range(of: "}}") {
+            names.append(rest[open.upperBound..<close.lowerBound].trimmingCharacters(in: .whitespaces))
+            rest = rest[close.upperBound...]
+        }
+        return names
+    }
+
     public static func render(_ template: String, context: TemplateContext, encoding: BodyEncoding) -> String {
         let iso = ISO8601DateFormatter()
         iso.timeZone = TimeZone(identifier: "UTC")
