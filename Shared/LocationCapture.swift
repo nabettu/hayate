@@ -18,8 +18,8 @@ final class LocationCapture: NSObject, CLLocationManagerDelegate {
     private let manager = CLLocationManager()
     private var pending: Request?
     private var nextID = 0
-    /// `requestLocation()` の結果がまだ返っていない (返っていないあいだ、もう一度頼んでも無視される)
-    private var isMeasuring = false
+    /// `requestLocation()` の結果がまだ返っていない時刻 (返っていないあいだ、もう一度頼んでも無視される)
+    private var measuringSince: Date?
 
     private override init() {
         super.init()
@@ -35,10 +35,11 @@ final class LocationCapture: NSObject, CLLocationManagerDelegate {
         }
     }
 
-    /// 今いる場所。`timeout` を過ぎたら nil。別の要求が待っているあいだは測らず nil
-    /// (測位を途中で取り消せず、遅れて届いた結果やエラーを次の要求に付けないため)。
+    /// 今いる場所。`timeout` を過ぎたら nil。前の測位がまだ返っていないあいだは測らず nil
+    /// (測位は途中で取り消せず、遅れたエラーを次の要求に付けないため。前の測位が 30 秒以上返らなければ諦めて測り直す)。
     func current(timeout: Duration = .seconds(5)) async -> MemoLocation? {
         if pending != nil { return nil }
+        if let since = measuringSince, Date().timeIntervalSince(since) < 30 { return nil }
         nextID += 1
         let id = nextID
         return await withCheckedContinuation { continuation in
@@ -54,8 +55,8 @@ final class LocationCapture: NSObject, CLLocationManagerDelegate {
     private func start() {
         switch manager.authorizationStatus {
         case .authorizedWhenInUse, .authorizedAlways:
-            if !isMeasuring {
-                isMeasuring = true
+            if measuringSince == nil {
+                measuringSince = Date()
                 manager.requestLocation()
             }
         case .notDetermined:
@@ -92,7 +93,7 @@ final class LocationCapture: NSObject, CLLocationManagerDelegate {
         guard let last = locations.last else { return }
         let fix = (last.coordinate.latitude, last.coordinate.longitude, last.horizontalAccuracy, last.timestamp)
         Task { @MainActor in
-            self.isMeasuring = false
+            self.measuringSince = nil
             guard let p = self.pending else { return }
             if LocationFix.isUsable(horizontalAccuracy: fix.2, timestamp: fix.3, requestedAt: p.requestedAt) {
                 self.finish(id: nil, value: MemoLocation(latitude: fix.0, longitude: fix.1))
@@ -105,7 +106,7 @@ final class LocationCapture: NSObject, CLLocationManagerDelegate {
 
     nonisolated func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         Task { @MainActor in
-            self.isMeasuring = false
+            self.measuringSince = nil
             self.finish(id: nil, value: nil)
         }
     }

@@ -105,4 +105,14 @@ struct LocationFixTests {
     @Test func 精度が負の測位は無効として使わない() {
         #expect(!LocationFix.isUsable(horizontalAccuracy: -1, timestamp: Date(timeIntervalSince1970: 1_001), requestedAt: requested))
     }
+
+    @Test func 測位の結果は書き換えるだけで入り外せる() {
+        var log = MemoLog(owner: .phone)
+        let memo = Memo(text: "x", source: "phone", origin: .phone)
+        log.add(memo)
+        log.setLocation(MemoLocation(latitude: 1, longitude: 2), memoID: memo.id)
+        #expect(log.memo(id: memo.id)?.location == MemoLocation(latitude: 1, longitude: 2))
+        log.setLocation(nil, memoID: memo.id)
+        #expect(log.memo(id: memo.id)?.location == nil)
+    }
 }

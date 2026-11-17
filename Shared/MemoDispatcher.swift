@@ -158,38 +158,29 @@ actor MemoDispatcher {
         #if os(iOS)
         deliveries += MemoPlanner.phoneDeliveries(text: text, settings: IntegrationStore.load())
         #endif
-
-        // 1) 本文を先に保存する。送り先はまだ付けない (場所を待つあいだに、別の送信が場所なしで送らないように)
-        var memo = Memo(text: text, source: source, origin: Self.role, phoneSync: Self.role == .watch ? .waiting : nil)
+        let wantsLocation = LocationPolicy.shouldCapture(origin: Self.role, watchAttachEnabled: WatchLocationSetting.isOn, destinations: config.enabledDestinations)
+        let memo = Memo(text: text, source: source, origin: Self.role, deliveries: deliveries,
+                        phoneSync: Self.role == .watch ? .waiting : nil)
+        // 場所を取り終えるまで、このメモの送信は止める (場所なしで送らないため)。保存はすぐ行う
+        if wantsLocation { locating.insert(memo.id) }
         log.add(memo)
         guard persist() else {
             // 一度も書けていなければ、アプリが終われば消える。保存したとは言わない
             log.discard(memoID: memo.id)
+            locating.remove(memo.id)
             return nil
         }
-
-        // 2) 場所 (場所を送る送り先があるときだけ)。取れなければ場所なしで送る。待つあいだは iPhone へも渡さない
-        var location: MemoLocation?
-        if LocationPolicy.shouldCapture(origin: Self.role, watchAttachEnabled: WatchLocationSetting.isOn, destinations: config.enabledDestinations) {
-            locating.insert(memo.id)
-            location = await LocationCapture.shared.current()
+        if wantsLocation {
+            let location = await LocationCapture.shared.current()
             locating.remove(memo.id)
-        }
-
-        // 3) 送り先と場所を付けて保存し直す。保存できなければ、送らずにメモだけ残す (場所と送り先を外す)
-        memo.deliveries = deliveries
-        memo.location = location
-        log.discard(memoID: memo.id)
-        log.add(memo)
-        if !persist() {
-            memo.deliveries = []
-            memo.location = nil
-            log.discard(memoID: memo.id)
-            log.add(memo)
-            _ = persist()
+            if let location {
+                log.setLocation(location, memoID: memo.id)
+                // 保存できなければ場所は付けない (送った内容と保存した内容を一致させる)
+                if !persist() { log.setLocation(nil, memoID: memo.id) }
+            }
         }
         #if os(watchOS)
-        WatchSync.shared.sendMemo(memo, urgent: true)
+        WatchSync.shared.sendMemo(log.memo(id: memo.id) ?? memo, urgent: true)
         #endif
         // 1 件目は並べて送る (時計では送り先の数だけ待たせない)
         let refs = memo.deliveries.filter { $0.owner == Self.role }.map { MemoLog.DeliveryRef(memoID: memo.id, deliveryID: $0.id) }
@@ -238,7 +229,7 @@ actor MemoDispatcher {
     private func deliver(_ ref: MemoLog.DeliveryRef) async -> DeliverResult {
         // 消した知らせの控えを読めないあいだは、消したメモかどうか分からないので送らない
         if deletionsUnreadable, !loadPendingDeletions() { return .stop }
-        guard !inFlight.contains(ref.deliveryID), pendingDeletions[ref.memoID] == nil, let memo = log.memo(id: ref.memoID),
+        guard !locating.contains(ref.memoID), !inFlight.contains(ref.deliveryID), pendingDeletions[ref.memoID] == nil, let memo = log.memo(id: ref.memoID),
               let delivery = log.delivery(ref), delivery.owner == Self.role, delivery.status.isPending else { return .skipped }
         inFlight.insert(ref.deliveryID)
         NotificationCenter.default.post(name: Self.didChange, object: nil)  // 「送信中」の表示を出す
@@ -334,7 +325,7 @@ actor MemoDispatcher {
     /// 保存できなければ戻して false (記録の残らない送信をしない)。
     @discardableResult
     func sendLater(memoID: UUID, destination: Destination) async -> Bool {
-        guard recoverIfNeeded(), let memo = log.memo(id: memoID) else { return false }
+        guard recoverIfNeeded(), !locating.contains(memoID), let memo = log.memo(id: memoID) else { return false }
         let delivery = Delivery(target: .webhook(destinationID: destination.id, name: destination.displayName),
                                 owner: .phone, text: destination.wrap(memo.text), isManual: true)
         let before = log
