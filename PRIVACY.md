@@ -17,6 +17,7 @@ This policy describes how Hayate (the iPhone / Apple Watch app, "the app") handl
 ## What is sent elsewhere, only at your direction
 
 - **Webhooks**: memo contents are sent to the destinations you registered and turned on. What happens to the data after that is governed by the policies of those services (Slack, Discord, etc.).
+- **Location**: only for a destination where you turned on "send location", the place where you entered the memo (latitude and longitude, taken once at entry) is sent to that destination as `{{location}}`. Apple Watch memos include it only if you also turned on "attach location" on the watch. The location is not sent to the developer, and it is kept in the app's memo history on the device.
 - **Reminders**: only if you allow it, memos that start with a trigger word are added to the Reminders list you chose on your iPhone. The app reads your reminders to avoid adding duplicates.
 - **Markdown**: memos are appended to files in the folder you chose. If that folder is in iCloud Drive, the files sync to iCloud.
 - **Dictation**: speech is turned into text by the OS (Siri's listening / the watchOS input screen). The app does not receive microphone audio. Audio is handled under Apple's policies.
