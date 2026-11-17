@@ -170,7 +170,7 @@ struct WatchHomeView: View {
                 if attachLocation { LocationCapture.prepareAuthorization() }
             } label: {
                 Label(attachLocation ? "場所を付ける" : "場所は付けない",
-                      systemImage: attachLocation ? "location.fill" : "location.slash")
+                      systemImage: attachLocation ? "mappin.and.ellipse" : "mappin.slash")
                     .font(.caption2)
                     .lineLimit(1)
             }
