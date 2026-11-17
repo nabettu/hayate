@@ -1,6 +1,6 @@
 # WatchHook (アプリ名: Hayate)
 
-Apple Watch の音声入力を webhook へ送るアプリ。画面に出る名前は Hayate、コード・ターゲット・Bundle ID は WatchHook のまま ([docs/NAMING.md](docs/NAMING.md))。全体像は [README.md](README.md)、設計判断は [docs/DESIGN.md](docs/DESIGN.md)、課金 (お試し + 買い切り。2026-11-13 にやめた。経緯だけ) は [docs/BILLING.md](docs/BILLING.md)、無料・OSS 化と機能変更は [docs/FREE_OSS.md](docs/FREE_OSS.md)、予定は [ROADMAP.md](ROADMAP.md)。
+Apple Watch の音声入力を webhook へ送るアプリ。画面に出る名前は Hayate、コード・ターゲット・Bundle ID は WatchHook のまま ([docs/NAMING.md](docs/NAMING.md))。全体像は [README.md](README.md)、設計判断は [docs/DESIGN.md](docs/DESIGN.md)、無料・OSS 化と機能変更は [docs/FREE_OSS.md](docs/FREE_OSS.md)、予定は [ROADMAP.md](ROADMAP.md)。
 
 ## ルール
 
@@ -10,6 +10,7 @@ Apple Watch の音声入力を webhook へ送るアプリ。画面に出る名�
 - 送り先の設定 (認証ヘッダを含む) は Keychain だけに置く。UserDefaults・ファイル・ログに出さない
 - webhook は時計から直接送る (iPhone を中継しない)。理由は docs/DESIGN.md。リマインダー・Markdown は iPhone が受け持つ (メモの正は iPhone。docs/FREE_OSS.md の「実装」)
 - ライセンスは MIT (`LICENSE`)。リポジトリは公開している。秘密 (webhook の URL・鍵)・個人の情報・作者の手元の環境の話をコミットしない
+- docs に書くのは仕様・設計・使い方だけ。課金や価格・商標・競合の調査・審査や App Store Connect の作業記録・公開の判断は書かない (作者の非公開のメモに置く。`CLAUDE.local.md` から辿る)
 - Bundle ID: `com.nabettu.watchhook` / `com.nabettu.watchhook.watchkitapp`。Team `2KDR72P2RA`
 - 文言は日本語で書き、44 言語に訳してある (String Catalog・ストア・スクショ)。文言を足したら訳も足す。手順は [scripts/l10n/README.md](scripts/l10n/README.md)
 - 新しい依存を足さない (今は Apple のフレームワークだけ)。足すなら理由を PR に書き、バージョンを固定する
