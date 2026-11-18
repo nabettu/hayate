@@ -1,13 +1,13 @@
 {
   "iphone": {
     "memos": {
-      "h1": "Kar rečete,\npostane *zapisek*"
+      "h1": "Povejte uri\nin nastane *zapisek*"
     },
     "detail": {
-      "h1": "Dostava\n*po prejemnikih*"
+      "h1": "V Slack in Opomnike\n*samodejno*"
     },
     "integrations": {
-      "h1": "Pošlje v vsako\nvklopljeno *povezavo*"
+      "h1": "Prejemnike izberete\ns *stikalom*"
     },
     "templates": {
       "h1": "Slack in Notion\niz *predlog*"

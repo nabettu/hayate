@@ -1,13 +1,13 @@
 {
   "iphone": {
     "memos": {
-      "h1": "Amit mond,\n*jegyzet* lesz"
+      "h1": "Mondja az órának,\nés kész a *jegyzet*"
     },
     "detail": {
-      "h1": "Kézbesítés\n*célonként*"
+      "h1": "A Slackbe és Emlékeztetőkbe\n*automatikusan*"
     },
     "integrations": {
-      "h1": "Küldés minden\nbekapcsolt *integrációba*"
+      "h1": "Célok kiválasztása\n*kapcsolóval*"
     },
     "templates": {
       "h1": "Slack, Notion\n*sablonból*"

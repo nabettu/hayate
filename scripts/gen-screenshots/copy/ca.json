@@ -1,13 +1,13 @@
 {
   "iphone": {
     "memos": {
-      "h1": "El que dius\nes desa com a *nota*"
+      "h1": "Parla al rellotge\ni es desa com a *nota*"
     },
     "detail": {
-      "h1": "Mira l’entrega\n*per destinació*"
+      "h1": "A Slack i Recordatoris\n*automàticament*"
     },
     "integrations": {
-      "h1": "Envia a cada\n*integració* activa"
+      "h1": "Tria destinacions\namb un *interruptor*"
     },
     "templates": {
       "h1": "Afegeix Slack o Notion\namb *plantilles*"

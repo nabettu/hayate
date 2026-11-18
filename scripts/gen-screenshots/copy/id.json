@@ -1,13 +1,13 @@
 {
   "iphone": {
     "memos": {
-      "h1": "Yang Anda ucapkan\ntersimpan jadi *memo*"
+      "h1": "Bicara ke jam tangan,\ntersimpan jadi *memo*"
     },
     "detail": {
-      "h1": "Lihat pengiriman\n*per tujuan*"
+      "h1": "Ke Slack & Pengingat\n*otomatis*"
     },
     "integrations": {
-      "h1": "Kirim ke setiap\n*integrasi* yang aktif"
+      "h1": "Pilih tujuan\ndengan *sakelar*"
     },
     "templates": {
       "h1": "Tambah Slack, Notion\ndari *templat*"

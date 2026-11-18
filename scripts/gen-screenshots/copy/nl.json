@@ -1,13 +1,13 @@
 {
   "iphone": {
     "memos": {
-      "h1": "Wat je zegt\nwordt een *memo*"
+      "h1": "Praat tegen je horloge,\nhet wordt een *memo*"
     },
     "detail": {
-      "h1": "Bezorging\n*per bestemming*"
+      "h1": "Naar Slack en Herinneringen\n*automatisch*"
     },
     "integrations": {
-      "h1": "Naar elke\n*integratie* die aanstaat"
+      "h1": "Kies bestemmingen\nmet een *schakelaar*"
     },
     "templates": {
       "h1": "Slack, Notion e.a.\nvia *sjablonen*"

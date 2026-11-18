@@ -1,13 +1,13 @@
 {
   "iphone": {
     "memos": {
-      "h1": "Was du sagst,\nwird zur *Notiz*"
+      "h1": "Sprich zur Uhr,\nschon ist es *notiert*"
     },
     "detail": {
-      "h1": "Zustellung\n*je Ziel* sehen"
+      "h1": "An Slack & Erinnerungen\n*automatisch*"
     },
     "integrations": {
-      "h1": "An jede aktive\n*Integration* senden"
+      "h1": "Ziele per\n*Schalter* wählen"
     },
     "templates": {
       "h1": "Slack, Notion & Co.\naus *Vorlagen*"

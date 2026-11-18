@@ -1,13 +1,13 @@
 {
   "iphone": {
     "memos": {
-      "h1": "Co řeknete,\nuloží se jako *poznámka*"
+      "h1": "Řekněte to hodinkám,\nuloží se jako *poznámka*"
     },
     "detail": {
-      "h1": "Doručení\n*u každého cíle*"
+      "h1": "Do Slacku a Připomínek\n*automaticky*"
     },
     "integrations": {
-      "h1": "Odešle do každé\nzapnuté *integrace*"
+      "h1": "Cíle vyberete\n*přepínačem*"
     },
     "templates": {
       "h1": "Slack či Notion\nze *šablon*"

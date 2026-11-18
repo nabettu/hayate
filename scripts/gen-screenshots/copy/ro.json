@@ -1,13 +1,13 @@
 {
   "iphone": {
     "memos": {
-      "h1": "Ce spui\ndevine *notiță*"
+      "h1": "Vorbește ceasului,\ndevine *notiță*"
     },
     "detail": {
-      "h1": "Livrarea\n*pe fiecare destinație*"
+      "h1": "În Slack și Mementouri\n*automat*"
     },
     "integrations": {
-      "h1": "Trimite la fiecare\n*integrare* activă"
+      "h1": "Alegi destinațiile\ncu un *comutator*"
     },
     "templates": {
       "h1": "Slack, Notion\ndin *șabloane*"

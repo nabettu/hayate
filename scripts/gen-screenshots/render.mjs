@@ -320,7 +320,7 @@ export const phoneScreens = {
       waiting: [SYM.clock(15, "#FF9F0A"), "#FF9F0A"],
       memo: [SYM.note(15, "rgba(235,235,245,.6)"), "rgba(235,235,245,.6)"],
     };
-    const rows = [[t.reminderSpoken, "watch", "sent"], [t.spoken[0], "watch", "sent"], [t.spoken[1], "phone", "waiting"], [t.spoken[2], "watch", "memo"], [t.reminderTitle, "phone", "sent"]];
+    const rows = [[t.reminderSpoken, "watch", "sent"], [t.spoken[0], "watch", "sent"], [t.spoken[1], "phone", "waiting"], [t.spoken[2], "watch", "memo"]];
     return `<div class="ps">${appSky(402, 874, 46, 31)}${statusBar()}
     <div class="nav"></div>
     <div class="large">${esc(t.memosTitle)}</div>
@@ -372,8 +372,37 @@ const DEVICE_CSS = `
     box-shadow: 0 60px 140px rgba(0,0,0,.55), inset 0 0 0 3px #3a3a48, 0 0 0 2px rgba(196,181,253,.25); }
   .iphone .screen { position: relative; overflow: hidden; border-radius: 138px; width: ${SCREEN_W}px; height: ${Math.round(874 * SCALE)}px; }
   .iphone .screen > .ps { transform: scale(${SCALE}); transform-origin: 0 0; }
+  .watch { position: absolute; z-index: 5; left: 50%; }
+  .watch .band { position: absolute; left: 13%; right: 13%; height: 20%; background: linear-gradient(90deg,#2a2346,#4a3f78 50%,#2a2346); }
+  .watch .band.top { bottom: 94%; -webkit-mask-image: linear-gradient(to top, #000 10%, transparent 95%); }
+  .watch .band.bottom { top: 94%; -webkit-mask-image: linear-gradient(to bottom, #000 10%, transparent 95%); }
+  .watch .case { position: absolute; inset: 0; border-radius: 30%/26%; background: linear-gradient(145deg,#5b5868,#1d1b24 45%,#3a3846);
+    box-shadow: 0 60px 120px rgba(0,0,0,.6), inset 0 0 0 3px rgba(255,255,255,.12); }
+  .watch .glass { position: absolute; inset: 3.2%; border-radius: 27%/23%; background: #000; overflow: hidden; }
+  .watch .glass .ws { position: absolute; transform-origin: 0 0; }
+  .watch .crown { position: absolute; right: -3.6%; top: 22%; width: 5%; height: 16%; border-radius: 10px; background: linear-gradient(90deg,#2a2833,#6b6878 60%,#2a2833); }
+  .watch .side { position: absolute; right: -1.6%; top: 50%; width: 2.4%; height: 18%; border-radius: 8px; background: #2a2833; }
   .iphone .island { position: absolute; left: 50%; top: ${Math.round(11 * SCALE)}px; width: ${Math.round(124 * SCALE)}px; height: ${Math.round(36 * SCALE)}px; margin-left: -${Math.round(62 * SCALE)}px; border-radius: 999px; background: #000; z-index: 2; }
 `;
+/** 時計の枠。width は本体の幅 (px)。画面は 416x496 を縮尺して入れる */
+function watchDevice(screenHtml, { width, top, left }) {
+  const height = Math.round(width * 1.19);
+  const glassInset = width * 0.032;
+  const gw = width - glassInset * 2, gh = height - glassInset * 2;
+  // 画面のまわりの黒い縁 (ディスプレイの非表示部分)
+  const pad = width * 0.045;
+  const scale = (gw - pad * 2) / WATCH.width;
+  const sh = WATCH.height * scale;
+  const offY = (gh - sh) / 2;
+  return `<div class="watch" style="width:${width}px;height:${height}px;top:${top}px;${left === undefined ? `margin-left:${-width / 2}px` : `left:${left}px`}">
+    <div class="band top"></div><div class="band bottom"></div>
+    <div class="case"></div>
+    <div class="glass"><div style="position:absolute;left:${pad}px;top:${offY}px;width:${WATCH.width * scale}px;height:${sh}px;border-radius:${18 * scale}px;overflow:hidden;">
+      <div style="transform:scale(${scale});transform-origin:0 0;width:${WATCH.width}px;height:${WATCH.height}px">${screenHtml}</div></div></div>
+    <div class="crown"></div><div class="side"></div>
+  </div>`;
+}
+
 const iphoneDevice = (screenHtml, top) => `<div class="iphone" style="top:${top}px"><div class="screen">${screenHtml}<div class="island"></div></div></div>`;
 
 // 漢字・ハングルは言語ごとのフォントで描く (中国語・韓国語が日本語の字形にならないように)。ほかの文字は Chrome が OS のフォントを選ぶ
@@ -397,7 +426,7 @@ const SLIDE_CSS = `
   ${PHONE_CSS}
   ${DEVICE_CSS}
   /* 右から左の言語: 縮小して入れる画面の置き場は左から右のまま (右寄せになると端末からはみ出す)。画面の中身だけ右から左にする */
-  .iphone .screen, .ps .mono { direction: ltr; }
+  .iphone .screen, .watch .glass, .watch .glass > div, .watch .glass > div > div, .ps .mono { direction: ltr; }
   [dir=rtl] .ps, [dir=rtl] .ws { direction: rtl; }
 `;
 
@@ -416,7 +445,7 @@ const FIT = `<script>
 </script>`;
 
 const page = (body, seed, lang) => `<!doctype html>${htmlOpen(lang)}<head><meta charset="utf-8"><style>${fontVars(lang)}${SLIDE_CSS}</style></head>
-<body><div class="slide">${sky(IPHONE.width, IPHONE.height, seed)}${body}</div>${FIT}</body></html>`;
+<body><div class="slide">${sky(IPHONE.width, IPHONE.height, seed)}${body}</div>${FIT}${WATCH_FIT}</body></html>`;
 
 /** 1 枚ごとの画面 (どれもアプリの iPhone の画面そのもの。広告の図・時計の絵・機能の一覧は載せない) */
 const SLIDE_SCREENS = {
@@ -434,8 +463,10 @@ export function iphoneSlide(key, copy, lang = "ja") {
   const c = copy.iphone[key];
   if (!c || !SLIDE_SCREENS[key]) throw new Error(`unknown slide ${key}`);
   const seed = 7 + IPHONE_SLIDES.indexOf(key) * 6;
+  // 1 枚目だけ、時計で話した直後の時計の画面 (アプリの実際の画面) を手前に小さく添える。iPhone の画面が主役なのは変えない
+  const watch = key === "memos" ? watchDevice(watchScreens.home(copy.screen), { width: 560, top: 1925, left: 700 }) : "";
   return page(`<div class="head" style="top:150px"><h1>${lines(c.h1)}</h1></div>
-    ${iphoneDevice(SLIDE_SCREENS[key](copy.screen, copy.app), 520)}`, seed, lang);
+    ${iphoneDevice(SLIDE_SCREENS[key](copy.screen, copy.app), 520)}${watch}`, seed, lang);
 }
 
 /** Apple Watch のスクショ 1 枚の HTML (画面だけ) */

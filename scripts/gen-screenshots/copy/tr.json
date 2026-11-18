@@ -1,13 +1,13 @@
 {
   "iphone": {
     "memos": {
-      "h1": "Söyledikleriniz\n*not* olarak kalır"
+      "h1": "Saate söyleyin,\n*not* olarak kalsın"
     },
     "detail": {
-      "h1": "Teslimatı\n*her hedef için* görün"
+      "h1": "Slack ve Anımsatıcılar’a\n*otomatik*"
     },
     "integrations": {
-      "h1": "Açık olan her\n*entegrasyona* gönderin"
+      "h1": "Hedefleri\n*anahtarla* seçin"
     },
     "templates": {
       "h1": "Slack, Notion\n*şablonlarla* ekleyin"

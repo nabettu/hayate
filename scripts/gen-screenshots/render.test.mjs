@@ -31,6 +31,8 @@ test("iPhone のスクショはどれもアプリの画面が主役 (広告の�
   for (const key of IPHONE_SLIDES) {
     const html = iphoneSlide(key, COPY.ja);
     assert.match(html, /class="iphone"/, key);
-    assert.doesNotMatch(html, /class="(watch|bubble|float|chip|grid|closing|card)[ "]/, key);
+    assert.doesNotMatch(html, /class="(bubble|float|chip|grid|closing|card)[ "]/, key);
+    // 時計の画面を添えるのは 1 枚目だけ (時計の絵が主役の枚を増やさない)
+    assert.equal((html.match(/class="watch"/g) ?? []).length, key === IPHONE_SLIDES[0] ? 1 : 0, key);
   }
 });

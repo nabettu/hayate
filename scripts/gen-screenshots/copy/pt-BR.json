@@ -1,13 +1,13 @@
 {
   "iphone": {
     "memos": {
-      "h1": "O que você diz\nvira uma *nota*"
+      "h1": "Fale com o relógio\ne vira uma *nota*"
     },
     "detail": {
-      "h1": "Veja a entrega\n*por destino*"
+      "h1": "Para Slack e Lembretes\n*automaticamente*"
     },
     "integrations": {
-      "h1": "Envia a cada\n*integração* ativa"
+      "h1": "Escolha destinos\ncom um *botão*"
     },
     "templates": {
       "h1": "Adicione Slack e Notion\npor *modelos*"

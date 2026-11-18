@@ -1,13 +1,13 @@
 {
   "iphone": {
     "memos": {
-      "h1": "Sanomasi\ntallentuu *muistioksi*"
+      "h1": "Puhu kelloon,\nsiitä tulee *muistio*"
     },
     "detail": {
-      "h1": "Toimitus\n*kohteittain*"
+      "h1": "Slackiin ja Muistutuksiin\n*automaattisesti*"
     },
     "integrations": {
-      "h1": "Lähetä jokaiseen\npäällä olevaan *liitokseen*"
+      "h1": "Valitse kohteet\n*kytkimellä*"
     },
     "templates": {
       "h1": "Slack ja Notion\n*malleista*"

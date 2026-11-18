@@ -1,13 +1,13 @@
 {
   "iphone": {
     "memos": {
-      "h1": "Điều bạn nói\nđược lưu thành *ghi chú*"
+      "h1": "Nói với đồng hồ,\nlưu ngay thành *ghi chú*"
     },
     "detail": {
-      "h1": "Xem trạng thái\n*từng nơi nhận*"
+      "h1": "Tới Slack và Lời nhắc\n*tự động*"
     },
     "integrations": {
-      "h1": "Gửi tới mọi\n*tích hợp* đang bật"
+      "h1": "Chọn nơi nhận\nbằng *công tắc*"
     },
     "templates": {
       "h1": "Thêm Slack, Notion\ntừ *mẫu có sẵn*"

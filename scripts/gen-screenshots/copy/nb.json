@@ -1,13 +1,13 @@
 {
   "iphone": {
     "memos": {
-      "h1": "Det du sier,\nlagres som *notat*"
+      "h1": "Snakk til klokken,\nså blir det et *notat*"
     },
     "detail": {
-      "h1": "Se levering\n*per mottaker*"
+      "h1": "Til Slack og Påminnelser\n*automatisk*"
     },
     "integrations": {
-      "h1": "Send til hver\n*integrasjon* som er på"
+      "h1": "Velg mottakere\nmed en *bryter*"
     },
     "templates": {
       "h1": "Legg til Slack og Notion\nfra *maler*"

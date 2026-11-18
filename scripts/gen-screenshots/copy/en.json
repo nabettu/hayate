@@ -1,13 +1,13 @@
 {
  "iphone": {
   "memos": {
-   "h1": "What you say\nis kept as a *memo*"
+   "h1": "Speak to your watch,\nit’s saved as a *memo*"
   },
   "detail": {
-   "h1": "See delivery\n*per destination*"
+   "h1": "Sent to Slack & Reminders\n*automatically*"
   },
   "integrations": {
-   "h1": "Send to every\n*integration* you turn on"
+   "h1": "Pick destinations\nwith a *switch*"
   },
   "templates": {
    "h1": "Add Slack, Notion\nand more from *templates*"
