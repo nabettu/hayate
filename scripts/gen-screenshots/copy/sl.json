@@ -1,55 +1,19 @@
 {
   "iphone": {
-    "hero": {
-      "h1": "Povejte zapestju,\nshranite *zapisek*",
-      "chips": [
-        "Zapisek",
-        "Webhook",
-        "Opomniki"
-      ],
-      "closing": "Ideja? Shranite jo\n*z zapestja*"
+    "memos": {
+      "h1": "Povejte uri\nin nastane *zapisek*"
     },
-    "siri": {
-      "h1": "*Hey Siri*\nin roke so proste",
-      "chips": [
-        "Siri",
-        "Dvojni dotik",
-        "Številčnica"
-      ],
-      "closing": "Polne roke?\nZapišite *z glasom*"
-    },
-    "reminder": {
-      "h1": "Začnite z besedo\nin dobite *opomnik*",
-      "floats": [
-        "Dodano »kupi mleko«",
-        "iPhone doda na seznam"
-      ],
-      "closing": "Opravila gredo\n*naravnost na seznam*"
+    "detail": {
+      "h1": "V Slack in Opomnike\n*samodejno*"
     },
     "integrations": {
-      "h1": "Hkrati na *veliko*\nrazličnih mest",
-      "chips": [
-        "Webhook",
-        "Markdown",
-        "Obsidian"
-      ],
-      "floats": [
-        "Dopisano v 2026-11-13.md",
-        "Slack, Notion, ntfy in drugo"
-      ],
-      "closing": "V klepet in\nv *vaše zapiske*"
+      "h1": "Prejemnike izberete\ns *stikalom*"
     },
-    "more": {
-      "h1": "In še\n*veliko več.*",
-      "cells": [
-        "Vsi zapiski\nostanejo v iPhonu",
-        "Glava za prijavo\nv Keychain",
-        "Odprta koda\nna GitHubu",
-        "Neposlano gre\nob odprtju znova",
-        "Brez oglasov\nin sledenja",
-        "Na voljo\nv 45 jezikih"
-      ],
-      "closing": "Vaše besede\n*tja, kamor sodijo*"
+    "templates": {
+      "h1": "Slack in Notion\niz *predlog*"
+    },
+    "compose": {
+      "h1": "Ali zapisek\n*vtipkajte*"
     }
   },
   "screen": {

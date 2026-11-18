@@ -1,55 +1,19 @@
 {
   "iphone": {
-    "hero": {
-      "h1": "Puhu kelloon,\nja se on *muistissa*",
-      "chips": [
-        "Muistiinpano",
-        "Webhook",
-        "Muistutukset"
-      ],
-      "closing": "Idea? Talteen\n*suoraan ranteesta*"
+    "memos": {
+      "h1": "Puhu kelloon,\nsiitä tulee *muistio*"
     },
-    "siri": {
-      "h1": "*Hei Siri*,\nilman käsiä",
-      "chips": [
-        "Siri",
-        "Kaksoisnapautus",
-        "Kellotaulu"
-      ],
-      "closing": "Kädet täynnä?\nMuistiin *äänellä*"
-    },
-    "reminder": {
-      "h1": "Aloita sanalla,\nsaat *muistutuksen*",
-      "floats": [
-        "Lisätty ”osta maitoa”",
-        "iPhone lisää sen listaan"
-      ],
-      "closing": "Tehtävät\n*suoraan listaan*"
+    "detail": {
+      "h1": "Slackiin ja Muistutuksiin\n*automaattisesti*"
     },
     "integrations": {
-      "h1": "*Moneen kohteeseen*\nkerralla",
-      "chips": [
-        "Webhook",
-        "Markdown",
-        "Obsidian"
-      ],
-      "floats": [
-        "Lisätty: 2026-11-13.md",
-        "Slack, Notion, ntfy ym."
-      ],
-      "closing": "Chattiin ja\n*omiin muistioihin*"
+      "h1": "Valitse kohteet\n*kytkimellä*"
     },
-    "more": {
-      "h1": "Ja\n*paljon muuta.*",
-      "cells": [
-        "Kaikki muistiinpanot\niPhonessa",
-        "Auth-otsake\nKeychainissa",
-        "Avoin lähdekoodi\nGitHubissa",
-        "Lähettämättömät\nlähetetään uudelleen",
-        "Ei mainoksia,\nei seurantaa",
-        "Saatavilla\n45 kielellä"
-      ],
-      "closing": "Sanasi\n*omaan työnkulkuusi*"
+    "templates": {
+      "h1": "Slack ja Notion\n*malleista*"
+    },
+    "compose": {
+      "h1": "Tai *kirjoita*\nmuistio"
     }
   },
   "screen": {

@@ -1,55 +1,19 @@
 {
   "iphone": {
-    "hero": {
-      "h1": "Einfach sprechen,\nschon *notiert*",
-      "chips": [
-        "Notiz",
-        "Webhook",
-        "Erinnerungen"
-      ],
-      "closing": "Idee? Sofort\n*vom Handgelenk*"
+    "memos": {
+      "h1": "Sprich zur Uhr,\nschon ist es *notiert*"
     },
-    "siri": {
-      "h1": "*Hey Siri* –\nganz ohne Hände",
-      "chips": [
-        "Siri",
-        "Doppeltippen",
-        "Zifferblatt"
-      ],
-      "closing": "Hände voll?\nNotiz per *Stimme*"
-    },
-    "reminder": {
-      "h1": "Mit Signalwort\nzur *Erinnerung*",
-      "floats": [
-        "„Milch kaufen“ hinzugefügt",
-        "iPhone fügt es zur Liste hinzu"
-      ],
-      "closing": "To-dos landen\n*direkt in der Liste*"
+    "detail": {
+      "h1": "An Slack & Erinnerungen\n*automatisch*"
     },
     "integrations": {
-      "h1": "An *viele Ziele*\nauf einmal",
-      "chips": [
-        "Webhook",
-        "Markdown",
-        "Obsidian"
-      ],
-      "floats": [
-        "An 2026-11-13.md angehängt",
-        "Slack, Notion, ntfy u. v. m."
-      ],
-      "closing": "In den Chat und\n*in deine Notizen*"
+      "h1": "Ziele per\n*Schalter* wählen"
     },
-    "more": {
-      "h1": "Und\n*noch mehr.*",
-      "cells": [
-        "Alle Notizen\nauf dem iPhone",
-        "Auth-Header\nim Keychain",
-        "Open Source\nauf GitHub",
-        "Nicht Gesendetes\nwird nachgesendet",
-        "Keine Werbung,\nkein Tracking",
-        "In 45 Sprachen\nverfügbar"
-      ],
-      "closing": "Deine Worte,\nin *deinen Workflow*"
+    "templates": {
+      "h1": "Slack, Notion & Co.\naus *Vorlagen*"
+    },
+    "compose": {
+      "h1": "Oder Notiz\n*eintippen*"
     }
   },
   "screen": {

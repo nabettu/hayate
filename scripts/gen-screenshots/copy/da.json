@@ -1,55 +1,19 @@
 {
   "iphone": {
-    "hero": {
-      "h1": "Tal til håndleddet\nog gem en *note*",
-      "chips": [
-        "Note",
-        "Webhook",
-        "Påmindelser"
-      ],
-      "closing": "En idé? Gem den\n*fra håndleddet*"
+    "memos": {
+      "h1": "Tal til dit ur,\nså gemmes en *note*"
     },
-    "siri": {
-      "h1": "*Hey Siri*,\nhelt uden hænder",
-      "chips": [
-        "Siri",
-        "Dobbelttryk",
-        "Urskive"
-      ],
-      "closing": "Hænderne fulde?\nNotér med *stemmen*"
-    },
-    "reminder": {
-      "h1": "Start med et ord,\nfå en *påmindelse*",
-      "floats": [
-        "Tilføjede »køb mælk«",
-        "iPhone føjer den til en liste"
-      ],
-      "closing": "Opgaver ryger\n*direkte på listen*"
+    "detail": {
+      "h1": "Til Slack og Påmindelser\n*automatisk*"
     },
     "integrations": {
-      "h1": "Send til *mange*\nsteder på én gang",
-      "chips": [
-        "Webhook",
-        "Markdown",
-        "Obsidian"
-      ],
-      "floats": [
-        "Tilføjet i 2026-11-13.md",
-        "Slack, Notion, ntfy m.fl."
-      ],
-      "closing": "Til din chat\nog *dine noter*"
+      "h1": "Vælg modtagere\nmed en *kontakt*"
     },
-    "more": {
-      "h1": "Og\n*meget mere.*",
-      "cells": [
-        "Alle noter\ngemt på iPhone",
-        "Godkendelsesheader\ni Keychain",
-        "Open source\npå GitHub",
-        "Usendte sendes igen,\nnår du åbner",
-        "Ingen reklamer,\ningen sporing",
-        "Fås på\n45 sprog"
-      ],
-      "closing": "Dine ord,\nind i *dit workflow*"
+    "templates": {
+      "h1": "Tilføj Slack og Notion\nfra *skabeloner*"
+    },
+    "compose": {
+      "h1": "Eller *skriv*\ndin note"
     }
   },
   "screen": {

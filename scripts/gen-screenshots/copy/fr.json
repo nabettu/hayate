@@ -1,55 +1,19 @@
 {
   "iphone": {
-    "hero": {
-      "h1": "Parlez à la montre,\nc’est *noté*",
-      "chips": [
-        "Mémo",
-        "Webhook",
-        "Rappels"
-      ],
-      "closing": "Une idée ? Notée\n*depuis le poignet*"
+    "memos": {
+      "h1": "Parlez à la montre,\nc’est gardé en *mémo*"
     },
-    "siri": {
-      "h1": "*Dis Siri*,\nsans les mains",
-      "chips": [
-        "Siri",
-        "Double toucher",
-        "Cadran"
-      ],
-      "closing": "Mains prises ?\nNotez à la *voix*"
-    },
-    "reminder": {
-      "h1": "Un mot suffit\npour un *rappel*",
-      "floats": [
-        "« acheter du lait » ajouté",
-        "L’iPhone l’ajoute à une liste"
-      ],
-      "closing": "Vos tâches,\n*droit dans la liste*"
+    "detail": {
+      "h1": "Vers Slack et Rappels\n*automatiquement*"
     },
     "integrations": {
-      "h1": "Vers *plusieurs*\nendroits d’un coup",
-      "chips": [
-        "Webhook",
-        "Markdown",
-        "Obsidian"
-      ],
-      "floats": [
-        "Ajouté à 2026-11-13.md",
-        "Slack, Notion, ntfy, etc."
-      ],
-      "closing": "Votre chat et\n*vos notes* aussi"
+      "h1": "Choisissez les destinations\nd’un *interrupteur*"
     },
-    "more": {
-      "h1": "Et\n*bien plus.*",
-      "cells": [
-        "Tous les mémos\nsur l’iPhone",
-        "En-tête d’auth.\ndans le Keychain",
-        "Code source ouvert\nsur GitHub",
-        "Les non-envoyés\nsont renvoyés",
-        "Sans pub,\nsans pistage",
-        "Disponible en\n45 langues"
-      ],
-      "closing": "Vos mots,\ndans *vos outils*"
+    "templates": {
+      "h1": "Slack, Notion…\nvia des *modèles*"
+    },
+    "compose": {
+      "h1": "Ou *tapez*\nvotre mémo"
     }
   },
   "screen": {

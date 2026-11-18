@@ -1,55 +1,19 @@
 {
   "iphone": {
-    "hero": {
-      "h1": "Povedzte hodinkám\na máte *poznámku*",
-      "chips": [
-        "Poznámka",
-        "Webhook",
-        "Pripomienky"
-      ],
-      "closing": "Nápad? Uložte ho\n*zo zápästia*"
+    "memos": {
+      "h1": "Povedzte to hodinkám,\nuloží sa *poznámka*"
     },
-    "siri": {
-      "h1": "*Hey Siri*\na ruky sú voľné",
-      "chips": [
-        "Siri",
-        "Dvojité ťuknutie",
-        "Ciferník"
-      ],
-      "closing": "Plné ruky?\nZapíšte *hlasom*"
-    },
-    "reminder": {
-      "h1": "Začnite slovom,\nmáte *pripomienku*",
-      "floats": [
-        "Pridané „kúpiť mlieko“",
-        "iPhone pridá do zoznamu"
-      ],
-      "closing": "Úlohy idú\n*rovno do zoznamu*"
+    "detail": {
+      "h1": "Do Slacku a Pripomienok\n*automaticky*"
     },
     "integrations": {
-      "h1": "Naraz na *veľa*\nrôznych miest",
-      "chips": [
-        "Webhook",
-        "Markdown",
-        "Obsidian"
-      ],
-      "floats": [
-        "Pripísané do 2026-11-13.md",
-        "Slack, Notion, ntfy a ďalšie"
-      ],
-      "closing": "Do četu aj\ndo *vašich poznámok*"
+      "h1": "Ciele vyberiete\n*prepínačom*"
     },
-    "more": {
-      "h1": "A ešte\n*oveľa viac.*",
-      "cells": [
-        "Všetky poznámky\nzostanú v iPhone",
-        "Overovacia hlavička\nv Keychain",
-        "Otvorený kód\nna GitHube",
-        "Neodoslané sa\nodošlú pri otvorení",
-        "Bez reklám\na sledovania",
-        "K dispozícii\nv 45 jazykoch"
-      ],
-      "closing": "Vaše slová\n*tam, kam patria*"
+    "templates": {
+      "h1": "Slack či Notion\nzo *šablón*"
+    },
+    "compose": {
+      "h1": "Alebo poznámku\n*napíšte*"
     }
   },
   "screen": {

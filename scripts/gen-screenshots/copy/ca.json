@@ -1,55 +1,19 @@
 {
   "iphone": {
-    "hero": {
-      "h1": "Parla al canell\ni *pren nota*",
-      "chips": [
-        "Nota",
-        "Webhook",
-        "Recordatoris"
-      ],
-      "closing": "Una idea? Desa-la\n*des del canell*"
+    "memos": {
+      "h1": "Parla al rellotge\ni es desa com a *nota*"
     },
-    "siri": {
-      "h1": "*Hey Siri*,\nsense mans",
-      "chips": [
-        "Siri",
-        "Doble toc",
-        "Esfera"
-      ],
-      "closing": "Mans ocupades?\nAnota *amb la veu*"
-    },
-    "reminder": {
-      "h1": "Una paraula\ni tens *recordatori*",
-      "floats": [
-        "S’ha afegit «comprar llet»",
-        "L’iPhone l’afegeix a la llista"
-      ],
-      "closing": "Les tasques van\n*a la llista*"
+    "detail": {
+      "h1": "A Slack i Recordatoris\n*automàticament*"
     },
     "integrations": {
-      "h1": "Envia a *molts*\nllocs alhora",
-      "chips": [
-        "Webhook",
-        "Markdown",
-        "Obsidian"
-      ],
-      "floats": [
-        "Afegit a 2026-11-13.md",
-        "Slack, Notion, ntfy i més"
-      ],
-      "closing": "Al teu xat\ni a *les teves notes*"
+      "h1": "Tria destinacions\namb un *interruptor*"
     },
-    "more": {
-      "h1": "I\n*molt més.*",
-      "cells": [
-        "Totes les notes\nes queden a l’iPhone",
-        "Autenticació\nal Keychain",
-        "Codi obert\na GitHub",
-        "El no enviat\nes reenvia en obrir",
-        "Sense anuncis\nni seguiment",
-        "Disponible en\n45 idiomes"
-      ],
-      "closing": "La teva veu,\nal *teu sistema*"
+    "templates": {
+      "h1": "Afegeix Slack o Notion\namb *plantilles*"
+    },
+    "compose": {
+      "h1": "O *escriu*\nla nota"
     }
   },
   "screen": {

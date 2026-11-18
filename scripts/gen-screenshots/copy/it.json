@@ -1,55 +1,19 @@
 {
   "iphone": {
-    "hero": {
-      "h1": "Parla al polso,\nsalva un *appunto*",
-      "chips": [
-        "Appunto",
-        "Webhook",
-        "Promemoria"
-      ],
-      "closing": "Un’idea? Salvala\n*dal polso*"
+    "memos": {
+      "h1": "Parla all’orologio,\ndiventa un *appunto*"
     },
-    "siri": {
-      "h1": "*Ehi Siri*,\nsenza mani",
-      "chips": [
-        "Siri",
-        "Doppio tocco",
-        "Quadrante"
-      ],
-      "closing": "Mani occupate?\nBasta la *voce*"
-    },
-    "reminder": {
-      "h1": "Una parola e\ndiventa *promemoria*",
-      "floats": [
-        "Aggiunto “comprare il latte”",
-        "iPhone lo aggiunge alla lista"
-      ],
-      "closing": "Le cose da fare\n*dritte in lista*"
+    "detail": {
+      "h1": "A Slack e Promemoria\n*in automatico*"
     },
     "integrations": {
-      "h1": "Invia a *tante*\ndestinazioni",
-      "chips": [
-        "Webhook",
-        "Markdown",
-        "Obsidian"
-      ],
-      "floats": [
-        "Aggiunto a 2026-11-13.md",
-        "Slack, Notion, ntfy e altro"
-      ],
-      "closing": "Nella chat e\n*nelle tue note*"
+      "h1": "Scegli le destinazioni\ncon un *interruttore*"
     },
-    "more": {
-      "h1": "E molto\n*altro.*",
-      "cells": [
-        "Ogni appunto\nresta su iPhone",
-        "Header di auth\nnel Keychain",
-        "Codice sorgente\nsu GitHub",
-        "Non inviati?\nReinviati dopo",
-        "Niente pubblicità,\nniente tracciamento",
-        "Disponibile in\n45 lingue"
-      ],
-      "closing": "Le tue parole,\nnel *tuo flusso*"
+    "templates": {
+      "h1": "Slack, Notion e altri\ncon i *modelli*"
+    },
+    "compose": {
+      "h1": "Oppure *scrivi*\nl’appunto"
     }
   },
   "screen": {

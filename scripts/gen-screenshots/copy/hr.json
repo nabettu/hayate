@@ -1,55 +1,19 @@
 {
   "iphone": {
-    "hero": {
-      "h1": "Recite zapešću,\nspremite *bilješku*",
-      "chips": [
-        "Bilješka",
-        "Webhook",
-        "Podsjetnici"
-      ],
-      "closing": "Imate ideju?\nZapišite *sa sata*"
+    "memos": {
+      "h1": "Recite satu\ni nastaje *bilješka*"
     },
-    "siri": {
-      "h1": "*Hey Siri*,\nbez ruku",
-      "chips": [
-        "Siri",
-        "Dvaput dodirni",
-        "Brojčanik"
-      ],
-      "closing": "Ruke su pune?\nBilježite *glasom*"
-    },
-    "reminder": {
-      "h1": "Jedna riječ\ni eto *podsjetnika*",
-      "floats": [
-        "Dodano „kupiti mlijeko”",
-        "iPhone dodaje na popis"
-      ],
-      "closing": "Zadaci idu\n*ravno na popis*"
+    "detail": {
+      "h1": "U Slack i Podsjetnike\n*automatski*"
     },
     "integrations": {
-      "h1": "Šaljite na *više*\nmjesta odjednom",
-      "chips": [
-        "Webhook",
-        "Markdown",
-        "Obsidian"
-      ],
-      "floats": [
-        "Dodano u 2026-11-13.md",
-        "Slack, Notion, ntfy i dr."
-      ],
-      "closing": "U chat, ali i\nu *vaše bilješke*"
+      "h1": "Odredišta birate\n*prekidačem*"
     },
-    "more": {
-      "h1": "I još\n*mnogo toga.*",
-      "cells": [
-        "Sve bilješke\nostaju na iPhoneu",
-        "Zaglavlje za auth.\nu Keychainu",
-        "Otvoreni kod\nna GitHubu",
-        "Neposlano se\nšalje ponovno",
-        "Bez oglasa,\nbez praćenja",
-        "Dostupno na\n45 jezika"
-      ],
-      "closing": "Vaše riječi,\nu *vaš tijek rada*"
+    "templates": {
+      "h1": "Slack i Notion\niz *predložaka*"
+    },
+    "compose": {
+      "h1": "Ili *upišite*\nbilješku"
     }
   },
   "screen": {

@@ -1,55 +1,19 @@
 {
   "iphone": {
-    "hero": {
-      "h1": "Promluvte\na máte *poznámku*",
-      "chips": [
-        "Poznámka",
-        "Webhook",
-        "Připomínky"
-      ],
-      "closing": "Nápad? Uložte ho\n*ze zápěstí*"
+    "memos": {
+      "h1": "Řekněte to hodinkám,\nuloží se jako *poznámka*"
     },
-    "siri": {
-      "h1": "*Hey Siri*\nbez použití rukou",
-      "chips": [
-        "Siri",
-        "2× klepnutí",
-        "Ciferník"
-      ],
-      "closing": "Plné ruce?\nZapište *hlasem*"
-    },
-    "reminder": {
-      "h1": "Začněte slovem\na máte *připomínku*",
-      "floats": [
-        "Přidáno „koupit mléko“",
-        "iPhone přidá do seznamu"
-      ],
-      "closing": "Úkoly jdou\n*rovnou do seznamu*"
+    "detail": {
+      "h1": "Do Slacku a Připomínek\n*automaticky*"
     },
     "integrations": {
-      "h1": "Na *více míst*\nnajednou",
-      "chips": [
-        "Webhook",
-        "Markdown",
-        "Obsidian"
-      ],
-      "floats": [
-        "Připsáno do 2026-11-13.md",
-        "Slack, Notion, ntfy a další"
-      ],
-      "closing": "Do chatu\ni do *poznámek*"
+      "h1": "Cíle vyberete\n*přepínačem*"
     },
-    "more": {
-      "h1": "A\n*mnohem víc.*",
-      "cells": [
-        "Všechny poznámky\nzůstanou v iPhonu",
-        "Ověřovací hlavička\nv Keychain",
-        "Open source\nna GitHubu",
-        "Neodeslané odejdou\npo dalším otevření",
-        "Bez reklam\na sledování",
-        "K dispozici\nve 45 jazycích"
-      ],
-      "closing": "Vaše slova\ndo *vašeho systému*"
+    "templates": {
+      "h1": "Slack či Notion\nze *šablon*"
+    },
+    "compose": {
+      "h1": "Nebo poznámku\n*napište*"
     }
   },
   "screen": {

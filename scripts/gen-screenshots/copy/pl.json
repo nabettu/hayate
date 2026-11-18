@@ -1,55 +1,19 @@
 {
   "iphone": {
-    "hero": {
-      "h1": "Mów do nadgarstka,\nzapisz *notatkę*",
-      "chips": [
-        "Notatka",
-        "Webhook",
-        "Przypomnienia"
-      ],
-      "closing": "Masz pomysł?\nZapisz z *nadgarstka*"
+    "memos": {
+      "h1": "Powiedz do zegarka,\npowstanie *notatka*"
     },
-    "siri": {
-      "h1": "*Hey Siri*,\nbez użycia rąk",
-      "chips": [
-        "Siri",
-        "Stuknij 2×",
-        "Z tarczy"
-      ],
-      "closing": "Zajęte ręce?\nNotuj *głosem*"
-    },
-    "reminder": {
-      "h1": "Zacznij od słowa,\nmasz *przypomnienie*",
-      "floats": [
-        "Dodano „kup mleko”",
-        "iPhone dodaje do listy"
-      ],
-      "closing": "Zadania trafiają\n*prosto na listę*"
+    "detail": {
+      "h1": "Do Slacka i Przypomnień\n*automatycznie*"
     },
     "integrations": {
-      "h1": "Wysyłaj w *wiele*\nmiejsc naraz",
-      "chips": [
-        "Webhook",
-        "Markdown",
-        "Obsidian"
-      ],
-      "floats": [
-        "Dopisano do 2026-11-13.md",
-        "Slack, Notion, ntfy i inne"
-      ],
-      "closing": "Na czat\ni do *swoich notatek*"
+      "h1": "Cele wybierasz\n*przełącznikiem*"
     },
-    "more": {
-      "h1": "I wiele\n*więcej.*",
-      "cells": [
-        "Każda notatka\nzostaje na iPhonie",
-        "Nagłówek auth\nw Keychain",
-        "Kod źródłowy\nna GitHubie",
-        "Niewysłane – ponownie\nprzy otwarciu",
-        "Bez reklam\ni śledzenia",
-        "Dostępna\nw 45 językach"
-      ],
-      "closing": "Twoje słowa\n*tam, gdzie chcesz*"
+    "templates": {
+      "h1": "Slack i Notion\nz *szablonów*"
+    },
+    "compose": {
+      "h1": "Albo *wpisz*\nnotatkę"
     }
   },
   "screen": {

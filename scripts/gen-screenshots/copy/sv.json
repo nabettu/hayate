@@ -1,55 +1,19 @@
 {
   "iphone": {
-    "hero": {
-      "h1": "Prata med klockan,\nspara som *anteckning*",
-      "chips": [
-        "Anteckning",
-        "Webhook",
-        "Påminnelser"
-      ],
-      "closing": "En idé? Spara den\n*från handleden*"
+    "memos": {
+      "h1": "Prata med klockan,\nså blir det en *anteckning*"
     },
-    "siri": {
-      "h1": "*Hey Siri*\n– helt handsfree",
-      "chips": [
-        "Siri",
-        "Dubbeltryck",
-        "Urtavla"
-      ],
-      "closing": "Händerna fulla?\nAnteckna *med rösten*"
-    },
-    "reminder": {
-      "h1": "Börja med ett ord,\nfå en *påminnelse*",
-      "floats": [
-        "Lade till ”köp mjölk”",
-        "iPhone lägger till i listan"
-      ],
-      "closing": "Att göra går\n*direkt till listan*"
+    "detail": {
+      "h1": "Till Slack och Påminnelser\n*automatiskt*"
     },
     "integrations": {
-      "h1": "Till *många*\nställen på en gång",
-      "chips": [
-        "Webhook",
-        "Markdown",
-        "Obsidian"
-      ],
-      "floats": [
-        "Tillagt i 2026-11-13.md",
-        "Slack, Notion, ntfy m.fl."
-      ],
-      "closing": "Till chatten och\n*dina anteckningar*"
+      "h1": "Välj mottagare\nmed ett *reglage*"
     },
-    "more": {
-      "h1": "Och\n*mycket mer.*",
-      "cells": [
-        "Alla anteckningar\nsparas på iPhone",
-        "Autentisering\nsparas i Keychain",
-        "Öppen källkod\npå GitHub",
-        "Osända skickas\nnär du öppnar igen",
-        "Ingen reklam,\ningen spårning",
-        "Finns på\n45 språk"
-      ],
-      "closing": "Dina ord,\nin i *ditt flöde*"
+    "templates": {
+      "h1": "Lägg till Slack, Notion\nfrån *mallar*"
+    },
+    "compose": {
+      "h1": "Eller *skriv*\nanteckningen"
     }
   },
   "screen": {

@@ -1,55 +1,19 @@
 {
   "iphone": {
-    "hero": {
-      "h1": "Csak mondja,\nés *jegyzet* lesz",
-      "chips": [
-        "Jegyzet",
-        "Webhook",
-        "Emlékeztetők"
-      ],
-      "closing": "Ötlete támadt?\n*Csuklóról* mentse"
+    "memos": {
+      "h1": "Mondja az órának,\nés kész a *jegyzet*"
     },
-    "siri": {
-      "h1": "*Hey Siri*,\nkéz nélkül",
-      "chips": [
-        "Siri",
-        "Dupla koppintás",
-        "Számlap"
-      ],
-      "closing": "Tele a keze?\nElég a *hangja*"
-    },
-    "reminder": {
-      "h1": "Egy szóval\n*emlékeztető*",
-      "floats": [
-        "Hozzáadva: „tejet venni”",
-        "Az iPhone listára teszi"
-      ],
-      "closing": "A teendők\n*egyből a listára*"
+    "detail": {
+      "h1": "A Slackbe és Emlékeztetőkbe\n*automatikusan*"
     },
     "integrations": {
-      "h1": "*Több* helyre\negyszerre",
-      "chips": [
-        "Webhook",
-        "Markdown",
-        "Obsidian"
-      ],
-      "floats": [
-        "Hozzáfűzve: 2026-11-13.md",
-        "Slack, Notion, ntfy stb."
-      ],
-      "closing": "A chatbe és\n*a jegyzeteibe* is"
+      "h1": "Célok kiválasztása\n*kapcsolóval*"
     },
-    "more": {
-      "h1": "És még\n*sok más.*",
-      "cells": [
-        "Minden jegyzet\naz iPhone-on",
-        "Hitelesítés\na Keychainben",
-        "Nyílt forráskód\na GitHubon",
-        "Ami nem ment el,\nújraküldi",
-        "Nincs hirdetés,\nnincs követés",
-        "45 nyelven\nérhető el"
-      ],
-      "closing": "Az Ön szavai,\n*az Ön módján*"
+    "templates": {
+      "h1": "Slack, Notion\n*sablonból*"
+    },
+    "compose": {
+      "h1": "Vagy *gépelje*\nbe a jegyzetet"
     }
   },
   "screen": {
