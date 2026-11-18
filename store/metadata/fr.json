@@ -1,5 +1,5 @@
 {
-  "name": "Hayate",
+  "name": "Hayate : Mémo vocal & Webhook",
   "subtitle": "Parlez, gardez, envoyez",
   "promotionalText": "Parlez à votre Apple Watch : c’est enregistré en mémo, puis envoyé à Rappels, à un fichier Markdown comme votre coffre Obsidian et à des webhooks comme Slack ou Notion.",
   "keywords": "webhook,rappels,Obsidian,Markdown,Slack,Discord,Notion,dictée,tâches,todo,notes,n8n,ntfy",

@@ -1,5 +1,5 @@
 {
-  "name": "Hayate",
+  "name": "Hayate: Talenotat & Webhook",
   "subtitle": "Snakk, lagre og send videre",
   "promotionalText": "Snakk til Apple Watch, så lagres det som et memo og sendes til Påminnelser, Markdown som Obsidian og webhooks som Slack eller Notion. Åpen kildekode, uten reklame.",
   "keywords": "webhook,påminnelser,Obsidian,Markdown,Slack,Notion,diktering,notater,gjøremål,automasjon,n8n",

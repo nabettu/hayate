@@ -1,5 +1,5 @@
 {
-  "name": "Hayate",
+  "name": "Hayate: Stemmenote & Webhook",
   "subtitle": "Tal, gem og send til webhooks",
   "promotionalText": "Tal til dit Apple Watch, så gemmes det som en note og sendes til Påmindelser, en Markdown-fil som din Obsidian-boks og webhooks som Slack eller Notion. Open source.",
   "keywords": "webhook,påmindelser,Obsidian,Markdown,Slack,Notion,diktat,todo,opgaver,automatisering,n8n,ntfy",

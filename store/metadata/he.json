@@ -1,5 +1,5 @@
 {
-  "name": "Hayate",
+  "name": "Hayate: פתק קולי ו-Webhook",
   "subtitle": "דברו, שמרו ושלחו ל-webhooks",
   "promotionalText": "מדברים אל ה-Apple Watch וזה נשמר כהערה, ואז נשלח לתזכורות, לקובץ Markdown כמו כספת Obsidian ול-webhook כמו Slack או Notion. קוד פתוח, בלי פרסומות ובלי מעקב.",
   "keywords": "תזכורת,webhook,Obsidian,Markdown,Slack,Discord,Notion,הכתבה,מטלות,אוטומציה,קוד פתוח,n8n,ntfy",

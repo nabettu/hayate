@@ -1,5 +1,5 @@
 {
-  "name": "Hayate",
+  "name": "Hayate: ملاحظة صوتية وWebhook",
   "subtitle": "تحدث لتدوين ملاحظة وأرسلها",
   "promotionalText": "تحدّث إلى Apple Watch لتُحفظ ملاحظتك، ثم تُرسل إلى التذكيرات وملفات Markdown مثل Obsidian وwebhooks مثل Slack أو Notion. مفتوح المصدر، بلا إعلانات ولا تتبّع.",
   "keywords": "webhook,تذكيرات,Obsidian,Markdown,Slack,Discord,Notion,إملاء,مهام,مذكرة,أتمتة,تسجيل,n8n,ntfy",

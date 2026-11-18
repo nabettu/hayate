@@ -1,5 +1,5 @@
 {
-  "name": "Hayate",
+  "name": "Hayate: Puhemuistio & Webhook",
   "subtitle": "Puhu, tallenna, lähetä",
   "promotionalText": "Puhu Apple Watchiin, niin se tallentuu muistiinpanoksi ja lähtee Muistutuksiin, Markdown-tiedostoon (esim. Obsidian) ja webhookeihin, kuten Slackiin tai Notioniin.",
   "keywords": "webhook,muistutukset,Obsidian,Markdown,Slack,Notion,sanelu,tehtävät,muistiinpanot,n8n,ntfy",

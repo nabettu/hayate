@@ -1,5 +1,5 @@
 {
-  "name": "Hayate",
+  "name": "Hayate: Голосовые заметки",
   "subtitle": "Говорите, сохраняйте, шлите",
   "promotionalText": "Скажите Apple Watch — и это сохранится как заметка, а затем уйдёт в «Напоминания», Markdown-файл (например, в Obsidian) и webhook вроде Slack или Notion. Открытый код.",
   "keywords": "webhook,напоминания,Obsidian,Markdown,Slack,Discord,Notion,диктовка,часы,задачи,todo,n8n,ntfy",

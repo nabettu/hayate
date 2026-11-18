@@ -1,5 +1,5 @@
 {
-  "name": "Hayate",
+  "name": "Hayate: Hlasové memo & Webhook",
   "subtitle": "Mluvte, uložte, pošlete dál",
   "promotionalText": "Promluvte na Apple Watch a vše se uloží jako poznámka. Pak se odešle do Připomínek, do Markdownu jako Obsidian a na webhooky jako Slack či Notion. Open source.",
   "keywords": "webhook,připomínky,Obsidian,Markdown,Slack,Notion,diktování,úkoly,zápisky,automatizace,n8n,ntfy",

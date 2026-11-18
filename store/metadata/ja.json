@@ -1,5 +1,5 @@
 {
- "name": "Hayate",
+ "name": "Hayate - 話してメモ・webhook 送信",
  "subtitle": "話してメモ、webhook へ飛ばす",
  "promotionalText": "Apple Watch に話すだけでメモに保存。リマインダー、Obsidian などの Markdown、Slack や Notion などの webhook へまとめて届けます。オープンソースで、広告も追跡もありません。",
  "keywords": "音声メモ,webhook,リマインダー,Obsidian,Markdown,Slack,Discord,Notion,音声入力,ウォッチ,ToDo,自動化,オープンソース,n8n,ntfy",

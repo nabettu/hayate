@@ -1,5 +1,5 @@
 {
-  "name": "Hayate",
+  "name": "Hayate: Sprachnotiz & Webhook",
   "subtitle": "Sprechen, notieren, senden",
   "promotionalText": "Sprich mit der Apple Watch – Hayate sichert es als Notiz und sendet es an Erinnerungen, Markdown (z. B. Obsidian) und Webhooks wie Slack oder Notion. Open Source.",
   "keywords": "webhook,Erinnerungen,Obsidian,Markdown,Slack,Discord,Notion,Diktat,ToDo,Notizen,Memo,n8n,ntfy",

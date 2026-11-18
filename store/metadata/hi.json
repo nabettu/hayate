@@ -1,5 +1,5 @@
 {
-  "name": "Hayate",
+  "name": "Hayate: वॉइस नोट और Webhook",
   "subtitle": "बोलकर नोट, webhook पर भेजें",
   "promotionalText": "Apple Watch से बोलें, नोट सहेजा जाएगा और फिर रिमाइंडर, Obsidian जैसी Markdown फ़ाइल और Slack या Notion जैसे webhook तक पहुँचेगा। ओपन सोर्स, बिना विज्ञापन और ट्रैकिंग।",
   "keywords": "वॉइस मेमो,webhook,रिमाइंडर,Obsidian,Markdown,Slack,Discord,Notion,डिक्टेशन,ToDo,n8n,ntfy",

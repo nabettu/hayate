@@ -1,5 +1,5 @@
 {
-  "name": "Hayate",
+  "name": "Hayate: ভয়েস মেমো ও Webhook",
   "subtitle": "বলে মেমো, webhook-এ পাঠান",
   "promotionalText": "Apple Watch-এ বললেই মেমো সংরক্ষিত হয়, তারপর রিমাইন্ডার, Obsidian-এর মতো Markdown আর Slack বা Notion-এর মতো webhook-এ পৌঁছায়। ওপেন সোর্স, বিজ্ঞাপন ও ট্র্যাকিং নেই।",
   "keywords": "webhook,রিমাইন্ডার,Obsidian,Markdown,Slack,Notion,ভয়েস নোট,টুডু,ডিকটেশন,অটোমেশন,n8n,ntfy",

@@ -1,8 +1,5 @@
 {
-  "name": "Hayate",
-  "nameByLocale": {
-    "en-US": "Hayate: Voice Memo & Webhook"
-  },
+  "name": "Hayate: Voice Memo & Webhook",
   "subtitle": "Speak a memo, send to webhooks",
   "promotionalText": "Speak to your Apple Watch and it’s saved as a memo, then sent to Reminders, a Markdown file like your Obsidian vault, and webhooks such as Slack or Notion. Open source.",
   "keywords": "reminders,Obsidian,Markdown,Slack,Discord,Notion,dictation,todo,notes,n8n,ntfy,automation",

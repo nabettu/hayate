@@ -1,5 +1,5 @@
 {
-  "name": "Hayate",
+  "name": "Hayate: Ghi chú giọng nói",
   "subtitle": "Nói để ghi chú, gửi webhook",
   "promotionalText": "Chỉ cần nói với Apple Watch, nội dung được lưu thành ghi chú rồi gửi tới Lời nhắc, tệp Markdown như Obsidian và webhook như Slack, Notion. Mã nguồn mở, không quảng cáo.",
   "keywords": "webhook,lời nhắc,Obsidian,Markdown,Slack,Notion,giọng nói,đồng hồ,todo,tự động,mã nguồn mở,ntfy",

@@ -1,5 +1,5 @@
 {
-  "name": "Hayate",
+  "name": "Hayate: व्हॉइस मेमो & Webhook",
   "subtitle": "बोलून मेमो, webhook वर पाठवा",
   "promotionalText": "Apple Watch शी बोला, ते मेमो म्हणून सेव्ह होते आणि रिमाइंडर्स, Obsidian सारखी Markdown फाइल आणि Slack, Notion सारख्या webhook वर पाठवले जाते. ओपन सोर्स, जाहिराती नाहीत.",
   "keywords": "webhook,रिमाइंडर,Obsidian,Markdown,Slack,Discord,Notion,व्हॉइस नोट,टूडू,ऑटोमेशन,n8n,ntfy",

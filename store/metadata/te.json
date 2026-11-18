@@ -1,5 +1,5 @@
 {
-  "name": "Hayate",
+  "name": "Hayate: వాయిస్ నోట్ & Webhook",
   "subtitle": "మాట్లాడి నోట్, webhook కి",
   "promotionalText": "Apple Watch కి చెప్పగానే నోట్‌గా సేవ్ అవుతుంది. తర్వాత రిమైండర్‌లు, Obsidian వంటి Markdown ఫైల్, Slack లేదా Notion వంటి webhook లకు పంపుతుంది. ఓపెన్ సోర్స్.",
   "keywords": "webhook,రిమైండర్,Obsidian,Markdown,Slack,Discord,Notion,డిక్టేషన్,చేయాల్సినవి,n8n,ntfy",
