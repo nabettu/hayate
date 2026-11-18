@@ -1,5 +1,5 @@
 {
-  "name": "Hayate",
+  "name": "Hayate: บันทึกเสียง & Webhook",
   "subtitle": "พูดจดบันทึก ส่งไปยัง webhook",
   "promotionalText": "แค่พูดกับ Apple Watch ก็เก็บเป็นบันทึก แล้วส่งต่อไปยังการช่วยเตือน ไฟล์ Markdown อย่าง Obsidian และ webhook อย่าง Slack หรือ Notion โอเพนซอร์ส ไม่มีโฆษณา ไม่ติดตาม",
   "keywords": "เสียง,โน้ต,webhook,เตือนความจำ,Obsidian,Markdown,Slack,Discord,Notion,สิ่งที่ต้องทำ,n8n,ntfy",

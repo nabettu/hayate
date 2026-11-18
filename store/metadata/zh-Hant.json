@@ -1,5 +1,5 @@
 {
-  "name": "Hayate",
+  "name": "Hayate：語音備忘與 Webhook",
   "subtitle": "開口記備忘，傳送到 webhook",
   "promotionalText": "對 Apple Watch 說一句，就能存成備忘，並一起送到提醒事項、Obsidian 等 Markdown 檔案，以及 Slack、Notion 等 webhook。開源，沒有廣告，也不追蹤。",
   "keywords": "語音筆記,webhook,提醒事項,Obsidian,Markdown,Slack,Discord,Notion,語音輸入,手錶,待辦,自動化,開源,n8n,ntfy,聽寫",

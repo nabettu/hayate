@@ -1,5 +1,5 @@
 {
-  "name": "Hayate",
+  "name": "Hayate: Nota de voz e Webhook",
   "subtitle": "Fale, guarde e envie",
   "promotionalText": "Fale para o Apple Watch e fica guardado como nota, enviada para Lembretes, um ficheiro Markdown (como o Obsidian) e webhooks como Slack ou Notion. Código aberto.",
   "keywords": "webhook,lembretes,Obsidian,Markdown,Slack,Discord,Notion,ditado,relógio,tarefas,n8n,ntfy",

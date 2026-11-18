@@ -1,5 +1,5 @@
 {
-  "name": "Hayate",
+  "name": "Hayate: Röstmemo & Webhook",
   "subtitle": "Tala, spara och skicka vidare",
   "promotionalText": "Prata med Apple Watch så sparas det som en anteckning och skickas till Påminnelser, en Markdown-fil (t.ex. Obsidian) och webhooks som Slack eller Notion. Öppen källkod.",
   "keywords": "webhook,påminnelser,Obsidian,Markdown,Slack,Discord,Notion,diktering,klocka,att göra,n8n,ntfy",

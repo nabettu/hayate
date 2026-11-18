@@ -1,5 +1,5 @@
 {
-  "name": "Hayate",
+  "name": "Hayate: Σημειώσεις & Webhook",
   "subtitle": "Μιλήστε, σώστε, στείλτε",
   "promotionalText": "Μιλήστε στο Apple Watch και αποθηκεύεται ως σημείωση, που στέλνεται στις Υπενθυμίσεις, σε Markdown (π.χ. Obsidian) και σε webhook όπως Slack ή Notion. Ανοιχτός κώδικας.",
   "keywords": "webhook,υπενθυμίσεις,Obsidian,Markdown,Slack,Discord,Notion,υπαγόρευση,αυτοματισμός,n8n,ntfy",

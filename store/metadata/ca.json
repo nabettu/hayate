@@ -1,5 +1,5 @@
 {
-  "name": "Hayate",
+  "name": "Hayate: Nota de veu i Webhook",
   "subtitle": "Parla, desa i envia a webhooks",
   "promotionalText": "Parla a l’Apple Watch i es desa com a nota; després s’envia a Recordatoris, a un fitxer Markdown com el teu Obsidian i a webhooks com Slack o Notion. Codi obert.",
   "keywords": "webhook,recordatoris,Obsidian,Markdown,Slack,Notion,dictat,tasques,automatització,n8n,ntfy",

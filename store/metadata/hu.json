@@ -1,5 +1,5 @@
 {
-  "name": "Hayate",
+  "name": "Hayate: Hangjegyzet & Webhook",
   "subtitle": "Mondja, mentse, küldje tovább",
   "promotionalText": "Mondja az Apple Watchnak: jegyzetként menti, és továbbítja az Emlékeztetőkbe, egy Markdown-fájlba (pl. Obsidian) és webhookokra (Slack, Notion). Nyílt forráskód.",
   "keywords": "emlékeztető,webhook,Obsidian,Markdown,Slack,Discord,Notion,diktálás,teendő,jegyzet,n8n,ntfy",

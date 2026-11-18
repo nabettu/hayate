@@ -1,5 +1,5 @@
 {
-  "name": "Hayate",
+  "name": "Hayate: 음성 메모 & Webhook",
   "subtitle": "말로 메모하고 webhook으로 전송",
   "promotionalText": "Apple Watch에 말하기만 하면 메모로 저장됩니다. 미리 알림, Obsidian 같은 Markdown, Slack이나 Notion 같은 webhook으로 한 번에 보냅니다. 오픈 소스이며 광고와 추적이 없습니다.",
   "keywords": "음성메모,webhook,미리알림,Obsidian,Markdown,Slack,Discord,Notion,받아쓰기,워치,할일,자동화,오픈소스,n8n,ntfy",

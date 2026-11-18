@@ -81,7 +81,7 @@ for (const [lang, locales] of Object.entries(LOCALES)) {
   check(lang, m);
   console.log(`${lang} → ${locales.join(" ")}`);
   for (const locale of locales) {
-    // ストアの名前はロケールごとに他社と重ならないものしか使えない。en-US は「Hayate」が他社に使われているので nameByLocale で変える (2026-11-10)
+    // ストアの名前はロケールごとに他社と重ならないものしか使えない。ロケールごとに変えたいときは nameByLocale を使う (2026-11-10)
     const name = m.nameByLocale?.[locale] ?? m.name;
     const info = { name, subtitle: m.subtitle, privacyPolicyUrl: PRIVACY_URL };
     upsert("App 情報", appInfoLocs, locale, info, () => api("POST", "/v1/appInfoLocalizations", {
