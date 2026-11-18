@@ -1,55 +1,19 @@
 {
   "iphone": {
-    "hero": {
-      "h1": "Nói vào cổ tay,\nlưu thành *ghi chú*",
-      "chips": [
-        "Ghi chú",
-        "Webhook",
-        "Lời nhắc"
-      ],
-      "closing": "Nảy ý tưởng?\nLưu ngay *từ cổ tay*"
+    "memos": {
+      "h1": "Điều bạn nói\nđược lưu thành *ghi chú*"
     },
-    "siri": {
-      "h1": "*Hey Siri*,\nrảnh cả hai tay",
-      "chips": [
-        "Siri",
-        "Chạm hai lần",
-        "Mặt đồng hồ"
-      ],
-      "closing": "Bận tay?\nGhi chú *bằng giọng*"
-    },
-    "reminder": {
-      "h1": "Mở đầu một từ,\nthành *lời nhắc*",
-      "floats": [
-        "Đã thêm “mua sữa”",
-        "iPhone thêm vào danh sách"
-      ],
-      "closing": "Việc cần làm\n*vào thẳng danh sách*"
+    "detail": {
+      "h1": "Xem trạng thái\n*từng nơi nhận*"
     },
     "integrations": {
-      "h1": "Gửi tới *nhiều*\nnơi cùng lúc",
-      "chips": [
-        "Webhook",
-        "Markdown",
-        "Obsidian"
-      ],
-      "floats": [
-        "Ghi vào 2026-11-13.md",
-        "Slack, Notion, ntfy..."
-      ],
-      "closing": "Cả kênh chat lẫn\n*sổ ghi chép*"
+      "h1": "Gửi tới mọi\n*tích hợp* đang bật"
     },
-    "more": {
-      "h1": "Và còn\n*nhiều nữa.*",
-      "cells": [
-        "Mọi ghi chú\nlưu trên iPhone",
-        "Header xác thực\nlưu ở Keychain",
-        "Mã nguồn mở\ntrên GitHub",
-        "Chưa gửi được?\nGửi lại khi mở",
-        "Không quảng cáo,\nkhông theo dõi",
-        "Hỗ trợ\n45 ngôn ngữ"
-      ],
-      "closing": "Lời bạn nói,\nvào *hệ thống riêng*"
+    "templates": {
+      "h1": "Thêm Slack, Notion\ntừ *mẫu có sẵn*"
+    },
+    "compose": {
+      "h1": "Hoặc *gõ*\nghi chú"
     }
   },
   "screen": {

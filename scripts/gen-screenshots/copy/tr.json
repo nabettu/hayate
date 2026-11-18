@@ -1,55 +1,19 @@
 {
   "iphone": {
-    "hero": {
-      "h1": "Bileğine söyle,\n*nota* dönüşsün",
-      "chips": [
-        "Not",
-        "Webhook",
-        "Anımsatıcı"
-      ],
-      "closing": "Aklına geleni\n*bilekten* kaydet"
+    "memos": {
+      "h1": "Söyledikleriniz\n*not* olarak kalır"
     },
-    "siri": {
-      "h1": "*Hey Siri* ile\neller serbest",
-      "chips": [
-        "Siri",
-        "Çift dokunma",
-        "Kadrandan"
-      ],
-      "closing": "Ellerin dolu mu?\n*Sesinle* not al"
-    },
-    "reminder": {
-      "h1": "Bir sözle başla,\n*anımsatıcı* olsun",
-      "floats": [
-        "“süt al” eklendi",
-        "iPhone listeye ekler"
-      ],
-      "closing": "Yapılacaklar\n*doğrudan listeye*"
+    "detail": {
+      "h1": "Teslimatı\n*her hedef için* görün"
     },
     "integrations": {
-      "h1": "*Birçok* hedefe\naynı anda gönder",
-      "chips": [
-        "Webhook",
-        "Markdown",
-        "Obsidian"
-      ],
-      "floats": [
-        "2026-11-13.md’ye eklendi",
-        "Slack, Notion, ntfy ve dahası"
-      ],
-      "closing": "Sohbete de,\n*notlarına* da"
+      "h1": "Açık olan her\n*entegrasyona* gönderin"
     },
-    "more": {
-      "h1": "Dahası\n*da var.*",
-      "cells": [
-        "Tüm notlar\niPhone’da kalır",
-        "Kimlik başlığı\nKeychain’de",
-        "Açık kaynak\nGitHub’da",
-        "Gönderilemeyenler\naçınca yeniden",
-        "Reklam yok,\ntakip yok",
-        "45 dilde\nkullanılabilir"
-      ],
-      "closing": "Sözlerin,\n*kendi düzenine*"
+    "templates": {
+      "h1": "Slack, Notion\n*şablonlarla* ekleyin"
+    },
+    "compose": {
+      "h1": "Ya da notu\n*yazın*"
     }
   },
   "screen": {

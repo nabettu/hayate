@@ -1,55 +1,19 @@
 {
   "iphone": {
-    "hero": {
-      "h1": "对着手腕说\n存成*备忘*",
-      "chips": [
-        "备忘",
-        "Webhook",
-        "提醒事项"
-      ],
-      "closing": "灵感一来\n*抬腕*就记"
+    "memos": {
+      "h1": "说过的话\n都存为*备忘*"
     },
-    "siri": {
-      "h1": "*嘿 Siri*\n无需动手",
-      "chips": [
-        "Siri",
-        "互点两下",
-        "表盘"
-      ],
-      "closing": "双手没空时\n*动动嘴*就能记"
-    },
-    "reminder": {
-      "h1": "开头说一句\n就进*提醒事项*",
-      "floats": [
-        "已添加“买牛奶”",
-        "iPhone 添加到列表"
-      ],
-      "closing": "待办事项\n*直接进列表*"
+    "detail": {
+      "h1": "按*发送目标*\n查看是否送达"
     },
     "integrations": {
-      "h1": "*多个*目标\n一次送达",
-      "chips": [
-        "Webhook",
-        "Markdown",
-        "Obsidian"
-      ],
-      "floats": [
-        "追加到 2026-11-13.md",
-        "Slack、Notion、ntfy 等"
-      ],
-      "closing": "发到聊天\n也存进*笔记*"
+      "h1": "一次发到所有\n*已开启的连接*"
     },
-    "more": {
-      "h1": "还有\n*更多。*",
-      "cells": [
-        "备忘全部\n保留在 iPhone",
-        "认证请求头\n存于 Keychain",
-        "源代码\n在 GitHub 公开",
-        "未发送的\n下次打开重发",
-        "无广告\n无追踪",
-        "支持\n45 种语言"
-      ],
-      "closing": "你说的话\n送进*你的流程*"
+    "templates": {
+      "h1": "Slack、Notion\n用*模板*添加"
+    },
+    "compose": {
+      "h1": "也可以\n*打字*记备忘"
     }
   },
   "screen": {

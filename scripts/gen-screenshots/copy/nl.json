@@ -1,55 +1,19 @@
 {
   "iphone": {
-    "hero": {
-      "h1": "Spreek het in,\nbewaar als *memo*",
-      "chips": [
-        "Memo",
-        "Webhook",
-        "Herinnering"
-      ],
-      "closing": "Idee? Bewaar het\n*vanaf je pols*"
+    "memos": {
+      "h1": "Wat je zegt\nwordt een *memo*"
     },
-    "siri": {
-      "h1": "*Hey Siri*,\nhandenvrij",
-      "chips": [
-        "Siri",
-        "Dubbeltik",
-        "Wijzerplaat"
-      ],
-      "closing": "Handen vol?\nNoteer met je *stem*"
-    },
-    "reminder": {
-      "h1": "Eén woord vooraf:\neen *herinnering*",
-      "floats": [
-        "“melk kopen” toegevoegd",
-        "iPhone zet het in een lijst"
-      ],
-      "closing": "Taken direct\n*op je lijst*"
+    "detail": {
+      "h1": "Bezorging\n*per bestemming*"
     },
     "integrations": {
-      "h1": "Naar *veel*\nplekken tegelijk",
-      "chips": [
-        "Webhook",
-        "Markdown",
-        "Obsidian"
-      ],
-      "floats": [
-        "Toegevoegd aan 2026-11-13.md",
-        "Slack, Notion, ntfy en meer"
-      ],
-      "closing": "Naar je chat en\n*je notities*"
+      "h1": "Naar elke\n*integratie* die aanstaat"
     },
-    "more": {
-      "h1": "En nog\n*veel meer.*",
-      "cells": [
-        "Elke memo\nbewaard op iPhone",
-        "Auth-header\nin de Keychain",
-        "Open source\nop GitHub",
-        "Niet verstuurd?\nOpnieuw bij openen",
-        "Geen reclame,\ngeen tracking",
-        "Beschikbaar\nin 45 talen"
-      ],
-      "closing": "Jouw woorden,\nin *jouw workflow*"
+    "templates": {
+      "h1": "Slack, Notion e.a.\nvia *sjablonen*"
+    },
+    "compose": {
+      "h1": "Of *typ*\nje memo"
     }
   },
   "screen": {

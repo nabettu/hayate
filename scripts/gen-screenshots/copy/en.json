@@ -1,126 +1,90 @@
 {
-  "iphone": {
-    "hero": {
-      "h1": "Speak to your wrist,\nkeep it as a *memo*",
-      "chips": [
-        "Memo",
-        "Webhook",
-        "Reminders"
-      ],
-      "closing": "Idea? Save it\nfrom your *wrist*"
-    },
-    "siri": {
-      "h1": "*Hey Siri*,\nno hands needed",
-      "chips": [
-        "Siri",
-        "Double tap",
-        "Watch face"
-      ],
-      "closing": "Hands full?\nMemo by *voice*"
-    },
-    "reminder": {
-      "h1": "Start with a word,\nget a *reminder*",
-      "floats": [
-        "Added “buy milk”",
-        "iPhone adds it to a list"
-      ],
-      "closing": "To-dos go\n*straight to a list*"
-    },
-    "integrations": {
-      "h1": "Send to *many*\nplaces at once",
-      "chips": [
-        "Webhook",
-        "Markdown",
-        "Obsidian"
-      ],
-      "floats": [
-        "Appended to 2026-11-13.md",
-        "Slack, Notion, ntfy & more"
-      ],
-      "closing": "Your chat and\n*your notes*, too"
-    },
-    "more": {
-      "h1": "And\n*more.*",
-      "cells": [
-        "Every memo\nkept on iPhone",
-        "Auth header\nstored in Keychain",
-        "Open source\non GitHub",
-        "Unsent ones resent\nwhen you reopen",
-        "No ads,\nno tracking",
-        "Available in\n45 languages"
-      ],
-      "closing": "Your words,\ninto *your workflow*"
-    }
+ "iphone": {
+  "memos": {
+   "h1": "What you say\nis kept as a *memo*"
   },
-  "screen": {
-    "appName": "Hayate",
-    "memoButton": "Memo",
-    "savedAndSent": "Saved and sent",
-    "destinationCount": "Destinations: 3",
-    "memosTitle": "Memo",
-    "spoken": [
-      "Parking is B2, spot 14",
-      "Dentist tomorrow at 10",
-      "Story idea: the farmers market"
-    ],
-    "reminderSpoken": "Reminder, buy milk",
-    "reminderTitle": "buy milk",
-    "summary": {
-      "sent": "Sent",
-      "waiting": "Waiting to Send",
-      "memo": "Memo"
-    },
-    "status": {
-      "done": "Done",
-      "waiting": "Waiting to Send"
-    },
-    "date": "Nov 13, 10:09 AM",
-    "time": "10:09",
-    "destinations": [
-      "Slack #memo",
-      "Discord #todo",
-      "Notion",
-      "ntfy"
-    ],
-    "reminderTarget": "Reminders (Groceries)",
-    "markdownTarget": "Markdown (Obsidian)",
-    "markdownFile": "2026-11-13.md",
-    "siriAsk": "Send with Hayate",
-    "siriQuestion": "What do you want to memo?",
-    "siriDialog": "Saved and sent",
-    "quote": [
-      "“",
-      "”"
-    ],
-    "tabs": [
-      "Input",
-      "Memo",
-      "Integrations",
-      "How to Use"
-    ],
-    "detail": {
-      "deliveries": "Destinations and Integrations",
-      "sendTo": "Send to Destination",
-      "copy": "Copy",
-      "share": "Share",
-      "delete": "Delete",
-      "fromWatch": "Sends from Apple Watch"
-    },
-    "integrations": {
-      "title": "Integrations",
-      "savedOnPhone": "Saved on iPhone",
-      "reminders": "Reminders",
-      "reminderDetail": "Starts with “Reminder” → added to “Groceries”",
-      "markdown": "Markdown File",
-      "markdownDetail": "Appended by date to “Obsidian”",
-      "webhooks": "Destinations (webhooks)",
-      "webhooksFooter": "Sends the memo to every destination whose switch is on. Memos entered on Apple Watch are sent directly from the watch.",
-      "kinds": [
-        "Slack",
-        "Discord",
-        "Webhook",
-        "Webhook"
-      ]
-    }
+  "detail": {
+   "h1": "See delivery\n*per destination*"
+  },
+  "integrations": {
+   "h1": "Send to every\n*integration* you turn on"
+  },
+  "templates": {
+   "h1": "Add Slack, Notion\nand more from *templates*"
+  },
+  "compose": {
+   "h1": "Or *type*\nyour memo"
   }
+ },
+ "screen": {
+  "appName": "Hayate",
+  "memoButton": "Memo",
+  "savedAndSent": "Saved and sent",
+  "destinationCount": "Destinations: 3",
+  "memosTitle": "Memo",
+  "spoken": [
+   "Parking is B2, spot 14",
+   "Dentist tomorrow at 10",
+   "Story idea: the farmers market"
+  ],
+  "reminderSpoken": "Reminder, buy milk",
+  "reminderTitle": "buy milk",
+  "summary": {
+   "sent": "Sent",
+   "waiting": "Waiting to Send",
+   "memo": "Memo"
+  },
+  "status": {
+   "done": "Done",
+   "waiting": "Waiting to Send"
+  },
+  "date": "Nov 13, 10:09 AM",
+  "time": "10:09",
+  "destinations": [
+   "Slack #memo",
+   "Discord #todo",
+   "Notion",
+   "ntfy"
+  ],
+  "reminderTarget": "Reminders (Groceries)",
+  "markdownTarget": "Markdown (Obsidian)",
+  "markdownFile": "2026-11-13.md",
+  "siriAsk": "Send with Hayate",
+  "siriQuestion": "What do you want to memo?",
+  "siriDialog": "Saved and sent",
+  "quote": [
+   "“",
+   "”"
+  ],
+  "tabs": [
+   "Input",
+   "Memo",
+   "Integrations",
+   "How to Use"
+  ],
+  "detail": {
+   "deliveries": "Destinations and Integrations",
+   "sendTo": "Send to Destination",
+   "copy": "Copy",
+   "share": "Share",
+   "delete": "Delete",
+   "fromWatch": "Sends from Apple Watch"
+  },
+  "integrations": {
+   "title": "Integrations",
+   "savedOnPhone": "Saved on iPhone",
+   "reminders": "Reminders",
+   "reminderDetail": "Starts with “Reminder” → added to “Groceries”",
+   "markdown": "Markdown File",
+   "markdownDetail": "Appended by date to “Obsidian”",
+   "webhooks": "Destinations (webhooks)",
+   "webhooksFooter": "Sends the memo to every destination whose switch is on. Memos entered on Apple Watch are sent directly from the watch.",
+   "kinds": [
+    "Slack",
+    "Discord",
+    "Webhook",
+    "Webhook"
+   ]
+  }
+ }
 }

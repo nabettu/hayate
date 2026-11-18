@@ -1,55 +1,19 @@
 {
   "iphone": {
-    "hero": {
-      "h1": "Fale com o pulso,\nguarde como *nota*",
-      "chips": [
-        "Anotação",
-        "Webhook",
-        "Lembretes"
-      ],
-      "closing": "Teve uma ideia?\nAnote do *pulso*"
+    "memos": {
+      "h1": "O que você diz\nvira uma *nota*"
     },
-    "siri": {
-      "h1": "*Hey Siri*,\nsem usar as mãos",
-      "chips": [
-        "Siri",
-        "Toque duplo",
-        "Mostrador"
-      ],
-      "closing": "Mãos ocupadas?\nAnote só com a *voz*"
-    },
-    "reminder": {
-      "h1": "Uma palavra e\nvira *lembrete*",
-      "floats": [
-        "“comprar leite” adicionado",
-        "O iPhone põe na lista"
-      ],
-      "closing": "Suas tarefas vão\n*direto para a lista*"
+    "detail": {
+      "h1": "Veja a entrega\n*por destino*"
     },
     "integrations": {
-      "h1": "Envie para *vários*\nlugares de uma vez",
-      "chips": [
-        "Webhook",
-        "Markdown",
-        "Obsidian"
-      ],
-      "floats": [
-        "Acrescentado a 2026-11-13.md",
-        "Slack, Notion, ntfy e mais"
-      ],
-      "closing": "No chat e\nnas *suas notas*"
+      "h1": "Envia a cada\n*integração* ativa"
     },
-    "more": {
-      "h1": "E muito\n*mais.*",
-      "cells": [
-        "Tudo fica\nguardado no iPhone",
-        "Cabeçalho de auth\nno Keychain",
-        "Código aberto\nno GitHub",
-        "O que falhar é\nreenviado depois",
-        "Sem anúncios\nnem rastreamento",
-        "Disponível em\n45 idiomas"
-      ],
-      "closing": "Suas palavras,\nno *seu fluxo*"
+    "templates": {
+      "h1": "Adicione Slack e Notion\npor *modelos*"
+    },
+    "compose": {
+      "h1": "Ou *digite*\nsua nota"
     }
   },
   "screen": {

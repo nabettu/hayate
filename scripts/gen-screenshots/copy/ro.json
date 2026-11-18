@@ -1,55 +1,19 @@
 {
   "iphone": {
-    "hero": {
-      "h1": "Vorbește-i ceasului,\npăstrează o *notiță*",
-      "chips": [
-        "Notiță",
-        "Webhook",
-        "Mementouri"
-      ],
-      "closing": "Ai o idee?\nNoteaz-o de pe *ceas*"
+    "memos": {
+      "h1": "Ce spui\ndevine *notiță*"
     },
-    "siri": {
-      "h1": "*Hey Siri*,\nfără mâini",
-      "chips": [
-        "Siri",
-        "Atingere dublă",
-        "Cadran"
-      ],
-      "closing": "Mâinile ocupate?\nNotează cu *vocea*"
-    },
-    "reminder": {
-      "h1": "Un cuvânt la început\nși ai un *memento*",
-      "floats": [
-        "„cumpără lapte” adăugat",
-        "iPhone-ul adaugă în listă"
-      ],
-      "closing": "Sarcinile ajung\n*direct în listă*"
+    "detail": {
+      "h1": "Livrarea\n*pe fiecare destinație*"
     },
     "integrations": {
-      "h1": "Trimite în *multe*\nlocuri deodată",
-      "chips": [
-        "Webhook",
-        "Markdown",
-        "Obsidian"
-      ],
-      "floats": [
-        "Adăugat în 2026-11-13.md",
-        "Slack, Notion, ntfy și altele"
-      ],
-      "closing": "În chat și\nîn *notițele tale*"
+      "h1": "Trimite la fiecare\n*integrare* activă"
     },
-    "more": {
-      "h1": "Și multe\n*altele.*",
-      "cells": [
-        "Toate notițele\nrămân pe iPhone",
-        "Antet de autentif.\nîn Keychain",
-        "Cod sursă\npe GitHub",
-        "Ce n-a plecat\nse retrimite",
-        "Fără reclame,\nfără urmărire",
-        "Disponibil în\n45 de limbi"
-      ],
-      "closing": "Vorbele tale,\nîn *fluxul tău*"
+    "templates": {
+      "h1": "Slack, Notion\ndin *șabloane*"
+    },
+    "compose": {
+      "h1": "Sau *tastează*\nnotița"
     }
   },
   "screen": {

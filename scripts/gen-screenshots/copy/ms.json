@@ -1,55 +1,19 @@
 {
   "iphone": {
-    "hero": {
-      "h1": "Cakap sahaja,\njadi *memo*",
-      "chips": [
-        "Memo",
-        "Webhook",
-        "Peringatan"
-      ],
-      "closing": "Ada idea?\nSimpan *dari jam*"
+    "memos": {
+      "h1": "Apa yang anda kata\ndisimpan sebagai *memo*"
     },
-    "siri": {
-      "h1": "*Hey Siri*,\ntanpa tangan",
-      "chips": [
-        "Siri",
-        "Ketik 2 kali",
-        "Wajah jam"
-      ],
-      "closing": "Tangan penuh?\nCatat dengan *suara*"
-    },
-    "reminder": {
-      "h1": "Satu kata awal,\njadi *peringatan*",
-      "floats": [
-        "“beli susu” ditambah",
-        "iPhone tambah ke senarai"
-      ],
-      "closing": "Tugasan terus\n*ke senarai*"
+    "detail": {
+      "h1": "Lihat penghantaran\n*setiap destinasi*"
     },
     "integrations": {
-      "h1": "Hantar ke *banyak*\ntempat serentak",
-      "chips": [
-        "Webhook",
-        "Markdown",
-        "Obsidian"
-      ],
-      "floats": [
-        "Ditambah ke 2026-11-13.md",
-        "Slack, Notion, ntfy dll."
-      ],
-      "closing": "Ke sembang dan\n*nota anda*"
+      "h1": "Hantar ke setiap\n*integrasi* yang aktif"
     },
-    "more": {
-      "h1": "Dan\n*banyak lagi.*",
-      "cells": [
-        "Semua memo\ndisimpan di iPhone",
-        "Pengepala auth\ndalam Keychain",
-        "Sumber terbuka\ndi GitHub",
-        "Yang belum dihantar\ndihantar semula",
-        "Tiada iklan,\ntiada penjejakan",
-        "Tersedia dalam\n45 bahasa"
-      ],
-      "closing": "Kata-kata anda,\nke *sistem anda*"
+    "templates": {
+      "h1": "Tambah Slack, Notion\ndaripada *templat*"
+    },
+    "compose": {
+      "h1": "Atau *taip*\nmemo anda"
     }
   },
   "screen": {

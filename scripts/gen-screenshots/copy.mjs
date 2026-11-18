@@ -16,7 +16,34 @@ const DIR = path.join(HERE, "copy");
 export const LANGS = fs.readdirSync(DIR).filter((f) => f.endsWith(".json")).map((f) => f.slice(0, -5))
   .sort((a, b) => (a === "ja" ? -1 : b === "ja" ? 1 : a.localeCompare(b)));
 
-export const COPY = Object.fromEntries(LANGS.map((lang) => [lang, JSON.parse(fs.readFileSync(path.join(DIR, `${lang}.json`), "utf8"))]));
+// 画面の中のボタン・見出しなど、アプリにある文言はアプリの String Catalog (Shared/Localizable.xcstrings) の訳をそのまま使う
+// (スクショの画面がアプリの実際の表示と食い違わないように。2026-11-18 の Guideline 2.3.3 のリジェクトを受けて)
+const CATALOG = JSON.parse(fs.readFileSync(path.join(HERE, "../../Shared/Localizable.xcstrings"), "utf8")).strings;
+const APP_KEYS = {
+  memoButton: "メモする",
+  composeSubtitle: "メモして、リマインダーや webhook へ飛ばします",
+  customWebhook: "Webhook (自由に設定)",
+  markdownAppend: "Markdown (%@) に追記",
+};
+/** アプリの文言 (ja はキーそのもの)。訳が無ければ止める */
+export function appText(lang, key) {
+  if (lang === "ja") return key;
+  const v = CATALOG[key]?.localizations?.[lang]?.stringUnit?.value;
+  if (!v) throw new Error(`Shared/Localizable.xcstrings に ${lang} の「${key}」が無い`);
+  return v;
+}
+/** メモの一覧の「何分前」(SwiftUI の Text(_, style: .relative) に近い、単位付きの数) */
+const AGO = [[2, "minute"], [1, "hour"], [3, "hour"], [1, "day"], [2, "day"]];
+const appStrings = (lang) => ({
+  ...Object.fromEntries(Object.entries(APP_KEYS).map(([k, key]) => [k, appText(lang, key)])),
+  ago: AGO.map(([n, unit]) => new Intl.NumberFormat(lang, { style: "unit", unit, unitDisplay: "short" }).format(n)),
+});
+
+export const COPY = Object.fromEntries(LANGS.map((lang) => {
+  const copy = JSON.parse(fs.readFileSync(path.join(DIR, `${lang}.json`), "utf8"));
+  copy.app = appStrings(lang);
+  return [lang, copy];
+}));
 
 /** 右から左に書く言語 */
 export const RTL = new Set(["ar", "he", "ur"]);

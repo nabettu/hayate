@@ -1,55 +1,19 @@
 {
   "iphone": {
-    "hero": {
-      "h1": "손목에 말하면\n*메모*로 남아요",
-      "chips": [
-        "메모",
-        "Webhook",
-        "미리 알림"
-      ],
-      "closing": "떠오르면 바로\n*손목에서* 기록"
+    "memos": {
+      "h1": "말한 내용은\n*메모*로 남아요"
     },
-    "siri": {
-      "h1": "*Hey Siri*로\n손 쓰지 않고",
-      "chips": [
-        "Siri",
-        "이중 탭",
-        "시계 페이스"
-      ],
-      "closing": "두 손이 바빠도\n*목소리로* 메모"
-    },
-    "reminder": {
-      "h1": "한마디로 시작하면\n*미리 알림*에",
-      "floats": [
-        "“우유 사기” 추가됨",
-        "iPhone이 목록에 추가"
-      ],
-      "closing": "할 일은\n*바로 목록으로*"
+    "detail": {
+      "h1": "전달 여부를\n*대상별로* 확인"
     },
     "integrations": {
-      "h1": "*여러* 곳으로\n한 번에 전송",
-      "chips": [
-        "Webhook",
-        "Markdown",
-        "Obsidian"
-      ],
-      "floats": [
-        "2026-11-13.md에 추가",
-        "Slack·Notion·ntfy 등"
-      ],
-      "closing": "채팅에도\n*내 노트*에도"
+      "h1": "켜 둔 연동에\n*한 번에* 전송"
     },
-    "more": {
-      "h1": "그 밖에도\n*다양하게.*",
-      "cells": [
-        "메모는 모두\niPhone에 저장",
-        "인증 헤더는\nKeychain에",
-        "소스 코드를\nGitHub에 공개",
-        "못 보낸 메모는\n다시 열면 재전송",
-        "광고도 추적도\n없습니다",
-        "45개 언어\n지원"
-      ],
-      "closing": "말한 그대로\n*나만의 흐름*으로"
+    "templates": {
+      "h1": "Slack, Notion도\n*템플릿*으로 등록"
+    },
+    "compose": {
+      "h1": "*글자로*\n메모할 수도"
     }
   },
   "screen": {

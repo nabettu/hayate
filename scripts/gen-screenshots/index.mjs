@@ -6,7 +6,7 @@
 // 止める条件 (直してから作り直す):
 // - 文言に禁止語がある (validate.mjs)
 // - 見出しが収まらず、決めた大きさより小さく縮んだ (copy.mjs の改行を増やす・短くする)
-// - 下の一言と、その上の吹き出し・カードの間が 40px 未満 / 見出しと端末・吹き出しの間が 40px 未満 (詰まって見える)
+// - 見出しと端末の間が 40px 未満 (詰まって見える) / 画面の中身が下のタブに重なる
 // - 時計の画面の 1 行の文字が、字を小さくしても収まらない
 
 import * as fs from "node:fs";
@@ -19,7 +19,7 @@ import { IPHONE, IPHONE_SLIDES, ROOT, WATCH, WATCH_SLIDES, iphoneSlide, watchSli
 
 const OUT = path.join(ROOT, "screenshots/app-store");
 // これより小さく縮んだら読めないので止める
-const MIN_SIZE = { h1: 110, closing: 70 };
+const MIN_SIZE = 84;
 
 const langs = process.argv.slice(2).length ? process.argv.slice(2) : LANGS;
 for (const lang of langs) {
@@ -48,25 +48,19 @@ try {
       await phone.evaluate(() => document.fonts.ready);
       const report = await phone.evaluate(() => {
         const box = (el) => el.getBoundingClientRect();
-        const closing = document.querySelector(".closing");
-        const head = document.querySelector(".head");
-        const above = [...document.querySelectorAll(".card, .bubble, .grid, .float")];
-        const below = [...document.querySelectorAll(".watch, .iphone, .bubble, .float, .appicon, .grid")];
+        const ps = document.querySelector(".ps");
         return {
           fit: window.__fit,
-          watchOverflow: window.__watchOverflow,
-          closingGap: closing ? box(closing).top - Math.max(0, ...above.map((el) => box(el).bottom)) : null,
-          headGap: Math.min(...below.map((el) => box(el).top)) - box(head).bottom,
+          headGap: box(document.querySelector(".iphone")).top - box(document.querySelector(".head")).bottom,
+          // 画面の中身が下のタブに潜り込んでいないか (タブの上端より下まで中身がある)
+          contentBottom: Math.max(0, ...[...ps.querySelectorAll(":scope > :not(.appsky):not(.tabbar):not(.status)")].map((el) => el.getBoundingClientRect().bottom)),
+          tabTop: box(ps.querySelector(".tabbar")).top,
         };
       });
       const name = `iphone-${String(i + 1).padStart(2, "0")}_${key}`;
-      for (const f of report.fit) {
-        const kind = f.cls.includes("closing") ? "closing" : "h1";
-        if (f.size < MIN_SIZE[kind]) problems.push(`${lang}/${name}: ${kind} が ${f.size}px まで縮んだ (下限 ${MIN_SIZE[kind]}px)`);
-      }
-      if (report.closingGap !== null && report.closingGap < 40) problems.push(`${lang}/${name}: 下の一言との間が ${Math.round(report.closingGap)}px`);
-      for (const o of report.watchOverflow) problems.push(`${lang}/${name}: 時計の画面で収まらない (${o})`);
-      if (report.headGap < 40) problems.push(`${lang}/${name}: 見出しとの間が ${Math.round(report.headGap)}px`);
+      for (const f of report.fit) if (f.size < MIN_SIZE) problems.push(`${lang}/${name}: 見出しが ${f.size}px まで縮んだ (下限 ${MIN_SIZE}px)`);
+      if (report.headGap < 40) problems.push(`${lang}/${name}: 見出しと端末の間が ${Math.round(report.headGap)}px`);
+      if (report.contentBottom > report.tabTop) problems.push(`${lang}/${name}: 画面の中身が下のタブに重なる`);
       await phone.screenshot({ path: path.join(dir, `${name}.png`) });
       console.log(`  -> ${lang}/${name}.png`);
     }

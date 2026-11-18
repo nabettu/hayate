@@ -1,55 +1,19 @@
 {
   "iphone": {
-    "hero": {
-      "h1": "Si det høyt,\nlagre som *memo*",
-      "chips": [
-        "Memo",
-        "Webhook",
-        "Påminnelser"
-      ],
-      "closing": "Idé? Lagre den\n*fra håndleddet*"
+    "memos": {
+      "h1": "Det du sier,\nlagres som *notat*"
     },
-    "siri": {
-      "h1": "*Hey Siri*,\nhelt håndfritt",
-      "chips": [
-        "Siri",
-        "Dobbelttrykk",
-        "Urskive"
-      ],
-      "closing": "Hendene fulle?\nNoter med *stemmen*"
-    },
-    "reminder": {
-      "h1": "Start med ett ord,\nfå en *påminnelse*",
-      "floats": [
-        "La til «kjøp melk»",
-        "iPhone legger det i en liste"
-      ],
-      "closing": "Gjøremål rett\n*inn i listen*"
+    "detail": {
+      "h1": "Se levering\n*per mottaker*"
     },
     "integrations": {
-      "h1": "Send til *mange*\nsteder samtidig",
-      "chips": [
-        "Webhook",
-        "Markdown",
-        "Obsidian"
-      ],
-      "floats": [
-        "Lagt til i 2026-11-13.md",
-        "Slack, Notion, ntfy m.m."
-      ],
-      "closing": "Til chatten og\n*notatene dine*"
+      "h1": "Send til hver\n*integrasjon* som er på"
     },
-    "more": {
-      "h1": "Og\n*mye mer.*",
-      "cells": [
-        "Alle memoer\nlagres på iPhone",
-        "Auth-header\nlagret i Keychain",
-        "Åpen kildekode\npå GitHub",
-        "Usendte sendes\nnår du åpner igjen",
-        "Ingen reklame,\ningen sporing",
-        "Tilgjengelig\npå 45 språk"
-      ],
-      "closing": "Ordene dine,\ninn i *ditt oppsett*"
+    "templates": {
+      "h1": "Legg til Slack og Notion\nfra *maler*"
+    },
+    "compose": {
+      "h1": "Eller *skriv*\nnotatet"
     }
   },
   "screen": {

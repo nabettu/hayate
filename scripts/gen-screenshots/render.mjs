@@ -253,6 +253,11 @@ const PHONE_CSS = `
     background: rgba(40,32,80,.82); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14), 0 8px 24px rgba(0,0,0,.35); }
   .ps .tab { flex: 1; height: 52px; border-radius: 26px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: 10px; font-weight: 600; white-space: nowrap; overflow: hidden; }
   .ps .tab.on { background: rgba(255,255,255,.12); color: #C4B5FD; }
+  .ps .glowbtn { margin-top: 20px; height: 50px; border-radius: 25px; display: flex; align-items: center; justify-content: center; gap: 10px; font-size: 17px; font-weight: 600;
+    background: linear-gradient(45deg,#8B5CF6,#C4B5FD); box-shadow: inset 0 0 0 1px rgba(255,255,255,.25), 0 0 14px rgba(139,92,246,.7); }
+  .ps .menu { position: absolute !important; inset-inline-end: 8px; top: 58px; min-width: 250px; max-width: 360px; padding: 10px 0; border-radius: 34px; z-index: 3;
+    background: linear-gradient(160deg, rgba(70,62,120,.97), rgba(58,46,112,.97)); box-shadow: inset 0 0 0 1px rgba(255,255,255,.14), 0 20px 50px rgba(0,0,0,.45); }
+  .ps .menu div { height: 42px; display: flex; align-items: center; padding: 0 28px; font-size: 17px; white-space: nowrap; overflow: hidden; }
   .ps .toggle::after { content: ""; position: absolute; right: 2px; top: 2px; width: 27px; height: 27px; border-radius: 50%; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,.2); }
 `;
 const statusBar = () => `<div class="status"><span>9:41</span><span class="r" style="fill:#fff">
@@ -285,12 +290,12 @@ export const phoneScreens = {
       ${row("checklist", t.reminderTarget)}
       ${row("doc", t.markdownTarget, t.markdownFile)}
     </div></div>
-    <!-- 後から送る・コピー・共有・削除はこの下 (スクロールした先)。吹き出しと重ならないよう描かない -->
+    <!-- 後から送る・コピー・共有・削除はこの下 (スクロールした先) -->
     ${tabBar(t, 1)}
   </div>`;
   },
   /** 「連携」タブ (DestinationListView: iPhone に保存するリマインダー・Markdown と、webhook の送り先。スイッチでオン / オフ) */
-  integrations: (t) => {
+  integrations: (t, _a, menu) => {
     const g = t.integrations;
     const integ = (sym, title, detail) => `<div class="cell" style="justify-content:flex-start;gap:12px">${badge(sym)}<div style="flex:1;min-width:0"><div class="hl">${esc(title)}</div><div class="cap lav">${esc(detail)}</div></div>${SYM.chevronRight(14, "rgba(235,235,245,.35)")}</div>`;
     const dest = (i, on) => `<div class="cell" style="justify-content:flex-start;gap:12px">${badge(["hash", "chat", "braces", "braces"][i])}<div style="flex:1;min-width:0"><div class="hl">${esc(t.destinations[i])}</div><div class="cap lav">${esc(g.kinds[i])}</div></div><span class="toggle${on ? "" : " off"}"></span></div>`;
@@ -304,50 +309,72 @@ export const phoneScreens = {
     <div class="sec"><div class="sh">${esc(g.webhooks)}</div><div class="grp">
       ${[0, 1, 2, 3].map((i) => dest(i, i !== 3)).join("")}
     </div><div class="sf">${esc(g.webhooksFooter)}</div></div>
+    ${menu ?? ""}
     ${tabBar(t, 2)}
   </div>`;
   },
-};
-// ---- 端末の枠 ----
-const DEVICE_CSS = `
-  .iphone { position: absolute; z-index: 5; left: 50%; width: 850px; margin-left: -425px; padding: 18px; border-radius: 120px; background: #121218;
-    box-shadow: 0 60px 140px rgba(0,0,0,.55), inset 0 0 0 3px #3a3a48, 0 0 0 2px rgba(196,181,253,.25); }
-  .iphone .screen { position: relative; overflow: hidden; border-radius: 102px; width: 814px; height: 1770px; }
-  .iphone .screen > .ps { transform: scale(${814 / 402}); transform-origin: 0 0; }
-  .iphone .island { position: absolute; left: 50%; top: 24px; width: 236px; height: 68px; margin-left: -118px; border-radius: 34px; background: #000; z-index: 2; }
-  .watch { position: absolute; z-index: 5; left: 50%; }
-  .watch .band { position: absolute; left: 13%; right: 13%; height: 20%; background: linear-gradient(90deg,#2a2346,#4a3f78 50%,#2a2346); }
-  .watch .band.top { bottom: 94%; -webkit-mask-image: linear-gradient(to top, #000 10%, transparent 95%); }
-  .watch .band.bottom { top: 94%; -webkit-mask-image: linear-gradient(to bottom, #000 10%, transparent 95%); }
-  .watch .case { position: absolute; inset: 0; border-radius: 30%/26%; background: linear-gradient(145deg,#5b5868,#1d1b24 45%,#3a3846);
-    box-shadow: 0 60px 120px rgba(0,0,0,.6), inset 0 0 0 3px rgba(255,255,255,.12); }
-  .watch .glass { position: absolute; inset: 3.2%; border-radius: 27%/23%; background: #000; overflow: hidden; }
-  .watch .glass .ws { position: absolute; transform-origin: 0 0; }
-  .watch .crown { position: absolute; right: -3.6%; top: 22%; width: 5%; height: 16%; border-radius: 10px; background: linear-gradient(90deg,#2a2833,#6b6878 60%,#2a2833); }
-  .watch .side { position: absolute; right: -1.6%; top: 50%; width: 2.4%; height: 18%; border-radius: 8px; background: #2a2833; }
-`;
-
-/** 時計の枠。width は本体の幅 (px)。画面は 416x496 を縮尺して入れる */
-function watchDevice(screenHtml, { width, top, left }) {
-  const height = Math.round(width * 1.19);
-  const glassInset = width * 0.032;
-  const gw = width - glassInset * 2, gh = height - glassInset * 2;
-  // 画面のまわりの黒い縁 (ディスプレイの非表示部分)
-  const pad = width * 0.045;
-  const scale = (gw - pad * 2) / WATCH.width;
-  const sh = WATCH.height * scale;
-  const offY = (gh - sh) / 2;
-  return `<div class="watch" style="width:${width}px;height:${height}px;top:${top}px;${left === undefined ? `margin-left:${-width / 2}px` : `left:${left}px`}">
-    <div class="band top"></div><div class="band bottom"></div>
-    <div class="case"></div>
-    <div class="glass"><div style="position:absolute;left:${pad}px;top:${offY}px;width:${WATCH.width * scale}px;height:${sh}px;border-radius:${18 * scale}px;overflow:hidden;">
-      <div style="transform:scale(${scale});transform-origin:0 0;width:${WATCH.width}px;height:${WATCH.height}px">${screenHtml}</div></div></div>
-    <div class="crown"></div><div class="side"></div>
+  /** 「メモ」タブ (MemoListView: 1 件ずつカード。本文・入力した端末・状態 (Memo.Summary)・何分前) */
+  memos: (t, a) => {
+    const kinds = {
+      sent: [SYM.checkFill(16, "#30D158"), "#30D158"],
+      waiting: [SYM.clock(15, "#FF9F0A"), "#FF9F0A"],
+      memo: [SYM.note(15, "rgba(235,235,245,.6)"), "rgba(235,235,245,.6)"],
+    };
+    const rows = [[t.reminderSpoken, "watch", "sent"], [t.spoken[0], "watch", "sent"], [t.spoken[1], "phone", "waiting"], [t.spoken[2], "watch", "memo"], [t.reminderTitle, "phone", "sent"]];
+    return `<div class="ps">${appSky(402, 874, 46, 31)}${statusBar()}
+    <div class="nav"></div>
+    <div class="large">${esc(t.memosTitle)}</div>
+    <div class="sec" style="display:flex;flex-direction:column;gap:10px;margin-top:8px">
+      ${rows.map(([text, origin, kind], i) => `<div class="grp"><div class="cell" style="gap:10px">
+        <div style="flex:1;min-width:0"><div>${esc(text)}</div>
+          <div class="cap" style="display:flex;align-items:center;gap:7px;margin-top:6px">${icon(origin, 14, "rgba(235,235,245,.6)", 2)}
+            <span style="display:flex;align-items:center;gap:5px;color:${kinds[kind][1]}">${kinds[kind][0]}${esc(t.summary[kind])}</span>
+            <span style="margin-inline-start:auto">${esc(a.ago[i])}</span></div></div>
+        ${SYM.chevronRight(14, "rgba(235,235,245,.35)")}</div></div>`).join("")}
+    </div>
+    ${tabBar(t, 1)}
   </div>`;
-}
+  },
+  /** 「入力」タブ (ComposeView: 紙飛行機・アプリ名・説明・入力欄・「メモする」・入力したメモの行き先) */
+  compose: (t, a) => `<div class="ps">${appSky(402, 874, 46, 37)}${statusBar()}
+    <div style="position:absolute;left:0;right:0;top:136px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center">
+      ${plane(72)}
+      <div style="font-family:ui-rounded,-apple-system,var(--cjk);font-size:28px;font-weight:700">${esc(t.appName)}</div>
+      <div style="font-size:15px;color:rgba(196,181,253,.85);padding:0 20px">${esc(a.composeSubtitle)}</div>
+    </div>
+    <div style="position:absolute;left:20px;right:20px;top:300px">
+      <div class="grp" style="border-radius:20px;height:170px;padding:16px 15px;font-size:17px;line-height:1.4">${esc(t.spoken[2])}</div>
+      <div class="glowbtn">${SYM.paperplane(20, "#fff")}<span>${esc(a.memoButton)}</span></div>
+      <div class="grp" style="border-radius:16px;margin-top:64px;padding:14px;font-size:13px;color:#C4B5FD;display:flex;flex-direction:column;gap:8px">
+        <div style="display:flex;gap:8px">${paperplaneLine(16, "#FDE68A")}<span>${esc(t.destinations.slice(0, 3).join(LIST_SEP))}</span></div>
+        <div style="display:flex;gap:8px">${icon("doc", 16, "#FDE68A", 2)}<span>${esc(a.markdownAppend.replace("%@", "Obsidian"))}</span></div>
+      </div>
+    </div>
+    ${tabBar(t, 0)}
+  </div>`,
+};
 
+/** 入力画面の送り先の区切り。アプリが言語によらず「、」でつないでいる (ComposeView の targetsCard) */
+export const LIST_SEP = "、";
+
+/** 「連携」の + で出るひな形のメニュー (DestinationListView の Menu。WebhookTemplate の並び) */
+const templateMenu = (a) => `<div class="menu">${[a.customWebhook, "Slack", "Discord", "Google Chat", "Microsoft Teams", "Telegram", "ntfy", "Notion", "Todoist", "Home Assistant", "n8n", "IFTTT"]
+  .map((name) => `<div>${esc(name)}</div>`).join("")}</div>`;
+
+/** アイコンと同じ形の紙飛行機 (Shared/CosmosArt.swift の PaperPlane) */
+const plane = (w) => `<svg width="${w}" height="${w * 620 / 700}" viewBox="0 0 700 620" style="filter:drop-shadow(0 0 14px rgba(139,92,246,.9))">
+  <path d="M690 8 318 440 400 615z" fill="#C4B5FD"/><path d="M690 8 300 418 236 532 330 432z" fill="#8B5CF6"/><path d="M690 8 5 278 310 415z" fill="#fff"/></svg>`;
+// ---- 端末の枠 ----
+// 画面がスクショの主役になるよう、端末は横幅いっぱい近くまで大きくする (Guideline 2.3.3: 広告の素材ではなく、使っているアプリの画面を見せる)
+const DEVICE_W = 1080, BEZEL = 18, SCREEN_W = DEVICE_W - BEZEL * 2, SCALE = SCREEN_W / 402;
+const DEVICE_CSS = `
+  .iphone { position: absolute; z-index: 5; left: 50%; width: ${DEVICE_W}px; margin-left: -${DEVICE_W / 2}px; padding: ${BEZEL}px; border-radius: ${Math.round(156)}px; background: #121218;
+    box-shadow: 0 60px 140px rgba(0,0,0,.55), inset 0 0 0 3px #3a3a48, 0 0 0 2px rgba(196,181,253,.25); }
+  .iphone .screen { position: relative; overflow: hidden; border-radius: 138px; width: ${SCREEN_W}px; height: ${Math.round(874 * SCALE)}px; }
+  .iphone .screen > .ps { transform: scale(${SCALE}); transform-origin: 0 0; }
+  .iphone .island { position: absolute; left: 50%; top: ${Math.round(11 * SCALE)}px; width: ${Math.round(124 * SCALE)}px; height: ${Math.round(36 * SCALE)}px; margin-left: -${Math.round(62 * SCALE)}px; border-radius: 999px; background: #000; z-index: 2; }
+`;
 const iphoneDevice = (screenHtml, top) => `<div class="iphone" style="top:${top}px"><div class="screen">${screenHtml}<div class="island"></div></div></div>`;
-
 
 // 漢字・ハングルは言語ごとのフォントで描く (中国語・韓国語が日本語の字形にならないように)。ほかの文字は Chrome が OS のフォントを選ぶ
 const CJK_FONT = { ja: '"Hiragino Sans"', "zh-Hans": '"PingFang SC"', "zh-Hant": '"PingFang TC"', ko: '"Apple SD Gothic Neo"' };
@@ -363,51 +390,21 @@ const SLIDE_CSS = `
   .slide { position: relative; width: ${IPHONE.width}px; height: ${IPHONE.height}px; overflow: hidden; }
   .sky { position: absolute; inset: 0; }
   .head { position: absolute; left: 0; right: 0; text-align: center; z-index: 10; color: #fff; }
-  .head h1 { font-size: 138px; font-weight: 900; line-height: 1.16; letter-spacing: -.02em; }
+  .head h1 { font-size: 112px; font-weight: 900; line-height: 1.16; letter-spacing: -.02em; }
   .line { display: block; white-space: nowrap; }
   em { font-style: normal; padding-bottom: .12em; background: linear-gradient(95deg,#FDE68A,#FDBA74 45%,#F9A8D4); -webkit-background-clip: text; color: transparent; }
-  .chips { display: flex; justify-content: center; gap: 24px; margin-top: 80px; white-space: nowrap; }
-  .chip { display: inline-flex; align-items: center; gap: 16px; border-radius: 999px; padding: 26px 44px; font-size: 56px; font-weight: 800; color: #fff;
-    background: rgba(255,255,255,.1); box-shadow: inset 0 0 0 2px rgba(255,255,255,.16); }
-  .closing { position: absolute; left: 0; right: 0; bottom: 96px; text-align: center; z-index: 30; color: #fff; font-size: 88px; font-weight: 900; line-height: 1.24; letter-spacing: -.01em; }
-  .fade { position: absolute; left: 0; right: 0; bottom: 0; height: 640px; z-index: 20; background: linear-gradient(to bottom, rgba(59,23,130,0), #2f1470 45%, #34167a); }
-  .float { position: absolute; z-index: 25; display: inline-flex; align-items: center; gap: 18px; border-radius: 999px; padding: 28px 44px; font-size: 50px; font-weight: 800;
-    white-space: nowrap; color: #1b1340; background: #fff; box-shadow: 0 20px 50px rgba(0,0,0,.35); }
-  .float.warm { background: linear-gradient(95deg,#FDE68A,#FDBA74); }
-  .float.violet { background: #EDE9FE; }
-  .bubble { position: absolute; z-index: 25; max-width: 1000px; padding: 34px 50px; border-radius: 60px; font-size: 54px; font-weight: 800; white-space: nowrap; box-shadow: 0 20px 50px rgba(0,0,0,.35); }
-  .bubble.me { background: #fff; color: #1b1340; border-bottom-right-radius: 14px; }
-  .bubble.siri { background: rgba(255,255,255,.12); color: #fff; box-shadow: inset 0 0 0 2px rgba(255,255,255,.18), 0 20px 50px rgba(0,0,0,.3); border-bottom-left-radius: 14px; }
-  .card { position: absolute; z-index: 25; left: 110px; right: 110px; border-radius: 56px; padding: 46px 56px; background: rgba(13,10,38,.82); color: #fff;
-    box-shadow: inset 0 0 0 2px rgba(196,181,253,.3), 0 30px 70px rgba(0,0,0,.4); font-family: ui-monospace, "SF Mono", Menlo, var(--cjk), monospace; }
-  .card .req { display: flex; align-items: center; gap: 20px; font-size: 38px; color: #C9C2F2; }
-  .card .verb { padding: 6px 18px; border-radius: 14px; background: #8B5CF6; color: #fff; font-weight: 700; }
-  .card pre { margin-top: 26px; font-size: 44px; line-height: 1.45; font-family: inherit; }
-  .card .key { color: #C4B5FD; } .card .str { color: #FDE68A; }
-  .card .res { position: absolute; right: 50px; top: 44px; display: flex; align-items: center; gap: 12px; font-size: 38px; font-weight: 700; color: #4ADE80; }
-  .card.fan { font-family: -apple-system, "SF Pro Text", var(--cjk), sans-serif; padding: 40px 56px 30px; }
-  .card.fan .memo { display: flex; align-items: center; gap: 22px; font-size: 48px; font-weight: 700; padding-bottom: 26px; margin-bottom: 8px; border-bottom: 2px solid rgba(196,181,253,.22); white-space: nowrap; }
-  .card.fan .drow { display: flex; align-items: center; gap: 22px; font-size: 42px; padding: 14px 0; white-space: nowrap; }
-  .card.fan .dn { flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
-  .card.fan .dok { display: flex; align-items: center; gap: 10px; color: #4ADE80; font-weight: 700; font-size: 38px; }
-  .card svg { flex: none; }
-  .grid { position: absolute; left: 80px; right: 80px; z-index: 5; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-  .grid .cell { border-radius: 64px; padding: 54px 20px 40px; height: 400px; text-align: center; background: rgba(255,255,255,.08); box-shadow: inset 0 0 0 2px rgba(255,255,255,.14); }
-  .grid .tile { width: 132px; height: 132px; border-radius: 38px; margin: 0 auto 30px; display: flex; align-items: center; justify-content: center; background: rgba(196,181,253,.16); }
-  .grid b { font-size: 50px; font-weight: 800; line-height: 1.3; color: #fff; }
-  .appicon { position: absolute; left: 50%; width: 220px; height: 220px; margin-left: -110px; border-radius: 22.5%; box-shadow: 0 24px 60px rgba(0,0,0,.5), 0 0 0 2px rgba(196,181,253,.3); z-index: 5; }
   ${WATCH_CSS}
   ${PHONE_CSS}
   ${DEVICE_CSS}
-  /* 右から左の言語: 縮小して入れる画面の置き場は左から右のまま (右寄せになると端末からはみ出す)。画面の中身だけ右から左にする。コードのカードは左から右 */
-  .iphone .screen, .watch .glass, .watch .glass > div, .watch .glass > div > div, .card, .ps .mono { direction: ltr; }
+  /* 右から左の言語: 縮小して入れる画面の置き場は左から右のまま (右寄せになると端末からはみ出す)。画面の中身だけ右から左にする */
+  .iphone .screen, .ps .mono { direction: ltr; }
   [dir=rtl] .ps, [dir=rtl] .ws { direction: rtl; }
 `;
 
 // 見出しが横に収まらないときは字を小さくする (行ごとではなく要素全体で揃える)。縮めすぎた言語は index.mjs が止める
 const FIT = `<script>
   window.__fit = [];
-  document.querySelectorAll(".head h1, .closing").forEach(function (el) {
+  document.querySelectorAll(".head h1").forEach(function (el) {
     var size = parseFloat(getComputedStyle(el).fontSize), start = size;
     var over = function () {
       var parts = el.querySelectorAll(".line"); if (!parts.length) parts = [el];
@@ -416,65 +413,29 @@ const FIT = `<script>
     while (over() && size > 20) { size -= 2; el.style.fontSize = size + "px"; }
     window.__fit.push({ cls: el.className || el.tagName, start: start, size: size });
   });
-  document.querySelectorAll(".chips").forEach(function (el) {
-    var w = [].reduce.call(el.children, function (a, c) { return a + c.offsetWidth + 24; }, -24);
-    if (w > ${IPHONE.width} - 160) el.style.zoom = (${IPHONE.width} - 160) / w;  // 左右に 80px ずつ空ける
-  });
 </script>`;
 
-const CHIP_ICONS = { hero: ["note", "link", "checklist"], siri: ["siri", "tap", "watch"], integrations: ["link", "doc", "book"] };
-const head = (c, key, top) => `<div class="head" style="top:${top}px"><h1>${lines(c.h1)}</h1>
-  ${c.chips ? `<div class="chips">${c.chips.map((label, i) => `<span class="chip">${icon(CHIP_ICONS[key][i], 62, "#FDE68A")}${esc(label)}</span>`).join("")}</div>` : ""}</div>`;
-const closing = (s) => `<div class="fade"></div><div class="closing">${lines(s)}</div>`;
-
 const page = (body, seed, lang) => `<!doctype html>${htmlOpen(lang)}<head><meta charset="utf-8"><style>${fontVars(lang)}${SLIDE_CSS}</style></head>
-<body><div class="slide">${sky(IPHONE.width, IPHONE.height, seed)}${body}</div>${FIT}${WATCH_FIT}</body></html>`;
+<body><div class="slide">${sky(IPHONE.width, IPHONE.height, seed)}${body}</div>${FIT}</body></html>`;
 
-/** iPhone のスクショ 1 枚の HTML */
+/** 1 枚ごとの画面 (どれもアプリの iPhone の画面そのもの。広告の図・時計の絵・機能の一覧は載せない) */
+const SLIDE_SCREENS = {
+  memos: (t, a) => phoneScreens.memos(t, a),
+  detail: (t, a) => phoneScreens.memoDetail(t, a),
+  integrations: (t, a) => phoneScreens.integrations(t, a),
+  templates: (t, a) => phoneScreens.integrations(t, a, templateMenu(a)),
+  compose: (t, a) => phoneScreens.compose(t, a),
+};
+export const IPHONE_SLIDES = Object.keys(SLIDE_SCREENS);
+export const WATCH_SLIDES = ["home", "memos", "detail"];
+
+/** iPhone のスクショ 1 枚の HTML: 短い見出し + 大きな端末 (画面が主役) */
 export function iphoneSlide(key, copy, lang = "ja") {
   const c = copy.iphone[key];
-  const t = copy.screen;
-  switch (key) {
-    case "hero": {
-      // 話す → メモに保存 → オンにした連携へ。カードは送り先・連携ごとの結果 (MemoDetailView の「送り先・連携」と同じ並び)
-      const done = (sym, name) => `<div class="drow">${icon(sym, 46, "#FDE68A", 2.2)}<span class="dn">${esc(name)}</span><span class="dok">${icon("check", 40, "#4ADE80", 2.6)}${esc(t.status.done)}</span></div>`;
-      return page(`${head(c, key, 200)}
-        ${watchDevice(watchScreens.home(t), { width: 700, top: 930 })}
-        <div class="bubble me" style="top:860px;left:70px">${icon("mic", 50, "#8B5CF6", 2.4)} ${esc(t.spoken[0])}</div>
-        <div class="card fan" style="top:1930px">
-          <div class="memo">${icon("note", 48, "#C4B5FD", 2.2)}<span>${esc(t.spoken[0])}</span></div>
-          ${t.destinations.slice(0, 3).map((name) => done("plane", name)).join("")}
-        </div>
-        ${closing(c.closing)}`, 7, lang);
-    }
-    case "siri":
-      return page(`${head(c, key, 200)}
-        ${watchDevice(watchScreens.siri(t), { width: 640, top: 900 })}
-        <div class="bubble me" style="top:1830px;right:90px">${esc(t.quote[0] + t.siriAsk + t.quote[1])}</div>
-        <div class="bubble siri" style="top:2010px;left:90px">${esc(t.siriQuestion)}</div>
-        <div class="bubble me" style="top:2190px;right:90px">${esc(t.quote[0] + t.spoken[0] + t.quote[1])}</div>
-        ${closing(c.closing)}`, 11, lang);
-    case "reminder":
-      return page(`${head(c, key, 200)}
-        <div class="bubble me" style="top:600px;left:70px">${icon("mic", 50, "#8B5CF6", 2.4)} ${esc(t.reminderSpoken)}</div>
-        ${iphoneDevice(phoneScreens.memoDetail(t), 800)}
-        <div class="float warm" style="top:1250px;right:30px">${icon("checklist", 54, "#1b1340", 2.4)}${esc(c.floats[0])}</div>
-        <div class="float violet" style="top:2235px;left:30px">${icon("phone", 54, "#5b21b6", 2.4)}${esc(c.floats[1])}</div>
-        ${closing(c.closing)}`, 19, lang);
-    case "integrations":
-      return page(`${head(c, key, 200)}
-        ${iphoneDevice(phoneScreens.integrations(t), 800)}
-        <div class="float warm" style="top:950px;left:30px">${icon("doc", 54, "#1b1340", 2.4)}${esc(c.floats[0])}</div>
-        <div class="float violet" style="top:2290px;left:30px">${icon("plane", 54, "#5b21b6", 2.4)}${esc(c.floats[1])}</div>
-        ${closing(c.closing)}`, 23, lang);
-    case "more":
-      return page(`${head(c, key, 200)}
-        <img class="appicon" style="top:640px" src="data:image/png;base64,${ICON_PNG}">
-        <div class="grid" style="top:960px">${c.cells.map((label, i) => `<div class="cell"><div class="tile">${icon(["inbox", "key", "github", "retry", "shield", "globe"][i], 78, "#FDE68A", 2)}</div><b>${esc(label).replace(/\n/g, "<br>")}</b></div>`).join("")}</div>
-        ${closing(c.closing)}`, 43, lang);
-    default:
-      throw new Error(`unknown slide ${key}`);
-  }
+  if (!c || !SLIDE_SCREENS[key]) throw new Error(`unknown slide ${key}`);
+  const seed = 7 + IPHONE_SLIDES.indexOf(key) * 6;
+  return page(`<div class="head" style="top:150px"><h1>${lines(c.h1)}</h1></div>
+    ${iphoneDevice(SLIDE_SCREENS[key](copy.screen, copy.app), 520)}`, seed, lang);
 }
 
 /** Apple Watch のスクショ 1 枚の HTML (画面だけ) */
@@ -482,6 +443,3 @@ export function watchSlide(key, copy, lang = "ja") {
   return `<!doctype html>${htmlOpen(lang)}<head><meta charset="utf-8"><style>${fontVars(lang)}* { margin: 0; padding: 0; box-sizing: border-box; } html, body { width: ${WATCH.width}px; height: ${WATCH.height}px; background: #000; overflow: hidden; -webkit-font-smoothing: antialiased; } ${WATCH_CSS}</style></head>
 <body>${watchScreens[key](copy.screen)}${WATCH_FIT}</body></html>`;
 }
-
-export const IPHONE_SLIDES = ["hero", "siri", "reminder", "integrations", "more"];
-export const WATCH_SLIDES = ["home", "memos", "detail"];

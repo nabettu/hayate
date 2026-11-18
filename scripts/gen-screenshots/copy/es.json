@@ -1,55 +1,19 @@
 {
   "iphone": {
-    "hero": {
-      "h1": "Habla al reloj\ny ya es una *nota*",
-      "chips": [
-        "Nota",
-        "Webhook",
-        "Recordatorio"
-      ],
-      "closing": "¿Una idea? Guárdala\n*desde la muñeca*"
+    "memos": {
+      "h1": "Lo que dices\nse guarda como *nota*"
     },
-    "siri": {
-      "h1": "*Oye Siri*,\nsin usar las manos",
-      "chips": [
-        "Siri",
-        "Doble toque",
-        "Esfera"
-      ],
-      "closing": "¿Manos ocupadas?\nNota con la *voz*"
-    },
-    "reminder": {
-      "h1": "Di una palabra\ny ya es *recordatorio*",
-      "floats": [
-        "Añadido “comprar leche”",
-        "El iPhone lo añade a la lista"
-      ],
-      "closing": "Tus tareas,\n*directas a la lista*"
+    "detail": {
+      "h1": "Ve la entrega\n*por destino*"
     },
     "integrations": {
-      "h1": "A *muchos destinos*\na la vez",
-      "chips": [
-        "Webhook",
-        "Markdown",
-        "Obsidian"
-      ],
-      "floats": [
-        "Añadido a 2026-11-13.md",
-        "Slack, Notion, ntfy y más"
-      ],
-      "closing": "A tu chat\ny a *tus notas*"
+      "h1": "Envía a cada\n*integración* activa"
     },
-    "more": {
-      "h1": "Y\n*mucho más.*",
-      "cells": [
-        "Todas las notas\nen el iPhone",
-        "Cabecera auth\nen el Keychain",
-        "Código abierto\nen GitHub",
-        "Lo no enviado se\nreenvía al abrir",
-        "Sin anuncios,\nsin rastreo",
-        "Disponible en\n45 idiomas"
-      ],
-      "closing": "Tus palabras,\nen *tu flujo*"
+    "templates": {
+      "h1": "Añade Slack o Notion\ncon *plantillas*"
+    },
+    "compose": {
+      "h1": "O *escribe*\ntu nota"
     }
   },
   "screen": {
